@@ -1,0 +1,200 @@
+// Name:            Flex
+// Description:     Utilities for layouts based on flexbox
+//
+// Component:       `bdt-flex-*`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Flex
+ ========================================================================== */
+
+.bdt-flex { display: flex; }
+.bdt-flex-inline { display: inline-flex; }
+
+
+/* Alignment
+ ========================================================================== */
+
+/*
+ * Align items along the main axis of the current line of the flex container
+ * Row: Horizontal
+ */
+
+// Default
+.bdt-flex-left { justify-content: flex-start; }
+.bdt-flex-center { justify-content: center; }
+.bdt-flex-right { justify-content: flex-end; }
+.bdt-flex-between { justify-content: space-between; }
+.bdt-flex-around { justify-content: space-around; }
+
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-flex-left\@s { justify-content: flex-start; }
+    .bdt-flex-center\@s { justify-content: center; }
+    .bdt-flex-right\@s { justify-content: flex-end; }
+    .bdt-flex-between\@s { justify-content: space-between; }
+    .bdt-flex-around\@s { justify-content: space-around; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-flex-left\@m { justify-content: flex-start; }
+    .bdt-flex-center\@m { justify-content: center; }
+    .bdt-flex-right\@m { justify-content: flex-end; }
+    .bdt-flex-between\@m { justify-content: space-between; }
+    .bdt-flex-around\@m { justify-content: space-around; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-flex-left\@l { justify-content: flex-start; }
+    .bdt-flex-center\@l { justify-content: center; }
+    .bdt-flex-right\@l { justify-content: flex-end; }
+    .bdt-flex-between\@l { justify-content: space-between; }
+    .bdt-flex-around\@l { justify-content: space-around; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-flex-left\@xl { justify-content: flex-start; }
+    .bdt-flex-center\@xl { justify-content: center; }
+    .bdt-flex-right\@xl { justify-content: flex-end; }
+    .bdt-flex-between\@xl { justify-content: space-between; }
+    .bdt-flex-around\@xl { justify-content: space-around; }
+
+}
+
+/*
+ * Align items in the cross axis of the current line of the flex container
+ * Row: Vertical
+ */
+
+// Default
+.bdt-flex-stretch { align-items: stretch; }
+.bdt-flex-top { align-items: flex-start; }
+.bdt-flex-middle { align-items: center; }
+.bdt-flex-bottom { align-items: flex-end; }
+
+
+/* Direction
+ ========================================================================== */
+
+// Default
+.bdt-flex-row { flex-direction: row; }
+.bdt-flex-row-reverse { flex-direction: row-reverse; }
+.bdt-flex-column { flex-direction: column; }
+.bdt-flex-column-reverse { flex-direction: column-reverse; }
+
+
+/* Wrap
+ ========================================================================== */
+
+// Default
+.bdt-flex-nowrap { flex-wrap: nowrap; }
+.bdt-flex-wrap { flex-wrap: wrap; }
+.bdt-flex-wrap-reverse { flex-wrap: wrap-reverse; }
+
+/*
+ * Aligns items within the flex container when there is extra space in the cross-axis
+ * Only works if there is more than one line of flex items
+ */
+
+// Default
+.bdt-flex-wrap-stretch { align-content: stretch; }
+.bdt-flex-wrap-top { align-content: flex-start; }
+.bdt-flex-wrap-middle { align-content: center; }
+.bdt-flex-wrap-bottom { align-content: flex-end; }
+.bdt-flex-wrap-between { align-content: space-between; }
+.bdt-flex-wrap-around { align-content: space-around; }
+
+
+/* Item ordering
+ ========================================================================== */
+
+/*
+ * Default is 0
+ */
+
+.bdt-flex-first { order: -1;}
+.bdt-flex-last { order: 99;}
+
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-flex-first\@s { order: -1; }
+    .bdt-flex-last\@s { order: 99; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-flex-first\@m { order: -1; }
+    .bdt-flex-last\@m { order: 99; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-flex-first\@l { order: -1; }
+    .bdt-flex-last\@l { order: 99; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-flex-first\@xl { order: -1; }
+    .bdt-flex-last\@xl { order: 99; }
+
+}
+
+
+/* Item dimensions
+ ========================================================================== */
+
+/*
+ * Initial: 0 1 auto
+ * Content dimensions, but shrinks
+ */
+
+/*
+ * No Flex: 0 0 auto
+ * Content dimensions
+ */
+
+.bdt-flex-none { flex: none; }
+
+/*
+ * Relative Flex: 1 1 auto
+ * Space is allocated considering content
+ */
+
+.bdt-flex-auto { flex: auto; }
+
+/*
+ * Absolute Flex: 1 1 0%
+ * Space is allocated solely based on flex
+ */
+
+.bdt-flex-1 { flex: 1; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-flex-misc();
+
+.hook-flex-misc() {}

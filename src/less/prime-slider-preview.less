@@ -1,0 +1,35 @@
+
+.elementor-editor-active,
+.elementor-editor-preview {
+	.quform-edit-form,
+	.tablepress > caption {
+		display: none;
+	}
+
+	.swiper-pagination {
+	    z-index: 0;
+	}
+}
+
+// rooten theme editor fix
+.elementor-editor-active {
+	.tm-header-wrapper {
+		z-index: 0;
+	}
+	.bdt-elementor-template-edit-link {
+	    position: absolute;
+	    top: 30px;
+	    right: 0px;
+	    display: inline-block;
+	    padding: 7px;
+	    background-color: #10bcf2;
+	    color: #fff;
+	    border-radius: 2px;
+	    font-size: 11px;
+	    line-height: 1;
+	    text-align: center;
+	    &:not(:hover) {
+		    background-image: linear-gradient(to top, #41c9f4, #71d7f7);
+	    }
+	}
+}

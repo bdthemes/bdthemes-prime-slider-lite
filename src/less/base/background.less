@@ -1,0 +1,148 @@
+// Name:            Background
+// Description:     Utilities for backgrounds
+//
+// Component:       `bdt-background-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@background-default-background:                 @global-background;
+@background-muted-background:                   @global-muted-background;
+@background-primary-background:                 @global-primary-background;
+@background-secondary-background:               @global-secondary-background;
+
+
+/* ========================================================================
+   Component: Background
+ ========================================================================== */
+
+
+/* Color
+ ========================================================================== */
+
+.bdt-background-default { background-color: @background-default-background; }
+.bdt-background-muted { background-color: @background-muted-background; }
+.bdt-background-primary { background-color: @background-primary-background; }
+.bdt-background-secondary { background-color: @background-secondary-background; }
+
+
+/* Size
+ ========================================================================== */
+
+.bdt-background-cover,
+.bdt-background-contain,
+.bdt-background-width-1-1,
+.bdt-background-height-1-1 {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.bdt-background-cover { background-size: cover; }
+.bdt-background-contain { background-size: contain; }
+.bdt-background-width-1-1 { background-size: 100%; }
+.bdt-background-height-1-1 { background-size: auto 100%; }
+
+
+/* Position
+ ========================================================================== */
+
+.bdt-background-top-left { background-position: 0 0; }
+.bdt-background-top-center { background-position: 50% 0; }
+.bdt-background-top-right { background-position: 100% 0; }
+.bdt-background-center-left { background-position: 0 50%; }
+.bdt-background-center-center { background-position: 50% 50%; }
+.bdt-background-center-right { background-position: 100% 50%; }
+.bdt-background-bottom-left { background-position: 0 100%; }
+.bdt-background-bottom-center { background-position: 50% 100%; }
+.bdt-background-bottom-right { background-position: 100% 100%; }
+
+
+/* Repeat
+ ========================================================================== */
+
+.bdt-background-norepeat { background-repeat: no-repeat; }
+
+
+/* Attachment
+ ========================================================================== */
+
+/*
+ * 1. Fix bug introduced in Chrome 67: the background image is not visible if any element on the page uses `translate3d`
+ */
+
+.bdt-background-fixed {
+    background-attachment: fixed;
+    /* 1 */
+    backface-visibility: hidden;
+}
+
+/*
+ * Exclude touch devices because `fixed` doesn't work on iOS and Android
+ */
+
+@media (pointer: coarse) {
+    .bdt-background-fixed { background-attachment: scroll; }
+}
+
+
+/* Image
+ ========================================================================== */
+
+/* Phone portrait and smaller */
+@media (max-width: @breakpoint-xsmall-max) {
+
+    .bdt-background-image\@s { background-image: none !important; }
+
+}
+
+/* Phone landscape and smaller */
+@media (max-width: @breakpoint-small-max) {
+
+    .bdt-background-image\@m { background-image: none !important; }
+
+}
+
+/* Tablet landscape and smaller */
+@media (max-width: @breakpoint-medium-max) {
+
+    .bdt-background-image\@l { background-image: none !important; }
+
+}
+
+/* Desktop and smaller */
+@media (max-width: @breakpoint-large-max) {
+
+    .bdt-background-image\@xl {background-image: none !important; }
+
+}
+
+
+/* Blend modes
+ ========================================================================== */
+
+.bdt-background-blend-multiply { background-blend-mode: multiply; }
+.bdt-background-blend-screen { background-blend-mode: screen; }
+.bdt-background-blend-overlay { background-blend-mode: overlay; }
+.bdt-background-blend-darken { background-blend-mode: darken; }
+.bdt-background-blend-lighten { background-blend-mode: lighten; }
+.bdt-background-blend-color-dodge { background-blend-mode: color-dodge; }
+.bdt-background-blend-color-burn { background-blend-mode: color-burn; }
+.bdt-background-blend-hard-light { background-blend-mode: hard-light; }
+.bdt-background-blend-soft-light { background-blend-mode: soft-light; }
+.bdt-background-blend-difference { background-blend-mode: difference; }
+.bdt-background-blend-exclusion { background-blend-mode: exclusion; }
+.bdt-background-blend-hue { background-blend-mode: hue; }
+.bdt-background-blend-saturation { background-blend-mode: saturation; }
+.bdt-background-blend-color { background-blend-mode: color; }
+.bdt-background-blend-luminosity { background-blend-mode: luminosity; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-background-misc();
+
+.hook-background-misc() {}

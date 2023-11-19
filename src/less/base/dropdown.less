@@ -1,0 +1,210 @@
+// Name:            Dropdown
+// Description:     Component to create a dropdown based on Drop component
+//
+// Component:       `bdt-dropdown`
+//
+// Adopted:         `bdt-dropdown-nav`
+//
+// Modifiers:       `bdt-dropdown-large`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@dropdown-margin:                               @global-small-margin;
+@dropdown-viewport-margin:                      15px;
+@dropdown-min-width:                            200px;
+@dropdown-padding:                              15px;
+@dropdown-background:                           @global-muted-background;
+@dropdown-color:                                @global-color;
+@dropdown-color-mode:                           none;
+@dropdown-focus-outline:                        @base-focus-outline;
+
+@dropdown-large-padding:                        40px;
+
+@dropdown-dropbar-padding-top:                  @dropdown-padding;
+@dropdown-dropbar-padding-bottom:               @dropdown-padding;
+@dropdown-dropbar-viewport-margin:              15px;
+@dropdown-dropbar-viewport-margin-s:            @global-gutter;
+@dropdown-dropbar-viewport-margin-m:            @global-medium-gutter;
+
+@dropdown-dropbar-large-padding-top:            @dropdown-large-padding;
+@dropdown-dropbar-large-padding-bottom:         @dropdown-dropbar-large-padding-top;
+
+@dropdown-nav-item-color:                       @global-muted-color;
+@dropdown-nav-item-hover-color:                 @global-color;
+@dropdown-nav-subtitle-font-size:               @global-small-font-size;
+@dropdown-nav-header-color:                     @global-emphasis-color;
+@dropdown-nav-divider-border-width:             @global-border-width;
+@dropdown-nav-divider-border:                   @global-border;
+@dropdown-nav-sublist-item-color:               @global-muted-color;
+@dropdown-nav-sublist-item-hover-color:         @global-color;
+
+
+/* ========================================================================
+   Component: Dropdown
+ ========================================================================== */
+
+/*
+ * Adopts `bdt-drop`
+ * 1. Reset drop and let text expand the width instead of wrapping
+ * 2. Set a default width
+ * 3. Style
+ */
+
+.bdt-dropdown {
+    --bdt-position-offset: @dropdown-margin;
+    --bdt-position-viewport-offset: @dropdown-viewport-margin;
+    /* 1 */
+    width: auto;
+    /* 2 */
+    min-width: @dropdown-min-width;
+    /* 3 */
+    padding: @dropdown-padding;
+    background: @dropdown-background;
+    color: @dropdown-color;
+    .hook-dropdown();
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-dropdown > :last-child { margin-bottom: 0; }
+
+// Color Mode
+.bdt-dropdown:extend(.bdt-light all) when (@dropdown-color-mode = light) {}
+.bdt-dropdown:extend(.bdt-dark all) when (@dropdown-color-mode = dark) {}
+
+.bdt-dropdown :focus-visible when not (@dropdown-color-mode = @inverse-global-color-mode) {
+    outline-color: @dropdown-focus-outline !important;
+}
+
+
+/* Size modifier
+ ========================================================================== */
+
+.bdt-dropdown-large { padding: @dropdown-large-padding; }
+
+
+/* Dropbar modifier
+ ========================================================================== */
+
+/*
+ * 1. Reset dropdown width to prevent to early shifting
+ * 2. Reset style
+ * 3. Padding
+ */
+
+.bdt-dropdown-dropbar {
+    /* 1 */
+    width: auto;
+    /* 2 */
+    background: transparent;
+    /* 3 */
+    padding: @dropdown-dropbar-padding-top 0 @dropdown-dropbar-padding-bottom 0;
+    --bdt-position-viewport-offset: @dropdown-dropbar-viewport-margin;
+    .hook-dropdown-dropbar();
+}
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-dropdown-dropbar { --bdt-position-viewport-offset: @dropdown-dropbar-viewport-margin-s; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-dropdown-dropbar { --bdt-position-viewport-offset: @dropdown-dropbar-viewport-margin-m; }
+
+}
+
+.bdt-dropdown-dropbar-large {
+    padding-top: @dropdown-dropbar-large-padding-top;
+    padding-bottom: @dropdown-dropbar-large-padding-bottom;
+    .hook-dropdown-dropbar-large();
+}
+
+
+/* Nav
+ * Adopts `bdt-nav`
+ ========================================================================== */
+
+.bdt-dropdown-nav {
+    .hook-dropdown-nav();
+}
+
+/*
+ * Items
+ */
+
+.bdt-dropdown-nav > li > a {
+    color: @dropdown-nav-item-color;
+    .hook-dropdown-nav-item();
+}
+
+/* Hover + Active */
+.bdt-dropdown-nav > li > a:hover,
+.bdt-dropdown-nav > li.bdt-active > a {
+    color: @dropdown-nav-item-hover-color;
+    .hook-dropdown-nav-item-hover();
+}
+
+/*
+ * Subtitle
+ */
+
+.bdt-dropdown-nav .bdt-nav-subtitle {
+    font-size: @dropdown-nav-subtitle-font-size;
+    .hook-dropdown-nav-subtitle();
+}
+
+/*
+ * Header
+ */
+
+.bdt-dropdown-nav .bdt-nav-header {
+    color: @dropdown-nav-header-color;
+    .hook-dropdown-nav-header();
+}
+
+/*
+ * Divider
+ */
+
+.bdt-dropdown-nav .bdt-nav-divider {
+    border-top: @dropdown-nav-divider-border-width solid @dropdown-nav-divider-border;
+    .hook-dropdown-nav-divider();
+}
+
+/*
+ * Sublists
+ */
+
+.bdt-dropdown-nav .bdt-nav-sub a { color: @dropdown-nav-sublist-item-color; }
+
+.bdt-dropdown-nav .bdt-nav-sub a:hover,
+.bdt-dropdown-nav .bdt-nav-sub li.bdt-active > a { color: @dropdown-nav-sublist-item-hover-color; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-dropdown-misc();
+
+.hook-dropdown() {}
+.hook-dropdown-dropbar() {}
+.hook-dropdown-dropbar-large() {}
+.hook-dropdown-nav() {}
+.hook-dropdown-nav-item() {}
+.hook-dropdown-nav-item-hover() {}
+.hook-dropdown-nav-subtitle() {}
+.hook-dropdown-nav-header() {}
+.hook-dropdown-nav-divider() {}
+.hook-dropdown-misc() {}

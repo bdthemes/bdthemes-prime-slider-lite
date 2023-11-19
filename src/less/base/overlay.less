@@ -1,0 +1,85 @@
+// Name:            Overlay
+// Description:     Component to create content areas overlaying an image
+//
+// Component:       `bdt-overlay`
+//
+// Adopted:         `bdt-overlay-icon`
+//
+// Modifier:        `bdt-overlay-default`
+//                  `bdt-overlay-primary`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@overlay-padding-horizontal:                    @global-gutter;
+@overlay-padding-vertical:                      @global-gutter;
+
+@overlay-default-background:                    fade(@global-background, 80%);
+
+@overlay-primary-background:                    fade(@global-secondary-background, 80%);
+@overlay-primary-color-mode:                    light;
+
+
+/* ========================================================================
+   Component: Overlay
+ ========================================================================== */
+
+.bdt-overlay {
+    padding: @overlay-padding-vertical @overlay-padding-horizontal;
+    .hook-overlay();
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-overlay > :last-child { margin-bottom: 0; }
+
+
+/* Icon
+ ========================================================================== */
+
+.bdt-overlay-icon {
+    .hook-overlay-icon();
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.bdt-overlay-default {
+    background: @overlay-default-background;
+    .hook-overlay-default();
+}
+
+/*
+ * Primary
+ */
+
+.bdt-overlay-primary {
+    background: @overlay-primary-background;
+    .hook-overlay-primary();
+}
+
+// Color Mode
+.bdt-overlay-primary:extend(.bdt-light all) when (@overlay-primary-color-mode = light) {}
+.bdt-overlay-primary:extend(.bdt-dark all) when (@overlay-primary-color-mode = dark) {}
+
+
+// Hooks
+// ========================================================================
+
+.hook-overlay-misc();
+
+.hook-overlay() {}
+.hook-overlay-icon() {}
+.hook-overlay-default() {}
+.hook-overlay-primary() {}
+.hook-overlay-misc() {}

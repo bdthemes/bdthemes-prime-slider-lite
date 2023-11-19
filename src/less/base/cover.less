@@ -1,0 +1,63 @@
+// Name:            Cover
+// Description:     Utilities to let embedded content cover their container in a centered position
+//
+// Component:       `bdt-cover`
+//
+// Sub-object:      `bdt-cover-container`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Cover
+ ========================================================================== */
+
+/*
+ * Works with iframes and embedded content
+ * 1. Use attribute to apply transform instantly. Needed if transform is transitioned.
+ * 2. Reset responsiveness for embedded content
+ * 3. Center object
+ * Note: Percent values on the `top` property only works if this element
+ *       is absolute positioned or if the container has a height
+ */
+
+/* 1 */
+[bdt-cover],
+[data-bdt-cover] {
+    /* 2 */
+    max-width: none;
+    /* 3 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    --bdt-position-translate-x: -50%;
+    --bdt-position-translate-y: -50%;
+    transform: translate(var(--bdt-position-translate-x), var(--bdt-position-translate-y));
+}
+
+iframe[bdt-cover],
+iframe[data-bdt-cover] { pointer-events: none; }
+
+
+/* Container
+ ========================================================================== */
+
+/*
+ * 1. Parent container which clips resized object
+ * 2. Needed if the child is positioned absolute. See note above
+ */
+
+.bdt-cover-container {
+    /* 1 */
+    overflow: hidden;
+    /* 2 */
+    position: relative;
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-cover-misc();
+
+.hook-cover-misc() {}

@@ -1,0 +1,165 @@
+// Name:            Transition
+// Description:     Utilities for transitions
+//
+// Component:       `bdt-transition-*`
+//
+// Modifiers:       `bdt-transition-fade`
+//                  `bdt-transition-scale-up`
+//                  `bdt-transition-scale-down`
+//                  `bdt-transition-slide-top-*`
+//                  `bdt-transition-slide-bottom-*`
+//                  `bdt-transition-slide-left-*`
+//                  `bdt-transition-slide-right-*`
+//                  `bdt-transition-opaque`
+//                  `bdt-transition-slow`
+//
+// Sub-objects:     `bdt-transition-toggle`,
+//                  `bdt-transition-active`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@transition-duration:                           0.3s;
+
+@transition-scale:                              1.03;
+
+@transition-slide-small-translate:              10px;
+@transition-slide-medium-translate:             50px;
+
+@transition-slow-duration:                      0.7s;
+
+
+/* ========================================================================
+   Component: Transition
+ ========================================================================== */
+
+/* Transitions
+ ========================================================================== */
+
+/*
+ * The toggle is triggered on touch devices by two methods:
+ * 1. Using `:focus` and tabindex
+ * 2. Using `:hover` and a `touchstart` event listener registered on the document
+ *    (Doesn't work on Surface touch devices)
+ */
+
+:where(.bdt-transition-fade),
+:where([class*='bdt-transition-scale']),
+:where([class*='bdt-transition-slide']) {
+    --bdt-position-translate-x: 0;
+    --bdt-position-translate-y: 0;
+}
+
+.bdt-transition-fade,
+[class*='bdt-transition-scale'],
+[class*='bdt-transition-slide'] {
+    --bdt-translate-x: 0;
+    --bdt-translate-y: 0;
+    --bdt-scale-x: 1;
+    --bdt-scale-y: 1;
+    transform: translate(var(--bdt-position-translate-x), var(--bdt-position-translate-y))
+               translate(var(--bdt-translate-x), var(--bdt-translate-y))
+               scale(var(--bdt-scale-x), var(--bdt-scale-y));
+    transition: @transition-duration ease-out;
+    transition-property: opacity, transform, filter;
+    opacity: 0;
+}
+
+/*
+ * Fade
+ */
+
+.bdt-transition-toggle:hover .bdt-transition-fade,
+.bdt-transition-toggle:focus .bdt-transition-fade,
+.bdt-transition-toggle .bdt-transition-fade:focus-within,
+.bdt-transition-active.bdt-active .bdt-transition-fade { opacity: 1; }
+
+/*
+ * Scale
+ * 1. Make image rendering the same during the transition as before and after. Prefixed because of Safari.
+ */
+
+/* 1 */
+[class*='bdt-transition-scale'] { -webkit-backface-visibility: hidden; }
+
+.bdt-transition-scale-up {
+    --bdt-scale-x: 1;
+    --bdt-scale-y: 1;
+}
+.bdt-transition-scale-down {
+    --bdt-scale-x: @transition-scale;
+    --bdt-scale-y: @transition-scale;
+}
+
+/* Show */
+.bdt-transition-toggle:hover .bdt-transition-scale-up,
+.bdt-transition-toggle:focus .bdt-transition-scale-up,
+.bdt-transition-toggle .bdt-transition-scale-up:focus-within,
+.bdt-transition-active.bdt-active .bdt-transition-scale-up {
+    --bdt-scale-x: @transition-scale;
+    --bdt-scale-y: @transition-scale;
+    opacity: 1;
+}
+
+.bdt-transition-toggle:hover .bdt-transition-scale-down,
+.bdt-transition-toggle:focus .bdt-transition-scale-down,
+.bdt-transition-toggle .bdt-transition-scale-down:focus-within,
+.bdt-transition-active.bdt-active .bdt-transition-scale-down {
+    --bdt-scale-x: 1;
+    --bdt-scale-y: 1;
+    opacity: 1;
+}
+
+/*
+ * Slide
+ */
+
+.bdt-transition-slide-top { --bdt-translate-y: -100%; }
+.bdt-transition-slide-bottom { --bdt-translate-y: 100%; }
+.bdt-transition-slide-left { --bdt-translate-x: -100%; }
+.bdt-transition-slide-right { --bdt-translate-x: 100%; }
+
+.bdt-transition-slide-top-small { --bdt-translate-y: ~'calc(-1 * @{transition-slide-small-translate})'; }
+.bdt-transition-slide-bottom-small { --bdt-translate-y: @transition-slide-small-translate; }
+.bdt-transition-slide-left-small { --bdt-translate-x: ~'calc(-1 * @{transition-slide-small-translate})'; }
+.bdt-transition-slide-right-small { --bdt-translate-x: @transition-slide-small-translate; }
+
+.bdt-transition-slide-top-medium { --bdt-translate-y: ~'calc(-1 * @{transition-slide-medium-translate})'; }
+.bdt-transition-slide-bottom-medium { --bdt-translate-y: @transition-slide-medium-translate; }
+.bdt-transition-slide-left-medium { --bdt-translate-x: ~'calc(-1 * @{transition-slide-medium-translate})'; }
+.bdt-transition-slide-right-medium { --bdt-translate-x: @transition-slide-medium-translate; }
+
+/* Show */
+.bdt-transition-toggle:hover [class*='bdt-transition-slide'],
+.bdt-transition-toggle:focus [class*='bdt-transition-slide'],
+.bdt-transition-toggle [class*='bdt-transition-slide']:focus-within,
+.bdt-transition-active.bdt-active [class*='bdt-transition-slide'] {
+    --bdt-translate-x: 0;
+    --bdt-translate-y: 0;
+    opacity: 1;
+}
+
+
+/* Opacity modifier
+ ========================================================================== */
+
+.bdt-transition-opaque { opacity: 1; }
+
+
+/* Duration modifiers
+ ========================================================================== */
+
+.bdt-transition-slow { transition-duration: @transition-slow-duration; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-transition-misc();
+
+.hook-transition-misc() {}

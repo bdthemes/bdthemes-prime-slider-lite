@@ -1,0 +1,689 @@
+// Name:            Nav
+// Description:     Defines styles for list navigations
+//
+// Component:       `bdt-nav`
+//
+// Sub-objects:     `bdt-nav-parent-icon`
+//                  `bdt-nav-header`
+//                  `bdt-nav-divider`
+//                  `bdt-nav-subtitle`
+//                  `bdt-nav-sub`
+//
+// Modifiers:       `bdt-nav-default`
+//                  `bdt-nav-primary`
+//                  `bdt-nav-center`,
+//                  `bdt-nav-divider`
+//
+// States:          `bdt-active`
+//                  `bdt-parent`
+//                  `bdt-open`
+//                  `bdt-touch`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@nav-item-padding-vertical:                     5px;
+@nav-item-padding-horizontal:                   0;
+
+@nav-sublist-padding-vertical:                  5px;
+@nav-sublist-padding-left:                      15px;
+@nav-sublist-deeper-padding-left:               15px;
+@nav-sublist-item-padding-vertical:             2px;
+
+@nav-parent-icon-margin-left:                   0.25em;
+
+@nav-header-padding-vertical:                   @nav-item-padding-vertical;
+@nav-header-padding-horizontal:                 @nav-item-padding-horizontal;
+@nav-header-font-size:                          @global-small-font-size;
+@nav-header-text-transform:                     uppercase;
+@nav-header-margin-top:                         @global-margin;
+
+@nav-divider-margin-vertical:                   5px;
+@nav-divider-margin-horizontal:                 0;
+
+@nav-default-font-size:                         @global-font-size;
+@nav-default-line-height:                       @global-line-height;
+@nav-default-item-color:                        @global-muted-color;
+@nav-default-item-hover-color:                  @global-color;
+@nav-default-item-active-color:                 @global-emphasis-color;
+@nav-default-subtitle-font-size:                @global-small-font-size;
+@nav-default-header-color:                      @global-emphasis-color;
+@nav-default-divider-border-width:              @global-border-width;
+@nav-default-divider-border:                    @global-border;
+@nav-default-sublist-font-size:                 @nav-default-font-size;
+@nav-default-sublist-line-height:               @nav-default-line-height;
+@nav-default-sublist-item-color:                @global-muted-color;
+@nav-default-sublist-item-hover-color:          @global-color;
+@nav-default-sublist-item-active-color:         @global-emphasis-color;
+
+@nav-primary-font-size:                         @global-large-font-size;
+@nav-primary-line-height:                       @global-line-height;
+@nav-primary-item-color:                        @global-muted-color;
+@nav-primary-item-hover-color:                  @global-color;
+@nav-primary-item-active-color:                 @global-emphasis-color;
+@nav-primary-subtitle-font-size:                @global-medium-font-size;
+@nav-primary-header-color:                      @global-emphasis-color;
+@nav-primary-divider-border-width:              @global-border-width;
+@nav-primary-divider-border:                    @global-border;
+@nav-primary-sublist-font-size:                 @global-medium-font-size;
+@nav-primary-sublist-line-height:               @global-line-height;
+@nav-primary-sublist-item-color:                @global-muted-color;
+@nav-primary-sublist-item-hover-color:          @global-color;
+@nav-primary-sublist-item-active-color:         @global-emphasis-color;
+
+@nav-secondary-font-size:                       @global-font-size;
+@nav-secondary-line-height:                     @global-line-height;
+@nav-secondary-item-color:                      @global-emphasis-color;
+@nav-secondary-item-hover-color:                @global-emphasis-color;
+@nav-secondary-item-active-color:               @global-emphasis-color;
+@nav-secondary-subtitle-font-size:              @global-small-font-size;
+@nav-secondary-subtitle-color:                  @global-muted-color;
+@nav-secondary-subtitle-hover-color:            @global-color;
+@nav-secondary-subtitle-active-color:           @global-emphasis-color;
+@nav-secondary-header-color:                    @global-emphasis-color;
+@nav-secondary-divider-border-width:            @global-border-width;
+@nav-secondary-divider-border:                  @global-border;
+@nav-secondary-sublist-font-size:               @global-small-font-size;
+@nav-secondary-sublist-line-height:             @global-line-height;
+@nav-secondary-sublist-item-color:              @global-muted-color;
+@nav-secondary-sublist-item-hover-color:        @global-color;
+@nav-secondary-sublist-item-active-color:       @global-emphasis-color;
+
+@nav-dividers-margin-top:                       5px;
+@nav-dividers-border-width:                     @global-border-width;
+@nav-dividers-border:                           @global-border;
+
+
+/* ========================================================================
+   Component: Nav
+ ========================================================================== */
+
+/*
+ * Reset
+ */
+
+.bdt-nav,
+.bdt-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*
+* 1. Center content vertically, e.g. an icon
+* 2. Imitate white space gap when using flexbox
+* 3. Reset link
+ */
+
+.bdt-nav li > a {
+    /* 1 */
+    display: flex;
+    align-items: center;
+    /* 2 */
+    column-gap: 0.25em;
+    /* 3*/
+    text-decoration: none;
+}
+
+/*
+ * Items
+ * Must target `a` elements to exclude other elements (e.g. lists)
+ */
+
+.bdt-nav > li > a { padding: @nav-item-padding-vertical @nav-item-padding-horizontal; }
+
+
+/* Sublists
+ ========================================================================== */
+
+/*
+ * Level 2
+ * `ul` needed for higher specificity to override padding
+ */
+
+ul.bdt-nav-sub {
+    padding: @nav-sublist-padding-vertical 0 @nav-sublist-padding-vertical @nav-sublist-padding-left;
+    .hook-nav-sub();
+}
+
+/*
+ * Level 3 and deeper
+ */
+
+.bdt-nav-sub ul { padding-left: @nav-sublist-deeper-padding-left; }
+
+/*
+ * Items
+ */
+
+.bdt-nav-sub a { padding: @nav-sublist-item-padding-vertical 0; }
+
+
+/* Parent icon
+ ========================================================================== */
+
+.bdt-nav-parent-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease-out;
+}
+
+.bdt-nav > li.bdt-open > a .bdt-nav-parent-icon { transform: rotateX(180deg); }
+
+
+/* Header
+ ========================================================================== */
+
+.bdt-nav-header {
+    padding: @nav-header-padding-vertical @nav-header-padding-horizontal;
+    text-transform: @nav-header-text-transform;
+    font-size: @nav-header-font-size;
+    .hook-nav-header();
+}
+
+.bdt-nav-header:not(:first-child) { margin-top: @nav-header-margin-top; }
+
+
+/* Divider
+ ========================================================================== */
+
+.bdt-nav .bdt-nav-divider {
+    margin: @nav-divider-margin-vertical @nav-divider-margin-horizontal;
+    .hook-nav-divider();
+}
+
+
+/* Default modifier
+ ========================================================================== */
+
+.bdt-nav-default {
+    font-size: @nav-default-font-size;
+    line-height: @nav-default-line-height;
+    .hook-nav-default();
+}
+
+/*
+ * Items
+ */
+
+.bdt-nav-default > li > a {
+    color: @nav-default-item-color;
+    .hook-nav-default-item();
+}
+
+/* Hover */
+.bdt-nav-default > li > a:hover {
+    color: @nav-default-item-hover-color;
+    .hook-nav-default-item-hover();
+}
+
+/* Active */
+.bdt-nav-default > li.bdt-active > a {
+    color: @nav-default-item-active-color;
+    .hook-nav-default-item-active();
+}
+
+/*
+ * Subtitle
+ */
+
+.bdt-nav-default .bdt-nav-subtitle {
+    font-size: @nav-default-subtitle-font-size;
+    .hook-nav-default-subtitle();
+}
+
+/*
+ * Header
+ */
+
+.bdt-nav-default .bdt-nav-header {
+    color: @nav-default-header-color;
+    .hook-nav-default-header();
+}
+
+/*
+ * Divider
+ */
+
+.bdt-nav-default .bdt-nav-divider {
+    border-top: @nav-default-divider-border-width solid @nav-default-divider-border;
+    .hook-nav-default-divider();
+}
+
+/*
+ * Sublists
+ */
+
+.bdt-nav-default .bdt-nav-sub {
+    font-size: @nav-default-sublist-font-size;
+    line-height: @nav-default-sublist-line-height;
+}
+
+.bdt-nav-default .bdt-nav-sub a { color: @nav-default-sublist-item-color; }
+
+.bdt-nav-default .bdt-nav-sub a:hover { color: @nav-default-sublist-item-hover-color; }
+
+.bdt-nav-default .bdt-nav-sub li.bdt-active > a { color: @nav-default-sublist-item-active-color; }
+
+
+/* Primary modifier
+ ========================================================================== */
+
+.bdt-nav-primary {
+    font-size: @nav-primary-font-size;
+    line-height: @nav-primary-line-height;
+    .hook-nav-primary();
+}
+
+/*
+ * Items
+ */
+
+.bdt-nav-primary > li > a {
+    color: @nav-primary-item-color;
+    .hook-nav-primary-item();
+}
+
+/* Hover */
+.bdt-nav-primary > li > a:hover {
+    color: @nav-primary-item-hover-color;
+    .hook-nav-primary-item-hover();
+}
+
+/* Active */
+.bdt-nav-primary > li.bdt-active > a {
+    color: @nav-primary-item-active-color;
+    .hook-nav-primary-item-active();
+}
+
+/*
+ * Subtitle
+ */
+
+.bdt-nav-primary .bdt-nav-subtitle {
+    font-size: @nav-primary-subtitle-font-size;
+    .hook-nav-primary-subtitle();
+}
+
+/*
+ * Header
+ */
+
+.bdt-nav-primary .bdt-nav-header {
+    color: @nav-primary-header-color;
+    .hook-nav-primary-header();
+}
+
+/*
+ * Divider
+ */
+
+.bdt-nav-primary .bdt-nav-divider {
+    border-top: @nav-primary-divider-border-width solid @nav-primary-divider-border;
+    .hook-nav-primary-divider();
+}
+
+/*
+ * Sublists
+ */
+
+.bdt-nav-primary .bdt-nav-sub {
+    font-size: @nav-primary-sublist-font-size;
+    line-height: @nav-primary-sublist-line-height;
+}
+
+.bdt-nav-primary .bdt-nav-sub a { color: @nav-primary-sublist-item-color; }
+
+.bdt-nav-primary .bdt-nav-sub a:hover { color: @nav-primary-sublist-item-hover-color; }
+
+.bdt-nav-primary .bdt-nav-sub li.bdt-active > a { color: @nav-primary-sublist-item-active-color; }
+
+
+/* Secondary modifier
+ ========================================================================== */
+
+.bdt-nav-secondary {
+    font-size: @nav-secondary-font-size;
+    line-height: @nav-secondary-line-height;
+    .hook-nav-secondary();
+}
+
+/*
+ * Items
+ */
+
+.bdt-nav-secondary > li > a {
+
+    color: @nav-secondary-item-color;
+    .hook-nav-secondary-item();
+}
+
+/* Hover */
+.bdt-nav-secondary > li > a:hover {
+    color: @nav-secondary-item-hover-color;
+    .hook-nav-secondary-item-hover();
+}
+
+/* Active */
+.bdt-nav-secondary > li.bdt-active > a {
+    color: @nav-secondary-item-active-color;
+    .hook-nav-secondary-item-active();
+}
+
+/*
+ * Subtitle
+ */
+
+.bdt-nav-secondary .bdt-nav-subtitle {
+    font-size: @nav-secondary-subtitle-font-size;
+    color: @nav-secondary-subtitle-color;
+    .hook-nav-secondary-subtitle();
+}
+
+/* Hover */
+.bdt-nav-secondary > li > a:hover .bdt-nav-subtitle {
+    color: @nav-secondary-subtitle-hover-color;
+    .hook-nav-secondary-subtitle-hover();
+}
+
+/* Active */
+.bdt-nav-secondary > li.bdt-active > a .bdt-nav-subtitle {
+    color: @nav-secondary-subtitle-active-color;
+    .hook-nav-secondary-subtitle-active();
+}
+
+/*
+ * Header
+ */
+
+.bdt-nav-secondary .bdt-nav-header {
+    color: @nav-secondary-header-color;
+    .hook-nav-secondary-header();
+}
+
+/*
+ * Divider
+ */
+
+.bdt-nav-secondary .bdt-nav-divider {
+    border-top: @nav-secondary-divider-border-width solid @nav-secondary-divider-border;
+    .hook-nav-secondary-divider();
+}
+
+/*
+ * Sublists
+ */
+
+.bdt-nav-secondary .bdt-nav-sub {
+    font-size: @nav-secondary-sublist-font-size;
+    line-height: @nav-secondary-sublist-line-height;
+}
+
+.bdt-nav-secondary .bdt-nav-sub a { color: @nav-secondary-sublist-item-color; }
+
+.bdt-nav-secondary .bdt-nav-sub a:hover { color: @nav-secondary-sublist-item-hover-color; }
+
+.bdt-nav-secondary .bdt-nav-sub li.bdt-active > a { color: @nav-secondary-sublist-item-active-color; }
+
+
+/* Alignment modifier
+ ========================================================================== */
+
+/*
+ * 1. Center header
+ * 2. Center items
+ */
+
+ /* 1 */
+.bdt-nav-center { text-align: center; }
+ /* 2 */
+.bdt-nav-center li > a { justify-content: center; }
+
+/* Sublists */
+.bdt-nav-center .bdt-nav-sub,
+.bdt-nav-center .bdt-nav-sub ul { padding-left: 0; }
+
+/* Parent icon  */
+.bdt-nav-center .bdt-nav-parent-icon { margin-left: @nav-parent-icon-margin-left; }
+
+
+/* Style modifier
+ ========================================================================== */
+
+/*
+ * Divider
+ * Naming is in plural to prevent conflicts with divider sub object.
+ */
+
+.bdt-nav.bdt-nav-divider > :not(.bdt-nav-header, .bdt-nav-divider) + :not(.bdt-nav-header, .bdt-nav-divider) {
+    margin-top: @nav-dividers-margin-top;
+    padding-top: @nav-dividers-margin-top;
+    border-top: @nav-dividers-border-width solid @nav-dividers-border;
+    .hook-nav-dividers();
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-nav-misc();
+
+.hook-nav-sub() {}
+.hook-nav-header() {}
+.hook-nav-divider() {}
+.hook-nav-default() {}
+.hook-nav-default-item() {}
+.hook-nav-default-item-hover() {}
+.hook-nav-default-item-active() {}
+.hook-nav-default-subtitle() {}
+.hook-nav-default-header() {}
+.hook-nav-default-divider() {}
+.hook-nav-primary() {}
+.hook-nav-primary-item() {}
+.hook-nav-primary-item-hover() {}
+.hook-nav-primary-item-active() {}
+.hook-nav-primary-subtitle() {}
+.hook-nav-primary-header() {}
+.hook-nav-primary-divider() {}
+.hook-nav-secondary() {}
+.hook-nav-secondary-item() {}
+.hook-nav-secondary-item-hover() {}
+.hook-nav-secondary-item-active() {}
+.hook-nav-secondary-subtitle() {}
+.hook-nav-secondary-subtitle-hover() {}
+.hook-nav-secondary-subtitle-active() {}
+.hook-nav-secondary-header() {}
+.hook-nav-secondary-divider() {}
+.hook-nav-dividers() {}
+.hook-nav-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-nav-default-item-color:                    @inverse-global-muted-color;
+@inverse-nav-default-item-hover-color:              @inverse-global-color;
+@inverse-nav-default-item-active-color:             @inverse-global-emphasis-color;
+@inverse-nav-default-header-color:                  @inverse-global-emphasis-color;
+@inverse-nav-default-divider-border:                @inverse-global-border;
+@inverse-nav-default-sublist-item-color:            @inverse-global-muted-color;
+@inverse-nav-default-sublist-item-hover-color:      @inverse-global-color;
+@inverse-nav-default-sublist-item-active-color:     @inverse-global-emphasis-color;
+
+@inverse-nav-primary-item-color:                    @inverse-global-muted-color;
+@inverse-nav-primary-item-hover-color:              @inverse-global-color;
+@inverse-nav-primary-item-active-color:             @inverse-global-emphasis-color;
+@inverse-nav-primary-header-color:                  @inverse-global-emphasis-color;
+@inverse-nav-primary-divider-border:                @inverse-global-border;
+@inverse-nav-primary-sublist-item-color:            @inverse-global-muted-color;
+@inverse-nav-primary-sublist-item-hover-color:      @inverse-global-color;
+@inverse-nav-primary-sublist-item-active-color:     @inverse-global-emphasis-color;
+
+@inverse-nav-secondary-item-color:                  @inverse-global-emphasis-color;
+@inverse-nav-secondary-item-hover-color:            @inverse-global-emphasis-color;
+@inverse-nav-secondary-item-active-color:           @inverse-global-emphasis-color;
+@inverse-nav-secondary-subtitle-color:              @inverse-global-muted-color;
+@inverse-nav-secondary-subtitle-hover-color:        @inverse-global-color;
+@inverse-nav-secondary-subtitle-active-color:       @inverse-global-emphasis-color;
+@inverse-nav-secondary-header-color:                @inverse-global-emphasis-color;
+@inverse-nav-secondary-divider-border:              @inverse-global-border;
+@inverse-nav-secondary-sublist-item-color:          @inverse-global-muted-color;
+@inverse-nav-secondary-sublist-item-hover-color:    @inverse-global-color;
+@inverse-nav-secondary-sublist-item-active-color:   @inverse-global-emphasis-color;
+
+@inverse-nav-dividers-border:                       @inverse-global-border;
+
+.hook-inverse() {
+
+    //
+    // Default
+    //
+
+    .bdt-nav-default > li > a {
+        color: @inverse-nav-default-item-color;
+        .hook-inverse-nav-default-item();
+    }
+
+    .bdt-nav-default > li > a:hover {
+        color: @inverse-nav-default-item-hover-color;
+        .hook-inverse-nav-default-item-hover();
+    }
+
+    .bdt-nav-default > li.bdt-active > a {
+        color: @inverse-nav-default-item-active-color;
+        .hook-inverse-nav-default-item-active();
+    }
+
+    .bdt-nav-default .bdt-nav-header {
+        color: @inverse-nav-default-header-color;
+        .hook-inverse-nav-default-header();
+    }
+
+    .bdt-nav-default .bdt-nav-divider {
+        border-top-color: @inverse-nav-default-divider-border;
+        .hook-inverse-nav-default-divider();
+    }
+
+    .bdt-nav-default .bdt-nav-sub a { color: @inverse-nav-default-sublist-item-color; }
+
+    .bdt-nav-default .bdt-nav-sub a:hover { color: @inverse-nav-default-sublist-item-hover-color; }
+
+    .bdt-nav-default .bdt-nav-sub li.bdt-active > a { color: @inverse-nav-default-sublist-item-active-color; }
+
+    //
+    // Primary
+    //
+
+    .bdt-nav-primary > li > a {
+        color: @inverse-nav-primary-item-color;
+        .hook-inverse-nav-primary-item();
+    }
+
+    .bdt-nav-primary > li > a:hover {
+        color: @inverse-nav-primary-item-hover-color;
+        .hook-inverse-nav-primary-item-hover();
+    }
+
+    .bdt-nav-primary > li.bdt-active > a {
+        color: @inverse-nav-primary-item-active-color;
+        .hook-inverse-nav-primary-item-active();
+    }
+
+    .bdt-nav-primary .bdt-nav-header {
+        color: @inverse-nav-primary-header-color;
+        .hook-inverse-nav-primary-header();
+    }
+
+    .bdt-nav-primary .bdt-nav-divider {
+        border-top-color: @inverse-nav-primary-divider-border;
+        .hook-inverse-nav-primary-divider();
+    }
+
+    .bdt-nav-primary .bdt-nav-sub a { color: @inverse-nav-primary-sublist-item-color; }
+
+    .bdt-nav-primary .bdt-nav-sub a:hover { color: @inverse-nav-primary-sublist-item-hover-color; }
+
+    .bdt-nav-primary .bdt-nav-sub li.bdt-active > a { color: @inverse-nav-primary-sublist-item-active-color; }
+
+    //
+    // Secondary
+    //
+
+    .bdt-nav-secondary > li > a {
+        color: @inverse-nav-secondary-item-color;
+        .hook-inverse-nav-secondary-item();
+    }
+
+    .bdt-nav-secondary > li > a:hover {
+        color: @inverse-nav-secondary-item-hover-color;
+        .hook-inverse-nav-secondary-item-hover();
+    }
+
+    .bdt-nav-secondary > li.bdt-active > a {
+        color: @inverse-nav-secondary-item-active-color;
+        .hook-inverse-nav-secondary-item-active();
+    }
+
+    .bdt-nav-secondary .bdt-nav-subtitle {
+        color: @inverse-nav-secondary-subtitle-color;
+        .hook-inverse-nav-secondary-subtitle();
+    }
+
+    .bdt-nav-secondary > li > a:hover .bdt-nav-subtitle {
+        color: @inverse-nav-secondary-subtitle-hover-color;
+        .hook-inverse-nav-secondary-subtitle-hover();
+    }
+
+    .bdt-nav-secondary > li.bdt-active > a .bdt-nav-subtitle {
+        color: @inverse-nav-secondary-subtitle-active-color;
+        .hook-inverse-nav-secondary-subtitle-active();
+    }
+
+    .bdt-nav-secondary .bdt-nav-header {
+        color: @inverse-nav-secondary-header-color;
+        .hook-inverse-nav-secondary-header();
+    }
+
+    .bdt-nav-secondary .bdt-nav-divider {
+        border-top-color: @inverse-nav-secondary-divider-border;
+        .hook-inverse-nav-secondary-divider();
+    }
+
+    .bdt-nav-secondary .bdt-nav-sub a { color: @inverse-nav-secondary-sublist-item-color; }
+
+    .bdt-nav-secondary .bdt-nav-sub a:hover { color: @inverse-nav-secondary-sublist-item-hover-color; }
+
+    .bdt-nav-secondary .bdt-nav-sub li.bdt-active > a { color: @inverse-nav-secondary-sublist-item-active-color; }
+
+    //
+    // Dividers
+    //
+
+    .bdt-nav.bdt-nav-divider > :not(.bdt-nav-divider) + :not(.bdt-nav-header, .bdt-nav-divider) {
+        border-top-color: @inverse-nav-dividers-border;
+        .hook-inverse-nav-dividers();
+    }
+
+}
+
+.hook-inverse-nav-default-item() {}
+.hook-inverse-nav-default-item-hover() {}
+.hook-inverse-nav-default-item-active() {}
+.hook-inverse-nav-default-header() {}
+.hook-inverse-nav-default-divider() {}
+.hook-inverse-nav-primary-item() {}
+.hook-inverse-nav-primary-item-hover() {}
+.hook-inverse-nav-primary-item-active() {}
+.hook-inverse-nav-primary-header() {}
+.hook-inverse-nav-primary-divider() {}
+.hook-inverse-nav-secondary-item() {}
+.hook-inverse-nav-secondary-item-hover() {}
+.hook-inverse-nav-secondary-item-active() {}
+.hook-inverse-nav-secondary-subtitle() {}
+.hook-inverse-nav-secondary-subtitle-hover() {}
+.hook-inverse-nav-secondary-subtitle-active() {}
+.hook-inverse-nav-secondary-header() {}
+.hook-inverse-nav-secondary-divider() {}
+.hook-inverse-nav-dividers() {}

@@ -1,0 +1,352 @@
+// Name:            Table
+// Description:     Styles for tables
+//
+// Component:       `bdt-table`
+//
+// Modifiers:       `bdt-table-middle`
+//                  `bdt-table-divider`
+//                  `bdt-table-striped`
+//                  `bdt-table-hover`
+//                  `bdt-table-small`
+//                  `bdt-table-justify`
+//                  `bdt-table-shrink`
+//                  `bdt-table-expand`
+//                  `bdt-table-link`
+//                  `bdt-table-responsive`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@table-margin-vertical:                         @global-margin;
+
+@table-cell-padding-vertical:                   16px;
+@table-cell-padding-horizontal:                 12px;
+
+@table-header-cell-font-size:                   @global-font-size;
+@table-header-cell-font-weight:                 bold;
+@table-header-cell-color:                       @global-color;
+
+@table-footer-font-size:                        @global-small-font-size;
+
+@table-caption-font-size:                       @global-small-font-size;
+@table-caption-color:                           @global-muted-color;
+
+@table-row-active-background:                   #ffd;
+
+@table-divider-border-width:                    @global-border-width;
+@table-divider-border:                          @global-border;
+
+@table-striped-row-background:                  @global-muted-background;
+
+@table-hover-row-background:                    @table-row-active-background;
+
+@table-small-cell-padding-vertical:             10px;
+@table-small-cell-padding-horizontal:           12px;
+
+@table-large-cell-padding-vertical:             22px;
+@table-large-cell-padding-horizontal:           12px;
+
+@table-expand-min-width:                        150px;
+
+
+/* ========================================================================
+   Component: Table
+ ========================================================================== */
+
+/*
+ * 1. Remove most spacing between table cells.
+ * 2. Behave like a block element
+ * 3. Style
+ */
+
+.bdt-table {
+    /* 1 */
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* 2 */
+    width: 100%;
+    /* 3 */
+    margin-bottom: @table-margin-vertical;
+    .hook-table();
+}
+
+/* Add margin if adjacent element */
+* + .bdt-table { margin-top: @table-margin-vertical; }
+
+
+/* Header cell
+ ========================================================================== */
+
+/*
+ * 1. Style
+ */
+
+.bdt-table th {
+    padding: @table-cell-padding-vertical @table-cell-padding-horizontal;
+    text-align: left;
+    vertical-align: bottom;
+    /* 1 */
+    font-size: @table-header-cell-font-size;
+    font-weight: @table-header-cell-font-weight;
+    color: @table-header-cell-color;
+    .hook-table-header-cell();
+}
+
+
+/* Cell
+ ========================================================================== */
+
+.bdt-table td {
+    padding: @table-cell-padding-vertical @table-cell-padding-horizontal;
+    vertical-align: top;
+    .hook-table-cell();
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-table td > :last-child { margin-bottom: 0; }
+
+
+/* Footer
+ ========================================================================== */
+
+.bdt-table tfoot {
+    font-size: @table-footer-font-size;
+    .hook-table-footer();
+}
+
+
+/* Caption
+ ========================================================================== */
+
+.bdt-table caption {
+    font-size: @table-caption-font-size;
+    text-align: left;
+    color: @table-caption-color;
+    .hook-table-caption();
+}
+
+
+/* Alignment modifier
+ ========================================================================== */
+
+.bdt-table-middle,
+.bdt-table-middle td { vertical-align: middle !important; }
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Divider
+ */
+
+.bdt-table-divider > tr:not(:first-child),
+.bdt-table-divider > :not(:first-child) > tr,
+.bdt-table-divider > :first-child > tr:not(:first-child) {
+    border-top: @table-divider-border-width solid @table-divider-border;
+    .hook-table-divider();
+}
+
+/*
+ * Striped
+ */
+
+.bdt-table-striped > tr:nth-of-type(odd),
+.bdt-table-striped tbody tr:nth-of-type(odd) {
+    background: @table-striped-row-background;
+    .hook-table-striped();
+}
+
+/*
+ * Hover
+ */
+
+.bdt-table-hover > tr:hover,
+.bdt-table-hover tbody tr:hover {
+    background: @table-hover-row-background;
+    .hook-table-hover();
+}
+
+
+/* Active state
+ ========================================================================== */
+
+.bdt-table > tr.bdt-active,
+.bdt-table tbody tr.bdt-active {
+    background: @table-row-active-background;
+    .hook-table-row-active();
+}
+
+/* Size modifier
+ ========================================================================== */
+
+.bdt-table-small th,
+.bdt-table-small td {
+    padding: @table-small-cell-padding-vertical @table-small-cell-padding-horizontal;
+    .hook-table-small();
+}
+
+.bdt-table-large th,
+.bdt-table-large td {
+    padding: @table-large-cell-padding-vertical @table-large-cell-padding-horizontal;
+    .hook-table-large();
+}
+
+
+/* Justify modifier
+ ========================================================================== */
+
+.bdt-table-justify th:first-child,
+.bdt-table-justify td:first-child { padding-left: 0; }
+
+.bdt-table-justify th:last-child,
+.bdt-table-justify td:last-child { padding-right: 0; }
+
+
+/* Cell size modifier
+ ========================================================================== */
+
+.bdt-table-shrink { width: 1px; }
+.bdt-table-expand { min-width: @table-expand-min-width; }
+
+
+/* Cell link modifier
+ ========================================================================== */
+
+/*
+ * Does not work with `bdt-table-justify` at the moment
+ */
+
+.bdt-table-link { padding: 0 !important; }
+
+.bdt-table-link > a {
+    display: block;
+    padding: @table-cell-padding-vertical @table-cell-padding-horizontal;
+}
+
+.bdt-table-small .bdt-table-link > a { padding: @table-small-cell-padding-vertical @table-small-cell-padding-horizontal; }
+
+
+/* Responsive table
+ ========================================================================== */
+
+
+/* Phone landscape and smaller */
+@media (max-width: @breakpoint-small-max) {
+
+    .bdt-table-responsive,
+    .bdt-table-responsive tbody,
+    .bdt-table-responsive th,
+    .bdt-table-responsive td,
+    .bdt-table-responsive tr { display: block; }
+
+    .bdt-table-responsive thead { display: none; }
+
+    .bdt-table-responsive th,
+    .bdt-table-responsive td {
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    .bdt-table-responsive th:not(:first-child):not(.bdt-table-link),
+    .bdt-table-responsive td:not(:first-child):not(.bdt-table-link),
+    .bdt-table-responsive .bdt-table-link:not(:first-child) > a { padding-top: round((@table-cell-padding-vertical / 3)) !important; }
+
+    .bdt-table-responsive th:not(:last-child):not(.bdt-table-link),
+    .bdt-table-responsive td:not(:last-child):not(.bdt-table-link),
+    .bdt-table-responsive .bdt-table-link:not(:last-child) > a { padding-bottom: round((@table-cell-padding-vertical / 3)) !important; }
+
+    .bdt-table-justify.bdt-table-responsive th,
+    .bdt-table-justify.bdt-table-responsive td {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-table-misc();
+
+.hook-table() {}
+.hook-table-header-cell() {}
+.hook-table-cell() {}
+.hook-table-footer() {}
+.hook-table-caption() {}
+.hook-table-row-active() {}
+.hook-table-divider() {}
+.hook-table-striped() {}
+.hook-table-hover() {}
+.hook-table-small() {}
+.hook-table-large() {}
+.hook-table-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-table-header-cell-color:                       @inverse-global-color;
+@inverse-table-caption-color:                           @inverse-global-muted-color;
+@inverse-table-row-active-background:                   fadeout(@inverse-global-muted-background, 2%);
+@inverse-table-divider-border:                          @inverse-global-border;
+@inverse-table-striped-row-background:                  @inverse-global-muted-background;
+@inverse-table-hover-row-background:                    @inverse-table-row-active-background;
+
+.hook-inverse() {
+
+    .bdt-table th {
+        color: @inverse-table-header-cell-color;
+        .hook-inverse-table-header-cell();
+    }
+
+    .bdt-table caption {
+        color: @inverse-table-caption-color;
+        .hook-inverse-table-caption();
+    }
+
+    .bdt-table > tr.bdt-active,
+    .bdt-table tbody tr.bdt-active {
+        background: @inverse-table-row-active-background;
+        .hook-inverse-table-row-active();
+    }
+
+    .bdt-table-divider > tr:not(:first-child),
+    .bdt-table-divider > :not(:first-child) > tr,
+    .bdt-table-divider > :first-child > tr:not(:first-child) {
+        border-top-color: @inverse-table-divider-border;
+        .hook-inverse-table-divider();
+    }
+
+    .bdt-table-striped > tr:nth-of-type(odd),
+    .bdt-table-striped tbody tr:nth-of-type(odd) {
+        background: @inverse-table-striped-row-background;
+        .hook-inverse-table-striped();
+    }
+
+    .bdt-table-hover > tr:hover,
+    .bdt-table-hover tbody tr:hover {
+        background: @inverse-table-hover-row-background;
+        .hook-inverse-table-hover();
+    }
+
+}
+
+.hook-inverse-table-header-cell() {}
+.hook-inverse-table-caption() {}
+.hook-inverse-table-row-active() {}
+.hook-inverse-table-divider() {}
+.hook-inverse-table-striped() {}
+.hook-inverse-table-hover() {}

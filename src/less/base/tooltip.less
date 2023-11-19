@@ -1,0 +1,79 @@
+// Name:            Tooltip
+// Description:     Component to create tooltips
+//
+// Component:       `bdt-tooltip`
+//
+// Modifiers        `bdt-tooltip-top`
+//                  `bdt-tooltip-top-left`
+//                  `bdt-tooltip-top-right`
+//                  `bdt-tooltip-bottom`
+//                  `bdt-tooltip-bottom-left`
+//                  `bdt-tooltip-bottom-right`
+//                  `bdt-tooltip-left`
+//                  `bdt-tooltip-right`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@tooltip-z-index:                               @global-z-index + 30;
+@tooltip-margin:                                10px;
+@tooltip-max-width:                             200px;
+@tooltip-padding-vertical:                      3px;
+@tooltip-padding-horizontal:                    6px;
+@tooltip-background:                            #666;
+@tooltip-border-radius:                         2px;
+@tooltip-color:                                 @global-inverse-color;
+@tooltip-font-size:                             12px;
+
+
+
+/* ========================================================================
+   Component: Tooltip
+ ========================================================================== */
+
+/*
+ * 1. Hide by default
+ * 2. Position
+ * 3. Remove tooltip from document flow to keep the UIkit container from changing its size when injected into the document initially
+ * 4. Dimensions
+ * 5. Style
+ */
+
+.bdt-tooltip {
+    /* 1 */
+    display: none;
+    /* 2 */
+    position: absolute;
+    z-index: @tooltip-z-index;
+    --bdt-position-offset: @tooltip-margin;
+    --bdt-position-viewport-offset: 10;
+    /* 3 */
+    top: 0;
+    /* 4 */
+    box-sizing: border-box;
+    max-width: @tooltip-max-width;
+    padding: @tooltip-padding-vertical @tooltip-padding-horizontal;
+    /* 5 */
+    background: @tooltip-background;
+    border-radius: @tooltip-border-radius;
+    color: @tooltip-color;
+    font-size: @tooltip-font-size;
+    .hook-tooltip();
+}
+
+/* Show */
+.bdt-tooltip.bdt-active { display: block; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-tooltip-misc();
+
+.hook-tooltip() {}
+.hook-tooltip-misc() {}

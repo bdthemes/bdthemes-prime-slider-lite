@@ -1,0 +1,47 @@
+// Name:            Switcher
+// Description:     Component to navigate through different content panes
+//
+// Component:       `bdt-switcher`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Switcher
+ ========================================================================== */
+
+/*
+ * Reset list
+ */
+
+.bdt-switcher {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* Items
+ ========================================================================== */
+
+/*
+ * Hide not active items
+ */
+
+.bdt-switcher > :not(.bdt-active) { display: none; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-switcher > * > :last-child { margin-bottom: 0; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-switcher-misc();
+
+.hook-switcher-misc() {}

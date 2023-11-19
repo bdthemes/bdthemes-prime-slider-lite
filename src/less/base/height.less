@@ -1,0 +1,57 @@
+// Name:            Height
+// Description:     Utilities for heights
+//
+// Component:       `bdt-height-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@height-small-height:                           150px;
+@height-medium-height:                          300px;
+@height-large-height:                           450px;
+
+
+/* ========================================================================
+   Component: Height
+ ========================================================================== */
+
+[class*='bdt-height'] { box-sizing: border-box; }
+
+/*
+ * Only works if parent element has a height set
+ */
+
+.bdt-height-1-1 { height: 100%; }
+
+/*
+ * Useful to create image teasers
+ */
+
+.bdt-height-viewport { min-height: 100vh; }
+.bdt-height-viewport-2 { min-height: 200vh; }
+.bdt-height-viewport-3 { min-height: 300vh; }
+.bdt-height-viewport-4 { min-height: 400vh; }
+
+/*
+ * Pixel
+ * Useful for `overflow: auto`
+ */
+
+.bdt-height-small { height: @height-small-height; }
+.bdt-height-medium { height: @height-medium-height; }
+.bdt-height-large { height: @height-large-height; }
+
+.bdt-height-max-small { max-height: @height-small-height; }
+.bdt-height-max-medium { max-height: @height-medium-height; }
+.bdt-height-max-large { max-height: @height-large-height; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-height-misc();
+
+.hook-height-misc() {}

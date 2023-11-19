@@ -1,0 +1,249 @@
+// Name:            Margin
+// Description:     Utilities for margins
+//
+// Component:       `bdt-margin-*`
+//                  `bdt-margin-small-*`
+//                  `bdt-margin-medium-*`
+//                  `bdt-margin-large-*`
+//                  `bdt-margin-xlarge-*`
+//                  `bdt-margin-remove-*`
+//                  `bdt-margin-auto-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@margin-margin:                                        @global-margin;
+
+@margin-small-margin:                                  @global-small-margin;
+
+@margin-medium-margin:                                 @global-medium-margin;
+
+@margin-large-margin:                                  @global-medium-margin;
+@margin-large-margin-l:                                @global-large-margin;
+
+@margin-xlarge-margin:                                 @global-large-margin;
+@margin-xlarge-margin-l:                               @global-xlarge-margin;
+
+
+/* ========================================================================
+   Component: Margin
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.bdt-margin { margin-bottom: @margin-margin; }
+* + .bdt-margin { margin-top: @margin-margin !important; }
+
+.bdt-margin-top { margin-top: @margin-margin !important; }
+.bdt-margin-bottom { margin-bottom: @margin-margin !important; }
+.bdt-margin-left { margin-left: @margin-margin !important; }
+.bdt-margin-right { margin-right: @margin-margin !important; }
+
+
+/* Small
+ ========================================================================== */
+
+.bdt-margin-small { margin-bottom: @margin-small-margin; }
+* + .bdt-margin-small { margin-top: @margin-small-margin !important; }
+
+.bdt-margin-small-top { margin-top: @margin-small-margin !important; }
+.bdt-margin-small-bottom { margin-bottom: @margin-small-margin !important; }
+.bdt-margin-small-left { margin-left: @margin-small-margin !important; }
+.bdt-margin-small-right { margin-right: @margin-small-margin !important; }
+
+
+/* Medium
+ ========================================================================== */
+
+.bdt-margin-medium { margin-bottom: @margin-medium-margin; }
+* + .bdt-margin-medium { margin-top: @margin-medium-margin !important; }
+
+.bdt-margin-medium-top { margin-top: @margin-medium-margin !important; }
+.bdt-margin-medium-bottom { margin-bottom: @margin-medium-margin !important; }
+.bdt-margin-medium-left { margin-left: @margin-medium-margin !important; }
+.bdt-margin-medium-right { margin-right: @margin-medium-margin !important; }
+
+
+/* Large
+ ========================================================================== */
+
+.bdt-margin-large { margin-bottom: @margin-large-margin; }
+* + .bdt-margin-large { margin-top: @margin-large-margin !important; }
+
+.bdt-margin-large-top { margin-top: @margin-large-margin !important; }
+.bdt-margin-large-bottom { margin-bottom: @margin-large-margin !important; }
+.bdt-margin-large-left { margin-left: @margin-large-margin !important; }
+.bdt-margin-large-right { margin-right: @margin-large-margin !important; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-margin-large { margin-bottom: @margin-large-margin-l; }
+    * + .bdt-margin-large { margin-top: @margin-large-margin-l !important; }
+
+    .bdt-margin-large-top { margin-top: @margin-large-margin-l !important; }
+    .bdt-margin-large-bottom { margin-bottom: @margin-large-margin-l !important; }
+    .bdt-margin-large-left { margin-left: @margin-large-margin-l !important; }
+    .bdt-margin-large-right { margin-right: @margin-large-margin-l !important; }
+
+}
+
+
+/* XLarge
+ ========================================================================== */
+
+.bdt-margin-xlarge { margin-bottom: @margin-xlarge-margin; }
+* + .bdt-margin-xlarge { margin-top: @margin-xlarge-margin !important; }
+
+.bdt-margin-xlarge-top { margin-top: @margin-xlarge-margin !important; }
+.bdt-margin-xlarge-bottom { margin-bottom: @margin-xlarge-margin !important; }
+.bdt-margin-xlarge-left { margin-left: @margin-xlarge-margin !important; }
+.bdt-margin-xlarge-right { margin-right: @margin-xlarge-margin !important; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-margin-xlarge { margin-bottom: @margin-xlarge-margin-l; }
+    * + .bdt-margin-xlarge { margin-top: @margin-xlarge-margin-l !important; }
+
+    .bdt-margin-xlarge-top { margin-top: @margin-xlarge-margin-l !important; }
+    .bdt-margin-xlarge-bottom { margin-bottom: @margin-xlarge-margin-l !important; }
+    .bdt-margin-xlarge-left { margin-left: @margin-xlarge-margin-l !important; }
+    .bdt-margin-xlarge-right { margin-right: @margin-xlarge-margin-l !important; }
+
+}
+
+
+/* Auto
+ ========================================================================== */
+
+.bdt-margin-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.bdt-margin-auto-top { margin-top: auto !important; }
+.bdt-margin-auto-bottom { margin-bottom: auto !important; }
+.bdt-margin-auto-left { margin-left: auto !important; }
+.bdt-margin-auto-right { margin-right: auto !important; }
+
+.bdt-margin-auto-vertical {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-margin-auto\@s {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .bdt-margin-auto-left\@s { margin-left: auto !important; }
+    .bdt-margin-auto-right\@s { margin-right: auto !important; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-margin-auto\@m {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .bdt-margin-auto-left\@m { margin-left: auto !important; }
+    .bdt-margin-auto-right\@m { margin-right: auto !important; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-margin-auto\@l {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .bdt-margin-auto-left\@l { margin-left: auto !important; }
+    .bdt-margin-auto-right\@l { margin-right: auto !important; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-margin-auto\@xl {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .bdt-margin-auto-left\@xl { margin-left: auto !important; }
+    .bdt-margin-auto-right\@xl { margin-right: auto !important; }
+
+}
+
+
+/* Remove
+ ========================================================================== */
+
+.bdt-margin-remove { margin: 0 !important; }
+.bdt-margin-remove-top { margin-top: 0 !important; }
+.bdt-margin-remove-bottom { margin-bottom: 0 !important; }
+.bdt-margin-remove-left { margin-left: 0 !important; }
+.bdt-margin-remove-right { margin-right: 0 !important; }
+
+.bdt-margin-remove-vertical {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.bdt-margin-remove-adjacent + *,
+.bdt-margin-remove-first-child > :first-child { margin-top: 0 !important; }
+.bdt-margin-remove-last-child > :last-child { margin-bottom: 0 !important; }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-margin-remove-left\@s { margin-left: 0 !important; }
+    .bdt-margin-remove-right\@s { margin-right: 0 !important; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-margin-remove-left\@m { margin-left: 0 !important; }
+    .bdt-margin-remove-right\@m { margin-right: 0 !important; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-margin-remove-left\@l { margin-left: 0 !important; }
+    .bdt-margin-remove-right\@l { margin-right: 0 !important; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-margin-remove-left\@xl { margin-left: 0 !important; }
+    .bdt-margin-remove-right\@xl { margin-right: 0 !important; }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-margin-misc();
+
+.hook-margin-misc() {}

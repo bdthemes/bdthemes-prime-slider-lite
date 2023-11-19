@@ -1,0 +1,392 @@
+// Name:            Card
+// Description:     Component to create boxed content containers
+//
+// Component:       `bdt-card`
+//
+// Sub-objects:     `bdt-card-body`
+//                  `bdt-card-header`
+//                  `bdt-card-footer`
+//                  `bdt-card-media-*`
+//                  `bdt-card-title`
+//                  `bdt-card-badge`
+//
+// Modifiers:       `bdt-card-hover`
+//                  `bdt-card-default`
+//                  `bdt-card-primary`
+//                  `bdt-card-secondary`
+//                  `bdt-card-small`
+//                  `bdt-card-large`
+//
+// Uses:            `bdt-grid-stack`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@card-body-padding-horizontal:                 @global-gutter;
+@card-body-padding-vertical:                   @global-gutter;
+
+@card-body-padding-horizontal-l:               @global-medium-gutter;
+@card-body-padding-vertical-l:                 @global-medium-gutter;
+
+@card-header-padding-horizontal:               @global-gutter;
+@card-header-padding-vertical:                 round((@global-gutter / 2));
+
+@card-header-padding-horizontal-l:             @global-medium-gutter;
+@card-header-padding-vertical-l:               round((@global-medium-gutter / 2));
+
+@card-footer-padding-horizontal:               @global-gutter;
+@card-footer-padding-vertical:                 (@global-gutter / 2);
+
+@card-footer-padding-horizontal-l:             @global-medium-gutter;
+@card-footer-padding-vertical-l:               round((@global-medium-gutter / 2));
+
+@card-title-font-size:                         @global-large-font-size;
+@card-title-line-height:                       1.4;
+
+@card-badge-top:                               15px;
+@card-badge-right:                             15px;
+@card-badge-height:                            22px;
+@card-badge-padding-horizontal:                10px;
+@card-badge-background:                        @global-primary-background;
+@card-badge-color:                             @global-inverse-color;
+@card-badge-font-size:                         @global-small-font-size;
+
+@card-hover-background:                        @global-muted-background;
+
+@card-default-background:                      @global-muted-background;
+@card-default-color:                           @global-color;
+@card-default-title-color:                     @global-emphasis-color;
+@card-default-hover-background:                darken(@card-default-background, 5%);
+
+@card-primary-background:                      @global-primary-background;
+@card-primary-color:                           @global-inverse-color;
+@card-primary-title-color:                     @card-primary-color;
+@card-primary-hover-background:                darken(@card-primary-background, 5%);
+@card-primary-color-mode:                      light;
+
+@card-secondary-background:                    @global-secondary-background;
+@card-secondary-color:                         @global-inverse-color;
+@card-secondary-title-color:                   @card-secondary-color;
+@card-secondary-hover-background:              darken(@card-secondary-background, 5%);
+@card-secondary-color-mode:                    light;
+
+@card-small-body-padding-horizontal:           @global-margin;
+@card-small-body-padding-vertical:             @global-margin;
+@card-small-header-padding-horizontal:         @global-margin;
+@card-small-header-padding-vertical:           round((@global-margin / 1.5));
+@card-small-footer-padding-horizontal:         @global-margin;
+@card-small-footer-padding-vertical:           round((@global-margin / 1.5));
+
+@card-large-body-padding-horizontal-l:         @global-large-gutter;
+@card-large-body-padding-vertical-l:           @global-large-gutter;
+@card-large-header-padding-horizontal-l:       @global-large-gutter;
+@card-large-header-padding-vertical-l:         round((@global-large-gutter / 2));
+@card-large-footer-padding-horizontal-l:       @global-large-gutter;
+@card-large-footer-padding-vertical-l:         round((@global-large-gutter / 2));
+
+
+/* ========================================================================
+   Component: Card
+ ========================================================================== */
+
+.bdt-card {
+    position: relative;
+    box-sizing: border-box;
+    .hook-card();
+}
+
+
+/* Sections
+ ========================================================================== */
+
+.bdt-card-body {
+    display: flow-root;
+    padding: @card-body-padding-vertical @card-body-padding-horizontal;
+    .hook-card-body();
+}
+
+.bdt-card-header {
+    display: flow-root;
+    padding: @card-header-padding-vertical @card-header-padding-horizontal;
+    .hook-card-header();
+}
+
+.bdt-card-footer {
+    display: flow-root;
+    padding: @card-footer-padding-vertical @card-footer-padding-horizontal;
+    .hook-card-footer();
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-card-body { padding: @card-body-padding-vertical-l @card-body-padding-horizontal-l; }
+
+    .bdt-card-header { padding: @card-header-padding-vertical-l @card-header-padding-horizontal-l; }
+
+    .bdt-card-footer { padding: @card-footer-padding-vertical-l @card-footer-padding-horizontal-l; }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-card-body > :last-child,
+.bdt-card-header > :last-child,
+.bdt-card-footer > :last-child { margin-bottom: 0; }
+
+
+/* Media
+ ========================================================================== */
+
+/*
+ * Reserved alignment modifier to style the media element, e.g. with `border-radius`
+ * Implemented by the theme
+ */
+
+[class*='bdt-card-media'] {
+    .hook-card-media();
+}
+
+.bdt-card-media-top,
+.bdt-grid-stack > .bdt-card-media-left,
+.bdt-grid-stack > .bdt-card-media-right  {
+    .hook-card-media-top();
+}
+
+.bdt-card-media-bottom {
+    .hook-card-media-bottom();
+}
+
+:not(.bdt-grid-stack) > .bdt-card-media-left {
+    .hook-card-media-left();
+}
+
+:not(.bdt-grid-stack) > .bdt-card-media-right {
+    .hook-card-media-right();
+}
+
+
+/* Title
+ ========================================================================== */
+
+.bdt-card-title {
+    font-size: @card-title-font-size;
+    line-height: @card-title-line-height;
+    .hook-card-title();
+}
+
+
+/* Badge
+ ========================================================================== */
+
+/*
+ * 1. Position
+ * 2. Size
+ * 3. Style
+ * 4. Center child vertically
+ */
+
+.bdt-card-badge {
+    /* 1 */
+    position: absolute;
+    top: @card-badge-top;
+    right: @card-badge-right;
+    z-index: 1;
+    /* 2 */
+    height: @card-badge-height;
+    padding: 0 @card-badge-padding-horizontal;
+    /* 3 */
+    background: @card-badge-background;
+    color: @card-badge-color;
+    font-size: @card-badge-font-size;
+    /* 4 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    .hook-card-badge();
+}
+
+/*
+ * Remove margin from adjacent element
+ */
+
+.bdt-card-badge:first-child + * { margin-top: 0; }
+
+
+/* Hover modifier
+ ========================================================================== */
+
+.bdt-card-hover:not(.bdt-card-default):not(.bdt-card-primary):not(.bdt-card-secondary):hover {
+    background-color: @card-hover-background;
+    .hook-card-hover();
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Default
+ * Note: Header and Footer are only implemented for the default style
+ */
+
+.bdt-card-default {
+    background-color: @card-default-background;
+    color: @card-default-color;
+    .hook-card-default();
+}
+
+.bdt-card-default .bdt-card-title {
+    color: @card-default-title-color;
+    .hook-card-default-title();
+}
+
+.bdt-card-default.bdt-card-hover:hover {
+    background-color: @card-default-hover-background;
+    .hook-card-default-hover();
+}
+
+.bdt-card-default .bdt-card-header {
+    .hook-card-default-header();
+}
+
+.bdt-card-default .bdt-card-footer {
+    .hook-card-default-footer();
+}
+
+/*
+ * Primary
+ */
+
+.bdt-card-primary {
+    background-color: @card-primary-background;
+    color: @card-primary-color;
+    .hook-card-primary();
+}
+
+.bdt-card-primary .bdt-card-title {
+    color: @card-primary-title-color;
+    .hook-card-primary-title();
+}
+
+.bdt-card-primary.bdt-card-hover:hover {
+    background-color: @card-primary-hover-background;
+    .hook-card-primary-hover();
+}
+
+// Color Mode
+.bdt-card-primary.bdt-card-body:extend(.bdt-light all) when (@card-primary-color-mode = light) {}
+.bdt-card-primary > :not([class*='bdt-card-media']):extend(.bdt-light all) when (@card-primary-color-mode = light) {}
+.bdt-card-primary.bdt-card-body:extend(.bdt-dark all) when (@card-primary-color-mode = dark) {}
+.bdt-card-primary > :not([class*='bdt-card-media']):extend(.bdt-dark all) when (@card-primary-color-mode = dark) {}
+
+/*
+ * Secondary
+ */
+
+.bdt-card-secondary {
+    background-color: @card-secondary-background;
+    color: @card-secondary-color;
+    .hook-card-secondary();
+}
+
+.bdt-card-secondary .bdt-card-title {
+    color: @card-secondary-title-color;
+    .hook-card-secondary-title();
+}
+
+.bdt-card-secondary.bdt-card-hover:hover {
+    background-color: @card-secondary-hover-background;
+    .hook-card-secondary-hover();
+}
+
+// Color Mode
+.bdt-card-secondary.bdt-card-body:extend(.bdt-light all) when (@card-secondary-color-mode = light) {}
+.bdt-card-secondary > :not([class*='bdt-card-media']):extend(.bdt-light all) when (@card-secondary-color-mode = light) {}
+.bdt-card-secondary.bdt-card-body:extend(.bdt-dark all) when (@card-secondary-color-mode = dark) {}
+.bdt-card-secondary > :not([class*='bdt-card-media']):extend(.bdt-dark all) when (@card-secondary-color-mode = dark) {}
+
+
+/* Size modifier
+ ========================================================================== */
+
+/*
+ * Small
+ */
+
+.bdt-card-small.bdt-card-body,
+.bdt-card-small .bdt-card-body { padding: @card-small-body-padding-vertical @card-small-body-padding-horizontal; }
+
+.bdt-card-small .bdt-card-header { padding: @card-small-header-padding-vertical @card-small-header-padding-horizontal; }
+.bdt-card-small .bdt-card-footer { padding: @card-small-footer-padding-vertical @card-small-footer-padding-horizontal; }
+
+/*
+ * Large
+ */
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-card-large.bdt-card-body,
+    .bdt-card-large .bdt-card-body { padding: @card-large-body-padding-vertical-l @card-large-body-padding-horizontal-l; }
+
+    .bdt-card-large .bdt-card-header { padding: @card-large-header-padding-vertical-l @card-large-header-padding-horizontal-l; }
+    .bdt-card-large .bdt-card-footer { padding: @card-large-footer-padding-vertical-l @card-large-footer-padding-horizontal-l; }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-card-misc();
+
+.hook-card() {}
+.hook-card-body() {}
+.hook-card-header() {}
+.hook-card-footer() {}
+.hook-card-media() {}
+.hook-card-media-top() {}
+.hook-card-media-bottom() {}
+.hook-card-media-left() {}
+.hook-card-media-right() {}
+.hook-card-title() {}
+.hook-card-badge() {}
+.hook-card-hover() {}
+.hook-card-default() {}
+.hook-card-default-title() {}
+.hook-card-default-hover() {}
+.hook-card-default-header() {}
+.hook-card-default-footer() {}
+.hook-card-primary() {}
+.hook-card-primary-title() {}
+.hook-card-primary-hover() {}
+.hook-card-secondary() {}
+.hook-card-secondary-title() {}
+.hook-card-secondary-hover() {}
+.hook-card-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-card-badge-background:                     @inverse-global-primary-background;
+@inverse-card-badge-color:                          @inverse-global-inverse-color;
+
+.hook-inverse() {
+
+    &.bdt-card-badge {
+        background-color: @inverse-card-badge-background;
+        color: @inverse-card-badge-color;
+        .hook-inverse-card-badge();
+    }
+
+}
+
+.hook-inverse-card-badge() {}

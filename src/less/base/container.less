@@ -1,0 +1,185 @@
+// Name:            Container
+// Description:     Component to align and center your site and grid content
+//
+// Component:       `bdt-container`
+//
+// Modifier:        `bdt-container-small`
+//                  `bdt-container-large`
+//                  `bdt-container-expand`
+//                  `bdt-container-expand-left`
+//                  `bdt-container-expand-right`
+//                  `bdt-container-item-padding-remove-left`
+//                  `bdt-container-item-padding-remove-right`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@container-max-width:                   1200px;
+@container-xsmall-max-width:            750px;
+@container-small-max-width:             900px;
+@container-large-max-width:             1400px;
+@container-xlarge-max-width:            1600px;
+
+@container-padding-horizontal:          15px;
+@container-padding-horizontal-s:        @global-gutter;
+@container-padding-horizontal-m:        @global-medium-gutter;
+
+
+/* ========================================================================
+   Component: Container
+ ========================================================================== */
+
+/*
+ * 1. Box sizing has to be `content-box` so the max-width is always the same and
+ *    unaffected by the padding on different breakpoints. It's important for the size modifiers.
+ */
+
+.bdt-container {
+    display: flow-root;
+    /* 1 */
+    box-sizing: content-box;
+    max-width: @container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: @container-padding-horizontal;
+    padding-right: @container-padding-horizontal;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-container {
+        padding-left: @container-padding-horizontal-s;
+        padding-right: @container-padding-horizontal-s;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-container {
+        padding-left: @container-padding-horizontal-m;
+        padding-right: @container-padding-horizontal-m;
+    }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-container > :last-child { margin-bottom: 0; }
+
+/*
+ * Remove padding from nested containers
+ */
+
+.bdt-container .bdt-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* Size modifier
+ ========================================================================== */
+
+.bdt-container-xsmall { max-width: @container-xsmall-max-width; }
+
+.bdt-container-small { max-width: @container-small-max-width; }
+
+.bdt-container-large { max-width: @container-large-max-width; }
+
+.bdt-container-xlarge { max-width: @container-xlarge-max-width; }
+
+.bdt-container-expand { max-width: none; }
+
+
+/* Expand modifier
+ ========================================================================== */
+
+/*
+ * Expand one side only
+ */
+
+.bdt-container-expand-left { margin-left: 0; }
+.bdt-container-expand-right { margin-right: 0; }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-container-expand-left.bdt-container-xsmall,
+    .bdt-container-expand-right.bdt-container-xsmall { max-width: ~'calc(50% + (@{container-xsmall-max-width} / 2) - @{container-padding-horizontal-s})'; }
+
+    .bdt-container-expand-left.bdt-container-small,
+    .bdt-container-expand-right.bdt-container-small { max-width: ~'calc(50% + (@{container-small-max-width} / 2) - @{container-padding-horizontal-s})'; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-container-expand-left,
+    .bdt-container-expand-right { max-width: ~'calc(50% + (@{container-max-width} / 2) - @{container-padding-horizontal-m})'; }
+
+    .bdt-container-expand-left.bdt-container-xsmall,
+    .bdt-container-expand-right.bdt-container-xsmall { max-width: ~'calc(50% + (@{container-xsmall-max-width} / 2) - @{container-padding-horizontal-m})'; }
+
+    .bdt-container-expand-left.bdt-container-small,
+    .bdt-container-expand-right.bdt-container-small { max-width: ~'calc(50% + (@{container-small-max-width} / 2) - @{container-padding-horizontal-m})'; }
+
+    .bdt-container-expand-left.bdt-container-large,
+    .bdt-container-expand-right.bdt-container-large { max-width: ~'calc(50% + (@{container-large-max-width} / 2) - @{container-padding-horizontal-m})'; }
+
+    .bdt-container-expand-left.bdt-container-xlarge,
+    .bdt-container-expand-right.bdt-container-xlarge { max-width: ~'calc(50% + (@{container-xlarge-max-width} / 2) - @{container-padding-horizontal-m})'; }
+
+}
+
+
+/* Item
+ ========================================================================== */
+
+/*
+ * Utility classes to reset container padding on the left or right side
+ * Note: It has to be negative margin on the item, because it's specific to the item.
+ */
+
+.bdt-container-item-padding-remove-left,
+.bdt-container-item-padding-remove-right { width: ~'calc(100% + @{container-padding-horizontal})' }
+
+.bdt-container-item-padding-remove-left { margin-left: -@container-padding-horizontal; }
+.bdt-container-item-padding-remove-right { margin-right: -@container-padding-horizontal; }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-container-item-padding-remove-left,
+    .bdt-container-item-padding-remove-right { width: ~'calc(100% + @{container-padding-horizontal-s})' }
+
+    .bdt-container-item-padding-remove-left { margin-left: -@container-padding-horizontal-s; }
+    .bdt-container-item-padding-remove-right { margin-right: -@container-padding-horizontal-s; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-container-item-padding-remove-left,
+    .bdt-container-item-padding-remove-right { width: ~'calc(100% + @{container-padding-horizontal-m})' }
+
+    .bdt-container-item-padding-remove-left { margin-left: -@container-padding-horizontal-m; }
+    .bdt-container-item-padding-remove-right { margin-right: -@container-padding-horizontal-m; }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-container-misc();
+
+.hook-container-misc() {}

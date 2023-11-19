@@ -1,0 +1,142 @@
+// Name:            Align
+// Description:     Utilities to align embedded content
+//
+// Component:       `bdt-align-left-*`
+//                  `bdt-align-right-*`
+//                  `bdt-align-center`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@align-margin-horizontal:                       @global-gutter;
+@align-margin-vertical:                         @global-gutter;
+
+@align-margin-horizontal-l:                     @global-medium-gutter;
+
+
+/* ========================================================================
+   Component: Align
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+[class*='bdt-align'] {
+    display: block;
+    margin-bottom: @align-margin-vertical;
+}
+
+* + [class*='bdt-align'] { margin-top: @align-margin-vertical; }
+
+/*
+ * Center
+ */
+
+.bdt-align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+ * Left/Right
+ */
+
+.bdt-align-left {
+    margin-top: 0;
+    margin-right: @align-margin-horizontal;
+    float: left;
+}
+
+.bdt-align-right {
+    margin-top: 0;
+    margin-left: @align-margin-horizontal;
+    float: right;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-align-left\@s {
+        margin-top: 0;
+        margin-right: @align-margin-horizontal;
+        float: left;
+    }
+
+    .bdt-align-right\@s {
+        margin-top: 0;
+        margin-left: @align-margin-horizontal;
+        float: right;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-align-left\@m {
+        margin-top: 0;
+        margin-right: @align-margin-horizontal;
+        float: left;
+    }
+
+    .bdt-align-right\@m {
+        margin-top: 0;
+        margin-left: @align-margin-horizontal;
+        float: right;
+    }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-align-left\@l {
+        margin-top: 0;
+        float: left;
+    }
+
+    .bdt-align-right\@l {
+        margin-top: 0;
+        float: right;
+    }
+
+    .bdt-align-left,
+    .bdt-align-left\@s,
+    .bdt-align-left\@m,
+    .bdt-align-left\@l { margin-right: @align-margin-horizontal-l; }
+
+    .bdt-align-right,
+    .bdt-align-right\@s,
+    .bdt-align-right\@m,
+    .bdt-align-right\@l { margin-left: @align-margin-horizontal-l; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-align-left\@xl {
+        margin-top: 0;
+        margin-right: @align-margin-horizontal-l;
+        float: left;
+    }
+
+    .bdt-align-right\@xl {
+        margin-top: 0;
+        margin-left: @align-margin-horizontal-l;
+        float: right;
+    }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-align-misc();
+
+.hook-align-misc() {}

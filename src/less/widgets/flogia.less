@@ -1,0 +1,274 @@
+/*===========================================================================
+    Slider Css ( Slider Skin flogia )
+===========================================================================*/
+.bdt-prime-slider-flogia {
+    position: relative;
+
+    .bdt-overlay-default {
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .bdt-ps-category {
+        display: inline-block;
+    }
+    .bdt-slideshow-item {
+        .bdt-ps-slide-img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    .bdt-blog-text {
+        font-size: clamp(14px, 1vw, 16px);
+        color: #FFFFFF;
+        max-width: 780px;
+        padding-bottom: clamp(5px, 1vw, 20px);
+        display: inline-block;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .bdt-ps-container {
+        padding: 0;
+    }
+
+    .bdt-ps-content {
+        position: relative;
+        padding: clamp(30px, 5vw, 50px) clamp(60px, 10vw, 100px) clamp(30px, 5vw, 50px) clamp(30px, 5vw, 50px);
+
+        .bdt-title-tag {
+            font-size: clamp(24px, 5vw, 70px);
+            font-weight: 700;
+            margin: 0;
+            margin-bottom: clamp(10px, 2vw, 30px);
+
+            a {
+                color: #fff;
+                outline: none;
+            }
+        }
+    }
+
+    .bdt-prime-slider-meta {
+        .block-revealer__content {
+            display: inline-flex;
+        }
+        .bdt-author, .bdt-author a {
+            color: #ddd;
+            text-transform: capitalize;
+        }
+    }
+
+    .bdt-ps-category-wrapper {
+        padding-bottom: 15px;
+
+        .bdt-ps-category {
+            a {
+                color: #ddd;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+/*===========================================================================
+    Navigation Css ( Slider flogia )
+===========================================================================*/
+
+.bdt-prime-slider-flogia {
+    .bdt-navigation-arrows {
+        text-align: center;
+    }
+
+    .bdt-prime-slider-next {
+        &:hover svg {
+            transform: scale(1.2) translateX(3px);
+        }
+    }
+
+    .bdt-prime-slider-previous {
+        &:hover svg {
+            transform: scale(1.2) translateX(-3px);
+        }
+    }
+
+    .bdt-prime-slider-next,
+    .bdt-prime-slider-previous {
+        padding: 0;
+        transition: all 0.3s ease;
+
+        svg {
+            color: #fff;
+            width: 8px;
+            transform: rotate(90deg);
+            transition: all 0.3s ease-out;
+        }
+
+        &:hover {
+            svg {
+                color: #fe506c;
+            }
+        }
+    }
+
+    .bdt-ps-dotnav {
+        &.bdt-dotnav-vertical>* {
+            padding-top: 0;
+            margin-bottom: 5px;
+        }
+
+        left: 30px;
+
+        li {
+            position: relative;
+
+            a {
+                position: relative;
+                width: 22px;
+                height: 22px;
+                background: transparent;
+                border: 1px solid transparent;
+                transition: all 0.3s ease;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    height: 6px;
+                    width: 6px;
+                    background: #fff;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 20px;
+                }
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    border: 1px solid transparent;
+                    height: 100%;
+                    width: 100%;
+                    left: 0;
+                    border-radius: 40px;
+                    transform: scale(0);
+                }
+            }
+
+            &.bdt-active a {
+                background: transparent;
+
+                &:before {
+                    background: #fe506c;
+                }
+
+                &:after {
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #fff;
+                    border-left: none;
+                    border-right: none;
+                    transform: scale(1);
+                    animation: spin 1s linear 0s infinite;
+                }
+
+                @keyframes spin {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.bdt-prime-slider-flogia {
+
+    .bdt-ps-thumbnav {
+        >a {
+            position: relative;
+
+            span {
+                position: absolute;
+                color: #fff;
+                line-height: 18px;
+                font-size: clamp(13px, 1vw, 16px);
+                left: 0;
+                bottom: 0;
+                margin: clamp(5px, 1vw, 20px);
+            }
+        }
+
+        .bdt-thumb-content {
+            position: relative;
+            max-width: 220px;
+            height: 100%;
+            border: 5px solid transparent;
+            overflow: hidden;
+            transition: all .3s ease;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: all 0.4s ease;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(254, 80, 109, 0.308);
+                opacity: 1;
+                transition: opacity 0.3s ease-in-out;
+                overflow: hidden;
+            }
+        }
+
+        &.bdt-active {
+            .bdt-thumb-content {
+                border: 5px solid #fe506c;
+                transition: all .3s ease;
+
+                &::before {
+                    transition: all .3s ease;
+                    background-color: transparent;
+                    // opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+//Text Hide on Responsive Device
+@media (min-width:768px) and (max-width:1023px) {
+    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
+        &.bdt-tablet {
+            display: none;
+        }
+    }
+}
+@media (min-width:1024px) {
+    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
+        &.bdt-desktop {
+            display: none;
+        }
+    }
+}
+@media (max-width:767px) {
+    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
+        &.bdt-mobile {
+            display: none;
+        }
+    }
+}

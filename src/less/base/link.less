@@ -1,0 +1,167 @@
+// Name:            Link
+// Description:     Styles for links
+//
+// Component:       `bdt-link-muted`
+//                  `bdt-link-text`
+//                  `bdt-link-heading`
+//                  `bdt-link-reset`
+//
+// Sub-objects:     `bdt-link-toggle`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@link-muted-color:                              @global-muted-color;
+@link-muted-hover-color:                        @global-color;
+
+@link-text-hover-color:                         @global-muted-color;
+
+@link-heading-hover-color:                      @global-primary-background;
+@link-heading-hover-text-decoration:            none;
+
+
+/* ========================================================================
+   Component: Link
+ ========================================================================== */
+
+
+/* Muted
+ ========================================================================== */
+
+a.bdt-link-muted,
+.bdt-link-muted a,
+.bdt-link-toggle .bdt-link-muted {
+    color: @link-muted-color;
+    .hook-link-muted();
+}
+
+a.bdt-link-muted:hover,
+.bdt-link-muted a:hover,
+.bdt-link-toggle:hover .bdt-link-muted {
+    color: @link-muted-hover-color;
+    .hook-link-muted-hover();
+}
+
+
+/* Text
+ ========================================================================== */
+
+a.bdt-link-text,
+.bdt-link-text a,
+.bdt-link-toggle .bdt-link-text {
+    color: inherit;
+    .hook-link-text();
+}
+
+a.bdt-link-text:hover,
+.bdt-link-text a:hover,
+.bdt-link-toggle:hover .bdt-link-text {
+    color: @link-text-hover-color;
+    .hook-link-text-hover();
+}
+
+
+/* Heading
+ ========================================================================== */
+
+a.bdt-link-heading,
+.bdt-link-heading a,
+.bdt-link-toggle .bdt-link-heading {
+    color: inherit;
+    .hook-link-heading();
+}
+
+a.bdt-link-heading:hover,
+.bdt-link-heading a:hover,
+.bdt-link-toggle:hover .bdt-link-heading {
+    color: @link-heading-hover-color;
+    text-decoration: @link-heading-hover-text-decoration;
+    .hook-link-heading-hover();
+}
+
+
+/* Reset
+ ========================================================================== */
+
+/*
+ * `!important` needed to override inverse component
+ */
+
+a.bdt-link-reset,
+.bdt-link-reset a {
+    color: inherit !important;
+    text-decoration: none !important;
+    .hook-link-reset();
+}
+
+
+/* Toggle
+ ========================================================================== */
+
+.bdt-link-toggle {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-link-misc();
+
+.hook-link-muted() {}
+.hook-link-muted-hover() {}
+.hook-link-text() {}
+.hook-link-text-hover() {}
+.hook-link-heading() {}
+.hook-link-heading-hover() {}
+.hook-link-reset() {}
+.hook-link-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-link-muted-color:                        @inverse-global-muted-color;
+@inverse-link-muted-hover-color:                  @inverse-global-color;
+@inverse-link-text-hover-color:                   @inverse-global-muted-color;
+@inverse-link-heading-hover-color:                @inverse-global-primary-background;
+
+.hook-inverse() {
+
+    a.bdt-link-muted,
+    .bdt-link-muted a {
+        color: @inverse-link-muted-color;
+        .hook-inverse-link-muted();
+    }
+
+    a.bdt-link-muted:hover,
+    .bdt-link-muted a:hover,
+    .bdt-link-toggle:hover .bdt-link-muted  {
+        color: @inverse-link-muted-hover-color;
+        .hook-inverse-link-muted-hover();
+    }
+
+    a.bdt-link-text:hover,
+    .bdt-link-text a:hover,
+    .bdt-link-toggle:hover .bdt-link-text {
+        color: @inverse-link-text-hover-color;
+        .hook-inverse-link-text-hover();
+    }
+
+    a.bdt-link-heading:hover,
+    .bdt-link-heading a:hover,
+    .bdt-link-toggle:hover .bdt-link-heading {
+        color: @inverse-link-heading-hover-color;
+        .hook-inverse-link-heading-hover();
+    }
+
+}
+
+.hook-inverse-link-muted() {}
+.hook-inverse-link-muted-hover() {}
+.hook-inverse-link-text-hover() {}
+.hook-inverse-link-heading-hover() {}

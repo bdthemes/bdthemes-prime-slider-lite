@@ -1,0 +1,212 @@
+// Name:            Section
+// Description:     Component to create horizontal layout section
+//
+// Component:       `bdt-section`
+//
+// Modifiers:       `bdt-section-xsmall`
+//                  `bdt-section-small`
+//                  `bdt-section-large`
+//                  `bdt-section-xlarge`
+//                  `bdt-section-default`
+//                  `bdt-section-muted`
+//                  `bdt-section-primary`
+//                  `bdt-section-secondary`
+//                  `bdt-section-overlap`
+//
+// States:          `bdt-preserve-color`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@section-padding-vertical:                        @global-medium-margin;
+@section-padding-vertical-m:                      @global-large-margin;
+
+@section-xsmall-padding-vertical:                 @global-margin;
+
+@section-small-padding-vertical:                  @global-medium-margin;
+
+@section-large-padding-vertical:                  @global-large-margin;
+@section-large-padding-vertical-m:                @global-xlarge-margin;
+
+@section-xlarge-padding-vertical:                 @global-xlarge-margin;
+@section-xlarge-padding-vertical-m:               (@global-large-margin + @global-xlarge-margin);
+
+@section-default-background:                      @global-background;
+
+@section-muted-background:                        @global-muted-background;
+
+@section-primary-background:                      @global-primary-background;
+@section-primary-color-mode:                      light;
+
+@section-secondary-background:                    @global-secondary-background;
+@section-secondary-color-mode:                    light;
+
+
+/* ========================================================================
+   Component: Section
+ ========================================================================== */
+
+/*
+ * 1. Make it work with `100vh` and height in general
+ */
+
+.bdt-section {
+    display: flow-root;
+    box-sizing: border-box; /* 1 */
+    padding-top: @section-padding-vertical;
+    padding-bottom: @section-padding-vertical;
+    .hook-section();
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-section {
+        padding-top: @section-padding-vertical-m;
+        padding-bottom: @section-padding-vertical-m;
+    }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-section > :last-child { margin-bottom: 0; }
+
+
+/* Size modifiers
+ ========================================================================== */
+
+/*
+ * XSmall
+ */
+
+.bdt-section-xsmall {
+    padding-top: @section-xsmall-padding-vertical;
+    padding-bottom: @section-xsmall-padding-vertical;
+}
+
+/*
+ * Small
+ */
+
+.bdt-section-small {
+    padding-top: @section-small-padding-vertical;
+    padding-bottom: @section-small-padding-vertical;
+}
+
+/*
+ * Large
+ */
+
+.bdt-section-large {
+    padding-top: @section-large-padding-vertical;
+    padding-bottom: @section-large-padding-vertical;
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-section-large {
+        padding-top: @section-large-padding-vertical-m;
+        padding-bottom: @section-large-padding-vertical-m;
+    }
+
+}
+
+
+/*
+ * XLarge
+ */
+
+.bdt-section-xlarge {
+    padding-top: @section-xlarge-padding-vertical;
+    padding-bottom: @section-xlarge-padding-vertical;
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-section-xlarge {
+        padding-top: @section-xlarge-padding-vertical-m;
+        padding-bottom: @section-xlarge-padding-vertical-m;
+    }
+
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.bdt-section-default {
+    background: @section-default-background;
+    .hook-section-default();
+}
+
+/*
+ * Muted
+ */
+
+.bdt-section-muted {
+    background: @section-muted-background;
+    .hook-section-muted();
+}
+
+/*
+ * Primary
+ */
+
+.bdt-section-primary {
+    background: @section-primary-background;
+    .hook-section-primary();
+}
+
+.bdt-section-primary:not(.bdt-preserve-color):extend(.bdt-light all) when (@section-primary-color-mode = light) {}
+.bdt-section-primary:not(.bdt-preserve-color):extend(.bdt-dark all) when (@section-primary-color-mode = dark) {}
+
+/*
+ * Secondary
+ */
+
+.bdt-section-secondary {
+    background: @section-secondary-background;
+    .hook-section-secondary();
+}
+
+.bdt-section-secondary:not(.bdt-preserve-color):extend(.bdt-light all) when (@section-secondary-color-mode = light) {}
+.bdt-section-secondary:not(.bdt-preserve-color):extend(.bdt-dark all) when (@section-secondary-color-mode = dark) {}
+
+
+/* Overlap modifier
+ ========================================================================== */
+
+/*
+ * Reserved modifier to make a section overlap another section with an border image
+ * Implemented by the theme
+ */
+
+.bdt-section-overlap {
+    .hook-section-overlap();
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-section-misc();
+
+.hook-section() {}
+.hook-section-default() {}
+.hook-section-muted() {}
+.hook-section-secondary() {}
+.hook-section-primary() {}
+.hook-section-overlap() {}
+.hook-section-misc() {}

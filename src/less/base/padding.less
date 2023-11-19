@@ -1,0 +1,81 @@
+// Name:            Padding
+// Description:     Utilities for padding
+//
+// Component:       `bdt-padding`
+//                  `bdt-padding-large`
+//                  `bdt-padding-remove-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@padding-padding:                                       @global-gutter;
+@padding-padding-l:                                     @global-medium-gutter;
+
+@padding-small-padding:                                 @global-small-gutter;
+
+@padding-large-padding:                                 @global-medium-gutter;
+@padding-large-padding-l:                               @global-large-gutter;
+
+
+/* ========================================================================
+   Component: Padding
+ ========================================================================== */
+
+.bdt-padding { padding: @padding-padding; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-padding { padding: @padding-padding-l; }
+
+}
+
+
+/* Small
+ ========================================================================== */
+
+.bdt-padding-small { padding: @padding-small-padding; }
+
+
+/* Large
+ ========================================================================== */
+
+.bdt-padding-large { padding: @padding-large-padding; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-padding-large { padding: @padding-large-padding-l; }
+
+}
+
+
+/* Remove
+ ========================================================================== */
+
+.bdt-padding-remove { padding: 0 !important; }
+.bdt-padding-remove-top { padding-top: 0 !important; }
+.bdt-padding-remove-bottom { padding-bottom: 0 !important; }
+.bdt-padding-remove-left { padding-left: 0 !important; }
+.bdt-padding-remove-right { padding-right: 0 !important; }
+
+.bdt-padding-remove-vertical {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.bdt-padding-remove-horizontal {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-padding-misc();
+
+.hook-padding-misc() {}

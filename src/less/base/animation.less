@@ -1,0 +1,283 @@
+// Name:            Animation
+// Description:     Utilities for keyframe animations
+//
+// Component:       `bdt-animation-*`
+//
+// Modifiers:       `bdt-animation-fade`
+//                  `bdt-animation-scale-up`
+//                  `bdt-animation-scale-down`
+//                  `bdt-animation-slide-top-*`
+//                  `bdt-animation-slide-bottom-*`
+//                  `bdt-animation-slide-left-*`
+//                  `bdt-animation-slide-right-*`
+//                  `bdt-animation-kenburns`
+//                  `bdt-animation-shake`
+//                  `bdt-animation-stroke`
+//                  `bdt-animation-reverse`
+//                  `bdt-animation-fast`
+//
+// Sub-objects:     `bdt-animation-toggle`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@animation-duration:                            0.5s;
+@animation-fade-duration:                       0.8s;
+@animation-stroke-duration:                     2s;
+@animation-kenburns-duration:                   15s;
+@animation-fast-duration:                       0.1s;
+
+@animation-slide-small-translate:               10px;
+@animation-slide-medium-translate:              50px;
+
+
+/* ========================================================================
+   Component: Animation
+ ========================================================================== */
+
+[class*='bdt-animation-'] { animation: @animation-duration ease-out both; }
+
+
+/* Animations
+ ========================================================================== */
+
+/*
+ * Fade
+ */
+
+.bdt-animation-fade {
+    animation-name: bdt-fade;
+    animation-duration: @animation-fade-duration;
+    animation-timing-function: linear;
+}
+
+/*
+ * Scale
+ */
+
+.bdt-animation-scale-up { animation-name: bdt-fade, bdt-scale-up; }
+.bdt-animation-scale-down { animation-name: bdt-fade, bdt-scale-down; }
+
+/*
+ * Slide
+ */
+
+.bdt-animation-slide-top { animation-name: bdt-fade, bdt-slide-top; }
+.bdt-animation-slide-bottom { animation-name: bdt-fade, bdt-slide-bottom; }
+.bdt-animation-slide-left { animation-name: bdt-fade, bdt-slide-left; }
+.bdt-animation-slide-right { animation-name: bdt-fade, bdt-slide-right; }
+
+/*
+ * Slide Small
+ */
+
+.bdt-animation-slide-top-small { animation-name: bdt-fade, bdt-slide-top-small; }
+.bdt-animation-slide-bottom-small { animation-name: bdt-fade, bdt-slide-bottom-small; }
+.bdt-animation-slide-left-small { animation-name: bdt-fade, bdt-slide-left-small; }
+.bdt-animation-slide-right-small { animation-name: bdt-fade, bdt-slide-right-small; }
+
+/*
+ * Slide Medium
+ */
+
+.bdt-animation-slide-top-medium { animation-name: bdt-fade, bdt-slide-top-medium; }
+.bdt-animation-slide-bottom-medium { animation-name: bdt-fade, bdt-slide-bottom-medium; }
+.bdt-animation-slide-left-medium { animation-name: bdt-fade, bdt-slide-left-medium; }
+.bdt-animation-slide-right-medium { animation-name: bdt-fade, bdt-slide-right-medium; }
+
+/*
+ * Kenburns
+ */
+
+.bdt-animation-kenburns {
+    animation-name: bdt-kenburns;
+    animation-duration: @animation-kenburns-duration;
+}
+
+/*
+ * Shake
+ */
+
+.bdt-animation-shake { animation-name: bdt-shake; }
+
+/*
+ * SVG Stroke
+ * The `--bdt-animation-stroke` custom property contains the longest path length.
+ * Set it manually or use `bdt-svg="stroke-animation: true"` to set it automatically.
+ * All strokes are animated by the same pace and doesn't end simultaneously.
+ * To end simultaneously, `pathLength="1"` could be used, but it's not working in Safari yet.
+ */
+
+.bdt-animation-stroke {
+    animation-name: bdt-stroke;
+    animation-duration: @animation-stroke-duration;
+    stroke-dasharray: var(--bdt-animation-stroke);
+}
+
+
+/* Direction modifier
+ ========================================================================== */
+
+.bdt-animation-reverse {
+    animation-direction: reverse;
+    animation-timing-function: ease-in;
+}
+
+
+/* Duration modifier
+ ========================================================================== */
+
+.bdt-animation-fast { animation-duration: @animation-fast-duration; }
+
+
+/* Toggle animation based on the State of the Parent Element
+ ========================================================================== */
+
+.bdt-animation-toggle:not(:hover):not(:focus) [class*='bdt-animation-'] { animation-name: none; }
+
+
+/* Keyframes used by animation classes
+ ========================================================================== */
+
+/*
+ * Fade
+ */
+
+@keyframes bdt-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/*
+ * Scale
+ */
+
+@keyframes bdt-scale-up {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bdt-scale-down {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/*
+ * Slide
+ */
+
+@keyframes bdt-slide-top {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-bottom {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-left {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bdt-slide-right {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+}
+
+/*
+ * Slide Small
+ */
+
+@keyframes bdt-slide-top-small {
+    0% { transform: translateY(-@animation-slide-small-translate); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-bottom-small {
+    0% { transform: translateY(@animation-slide-small-translate); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-left-small {
+    0% { transform: translateX(-@animation-slide-small-translate); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bdt-slide-right-small {
+    0% { transform: translateX(@animation-slide-small-translate); }
+    100% { transform: translateX(0); }
+}
+
+/*
+ * Slide Medium
+ */
+
+@keyframes bdt-slide-top-medium {
+    0% { transform: translateY(-@animation-slide-medium-translate); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-bottom-medium {
+    0% { transform: translateY(@animation-slide-medium-translate); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bdt-slide-left-medium {
+    0% { transform: translateX(-@animation-slide-medium-translate); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bdt-slide-right-medium {
+    0% { transform: translateX(@animation-slide-medium-translate); }
+    100% { transform: translateX(0); }
+}
+
+/*
+ * Kenburns
+ */
+
+@keyframes bdt-kenburns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/*
+ * Shake
+ */
+
+@keyframes bdt-shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-9px); }
+    20% { transform: translateX(8px); }
+    30% { transform: translateX(-7px); }
+    40% { transform: translateX(6px); }
+    50% { transform: translateX(-5px); }
+    60% { transform: translateX(4px); }
+    70% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+    90% { transform: translateX(-1px); }
+}
+
+/*
+ * Stroke
+ */
+
+ @keyframes bdt-stroke {
+    0% { stroke-dashoffset: var(--bdt-animation-stroke); }
+    100% { stroke-dashoffset: 0; }
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-animation-misc();
+
+.hook-animation-misc() {}

@@ -1,0 +1,74 @@
+// Name:            Sticky
+// Description:     Component to make elements sticky in the viewport
+//
+// Component:       `bdt-sticky`
+//
+// Modifier:        `bdt-sticky-fixed`
+//
+// States:          `bdt-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@sticky-z-index:                                @global-z-index - 20;
+
+@sticky-animation-duration:                     0.2s;
+@sticky-reverse-animation-duration:             0.2s;
+
+
+/* ========================================================================
+   Component: Sticky
+ ========================================================================== */
+
+/*
+ * 1. Create position context so it's t the same like when fixed.
+ * 2. Create stacking context already when not sticky to have the same context
+*     for position set to `sticky` and `relative`
+ * 2. More robust if padding and border are used and the sticky height is transitioned
+ */
+
+.bdt-sticky {
+    /* 1 */
+    position: relative;
+    /* 2 */
+    z-index: @sticky-z-index;
+    /* 3 */
+    box-sizing: border-box;
+}
+
+/*
+ * 1. Force new layer to resolve frame rate issues on devices with lower frame rates
+ */
+
+.bdt-sticky-fixed {
+    margin: 0 !important;
+    /* 1 */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/*
+ * Faster animations
+ */
+
+.bdt-sticky[class*='bdt-animation-'] { animation-duration: @sticky-animation-duration; }
+
+.bdt-sticky.bdt-animation-reverse { animation-duration: @sticky-reverse-animation-duration; }
+
+/*
+ * Placeholder
+ * Make content clickable for sticky cover and reveal effects
+ */
+
+.bdt-sticky-placeholder { pointer-events: none; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-sticky-misc();
+
+.hook-sticky-misc() {}

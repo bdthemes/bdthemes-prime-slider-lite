@@ -1,0 +1,268 @@
+// Name:            List
+// Description:     Styles for lists
+//
+// Component:       `bdt-list`
+//
+// Modifiers:       `bdt-list-disc`
+//                  `bdt-list-circle`
+//                  `bdt-list-square`
+//                  `bdt-list-decimal`
+//                  `bdt-list-hyphen`
+//                  `bdt-list-muted`
+//                  `bdt-list-emphasis`
+//                  `bdt-list-primary`
+//                  `bdt-list-secondary`
+//                  `bdt-list-bullet`
+//                  `bdt-list-divider`
+//                  `bdt-list-striped`
+//                  `bdt-list-large`
+//                  `bdt-list-collapse`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@list-margin-top:                               @global-small-margin;
+
+@list-padding-left:                             30px;
+
+@list-marker-height:                            (@global-line-height * 1em);
+
+@list-muted-color:                              @global-muted-color;
+@list-emphasis-color:                           @global-emphasis-color;
+@list-primary-color:                            @global-primary-background;
+@list-secondary-color:                          @global-secondary-background;
+
+@list-bullet-icon-color:                        @global-color;
+
+@list-divider-margin-top:                       @global-small-margin;
+@list-divider-border-width:                     @global-border-width;
+@list-divider-border:                           @global-border;
+
+@list-striped-padding-vertical:                 @global-small-margin;
+@list-striped-padding-horizontal:               @global-small-margin;
+@list-striped-background:                       @global-muted-background;
+
+@list-large-margin-top:                         @global-margin;
+@list-large-divider-margin-top:                 @global-margin;
+@list-large-striped-padding-vertical:           @global-margin;
+@list-large-striped-padding-horizontal:         @global-small-margin;
+
+@internal-list-bullet-image:                    "../../images/backgrounds/list-bullet.svg";
+
+
+/* ========================================================================
+   Component: List
+ ========================================================================== */
+
+.bdt-list {
+    padding: 0;
+    list-style: none;
+}
+
+/*
+ * Avoid column break within the list item, when using `column-count`
+ */
+
+.bdt-list > * { break-inside: avoid-column; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-list > * > :last-child { margin-bottom: 0; }
+
+/*
+ * Style
+ */
+
+.bdt-list > :nth-child(n+2),
+.bdt-list > * > ul { margin-top: @list-margin-top; }
+
+
+/* Marker modifiers
+ * Moving `::marker` inside `::before` to style it differently
+ * To style the `::marker` is currently only supported in Firefox and Safari
+ ========================================================================== */
+
+.bdt-list-disc > *,
+.bdt-list-circle > *,
+.bdt-list-square > *,
+.bdt-list-decimal > *,
+.bdt-list-hyphen > * { padding-left: @list-padding-left; }
+
+/*
+ * Type modifiers
+ */
+
+.bdt-list-decimal { counter-reset: decimal; }
+.bdt-list-decimal > * { counter-increment: decimal; }
+
+.bdt-list-disc > ::before,
+.bdt-list-circle > ::before,
+.bdt-list-square > ::before,
+.bdt-list-decimal > ::before,
+.bdt-list-hyphen > ::before {
+    content: "";
+    position: relative;
+    left: -@list-padding-left;
+    width: @list-padding-left;
+    height: @list-marker-height;
+    margin-bottom: -@list-marker-height;
+    display: list-item;
+    list-style-position: inside;
+    text-align: right;
+}
+
+.bdt-list-disc > ::before { list-style-type: disc; }
+.bdt-list-circle > ::before { list-style-type: circle; }
+.bdt-list-square > ::before { list-style-type: square; }
+.bdt-list-decimal > ::before { content: counter(decimal, decimal) '\200A.\00A0'; }
+.bdt-list-hyphen > ::before { content: '–\00A0\00A0'; }
+
+/*
+ * Color modifiers
+ */
+
+.bdt-list-muted > ::before { color: @list-muted-color !important; }
+.bdt-list-emphasis > ::before { color: @list-emphasis-color !important; }
+.bdt-list-primary > ::before { color: @list-primary-color !important; }
+.bdt-list-secondary > ::before { color: @list-secondary-color !important; }
+
+
+/* Image bullet modifier
+ ========================================================================== */
+
+.bdt-list-bullet > * { padding-left: @list-padding-left; }
+
+.bdt-list-bullet > ::before {
+    content: "";
+    display: list-item;
+    position: relative;
+    left: -@list-padding-left;
+    width: @list-padding-left;
+    height: @list-marker-height;
+    margin-bottom: -@list-marker-height;
+    .svg-fill(@internal-list-bullet-image, "#000", @list-bullet-icon-color);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Divider
+ */
+
+.bdt-list-divider > :nth-child(n+2) {
+    margin-top: @list-divider-margin-top;
+    padding-top: @list-divider-margin-top;
+    border-top: @list-divider-border-width solid @list-divider-border;
+    .hook-list-divider();
+}
+
+/*
+ * Striped
+ */
+
+.bdt-list-striped > * {
+    padding: @list-striped-padding-vertical @list-striped-padding-horizontal;
+    .hook-list-striped();
+}
+
+.bdt-list-striped > :nth-of-type(odd) { background: @list-striped-background; }
+
+.bdt-list-striped > :nth-child(n+2) { margin-top: 0; }
+
+
+/* Size modifier
+ ========================================================================== */
+
+.bdt-list-large > :nth-child(n+2),
+.bdt-list-large > * > ul { margin-top: @list-large-margin-top; }
+
+.bdt-list-collapse > :nth-child(n+2),
+.bdt-list-collapse > * > ul { margin-top: 0; }
+
+/*
+ * Divider
+ */
+
+.bdt-list-large.bdt-list-divider > :nth-child(n+2) {
+    margin-top: @list-large-divider-margin-top;
+    padding-top: @list-large-divider-margin-top;
+}
+
+.bdt-list-collapse.bdt-list-divider > :nth-child(n+2) {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/*
+ * Striped
+ */
+
+.bdt-list-large.bdt-list-striped > * { padding: @list-large-striped-padding-vertical @list-large-striped-padding-horizontal; }
+
+.bdt-list-collapse.bdt-list-striped > * {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.bdt-list-large.bdt-list-striped > :nth-child(n+2),
+.bdt-list-collapse.bdt-list-striped > :nth-child(n+2) { margin-top: 0; }
+
+
+// Hooks
+// ========================================================================
+
+.hook-list-misc();
+
+.hook-list-divider() {}
+.hook-list-striped() {}
+.hook-list-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-list-muted-color:                        @inverse-global-muted-color;
+@inverse-list-emphasis-color:                     @inverse-global-emphasis-color;
+@inverse-list-primary-color:                      @inverse-global-primary-background;
+@inverse-list-secondary-color:                    @inverse-global-primary-background;
+
+@inverse-list-divider-border:                     @inverse-global-border;
+@inverse-list-striped-background:                 @inverse-global-muted-background;
+
+@inverse-list-bullet-icon-color:                  @inverse-global-color;
+
+.hook-inverse() {
+
+    .bdt-list-muted > ::before { color: @inverse-list-muted-color !important; }
+    .bdt-list-emphasis > ::before { color: @inverse-list-emphasis-color !important; }
+    .bdt-list-primary > ::before { color: @inverse-list-primary-color !important; }
+    .bdt-list-secondary > ::before { color: @inverse-list-secondary-color !important; }
+
+    .bdt-list-bullet > ::before {
+        .svg-fill(@internal-list-bullet-image, "#000", @inverse-list-bullet-icon-color);
+    }
+
+    .bdt-list-divider > :nth-child(n+2) {
+        border-top-color: @inverse-list-divider-border;
+        .hook-inverse-list-divider();
+    }
+
+    .bdt-list-striped > * {
+        .hook-inverse-list-striped();
+    }
+
+    .bdt-list-striped > :nth-of-type(odd) { background-color: @inverse-list-striped-background; }
+
+}
+
+.hook-inverse-list-divider() {}
+.hook-inverse-list-striped() {}

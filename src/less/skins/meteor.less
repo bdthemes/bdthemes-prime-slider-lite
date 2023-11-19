@@ -1,0 +1,290 @@
+/*===========================================================================
+    Slider Css ( Slider Skin Slide )
+===========================================================================*/
+.bdt-prime-slider-skin-meteor {
+    position: relative;
+    .bdt-slideshow-item .bdt-ps-slide-img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .bdt-prime-slider-desc {
+        position: relative;
+        width: 100%;
+        .bdt-main-title {
+            margin-bottom: clamp(30px, 4vw, 50px);
+            display: inline-block;
+        }
+        .bdt-title-tag a {
+            color: #fff;
+        }
+        .bdt-title-tag {
+            font-size: clamp(40px, 10vw, 140px);
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            text-transform: uppercase;
+            display: inline;
+        }
+        .bdt-ps-sub-title {
+            font-size: clamp(18px, 2vw, 24px);
+            color: #fff;
+            margin: 0;
+            padding-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+    }
+    .bdt-slider-excerpt {
+        margin-right: clamp(20px, 3vw, 40px);
+        color: #e5e5e5;
+        font-size: clamp(13px, 1vw, 14px);
+        p {
+            margin: 0;
+        }
+    }
+    .bdt-slide-btn {
+        font-size: clamp(15px, 2vw, 16px);
+        padding: 8px 70px 8px 20px;
+        position: relative;
+        border-radius: 80px;
+        color: #fff;
+        border: 2px solid #fe506c;
+        transition: all .3s ease;
+        outline: none;
+        display: inline-block;
+        &:hover {
+            background-color: #fe506c; 
+            .bdt-slide-btn-icon {
+                background: #fff;
+                svg * {
+                    stroke: #fe506c;
+                }
+            }     
+        }
+        .bdt-slide-btn-icon {
+            background: #fe506c;
+            border-radius: 40px;
+            right: 0;
+            position: absolute;
+            height: 38px;
+            width: 38px;
+            line-height: 38px;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s ease;
+            svg * {
+                stroke: #fff;
+                transition: all .3s ease;
+            }
+        }
+    }
+    .bdt-prime-social-icon {
+        z-index: 1;
+    }
+    .bdt-prime-slider-social-icon {
+        text-align: center;
+        a {
+            color: #fff;
+            font-size: 10px;
+            margin: 3px;
+            padding: 9px 8px;
+            border-radius: 40px;
+            display: flex;
+            border: 2px solid #fff;
+            transition: all .3s ease;
+            &:hover {
+                color: #8EB477;
+                background: #fff;
+            }
+        }
+    }
+    .bdt-scroll-down {
+        z-index: 1;
+        .bdt-scroll-icon {
+            position: relative;
+            svg {
+                transition: all .4s ease-out;
+                width: 3em;
+            }
+        }
+        &:hover {
+            .bdt-scroll-icon {
+               svg {
+                    transform: translateY(30px);
+                } 
+            }
+        }
+        .bdt-scroll-down-text {
+            display: none;
+        }
+    }
+    .bdt-scroll-down-wrapper {
+        margin-left: 16px;
+        button {
+            background: transparent;
+            padding: 0;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            svg * {
+                fill: #fff;
+            }
+        }
+    }
+    .bdt-prime-slider-footer-content {
+        display: none;
+        width: 100%;
+        .bdt-social-background {
+            position: relative;
+            background: #1F3E2D;
+        }
+        .bdt-social-bg-color {
+            background: #8EB477;
+        }
+        .bdt-ps-meta {
+            li {
+                position: absolute;
+                top: 50%;
+                left: 20px;
+                transition: opacity 400ms ease-out;
+                transform: translateY(-50%);
+            }
+            li:not(.bdt-active) {
+                opacity: 0;
+                display: none;
+            }
+        }
+        .bdt-slide-thumbnav-img {
+            position: relative;
+            overflow: hidden;
+            li {
+                transition: opacity 400ms ease-out;
+                * {
+                    min-height: 110%;
+                    width: auto;
+                }
+            }
+            li:not(.bdt-active) {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+/*===========================================================================
+    Navigation Css ( Slider Skin Slide )
+===========================================================================*/
+.bdt-prime-slider-skin-meteor {
+    .bdt-dotnav {
+        top: 87%;
+        left: 30px;
+        &.bdt-dotnav-vertical {
+            flex-direction: inherit;
+        }
+        li {
+            position: relative;
+            margin-right: 10px;
+            a {
+                position: relative;
+                width: 24px;
+                height: 24px;
+                background: transparent;
+                border: 2px solid transparent;
+                transform: scale(0.8);
+                transition: all .3s ease;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    height: 6px;
+                    width: 6px;
+                    background: rgba(255, 255, 255, .8);
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 20px;
+                }
+            }
+            &.bdt-active a {
+                background: transparent;
+                border-color: #fff;
+                transform: scale(1);
+                &:before {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+/*===========================================================================
+    Responsive Css ( Slider Skin Slide )
+===========================================================================*/
+@media (min-width: 640px) {
+    .bdt-prime-slider-skin-meteor {
+        .bdt-slide-btn {
+            padding: 12px 75px 12px 30px;
+            .bdt-slide-btn-icon {
+                height: 48px;
+                width: 48px;
+                line-height: 48px;
+            }
+        }
+        .bdt-prime-slider-footer-content {
+            display: flex;
+        }
+        .bdt-height-small {
+            height: clamp(120px, 12vw, 150px);
+        }
+        .bdt-dotnav {
+            top: 50%;
+            left: auto;
+            &.bdt-dotnav-vertical {
+                flex-direction: column;
+            }
+            li {
+                margin-right: 0px;
+                a {
+                    width: 30px;
+                    height: 30px;
+                    &:before {
+                        height: 8px;
+                        width: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .bdt-prime-slider-skin-meteor {
+        .bdt-prime-slider-container {
+            padding: 0 100px;
+        }
+        .bdt-prime-slider-social-icon {
+            a {
+                display: inline-flex;
+                margin: 0;
+                font-size: 14px;
+                padding: 10px 8px;
+            }
+        }
+        .bdt-scroll-down-wrapper {
+            margin-left: 88px;
+        }
+        .bdt-prime-slider-footer-content {
+            .bdt-ps-meta {
+                li {
+                    left: 40px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+*.DS_Store
+/node_modules
+*.po
+*.mo
+*.zip
+package-lock.json
+package.json
+*sync.ffs_db

@@ -1,0 +1,419 @@
+// Name:            Grid
+// Description:     Component to create responsive, fluid and nestable grids
+//
+// Component:       `bdt-grid`
+//
+// Modifiers:       `bdt-grid-small`
+//                  `bdt-grid-medium`
+//                  `bdt-grid-large`
+//                  `bdt-grid-collapse`
+//                  `bdt-grid-divider`
+//                  `bdt-grid-match`
+//                  `bdt-grid-stack`
+//                  `bdt-grid-margin`
+//                  `bdt-grid-margin-small`
+//                  `bdt-grid-margin-medium`
+//                  `bdt-grid-margin-large`
+//                  `bdt-grid-margin-collapse`
+//
+// Sub-modifier:    `bdt-grid-item-match`
+//
+// States:          `bdt-first-column`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@grid-gutter-horizontal:                        @global-gutter;
+@grid-gutter-vertical:                          @grid-gutter-horizontal;
+@grid-gutter-horizontal-l:                      @global-medium-gutter;
+@grid-gutter-vertical-l:                        @grid-gutter-horizontal-l;
+
+@grid-small-gutter-horizontal:                  @global-small-gutter;
+@grid-small-gutter-vertical:                    @grid-small-gutter-horizontal;
+
+@grid-medium-gutter-horizontal:                 @global-gutter;
+@grid-medium-gutter-vertical:                   @grid-medium-gutter-horizontal;
+
+@grid-large-gutter-horizontal:                  @global-medium-gutter;
+@grid-large-gutter-vertical:                    @grid-large-gutter-horizontal;
+@grid-large-gutter-horizontal-l:                @global-large-gutter;
+@grid-large-gutter-vertical-l:                  @grid-large-gutter-horizontal-l;
+
+@grid-divider-border-width:                     @global-border-width;
+@grid-divider-border:                           @global-border;
+
+
+/* ========================================================================
+   Component: Grid
+ ========================================================================== */
+
+/*
+ * 1. Allow cells to wrap into the next line
+ * 2. Reset list
+ */
+
+.bdt-grid {
+    display: flex;
+    /* 1 */
+    flex-wrap: wrap;
+    /* 2 */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*
+ * Grid cell
+ * Note: Space is allocated solely based on content dimensions, but shrinks: 0 1 auto
+ * Reset margin for e.g. paragraphs
+ */
+
+.bdt-grid > * { margin: 0; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.bdt-grid > * > :last-child { margin-bottom: 0; }
+
+
+/* Gutter
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+/* Horizontal */
+.bdt-grid { margin-left: -@grid-gutter-horizontal; }
+.bdt-grid > * { padding-left: @grid-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid + .bdt-grid,
+.bdt-grid > .bdt-grid-margin,
+* + .bdt-grid-margin { margin-top: @grid-gutter-vertical; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    /* Horizontal */
+    .bdt-grid { margin-left: -@grid-gutter-horizontal-l; }
+    .bdt-grid > * { padding-left: @grid-gutter-horizontal-l; }
+
+    /* Vertical */
+    .bdt-grid + .bdt-grid,
+    .bdt-grid > .bdt-grid-margin,
+    * + .bdt-grid-margin { margin-top: @grid-gutter-vertical-l; }
+
+}
+
+/*
+ * Small
+ */
+
+/* Horizontal */
+.bdt-grid-small,
+.bdt-grid-column-small { margin-left: -@grid-small-gutter-horizontal; }
+.bdt-grid-small > *,
+.bdt-grid-column-small > *  { padding-left: @grid-small-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid + .bdt-grid-small,
+.bdt-grid + .bdt-grid-row-small,
+.bdt-grid-small > .bdt-grid-margin,
+.bdt-grid-row-small > .bdt-grid-margin,
+* + .bdt-grid-margin-small { margin-top: @grid-small-gutter-vertical; }
+
+/*
+ * Medium
+ */
+
+/* Horizontal */
+.bdt-grid-medium,
+.bdt-grid-column-medium { margin-left: -@grid-medium-gutter-horizontal; }
+.bdt-grid-medium > *,
+.bdt-grid-column-medium > * { padding-left: @grid-medium-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid + .bdt-grid-medium,
+.bdt-grid + .bdt-grid-row-medium,
+.bdt-grid-medium > .bdt-grid-margin,
+.bdt-grid-row-medium > .bdt-grid-margin,
+* + .bdt-grid-margin-medium { margin-top: @grid-medium-gutter-vertical; }
+
+/*
+ * Large
+ */
+
+/* Horizontal */
+.bdt-grid-large,
+.bdt-grid-column-large { margin-left: -@grid-large-gutter-horizontal; }
+.bdt-grid-large > *,
+.bdt-grid-column-large > * { padding-left: @grid-large-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid + .bdt-grid-large,
+.bdt-grid + .bdt-grid-row-large,
+.bdt-grid-large > .bdt-grid-margin,
+.bdt-grid-row-large > .bdt-grid-margin,
+* + .bdt-grid-margin-large { margin-top: @grid-large-gutter-vertical; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    /* Horizontal */
+    .bdt-grid-large,
+    .bdt-grid-column-large { margin-left: -@grid-large-gutter-horizontal-l; }
+    .bdt-grid-large > *,
+    .bdt-grid-column-large > * { padding-left: @grid-large-gutter-horizontal-l; }
+
+    /* Vertical */
+    .bdt-grid + .bdt-grid-large,
+    .bdt-grid + .bdt-grid-row-large,
+    .bdt-grid-large > .bdt-grid-margin,
+    .bdt-grid-row-large > .bdt-grid-margin,
+    * + .bdt-grid-margin-large { margin-top: @grid-large-gutter-vertical-l; }
+
+}
+
+/*
+ * Collapse
+ */
+
+/* Horizontal */
+.bdt-grid-collapse,
+.bdt-grid-column-collapse { margin-left: 0; }
+.bdt-grid-collapse > *,
+.bdt-grid-column-collapse > * { padding-left: 0; }
+
+/* Vertical */
+.bdt-grid + .bdt-grid-collapse,
+.bdt-grid + .bdt-grid-row-collapse,
+.bdt-grid-collapse > .bdt-grid-margin,
+.bdt-grid-row-collapse > .bdt-grid-margin { margin-top: 0; }
+
+
+/* Divider
+ ========================================================================== */
+
+.bdt-grid-divider > * { position: relative; }
+
+.bdt-grid-divider > :not(.bdt-first-column)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: @grid-divider-border-width solid @grid-divider-border;
+    .hook-grid-divider-horizontal();
+}
+
+/* Vertical */
+.bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: @grid-divider-border-width solid @grid-divider-border;
+    .hook-grid-divider-vertical();
+}
+
+/*
+ * Default
+ */
+
+/* Horizontal */
+.bdt-grid-divider { margin-left: -(@grid-gutter-horizontal * 2); }
+.bdt-grid-divider > * { padding-left: (@grid-gutter-horizontal * 2); }
+
+.bdt-grid-divider > :not(.bdt-first-column)::before { left: @grid-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-gutter-vertical * 2); }
+
+.bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin::before {
+    top: -@grid-gutter-vertical;
+    left: (@grid-gutter-horizontal * 2);
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    /* Horizontal */
+    .bdt-grid-divider { margin-left: -(@grid-gutter-horizontal-l * 2); }
+    .bdt-grid-divider > * { padding-left: (@grid-gutter-horizontal-l * 2); }
+
+    .bdt-grid-divider > :not(.bdt-first-column)::before { left: @grid-gutter-horizontal-l; }
+
+    /* Vertical */
+    .bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-gutter-vertical-l * 2); }
+
+    .bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin::before {
+        top: -@grid-gutter-vertical-l;
+        left: (@grid-gutter-horizontal-l * 2);
+    }
+
+}
+
+/*
+ * Small
+ */
+
+/* Horizontal */
+.bdt-grid-divider.bdt-grid-small,
+.bdt-grid-divider.bdt-grid-column-small { margin-left: -(@grid-small-gutter-horizontal * 2); }
+.bdt-grid-divider.bdt-grid-small > *,
+.bdt-grid-divider.bdt-grid-column-small > * { padding-left: (@grid-small-gutter-horizontal * 2); }
+
+.bdt-grid-divider.bdt-grid-small > :not(.bdt-first-column)::before,
+.bdt-grid-divider.bdt-grid-column-small > :not(.bdt-first-column)::before { left: @grid-small-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid-divider.bdt-grid-small.bdt-grid-stack > .bdt-grid-margin,
+.bdt-grid-divider.bdt-grid-row-small.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-small-gutter-vertical * 2); }
+
+.bdt-grid-divider.bdt-grid-small.bdt-grid-stack > .bdt-grid-margin::before {
+    top: -@grid-small-gutter-vertical;
+    left: (@grid-small-gutter-horizontal * 2);
+}
+
+.bdt-grid-divider.bdt-grid-row-small.bdt-grid-stack > .bdt-grid-margin::before { top: -@grid-small-gutter-vertical; }
+.bdt-grid-divider.bdt-grid-column-small.bdt-grid-stack > .bdt-grid-margin::before { left: (@grid-small-gutter-horizontal * 2); }
+
+/*
+ * Medium
+ */
+
+/* Horizontal */
+.bdt-grid-divider.bdt-grid-medium,
+.bdt-grid-divider.bdt-grid-column-medium { margin-left: -(@grid-medium-gutter-horizontal * 2); }
+.bdt-grid-divider.bdt-grid-medium > *,
+.bdt-grid-divider.bdt-grid-column-medium > * { padding-left: (@grid-medium-gutter-horizontal * 2); }
+
+.bdt-grid-divider.bdt-grid-medium > :not(.bdt-first-column)::before,
+.bdt-grid-divider.bdt-grid-column-medium > :not(.bdt-first-column)::before { left: @grid-medium-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid-divider.bdt-grid-medium.bdt-grid-stack > .bdt-grid-margin,
+.bdt-grid-divider.bdt-grid-row-medium.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-medium-gutter-vertical * 2); }
+
+.bdt-grid-divider.bdt-grid-medium.bdt-grid-stack > .bdt-grid-margin::before {
+    top: -@grid-medium-gutter-vertical;
+    left: (@grid-medium-gutter-horizontal * 2);
+}
+
+.bdt-grid-divider.bdt-grid-row-medium.bdt-grid-stack > .bdt-grid-margin::before { top: -@grid-medium-gutter-vertical; }
+.bdt-grid-divider.bdt-grid-column-medium.bdt-grid-stack > .bdt-grid-margin::before { left: (@grid-medium-gutter-horizontal * 2); }
+
+/*
+ * Large
+ */
+
+/* Horizontal */
+.bdt-grid-divider.bdt-grid-large,
+.bdt-grid-divider.bdt-grid-column-large { margin-left: -(@grid-large-gutter-horizontal * 2); }
+.bdt-grid-divider.bdt-grid-large > *,
+.bdt-grid-divider.bdt-grid-column-large > * { padding-left: (@grid-large-gutter-horizontal * 2); }
+
+.bdt-grid-divider.bdt-grid-large > :not(.bdt-first-column)::before,
+.bdt-grid-divider.bdt-grid-column-large > :not(.bdt-first-column)::before { left: @grid-large-gutter-horizontal; }
+
+/* Vertical */
+.bdt-grid-divider.bdt-grid-large.bdt-grid-stack > .bdt-grid-margin,
+.bdt-grid-divider.bdt-grid-row-large.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-large-gutter-vertical * 2); }
+
+.bdt-grid-divider.bdt-grid-large.bdt-grid-stack > .bdt-grid-margin::before {
+    top: -@grid-large-gutter-vertical;
+    left: (@grid-large-gutter-horizontal * 2);
+}
+
+.bdt-grid-divider.bdt-grid-row-large.bdt-grid-stack > .bdt-grid-margin::before { top: -@grid-large-gutter-vertical; }
+.bdt-grid-divider.bdt-grid-column-large.bdt-grid-stack > .bdt-grid-margin::before { left: (@grid-large-gutter-horizontal * 2); }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    /* Horizontal */
+    .bdt-grid-divider.bdt-grid-large,
+    .bdt-grid-divider.bdt-grid-column-large { margin-left: -(@grid-large-gutter-horizontal-l * 2); }
+    .bdt-grid-divider.bdt-grid-large > *,
+    .bdt-grid-divider.bdt-grid-column-large > * { padding-left: (@grid-large-gutter-horizontal-l * 2); }
+
+    .bdt-grid-divider.bdt-grid-large > :not(.bdt-first-column)::before,
+    .bdt-grid-divider.bdt-grid-column-large > :not(.bdt-first-column)::before { left: @grid-large-gutter-horizontal-l; }
+
+    /* Vertical */
+    .bdt-grid-divider.bdt-grid-large.bdt-grid-stack > .bdt-grid-margin,
+    .bdt-grid-divider.bdt-grid-row-large.bdt-grid-stack > .bdt-grid-margin { margin-top: (@grid-large-gutter-vertical-l * 2); }
+
+    .bdt-grid-divider.bdt-grid-large.bdt-grid-stack > .bdt-grid-margin::before {
+        top: -@grid-large-gutter-vertical-l;
+        left: (@grid-large-gutter-horizontal-l * 2);
+    }
+
+    .bdt-grid-divider.bdt-grid-row-large.bdt-grid-stack > .bdt-grid-margin::before { top: -@grid-large-gutter-vertical-l; }
+    .bdt-grid-divider.bdt-grid-column-large.bdt-grid-stack > .bdt-grid-margin::before { left: (@grid-large-gutter-horizontal-l * 2); }
+
+}
+
+
+/* Match child of a grid cell
+ ========================================================================== */
+
+/*
+ * Behave like a block element
+ * 1. Wrap into the next line
+ * 2. Take the full width, at least 100%. Only if no class from the Width component is set.
+ * 3. Expand width even if larger than 100%, e.g. because of negative margin (Needed for nested grids)
+ */
+
+.bdt-grid-match > *,
+.bdt-grid-item-match {
+    display: flex;
+    /* 1 */
+    flex-wrap: wrap;
+}
+
+.bdt-grid-match > * > :not([class*='bdt-width']),
+.bdt-grid-item-match > :not([class*='bdt-width']) {
+    /* 2 */
+    box-sizing: border-box;
+    width: 100%;
+    /* 3 */
+    flex: auto;
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-grid-misc();
+
+.hook-grid-divider-horizontal() {}
+.hook-grid-divider-vertical() {}
+.hook-grid-misc() {}
+
+
+// Inverse
+// ========================================================================
+
+@inverse-grid-divider-border:                  @inverse-global-border;
+
+.hook-inverse() {
+
+    .bdt-grid-divider > :not(.bdt-first-column)::before {
+        border-left-color: @inverse-grid-divider-border;
+        .hook-inverse-grid-divider-horizontal();
+    }
+
+    .bdt-grid-divider.bdt-grid-stack > .bdt-grid-margin::before {
+        border-top-color: @inverse-grid-divider-border;
+        .hook-inverse-grid-divider-vertical();
+    }
+
+}
+
+.hook-inverse-grid-divider-horizontal() {}
+.hook-inverse-grid-divider-vertical() {}

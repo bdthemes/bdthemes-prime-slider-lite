@@ -1,0 +1,398 @@
+@import url(../skins/slide.less);
+@import url(../skins/crelly.less);
+@import url(../skins/meteor.less);
+
+
+/*===========================================================================
+    Slider Css
+===========================================================================*/
+.bdt-prime-slider-skin-general {
+    position: relative;
+    overflow: hidden;
+    .bdt-prime-slider-content {
+        position: relative;
+    }
+    .bdt-slideshow-item .bdt-ps-slide-img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .bdt-prime-slider-desc {
+        margin-top: 40px;
+        .bdt-main-title {
+            // width: 230px;
+            display: inline-block;
+            margin-bottom: 20px;
+            > div {
+                display: inline-block;
+            }
+            .bdt-title-tag a {
+                color: #fff;
+            }
+            .bdt-title-tag {
+                font-size: clamp(30px, 10vw, 110px);
+                font-weight: 700;
+                color: #fff;
+                line-height: 1.3;
+                margin: 0;
+                display: inline-block;
+            }
+        }
+        .bdt-sub-title {
+            .bdt-ps-sub-title {
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0 0 5px;
+                display: inline-block;
+            }
+        }
+        .bdt-slider-excerpt {
+            margin: 0 0 clamp(20px, 4vw, 40px);
+        }
+    }
+
+    .bdt-slider-excerpt {
+        margin: clamp(20px, 7vw, 80px) 20px 20px 0;
+        color: #ddd;
+        font-size: clamp(14px, 1vw, 16px);
+        line-height: 20px;
+        max-width: clamp(510px, 65vw, 550px);
+    }
+    .bdt-btn-wrapper {
+        display: inline-flex;
+    }
+    .bdt-slide-btn {
+        display: inline-block;
+        font-size: clamp(14px, 1vw, 16px);
+        padding: 8px 55px 8px 20px;
+        position: relative;
+        border-radius: 80px;
+        color: #fff;
+        border: 2px solid #fe506c;
+        transition: all .3s ease;
+        outline: none;
+        &:hover {
+            background-color: #fe506c;
+            .bdt-slide-btn-icon {
+                background: #fff;
+                svg * {
+                    stroke: #fe506c;
+                }
+            }
+        }
+        .bdt-slide-btn-icon {
+            background: #fe506c;
+            border-radius: 40px;
+            right: 1px;
+            position: absolute;
+            height: 31px;
+            width: 31px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s ease;
+            svg * {
+                stroke: #fff;
+                transition: stroke .3s ease;
+            }
+        }
+    }
+    .bdt-prime-slider-social-icon {
+        visibility: hidden;
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        z-index: 1;
+        transform: translateY(-50%);
+        a {
+            display: flex;
+            font-size: clamp(14px, 1vw, 16px);
+            margin: 15px 0;
+        }
+        i,
+        svg {
+            width: 1em;
+            height: 1em;
+            color: #fff;
+        }
+        svg {
+            fill: #fff;
+        }
+    }
+    .bdt-scroll-down {
+        position: absolute;
+        right: 18px;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        span {
+            color: #fff;
+            font-size: clamp(8px, 1vw, 10px);
+        }
+        .bdt-scroll-icon {
+            position: relative;
+            svg {
+                transition: all .4s ease-out;
+                margin-bottom: 20px;
+                width: 35px;
+                * {
+                    fill: #fff;
+                }
+            }
+        }
+        &:hover {
+            .bdt-scroll-icon {
+               svg {
+                    transform: translateY(90px);
+                }
+            }
+        }
+        .bdt-scroll-down-text {
+            transform: rotate(90deg);
+            display: block;
+        }
+    }
+
+    .bdt-scroll-down-wrapper {
+        button {
+            background: transparent;
+            padding: 0;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+/*===========================================================================
+    Prime Slider Navigation Css
+===========================================================================*/
+.bdt-prime-slider-skin-general {
+    ul.bdt-slideshow-items { margin: 0; }
+    .bdt-slideshow-nav {
+        left: 42px;
+        li {
+            position: relative;
+            align-items: center;
+            display: flex;
+            margin-right: 16px;
+            text-align: center;
+            padding: 0;
+            a {
+                position: relative;
+                width: 18px;
+                height: 18px;
+                border-color: #4cb5ff;
+                transition: all .3s ease;
+                &:hover {
+                    background: transparent;
+                    border-color: #4cb5ff;
+                }
+                &:before {
+                    box-sizing: border-box;
+                    content: "";
+                    border: 2px solid #FFF;
+                    border-radius: 100%;
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: all .3s ease;
+                    box-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5), inset 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5);
+                }
+            }
+            &.bdt-active a {
+                background: transparent;
+                &:hover {
+                    background: transparent;
+                    border-color: transparent;
+                }
+                &:before {
+                    background-color: transparent;
+                    border-width: 5px;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+}
+
+.bdt-prime-slider-skin-general {
+    .bdt-prime-slider-next,
+    .bdt-prime-slider-previous {
+        margin-bottom: 30px;
+        border-radius: 60px;
+        height: 36px;
+        width: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #fff;
+        transition: all .3s ease;
+        svg {
+            color: #fff;
+            width: 8px;
+            transition: all .4s ease-out;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            width: 0px;
+            height: 1px;
+            background: #fff;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all .4s ease;
+        }
+        &:hover {
+            background: #fe506c;
+            border-color: #fe506c;
+            width: 60px;
+        }
+    }
+    .bdt-prime-slider-previous {
+        right: 80px;
+        &:before {
+            right: 0;
+        }
+        &:hover {
+            border-radius: 60px 20px 20px 60px;
+            svg {
+                transform: translateX(-9px);
+            }
+            &:before {
+                width: 30px;
+                right: 10px;
+            }
+        }
+    }
+    .bdt-prime-slider-next {
+        right: 34px;
+        &:before {
+            left: 0;
+        }
+        &:hover {
+            transform: translateX(24px);
+            border-radius: 20px 60px 60px 20px;
+            svg {
+                transform: translateX(9px);
+            }
+            &:before {
+                width: 30px;
+                left: 10px;
+            }
+        }
+    }
+}
+
+/*===========================================================================
+    Responsive Css ( Slider )
+===========================================================================*/
+@media (min-width: 768px) {
+    .bdt-prime-slider-skin-general {
+        .bdt-prime-slider-social-icon {
+            left: 30px;
+            visibility: visible;
+        }
+        .bdt-slide-btn {
+            padding: 12px 75px 12px 30px;
+            .bdt-slide-btn-icon {
+                height: 37px;
+                width: 37px;
+                right: 4px;
+            }
+        }
+        .bdt-slideshow-nav {
+            li {
+                a {
+                    width: 22px;
+                    height: 22px;
+                }
+                &.bdt-active a {
+                    &:before {
+                        border-width: 6px;
+                        width: 22px;
+                        height: 22px;
+                    }
+                }
+            }
+        }
+        .bdt-prime-slider-next,
+        .bdt-prime-slider-previous {
+            height: 48px;
+            width: 48px;
+            svg {
+                width: 9px;
+            }
+        }
+        .bdt-prime-slider-previous {
+            right: 100px;
+            &:hover {
+                width: 75px;
+                &:before {
+                    width: 40px;
+                    right: 12px;
+                }
+                svg {
+                    transform: translateX(-13px);
+                }
+            }
+        }
+        .bdt-prime-slider-next {
+            right: 40px;
+            &:hover {
+                width: 75px;
+                transform: translateX(30px);
+                &:before {
+                    width: 40px;
+                    left: 12px;
+                }
+                svg {
+                    transform: translateX(13px);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .bdt-prime-slider-skin-general {
+        .bdt-scroll-down {
+            right: 75px;
+            .bdt-scroll-icon {
+                svg {
+                    margin-bottom: 30px;
+                    width: 48px;
+                }
+            }
+            &:hover {
+                .bdt-scroll-icon {
+                   svg {
+                        transform: translateY(125px);
+                    }
+                }
+            }
+        }
+        .bdt-prime-slider-social-icon {
+            left: 100px;
+        }
+        .bdt-dotnav {
+            left: 113px;
+        }
+        .bdt-prime-slider-previous {
+            right: 160px;
+            margin-bottom: 60px;
+        }
+        .bdt-prime-slider-next {
+            right: 100px;
+            margin-bottom: 60px;
+        }
+    }
+}
