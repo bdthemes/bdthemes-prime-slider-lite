@@ -81,7 +81,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'           => Controls_Manager::SELECT,
                 'default'        => 3,
                 'tablet_default' => 3,
@@ -115,7 +115,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'vertical_spacing',
             [
-                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -303,7 +303,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'border_width_type',
             [
-                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

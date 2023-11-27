@@ -102,7 +102,7 @@ class Mercury extends Widget_Base {
         $this->add_responsive_control(
             'content_max_width',
             [
-                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -119,7 +119,7 @@ class Mercury extends Widget_Base {
         $this->add_control(
             'content_reverse',
             [
-                'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_PRO_PC,
+                'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'prefix_class' => 'bdt-reverse--',
                 'render_type' => 'template'
@@ -240,7 +240,7 @@ class Mercury extends Widget_Base {
         $this->add_control(
             'effect',
             [
-                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'slide',
                 'options' => [
@@ -825,7 +825,7 @@ class Mercury extends Widget_Base {
         $this->add_responsive_control(
             'arrows_horizontal_offset',
             [
-                'label'     => esc_html__( 'Horizontal Offset', 'bdthemes-prime-slider' ) . BDTPS_PRO_PC,
+                'label'     => esc_html__( 'Horizontal Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-next' => 'right: {{SIZE}}px;',

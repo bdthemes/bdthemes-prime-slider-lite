@@ -694,8 +694,8 @@ class ModuleService {
 
     public static function is_module_active($module_id, $options) {
         if (!isset($options[$module_id])) {
-            if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-                $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+            if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+                $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
                 return $module_data['default_activation'];
             }
         } else {
@@ -710,8 +710,8 @@ class ModuleService {
     }
 
     public static function has_module_style($module_id) {
-        if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-            $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+        if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+            $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
 
             if (isset($module_data['has_style'])) {
                 return $module_data['has_style'];
@@ -720,8 +720,8 @@ class ModuleService {
     }
 
     public static function has_module_script($module_id) {
-        if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-            $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+        if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+            $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
 
             if (isset($module_data['has_script'])) {
                 return $module_data['has_script'];

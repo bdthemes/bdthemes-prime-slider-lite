@@ -122,17 +122,17 @@ class Omatic extends Widget_Base {
 					[
 						'sub_title' => esc_html__('Explore', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Ps Item One', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-1.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
 						'sub_title' => esc_html__('Explore', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Ps Item Two', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-4.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
 					[
 						'sub_title' => esc_html__('Explore', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Ps Item Three', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-5.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',

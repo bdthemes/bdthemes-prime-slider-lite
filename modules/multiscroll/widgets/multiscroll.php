@@ -123,7 +123,7 @@ class Multiscroll extends Widget_Base {
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
-					'url' => BDTPS_PRO_ASSETS_URL . 'images/gems-' . rand(1, 3) . '.png',
+					'url' => BDTPS_CORE_ASSETS_URL . 'images/gems-' . rand(1, 3) . '.png',
 				],
 			]
 		);
@@ -227,7 +227,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'custom_style_popover',
 			[
-				'label'        => esc_html__('Custom Style', 'bdthemes-element-pack') . BDTPS_PRO_NC,
+				'label'        => esc_html__('Custom Style', 'bdthemes-element-pack') . BDTPS_CORE_NC,
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
 				'render_type'  => 'ui',
 				'return_value' => 'yes',
@@ -280,19 +280,19 @@ class Multiscroll extends Widget_Base {
 				'default' => [
 					[
 						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
-						'slide_image'            => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gems-1.png'],
+						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-1.png'],
 						'left_background_color'  => '#ad218d',
 						'right_background_color' => '#bb1f98',
 					],
 					[
 						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
-						'slide_image'            => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gems-2.png'],
+						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-2.png'],
 						'left_background_color'  => '#4287ec',
 						'right_background_color' => '#498cef',
 					],
 					[
 						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
-						'slide_image'            => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gems-3.png'],
+						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-3.png'],
 						'left_background_color'  => '#82007d',
 						'right_background_color' => '#8a0c85',
 					],
@@ -309,7 +309,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'content_position',
 			[
-				'label'   => __('Content Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => __('Content Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'center',
 				'options'   => [
@@ -333,7 +333,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'content_max_width',
 			[
-				'label' => __('Content Max Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => __('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -421,7 +421,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'button_position',
 			[
-				'label'   => __('Button Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => __('Button Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
@@ -483,7 +483,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navigationPosition',
 			[
-				'label'   => __('Navigation Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => __('Navigation Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
@@ -525,7 +525,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__('Autoplay', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'   => esc_html__('Autoplay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'description'   => esc_html__('Make sure you enabled Loop Bottom.', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
@@ -636,7 +636,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_text_stroke',
 			[
-				'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-text-stroke--',
 			]
@@ -668,7 +668,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'label' => __('Text Shadow', 'plugin-domain') . BDTPS_PRO_NC,
+				'label' => __('Text Shadow', 'plugin-domain') . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title',
 			]
 		);

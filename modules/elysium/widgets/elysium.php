@@ -126,22 +126,22 @@ class Elysium extends Widget_Base {
 					[
 						'title'     => esc_html__('Item One', 'bdthemes-prime-slider'),
 						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-1.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
 						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider'),
 						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-4.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
 					[
 						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider'),
 						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-5.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 					[
 						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider'),
 						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-6.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -182,7 +182,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'slider_image_height',
 			[
-				'label' => esc_html__('Image Height', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Image Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -414,7 +414,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'      => __( 'Padding', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -615,7 +615,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_width',
 			[
-				'label' => esc_html__('Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}};',
@@ -629,7 +629,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_height',
 			[
-				'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}};',

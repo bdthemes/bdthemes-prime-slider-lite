@@ -15,8 +15,8 @@ class BdThemes_Live_Copy {
     }
 
     public function live_copy_enqueue() {
-        wp_enqueue_script('bdt-live-copy-storage', BDTPS_PRO_URL . 'includes/live-copy/assets/xdLocalStorage.min.js', [], BDTPS_PRO_VER, true);
-        wp_enqueue_script('bdt-live-copy-scripts', BDTPS_PRO_URL . 'includes/live-copy/assets/bdt-live-copy.js', ['jquery', 'elementor-editor', 'bdt-live-copy-storage'], BDTPS_PRO_VER, true);
+        wp_enqueue_script('bdt-live-copy-storage', BDTPS_CORE_URL . 'includes/live-copy/assets/xdLocalStorage.min.js', [], BDTPS_CORE_VER, true);
+        wp_enqueue_script('bdt-live-copy-scripts', BDTPS_CORE_URL . 'includes/live-copy/assets/bdt-live-copy.js', ['jquery', 'elementor-editor', 'bdt-live-copy-storage'], BDTPS_CORE_VER, true);
 
         wp_localize_script(
             'bdt-live-copy-scripts',

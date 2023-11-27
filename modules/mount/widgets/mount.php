@@ -108,7 +108,7 @@ class Mount extends Widget_Base {
 		$this->add_control(
 			'show_navigation_dots',
 			[
-				'label'   => esc_html__('Show Dots', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Show Dots', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -188,17 +188,17 @@ class Mount extends Widget_Base {
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Mount Slider Item One', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-1.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-1.svg']
 					],
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Mount Slider Item Two', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-2.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-2.svg']
 					],
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Mount Slider Item Three', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-3.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-3.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -281,7 +281,7 @@ class Mount extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -291,7 +291,7 @@ class Mount extends Widget_Base {
 			[
 				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
 				'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_PRO_IS_PC,
+				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -341,7 +341,7 @@ class Mount extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[
-				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [
@@ -458,7 +458,7 @@ class Mount extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
 				'fields_options' => [
                     'text_stroke_type' => [
-                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
                     ],
                 ],
 				'condition' => [
@@ -490,7 +490,7 @@ class Mount extends Widget_Base {
 		$this->add_control(
 			'title_advanced_style',
 			[
-				'label' => esc_html__('Advanced Style', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Advanced Style', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SWITCHER,
 			]
 		);
@@ -884,7 +884,7 @@ class Mount extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' 		=> 'dots_size',
-				'label'     => __('Typography', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'     => __('Typography', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'selector' 	=> '{{WRAPPER}} .bdt-prime-slider-mount .bdt-ps-dotnav li a, {{WRAPPER}} .bdt-prime-slider-mount .bdt-ps-dotnav span',
 				'condition' => [
 					'show_navigation_dots' => ['yes'],

@@ -25,7 +25,7 @@ class Prime_Slider_Admin_Feeds {
 			return;
 		}
 		$direction_suffix = is_rtl() ? '.rtl' : '';
-		wp_enqueue_style('ps-product-feed', BDTPS_PRO_ADMIN_URL . 'assets/css/ps-product-feed' . $direction_suffix . '.css', [], BDTPS_PRO_VER);
+		wp_enqueue_style('ps-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed' . $direction_suffix . '.css', [], BDTPS_CORE_VER);
 	}
 
 

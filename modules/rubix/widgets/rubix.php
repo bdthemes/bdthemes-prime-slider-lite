@@ -80,7 +80,7 @@ class Rubix extends Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'           => Controls_Manager::SELECT,
                 'default'        => 2,
                 'tablet_default' => 1,
@@ -144,7 +144,7 @@ class Rubix extends Widget_Base {
         $this->add_control(
             'thumbs_position',
             [
-                'label'     => esc_html__('Thumbs Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => esc_html__('Thumbs Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::CHOOSE,
                 'default'   => 'bdt-slide-style-1',
                 'toggle'    => false,
@@ -164,7 +164,7 @@ class Rubix extends Widget_Base {
         $this->add_control(
             'content_reverse',
             [
-                'label'   => esc_html__('Content Reverse', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label'   => esc_html__('Content Reverse', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'prefix_class' => 'bdt-ps-reverese--',
             ]
@@ -260,7 +260,7 @@ class Rubix extends Widget_Base {
         $this->add_control(
             'read_more_text',
             [
-                'label'       => esc_html__('Readmore Text', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'       => esc_html__('Readmore Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'        => Controls_Manager::TEXT,
                 'default'     => esc_html__('Read More', 'bdthemes-prime-slider'),
                 'label_block' => false,
@@ -395,7 +395,7 @@ class Rubix extends Widget_Base {
         $this->add_responsive_control(
             'line_height',
             [
-                'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

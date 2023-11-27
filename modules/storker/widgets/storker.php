@@ -104,7 +104,7 @@ class Storker extends Widget_Base {
         $this->add_responsive_control(
             'content_max_width',
             [
-                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -250,7 +250,7 @@ class Storker extends Widget_Base {
         $this->add_control(
 			'rewind',
 			[
-				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -262,7 +262,7 @@ class Storker extends Widget_Base {
 		$this->add_control(
 			'mousewheel',
 			[
-				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',		
 			]
@@ -279,7 +279,7 @@ class Storker extends Widget_Base {
 		$this->add_control(
 			'swiper_effect',
 			[
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'fade',
 				'options' => [
@@ -382,7 +382,7 @@ class Storker extends Widget_Base {
                 'exclude'        => ['image'],
                 'fields_options' => [
                     'background' => [
-                        'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                        'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                         'default' => 'classic',
                     ],
                     'color' => [
@@ -491,7 +491,7 @@ class Storker extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-prime-slider-storker .bdt-title',
             ]
         );
@@ -969,7 +969,7 @@ class Storker extends Widget_Base {
         $this->add_responsive_control(
             'thumbs_height',
             [
-                'label'     => esc_html__('Height(%)', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => esc_html__('Height(%)', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-storker-thumbs' => 'height: {{SIZE}}%;',
@@ -1466,7 +1466,7 @@ class Storker extends Widget_Base {
         $this->add_control(
             'advanced_dots_size',
             [
-                'label'     => __('Advanced Size', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => __('Advanced Size', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SWITCHER,
             ]
         );

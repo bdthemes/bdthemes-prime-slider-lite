@@ -75,7 +75,7 @@ class Tango extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[
-				'label'          => __( 'Columns', 'bdthemes-prime-slider' ) . BDTPS_PRO_PC,
+				'label'          => __( 'Columns', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 3,
 				'tablet_default' => 3,
@@ -170,7 +170,7 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'hide_on_mobile',
 			[
-				'label'   => esc_html__('Pagination Hide on Mobile', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Pagination Hide on Mobile', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -256,22 +256,22 @@ class Tango extends Widget_Base {
 					[
 						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Item One', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-1.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
 						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-4.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
 					[
 						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-5.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 					[
 						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
 						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-6.svg']
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -290,7 +290,7 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'skin',
 			[
-				'label'   => esc_html__( 'Layout', 'bdthemes-prime-slider' ) . BDTPS_PRO_PC,
+				'label'   => esc_html__( 'Layout', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'carousel',
 				'options' => [

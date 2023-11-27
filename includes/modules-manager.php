@@ -67,11 +67,11 @@ final class Manager {
         if ( !prime_slider_is_preview() ) {
             // register widgets css
             if ( ModuleService::has_module_style($module_id) ) {
-                wp_register_style('ps-' . $module_id, BDTPS_PRO_URL . 'assets/css/ps-' . $module_id . $direction . '.css', [], BDTPS_PRO_VER);
+                wp_register_style('ps-' . $module_id, BDTPS_CORE_URL . 'assets/css/ps-' . $module_id . $direction . '.css', [], BDTPS_CORE_VER);
             }
             // register widget JS
             if ( ModuleService::has_module_script($module_id) ) {
-                wp_register_script('ps-' . $module_id, BDTPS_PRO_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit', 'elementor-frontend'], BDTPS_PRO_VER, true);
+                wp_register_script('ps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit', 'elementor-frontend'], BDTPS_CORE_VER, true);
             }
         }
         

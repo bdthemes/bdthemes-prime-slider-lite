@@ -137,17 +137,17 @@ class dragon extends Widget_Base {
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Prime Slider', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-1.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-1.svg']
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-2.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-2.svg']
 					],
 					[
 						'sub_title' => esc_html__('Discover your Talents', 'bdthemes-prime-slider'),
 						'title' => esc_html__('On Elementor', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-3.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-3.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -201,7 +201,7 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'show_blur_effect',
 			[
-				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'prefix_class' => 'bdt-ps-blur-effect--',
@@ -299,9 +299,9 @@ class dragon extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack') . BDTPS_PRO_PC,
+                'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
-                'classes'   => BDTPS_PRO_IS_PC
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -351,7 +351,7 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[
-				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [
@@ -470,7 +470,7 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'first_word_title_color',
 			[
-				'label'     => esc_html__( 'First Word Color', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'     => esc_html__( 'First Word Color', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .frist-word' => 'color: {{VALUE}}; -webkit-text-stroke-color: {{VALUE}};',
@@ -494,7 +494,7 @@ class dragon extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
             ]
         );
@@ -940,7 +940,7 @@ class dragon extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_line_width',
 			[
-				'label'     => __('Line Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'     => __('Line Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li.bdt-active:before' => 'width: {{SIZE}}px',

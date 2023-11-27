@@ -154,7 +154,7 @@ class Woolamp extends Widget_Base {
 		$this->add_control(
 			'social_share_hide_on_mobile',
 			[
-				'label'   => esc_html__('Social Share Hide on Mobile', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Social Share Hide on Mobile', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-social-share-hide--',
 			]
@@ -269,7 +269,7 @@ class Woolamp extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -279,7 +279,7 @@ class Woolamp extends Widget_Base {
 			[
 				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
 				'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_PRO_IS_PC,
+				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -329,7 +329,7 @@ class Woolamp extends Widget_Base {
 		$this->add_control(
 			'image_overlay_color',
 			[
-				'label'     => esc_html__('Image Overlay Color', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'     => esc_html__('Image Overlay Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::COLOR,
 				'description' => esc_html__('NOTE: It just works on Mobile Device.', 'bdthemes-prime-slider'),
 				'selectors' => [

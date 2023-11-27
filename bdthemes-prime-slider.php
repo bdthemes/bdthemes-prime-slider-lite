@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Prime Slider (Premium)
+ * Plugin Name: Prime Slider (Core)
  * Plugin URI: https://primeslider.pro/
  * Description: Prime Slider is a packed of elementor widget that gives you some awesome header and slider combination for your website.
  * Version: 3.11.0
@@ -18,11 +18,45 @@
 
 // Some pre define value for easy use
 
-if ( ! defined( 'BDTPS_PRO_VER' ) ) {
-	define( 'BDTPS_PRO_VER', '3.11.0' );
+if ( ! defined( 'BDTPS_CORE_VER' ) ) {
+	define( 'BDTPS_CORE_VER', '3.11.0' );
 }
-if ( ! defined( 'BDTPS_PRO__FILE__' ) ) {
-	define( 'BDTPS_PRO__FILE__', __FILE__ );
+if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
+	define( 'BDTPS_CORE__FILE__', __FILE__ );
+}
+
+
+if ( ! function_exists( '_is_pro_pro_installed' ) ) {
+
+	function _is_pro_pro_installed() {
+
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		$file_path         = 'bdthemes-prime-slider/bdthemes-prime-slider.php';
+		$installed_plugins = get_plugins();
+
+		return isset( $installed_plugins[ $file_path ] );
+	}
+}
+
+if ( ! function_exists( '_is_pro_pro_activated' ) ) {
+
+	function _is_pro_pro_activated() {
+
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		$file_path = 'bdthemes-prime-slider/bdthemes-prime-slider.php';
+
+		if ( is_plugin_active( $file_path ) ) {
+			return true;
+		}
+
+		return false;
+	}
 }
 
 // Helper function here
@@ -54,9 +88,9 @@ function prime_slider_load_plugin() {
 	}
 
 	// Filters for developer
-	require BDTPS_PRO_PATH . 'includes/prime-slider-filters.php';
+	require BDTPS_CORE_PATH . 'includes/prime-slider-filters.php';
 	// Prime Slider widget and assets loader
-	require BDTPS_PRO_PATH . 'loader.php';
+	require BDTPS_CORE_PATH . 'loader.php';
 }
 
 add_action( 'plugins_loaded', 'prime_slider_load_plugin' );

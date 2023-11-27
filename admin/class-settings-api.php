@@ -74,7 +74,7 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 				'type'  => 'text'
 			);
 
-			$arg                               = wp_parse_args( $field, $defaults );
+			$arg                                 = wp_parse_args( $field, $defaults );
 			$this->settings_fields[ $section ][] = $arg;
 
 			return $this;
@@ -780,7 +780,13 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s">%3$s</a></li>', $tab['id'], $count++, $tab['title'] );
 			}
 
-			$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="5">%2$s</a></li>', 'prime_slider_pro_license_settings', 'License' );
+			if ( true !== _is_pro_pro_activated() ) {
+				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="4">%2$s</a></li>', 'prime_slider_get_pro', 'Get Pro' );
+			}
+
+			if ( ( true == _is_pro_pro_activated() ) && ! defined( 'BDTPS_LO' ) ) {
+				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="5">%2$s</a></li>', 'prime_slider_pro_license_settings', 'License' );
+			}
 
 			$html .= '</ul>';
 			$html .= '</div>';
@@ -830,7 +836,8 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 				$i++; ?>
 				<div id="<?php echo esc_attr( $form['id'] ); ?>_page" class="ps-option-page">
 
-					<div bdt-filter="target: .ps-options" class="ps-options-parent" id="ps-options-parent-<?php echo esc_attr( $i ); ?>">
+					<div bdt-filter="target: .ps-options" class="ps-options-parent"
+						id="ps-options-parent-<?php echo esc_attr( $i ); ?>">
 
 
 						<?php if ( $form['id'] == 'prime_slider_active_modules' or $form['id'] == 'prime_slider_third_party_widget' or $form['id'] == 'prime_slider_elementor_extend' ) : ?>
@@ -865,25 +872,31 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 																href="#">New</a></li>
 														<li class="ps-widget-static"
 															bdt-filter-control="filter: [data-content-type*='static']; group: data-widget-type">
-															<a href="#">Static</a></li>
+															<a href="#">Static</a>
+														</li>
 														<li class="ps-widget-custom"
 															bdt-filter-control="filter: [data-content-type*='custom']; group: data-widget-type">
-															<a href="#">Custom</a></li>
+															<a href="#">Custom</a>
+														</li>
 														<li class="ps-widget-carousel"
 															bdt-filter-control="filter: [data-content-type*='carousel']; group: data-widget-type">
-															<a href="#">Carousel</a></li>
+															<a href="#">Carousel</a>
+														</li>
 														<li class="ps-widget-post"
 															bdt-filter-control="filter: [data-content-type*='post']; group: data-widget-type"><a
 																href="#">Post</a></li>
 														<li class="ps-widget-ecommerce"
 															bdt-filter-control="filter: [data-content-type*='ecommerce']; group: data-widget-type">
-															<a href="#">eCommerce</a></li>
+															<a href="#">eCommerce</a>
+														</li>
 														<li class="ps-widget-swiper"
 															bdt-filter-control="filter: [data-content-type*='swiper']; group: data-widget-type">
-															<a href="#">Swiper</a></li>
+															<a href="#">Swiper</a>
+														</li>
 														<li class="ps-widget-others"
 															bdt-filter-control="filter: [data-content-type*='others']; group: data-widget-type">
-															<a href="#">Others</a></li>
+															<a href="#">Others</a>
+														</li>
 
 													</ul>
 												</div>

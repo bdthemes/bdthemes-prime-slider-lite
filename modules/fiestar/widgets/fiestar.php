@@ -81,7 +81,7 @@ class Fiestar extends Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'           => Controls_Manager::SELECT,
                 'default'        => 3,
                 'tablet_default' => 3,
@@ -140,7 +140,7 @@ class Fiestar extends Widget_Base {
         $this->add_responsive_control(
             'vertical_spacing',
             [
-                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -201,7 +201,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
             'title_tags',
             [
-                'label'     => __('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => __('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SELECT,
                 'options'   => prime_slider_title_tags(),
                 'default'   => 'h3',
@@ -224,7 +224,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
             'wrapper_link',
             [
-                'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'separator' => 'before'
             ]
@@ -233,7 +233,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
 			'show_navigation_arrows',
 			[
-				'label'   => esc_html__('Show Arrows', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'   => esc_html__('Show Arrows', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before'
@@ -434,7 +434,7 @@ class Fiestar extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-fiestar-slider .bdt-title a',
             ]
         );
@@ -626,7 +626,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
 			'nav_arrows_icon',
 			[
-				'label'   => esc_html__( 'Arrows Icon', 'bdthemes-element-pack' ) . BDTPS_PRO_NC,
+				'label'   => esc_html__( 'Arrows Icon', 'bdthemes-element-pack' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => '8',
 				'options' => [
@@ -722,7 +722,7 @@ class Fiestar extends Widget_Base {
         $this->add_responsive_control(
             'arrows_horizontal_offset',
             [
-                'label'     => esc_html__('Horizontal Offset', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => esc_html__('Horizontal Offset', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-fiestar-slider .bdt-navigation-wrap .bdt-navigation-next' => 'right: {{SIZE}}%;',

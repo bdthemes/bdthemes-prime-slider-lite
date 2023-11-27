@@ -122,7 +122,7 @@ class Utils {
 		return array(
 			'home_url'                  => get_option( 'home' ),
 			'site_url'                  => get_option( 'siteurl' ),
-			'version'                   => BDTPS_PRO_VER,
+			'version'                   => BDTPS_CORE_VER,
 			'wp_version'                => get_bloginfo( 'version' ),
 			'wp_multisite'              => is_multisite(),
 			'wp_memory_limit'           => $wp_memory_limit,

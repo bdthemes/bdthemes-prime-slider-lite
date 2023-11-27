@@ -125,17 +125,17 @@ class Pagepiling extends Widget_Base {
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Prime Slider', 'bdthemes-prime-slider'),
-						'slide_image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-8.png']
+						'slide_image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-8.png']
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
-						'slide_image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-4.png']
+						'slide_image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.png']
 					],
 					[
 						'sub_title' => esc_html__('Discover your Talents', 'bdthemes-prime-slider'),
 						'title' => esc_html__('On Prime Slider', 'bdthemes-prime-slider'),
-						'slide_image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-6.png']
+						'slide_image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.png']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -276,7 +276,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'social_main_title',
 			[
-				'label'   => __('Social Text', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => __('Social Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::TEXT,
 				'default' => __('Follow Us', 'bdthemes-prime-slider'),
 			]
@@ -356,7 +356,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'navigation_position',
             [
-                'label'   => __( 'Navigation Position', 'bdthemes-element-pack' ) . BDTPS_PRO_PC,
+                'label'   => __( 'Navigation Position', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
                 'type' 	  => Controls_Manager::SELECT,
 				'default' => 'left',
                 'options' => [
@@ -387,7 +387,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
 			]
@@ -455,7 +455,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag .frist-word' => 'color: {{VALUE}};',
@@ -470,7 +470,7 @@ class Pagepiling extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'label' => __( 'Text Shadow', 'plugin-domain' ) . BDTPS_PRO_NC,
+				'label' => __( 'Text Shadow', 'plugin-domain' ) . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-title-tag',
 				'condition' => [
 					'show_title' => ['yes'],
@@ -485,7 +485,7 @@ class Pagepiling extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
 				'fields_options' => [
                     'text_stroke_type' => [
-                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
                     ],
                 ],
 				'condition' => [
@@ -1050,7 +1050,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_navigation_width',
 			[
-				'label' => esc_html__('Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1066,7 +1066,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_navigation_height',
 			[
-				'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
