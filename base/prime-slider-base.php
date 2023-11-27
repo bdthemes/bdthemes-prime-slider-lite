@@ -1,5 +1,5 @@
 <?php
-namespace PrimeSliderPro\Base;
+namespace PrimeSlider\Base;
 
 // DO NOT CHNAGE ANYTHING IN THIS FILE OTHERSWISE YOUR LICENSE CAN BAN
 

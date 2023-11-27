@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\General\Widgets;
+namespace PrimeSlider\Modules\General\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -11,14 +11,14 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Text_Stroke;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 use Elementor\Repeater;
 use Elementor\Icons_Manager;
 
-use PrimeSliderPro\Prime_Slider_Loader;
-use PrimeSliderPro\Traits\Global_Widget_Controls;
+use PrimeSlider\Prime_Slider_Loader;
+use PrimeSlider\Traits\Global_Widget_Controls;
 
-use PrimeSliderPro\Modules\General\Skins;
+use PrimeSlider\Modules\General\Skins;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 

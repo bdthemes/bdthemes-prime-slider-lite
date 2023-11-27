@@ -1,9 +1,9 @@
 <?php
 
-namespace PrimeSliderPro\Traits\QueryControls\GroupQuery;
+namespace PrimeSlider\Traits\QueryControls\GroupQuery;
 
 use Elementor\Controls_Manager;
-use PrimeSliderPro\Traits\QueryControls\SelectInput\Dynamic_Select;
+use PrimeSlider\Traits\QueryControls\SelectInput\Dynamic_Select;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.

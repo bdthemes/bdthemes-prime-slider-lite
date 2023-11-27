@@ -1,9 +1,9 @@
 <?php
 
-use PrimeSliderPro\Notices;
-use PrimeSliderPro\Utils;
-use PrimeSliderPro\Admin\ModuleService;
-use PrimeSliderPro\Base\Prime_Slider_Base;
+use PrimeSlider\Notices;
+use PrimeSlider\Utils;
+use PrimeSlider\Admin\ModuleService;
+use PrimeSlider\Base\Prime_Slider_Base;
 use Elementor\Modules\Usage\Module;
 use Elementor\Tracker;
 
@@ -11,7 +11,7 @@ use Elementor\Tracker;
  * Prime Slider Admin Settings Class
  */
 
-class PrimeSliderPro_Admin_Settings {
+class PrimeSlider_Admin_Settings {
 
 	public static $modules_list = null;
 	public static $modules_names = null;
@@ -31,7 +31,7 @@ class PrimeSliderPro_Admin_Settings {
 	private $is_activated = false;
 
 	function __construct() {
-		$this->settings_api = new PrimeSliderPro_Settings_API;
+		$this->settings_api = new PrimeSlider_Settings_API;
 
 		if ( ! defined( 'BDTPS_CORE_HIDE' ) ) {
 			add_action( 'admin_init', [ $this, 'admin_init' ] );
@@ -416,7 +416,7 @@ class PrimeSliderPro_Admin_Settings {
 			[ $this, 'display_page' ]
 		);
 
-		if ( true !== _is_pro_pro_activated() ) {
+		if ( true !== _is_ps_pro_activated() ) {
 			add_submenu_page(
 				self::PAGE_ID,
 				BDTPS_CORE_TITLE,
@@ -653,7 +653,7 @@ class PrimeSliderPro_Admin_Settings {
 					<div class="ps-support-content bdt-card bdt-card-body">
 						<h1 class="ps-feature-title">Support And Feedback</h1>
 						<p>Feeling like to consult with an expert? Take live Chat support immediately from <a
-								href="https://PrimeSliderPro.pro" target="_blank" rel="">PrimeSliderPro</a>. We are always
+								href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. We are always
 							ready to help
 							you 24/7.</p>
 						<p><strong>Or if you’re facing technical issues with our plugin, then please create a support
@@ -923,7 +923,7 @@ class PrimeSliderPro_Admin_Settings {
 
 							<!-- <div class="ps-dashboard-divider"></div> -->
 
-							<?php if ( true !== _is_pro_pro_activated() ) : ?>
+							<?php if ( true !== _is_ps_pro_activated() ) : ?>
 								<div class="ps-purchase-button">
 									<a href="https://primeslider.pro/#a851ca7" target="_blank">Purchase Now</a>
 								</div>
@@ -1124,7 +1124,7 @@ class PrimeSliderPro_Admin_Settings {
 			$this->settings_api->show_forms();
 			?>
 
-			<?php if ( _is_pro_pro_activated() !== true ) : ?>
+			<?php if ( _is_ps_pro_activated() !== true ) : ?>
 				<div id="prime_slider_get_pro" class="ps-option-page group">
 					<?php $this->prime_slider_get_pro(); ?>
 				</div>
@@ -1133,7 +1133,7 @@ class PrimeSliderPro_Admin_Settings {
 			<div id="prime_slider_pro_license_settings_page" class="ps-option-page group">
 
 				<?php
-				if ( _is_pro_pro_activated() == true ) {
+				if ( _is_ps_pro_activated() == true ) {
 					apply_filters( 'ps_license_page', '' );
 				}
 				?>
@@ -1308,6 +1308,11 @@ class PrimeSliderPro_Admin_Settings {
 					return false;
 				});
 
+				jQuery('#prime_slider_active_modules_page .ps-pro-inactive .checkbox').each(function () {
+					jQuery(this).removeAttr('checked');
+					jQuery(this).attr("disabled", true);
+				});
+
 			});
 		</script>
 		<?php
@@ -1406,4 +1411,4 @@ class PrimeSliderPro_Admin_Settings {
 	}
 }
 
-new PrimeSliderPro_Admin_Settings();
+new PrimeSlider_Admin_Settings();

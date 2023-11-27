@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Pacific\Widgets;
+namespace PrimeSlider\Modules\Pacific\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -13,9 +13,9 @@ use Elementor\Group_Control_Css_Filter;
 use Elementor\Widget_Base;
 use Elementor\Plugin;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Utils;
 use WP_Query;
 
 if (!defined('ABSPATH')) {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
-use PrimeSliderPro\Admin\ModuleService;
+use PrimeSlider\Admin\ModuleService;
 
 if ( !defined('ABSPATH') ) {
     exit;

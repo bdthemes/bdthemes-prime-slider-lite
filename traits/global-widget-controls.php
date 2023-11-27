@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Traits;
+namespace PrimeSlider\Traits;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -10,7 +10,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 
 defined('ABSPATH') || die();
 

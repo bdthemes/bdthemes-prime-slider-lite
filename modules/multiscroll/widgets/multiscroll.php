@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Multiscroll\Widgets;
+namespace PrimeSlider\Modules\Multiscroll\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -11,9 +11,9 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Repeater;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\Global_Widget_Controls;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 

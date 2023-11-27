@@ -1,11 +1,11 @@
 <?php
 
-namespace PrimeSliderPro\Modules\General\Skins;
+namespace PrimeSlider\Modules\General\Skins;
 
 
 use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Group_Control_Image_Size;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 

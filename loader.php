@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 use Elementor\Plugin;
 
@@ -23,9 +23,9 @@ class Prime_Slider_Loader {
 	private $_modules_manager;
 
 	private $classes_aliases = [ 
-		'PrimeSliderPro\Modules\PanelPostsControl\Module'                       => 'PrimeSliderPro\Modules\QueryControl\Module',
-		'PrimeSliderPro\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSliderPro\Modules\QueryControl\Controls\Group_Control_Posts',
-		'PrimeSliderPro\Modules\PanelPostsControl\Controls\Query'               => 'PrimeSliderPro\Modules\QueryControl\Controls\Query',
+		'PrimeSlider\Modules\PanelPostsControl\Module'                       => 'PrimeSlider\Modules\QueryControl\Module',
+		'PrimeSlider\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSlider\Modules\QueryControl\Controls\Group_Control_Posts',
+		'PrimeSlider\Modules\PanelPostsControl\Controls\Query'               => 'PrimeSlider\Modules\QueryControl\Controls\Query',
 	];
 
 	public $elements_data = [ 
@@ -83,6 +83,8 @@ class Prime_Slider_Loader {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
+		do_action( 'bdthemes_prime_slider_lite/init' );
 
 		return self::$_instance;
 	}

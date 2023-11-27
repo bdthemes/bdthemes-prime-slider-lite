@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Traits\QueryControls\SelectInput;
+namespace PrimeSlider\Traits\QueryControls\SelectInput;
 
 use Elementor\Base_Data_Control;
 use Elementor\Plugin;

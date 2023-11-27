@@ -1,8 +1,8 @@
 <?php
 
-namespace PrimeSliderPro\Base;
+namespace PrimeSlider\Base;
 
-use PrimeSliderPro\Prime_Slider_Loader;
+use PrimeSlider\Prime_Slider_Loader;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 

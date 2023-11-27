@@ -1,7 +1,7 @@
 <?php
 
-use PrimeSliderPro\Notices;
-use PrimeSliderPro\Prime_Slider_Loader;
+use PrimeSlider\Notices;
+use PrimeSlider\Prime_Slider_Loader;
 use Elementor\Plugin;
 
 /**

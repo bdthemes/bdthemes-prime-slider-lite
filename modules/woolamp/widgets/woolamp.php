@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Woolamp\Widgets;
+namespace PrimeSlider\Modules\Woolamp\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -10,11 +10,11 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Repeater;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 
-use PrimeSliderPro\Modules\Woolamp\Module;
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Modules\Woolamp\Module;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
 use WP_Query;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly

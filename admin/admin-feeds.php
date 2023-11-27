@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -119,7 +119,7 @@ class Prime_Slider_Admin_Feeds {
 							'title' => esc_html__('Docs', 'bdthemes-prime-slider-lite'),
 						],
 						[
-							'url'   => 'https://www.PrimeSliderPro.pro/pricing/',
+							'url'   => 'https://www.PrimeSlider.pro/pricing/',
 							'title' => esc_html__('Get Pro', 'bdthemes-prime-slider-lite'),
 						],
 						[

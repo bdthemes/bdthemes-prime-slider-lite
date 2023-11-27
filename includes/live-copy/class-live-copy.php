@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Includes\LiveCopy;
+namespace PrimeSlider\Includes\LiveCopy;
 
 use Elementor\Plugin;
 use Elementor\Utils;

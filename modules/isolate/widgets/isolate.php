@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Isolate\Widgets;
+namespace PrimeSlider\Modules\Isolate\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -12,9 +12,9 @@ use Elementor\Group_Control_Text_Stroke;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Widget_Base;
-use PrimeSliderPro\Modules\Isolate\Skins;
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Modules\Isolate\Skins;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Utils;
 
 if (!defined('ABSPATH')) {
     exit;

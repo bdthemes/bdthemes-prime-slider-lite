@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

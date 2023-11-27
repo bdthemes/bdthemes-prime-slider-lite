@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Blog\Widgets;
+namespace PrimeSlider\Modules\Blog\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -12,12 +12,12 @@ use Elementor\Group_Control_Text_Stroke;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use Elementor\Widget_Base;
-use PrimeSliderPro\Modules\Blog\Skins;
+use PrimeSlider\Modules\Blog\Skins;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
-use PrimeSliderPro\Traits\QueryControls\SelectInput\Dynamic_Select;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Traits\QueryControls\SelectInput\Dynamic_Select;
+use PrimeSlider\Utils;
 use WP_Query;
 
 if (!defined('ABSPATH')) {

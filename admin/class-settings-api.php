@@ -1,10 +1,10 @@
 <?php
 
-use PrimeSliderPro\Admin\AssetMinifier\Asset_Minifier;
+use PrimeSlider\Admin\AssetMinifier\Asset_Minifier;
 
-if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
+if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
-	class PrimeSliderPro_Settings_API {
+	class PrimeSlider_Settings_API {
 
 		/**
 		 * settings sections array
@@ -112,7 +112,7 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 				}
 				echo '<div class="ps-options bdt-grid bdt-child-width-1-1 bdt-child-width-1-2@m bdt-child-width-1-3@l' . esc_attr( $section_class ) . '" role="presentation" bdt-grid="masonry: true" ' . esc_attr( $data_settings ) . '>';
 
-				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4">Ops! Your Searched widget not found! Do you have any idea? If yes, <a href="https://feedback.PrimeSliderPro.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">Submit here</a></p>';
+				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4">Ops! Your Searched widget not found! Do you have any idea? If yes, <a href="https://feedback.PrimeSlider.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">Submit here</a></p>';
 
 				$this->do_settings_fields( $page, $section['id'] );
 
@@ -140,6 +140,10 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 					$class .= ' ps-widget-' . esc_attr( $field['args']['widget_type'] );
 				}
 
+				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== _is_ps_pro_activated() ) {
+					$class .= ' ps-pro-inactive';
+				}
+
 
 				$used_widgets       = self::get_used_widgets_obj();
 				$widget_name        = 'prime-slider-' . str_replace( ' ', '-', strtolower( $field['args']['id'] ) );
@@ -162,14 +166,13 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 
 				$data_type = ' data-widget-type="' . esc_attr( $field['args']['widget_type'] ) . '" data-content-type="' . esc_attr( $field['args']['content_type'] ) . esc_attr( $widget_used_status ) . '" data-widget-name="' . strtolower( $field['args']['name'] ) . '"';
 
+				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== _is_ps_pro_activated() ) {
+					$data_type .= ' bdt-tooltip="Pro widget only works with Pro version."';
+				}
+
 				echo "<div class='ps-option-item {$class} {$widget_used_status}' {$data_type}>";
 
-
-
-
 				call_user_func( $field['callback'], $field['args'] );
-
-
 
 				echo '</div>';
 			}
@@ -334,7 +337,7 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 		 */
 
 		public static function get_used_widgets_obj() {
-			return PrimeSliderPro_Admin_Settings::get_used_widgets();
+			return PrimeSlider_Admin_Settings::get_used_widgets();
 		}
 
 		/**
@@ -347,7 +350,7 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 		 */
 
 		public static function get_unused_widgets_obj() {
-			return PrimeSliderPro_Admin_Settings::get_unused_widgets();
+			return PrimeSlider_Admin_Settings::get_unused_widgets();
 		}
 
 		/**
@@ -780,11 +783,11 @@ if ( ! class_exists( 'PrimeSliderPro_Settings_API' ) ) :
 				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s">%3$s</a></li>', $tab['id'], $count++, $tab['title'] );
 			}
 
-			if ( true !== _is_pro_pro_activated() ) {
+			if ( true !== _is_ps_pro_activated() ) {
 				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="4">%2$s</a></li>', 'prime_slider_get_pro', 'Get Pro' );
 			}
 
-			if ( ( true == _is_pro_pro_activated() ) && ! defined( 'BDTPS_LO' ) ) {
+			if ( ( true == _is_ps_pro_activated() ) && ! defined( 'BDTPS_LO' ) ) {
 				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="5">%2$s</a></li>', 'prime_slider_pro_license_settings', 'License' );
 			}
 

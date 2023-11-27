@@ -1,5 +1,5 @@
 <?php
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 if ( ! defined( 'ABSPATH' ) )  exit; // Exit if accessed directly
 
