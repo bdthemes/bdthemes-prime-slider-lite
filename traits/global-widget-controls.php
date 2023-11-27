@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Traits;
+namespace PrimeSlider\Traits;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -10,7 +10,7 @@ use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 
 defined('ABSPATH') || die();
 
@@ -289,7 +289,7 @@ trait Global_Widget_Controls {
 		$this->start_controls_section(
 			'section_reveal_effects',
 			[
-				'label'     => esc_html__('Reveal Effects', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'     => esc_html__('Reveal Effects', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -300,7 +300,7 @@ trait Global_Widget_Controls {
 				'label'	=> esc_html__('Reveal Effects', 'bdthemes-prime-slider'),
 				'type'	=> Controls_Manager::SWITCHER,
 				'prefix_class' => 'reveal-effects-active-',
-				'classes'   =>  BDTPS_PRO_IS_PC,
+				'classes'   =>  BDTPS_CORE_IS_PC,
 				'render_type' => 'template',
 			]
 		);
@@ -399,7 +399,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'background_image_toggle',
 			[
-				'label' => __('Background Image Settings', 'bdthemes-element-pack') . BDTPS_PRO_PC,
+				'label' => __('Background Image Settings', 'bdthemes-element-pack') . BDTPS_CORE_PC,
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label_off' => __('None', 'bdthemes-element-pack'),
 				'label_on' => __('Custom', 'bdthemes-element-pack'),
@@ -912,7 +912,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'kenburns_reverse',
             [
-                'label' => esc_html__('Kenburn Reverse', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Kenburn Reverse', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SWITCHER,
                 'condition' => [
                     'kenburns_animation' => 'yes',
@@ -1076,7 +1076,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'swiper_effect',
 			[
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'slide',
 				'options' => [
@@ -1201,9 +1201,9 @@ trait Global_Widget_Controls {
 		$this->add_control(
             'enable_height',
             [
-                'label'   => esc_html__('Enable Viewport Height', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label'   => esc_html__('Enable Viewport Height', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_PRO_IS_PC
+				'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -1394,7 +1394,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
             'show_text',
             [
-                'label' => esc_html__('Show Text', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Show Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'separator' => 'before',
@@ -1471,7 +1471,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'excerpt_length',
             [
-                'label'       => __('Text Limit', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'       => __('Text Limit', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'description' => esc_html__('It\'s just work for main content, but not working with excerpt. If you set 0 so you will get full main content.', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::NUMBER,
                 'default'     => 30,
@@ -1511,7 +1511,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'human_diff_time',
             [
-                'label'     => esc_html__('Human Different Time', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label'     => esc_html__('Human Different Time', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SWITCHER,
                 'condition' => [
                     'show_date' => 'yes'
@@ -1522,7 +1522,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'human_diff_time_short',
             [
-                'label'       => esc_html__('Time Short Format', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label'       => esc_html__('Time Short Format', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'description' => esc_html__('This will work for Hours, Minute and Seconds', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::SWITCHER,
                 'condition'   => [
@@ -1535,7 +1535,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'show_time',
             [
-                'label'     => esc_html__('Show Time', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label'     => esc_html__('Show Time', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SWITCHER,
                 'condition' => [
                     'human_diff_time' => '',
@@ -1974,7 +1974,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'rewind',
 			[
-				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -1986,7 +1986,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'mousewheel',
 			[
-				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_PRO_NC,
+				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);

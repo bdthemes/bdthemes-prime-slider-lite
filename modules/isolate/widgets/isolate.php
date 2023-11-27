@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Isolate\Widgets;
+namespace PrimeSlider\Modules\Isolate\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -12,9 +12,9 @@ use Elementor\Group_Control_Text_Stroke;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Widget_Base;
-use PrimeSliderPro\Modules\Isolate\Skins;
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Modules\Isolate\Skins;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Utils;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -251,17 +251,17 @@ class Isolate extends Widget_Base {
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Massive', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-4.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-4.svg'],
                     ],
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Vibrant', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-5.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-5.svg'],
                     ],
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Wallow', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/img-6.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-6.svg'],
                     ],
                 ],
                 'title_field' => '{{{ title }}}',
@@ -376,7 +376,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'content_position',
             [
-                'label' => esc_html__('Content Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Content Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'inherit' => [
@@ -400,7 +400,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'content_column_position',
             [
-                'label' => esc_html__('Column Position', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Column Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'column' => [
@@ -428,7 +428,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'image_offset_toggle',
             [
-                'label' => __('Image Match Height', 'bdthemes-element-pack') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label' => __('Image Match Height', 'bdthemes-element-pack') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'label_off' => __('None', 'bdthemes-element-pack'),
                 'label_on' => __('Custom', 'bdthemes-element-pack'),
@@ -603,7 +603,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'offset',
             [
-                'label' => esc_html__('Offset', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Offset', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -618,7 +618,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'scroll_button_text',
             [
-                'label' => esc_html__('Button Text', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Button Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::TEXT,
                 'dynamic' => ['active' => true],
                 'default' => esc_html__('Scroll Down', 'bdthemes-prime-slider'),
@@ -653,7 +653,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'animation_parallax',
             [
-                'label' => esc_html__('Parallax Animation', 'bdthemes-element-pack') . BDTPS_PRO_NC,
+                'label' => esc_html__('Parallax Animation', 'bdthemes-element-pack') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'separator' => 'before',
@@ -685,9 +685,9 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-element-pack') . BDTPS_PRO_PC,
+                'label' => esc_html__('Advanced Animation', 'bdthemes-element-pack') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SWITCHER,
-                'classes' => BDTPS_PRO_IS_PC,
+                'classes' => BDTPS_CORE_IS_PC,
             ]
         );
 
@@ -731,7 +731,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'overlay',
             [
-                'label' => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SELECT,
                 'default' => 'none',
                 'options' => [
@@ -847,7 +847,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'slice_image_size',
             [
-                'label' => esc_html__('Image Size(%)', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Image Size(%)', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-slice .bdt-slideshow-item .bdt-slide-overlay img' => 'width: {{SIZE}}%;',
@@ -902,7 +902,7 @@ class Isolate extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag a',
                 'fields_options' => [
                     'text_stroke_type' => [
-                        'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                        'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                     ],
                 ],
                 'condition' => [
@@ -915,7 +915,7 @@ class Isolate extends Widget_Base {
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title_text_shadow',
-                'label' => __('Text Shadow', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Text Shadow', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag a',
                 'condition' => [
                     'show_title' => ['yes'],
@@ -946,7 +946,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'prime_slider_left_spacing',
             [
-                'label' => esc_html__('Left Spacing', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Left Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -967,7 +967,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'first_word_style',
             [
-                'label' => esc_html__('First Word Style', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label' => esc_html__('First Word Style', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SWITCHER,
                 // 'default' => 'yes',
             ]
@@ -1355,7 +1355,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'fancy_animation',
             [
-                'label' => esc_html__('Animation', 'bdthemes-element-pack') . BDTPS_PRO_NC,
+                'label' => esc_html__('Animation', 'bdthemes-element-pack') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::SELECT,
                 'default' => 'shadow-pulse',
                 'options' => [
@@ -1752,7 +1752,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'scroll_button_text_background',
             [
-                'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-scroll-down-wrapper .bdt-scroll-icon' => 'background: {{VALUE}};',
@@ -1777,7 +1777,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'scroll_button_radius',
             [
-                'label' => esc_html__('Border Radius', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Border Radius', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -1792,7 +1792,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'scroll_button_padding',
             [
-                'label' => esc_html__('Padding', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -1836,7 +1836,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'scroll_button_hover_background',
             [
-                'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-icon::before' => 'background: {{VALUE}};',
@@ -1850,7 +1850,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'scroll_button_hover_border_color',
             [
-                'label' => esc_html__('Border Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => esc_html__('Border Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'scroll_button_border_border!' => '',
@@ -1959,7 +1959,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'arrows_padding',
             [
-                'label' => __('Padding', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -1974,7 +1974,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'arrows_margin',
             [
-                'label' => __('Margin', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Margin', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -1990,7 +1990,7 @@ class Isolate extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'arrows_size',
-                'label' => __('Typography', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Typography', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous',
                 'condition' => [
                     'show_navigation_arrows' => ['yes'],
@@ -2044,7 +2044,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'border_dot_color',
             [
-                'label' => __('Border Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Border Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-dotnav li a:before' => 'border-color: {{VALUE}}',
@@ -2076,7 +2076,7 @@ class Isolate extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'dots_size',
-                'label' => __('Typography', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label' => __('Typography', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li a, {{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav span',
                 'condition' => [
                     'show_navigation_dots' => ['yes'],

@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Admin;
+namespace PrimeSlider\Admin;
 
 
 
@@ -27,7 +27,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/astoria/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/astoria/',
                     'video_url'    => 'https://youtu.be/Vpa_WPQ0mWw',
                 ],
 
@@ -38,7 +38,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/avatar/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/avatar/',
                     'video_url'    => 'https://youtu.be/qmNOWgzTt_Q',
                 ],
 
@@ -49,7 +49,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'post',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/blog/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/blog/',
                     'video_url'    => 'https://youtu.be/G32YlydUcHg',
                 ],
 
@@ -60,7 +60,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static swiper new',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/coddle/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/coddle/',
                     'video_url'    => 'https://youtu.be/mgT1NMMBEFA',
                 ],
 
@@ -71,7 +71,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/crossroad/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/crossroad/',
                     'video_url'    => 'https://youtu.be/zXYPK3yER1I',
                 ],
 
@@ -82,7 +82,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'pro',
                     'content_type' => 'custom static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/custom/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/custom/',
                     'video_url'    => 'https://youtu.be/Ayo1oEALF_8',
                 ],
 
@@ -93,7 +93,7 @@ class ModuleService {
                 //         'default'      => "off",
                 //         'widget_type'  => 'pro',
                 //         'content_type' => 'Custom carousel new',
-                //         'demo_url'     => 'https://PrimeSliderPro.pro/demo/diagonal/',
+                //         'demo_url'     => 'https://PrimeSlider.pro/demo/diagonal/',
                 //         'video_url'    => '',
                 //     ];
                 // }
@@ -105,7 +105,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/dragon/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/dragon/',
                     'video_url'    => 'https://youtu.be/eL0a9f7VEtc',
                 ],
 
@@ -116,7 +116,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/elysium/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/elysium/',
                     'video_url'    => 'https://youtu.be/S3c1G6AFGi0',
                 ],
 
@@ -127,7 +127,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/escape/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/escape/',
                     'video_url'    => 'https://youtu.be/WTqtALRdhDc',
                 ],
 
@@ -138,7 +138,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post carousel',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/fiestar/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/fiestar/',
                     'video_url'    => 'https://youtu.be/8neRnv80lMU',
                 ],
 
@@ -149,7 +149,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/flexure/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/flexure/',
                     'video_url'    => 'https://youtu.be/swPVYPWIZXI',
                 ],
 
@@ -160,7 +160,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'post',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/flogia/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/flogia/',
                     'video_url'    => 'https://youtu.be/4YaNEk5FbUc',
                 ],
 
@@ -171,7 +171,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'pro',
                     'content_type' => 'post',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/fluent/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/fluent/',
                     'video_url'    => 'https://youtu.be/HxwdDoOsdMA',
                 ],
 
@@ -182,7 +182,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/fortune/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/fortune/',
                     'video_url'    => 'https://youtu.be/9MgVFXb3vD8',
                 ],
 
@@ -193,7 +193,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/general/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/general/',
                     'video_url'    => 'https://youtu.be/RuZsr2W-EZc?si=GwdRk4niBDNblnsj',
                 ],
 
@@ -204,7 +204,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/isolate/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/isolate/',
                     'video_url'    => 'https://youtu.be/8wlCWhSMQno',
                 ],
 
@@ -215,7 +215,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'post swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/knily/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/knily/',
                     'video_url'    => 'https://youtu.be/VYjEPeDZv5k',
                 ],
 
@@ -226,7 +226,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'post carousel swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/marble/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/marble/',
                     'video_url'    => 'https://youtu.be/gdBqzj1jUzs',
                 ],
 
@@ -237,7 +237,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/mercury/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/mercury/',
                     'video_url'    => 'https://youtu.be/4Dk1ysRtGWk',
                 ],
 
@@ -248,7 +248,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static carousel swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/monster/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/monster/',
                     'video_url'    => 'https://youtu.be/BH-0sfptHeQ',
                 ],
 
@@ -259,7 +259,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/mount/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/mount/',
                     'video_url'    => 'https://youtu.be/DGIlfM61T0E',
                 ],
 
@@ -270,7 +270,7 @@ class ModuleService {
                     'default'      => "on",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/multiscroll/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/multiscroll/',
                     'video_url'    => 'https://youtu.be/uzBHDw_mdRE',
                 ],
 
@@ -281,7 +281,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static swiper new',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/omatic/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/omatic/',
                     'video_url'    => 'https://youtu.be/ndqeKBM8wfw?si=F3-PLdDn_79QizNM',
                 ],
 
@@ -292,7 +292,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/pacific/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/pacific/',
                     'video_url'    => 'https://youtu.be/H0X7qTvts9E?si=5gAb7-PWTyukBYxX',
                 ],
 
@@ -303,7 +303,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/pagepiling/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/pagepiling/',
                     'video_url'    => 'https://youtu.be/L7eWKJaZj5I',
                 ],
 
@@ -314,7 +314,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/paranoia/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/paranoia/',
                     'video_url'    => 'https://youtu.be/n_OEl4wkuJE',
                 ],
 
@@ -325,7 +325,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/pieces/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/pieces/',
                     'video_url'    => 'https://youtu.be/031PlTfbYJs',
                 ],
 
@@ -336,7 +336,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/prism/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/prism/',
                     'video_url'    => 'https://youtu.be/kqx65jzUi6s?si=7ss9GTUlKG0J6Nng',
                 ],
 
@@ -347,7 +347,7 @@ class ModuleService {
                 //     'default'      => "off",
                 //     'widget_type'  => 'pro',
                 //     'content_type' => 'static',
-                //     'demo_url'     => 'https://PrimeSliderPro.pro/demo/paramount/',
+                //     'demo_url'     => 'https://PrimeSlider.pro/demo/paramount/',
                 //     'video_url'    => '',
                 // ],
 
@@ -358,7 +358,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'others',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/remote-arrows/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/remote-arrows/',
                     'video_url'    => 'https://youtu.be/Lm_B9VaWDXA',
                 ],
 
@@ -369,7 +369,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'others',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/remote-fraction/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/remote-fraction/',
                     'video_url'    => 'https://youtu.be/c5mgJB2jTGw',
                 ],
 
@@ -380,7 +380,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'others',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/remote-pagination/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/remote-pagination/',
                     'video_url'    => 'https://youtu.be/Bp-6mMJIE74',
                 ],
 
@@ -391,7 +391,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'others',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/remote-thumbs/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/remote-thumbs/',
                     'video_url'    => 'https://youtu.be/QW1EX2h6Fhw',
                 ],
 
@@ -402,7 +402,7 @@ class ModuleService {
                 //         'default'      => "off",
                 //         'widget_type'  => 'pro',
                 //         'content_type' => 'static new',
-                //         'demo_url'     => 'https://PrimeSliderPro.pro/demo/landscape/',
+                //         'demo_url'     => 'https://PrimeSlider.pro/demo/landscape/',
                 //         'video_url'    => '',
                 //     ];
                 // }
@@ -414,7 +414,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/reveal/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/reveal/',
                     'video_url'    => 'https://youtu.be/pmBWj3tkuO8',
                 ],
 
@@ -425,7 +425,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post carousel swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/rubix/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/rubix/',
                     'video_url'    => 'https://youtu.be/mEPQjmjhCkY',
                 ],
 
@@ -436,7 +436,7 @@ class ModuleService {
                 //     'default'      => "off",
                 //     'widget_type'  => 'pro',
                 //     'content_type' => 'post carousel',
-                //     'demo_url'     => 'https://PrimeSliderPro.pro/demo/radar/',
+                //     'demo_url'     => 'https://PrimeSlider.pro/demo/radar/',
                 //     'video_url'    => 'https://youtu.be/mEPQjmjhCkY',
                 // ],
 
@@ -447,7 +447,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/sequester/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/sequester/',
                     'video_url'    => 'https://youtu.be/pk5kCstNHBY',
                 ],
 
@@ -458,7 +458,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/sniper/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/sniper/',
                     'video_url'    => 'https://youtu.be/KZstgwk-pog?si=k0t9Gj7POSuEzDIi',
                 ],
 
@@ -469,7 +469,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/storker/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/storker/',
                     'video_url'    => 'https://youtu.be/Lsg15pGppb0',
                 ],
 
@@ -480,7 +480,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'static swiper',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/tango/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/tango/',
                     'video_url'    => 'https://youtu.be/OdXH9cSgdz4',
                 ],
 
@@ -491,7 +491,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'static swiper new',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/titanic/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/titanic/',
                     'video_url'    => 'https://youtu.be/EITpA2vI9V4?si=wUIJKjMeB0hzseu8',
                 ],
 
@@ -502,7 +502,7 @@ class ModuleService {
                 //     'default'      => "off",
                 //     'widget_type'  => 'free',
                 //     'content_type' => 'static new',
-                //     'demo_url'     => 'https://PrimeSliderPro.pro/demo/tango/',
+                //     'demo_url'     => 'https://PrimeSlider.pro/demo/tango/',
                 //     'video_url'    => '',
                 // ],
 
@@ -513,7 +513,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'free',
                     'content_type' => 'post swiper carousel',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/vertex/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/vertex/',
                     'video_url'    => 'https://youtu.be/ktEB9YdU8A8',
                 ],
                 [
@@ -523,7 +523,7 @@ class ModuleService {
                     'default'      => "off",
                     'widget_type'  => 'pro',
                     'content_type' => 'ecommerce swiper new',
-                    'demo_url'     => 'https://PrimeSliderPro.pro/demo/woohotspot/',
+                    'demo_url'     => 'https://PrimeSlider.pro/demo/woohotspot/',
                     'video_url'    => 'https://youtu.be/vuYYnjSogqU',
                 ],
             ]
@@ -538,7 +538,7 @@ class ModuleService {
             'plugin_path'  => 'the-events-calendar/the-events-calendar.php',
             'widget_type'  => 'pro',
             'content_type' => 'others',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/event-calendar/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/event-calendar/',
             'video_url'    => 'https://youtu.be/M5GpxSdlt_8',
         ];
 
@@ -551,7 +551,7 @@ class ModuleService {
             'content_type' => 'ecommerce',
             'plugin_name'  => 'woocommerce',
             'plugin_path'  => 'woocommerce/woocommerce.php',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/woocommerce/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/woocommerce/',
             'video_url'    => 'https://youtu.be/6Wkk2EMN2ps',
         ];
 
@@ -564,7 +564,7 @@ class ModuleService {
             'content_type' => 'ecommerce',
             'plugin_name'  => 'woocommerce',
             'plugin_path'  => 'woocommerce/woocommerce.php',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/woocircle/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/woocircle/',
             'video_url'    => 'https://youtu.be/nJUtQ28kb4A',
         ];
 
@@ -577,7 +577,7 @@ class ModuleService {
             'content_type' => 'ecommerce',
             'plugin_name'  => 'woocommerce',
             'plugin_path'  => 'woocommerce/woocommerce.php',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/wooexpand/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/wooexpand/',
             'video_url'    => 'https://youtu.be/t5_ogz1XhJo',
         ];
 
@@ -590,7 +590,7 @@ class ModuleService {
             'content_type' => 'ecommerce',
             'plugin_name'  => 'woocommerce',
             'plugin_path'  => 'woocommerce/woocommerce.php',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/woolamp/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/woolamp/',
             'video_url'    => 'https://youtu.be/cBhYGPhiye4',
         ];
 
@@ -603,7 +603,7 @@ class ModuleService {
             'content_type' => 'ecommerce',
             'plugin_name'  => 'woocommerce',
             'plugin_path'  => 'woocommerce/woocommerce.php',
-            'demo_url'     => 'https://PrimeSliderPro.pro/demo/woostand/',
+            'demo_url'     => 'https://PrimeSlider.pro/demo/woostand/',
             'video_url'    => 'https://youtu.be/_1ijLrNFwEo',
         ];
 
@@ -694,8 +694,8 @@ class ModuleService {
 
     public static function is_module_active($module_id, $options) {
         if (!isset($options[$module_id])) {
-            if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-                $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+            if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+                $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
                 return $module_data['default_activation'];
             }
         } else {
@@ -710,8 +710,8 @@ class ModuleService {
     }
 
     public static function has_module_style($module_id) {
-        if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-            $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+        if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+            $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
 
             if (isset($module_data['has_style'])) {
                 return $module_data['has_style'];
@@ -720,8 +720,8 @@ class ModuleService {
     }
 
     public static function has_module_script($module_id) {
-        if (file_exists(BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php')) {
-            $module_data = require BDTPS_PRO_MODULES_PATH . $module_id . '/module.info.php';
+        if (file_exists(BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php')) {
+            $module_data = require BDTPS_CORE_MODULES_PATH . $module_id . '/module.info.php';
 
             if (isset($module_data['has_script'])) {
                 return $module_data['has_script'];

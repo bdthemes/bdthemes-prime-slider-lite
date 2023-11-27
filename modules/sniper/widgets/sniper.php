@@ -1,5 +1,5 @@
 <?php
-namespace PrimeSliderPro\Modules\Sniper\Widgets;
+namespace PrimeSlider\Modules\Sniper\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -10,11 +10,11 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Text_Stroke;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 use Elementor\Repeater;
 use Elementor\Plugin;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\Global_Widget_Controls;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -178,23 +178,23 @@ class Sniper extends Widget_Base {
 				'default' => [
 					[
 						'title' => esc_html__('Sniper Slide 1', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-1.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
 						'title' => esc_html__('Sniper Slide 2', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-2.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-2.svg']
 					],
 					[
 						'title' => esc_html__('Sniper Slide 3', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-3.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-3.svg']
 					],
 					[
 						'title' => esc_html__('Sniper Slide 4', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-4.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
 					[
 						'title' => esc_html__('Sniper Slide 5', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/gallery/item-5.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -366,7 +366,7 @@ class Sniper extends Widget_Base {
 		$this->add_control(
 			'title_active_color',
 			[
-				'label'     => esc_html__('Active Color', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'     => esc_html__('Active Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title, {{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title a' => 'color: {{VALUE}};',
@@ -380,7 +380,7 @@ class Sniper extends Widget_Base {
 		$this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-sniper-slider .bdt-title .frist-word' => 'color: {{VALUE}};',
@@ -394,7 +394,7 @@ class Sniper extends Widget_Base {
 		$this->add_control(
             'first_word_title_active_color',
             [
-                'label'     => esc_html__('First Word Active Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label'     => esc_html__('First Word Active Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title .frist-word' => 'color: {{VALUE}};',
@@ -421,7 +421,7 @@ class Sniper extends Widget_Base {
 			Group_Control_Text_Stroke::get_type(),
 			[
 				'name'     => 'title_text_stroke',
-				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_PC . BDTPS_PRO_NC,
+				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_PC . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-sniper-slider .bdt-title',
 				'condition' => [
 					'show_title' => ['yes'],
@@ -433,7 +433,7 @@ class Sniper extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name'     => 'title_text_shadow',
-				'label'    => esc_html__('Text Shadow', 'bdthemes-prime-slider') . BDTPS_PRO_PC . BDTPS_PRO_NC,
+				'label'    => esc_html__('Text Shadow', 'bdthemes-prime-slider') . BDTPS_CORE_PC . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-sniper-slider .bdt-title',
 				'condition' => [
 					'show_title' => ['yes'],
@@ -498,7 +498,7 @@ class Sniper extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_grid_line_style',
 			[
-				'label' 	=> __('Grid Line', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' 	=> __('Grid Line', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'condition' => [
 					'show_sub_title' => ['yes'],
 				],

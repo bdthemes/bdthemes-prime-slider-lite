@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 if (!defined('ABSPATH')) {
 	exit;
@@ -25,7 +25,7 @@ class Prime_Slider_Admin_Feeds {
 			return;
 		}
 		$direction_suffix = is_rtl() ? '.rtl' : '';
-		wp_enqueue_style('ps-product-feed', BDTPS_PRO_ADMIN_URL . 'assets/css/ps-product-feed' . $direction_suffix . '.css', [], BDTPS_PRO_VER);
+		wp_enqueue_style('ps-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed' . $direction_suffix . '.css', [], BDTPS_CORE_VER);
 	}
 
 
@@ -119,7 +119,7 @@ class Prime_Slider_Admin_Feeds {
 							'title' => esc_html__('Docs', 'bdthemes-prime-slider-lite'),
 						],
 						[
-							'url'   => 'https://www.PrimeSliderPro.pro/pricing/',
+							'url'   => 'https://www.PrimeSlider.pro/pricing/',
 							'title' => esc_html__('Get Pro', 'bdthemes-prime-slider-lite'),
 						],
 						[

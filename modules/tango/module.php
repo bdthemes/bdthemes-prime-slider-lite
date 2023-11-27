@@ -1,7 +1,7 @@
 <?php
-namespace PrimeSliderPro\Modules\Tango;
+namespace PrimeSlider\Modules\Tango;
 
-use PrimeSliderPro\Base\Prime_Slider_Module_Base;
+use PrimeSlider\Base\Prime_Slider_Module_Base;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

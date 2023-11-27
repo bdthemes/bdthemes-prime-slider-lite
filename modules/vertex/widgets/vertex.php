@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Vertex\Widgets;
+namespace PrimeSlider\Modules\Vertex\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -12,9 +12,9 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Widget_Base;
 use Elementor\Plugin;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Utils;
 use WP_Query;
 
 if (!defined('ABSPATH')) {
@@ -81,7 +81,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'           => Controls_Manager::SELECT,
                 'default'        => 3,
                 'tablet_default' => 3,
@@ -115,7 +115,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'vertical_spacing',
             [
-                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -303,7 +303,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'border_width_type',
             [
-                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

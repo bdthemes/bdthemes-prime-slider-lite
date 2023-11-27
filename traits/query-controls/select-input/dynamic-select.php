@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Traits\QueryControls\SelectInput;
+namespace PrimeSlider\Traits\QueryControls\SelectInput;
 
 use Elementor\Base_Data_Control;
 use Elementor\Plugin;
@@ -106,7 +106,7 @@ class Dynamic_Select extends Base_Data_Control
 	 */
 	public function enqueue()
 	{
-		wp_enqueue_script('ps-dynamic-select', BDTPS_PRO_URL . 'traits/query-controls/assets/js/ps-dynamic-select.min.js', array('jquery'), BDTPS_PRO_VER);
+		wp_enqueue_script('ps-dynamic-select', BDTPS_CORE_URL . 'traits/query-controls/assets/js/ps-dynamic-select.min.js', array('jquery'), BDTPS_CORE_VER);
 
 		wp_localize_script(
 			'ps-dynamic-select',

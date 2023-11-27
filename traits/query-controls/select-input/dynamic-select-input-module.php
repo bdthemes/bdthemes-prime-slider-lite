@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Traits\QueryControls\SelectInput;
+namespace PrimeSlider\Traits\QueryControls\SelectInput;
 
 use Exception;
 use WP_Query;

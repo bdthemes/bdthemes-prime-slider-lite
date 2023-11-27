@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Woocommerce\Widgets;
+namespace PrimeSlider\Modules\Woocommerce\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -10,10 +10,10 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Stroke;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 use Elementor\Repeater;
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
 use WP_Query;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -242,7 +242,7 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -252,7 +252,7 @@ class Woocommerce extends Widget_Base {
 			[
 				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
 				'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_PRO_IS_PC,
+				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -303,7 +303,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[
-				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'background',
 				'options' => [
@@ -344,7 +344,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label'      => esc_html__('Content Padding', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label'      => esc_html__('Content Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -418,7 +418,7 @@ class Woocommerce extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title a',
 				'fields_options' => [
 					'text_stroke_type' => [
-						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 					],
 				],
 				'condition' => [

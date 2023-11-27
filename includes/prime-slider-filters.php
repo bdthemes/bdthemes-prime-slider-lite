@@ -5,7 +5,7 @@
  * @since 3.0.0
  */
 
-use PrimeSliderPro\Admin\ModuleService;
+use PrimeSlider\Admin\ModuleService;
 
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 // Settings Filters
 if (!function_exists('ps_is_dashboard_enabled')) {
     function ps_is_dashboard_enabled() {
-        return apply_filters('PrimeSliderPro/settings/dashboard', true);
+        return apply_filters('PrimeSlider/settings/dashboard', true);
     }
 }
 
@@ -26,7 +26,7 @@ if (!function_exists('prime_slider_is_widget_enabled')) {
 
         if( ModuleService::is_module_active($widget_id, $options)){
             $widget_id = str_replace('-','_', $widget_id);
-            return apply_filters("PrimeSliderPro/widget/{$widget_id}", true);
+            return apply_filters("PrimeSlider/widget/{$widget_id}", true);
         }
     }
 }
@@ -40,7 +40,7 @@ if (!function_exists('prime_slider_is_widget_enabled')) {
 
 //         if( ModuleService::is_module_active($widget_id, $options)){
 //             $widget_id = str_replace('-','_', $widget_id);
-//             return apply_filters("PrimeSliderPro/extend/{$widget_id}", true);
+//             return apply_filters("PrimeSlider/extend/{$widget_id}", true);
 //         }
 //     }
 // }
@@ -54,7 +54,7 @@ if (!function_exists('prime_slider_is_third_party_enabled')) {
 
         if( ModuleService::is_module_active($widget_id, $options)){
             $widget_id = str_replace('-','_', $widget_id);
-            return apply_filters("PrimeSliderPro/widget/{$widget_id}", true);
+            return apply_filters("PrimeSlider/widget/{$widget_id}", true);
         }
     }
 }
@@ -63,7 +63,7 @@ if (!function_exists('prime_slider_is_third_party_enabled')) {
 //     function prime_slider_is_asset_optimization_enabled() {
 //         $asset_manager = prime_slider_option('asset-manager', 'prime_slider_other_settings', 'off');
 //         if( $asset_manager == 'on'){
-//             return apply_filters("PrimeSliderPro/optimization/asset_manager", true);
+//             return apply_filters("PrimeSlider/optimization/asset_manager", true);
 //         }
 //     }
 // }

@@ -1,9 +1,9 @@
 <?php
 
-namespace PrimeSliderPro\Traits\QueryControls\GroupQuery;
+namespace PrimeSlider\Traits\QueryControls\GroupQuery;
 
 use Elementor\Controls_Manager;
-use PrimeSliderPro\Traits\QueryControls\SelectInput\Dynamic_Select;
+use PrimeSlider\Traits\QueryControls\SelectInput\Dynamic_Select;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
@@ -139,7 +139,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_by',
 			[
-				'label'       => __('Exclude By', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'       => __('Exclude By', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'label_block' => true,
@@ -396,7 +396,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'query_id',
 			[
-				'label'       => __('Query ID', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'       => __('Query ID', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'description' => __('Give your Query a custom unique id to allow server side filtering', 'bdthemes-prime-slider'),
 				'type'        => Controls_Manager::TEXT,
 				'separator'   => 'before',

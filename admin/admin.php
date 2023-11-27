@@ -1,19 +1,19 @@
 <?php
 
-namespace PrimeSliderPro;
+namespace PrimeSlider;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 
-require_once BDTPS_PRO_ADMIN_PATH . 'class-settings-api.php';
+require_once BDTPS_CORE_ADMIN_PATH . 'class-settings-api.php';
 if ( current_user_can( 'manage_options' ) ) {
-	require_once BDTPS_PRO_ADMIN_PATH . 'admin-feeds.php';
+	require_once BDTPS_CORE_ADMIN_PATH . 'admin-feeds.php';
 
 }
 // element pack admin settings here
-require_once BDTPS_PRO_ADMIN_PATH . 'admin-settings.php';
+require_once BDTPS_CORE_ADMIN_PATH . 'admin-settings.php';
 
 /**
  * Admin class
@@ -31,10 +31,7 @@ class Admin {
 
 		add_action( 'after_setup_theme', [ $this, 'whitelabel' ] );
 
-		// register_activation_hook(BDTPS_PRO__FILE__, 'install_and_activate');
-
-		require_once( BDTPS_PRO_ADMIN_PATH . 'license-settings.php' );
-
+		// register_activation_hook(BDTPS_CORE__FILE__, 'install_and_activate');
 	}
 
 	function install_and_activate() {
@@ -47,19 +44,19 @@ class Admin {
 	/**
 	 * You can easily add white label branding for extended license or multi site license. Don't try for regular license otherwise your license will be invalid.
 	 * @return [type] [description]
-	 * Define BDTPS_PRO_WL for execute white label branding
+	 * Define BDTPS_CORE_WL for execute white label branding
 	 */
 	public function whitelabel() {
-		if ( defined( 'BDTPS_PRO_WL' ) ) {
+		if ( defined( 'BDTPS_CORE_WL' ) ) {
 
 			add_filter( 'gettext', [ $this, 'prime_slider_name_change' ], 20, 3 );
 
-			if ( defined( 'BDTPS_PRO_HIDE' ) ) {
+			if ( defined( 'BDTPS_CORE_HIDE' ) ) {
 				add_action( 'pre_current_active_plugins', [ $this, 'hide_prime_slider' ] );
 			}
 		} else {
 			add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta' ], 10, 2 );
-			add_filter( 'plugin_action_links_' . BDTPS_PRO_PBNAME, [ $this, 'plugin_action_meta' ] );
+			add_filter( 'plugin_action_links_' . BDTPS_CORE_PBNAME, [ $this, 'plugin_action_meta' ] );
 		}
 	}
 
@@ -72,11 +69,11 @@ class Admin {
 
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
-		wp_enqueue_style( 'bdt-uikit', BDTPS_PRO_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.15.3' );
-		wp_enqueue_style( 'prime-slider-font', BDTPS_PRO_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_PRO_VER );
-		wp_enqueue_style( 'ps-admin', BDTPS_PRO_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_PRO_VER );
+		wp_enqueue_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.15.3' );
+		wp_enqueue_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 
-		wp_enqueue_script( 'bdt-uikit', BDTPS_PRO_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.15.3' );
+		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.15.3' );
 	}
 
 	/**
@@ -86,7 +83,7 @@ class Admin {
 	 */
 
 	public function plugin_row_meta( $plugin_meta, $plugin_file ) {
-		if ( BDTPS_PRO_PBNAME === $plugin_file ) {
+		if ( BDTPS_CORE_PBNAME === $plugin_file ) {
 			$row_meta = [ 
 				'docs'  => '<a href="https://bdthemes.com/support/" aria-label="' . esc_attr( __( 'Go for Get Support', 'bdthemes-prime-slider' ) ) . '" target="_blank">' . __( 'Get Support', 'bdthemes-prime-slider' ) . '</a>',
 				'video' => '<a href="https://www.youtube.com/playlist?list=PLP0S85GEw7DOJf_cbgUIL20qqwqb5x8KA" aria-label="' . esc_attr( __( 'View Prime Slider Video Tutorials', 'bdthemes-prime-slider' ) ) . '" target="_blank">' . __( 'Video Tutorials', 'bdthemes-prime-slider' ) . '</a>',
@@ -129,7 +126,7 @@ class Admin {
 	public function prime_slider_name_change( $translated_text, $text, $domain ) {
 		switch ( $translated_text ) {
 			case 'Prime Slider':
-				$translated_text = BDTPS_PRO_TITLE;
+				$translated_text = BDTPS_CORE_TITLE;
 				break;
 		}
 
@@ -164,8 +161,8 @@ class Admin {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jquery-form' );
 
-			wp_enqueue_script( 'chart', BDTPS_PRO_ADMIN_URL . 'assets/js/chart.min.js', [ 'jquery' ], '3.9.3', true );
-			wp_enqueue_script( 'ps-admin', BDTPS_PRO_ADMIN_URL . 'assets/js/ps-admin' . $suffix . '.js', [ 'jquery', 'chart' ], BDTPS_PRO_VER, true );
+			wp_enqueue_script( 'chart', BDTPS_CORE_ADMIN_URL . 'assets/js/chart.min.js', [ 'jquery' ], '3.9.3', true );
+			wp_enqueue_script( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin' . $suffix . '.js', [ 'jquery', 'chart' ], BDTPS_CORE_VER, true );
 		}
 	}
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace PrimeSliderPro\Base;
+namespace PrimeSlider\Base;
 
-use PrimeSliderPro\Prime_Slider_Loader;
+use PrimeSlider\Prime_Slider_Loader;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -67,7 +67,7 @@ abstract class Prime_Slider_Module_Base {
 	abstract public function get_name();
 
 	public function get_assets_url() {
-		return BDTPS_PRO_MODULES_URL . $this->get_name() . '/assets/';
+		return BDTPS_CORE_MODULES_URL . $this->get_name() . '/assets/';
 	}
 
 	public function get_widgets() {

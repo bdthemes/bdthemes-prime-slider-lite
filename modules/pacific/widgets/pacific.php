@@ -1,6 +1,6 @@
 <?php
 
-namespace PrimeSliderPro\Modules\Pacific\Widgets;
+namespace PrimeSlider\Modules\Pacific\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -13,9 +13,9 @@ use Elementor\Group_Control_Css_Filter;
 use Elementor\Widget_Base;
 use Elementor\Plugin;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
-use PrimeSliderPro\Traits\QueryControls\GroupQuery\Group_Control_Query;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
+use PrimeSlider\Utils;
 use WP_Query;
 
 if (!defined('ABSPATH')) {
@@ -82,7 +82,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'layout_style',
 			[
-				'label'          => __('Style', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'          => __('Style', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 1,
 				'options'        => [
@@ -95,7 +95,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[
-				'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'          => __('Columns', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 3,
 				'tablet_default' => 2,
@@ -256,7 +256,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'read_more_text',
 			[
-				'label'       => esc_html__('Readmore Text', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'       => esc_html__('Readmore Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'        => Controls_Manager::TEXT,
 				'default'     => esc_html__('Read More', 'bdthemes-prime-slider'),
 				'label_block' => false,
@@ -270,7 +270,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'show_pagination',
 			[
-				'label' => __('Show Pagination', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label' => __('Show Pagination', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -367,7 +367,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'item_overlay_active',
 			[
-				'label'     => esc_html__('Overlay Active', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'     => esc_html__('Overlay Active', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-item.swiper-slide-active .bdt-image-wrap:before' => 'background: {{VALUE}};',

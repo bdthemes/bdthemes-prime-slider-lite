@@ -1,7 +1,7 @@
 <?php
 
-use PrimeSliderPro\Notices;
-use PrimeSliderPro\Prime_Slider_Loader;
+use PrimeSlider\Notices;
+use PrimeSlider\Prime_Slider_Loader;
 use Elementor\Plugin;
 
 /**
@@ -9,44 +9,44 @@ use Elementor\Plugin;
  * Don't try for regular license otherwise your license will be invalid.
  * return white label
  */
-define('BDTPS_PRO_PNAME', basename(dirname(BDTPS_PRO__FILE__)));
-define('BDTPS_PRO_PBNAME', plugin_basename(BDTPS_PRO__FILE__));
-define('BDTPS_PRO_PATH', plugin_dir_path(BDTPS_PRO__FILE__));
-define('BDTPS_PRO_URL', plugins_url('/', BDTPS_PRO__FILE__));
-define('BDTPS_PRO_ADMIN_PATH', BDTPS_PRO_PATH . 'admin/');
-define('BDTPS_PRO_ADMIN_URL', BDTPS_PRO_URL . 'admin/');
-define('BDTPS_PRO_MODULES_PATH', BDTPS_PRO_PATH . 'modules/');
-define('BDTPS_PRO_INC_PATH', BDTPS_PRO_PATH . 'includes/');
-define('BDTPS_PRO_ASSETS_URL', BDTPS_PRO_URL . 'assets/');
-define('BDTPS_PRO_ASSETS_PATH', BDTPS_PRO_PATH . 'assets/');
-define('BDTPS_PRO_MODULES_URL', BDTPS_PRO_URL . 'modules/');
+define('BDTPS_CORE_PNAME', basename(dirname(BDTPS_CORE__FILE__)));
+define('BDTPS_CORE_PBNAME', plugin_basename(BDTPS_CORE__FILE__));
+define('BDTPS_CORE_PATH', plugin_dir_path(BDTPS_CORE__FILE__));
+define('BDTPS_CORE_URL', plugins_url('/', BDTPS_CORE__FILE__));
+define('BDTPS_CORE_ADMIN_PATH', BDTPS_CORE_PATH . 'admin/');
+define('BDTPS_CORE_ADMIN_URL', BDTPS_CORE_URL . 'admin/');
+define('BDTPS_CORE_MODULES_PATH', BDTPS_CORE_PATH . 'modules/');
+define('BDTPS_CORE_INC_PATH', BDTPS_CORE_PATH . 'includes/');
+define('BDTPS_CORE_ASSETS_URL', BDTPS_CORE_URL . 'assets/');
+define('BDTPS_CORE_ASSETS_PATH', BDTPS_CORE_PATH . 'assets/');
+define('BDTPS_CORE_MODULES_URL', BDTPS_CORE_URL . 'modules/');
 
 if (!defined('BDTPS')) {
     define('BDTPS', '');
 } //Add prefix for all widgets <span class="bdt-widget-badge"></span>
-if (!defined('BDTPS_PRO_CP')) {
-    define('BDTPS_PRO_CP', '<span class="bdt-ps-widget-badge"></span>');
+if (!defined('BDTPS_CORE_CP')) {
+    define('BDTPS_CORE_CP', '<span class="bdt-ps-widget-badge"></span>');
 } //Add prefix for all widgets <span class="bdt-widget-badge"></span>
-if (!defined('BDTPS_PRO_NC')) {
-    define('BDTPS_PRO_NC', '<span class="bdt-ps-new-control"></span>');
+if (!defined('BDTPS_CORE_NC')) {
+    define('BDTPS_CORE_NC', '<span class="bdt-ps-new-control"></span>');
 } // if you have any custom style
-if (!defined('BDTPS_PRO_SLUG')) {
-    define('BDTPS_PRO_SLUG', 'prime-slider');
+if (!defined('BDTPS_CORE_SLUG')) {
+    define('BDTPS_CORE_SLUG', 'prime-slider');
 } // set your own alias
-if (!defined('BDTPS_PRO_TITLE')) {
-    define('BDTPS_PRO_TITLE', 'Prime Slider');
+if (!defined('BDTPS_CORE_TITLE')) {
+    define('BDTPS_CORE_TITLE', 'Prime Slider');
 } // set your own alias
 // if (true === true) {
     if(true === true){
-    if (!defined('BDTPS_PRO_PC')) {
-        define('BDTPS_PRO_PC', '');
+    if (!defined('BDTPS_CORE_PC')) {
+        define('BDTPS_CORE_PC', '');
     }
-    define('BDTPS_PRO_IS_PC', '');
+    define('BDTPS_CORE_IS_PC', '');
 } else {
-    if (!defined('BDTPS_PRO_PC')) {
-        define('BDTPS_PRO_PC', '<span class="bdt-ps-pro-control"></span>');
+    if (!defined('BDTPS_CORE_PC')) {
+        define('BDTPS_CORE_PC', '<span class="bdt-ps-pro-control"></span>');
     }
-    define('BDTPS_PRO_IS_PC', 'bdt-ps-disabled-control');
+    define('BDTPS_CORE_IS_PC', 'bdt-ps-disabled-control');
 }
 
 

@@ -1,5 +1,5 @@
 <?php
-namespace PrimeSliderPro\Modules\Sequester\Widgets;
+namespace PrimeSlider\Modules\Sequester\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -9,10 +9,10 @@ use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Stroke;
-use PrimeSliderPro\Utils;
+use PrimeSlider\Utils;
 use Elementor\Repeater;
 
-use PrimeSliderPro\Traits\Global_Widget_Controls;
+use PrimeSlider\Traits\Global_Widget_Controls;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -151,7 +151,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'show_image_match_height',
 			[
-				'label'   => esc_html__('Image Match Height', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'   => esc_html__('Image Match Height', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'prefix_class' => 'bdt-ps-image-match-height--',
@@ -231,17 +231,17 @@ class Sequester extends Widget_Base {
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Sequester Slide One', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/svg-img/item-01.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/svg-img/item-01.svg']
 					],
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Sequester Slide Two', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/svg-img/item-02.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/svg-img/item-02.svg']
 					],
 					[
 						'sub_title' => esc_html__('This is a Label', 'bdthemes-prime-slider'),
 						'title' => esc_html__('Sequester Slide Three', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_PRO_ASSETS_URL . 'images/svg-img/item-03.svg']
+						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/svg-img/item-03.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -275,7 +275,7 @@ class Sequester extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -285,7 +285,7 @@ class Sequester extends Widget_Base {
 			[
 				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
 				'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_PRO_IS_PC,
+				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -336,7 +336,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'custom_overlay_color',
 			[
-				'label'   => esc_html__('Custom Overlay', 'bdthemes-prime-slider') . BDTPS_PRO_PC,
+				'label'   => esc_html__('Custom Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);
@@ -425,7 +425,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag .frist-word' => 'color: {{VALUE}};',
@@ -455,13 +455,13 @@ class Sequester extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'fields_options' => [
 					'text_stroke_type' => [
-						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_PRO_NC . BDTPS_PRO_PC,
+						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 					],
 				],
 				'condition' => [
 					'show_title' => ['yes'],
 				],
-				'classes'   => BDTPS_PRO_IS_PC
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -721,7 +721,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_color',
 			[
-				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-slide-btn svg *' => 'stroke: {{VALUE}} !important;',
@@ -732,7 +732,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_background_color',
 			[
-				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-sequester .bdt-slide-btn .bdt-slide-btn-icon' => 'background-color: {{VALUE}};',
@@ -798,7 +798,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_color',
 			[
-				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-slide-btn:hover svg *' => 'stroke: {{VALUE}} !important;',
@@ -809,7 +809,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_bg_color',
 			[
-				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_PRO_NC,
+				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-sequester .bdt-slide-btn .bdt-slide-btn-icon::after' => 'background-color: {{VALUE}};',

@@ -7515,7 +7515,7 @@ msgid "Give your Query a custom unique id to allow server side filtering"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://PrimeSliderPro.pro/"
+msgid "https://PrimeSlider.pro/"
 msgstr ""
 
 #. Description of the plugin/theme
