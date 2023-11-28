@@ -2099,7 +2099,7 @@ trait Global_Widget_Controls {
 
 		$animation_of = (strlen($animation_of)) > 0 ? $animation_of : '.bdt-image-expand-sub-title';
 
-		if (true === true) {
+		if ( true === _is_ps_pro_activated() ) {
 			$animation_status = ($settings['animation_status'] == 'yes' ? 'yes' : 'no');
 		} else {
 			$animation_status = 'no';

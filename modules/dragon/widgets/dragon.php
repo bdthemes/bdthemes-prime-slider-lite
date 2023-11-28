@@ -46,13 +46,13 @@ class dragon extends Widget_Base {
 	public function get_script_depends() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 		if ('on' === $reveal_effects) {
-			if (true === true) {
+			if ( true === _is_ps_pro_activated() ) {
 				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-dragon'];
 			} else {
 				return [];
 			}
 		} else {
-			if (true === true) {
+			if ( true === _is_ps_pro_activated() ) {
 				return ['gsap', 'split-text', 'ps-dragon'];
 			} else {
 				return [];
@@ -305,7 +305,7 @@ class dragon extends Widget_Base {
             ]
         );
 
-		if (true === true) {
+		if ( true === _is_ps_pro_activated() ) {
 
 			$this->add_control(
 				'animation_of',
@@ -1100,7 +1100,7 @@ class dragon extends Widget_Base {
 		$parallax_title         = 'data-bdt-slideshow-parallax="x: 200,-200; opacity: 1,1,0"';
 		$parallax_text           = 'data-bdt-slideshow-parallax="x: 300,-300; opacity: 1,1,0"';
 
-		if (true === true) {
+		if ( true === _is_ps_pro_activated() ) {
 			if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
 
 				if (in_array(".bdt-sub-title-inner", $settings['animation_of'])) {

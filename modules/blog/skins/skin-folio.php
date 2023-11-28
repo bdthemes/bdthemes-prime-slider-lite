@@ -118,7 +118,7 @@ class Skin_Folio extends Elementor_Skin_Base {
     $parallax_title       = 'data-bdt-slideshow-parallax="y: 100,0,-80; opacity: 1,1,0"';
     $parallax_text         = 'data-bdt-slideshow-parallax="y: 110,0,-90; opacity: 1,1,0"';
 
-    if (true === true) {
+    if ( true === _is_ps_pro_activated() ) {
       if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
 
         if (in_array(".bdt-title-tag", $settings['animation_of'])) {

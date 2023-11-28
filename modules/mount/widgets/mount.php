@@ -49,13 +49,13 @@ class Mount extends Widget_Base {
 	public function get_script_depends() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 		if ('on' === $reveal_effects) {
-			if (true === true) {
+			if ( true === _is_ps_pro_activated() ) {
 				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-mount'];
 			} else {
 				return [];
 			}
 		} else {
-			if (true === true) {
+			if ( true === _is_ps_pro_activated() ) {
 				return ['gsap', 'split-text', 'ps-mount'];
 			} else {
 				return [];
@@ -295,7 +295,7 @@ class Mount extends Widget_Base {
 			]
 		);
 
-		if (true === true) {
+		if ( true === _is_ps_pro_activated() ) {
 
 			$this->add_control(
 				'animation_of',
