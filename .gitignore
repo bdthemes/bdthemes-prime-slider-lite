@@ -4,5 +4,4 @@
 *.mo
 *.zip
 package-lock.json
-package.json
 *sync.ffs_db

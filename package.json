@@ -1,0 +1,32 @@
+{
+	"name": "bdthemes-prime-slider",
+	"version": "2.0.0",
+	"main": "index.php",
+	"scripts": {
+		"dev": "cross-env NODE_ENV=development grunt watch",
+		"build": "npm run clean && cross-env NODE_ENV=production grunt",
+		"clean": "rimraf ./assets"
+	},
+	"keywords": [
+		"bdthemes-prime-slider",
+		"theme"
+	],
+	"author": "bdthemes",
+	"license": "ISC",
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"grunt": "^1.6.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-contrib-less": "^3.0.0",
+		"grunt-contrib-watch": "^1.1.0",
+		"grunt-rtlcss": "^2.0.2",
+		"grunt-terser": "^2.0.0",
+		"jit-grunt": "^0.10.0",
+		"rimraf": "^5.0.5",
+		"terser": "^5.21.0"
+	},
+	"dependencies": {
+		"uglify": "^0.1.5",
+		"uikit": "3.17.0"
+	}
+}
