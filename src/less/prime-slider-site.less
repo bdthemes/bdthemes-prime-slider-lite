@@ -426,96 +426,100 @@
     }
 }
 
+
 /* Swiper */
-.swiper-container .elementor-lightbox-content-source {
-    display: none;
-}
+[class*="elementor-widget-prime-slider-"] {
 
-.swiper-container-horizontal+.swiper-pagination-progressbar,
-.swiper-container-vertical+.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
-    width: 100%;
-    height: 4px;
-}
-
-.swiper-pagination-progressbar {
-    background: rgba(0, 0, 0, 0.25);
-    position: absolute;
-}
-
-.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-    background: #007aff;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(0);
-    transform-origin: left top;
-}
-
-
-[class*='bdt-arrows-align-top'] {
-    .bdt-arrows-container {
-        transform: translateY(-40px);
+    .swiper-container .elementor-lightbox-content-source {
+        display: none;
     }
-}
-
-[class*='bdt-arrows-align-bottom'] {
-    .bdt-arrows-container {
-        transform: translateY(40px);
-    }
-}
-
-[class*='bdt-dots-align-top'] {
-    .bdt-dots-container {
-        transform: translateY(-30px);
-    }
-}
-
-[class*='bdt-dots-align-bottom'] {
-    .bdt-dots-container {
-        transform: translateY(30px);
-    }
-}
-
-[class*='bdt-arrows-dots-align-top'] {
-    .bdt-arrows-dots-container {
-        transform: translateY(-40px);
-    }
-}
-
-[class*='bdt-arrows-dots-align-bottom'] {
-    .bdt-arrows-dots-container {
-        transform: translateY(40px);
-    }
-}
-
-.bdt-arrows-align-center,
-.bdt-arrows-dots-align-center {
-    .bdt-position-center {
+    
+    .swiper-container-horizontal+.swiper-pagination-progressbar,
+    .swiper-container-vertical+.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
         width: 100%;
+        height: 4px;
     }
-
-    .bdt-navigation-prev {
+    
+    .swiper-pagination-progressbar {
+        background: rgba(0, 0, 0, 0.25);
+        position: absolute;
+    }
+    
+    .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        background: #007aff;
+        position: absolute;
         left: 0;
-        position: absolute;
-        transform: translateY(-50%);
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        transform-origin: left top;
     }
-
-    .bdt-navigation-next {
-        right: 0;
-        position: absolute;
-        transform: translateY(-50%);
+    
+    
+    [class*='bdt-arrows-align-top'] {
+        .bdt-arrows-container {
+            transform: translateY(-40px);
+        }
     }
-}
-
-.bdt-arrows-dots-align-center {
-
-    .bdt-dots-container,
-    .bdt-arrows-dots-container {
-        .swiper-pagination {
-            position: absolute;
+    
+    [class*='bdt-arrows-align-bottom'] {
+        .bdt-arrows-container {
+            transform: translateY(40px);
+        }
+    }
+    
+    [class*='bdt-dots-align-top'] {
+        .bdt-dots-container {
+            transform: translateY(-30px);
+        }
+    }
+    
+    [class*='bdt-dots-align-bottom'] {
+        .bdt-dots-container {
+            transform: translateY(30px);
+        }
+    }
+    
+    [class*='bdt-arrows-dots-align-top'] {
+        .bdt-arrows-dots-container {
+            transform: translateY(-40px);
+        }
+    }
+    
+    [class*='bdt-arrows-dots-align-bottom'] {
+        .bdt-arrows-dots-container {
+            transform: translateY(40px);
+        }
+    }
+    
+    .bdt-arrows-align-center,
+    .bdt-arrows-dots-align-center {
+        .bdt-position-center {
             width: 100%;
+        }
+    
+        .bdt-navigation-prev {
+            left: 0;
+            position: absolute;
+            transform: translateY(-50%);
+        }
+    
+        .bdt-navigation-next {
+            right: 0;
+            position: absolute;
+            transform: translateY(-50%);
+        }
+    }
+    
+    .bdt-arrows-dots-align-center {
+    
+        .bdt-dots-container,
+        .bdt-arrows-dots-container {
+            .swiper-pagination {
+                position: absolute;
+                width: 100%;
+            }
         }
     }
 }
@@ -614,59 +618,25 @@
             transform: scale(.33)
         }
     }
-}
-
-// [class*='bdt-arrows-align-top'] {
-// 	.bdt-arrows-container {
-// 		transform: translateY(-40px);
-// 	}
-// }
-
-// [class*='bdt-arrows-align-bottom'] {
-// 	.bdt-arrows-container {
-// 		transform: translateY(40px);
-// 	}
-// }
-
-// [class*='bdt-dots-align-top'] {
-// 	.bdt-dots-container {
-// 		transform: translateY(-30px);
-// 	}
-// }
-
-// [class*='bdt-dots-align-bottom'] {
-// 	.bdt-dots-container {
-// 		transform: translateY(30px);
-// 	}
-// }
-// [class*='bdt-arrows-dots-align-top'] {
-// 	.bdt-arrows-dots-container {
-// 		transform: translateY(-40px);
-// 	}
-// }
-// [class*='bdt-arrows-dots-align-bottom'] {
-// 	.bdt-arrows-dots-container {
-// 		transform: translateY(40px);
-// 	}
-// }
-
-.bdt-arrows-align-center,
-.bdt-arrows-dots-align-center {
-    .bdt-position-center {
-        width: 100%;
-    }
-
-    .bdt-navigation-prev {
-        left: 0;
-        position: absolute;
-        transform: translateY(-50%);
-    }
-
-    .bdt-navigation-next {
-        right: 0;
-        position: absolute;
-        transform: translateY(-50%);
-
+    
+    .bdt-arrows-align-center,
+    .bdt-arrows-dots-align-center {
+        .bdt-position-center {
+            width: 100%;
+        }
+    
+        .bdt-navigation-prev {
+            left: 0;
+            position: absolute;
+            transform: translateY(-50%);
+        }
+    
+        .bdt-navigation-next {
+            right: 0;
+            position: absolute;
+            transform: translateY(-50%);
+    
+        }
     }
 }
 
@@ -685,14 +655,15 @@
         }
     }
 }
-
-.bdt-arrows-dots-align-center {
-
-    .bdt-dots-container,
-    .bdt-arrows-dots-container {
-        .swiper-pagination {
-            position: absolute;
-            width: 100% !important;
+[class*="elementor-widget-prime-slider-"] {
+    .bdt-arrows-dots-align-center {
+    
+        .bdt-dots-container,
+        .bdt-arrows-dots-container {
+            .swiper-pagination {
+                position: absolute;
+                width: 100% !important;
+            }
         }
     }
 }
