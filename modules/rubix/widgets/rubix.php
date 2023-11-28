@@ -54,7 +54,7 @@ class Rubix extends Widget_Base {
     public function get_script_depends() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
-            if (true === true) {
+            if ( true === _is_ps_pro_activated() ) {
                 return ['anime', 'revealFx', 'ps-rubix'];
             } else {
                 return ['ps-rubix'];

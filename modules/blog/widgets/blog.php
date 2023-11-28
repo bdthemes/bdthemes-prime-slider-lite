@@ -58,13 +58,13 @@ class Blog extends Widget_Base {
     public function get_script_depends() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
-            if (true === true) {
+            if ( true === _is_ps_pro_activated() ) {
                 return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-blog'];
             } else {
                 return [];
             }
         } else {
-            if (true === true) {
+            if ( true === _is_ps_pro_activated() ) {
                 return ['gsap', 'split-text', 'ps-blog'];
             } else {
                 return [];
@@ -487,7 +487,7 @@ class Blog extends Widget_Base {
             ]
         );
 
-        if (true === true) {
+        if ( true === _is_ps_pro_activated() ) {
 
             $this->add_control(
                 'animation_of',
@@ -2300,7 +2300,7 @@ class Blog extends Widget_Base {
         $parallax_title         = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
         $parallax_text           = 'data-bdt-slideshow-parallax="y: 50,0,-10; opacity: 1,1,0"';
 
-        if (true === true) {
+        if ( true === _is_ps_pro_activated() ) {
             if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
 
                 if (in_array(".bdt-title-tag", $settings['animation_of'])) {
