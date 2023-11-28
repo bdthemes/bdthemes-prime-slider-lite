@@ -46,7 +46,6 @@ module.exports = function (grunt) {
 						'assets/css/prime-slider-site.css': 'src/less/prime-slider-site.less',
 						'assets/css/prime-slider-editor.css': 'src/less/prime-slider-editor.less',
 						'assets/css/prime-slider-preview.css': 'src/less/prime-slider-preview.less',
-						'assets/css/tippy.css': 'src/less/tippy.less',
 						'assets/css/prime-slider-font.css': 'src/less/prime-slider-font.less',
 						'assets/css/prime-slider-product-feed.css': 'src/less/prime-slider-product-feed.less',
 
