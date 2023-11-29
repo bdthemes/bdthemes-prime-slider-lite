@@ -1,8 +1,8 @@
-= 3.11.0 [14th November 2023] =
+= 3.11.0 [29th November 2023] =
 
-### Added
+### Updated
 
-- New License System added
+- System improved
 
 ## 3.10.6 [5th November 2023]
 
