@@ -766,7 +766,9 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd Party Widgets</span></div>
+									<div class="bdt-width-expand@m"><span
+											bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd
+											Party Widgets</span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
@@ -1308,6 +1310,14 @@ class PrimeSlider_Admin_Settings {
 				});
 
 				jQuery('#prime_slider_active_modules_page .ps-pro-inactive .checkbox').each(function () {
+					jQuery(this).removeAttr('checked');
+					jQuery(this).attr("disabled", true);
+				});
+				jQuery('#prime_slider_third_party_widget_page .ps-pro-inactive .checkbox').each(function () {
+					jQuery(this).removeAttr('checked');
+					jQuery(this).attr("disabled", true);
+				});
+				jQuery('#prime_slider_other_settings_page .ps-pro-inactive .checkbox').each(function () {
 					jQuery(this).removeAttr('checked');
 					jQuery(this).attr("disabled", true);
 				});
