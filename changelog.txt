@@ -1,3 +1,15 @@
+= 3.11.2 [29th November 2023] =
+
+### Fixed
+
+- Unnecessary file removed
+
+= 3.11.1 [29th November 2023] =
+
+### Fixed
+
+- Fatal error fixed
+
 = 3.11.0 [29th November 2023] =
 
 ### Updated

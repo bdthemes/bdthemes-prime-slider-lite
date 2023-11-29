@@ -97,9 +97,6 @@ class Prime_Slider_Loader {
 		$duplicator = prime_slider_option( 'duplicator', 'prime_slider_other_settings', 'off' );
 		$live_copy  = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
 
-
-		require_once BDTPS_CORE_PATH . 'base/prime-slider-base.php';
-
 		// Admin settings controller
 		require_once BDTPS_CORE_ADMIN_PATH . 'module-settings.php';
 		//Assets Manager
@@ -257,14 +254,14 @@ class Prime_Slider_Loader {
 	public function enqueue_preview_styles() {
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
-		wp_enqueue_style( 'prime-slider-preview', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-preview' . $direction_suffix . '.css', '', BDTPS_CORE_VER );
+		wp_enqueue_style( 'prime-slider-preview', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-preview' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
 	}
 
 
 	public function enqueue_editor_styles() {
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 
-		wp_enqueue_style( 'prime-slider-editor', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-editor' . $direction_suffix . '.css', '', BDTPS_CORE_VER );
+		wp_enqueue_style( 'prime-slider-editor', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-editor' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
 		wp_enqueue_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 	}
 
