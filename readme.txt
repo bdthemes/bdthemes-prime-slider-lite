@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: elementor, prime slider, modern slider, slider addons, elementor addons, dynamic slider, woocommerce slider, multiscroll
 Requires at least: 5.0.0
-Tested up to: 6.4
+Tested up to: 6.4.1
 Requires PHP: 7.4.0
-Stable tag: 3.12.0
+Stable tag: 3.11.0
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -195,9 +195,9 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.0 [14th November 2023] =
+= 3.11.0 [29th November 2023] =
 
-* New License System added
+* Updated: System improved
 
 = 3.10.6 [5th November 2023] =
 
