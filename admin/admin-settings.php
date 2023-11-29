@@ -740,7 +740,7 @@ class PrimeSlider_Admin_Settings {
 				style="max-width: 800px; margin-left: auto; margin-right: auto;">
 				<div class="bdt-width-1-1@m ps-comparision bdt-text-center">
 					<h1 class="bdt-text-bold">WHY GO WITH PRO?</h1>
-					<h2>Just Compare With Ultimate Post Kit Free Vs Pro</h2>
+					<h2>Just Compare With Prime Slider Free Vs Pro</h2>
 
 
 					<div>
@@ -758,8 +758,15 @@ class PrimeSlider_Admin_Settings {
 							<li class="">
 								<div class="bdt-grid">
 									<div class="bdt-width-expand@m"><span
-											bdt-tooltip="pos: top-left; title: Lite have 35+ Widgets but Pro have 100+ core widgets">Core
+											bdt-tooltip="pos: top-left; title: Free have 27+ Widgets but Pro have 21+ core widgets">Core
 											Widgets</span></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+								</div>
+							</li>
+							<li class="">
+								<div class="bdt-grid">
+									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd Party Widgets</span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
@@ -843,19 +850,11 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Video Link Meta</div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-								</div>
-							</li>
-							<li class="">
-								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Category Image</div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+									<div class="bdt-width-expand@m">Reveal Effects</div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
-
 						</ul>
 
 
@@ -925,7 +924,7 @@ class PrimeSlider_Admin_Settings {
 
 							<?php if ( true !== _is_ps_pro_activated() ) : ?>
 								<div class="ps-purchase-button">
-									<a href="https://primeslider.pro/#a851ca7" target="_blank">Purchase Now</a>
+									<a href="https://primeslider.pro/pricing/" target="_blank">Purchase Now</a>
 								</div>
 							<?php endif; ?>
 
