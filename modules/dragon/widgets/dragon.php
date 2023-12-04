@@ -1039,30 +1039,19 @@ class dragon extends Widget_Base {
 		<?php
 	}
 
-	public function render_button($content) {
+	public function render_button($content, $link_key) {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('slider-button', 'class', 'bdt-ps-dragon-button reveal-muted', true);
-
-		if ($content['button_link']['url']) {
-			$this->add_render_attribute('slider-button', 'href', $content['button_link']['url'], true);
-
-			if ($content['button_link']['is_external']) {
-				$this->add_render_attribute('slider-button', 'target', '_blank', true);
-			}
-
-			if ($content['button_link']['nofollow']) {
-				$this->add_render_attribute('slider-button', 'rel', 'nofollow', true);
-			}
-		} else {
-			$this->add_render_attribute('slider-button', 'href', '#', true);
+		if (!empty($content['button_link']['url'])) {
+			$this->add_link_attributes($link_key, $content['button_link']);
 		}
+		$this->add_render_attribute($link_key, 'class', 'bdt-ps-dragon-button reveal-muted', true);
 
 		?>
 
 		<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text'])) : ?>
 
-			<a <?php $this->print_render_attribute_string('slider-button'); ?>>
+			<a <?php $this->print_render_attribute_string($link_key); ?>>
 
 				<?php
 
@@ -1093,7 +1082,7 @@ class dragon extends Widget_Base {
 		<?php endif;
 	}
 
-	public function render_item_content($slide_content) {
+	public function render_item_content($slide_content, $link_key) {
         $settings = $this->get_settings_for_display();
 
 		$parallax_sub_title     = 'data-bdt-slideshow-parallax="x: 100,-100; opacity: 1,1,0"';
@@ -1149,7 +1138,7 @@ class dragon extends Widget_Base {
 				<?php endif; ?>
 
 				<div data-bdt-slideshow-parallax="x: 400,-400; opacity: 1,1,0">
-					<?php $this->render_button($slide_content); ?>
+					<?php $this->render_button($slide_content, $link_key); ?>
 				</div>
 					
 			</div>
@@ -1160,7 +1149,7 @@ class dragon extends Widget_Base {
     public function render_slides_loop() {
         $settings = $this->get_settings_for_display();
 
-        foreach ($settings['slides'] as $slide) : ?>
+        foreach ($settings['slides'] as $index => $slide) : ?>
 		<li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo esc_attr($slide['_id']); ?>">
 
 			<div class="bdt-ps-dragon-bg">
@@ -1176,7 +1165,7 @@ class dragon extends Widget_Base {
 				<div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
 			<?php endif; ?>
 			
-			<?php $this->render_item_content($slide); ?>
+			<?php $this->render_item_content($slide, 'link_'.$index); ?>
 
 		</li>
         <?php 

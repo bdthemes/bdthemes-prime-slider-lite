@@ -1765,7 +1765,7 @@ trait Global_Widget_Controls {
             [
                 'label' => esc_html__('Button Link', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::URL,
-                'default' => ['url' => ''],
+                'default' => ['url' => '#'],
                 'dynamic' => ['active' => true],
                 'condition' => [
                     'slide_button_text!' => '',

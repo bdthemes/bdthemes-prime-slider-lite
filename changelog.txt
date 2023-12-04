@@ -1,3 +1,9 @@
+= 3.11.3 [4th December 2023] =
+
+### Fixed
+
+- Link issue fixed in dragon widget
+
 = 3.11.2 [29th November 2023] =
 
 ### Fixed
