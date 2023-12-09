@@ -126,7 +126,24 @@ class Tango extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider-tango' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider-tango .bdt-item' => 'height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'slider_bottom_spacing',
+			[
+				'label' => esc_html__('Slider Bottom Spacing', 'bdthemes-prime-slider'),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 50,
+						'max' => 200,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider-tango' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
