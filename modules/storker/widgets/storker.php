@@ -1365,15 +1365,6 @@ class Storker extends Widget_Base {
             [
                 'label'          => __('Dots Horizontal Offset', 'bdthemes-prime-slider'),
                 'type'           => Controls_Manager::SLIDER,
-                'default'        => [
-                    'size' => 100,
-                ],
-                'tablet_default' => [
-                    'size' => 50,
-                ],
-                'mobile_default' => [
-                    'size' => 30,
-                ],
                 'range'          => [
                     'px' => [
                         'min' => -200,
@@ -1391,15 +1382,6 @@ class Storker extends Widget_Base {
             [
                 'label'          => __('Dots Vertical Offset', 'bdthemes-prime-slider'),
                 'type'           => Controls_Manager::SLIDER,
-                'default'        => [
-                    'size' => 100,
-                ],
-                'tablet_default' => [
-                    'size' => 50,
-                ],
-                'mobile_default' => [
-                    'size' => 30,
-                ],
                 'range'          => [
                     'px' => [
                         'min' => -200,
