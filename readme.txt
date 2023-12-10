@@ -194,6 +194,11 @@ https://youtu.be/XjFiW5rFrac
 
 
 == Changelog ==
+= 3.11.7 [working] =
+
+* Fixed: Tango widget design isuue fix & slider bottom spacing control add & modern fluid typography using CSS Clamp convert
+* Fixed: Storker widget design isuue fix & modern fluid typography using CSS Clamp convert
+* Fixed: Sniper widget design isuue fix & modern fluid typography using CSS Clamp convert
 
 = 3.11.6 [6th December 2023] =
 
