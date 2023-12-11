@@ -264,7 +264,6 @@ class Storker extends Widget_Base {
 			[
 				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
-				'default' => 'yes',		
 			]
 		);
 
