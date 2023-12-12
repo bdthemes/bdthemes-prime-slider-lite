@@ -1,6 +1,6 @@
 
 :root {
-	--thumb-item-height: 170px;
+	--thumb-item-height: clamp(8.75rem, 15vw, 10.625rem);
 } 
 
 .bdt-rubix-slider {
@@ -59,7 +59,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            margin: 20px;
+            margin: clamp(1.25rem, 4vw, 2.5rem);
             a {
                 font-size: 15px;
                 text-transform: uppercase;
@@ -111,10 +111,10 @@
         }
         .bdt-content {
             width: 100%;
-            padding: 20px;
+            padding: clamp(1.25rem, 3vw, 1.875rem);
         }
 		.bdt-title {
-			font-size: 20px;
+			font-size: clamp(1.25rem, 3vw, 1.625rem);
 			text-transform: capitalize;
 			line-height: 1.2;
             margin: 0;
@@ -133,7 +133,7 @@
             display: inline-flex;
             a {
                 color: #49525e;
-                font-size: 12px;
+                font-size: clamp(0.75rem, 1.5vw, 0.875rem);
                 font-weight: 600;
                 text-transform: uppercase;
                 transition: all .3s ease;
@@ -146,9 +146,8 @@
             }
         }
         .bdt-text {
-            font-size: 13px;
+            font-size: clamp(0.813rem, 1.5vw, 0.938rem);
             color: #6d6e72;
-            line-height: 1.6;
             margin-bottom: 20px;
             p {
                 margin: 0;
@@ -185,8 +184,8 @@
         left: 0;
         width: 100%;
         max-width: 100%;
-        // height: var(--thumb-item-height);
-        height: 140px;
+        height: var(--thumb-item-height);
+        // height: 140px;
         .bdt-item {
             padding: 30px;
             border-radius: 5px;
@@ -227,9 +226,8 @@
             }
 		}
 		.bdt-title {
-			font-size: 14px;
+			font-size: clamp(0.875rem, 1.5vw, 1rem);
 			text-transform: capitalize;
-			line-height: 1.2;
             margin: 0;
             padding-top: 10px;
 			a {
@@ -249,7 +247,7 @@
         .bdt-meta {
             display: flex;
             align-items: center;
-            font-size: 11px;
+            font-size: clamp(0.688rem, 1vw, 0.813rem);
             text-transform: uppercase;
             font-weight: 500;
             color: #5b6272;
@@ -276,7 +274,7 @@
 	}
 
     &.bdt-slide-style-1 {
-        padding-top: 140px;
+        padding-top: var(--thumb-item-height);
         .bdt-main-slider {
             margin-top: 30px;
         }
@@ -285,7 +283,7 @@
         }
     }
     &.bdt-slide-style-2 {
-        padding-bottom: 140px;
+        padding-bottom: var(--thumb-item-height);
         .bdt-main-slider {
             margin-bottom: 30px;
         }
@@ -299,86 +297,20 @@
 @media  (min-width:768px)  {
     .bdt-rubix-slider {
         .bdt-main-slider {
-            height: 400px;
-            .bdt-title {
-                font-size: 22px;
-                margin-bottom: 12px;
-            }
-            .bdt-text {
-                font-size: 14px;
-                margin-bottom: 30px;
-            }
-            .bdt-content {
-                padding: 30px;
-            }
-            .bdt-read-more {
-                margin: 30px;
-            }
+            height: clamp(21.875rem, 40vw, 28.125rem);
             .bdt-item {
                 display: flex;
             }
-
-            .bdt-img-wrap {
-                width: 50%;
-            }
+            .bdt-img-wrap,
             .bdt-content {
                 width: 50%;
             }
         }
         .bdt-thumb-slider {
             max-width: 80%;
-            height: var(--thumb-item-height);
-            .bdt-title {
-                font-size: 16px;
-            }
-            .bdt-meta {
-                font-size: 13px;
-            }
-        }
-        &.bdt-slide-style-1 {
-            padding-top: var(--thumb-item-height);
-        }
-        &.bdt-slide-style-2 {
-            padding-bottom: var(--thumb-item-height);
         }
     }
-    .bdt-ps-reverese--yes {
-        .bdt-rubix-slider {
-            .bdt-main-slider {
-                .bdt-item {
-                    flex-direction: row-reverse;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 1024px) { 
-    .bdt-rubix-slider {
-        .bdt-main-slider {
-            height: 550px;
-            .bdt-category {
-                margin-bottom: 30px;
-                a {
-                    font-size: 14px;
-                }
-            }
-            .bdt-title {
-                font-size: 32px;
-                margin-bottom: 30px;
-            }
-            .bdt-text {
-                font-size: 17px;
-            }
-            .bdt-content {
-                padding: 50px;
-            }
-            .bdt-read-more {
-                margin: 40px;
-            }
-        }
-        .bdt-thumb-slider {
-            max-width: 50%;
-        }
+    .bdt-ps-reverese--yes .bdt-rubix-slider .bdt-main-slider .bdt-item {
+        flex-direction: row-reverse;
     }
 }
