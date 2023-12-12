@@ -195,6 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.11.8 [working] =
+
+Updated: Rubix widget design improved & optimized
+
 = 3.11.7 [11th December 2023] =
 
 Added: Bottom spacing control added in tango widget
