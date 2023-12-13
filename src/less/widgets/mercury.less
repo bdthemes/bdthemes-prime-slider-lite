@@ -61,21 +61,17 @@
 
 .bdt-mercury-content-slider {
 	width: 100%;
-
 	.bdt-item {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-
 	.bdt-content {
-		padding: 20px;
+		padding: clamp(1.25rem, 4.5vw, 3.125rem);
 	}
-
 	.bdt-category {
 		display: inline-flex;
 		margin-bottom: clamp(15px, 3vw, 30px);
-
 		a {
 			font-size: clamp(10px, 2vw, 12px);
 			color: #8D99AE;
@@ -89,7 +85,6 @@
 				border-color: #D90429;
 			}
 		}
-
 		a+a {
 			margin-left: 5px;
 		}
@@ -100,7 +95,6 @@
 		margin-bottom: clamp(10px, 2vw, 25px);
 		text-transform: capitalize;
 		font-family: 'Montserrat', sans-serif;
-
 		a {
 			color: #2B2D42;
 			transition: all .3s ease;
@@ -116,16 +110,13 @@
 		font-size: clamp(12px, 2vw, 16px);
 		margin-bottom: clamp(15px, 3vw, 30px);
 		line-height: 1.5;
-
 		p {
 			margin: 0;
 		}
 	}
-
 	.bdt-meta .block-revealer__content {
 		display: inline-flex;
 	}
-
 	.bdt-meta {
 		font-size: clamp(12px, 2vw, 14px);
 		color: #8D99AE;
@@ -151,8 +142,6 @@
 	.bdt-date {
 		display: flex;
 		align-items: center;
-		// font-size: clamp(12px, 1.5vw, 14px);
-
 		span {
 			margin-left: 8px;
 		}
@@ -172,40 +161,13 @@
 }
 
 @media (min-width:768px) {
-	.bdt-reverse--yes {
-		.bdt-mercury-slider {
-			flex-direction: row-reverse;
-		}
+	.bdt-reverse--yes .bdt-mercury-slider {
+		flex-direction: row-reverse;
 	}
-
 	.bdt-mercury-slider {
 		display: flex;
-
 	}
-
-	.bdt-mercury-image-slider {
-		.bdt-item {
-			height: 400px;
-		}
-	}
-
-	.bdt-mercury-content-slider {
-		.bdt-content {
-			padding: 0 30px;
-		}
-	}
-}
-
-@media (min-width: 1024px) {
-	.bdt-mercury-image-slider {
-		.bdt-item {
-			height: 600px;
-		}
-	}
-
-	.bdt-mercury-content-slider {
-		.bdt-content {
-			padding: 0 50px;
-		}
+	.bdt-mercury-image-slider .bdt-item {
+		height: clamp(25rem, 45vw, 37.5rem);
 	}
 }
