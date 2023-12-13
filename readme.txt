@@ -198,6 +198,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.11.8 [working] =
 
 Updated: Rubix widget design improved & optimized
+Updated: Blog widget design improved & optimized
 
 = 3.11.7 [11th December 2023] =
 
