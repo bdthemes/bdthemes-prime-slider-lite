@@ -122,3 +122,27 @@ function prime_slider_fail_load() {
 	echo '<div class="error">' . $admin_message . '</div>';
 }
 
+/**
+ * Review Automation Integration
+ */
+
+if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
+	function rc_ps_lite_plugin() {
+
+		require_once BDTPS_CORE_INC_PATH . 'reviews-collector/start.php';
+
+		rc_dynamic_init( array(
+			'sdk_version'  => '1.0.0',
+			'plugin_name'  => 'Prime Slider',
+			'slug'         => 'prime_slider_options',
+			'menu'         => array(
+				'slug' => 'prime_slider_options',
+			),
+			'review_url'   => 'https://bdt.to/prime-slider-elementor-addons-review',
+			'plugin_title' => 'Yay! Great that you\'re using <strong>Prime Slider</strong>',
+			'plugin_msg'   => '<p>Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community.</p>',
+		) );
+
+	}
+	add_action( 'plugins_loaded', 'rc_ps_lite_plugin' );
+}
