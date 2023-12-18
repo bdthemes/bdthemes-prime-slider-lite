@@ -203,6 +203,7 @@ Updated: Blog widget design improved & optimized
 
 Updated: Mercury widget design improved & optimized
 Updated: Pacific widget design improved & optimized
+Updated: Coral & zinest skin design improved & optimized
 
 
 = 3.11.7 [11th December 2023] =
