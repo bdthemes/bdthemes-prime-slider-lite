@@ -5,7 +5,7 @@ Tags: elementor, prime slider, modern slider, slider addons, elementor addons, d
 Requires at least: 5.0.0
 Tested up to: 6.4.2
 Requires PHP: 7.4.0
-Stable tag: 3.11.7
+Stable tag: 3.11.8
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -195,16 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.8 [working] =
+= 3.11.8 [20th December 2023] =
 
-Updated: Rubix widget design improved & optimized
-
-Updated: Blog widget design improved & optimized
-
-Updated: Mercury widget design improved & optimized
-Updated: Pacific widget design improved & optimized
-Updated: Coral & zinest skin design improved & optimized
-
+* Fixed: Title & button inline issue fixed in blog widget
+* Updated: Rubix, blog, mercury, pacific widgets design improved & optimized
 
 = 3.11.7 [11th December 2023] =
 
