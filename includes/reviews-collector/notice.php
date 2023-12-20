@@ -17,6 +17,21 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		public $params;
 		public $review_url;
 
+		private static $instance = null;
+
+		/**
+		 * Get Instance
+		 * 
+		 * @since 0.0.0
+		 */
+		public static function get_instance( $params ) {
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self( $params );
+			}
+
+			return self::$instance;
+		}
+
 		/**
 		 * Insights SDK Version
 		 * param array $params
@@ -245,7 +260,7 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 if ( ! function_exists( 'rc_sdk_automate' ) ) {
 	function rc_sdk_automate( $params ) {
 		if ( class_exists( 'RC_Reviews_Collector' ) ) {
-			$RC_reviews_Collector = new RC_Reviews_Collector( $params );
+			RC_Reviews_Collector::get_instance( $params );
 		}
 	}
 }
