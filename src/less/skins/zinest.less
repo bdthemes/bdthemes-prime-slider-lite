@@ -177,6 +177,8 @@
     .bdt-navigation-arrows {
         bottom: 0px;
         z-index: 1;
+        display: flex;
+        flex-direction: row;
     }
     .bdt-prime-slider-next {
         &:hover svg {
@@ -192,8 +194,8 @@
     .bdt-prime-slider-next,
     .bdt-prime-slider-previous {
         padding: 0;
-        height: clamp(3.438rem, 5vw, 3.75rem);
-        width: clamp(3.438rem, 5vw, 3.75rem);
+        height: 50px;
+        width: 50px;
         display: inline-flex;
         align-items: center;
         background: #fff;
@@ -230,6 +232,14 @@
         }
         .bdt-ps-blog-featured {
             display: inherit;
+        }
+        .bdt-navigation-arrows {
+            flex-direction: column;
+        }
+        .bdt-prime-slider-next,
+        .bdt-prime-slider-previous {
+            height: 60px;
+            width: 60px;
         }
     }
 }
