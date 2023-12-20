@@ -195,12 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.9 [working] =
-* Updated: Folio Skin design improved & optimized
-
 = 3.11.8 [20th December 2023] =
 
 * Fixed: Title & button inline issue fixed in blog widget
+* Fixed: Separator conflict issue fixed in mercury widget
 * Updated: Rubix, blog, mercury, pacific widgets design improved & optimized
 
 = 3.11.7 [11th December 2023] =
