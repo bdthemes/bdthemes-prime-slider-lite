@@ -197,6 +197,10 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.11.8 [20th December 2023] =
 
+* Updated: Pagepiling widget design improved & optimized
+
+= 3.11.8 [20th December 2023] =
+
 * Fixed: Title & button inline issue fixed in blog widget
 * Fixed: Separator conflict issue fixed in mercury widget
 * Updated: Rubix, blog, mercury, pacific widgets design improved & optimized
