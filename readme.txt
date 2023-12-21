@@ -5,7 +5,7 @@ Tags: elementor, prime slider, modern slider, slider addons, elementor addons, d
 Requires at least: 5.0.0
 Tested up to: 6.4.2
 Requires PHP: 7.4.0
-Stable tag: 3.11.8
+Stable tag: 3.11.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -194,6 +194,10 @@ https://youtu.be/XjFiW5rFrac
 
 
 == Changelog ==
+
+= 3.11.9 [21th December 2023] =
+
+* Fixed: System improved
 
 = 3.11.8 [21th December 2023] =
 
