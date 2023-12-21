@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * License: GPL3
  * Elementor requires at least: 3.0.0
- * Elementor tested up to: 3.18.2
+ * Elementor tested up to: 3.18.3
  *
  */
 

@@ -9,7 +9,7 @@ Stable tag: 3.11.8
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
-Elementor tested up to: 3.18.2
+Elementor tested up to: 3.18.3
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -195,15 +195,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.8 [20th December 2023] =
-
-* Updated: Pagepiling widget design improved & optimized
-
-= 3.11.8 [20th December 2023] =
+= 3.11.8 [21th December 2023] =
 
 * Fixed: Title & button inline issue fixed in blog widget
 * Fixed: Separator conflict issue fixed in mercury widget
-* Updated: Rubix, blog, mercury, pacific widgets design improved & optimized
+* Updated: Rubix, blog, mercury, pacific & pagepiling widgets design improved & optimized
 
 = 3.11.7 [11th December 2023] =
 
