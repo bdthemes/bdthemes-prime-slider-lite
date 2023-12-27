@@ -12,19 +12,19 @@
         background-size: cover;
     }
     .bdt-prime-slider-content {
-        margin-left: 30px;
+        margin-left: clamp(1.875rem, 5vw, 3.125rem);;
         margin-right: 30px;
         z-index: 1;
         width: 100%;
         .bdt-title-tag {
             color: #fff;
-            font-size: 24px;
+            font-size: clamp(1.5rem, 4.5vw, 3rem);
             margin: 0;
             display: inline-block;
         }
         .bdt-sub-title .bdt-sub-title-inner {
             color: #fff;
-            font-size: 18px;
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
             margin: 0;
             margin-bottom: 10px;
             display: inline-block;
@@ -33,18 +33,18 @@
 
     .bdt-prime-slider-social-icon {
         position: absolute;
-        bottom: 30px;
-        right: 30px;
+        bottom: clamp(1.875rem, 5vw, 3.125rem);
+        right:  clamp(1.875rem, 5vw, 3.125rem);
         text-align: right;
         h3 {
-            font-size: 15px;
+            font-size: clamp(0.938rem, 3vw, 1.125rem);
             color: #fff;
             margin: 0;
             transform: translateY(25px);
             transition: all .3s ease;
         }
         a {
-            font-size: 14px;
+            font-size: clamp(0.875rem, 1vw, 0.938rem);
             font-weight: 600;
             color: #fff;
             margin-left: 10px;
@@ -91,31 +91,17 @@
         }
     }
 }
-
-// .bdt-text-stroke--yes {
-//     .bdt-prime-slider {
-//         .bdt-prime-slider-content {
-//             .bdt-main-title {
-//                 .frist-word, 
-//                 .bdt-title-tag {
-//                     color: transparent !important;
-//                     -webkit-text-stroke: 1px #fff;
-//                 }
-//             }
-//         }
-//     }
-// }
 /*===========================================================================
     Prime Slider Navigation Css
 ===========================================================================*/
 .bdt-prime-slider-mount {
     .bdt-navigation-arrows {
         position: absolute;
-        bottom: 30px;
-        left: 30px;
+        bottom: clamp(1.875rem, 5vw, 3.125rem);
+        left: clamp(1.875rem, 5vw, 3.125rem);
         .bdt-prime-slider-next, 
         .bdt-prime-slider-previous {
-            font-size: 9px;
+            font-size: clamp(0.563rem, 1vw, 0.75rem);
             color: #fff;
             position: relative;
             transition: all .3s ease;
@@ -165,7 +151,7 @@
     }
 
     .bdt-ps-dotnav {
-        bottom: 30px;
+        bottom: clamp(1.875rem, 5vw, 3.125rem);
         left: ~'calc(50% + 30px)';
         margin: 0;
         position: absolute;
@@ -177,7 +163,7 @@
             transform: translateY(17px);
             transition: all .3s;
             a {
-                font-size: 16px;
+                font-size: clamp(1rem, 2vw, 1.125rem);
                 color: #fff;
             }
             &.bdt-active {
@@ -191,12 +177,12 @@
         }
         span {
             color: #fff;
-            font-size: 16px;
+            font-size: clamp(1rem, 2vw, 1.125rem);
             &:before {
                 content: '';
                 position: absolute;
                 height: 2px;
-                width: 20px;
+                width: clamp(1.25rem, 4vw, 2.5rem);
                 left: -30px;
                 background: #f5f5f5;
                 top: 50%;
@@ -210,31 +196,9 @@
 ===========================================================================*/
 @media (min-width: 640px) {
     .bdt-prime-slider-mount {
-        .bdt-prime-slider-content {
-            margin-left: 50px;
-            .bdt-title-tag {
-                font-size: 48px;
-            }
-            .bdt-sub-title .bdt-sub-title-inner {
-                font-size: 24px;
-            }
-        }
-        .bdt-prime-slider-social-icon {
-            bottom: 50px;
-            right: 50px;
-            h3 {
-                font-size: 18px;
-            }
-            a {
-                font-size: 14px;
-            }
-        }
         .bdt-navigation-arrows {
-            bottom: 50px;
-            left: 50px;
             .bdt-prime-slider-next, 
             .bdt-prime-slider-previous {
-                font-size: 12px;
                 &:before {
                     height: 2px;
                 }
@@ -246,18 +210,12 @@
             }
         }
         .bdt-ps-dotnav {
-            bottom: 50px;
             left: ~'calc(50% + 45px)';
             li {
                 left: -100px;
-                a {
-                    font-size: 18px;
-                }
             }
             span {
-                font-size: 18px;
                 &:before {
-                    width: 40px;
                     left: -60px;
                 }
             }

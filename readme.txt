@@ -195,6 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.11.9 [working] =
+
+* Updated: Mount widget design improved & optimized
+
 = 3.11.9 [21th December 2023] =
 
 * Fixed: System improved
