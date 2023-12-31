@@ -1,11 +1,11 @@
 === Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Media Slider, Drag Drop Slider, Video Slider, Product Slider, Ecommerce Slider) ===
-Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik, freemius
+Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: elementor, prime slider, modern slider, slider addons, elementor addons, dynamic slider, woocommerce slider, multiscroll
 Requires at least: 5.0.0
 Tested up to: 6.4.2
 Requires PHP: 7.4.0
-Stable tag: 3.11.9
+Stable tag: 3.11.10
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -195,7 +195,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.9 [working] =
+= 3.11.10 [31th December 2023] =
 
 * Updated: Mount widget design improved & optimized
 

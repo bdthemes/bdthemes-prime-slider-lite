@@ -194,7 +194,7 @@ class ModuleService {
 					'widget_type'  => 'free',
 					'content_type' => 'static',
 					'demo_url'     => 'https://PrimeSlider.pro/demo/general/',
-					'video_url'    => 'https://youtu.be/RuZsr2W-EZc?si=GwdRk4niBDNblnsj',
+					'video_url'    => 'https://youtu.be/RuZsr2W-EZc?si=5t1Idlu19Z0cekly',
 				],
 
 				[ 
