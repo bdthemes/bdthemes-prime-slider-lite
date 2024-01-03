@@ -25,7 +25,7 @@ if (!class_exists('BdThemes_Duplicator')) :
         public function bdt_duplicate_as_draft() {
 
             if (!current_user_can('edit_posts')) {
-                wp_die('You do not have permission to duplicate it; please go back!');
+                wp_die('You don\'t have permission to duplicate it; please go back!');
             }
 
             if (!(isset($_GET['post']) || isset($_POST['post']) || (isset($_REQUEST['action']) && 'bdt_duplicate_as_draft' == $_REQUEST['action']))) {
@@ -58,7 +58,7 @@ if (!class_exists('BdThemes_Duplicator')) :
             } else if (current_user_can('edit_posts') && $post->post_author == $current_user_id) {
                 $this->duplicate_edit_post($post_id);
             } else {
-                wp_die('You do not have permission to duplicate it; please go back!');
+                wp_die('You don\'t have permission to duplicate it; please go back!');
             }
         }
 
