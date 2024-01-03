@@ -195,6 +195,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.11.11 [w.i.p] =
+
+* Added: Material widget added (Pro)
+* Fixed: Duplicator issue fixed
+
 = 3.11.10 [31th December 2023] =
 
 * Updated: Mount widget design improved & optimized

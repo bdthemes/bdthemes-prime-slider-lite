@@ -289,7 +289,7 @@ trait Global_Widget_Controls {
 		$this->start_controls_section(
 			'section_reveal_effects',
 			[
-				'label'     => esc_html__('Reveal Effects', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'     => esc_html__('Reveal Effects', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -1076,7 +1076,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'swiper_effect',
 			[
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'slide',
 				'options' => [
@@ -1201,7 +1201,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
             'enable_height',
             [
-                'label'   => esc_html__('Enable Viewport Height', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label'   => esc_html__('Enable Viewport Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
 				'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -1511,7 +1511,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'human_diff_time',
             [
-                'label'     => esc_html__('Human Different Time', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Human Different Time', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SWITCHER,
                 'condition' => [
                     'show_date' => 'yes'
@@ -1522,7 +1522,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'human_diff_time_short',
             [
-                'label'       => esc_html__('Time Short Format', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'       => esc_html__('Time Short Format', 'bdthemes-prime-slider'),
                 'description' => esc_html__('This will work for Hours, Minute and Seconds', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::SWITCHER,
                 'condition'   => [
@@ -1535,7 +1535,7 @@ trait Global_Widget_Controls {
         $this->add_control(
             'show_time',
             [
-                'label'     => esc_html__('Show Time', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Show Time', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SWITCHER,
                 'condition' => [
                     'human_diff_time' => '',
@@ -1974,7 +1974,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'rewind',
 			[
-				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -1986,7 +1986,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'mousewheel',
 			[
-				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);
