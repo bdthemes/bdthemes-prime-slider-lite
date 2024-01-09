@@ -12,13 +12,9 @@ if ( ! function_exists( 'rc_dynamic_init' ) ) {
 
 		if ( is_admin() ) :
 
-			$menu_slug = isset( $params['menu']['slug'] ) ? $params['menu']['slug'] : false;
-
-			if ( ! $menu_slug ) {
-				return;
-			}
-
+			$menu_slug    = isset( $params['menu']['slug'] ) ? $params['menu']['slug'] : false;
 			$current_page = isset( $_GET['page'] ) ? $_GET['page'] : false;
+
 			/**
 			 * Attach SDK to current page
 			 */

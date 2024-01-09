@@ -129,11 +129,12 @@ function prime_slider_fail_load() {
 if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 	function rc_ps_lite_plugin() {
 
-		require_once BDTPS_CORE_INC_PATH . 'reviews-collector/start.php';
+		require_once BDTPS_CORE_INC_PATH . 'feedback-hub/start.php';
 
 		rc_dynamic_init( array(
 			'sdk_version'  => '1.0.0',
 			'plugin_name'  => 'Prime Slider',
+			'plugin_icon'  => BDTPS_CORE_ASSETS_URL . 'images/logo.png',
 			'slug'         => 'prime_slider_options',
 			'menu'         => array(
 				'slug' => 'prime_slider_options',
@@ -144,5 +145,5 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 		) );
 
 	}
-	add_action( 'plugins_loaded', 'rc_ps_lite_plugin' );
+	add_action( 'admin_init', 'rc_ps_lite_plugin' );
 }
