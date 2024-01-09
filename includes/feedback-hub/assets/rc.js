@@ -1,6 +1,6 @@
 (function ($) {
     // console.log('rc.js loaded');
-    $(document).on('click', '.rc-button-allow, .rc-button-skip', function () {
+    $(document).on('click', '.rc-button-allow, .rc-button-skip, .rc-button-disallow', function () {
         let nonce = $(this).data('nonce'),
             rc_name = $(this).data('rc_name'),
             date_name = $(this).data('date_name'),
@@ -37,7 +37,7 @@
 
     $(document).on('click', '.rc-global-notice .notice-dismiss', function () {
         let rc_name = $(this).closest('.rc-global-notice').find("[name='rc_name']").val(),
-            nonce = $(this).closest('.rc-global-notice').find("[name='nonce']").val();
+                nonce = $(this).closest('.rc-global-notice').find("[name='nonce']").val();
 
         $.ajax({
             url: ajaxurl,
