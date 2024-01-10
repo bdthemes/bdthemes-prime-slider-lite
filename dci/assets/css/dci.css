@@ -1,0 +1,134 @@
+	.dci-notice {
+		position: relative;
+		height: 100vh;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 0px;
+	}
+
+	.dci-notice-wrapper {
+		position: relative;
+		background: #fff;
+		width: 100%;
+		max-width: 400px;
+		margin: auto;
+		padding: 32px;
+		border: 1.5px solid #ddd;
+		border-radius: 5px;
+	}
+
+	.dci-notice-wrapper::before {
+		content: '';
+		background: transparent;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: -1;
+		left: -40px;
+		padding: 40px;
+		top: -40px;
+		border: 1.5px solid #cdcccc;
+		border-radius: 5px;
+	}
+
+	.dci-header {
+		text-align: justify;
+		margin-bottom: 38px;
+	}
+
+	.dci-title {
+		text-align: center;
+	}
+
+
+	.dci-actions {
+		border: 1px solid #ddd;
+		padding: 16px 10px;
+		border-left: unset;
+		border-right: unset;
+	}
+
+	.dci-actions form {
+		display: flex;
+		justify-content: space-between;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.dci-actions button {
+		padding: 6px 16px !important;
+	}
+
+	.dci-permission {
+		padding: 32px;
+		text-align: center;
+	}
+
+	.dci-permission p {
+		margin: 0px;
+		font-weight: bold;
+		font-size: 13px;
+		color: #2271b1;
+	}
+
+	.dci-permission-item {
+		display: flex;
+		align-items: center;
+		column-gap: 16px;
+	}
+
+	.dci-data-list ul {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.dci-data-list li {
+		margin-bottom: 22px;
+	}
+
+	.dci-data-list li:last-child {
+		margin-bottom: 0px;
+	}
+
+	.dci-data-list .dci-desc h3 {
+		margin: 0px;
+		margin-bottom: 5px;
+		font-size: 1.2em;
+	}
+
+	.dci-data-list .dci-desc p {
+		margin: 0px;
+		font-size: 1em;
+	}
+
+	.dci-data-list .dashicons {
+		font-size: 32px;
+		height: 32px;
+		width: 32px;
+	}
+
+	.dci-button-danger {
+		background: #ea5353 !important;
+		color: #fff !important;
+		border-color: #ea5353 !important;
+	}
+
+	.dci-button-danger:hover {
+		opacity: 0.8;
+	}
+
+	.dci-global-notice {
+		z-index: 99;
+	}
+
+	.dci-global-notice .dci-global-header {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	.dci-global-notice .dci-global-header img{
+		height: 30px;
+		width: auto;
+	}

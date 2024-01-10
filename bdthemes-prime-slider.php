@@ -147,3 +147,33 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 	}
 	add_action( 'admin_init', 'rc_ps_lite_plugin' );
 }
+
+
+/**
+ * SDK Integration
+ */
+
+if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
+	function dci_plugin_prime_slider() {
+
+		// Include DCI SDK.
+		require_once dirname( __FILE__ ) . '/dci/start.php';
+
+		dci_dynamic_init( array(
+			'sdk_version'  => '1.1.0',
+			'product_id'   => 2,
+			'plugin_name'  => 'Prime Slider', // make simple, must not empty
+			'plugin_title' => 'Prime Slider ( Never miss an Important Update )', // You can describe your plugin title here
+			'plugin_icon'  => BDTPS_CORE_ASSETS_URL . 'images/logo.png',
+			'api_endpoint' => 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
+			'menu'         => array(
+				'slug' => 'prime_slider_options',
+			),
+			'public_key'   => 'pk_DktcEizxpygp4RjRkhYtVrtseZPaHrtr',
+			'is_premium'   => false,
+			'plugin_msg'   => '<p>Would you allow us to collect non-sensitive data to improve your experiences with our product?</p> <p>We respect your privacy. Any data collected by your approval is non-sensitive and does not include personal/sensitive information.</p>',
+		) );
+
+	}
+	add_action( 'admin_init', 'dci_plugin_prime_slider' );
+}
