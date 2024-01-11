@@ -5,7 +5,7 @@ Tags: elementor, prime slider, modern slider, slider addons, elementor addons, d
 Requires at least: 5.0.0
 Tested up to: 6.4.2
 Requires PHP: 7.4.0
-Stable tag: 3.11.11
+Stable tag: 3.11.12
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -106,6 +106,7 @@ More free widgets & extensions are coming soon...
 0. **[Knily](https://PrimeSlider.pro/demo/knily/)** - Knily slider is a full-width slider widget, packed with a wide base display and floating thumb tabs. This slider can occupy your hero section to show your most treasured post with style. See the demo
 0. **[Marble](https://PrimeSlider.pro/demo/marble/)** - Marble base slider is a unique and tricky slider widget that presents your posts resembling a horizontal timeline. The whole slider can be customized to perfectly fit as a featured section on your site. See the demo
 0. **[Monster](https://PrimeSlider.pro/demo/monster/)** - The Monster slider comes with a coverflow carousel layout by default. It has a minimalistic content delivery with a full-width section coverage. Best for featuring products or posts. See the demo
+0. **[Material](https://PrimeSlider.pro/demo/material/)** - The material slider is a mirror-style slider widget that's best for showcasing stylish blogs, posts, or media content to captivate your visitors at the first glance.
 0. **[Paranoia](https://PrimeSlider.pro/demo/paranoia/)** - Up for an eccentric post layout for your blogging website? The Paranoia slider widget is a totally unique concept for blogs with a fun and interesting post layout animation to boost your user experience. See the demo
 0. **[Pieces](https://PrimeSlider.pro/demo/pieces/)** - Ready for the futuristic slider for your blog site? Grab Pieces slider and bend the rules of graphics and animation into a fun and super amazing slider interface.
 0. **[Prism](https://PrimeSlider.pro/demo/prism/)** - The Prism slider presents a dignified post layout having a pristine background graphic and centered item image to drag the focus of your visitors on your product into your WordPress website. Make your website go viral with the awesome Prism slider widget for WordPress.
@@ -194,6 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 
 == Changelog ==
+
+= 3.11.12 [11th January 2024] =
+
+* Updated: System improved
 
 = 3.11.11 [4th January 2024] =
 
