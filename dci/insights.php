@@ -369,9 +369,11 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 * @return void
 		 */
 		public function display_global_notice() {
-			$admin_url = add_query_arg( array(
-				'page' => 'dci-app',
-			), admin_url( 'admin.php' ) );
+			$menu_slug = isset($this->params['menu_slug']) ? $this->params['menu_slug'] : 'javascript:void(0);';
+
+			$admin_url = add_query_arg(array(
+				'page' => $menu_slug,
+			), admin_url('admin.php'));
 
 			$plugin_title = isset( $this->params['plugin_title'] ) ? $this->params['plugin_title'] : '';
 			$plugin_msg   = isset( $this->params['plugin_msg'] ) ? $this->params['plugin_msg'] : '';
@@ -381,9 +383,9 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 					<div class="dci-global-notice dci-notice-data notice notice-success is-dismissible">
 						<div class="dci-global-header">
 							<?php if ( ! empty( $plugin_icon ) ) : ?>
-																	<div>
-																		<img src="<?php echo esc_url( $plugin_icon ); ?>" alt="icon">
-																	</div>
+							<div>
+								<img src="<?php echo esc_url( $plugin_icon ); ?>" alt="icon">
+							</div>
 							<?php endif; ?>
 							<h3>
 								<?php printf( $plugin_title ); ?>
@@ -391,7 +393,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 						</div>
 						<?php printf( $plugin_msg ); ?>
 						<p>
-							What we <a href="<?php echo esc_url( $admin_url ); ?>">collect</a>?
+							<a href="<?php echo esc_url($admin_url); ?>">Learn More</a>?
 						</p>
 						<input type="hidden" name="dci_name" value="<?php echo esc_html( $this->dci_name ); ?>">
 						<input type="hidden" name="dci_date_name" value="<?php echo esc_html( $this->dci_date_name ); ?>">
@@ -399,13 +401,13 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 						<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'dci_sdk' ) ); ?>">
 						<p>
 							<button name="dci_allow_status" value="yes" class="button button-primary dci-button-allow">
-								Allow
+								Yes, I'd Love To Contribute
 							</button>
 							<button name="dci_allow_status" value="skip" class="button dci-button-skip button-secondary">
-								I'll Skip For Now
+								Skip For Now
 							</button>
 							<button name="dci_allow_status" value="disallow" class="button dci-button-disallow dci-button-danger">
-								Don't Allow
+								No Thanks
 							</button>
 						</p>
 					</div>
