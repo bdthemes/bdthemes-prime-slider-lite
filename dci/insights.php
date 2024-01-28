@@ -369,37 +369,38 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 * @return void
 		 */
 		public function display_global_notice() {
-			$menu_slug = isset($this->params['menu_slug']) ? $this->params['menu_slug'] : 'javascript:void(0);';
+			$menu_slug = isset( $this->params['menu_slug'] ) ? $this->params['menu_slug'] : 'javascript:void(0);';
 
-			$admin_url = add_query_arg(array(
+			$admin_url = add_query_arg( array(
 				'page' => $menu_slug,
-			), admin_url('admin.php'));
+			), admin_url( 'admin.php' ) );
 
 			$plugin_title = isset( $this->params['plugin_title'] ) ? $this->params['plugin_title'] : '';
 			$plugin_msg   = isset( $this->params['plugin_msg'] ) ? $this->params['plugin_msg'] : '';
 			$plugin_icon  = isset( $this->params['plugin_icon'] ) ? $this->params['plugin_icon'] : '';
 
 			?>
-					<div class="dci-global-notice dci-notice-data notice notice-success is-dismissible">
-						<div class="dci-global-header">
-							<?php if ( ! empty( $plugin_icon ) ) : ?>
-							<div>
+			<div class="dci-global-notice dci-notice-data notice notice-success is-dismissible">
+				<div class="dci-global-header bdt-dci-notice-global-header">
+					<?php if ( ! empty( $plugin_icon ) ) : ?>
+							<div class="bdt-dci-notice-logo">
 								<img src="<?php echo esc_url( $plugin_icon ); ?>" alt="icon">
 							</div>
-							<?php endif; ?>
-							<h3>
-								<?php printf( $plugin_title ); ?>
-							</h3>
-						</div>
+					<?php endif; ?>
+					<div class="bdt-dci-notice-content">
+						<h3>
+							<?php printf( $plugin_title ); ?>
+						</h3>
 						<?php printf( $plugin_msg ); ?>
 						<p>
-							<a href="<?php echo esc_url($admin_url); ?>">Learn More</a>?
+							<a href="<?php echo esc_url( $admin_url ); ?>">Learn More</a>?
 						</p>
 						<input type="hidden" name="dci_name" value="<?php echo esc_html( $this->dci_name ); ?>">
 						<input type="hidden" name="dci_date_name" value="<?php echo esc_html( $this->dci_date_name ); ?>">
 						<input type="hidden" name="dci_allow_name" value="<?php echo esc_html( $this->dci_allow_name ); ?>">
 						<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'dci_sdk' ) ); ?>">
-						<p>
+
+						<div class="bdt-dci-notice-button-wrap">
 							<button name="dci_allow_status" value="yes" class="button button-primary dci-button-allow">
 								Yes, I'd Love To Contribute
 							</button>
@@ -409,9 +410,11 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 							<button name="dci_allow_status" value="disallow" class="button dci-button-disallow dci-button-danger">
 								No Thanks
 							</button>
-						</p>
+						</div>
 					</div>
-					<?php
+				</div>
+			</div>
+			<?php
 		}
 
 		/**
