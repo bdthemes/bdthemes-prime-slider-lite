@@ -115,49 +115,53 @@
 
 .dci-global-notice .dci-button-allow {
 	background-color: transparent;
-	background-image: linear-gradient(313deg, #08AEEC 0%, #20E2AD 100%);
+	--primaryColor: #08AEEC;
+	--secondaryColor: #20E2AD;
+	color: white;
+	background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
+	transition: --primaryColor 1s, --secondaryColor 1s;
 	border: none;
 }
-
 .dci-global-notice .dci-button-allow:hover {
-	background-image: linear-gradient(120deg, #08AEEC 0%, #20E2AD 100%);
+	--primaryColor: #20E2AD;;
+	--secondaryColor: #08AEEC;
 }
 
-.dci-global-notice .dci-button-skip {
-	border: 0;
-	background-color: #e0f5ff;
+.dci-global-notice .dci-button-skip{
+    border: 0;
+    background-color: #e0f5ff;
 }
 
 .dci-global-notice .dci-button-skip:hover {
-	background-color: #d9f1fd;
+    background-color: #d9f1fd;
 }
 
 .dci-global-notice .dci-button-disallow {
-	border: 0;
-	color: #3e3d41;
-	background-color: #eff0f4;
+    border: 0;
+    color: #3e3d41;
+    background-color: #eff0f4;
 }
-
 .dci-global-notice .dci-button-disallow:hover {
-	background-color: #e7e7e9;
+    background-color: #e7e7e9;
 }
-
 .dci-global-notice .bdt-dci-notice-button-wrap button {
-	padding: 4px 16px !important;
+	padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .dci-global-notice {
-	z-index: 99;
-	border-color: #e2e2e5;
-	box-shadow: none;
-	border-left-color: #46d8bb;
+    z-index: 99;
+    border-color: #e2e2e5;
+    box-shadow: none;
+    border-left-color: #46d8bb;
 }
 
 .dci-global-notice .dci-global-header {
-	display: flex;
-	align-items: flex-start;
-	gap: 15px;
-	padding: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 25px;
 }
 
 .dci-global-notice .dci-global-header img {
@@ -167,30 +171,29 @@
 }
 
 .bdt-dci-notice-content h3 {
-	margin: 0 0 10px;
-	font-size: 20px;
+    margin: 0 0 10px;
+    font-size: 20px;
 }
-
 .bdt-dci-notice-content p {
-	margin: 0;
-	color: #5f6169;
-	max-width: 850px;
+    margin: 0;
+    color: #5f6169;
+    max-width: 750px;
 }
 
 .bdt-dci-notice-content p a {
-	color: #2970ee;
-	font-weight: 500;
-	text-decoration: none;
+    color: #2970ee;
+    font-weight: 500;
+    text-decoration: none;
 }
 
 .bdt-dci-notice-content p a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .bdt-dci-notice-button-wrap {
-	margin-top: 14px;
+    margin-top: 14px;
 }
 
 button.notice-dismiss {
-	padding: 25px;
+    padding:25px;
 }
