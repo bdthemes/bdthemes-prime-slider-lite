@@ -3,13 +3,13 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: elementor, prime slider, modern slider, slider addons, elementor addons, dynamic slider, woocommerce slider, multiscroll
 Requires at least: 5.0.0
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 Requires PHP: 7.4.0
-Stable tag: 3.11.12
+Stable tag: 3.11.13
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
-Elementor tested up to: 3.18.3
+Elementor tested up to: 3.19.0
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -195,6 +195,10 @@ https://youtu.be/XjFiW5rFrac
 
 
 == Changelog ==
+
+= 3.11.13 [1st February 2024] =
+
+* Fixed: Link issue fixed in isolate widget (Thanks to Saul Lones)
 
 = 3.11.12 [11th January 2024] =
 
