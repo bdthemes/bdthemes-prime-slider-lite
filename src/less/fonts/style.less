@@ -3,9 +3,10 @@
 @font-face {
   font-family: '@{icomoon-font-family}';
   src:
-    url('@{icomoon-font-path}/@{icomoon-font-family}.ttf?h7rkk5') format('truetype'),
-    url('@{icomoon-font-path}/@{icomoon-font-family}.woff?h7rkk5') format('woff'),
-    url('@{icomoon-font-path}/@{icomoon-font-family}.svg?h7rkk5#@{icomoon-font-family}') format('svg');
+    url('@{icomoon-font-path}/@{icomoon-font-family}.woff2?cd32oj') format('woff2'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.ttf?cd32oj') format('truetype'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.woff?cd32oj') format('woff'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.svg?cd32oj#@{icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -26,6 +27,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ps-wi-reveal-effects {
+  &:before {
+    content: @ps-wi-reveal-effects; 
+  }
+}
 .ps-wi-arrow-right {
   &:before {
     content: @ps-wi-arrow-right; 
@@ -99,6 +105,16 @@
 .ps-wi-duplicator {
   &:before {
     content: @ps-wi-duplicator; 
+  }
+}
+.ps-wi-tutorial {
+  &:before {
+    content: @ps-wi-tutorial; 
+  }
+}
+.ps-wi-preview {
+  &:before {
+    content: @ps-wi-preview; 
   }
 }
 .ps-wi-arrow-left-0 {
@@ -411,9 +427,9 @@
     content: @ps-wi-arrow-right-square-1; 
   }
 }
-.ps-wi-omatic {
+.ps-wi-material {
   &:before {
-    content: @ps-wi-omatic; 
+    content: @ps-wi-material; 
   }
 }
 .ps-wi-titanic {
@@ -484,11 +500,6 @@
 .ps-wi-elysium {
   &:before {
     content: @ps-wi-elysium; 
-  }
-}
-.ps-wi-material {
-  &:before {
-    content: @ps-wi-pacific; 
   }
 }
 .ps-wi-pieces {
@@ -734,16 +745,6 @@
 .ps-wi-general_skin_slide {
   &:before {
     content: @ps-wi-general_skin_slide; 
-  }
-}
-.ps-wi-tutorial {
-  &:before {
-    content: @ps-wi-tutorial; 
-  }
-}
-.ps-wi-preview {
-  &:before {
-    content: @ps-wi-preview; 
   }
 }
 
