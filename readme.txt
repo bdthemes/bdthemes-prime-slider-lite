@@ -196,7 +196,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.13 [1st February 2024] =
+= 3.11.13 [4th February 2024] =
 
 * Fixed: Link issue fixed in isolate widget (Thanks to Saul Lones)
 
