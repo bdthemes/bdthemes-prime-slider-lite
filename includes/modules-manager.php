@@ -15,7 +15,7 @@ final class Manager {
 
         ModuleService::get_widget_settings(function ($settings) {
             $core_widgets        = $settings['settings_fields']['prime_slider_active_modules'];
-            //$extensions          = $settings['settings_fields']['prime_slider_elementor_extend'];
+            // $extensions          = $settings['settings_fields']['prime_slider_elementor_extend'];
             $third_party_widgets = $settings['settings_fields']['prime_slider_third_party_widget'];
 
             /**
@@ -27,9 +27,9 @@ final class Manager {
                 }
             }
 
-            // /**
-            //  * Extension
-            //  */
+            /**
+             * Extension
+             */
             // foreach ( $extensions as $extension ) {
             //     if ( prime_slider_is_extend_enabled($extension['name']) ) {
             //         $this->load_module_instance($extension);

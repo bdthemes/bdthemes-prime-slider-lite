@@ -389,14 +389,14 @@ class PrimeSlider_Admin_Settings {
 			[ $this, 'display_page' ]
 		);
 
-		// add_submenu_page(
-		//     self::PAGE_ID,
-		//     BDTPS_CORE_TITLE,
-		//     esc_html__('Extensions', 'bdthemes-prime-slider'),
-		//     'manage_options',
-		//     self::PAGE_ID . '#prime_slider_elementor_extend',
-		//     [$this, 'display_page']
-		// );
+		add_submenu_page(
+		    self::PAGE_ID,
+		    BDTPS_CORE_TITLE,
+		    esc_html__('Extensions', 'bdthemes-prime-slider'),
+		    'manage_options',
+		    self::PAGE_ID . '#prime_slider_elementor_extend',
+		    [$this, 'display_page']
+		);
 
 		// add_submenu_page(
 		//     self::PAGE_ID,
@@ -457,10 +457,10 @@ class PrimeSlider_Admin_Settings {
 				'id'    => 'prime_slider_third_party_widget',
 				'title' => esc_html__( '3rd Party Widgets', 'bdthemes-prime-slider' )
 			],
-			// [
-			//     'id'    => 'prime_slider_elementor_extend',
-			//     'title' => esc_html__('Extensions', 'bdthemes-prime-slider')
-			// ],
+			[
+			    'id'    => 'prime_slider_elementor_extend',
+			    'title' => esc_html__('Extensions', 'bdthemes-prime-slider')
+			],
 			// [
 			//     'id'    => 'prime_slider_api_settings',
 			//     'title' => esc_html__('API Settings', 'bdthemes-prime-slider'),
@@ -1273,6 +1273,26 @@ class PrimeSlider_Admin_Settings {
 				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').click(function () {
 
 					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function () {
+						jQuery(this).removeAttr('checked');
+					});
+
+					jQuery(this).addClass('bdt-active');
+					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
+				});
+
+				jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').click(function () {
+
+					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function () {
+						jQuery(this).attr('checked', 'checked').prop("checked", true);
+					});
+
+					jQuery(this).addClass('bdt-active');
+					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
+				});
+
+				jQuery('#prime_slider_elementor_extend_page a.ps-deactive-all-widget').click(function () {
+
+					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function () {
 						jQuery(this).removeAttr('checked');
 					});
 
