@@ -3,6 +3,16 @@
     position: relative;
     height: clamp(28.75rem, 60vw, 43.75rem);
     overflow: hidden;
+    .bdt-ps-overlay:before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
     .section {
         &.active {
             .bdt-prime-slider-content {
@@ -32,6 +42,8 @@
     .bdt-prime-slider-content {
         max-width: 1080px;
         margin: 0 clamp(1.875rem, 13.5vw, 12.5rem);
+        position: relative;
+        z-index: 1;
         * {
             opacity: 0;
             visibility: hidden;
@@ -152,7 +164,7 @@
             text-transform: capitalize;
             -webkit-transition: all .45s cubic-bezier(.65, 0, .076, 1);
             transition: all .45s cubic-bezier(.65, 0, .076, 1);
-            line-height: 1;
+            line-height: normal;
         }
         &:hover {
             .bdt-button-circle {
