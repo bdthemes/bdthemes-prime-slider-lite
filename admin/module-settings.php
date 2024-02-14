@@ -538,6 +538,17 @@ class ModuleService {
 					'demo_url'     => 'https://primeslider.pro/demo/woohotspot/',
 					'video_url'    => 'https://youtu.be/vuYYnjSogqU',
 				],
+			],
+			'prime_slider_elementor_extend' => [
+				[
+					'name'        => 'adaptive-bg',
+					'label'       => esc_html__('Adaptive Background', 'bdthemes-prime-slider'),
+					'type'        => 'checkbox',
+					'default'     => 'off',
+					'widget_type' => 'pro',
+					'demo_url'    => '#',
+					'video_url'   => '#',
+				],
 			]
 		];
 

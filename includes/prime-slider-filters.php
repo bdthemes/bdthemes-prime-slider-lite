@@ -31,19 +31,19 @@ if (!function_exists('prime_slider_is_widget_enabled')) {
     }
 }
 
-// if (!function_exists('prime_slider_is_extend_enabled')) {
-//     function prime_slider_is_extend_enabled($widget_id, $options = []) {
+if (!function_exists('prime_slider_is_extend_enabled')) {
+    function prime_slider_is_extend_enabled($widget_id, $options = []) {
 
-//         if(!$options){
-//             $options = get_option('prime_slider_elementor_extend', []);
-//         }
+        if(!$options){
+            $options = get_option('prime_slider_elementor_extend', []);
+        }
 
-//         if( ModuleService::is_module_active($widget_id, $options)){
-//             $widget_id = str_replace('-','_', $widget_id);
-//             return apply_filters("PrimeSlider/extend/{$widget_id}", true);
-//         }
-//     }
-// }
+        if( ModuleService::is_module_active($widget_id, $options)){
+            $widget_id = str_replace('-','_', $widget_id);
+            return apply_filters("PrimeSlider/extend/{$widget_id}", true);
+        }
+    }
+}
 
 if (!function_exists('prime_slider_is_third_party_enabled')) {
     function prime_slider_is_third_party_enabled($widget_id, $options = []) {

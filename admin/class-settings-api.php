@@ -940,8 +940,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 											placeholder="Search widget..." autofocus>
 									</div>
 
-									<?php //if ($form['id'] == 'prime_slider_active_modules' or $form['id'] == 'prime_slider_third_party_widget' ) : 
-														?>
+									<?php if ($form['id'] !== 'prime_slider_elementor_extend' or $form['id'] == 'prime_slider_third_party_widget' ) : ?>
 									<div>
 										<ul class="bdt-subnav bdt-subnav-pill ps-widget-onoff">
 											<li>
@@ -956,8 +955,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 											</li>
 										</ul>
 									</div>
-									<?php //endif; 
-														?>
+									<?php endif; ?>
 								</div>
 
 							</div>
