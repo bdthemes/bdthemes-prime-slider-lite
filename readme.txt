@@ -198,6 +198,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.11.14 [14th February 2024] =
 
+* Added: Overlay option added in pagepiling widget
 * Fixed: Content alignment issue fixed in pagepiling widget (Thanks to Maarten Bloemen)
 
 = 3.11.13 [4th February 2024] =

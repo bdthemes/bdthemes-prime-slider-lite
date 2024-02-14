@@ -57,7 +57,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_sliders',
 			[
-				'label' => esc_html__('Sliders', 'bdthemes-element-pack'),
+				'label' => esc_html__('Slide Items', 'bdthemes-element-pack'),
 			]
 		);
 
@@ -118,7 +118,6 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'slides',
 			[
-				'label'   => esc_html__('Slider Items', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
@@ -149,7 +148,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_fancy_slider',
 			[
-				'label' => esc_html__( 'Layout', 'bdthemes-element-pack' ),
+				'label' => esc_html__( 'Additional Settings', 'bdthemes-element-pack' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -330,7 +329,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[
-				'label' => esc_html__( 'Additional Settings', 'bdthemes-element-pack' ),
+				'label' => esc_html__( 'Slider Settings', 'bdthemes-element-pack' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -387,7 +386,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
 			]
@@ -426,6 +425,22 @@ class Pagepiling extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'overlay_background',
+				'label' => esc_html__('Background', 'bdthemes-prime-slider'),
+				'types' => ['classic', 'gradient'],
+				'exclude' => ['image'],
+				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-ps-overlay:before',
+				'fields_options' => [
+					'background' => [
+						'label' => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+					],
+				],
+			]
+		);
+
 		$this->start_controls_tabs('slider_item_style');
 
 		$this->start_controls_tab(
@@ -455,7 +470,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag .frist-word' => 'color: {{VALUE}};',
@@ -470,7 +485,7 @@ class Pagepiling extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'label' => __( 'Text Shadow', 'plugin-domain' ) . BDTPS_CORE_NC,
+				'label' => __( 'Text Shadow', 'plugin-domain' ),
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-title-tag',
 				'condition' => [
 					'show_title' => ['yes'],
@@ -485,7 +500,7 @@ class Pagepiling extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
 				'fields_options' => [
                     'text_stroke_type' => [
-                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                     ],
                 ],
 				'condition' => [
@@ -1305,6 +1320,7 @@ class Pagepiling extends Widget_Base {
 
 					<?php $this->render_item_content($slide); ?>
 
+					<div class="bdt-ps-overlay"></div>
 				</div>
 
 			<?php endforeach;
