@@ -5,7 +5,7 @@ Tags: elementor, prime slider, modern slider, slider addons, elementor addons, d
 Requires at least: 5.0.0
 Tested up to: 6.4.3
 Requires PHP: 7.4.0
-Stable tag: 3.11.14
+Stable tag: 3.12.0
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -196,10 +196,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.11.14 [14th February 2024] =
+= 3.12.0 [17th February 2024] =
 
 * Added: Overlay option added in pagepiling widget
 * Fixed: Content alignment issue fixed in pagepiling widget (Thanks to Maarten Bloemen)
+* Fixed: Security issue fixed
 
 = 3.11.13 [4th February 2024] =
 
