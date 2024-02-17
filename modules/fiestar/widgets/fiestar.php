@@ -854,12 +854,20 @@ class Fiestar extends Widget_Base {
         $this->add_render_attribute('slider-title', 'class', 'bdt-title', true);
         $this->add_render_attribute('slider-title', 'data-reveal', 'reveal-active', true);
         $titleClass = $this->get_render_attribute_string('slider-title');
-        echo
-        '<' . esc_html($settings['title_tags']) . ' ' . $titleClass . ' >
-                    <a href="' . esc_url(get_permalink()) . '" title="' . esc_attr(get_the_title()) . '">
-                        ' . esc_html(get_the_title())  . '
-                    </a>
-                </' . esc_html($settings['title_tags']) . '>';
+
+        printf(
+            '<%1$s %2$s>
+                <a href="%3$s" title="%4$s">
+                    %5$s
+                </a>
+            </%1$s>',
+            esc_html($settings['title_tags']),
+            $titleClass,
+            esc_url(get_permalink()),
+            esc_attr(get_the_title()),
+            esc_html(get_the_title())
+        );
+        
     }
 
     public function render_category() {
