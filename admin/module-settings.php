@@ -546,8 +546,9 @@ class ModuleService {
 					'type'        => 'checkbox',
 					'default'     => 'off',
 					'widget_type' => 'pro',
-					'demo_url'    => '#',
-					'video_url'   => '#',
+					'content_type' => 'upcoming',
+					'demo_url'    => '',
+					'video_url'   => '',
 				],
 			]
 		];
