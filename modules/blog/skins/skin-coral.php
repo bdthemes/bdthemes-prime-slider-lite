@@ -249,14 +249,14 @@ class Skin_Coral extends Elementor_Skin_Base {
                   <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?>>
 
                   <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
-                      <?php echo prime_slider_first_word(get_the_title()); ?>
+                      <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                   </a>
 
                 </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
               </div>
                 <?php endif; ?>
 
-              <div <?php echo $parallax_text; ?>>
+              <div <?php echo wp_kses_post($parallax_text); ?>>
               <?php $this->parent->render_excerpt(); ?>
               </div>
 
@@ -296,7 +296,7 @@ class Skin_Coral extends Elementor_Skin_Base {
 
             ?>
 
-          <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo get_the_ID(); ?>">
+          <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
               <?php if ('yes' == $settings['kenburns_animation']) : ?>
             <div
