@@ -49,7 +49,7 @@ class Prime_Slider_Admin_Feeds {
 		$feeds = $this->bdthemes_prime_slider_get_feeds_remote_data();
 		if (is_array($feeds)) :
 			foreach ($feeds as $key => $feed) {
-				printf('<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', $feed->demo_link, $feed->image, $feed->content);
+				printf('<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', esc_url($feed->demo_link), esc_html($feed->image), esc_html($feed->content));
 			}
 		endif;
 		echo $this->bdthemes_prime_slider_get_feeds_posts_data();
@@ -86,7 +86,7 @@ class Prime_Slider_Admin_Feeds {
 				<?php
 				// Check items
 				if ($maxitems == 0) {
-					echo '<li class="bdt-ps-overview__post">' . __('No item', 'bdthemes-prime-slider-lite') . '.</li>';
+					echo '<li class="bdt-ps-overview__post">' . esc_html('No item', 'bdthemes-prime-slider-lite') . '.</li>';
 				} else {
 					foreach ($rss_items as $item) :
 						$feed_url = $item->get_permalink();
@@ -96,9 +96,9 @@ class Prime_Slider_Admin_Feeds {
 						$feed_content = wp_html_excerpt($content, 120) . ' [...]';
 				?>
 						<li class="bdt-ps-overview__post">
-							<?php printf('<a class="bdt-ps-overview__post-link" href="%1$s" title="%2$s">%3$s</a>', $feed_url, $feed_date, $feed_title);
-							printf('<span class="bdt-ps-overview__post-date">%1$s</span>', $feed_date);
-							printf('<p class="bdt-ps-overview__post-description">%1$s</p>', $feed_content); ?>
+							<?php printf('<a class="bdt-ps-overview__post-link" href="%1$s" title="%2$s">%3$s</a>', esc_url($feed_url), esc_html($feed_date), esc_html($feed_title));
+							printf('<span class="bdt-ps-overview__post-date">%1$s</span>', esc_html($feed_date));
+							printf('<p class="bdt-ps-overview__post-description">%1$s</p>', esc_html($feed_content)); ?>
 
 						</li>
 				<?php
@@ -128,7 +128,7 @@ class Prime_Slider_Admin_Feeds {
 						],
 					];
 					foreach ($footer_link as $key => $link) {
-						printf('<li><a href="%1$s" target="_blank">%2$s<span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>', $link['url'], $link['title']);
+						printf('<li><a href="%1$s" target="_blank">%2$s<span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>', esc_url($link['url']), esc_html($link['title']));
 					}
 					?>
 				</ul>

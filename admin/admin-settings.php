@@ -515,7 +515,7 @@ class PrimeSlider_Admin_Settings {
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo $track_nw_msg; ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
 
 						<?php
 						$used_widgets    = count( self::get_used_widgets() );
@@ -527,21 +527,21 @@ class PrimeSlider_Admin_Settings {
 							<div class="ps-count-wrap">
 								<h1 class="ps-feature-title">All Widgets</h1>
 								<div class="ps-widget-count">Used: <b>
-										<?php echo $used_widgets; ?>
+										<?php echo esc_html($used_widgets); ?>
 									</b></div>
 								<div class="ps-widget-count">Unused: <b>
-										<?php echo $un_used_widgets; ?>
+										<?php echo esc_html($un_used_widgets); ?>
 									</b></div>
 								<div class="ps-widget-count">Total:
 									<b>
-										<?php echo $used_widgets + $un_used_widgets; ?>
+										<?php echo esc_html($used_widgets + $un_used_widgets); ?>
 									</b>
 								</div>
 							</div>
 
 							<div class="ps-canvas-wrap">
 								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;"
-									data-label="Total Widgets Status - (<?php echo $used_widgets + $un_used_widgets; ?>)"
+									data-label="Total Widgets Status - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)"
 									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
 									data-value="<?php echo esc_attr( $used_widgets ) . ',' . esc_attr( $un_used_widgets ); ?>"
 									data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
@@ -551,7 +551,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo $track_nw_msg; ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
 
 						<?php
 						$used_only_widgets   = count( self::get_used_only_widgets() );
@@ -563,21 +563,21 @@ class PrimeSlider_Admin_Settings {
 							<div class="ps-count-wrap">
 								<h1 class="ps-feature-title">Core</h1>
 								<div class="ps-widget-count">Used: <b>
-										<?php echo $used_only_widgets; ?>
+										<?php echo esc_html($used_only_widgets); ?>
 									</b></div>
 								<div class="ps-widget-count">Unused: <b>
-										<?php echo $unused_only_widgets; ?>
+										<?php echo esc_html($unused_only_widgets); ?>
 									</b></div>
 								<div class="ps-widget-count">Total:
 									<b>
-										<?php echo $used_only_widgets + $unused_only_widgets; ?>
+										<?php echo esc_html($used_only_widgets + $unused_only_widgets); ?>
 									</b>
 								</div>
 							</div>
 
 							<div class="ps-canvas-wrap">
 								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;"
-									data-label="Core Widgets Status - (<?php echo $used_only_widgets + $unused_only_widgets; ?>)"
+									data-label="Core Widgets Status - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)"
 									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
 									data-value="<?php echo esc_attr( $used_only_widgets ) . ',' . esc_attr( $unused_only_widgets ); ?>"
 									data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
@@ -587,7 +587,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo $track_nw_msg; ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
 
 						<?php
 						$used_only_3rdparty   = count( self::get_used_only_3rdparty() );
@@ -599,21 +599,21 @@ class PrimeSlider_Admin_Settings {
 							<div class="ps-count-wrap">
 								<h1 class="ps-feature-title">3rd Party</h1>
 								<div class="ps-widget-count">Used: <b>
-										<?php echo $used_only_3rdparty; ?>
+										<?php echo esc_html($used_only_3rdparty); ?>
 									</b></div>
 								<div class="ps-widget-count">Unused: <b>
-										<?php echo $unused_only_3rdparty; ?>
+										<?php echo esc_html($unused_only_3rdparty); ?>
 									</b></div>
 								<div class="ps-widget-count">Total:
 									<b>
-										<?php echo $used_only_3rdparty + $unused_only_3rdparty; ?>
+										<?php echo esc_html($used_only_3rdparty + $unused_only_3rdparty); ?>
 									</b>
 								</div>
 							</div>
 
 							<div class="ps-canvas-wrap">
 								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;"
-									data-label="3rd Party Widgets Status - (<?php echo $used_only_3rdparty + $unused_only_3rdparty; ?>)"
+									data-label="3rd Party Widgets Status - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)"
 									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
 									data-value="<?php echo esc_attr( $used_only_3rdparty ) . ',' . esc_attr( $unused_only_3rdparty ); ?>"
 									data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
@@ -624,7 +624,7 @@ class PrimeSlider_Admin_Settings {
 				</div>
 
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo $track_nw_msg; ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
@@ -955,8 +955,6 @@ class PrimeSlider_Admin_Settings {
 		$post_limit         = ini_get( 'post_max_size' );
 		$uploads            = wp_upload_dir();
 		$upload_path        = $uploads['basedir'];
-		$yes_icon           = '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-		$no_icon            = '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 
 		$environment = Utils::get_environment_info();
 
@@ -970,11 +968,11 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( version_compare( $php_version, '7.0.0', '<' ) ) {
-						echo $no_icon;
-						echo '<span class="label2" title="Min: 7.0 Recommended" bdt-tooltip>Currently: ' . $php_version . '</span>';
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
+						echo '<span class="label2" title="Min: 7.0 Recommended" bdt-tooltip>Currently: ' . esc_html($php_version) . '</span>';
 					} else {
-						echo $yes_icon;
-						echo '<span class="label2">Currently: ' . $php_version . '</span>';
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
+						echo '<span class="label2">Currently: ' . esc_html($php_version) . '</span>';
 					}
 					?>
 				</div>
@@ -986,11 +984,11 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( $max_execution_time < '90' ) {
-						echo $no_icon;
-						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>Currently: ' . $max_execution_time . '</span>';
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
+						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>Currently: ' . esc_html($max_execution_time) . '</span>';
 					} else {
-						echo $yes_icon;
-						echo '<span class="label2">Currently: ' . $max_execution_time . '</span>';
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
+						echo '<span class="label2">Currently: ' . esc_html($max_execution_time) . '</span>';
 					}
 					?>
 				</div>
@@ -1001,11 +999,11 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( intval( $memory_limit ) < '812' ) {
-						echo $no_icon;
-						echo '<span class="label2" title="Min: 812M Recommended" bdt-tooltip>Currently: ' . $memory_limit . '</span>';
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
+						echo '<span class="label2" title="Min: 812M Recommended" bdt-tooltip>Currently: ' . esc_html($memory_limit) . '</span>';
 					} else {
-						echo $yes_icon;
-						echo '<span class="label2">Currently: ' . $memory_limit . '</span>';
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
+						echo '<span class="label2">Currently: ' . esc_html($memory_limit) . '</span>';
 					}
 					?>
 				</div>
@@ -1016,11 +1014,11 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( intval( $post_limit ) < '32' ) {
-						echo $no_icon;
-						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>Currently: ' . $post_limit . '</span>';
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
+						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>Currently: ' . esc_html($post_limit) . '</span>';
 					} else {
-						echo $yes_icon;
-						echo '<span class="label2">Currently: ' . $post_limit . '</span>';
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
+						echo '<span class="label2">Currently: ' . esc_html($post_limit) . '</span>';
 					}
 					?>
 				</div>
@@ -1032,9 +1030,9 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( ! is_writable( $upload_path ) ) {
-						echo $no_icon;
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 					} else {
-						echo $yes_icon;
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 					}
 					?>
 				</div>
@@ -1046,10 +1044,10 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( $environment['wp_multisite'] ) {
-						echo $yes_icon;
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 						echo '<span class="label2">MultiSite</span>';
 					} else {
-						echo $yes_icon;
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 						echo '<span class="label2">No MultiSite </span>';
 					}
 					?>
@@ -1062,9 +1060,9 @@ class PrimeSlider_Admin_Settings {
 
 					<?php
 					if ( $environment['gzip_enabled'] ) {
-						echo $yes_icon;
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 					} else {
-						echo $no_icon;
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 					}
 					?>
 				</div>
@@ -1075,10 +1073,10 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">Debug Mode: </span>
 					<?php
 					if ( $environment['wp_debug_mode'] ) {
-						echo $no_icon;
+						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2">Currently Turned On</span>';
 					} else {
-						echo $yes_icon;
+						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 						echo '<span class="label2">Currently Turned Off</span>';
 					}
 					?>
@@ -1105,7 +1103,7 @@ class PrimeSlider_Admin_Settings {
 	function plugin_page() {
 
 		echo '<div class="wrap prime-slider-dashboard">';
-		echo '<h1>' . BDTPS_CORE_TITLE . ' Settings</h1>';
+		echo '<h1>' . wp_kses_post(BDTPS_CORE_TITLE) . ' Settings</h1>';
 
 		$this->settings_api->show_navigation();
 

@@ -985,7 +985,7 @@ class dragon extends Widget_Base {
                 <ul class="bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical reveal-muted">
 
                     <?php $slide_index = 1; foreach ( $settings['slides'] as $slide ) : ?>
-                    <li bdt-slideshow-item="<?php echo ($slide_index - 1); ?>" data-label="<?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?>" ><a href="#"></a></li>
+                    <li bdt-slideshow-item="<?php echo (esc_attr($slide_index) - 1); ?>" data-label="<?php echo wp_kses_post(str_pad( $slide_index, 2, '0', STR_PAD_LEFT)); ?>" ><a href="#"></a></li>
                     <?php $slide_index++;  endforeach; ?>
                     
                 </ul>
@@ -1085,9 +1085,9 @@ class dragon extends Widget_Base {
 	public function render_item_content($slide_content, $link_key) {
         $settings = $this->get_settings_for_display();
 
-		$parallax_sub_title     = 'data-bdt-slideshow-parallax="x: 100,-100; opacity: 1,1,0"';
-		$parallax_title         = 'data-bdt-slideshow-parallax="x: 200,-200; opacity: 1,1,0"';
-		$parallax_text           = 'data-bdt-slideshow-parallax="x: 300,-300; opacity: 1,1,0"';
+		$parallax_sub_title     = 'x: 100,-100; opacity: 1,1,0';
+		$parallax_title         = 'x: 200,-200; opacity: 1,1,0';
+		$parallax_text          = 'x: 300,-300; opacity: 1,1,0';
 
 		if ( true === _is_ps_pro_activated() ) {
 			if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
@@ -1111,28 +1111,37 @@ class dragon extends Widget_Base {
 
 				<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 					<div class="bdt-sub-title">
-						<<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="bdt-sub-title-inner" <?php echo $parallax_sub_title; ?> data-reveal="reveal-active">
-							<?php echo wp_kses_post($slide_content['sub_title']); ?>
-						</<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+						
+						<?
+						printf(
+							'<%1$s  class="bdt-sub-title-inner" data-bdt-slideshow-parallax="%2$s" data-reveal="reveal-active">
+								%3$s
+							</%1$s>',
+							esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])),
+							esc_attr($parallax_sub_title),
+							wp_kses_post($slide_content['sub_title'])
+						);
+						?>
+
 					</div>
 				<?php endif; ?>
 
 				<?php if ($slide_content['title'] && ('yes' == $settings['show_title'])) : ?>
 					<div class="bdt-main-title">
-						<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?>  data-reveal="reveal-active">
+						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-bdt-slideshow-parallax="<?php echo esc_attr($parallax_title); ?>"  data-reveal="reveal-active">
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								<a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
 								<?php endif; ?>
-								<?php echo prime_slider_first_word($slide_content['title']); ?>
+								<?php echo wp_kses_post( prime_slider_first_word($slide_content['title']) ); ?>
 								<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								</a>
 							<?php endif; ?>
-						</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+						</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 					</div>
 				<?php endif; ?>
 
 				<?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
-					<div class="bdt-slider-excerpt" data-reveal="reveal-active" <?php echo $parallax_text; ?>>
+					<div class="bdt-slider-excerpt" data-reveal="reveal-active" data-bdt-slideshow-parallax="<?php echo esc_attr($parallax_text); ?>">
 						<?php echo wp_kses_post($slide_content['excerpt']); ?>
 					</div>
 				<?php endif; ?>
