@@ -2204,11 +2204,7 @@ trait Global_Widget_Controls {
             return;
         }
 
-        ?>
-        <<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="<?php echo esc_attr($class); ?>" data-reveal="<?php echo esc_attr($data_reveal); ?>">
-            <?php echo wp_kses($slide['sub_title'], prime_slider_allow_tags('title')); ?>
-        </<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
-        <?php
+		printf('<%1$s %2$s data-reveal="%3$s">%4$s</%1$s>', esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])), esc_attr($class), esc_attr($data_reveal), wp_kses($slide['sub_title'], wp_kses_post(prime_slider_allow_tags('title'))));
     }
 
 	/**
@@ -2222,15 +2218,15 @@ trait Global_Widget_Controls {
         }
 
         ?>
-        <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="<?php echo esc_attr($class); ?>" data-reveal="<?php echo esc_attr($data_reveal); ?>">
+        <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="<?php echo esc_attr($class); ?>" data-reveal="<?php echo esc_attr($data_reveal); ?>">
             <?php if ('' !== $slide['title_link']['url']) : ?>
                 <a href="<?php echo esc_url($slide['title_link']['url']); ?>">
                 <?php endif; ?>
-                <?php echo prime_slider_first_word($slide['title']); ?>
+                <?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
                 <?php if ('' !== $slide['title_link']['url']) : ?>
                 </a>
             <?php endif; ?>
-        </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+        </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
         <?php
     }
 
@@ -2247,12 +2243,8 @@ trait Global_Widget_Controls {
         $this->add_render_attribute('slider-title', 'class', 'bdt-title' , true);
         $this->add_render_attribute('slider-title', 'data-reveal', 'reveal-active' , true);
         $titleClass = $this->get_render_attribute_string('slider-title');
-        echo
-        '<' . esc_html($settings['title_tags']) . ' ' . $titleClass . ' >
-                <a href="' . esc_url(get_permalink()) . '" title="' . esc_attr(get_the_title()) . '">
-                    ' . esc_html(get_the_title())  . '
-                </a>
-            </' . esc_html($settings['title_tags']) . '>';
+
+		printf('<%1$s %2$s><a href="%3$s" title="%4$s">%5$s</a></%1$s>', esc_html($settings['title_tags']), esc_attr($titleClass), esc_url(get_permalink()), esc_attr(get_the_title()), esc_html(get_the_title()));
     }
 
 	/**
@@ -2292,7 +2284,7 @@ trait Global_Widget_Controls {
 		<?php
 			$thumb_url = Group_Control_Image_Size::get_attachment_image_src($slide['image']['id'], 'thumbnail_size', $settings);
 			if (!$thumb_url) {
-				printf('<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', $slide['image']['url'], esc_html($slide['title']), $gl . $shutters . $slicer);
+				printf('<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url($slide['image']['url']), esc_html($slide['title']), esc_attr($gl . $shutters . $slicer));
 			} else {
 				print(wp_get_attachment_image(
 					$slide['image']['id'],
@@ -2367,7 +2359,7 @@ trait Global_Widget_Controls {
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', $placeholder_image_src, esc_html(get_the_title()));
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
