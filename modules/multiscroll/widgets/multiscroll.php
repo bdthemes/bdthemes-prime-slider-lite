@@ -1164,7 +1164,7 @@ class Multiscroll extends Widget_Base {
 		?>
 
 		<div class="bdt-multiscroll-image bdt-position-center">
-			<img src="<?php echo esc_url($slide_image); ?>" alt="<?php echo get_the_title(); ?>">
+			<img src="<?php echo esc_url($slide_image); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
 		</div>
 
 		<?php
@@ -1192,7 +1192,7 @@ class Multiscroll extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ($content['title'] && ('yes' == $settings['show_title'])) : ?>
-					<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-mltiscroll-slider-title">
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-mltiscroll-slider-title">
 						<?php if ('' !== $content['title_link']['url']) : ?>
 							<a href="<?php echo esc_url($content['title_link']['url']); ?>">
 							<?php endif; ?>
@@ -1200,7 +1200,7 @@ class Multiscroll extends Widget_Base {
 							<?php if ('' !== $content['title_link']['url']) : ?>
 							</a>
 						<?php endif; ?>
-					</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($content['description'] && ('yes' == $settings['show_description'])) : ?>

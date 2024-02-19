@@ -1140,7 +1140,7 @@ class Tango extends Widget_Base {
 						<?php endif; ?>
 
 						<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
-							<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title" data-reveal="reveal-active">
+							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
 								<?php if ('' !== $slide['title_link']['url']) : ?>
 
 									<?php
@@ -1157,7 +1157,7 @@ class Tango extends Widget_Base {
 									<?php if ('' !== $slide['title_link']['url']) : ?>
 									</a>
 								<?php endif; ?>
-							</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 						<?php endif; ?>
 					</div>
 

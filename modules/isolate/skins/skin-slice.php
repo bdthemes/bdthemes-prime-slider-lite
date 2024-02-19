@@ -46,7 +46,7 @@ class Skin_Slice extends Elementor_Skin_Base {
 
             <ul class="bdt-ps-dotnav reveal-muted">
                 <?php $slide_index = 1; foreach ( $settings['slides'] as $slide ) : ?>
-                    <li bdt-slideshow-item="<?php echo ($slide_index - 1); ?>" data-label="<?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?>" ><a href="#"><?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?></a></li>
+                    <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?>" ><a href="#"><?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?></a></li>
                 <?php $slide_index++;  endforeach; ?>
 
                 <span><?php echo str_pad( $slide_index - 1, 2, '0', STR_PAD_LEFT); ?></span>
@@ -71,7 +71,7 @@ class Skin_Slice extends Elementor_Skin_Base {
                                 <div class="bdt-slide-text-btn-area">
                                 <?php $slide_index = 1;
                                 foreach ($settings['slides'] as $slide) : ?>
-                                    <div class="bdt-slide-nav-arrows" bdt-slideshow-item="<?php echo ($slide_index - 1); ?>">
+                                    <div class="bdt-slide-nav-arrows" bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>">
 
                                         <?php if ($slide['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
                                             <div class="bdt-slider-excerpt">
@@ -160,8 +160,8 @@ class Skin_Slice extends Elementor_Skin_Base {
                             <h4 class="bdt-ps-sub-title" data-reveal="reveal-active" <?php echo $parallax_sub_title; ?>>
                                 <?php echo prime_slider_first_word($slide_content['sub_title']); ?>
                             </h4>
-                            <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> 
-                            class="bdt-title-tag" data-reveal="reveal-active"  <?php echo $parallax_title; ?>>
+                            <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> 
+                            class="bdt-title-tag" data-reveal="reveal-active"  <?php echo wp_kses_post($parallax_title); ?>>
                                 <?php if ('' !== $slide_content['title_link']['url']) : ?>
                                     <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
                                     <?php endif; ?>
@@ -169,7 +169,7 @@ class Skin_Slice extends Elementor_Skin_Base {
                                     <?php if ('' !== $slide_content['title_link']['url']) : ?>
                                     </a>
                                 <?php endif; ?>
-                            </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                            </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                         </div>
                         <?php endif; ?>
 

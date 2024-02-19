@@ -106,7 +106,7 @@ class Skin_Slide extends Elementor_Skin_Base {
                 <ul class="bdt-dotnav bdt-dotnav-vertical bdt-margin-bottom-100 bdt-margin-left-100 bdt-position-bottom-left bdt-text-center reveal-muted">
 
                     <?php $slide_index = 1; foreach ( $settings['slides'] as $slide ) : ?>
-                    <li bdt-slideshow-item="<?php echo ($slide_index - 1); ?>" data-label="<?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?>" ><a href="#"></a></li>
+                    <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo str_pad( $slide_index, 2, '0', STR_PAD_LEFT); ?>" ><a href="#"></a></li>
                     <?php $slide_index++;  endforeach; ?>
                     
                 </ul>
@@ -178,8 +178,8 @@ class Skin_Slide extends Elementor_Skin_Base {
                     <div class="bdt-prime-slider-desc">
 
                         <?php if ($slide_content['title'] && ( 'yes' == $settings['show_title'] )) : ?>
-                            <div class="bdt-main-title" <?php echo $parallax_title; ?> data-reveal="reveal-active">
-                                <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag">
+                            <div class="bdt-main-title" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
+                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag">
                                     <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
                                         <a <?php $this->parent->print_render_attribute_string( 'title-link' ); ?>>
                                     <?php endif; ?>
@@ -187,7 +187,7 @@ class Skin_Slide extends Elementor_Skin_Base {
                                     <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
                                         </a>
                                     <?php endif; ?>
-                                </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                             </div>
                         <?php endif; ?>
 

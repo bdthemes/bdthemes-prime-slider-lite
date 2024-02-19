@@ -170,7 +170,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 					$data_type .= ' bdt-tooltip="Pro widget only works with Pro version."';
 				}
 
-				echo "<div class='ps-option-item {$class} {$widget_used_status}' {$data_type}>";
+				echo "<div class='ps-option-item ".esc_attr($class.$widget_used_status)."' ".wp_kses_post($data_type).">";
 
 				call_user_func( $field['callback'], $field['args'] );
 
@@ -196,7 +196,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				if ( isset( $section['desc'] ) && ! empty( $section['desc'] ) ) {
 					$section['desc'] = '<div class="inside">' . $section['desc'] . '</div>';
 					$callback        = function () use ($section) {
-						echo str_replace( '"', '\"', $section['desc'] );
+						echo wp_kses_post(str_replace( '"', '\"', $section['desc'] ));
 					};
 				} else if ( isset( $section['callback'] ) ) {
 					$callback = $section['callback'];

@@ -830,7 +830,7 @@ class Fiestar extends Widget_Base {
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', $placeholder_image_src, esc_html(get_the_title()));
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
@@ -862,7 +862,7 @@ class Fiestar extends Widget_Base {
                 </a>
             </%1$s>',
             esc_html($settings['title_tags']),
-            $titleClass,
+            esc_attr($titleClass),
             esc_url(get_permalink()),
             esc_attr(get_the_title()),
             esc_html(get_the_title())
@@ -877,7 +877,7 @@ class Fiestar extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(' '); ?>
+            <?php echo wp_kses_post(get_the_category_list(' ')); ?>
         </div>
         <?php
     }
@@ -982,7 +982,7 @@ class Fiestar extends Widget_Base {
         $this->add_render_attribute('slider-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php echo wp_kses_post($this->get_render_attribute_string('slider-item')); ?>>
             <div class="bdt-img-wrap">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>
