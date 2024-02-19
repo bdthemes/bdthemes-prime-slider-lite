@@ -2464,7 +2464,7 @@ class Isolate extends Widget_Base {
 
                         <?php if ($slide_content['title'] && ('yes' == $settings['show_title'])): ?>
                             <div class="bdt-main-title">
-                                <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo $parallax_title; ?>>
+                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                     <?php if ('' !== $slide_content['title_link']['url']): ?>
                                         <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
                                         <?php endif;?>
@@ -2472,7 +2472,7 @@ class Isolate extends Widget_Base {
                                         <?php if ('' !== $slide_content['title_link']['url']): ?>
                                         </a>
                                     <?php endif;?>
-                                </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                             </div>
                         <?php endif;?>
 

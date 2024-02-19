@@ -1277,7 +1277,7 @@ class Omatic extends Widget_Base {
 					<?php $this->render_sub_title($slide); ?>
 					<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 						<div class="bdt-title-wrap">
-							<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title">
+							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 								<?php if ('' !== $slide['title_link']['url']) : ?>
 									<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
 									<?php endif; ?>
@@ -1285,7 +1285,7 @@ class Omatic extends Widget_Base {
 									<?php if ('' !== $slide['title_link']['url']) : ?>
 									</a>
 								<?php endif; ?>
-							</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 						</div>
 					<?php endif; ?>
 				</div>

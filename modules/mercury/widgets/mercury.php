@@ -940,7 +940,7 @@ class Mercury extends Widget_Base {
             if (has_excerpt()) {
                 the_excerpt();
             } else {
-                echo prime_slider_custom_excerpt($excerpt_length, $strip_shortcode);
+                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
             }
             ?>
         </div>
