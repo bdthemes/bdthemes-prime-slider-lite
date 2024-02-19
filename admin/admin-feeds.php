@@ -52,7 +52,7 @@ class Prime_Slider_Admin_Feeds {
 				printf('<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', esc_url($feed->demo_link), esc_html($feed->image), esc_html($feed->content));
 			}
 		endif;
-		echo $this->bdthemes_prime_slider_get_feeds_posts_data();
+		echo wp_kses_post($this->bdthemes_prime_slider_get_feeds_posts_data());
 	}
 
 	/**
