@@ -2217,7 +2217,7 @@ class Blog extends Widget_Base {
                 if (has_excerpt()) {
                     the_excerpt();
                 } else {
-                    echo prime_slider_custom_excerpt($this->get_settings_for_display('excerpt_length'), $strip_shortcode);
+                    echo wp_kses_post(prime_slider_custom_excerpt($this->get_settings_for_display('excerpt_length'), $strip_shortcode));
                 }
             ?>
         </div>
@@ -2231,7 +2231,7 @@ class Blog extends Widget_Base {
 
         ?>
         <div class="bdt-ps-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(', '); ?>
+            <?php echo wp_kses_post(get_the_category_list(', ')); ?>
         </div>
         <?php
     }
@@ -2250,7 +2250,7 @@ class Blog extends Widget_Base {
                             <div class="bdt-meta-text">
                                 <span class="bdt-author bdt-text-capitalize">
                                     <strong><?php esc_html_e('Written by', 'bdthemes-prime-slider'); ?></strong>
-                                    <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_attr(get_the_author()); ?></a>
+                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_attr(get_the_author()); ?></a>
                                 </span>
                             </div>
                         </div>
@@ -2282,7 +2282,7 @@ class Blog extends Widget_Base {
                             <div class="bdt-meta-text">
                                 <span>
                                     <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider'); ?></strong>
-                                    <?php echo get_comments_number(); ?>
+                                    <?php echo esc_attr(get_comments_number()); ?>
                                 </span>
                             </div>
                         </div>
@@ -2333,16 +2333,16 @@ class Blog extends Widget_Base {
                                 if ('yes' == $settings['show_title']) : ?>
                                     <div class="bdt-main-title" data-reveal="reveal-active">
                                         <<?php
-                                            echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?>>
+                                            echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?>>
 
                                             <a href="<?php
                                                         echo esc_url(get_permalink($post->ID)); ?>">
                                                 <?php
-                                                echo prime_slider_first_word(get_the_title()); ?>
+                                                echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                                             </a>
 
                                         </<?php
-                                            echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                            echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                                     </div>
                                 <?php
                                 endif; ?>
@@ -2358,10 +2358,10 @@ class Blog extends Widget_Base {
                             <div class="bdt-width-1-1 bdt-width-2-5@m bdt-visible@m">
                                 <?php
                                 if ('yes' == $settings['show_excerpt']) : ?>
-                                    <div class="bdt-slider-excerpt" <?php echo $parallax_text; ?>>
+                                    <div class="bdt-slider-excerpt" <?php echo wp_kses_post($parallax_text); ?>>
 
                                         <div class="bdt-slide-counter" data-label="<?php
-                                                                                    echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>">
+                                                                                    echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
                                             <?php
                                             $this->render_excerpt(); ?>
                                         </div>
@@ -2411,7 +2411,7 @@ class Blog extends Widget_Base {
 
         ?>
 
-            <li class="bdt-slideshow-item bdt-flex bdt-flex-middle bdt-flex-center elementor-repeater-item-<?php echo get_the_ID(); ?>">
+            <li class="bdt-slideshow-item bdt-flex bdt-flex-middle bdt-flex-center elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
                 <div class="bdt-ps-blog-bg" style="background-image: url('<?php echo esc_url($image_final_src); ?>')">
 

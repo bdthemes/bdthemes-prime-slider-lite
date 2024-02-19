@@ -64,8 +64,8 @@ class Skin_Coral extends Elementor_Skin_Base {
 
               ?>
 
-            <li class="bdt-slide-counter" bdt-slideshow-item="<?php echo(($slide_index - 2) == -1 ) ? ($total_slide - 2) : $slide_index - 2 ?>"
-                data-label="<?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>">
+            <li class="bdt-slide-counter" bdt-slideshow-item="<?php echo esc_attr(($slide_index - 2) == -1 ? ($total_slide - 2) : $slide_index - 2) ?>"
+                data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
                 <?php $this->rendar_item_image(); ?>
                 <?php $slide_index++; ?>
             </li>
@@ -104,9 +104,9 @@ class Skin_Coral extends Elementor_Skin_Base {
 
               ?>
 
-            <li bdt-slideshow-item="<?php echo($slide_index - 1); ?>"
-                data-label="<?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>"><a
-                  href="#"><?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?></a>
+            <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>"
+                data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a
+                  href="#"><?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
 
                 <?php $slide_index++; ?>
 
@@ -116,7 +116,7 @@ class Skin_Coral extends Elementor_Skin_Base {
           }
           wp_reset_postdata();
           ?>
-        <span><?php echo str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT); ?></span>
+        <span><?php echo esc_attr(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
 
       </ul>
         <?php
@@ -246,17 +246,17 @@ class Skin_Coral extends Elementor_Skin_Base {
 
                 <?php if ('yes' == $settings['show_title']) : ?>
                 <div class="bdt-main-title" data-reveal="reveal-active">
-                  <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?>>
+                  <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?>>
 
                   <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
-                      <?php echo prime_slider_first_word(get_the_title()); ?>
+                      <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                   </a>
 
-                </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
               </div>
                 <?php endif; ?>
 
-              <div <?php echo $parallax_text; ?>>
+              <div <?php echo wp_kses_post($parallax_text); ?>>
               <?php $this->parent->render_excerpt(); ?>
               </div>
 
@@ -296,7 +296,7 @@ class Skin_Coral extends Elementor_Skin_Base {
 
             ?>
 
-          <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo get_the_ID(); ?>">
+          <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
               <?php if ('yes' == $settings['kenburns_animation']) : ?>
             <div

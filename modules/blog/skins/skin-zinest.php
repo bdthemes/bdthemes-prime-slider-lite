@@ -24,7 +24,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
     public function render_category() {
 ?>
         <div class="bdt-ps-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(', '); ?>
+            <?php echo wp_kses_post(get_the_category_list(', ')); ?>
         </div>
     <?php
     }
@@ -97,7 +97,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
                                     <div class="bdt-ps-content">
                                         <div class="bdt-ps-title">
                                             <a href="<?php echo esc_url(get_permalink(get_the_ID())); ?>">
-                                                <?php echo prime_slider_first_word(get_the_title()); ?>
+                                                <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                                             </a>
                                         </div>
                                         <div class="bdt-ps-desc">
@@ -133,7 +133,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
     ?>
 
-        <img src="<?php echo esc_url($image_src); ?>" alt="<?php echo get_the_title(); ?>">
+        <img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
 
     <?php
     }
@@ -171,13 +171,13 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
                         <?php if ('yes' == $settings['show_title']) : ?>
                             <div class="bdt-main-title" data-reveal="reveal-active">
-                                <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?>>
+                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?>>
 
                                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
-                                        <?php echo prime_slider_first_word(get_the_title()); ?>
+                                        <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                                     </a>
 
-                                </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                             </div>
                         <?php endif; ?>
 
@@ -224,7 +224,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
         ?>
 
-            <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo get_the_ID(); ?>">
+            <li class="bdt-slideshow-item bdt-flex bdt-flex-middle elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
                 <?php if ('yes' == $settings['kenburns_animation']) : ?>
                     <div class="bdt-position-cover bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">
