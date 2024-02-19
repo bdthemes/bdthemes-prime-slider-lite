@@ -1164,7 +1164,7 @@ class Multiscroll extends Widget_Base {
 		?>
 
 		<div class="bdt-multiscroll-image bdt-position-center">
-			<img src="<?php echo esc_url($slide_image); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
+			<img src="<?php echo esc_url($slide_image); ?>" alt="<?php echo get_the_title(); ?>">
 		</div>
 
 		<?php

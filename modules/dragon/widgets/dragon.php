@@ -1111,17 +1111,10 @@ class dragon extends Widget_Base {
 
 				<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 					<div class="bdt-sub-title">
-						
-						<?
-						printf(
-							'<%1$s  class="bdt-sub-title-inner" data-bdt-slideshow-parallax="%2$s" data-reveal="reveal-active">
-								%3$s
-							</%1$s>',
-							esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])),
-							esc_attr($parallax_sub_title),
-							wp_kses_post($slide_content['sub_title'])
-						);
-						?>
+
+						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title-inner" data-bdt-slideshow-parallax="<?php echo esc_attr($parallax_sub_title); ?>" data-reveal="reveal-active">
+                            <?php echo wp_kses_post($slide_content['sub_title']); ?>
+                        </<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 
 					</div>
 				<?php endif; ?>

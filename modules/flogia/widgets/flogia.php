@@ -1214,7 +1214,7 @@ class Flogia extends Widget_Base {
     public function render_category() {
         ?>
         <span class="bdt-ps-category" data-reveal="reveal-active">
-            <span><?php echo wp_kses_post(get_the_category_list(', ')); ?></span>
+            <span><?php echo get_the_category_list(', '); ?></span>
         </span>
         <?php
     }
@@ -1278,7 +1278,7 @@ class Flogia extends Widget_Base {
                 <a href="#">
                     <div class="bdt-thumb-content">
                         <?php $this->rendar_thumb_image();?>
-                        <span><?php echo esc_html(get_the_title()); ?></span>
+                        <span><?php echo get_the_title(); ?></span>
                     </div>
                 </a>
                 <?php $slide_index++;?>
@@ -1328,7 +1328,7 @@ class Flogia extends Widget_Base {
 
         ?>
 
-            <img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
+            <img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
 
         <?php
     }

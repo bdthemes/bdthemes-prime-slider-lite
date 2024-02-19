@@ -1373,7 +1373,7 @@ class Woolamp extends Widget_Base {
 					<div class="bdt-ps-item-inner bdt-flex bdt-flex-middle">
 
 						<div class="bdt-ps-wc-product-img" data-reveal="reveal-active">
-							<img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
+							<img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
 						</div>
 
 						<div class="bdt-ps-content-wrapper">
