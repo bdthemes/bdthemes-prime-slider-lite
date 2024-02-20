@@ -862,7 +862,7 @@ class Fiestar extends Widget_Base {
                 </a>
             </%1$s>',
             esc_html($settings['title_tags']),
-            esc_attr($titleClass),
+            wp_kses_post($titleClass),
             esc_url(get_permalink()),
             esc_attr(get_the_title()),
             esc_html(get_the_title())

@@ -2442,7 +2442,7 @@ class General extends Widget_Base {
 
 		?>
 		<video autoplay loop muted playsinline bdt-cover>
-			<source src="<?php echo  $video_src; ?>" type="video/mp4">
+			<source src="<?php echo esc_url($video_src); ?>" type="video/mp4">
 		</video>
 		<?php
 	}
@@ -2573,9 +2573,9 @@ class General extends Widget_Base {
 
 						<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 							<div class="bdt-sub-title">
-								<<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> data-reveal="reveal-active" class="bdt-ps-sub-title" <?php echo $parallax_sub_title; ?>>
+								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> data-reveal="reveal-active" class="bdt-ps-sub-title" <?php echo wp_kses_post($parallax_sub_title); ?>>
 									<?php echo wp_kses_post($slide_content['sub_title']); ?>
-								</<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+								</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 							</div>
 						<?php endif; ?>
 
@@ -2594,12 +2594,12 @@ class General extends Widget_Base {
 						<?php endif; ?>
 
 						<?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt']) && ('yes' == $settings['alter_btn_excerpt'])) : ?>
-							<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo $parallax_inner_excerpt; ?>>
+							<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post($parallax_inner_excerpt); ?>>
 								<?php echo wp_kses_post($slide_content['excerpt']); ?>
 							</div>
 						<?php endif; ?>
 
-						<div <?php echo $parallax_button; ?>>
+						<div <?php echo wp_kses_post($parallax_button); ?>>
 							<div class="bdt-btn-wrapper">
 								<?php $this->render_button($slide_content); ?>
 							</div>
@@ -2607,7 +2607,7 @@ class General extends Widget_Base {
 					</div>
 
 					<?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt']) && ('' == $settings['alter_btn_excerpt'])) : ?>
-						<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo $parallax_excerpt; ?>>
+						<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post($parallax_excerpt); ?>>
 							<?php echo wp_kses_post($slide_content['excerpt']); ?>
 						</div>
 					<?php endif; ?>
