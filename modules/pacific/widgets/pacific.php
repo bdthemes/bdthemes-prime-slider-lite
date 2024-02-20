@@ -1428,7 +1428,7 @@ class Pacific extends Widget_Base {
 					<div class="bdt-meta-box" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
 						<?php $this->render_author(); ?>
 						<div class="bdt-meta-separator">
-							<span><?php echo esc_attr($settings['meta_separator']); ?></span>
+							<span><?php echo esc_html($settings['meta_separator']); ?></span>
 						</div>
 						<?php $this->render_date(); ?>
 					</div>

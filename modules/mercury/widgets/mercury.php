@@ -1131,7 +1131,7 @@ class Mercury extends Widget_Base {
                 <?php if ($settings['show_author'] or $settings['show_date']) : ?>
                     <div class="bdt-meta" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
                         <?php $this->render_author(); ?>
-                        <span class="bdt-separator"><?php echo esc_attr($settings['meta_separator']); ?></span>
+                        <span class="bdt-separator"><?php echo esc_html($settings['meta_separator']); ?></span>
                         <?php $this->render_date(); ?>
                     </div>
                 <?php endif; ?>

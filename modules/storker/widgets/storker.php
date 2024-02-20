@@ -1912,7 +1912,7 @@ class Storker extends Widget_Base {
                     <div data-swiper-parallax-y="-65" data-swiper-parallax-duration="650">
                         <div class="bdt-storker-meta" data-reveal="reveal-active">
                             <?php $this->render_author(); ?>
-                            <span class="bdt-ps-separator"><?php echo esc_attr($settings['meta_separator']); ?></span>
+                            <span class="bdt-ps-separator"><?php echo esc_html($settings['meta_separator']); ?></span>
                             <?php $this->render_date(); ?>
                         </div>
                     </div>
