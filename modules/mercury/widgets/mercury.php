@@ -940,7 +940,7 @@ class Mercury extends Widget_Base {
             if (has_excerpt()) {
                 the_excerpt();
             } else {
-                echo prime_slider_custom_excerpt($excerpt_length, $strip_shortcode);
+                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
             }
             ?>
         </div>
@@ -1131,7 +1131,7 @@ class Mercury extends Widget_Base {
                 <?php if ($settings['show_author'] or $settings['show_date']) : ?>
                     <div class="bdt-meta" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
                         <?php $this->render_author(); ?>
-                        <span class="bdt-separator"><?php echo $settings['meta_separator']; ?></span>
+                        <span class="bdt-separator"><?php echo esc_html($settings['meta_separator']); ?></span>
                         <?php $this->render_date(); ?>
                     </div>
                 <?php endif; ?>
@@ -1152,14 +1152,14 @@ class Mercury extends Widget_Base {
         $slicer = $settings['effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img %3$s swiper-lazy">', $placeholder_image_src, esc_html(get_the_title()), $gl . $shutters . $slicer);
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img %3$s swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()), esc_attr($gl.$shutters.$slicer));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
                 $size,
                 false,
                 [
-                    'class' => 'bdt-img swiper-lazy' . $gl . $shutters . $slicer,
+                    'class' => 'bdt-img swiper-lazy' . esc_attr($gl.$shutters.$slicer),
                     'alt' => esc_html(get_the_title())
                 ]
             ));

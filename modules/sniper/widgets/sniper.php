@@ -739,21 +739,21 @@ class Sniper extends Widget_Base {
                         <div class="bdt-content">
 
 							<?php if ($slide['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
-								<<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="bdt-sub-title">
+								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title">
 									<span><?php echo wp_kses_post($slide['sub_title']); ?></span>
-								</<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+								</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 							<?php endif; ?>
 
 							<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
-								<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title">
+								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 									<?php if ('' !== $slide['title_link']['url']) : ?>
 										<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
 										<?php endif; ?>
-										<?php echo prime_slider_first_word($slide['title']); ?>
+										<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
 										<?php if ('' !== $slide['title_link']['url']) : ?>
 										</a>
 									<?php endif; ?>
-								</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+								</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 							<?php endif; ?>
 						
                         </div>

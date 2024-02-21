@@ -1368,28 +1368,28 @@ class Sequester extends Widget_Base {
 
 				<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 					<div class="bdt-sub-title">
-						<<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="bdt-sub-title-inner" <?php echo $parallax_sub_title; ?> data-reveal="reveal-active">
+						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title-inner" <?php echo wp_kses_post($parallax_sub_title); ?> data-reveal="reveal-active">
 							<?php echo wp_kses_post($slide_content['sub_title']); ?>
-						</<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+						</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 					</div>
 				<?php endif; ?>
 
 				<?php if ($slide_content['title'] && ('yes' == $settings['show_title'])) : ?>
 					<div class="bdt-main-title">
-						<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?> data-reveal="reveal-active">
+						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								<a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
 								<?php endif; ?>
-								<?php echo prime_slider_first_word($slide_content['title']); ?>
+								<?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
 								<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								</a>
 							<?php endif; ?>
-						</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+						</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 					</div>
 				<?php endif; ?>
 
 				<?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
-					<div class="bdt-slider-excerpt" <?php echo $parallax_title; ?> data-reveal="reveal-active">
+					<div class="bdt-slider-excerpt" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
 						<?php echo wp_kses_post($slide_content['excerpt']); ?>
 					</div>
 				<?php endif; ?>

@@ -1277,15 +1277,15 @@ class Omatic extends Widget_Base {
 					<?php $this->render_sub_title($slide); ?>
 					<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 						<div class="bdt-title-wrap">
-							<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title">
+							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 								<?php if ('' !== $slide['title_link']['url']) : ?>
 									<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
 									<?php endif; ?>
-									<?php echo prime_slider_first_word($slide['title']); ?>
+									<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
 									<?php if ('' !== $slide['title_link']['url']) : ?>
 									</a>
 								<?php endif; ?>
-							</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -1327,7 +1327,7 @@ class Omatic extends Widget_Base {
 
 		?>
 		<?php if ($slide['text'] && ('yes' == $settings['show_text'])) : ?>
-		<div class="bdt-inner-content <?php echo $text_hide_on_setup; ?>">
+		<div class="bdt-inner-content <?php echo esc_attr($text_hide_on_setup); ?>">
 			<span class="bdt-line"></span>
 			<div class="bdt-desc-wrap">
 				<div class="bdt-desc" >
@@ -1348,9 +1348,9 @@ class Omatic extends Widget_Base {
 
 		?>
 		<div class="bdt-sub-title-wrap">
-			<<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="bdt-sub-title">
+			<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title">
 				<?php echo wp_kses($slide['sub_title'], prime_slider_allow_tags('title')); ?>
-			</<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+			</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 			<span class="bdt-sub-line"></span>
 		</div>
 

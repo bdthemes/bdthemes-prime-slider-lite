@@ -63,7 +63,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
                                 <?php $slide_index = 1;
                                     
                                         foreach ($settings['slides'] as $slide) : ?>
-                                    <li bdt-slideshow-item="<?php echo (($slide_index - 2) == -1 ) ? ($this->total_slides - 2) : $slide_index - 2; ?>" data-label="<?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>">
+                                    <li bdt-slideshow-item="<?php echo esc_attr((($slide_index - 2) == -1 ) ? ($this->total_slides - 2) : $slide_index - 2); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
 
                                         <?php if (($slide['background'] == 'image') && $slide['image']) : ?>
                                             <?php $this->rendar_item_image($slide, $slide['title']); ?>
@@ -82,7 +82,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
                             <ul class="bdt-ps-meta">
                                 <?php $slide_index = 1;
                                 foreach ($settings['slides'] as $slide) : ?>
-                                    <li bdt-slideshow-item="<?php echo ($slide_index - 1); ?>" data-label="<?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>">
+                                    <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
 
                                         <?php if ($slide['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
                                             <div class="bdt-slider-excerpt bdt-column-1-2" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 300,0,-100; opacity: 1,1,0">
@@ -155,15 +155,15 @@ class Skin_Meteor extends Elementor_Skin_Base {
 
                             <?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
                                 <div class="bdt-sub-title">
-                                    <<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> <?php echo $parallax_sub_title; ?> data-reveal="reveal-active" class="bdt-ps-sub-title">
+                                    <<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> <?php echo wp_kses_post($parallax_sub_title); ?> data-reveal="reveal-active" class="bdt-ps-sub-title">
                                         <?php echo wp_kses_post($slide_content['sub_title']); ?>
-                                    </<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+                                    </<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
                                 </div>
                             <?php endif; ?>
 
                             <?php if ($slide_content['title'] && ('yes' == $settings['show_title'])) : ?>
-                                <div class="bdt-main-title"  <?php echo $parallax_title; ?> data-reveal="reveal-active">
-                                    <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag">
+                                <div class="bdt-main-title"  <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
+                                    <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag">
                                         <?php if ('' !== $slide_content['title_link']['url']) : ?>
                                             <a <?php $this->parent->print_render_attribute_string( 'title-link' ); ?>>
                                         <?php endif; ?>
@@ -171,7 +171,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
                                         <?php if ('' !== $slide_content['title_link']['url']) : ?>
                                             </a>
                                         <?php endif; ?>
-                                    </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                    </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                                 </div>
                             <?php endif; ?>
 

@@ -1352,11 +1352,11 @@ class Rubix extends Widget_Base {
         $this->add_render_attribute('slider-title', 'data-reveal', 'reveal-active', true);
         $titleClass = $this->get_render_attribute_string('slider-title');
         echo
-        '<' . esc_html($settings['title_tags']) . ' ' . $titleClass . ' >
-                    <a href="' . 'javascript:void(0);' . '" title="' . esc_attr(get_the_title()) . '">
-                        ' . esc_html(get_the_title())  . '
-                    </a>
-                </' . esc_html($settings['title_tags']) . '>';
+        '<' . esc_html($settings['title_tags']) . ' ' . wp_kses_post($titleClass) . ' >
+            <a href="' . 'javascript:void(0);' . '" title="' . esc_attr(get_the_title()) . '">
+                ' . esc_html(get_the_title())  . '
+            </a>
+        </' . esc_html($settings['title_tags']) . '>';
     }
 
     public function render_excerpt($excerpt_length) {
@@ -1371,7 +1371,7 @@ class Rubix extends Widget_Base {
             if (has_excerpt()) {
                 the_excerpt();
             } else {
-                echo prime_slider_custom_excerpt($excerpt_length, $strip_shortcode);
+                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
             }
             ?>
         </div>
@@ -1404,7 +1404,7 @@ class Rubix extends Widget_Base {
                 <i class="ps-wi-calendar" aria-hidden="true"></i>
                 <span>
                     <?php if ($settings['human_diff_time'] == 'yes') {
-                        echo prime_slider_post_time_diff(($settings['human_diff_time_short'] == 'yes') ? 'short' : '');
+                        echo wp_kses_post(prime_slider_post_time_diff(($settings['human_diff_time_short'] == 'yes') ? 'short' : ''));
                     } else {
                         echo get_the_date();
                     } ?>

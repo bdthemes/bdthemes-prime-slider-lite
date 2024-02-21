@@ -1258,7 +1258,7 @@ class Flogia extends Widget_Base {
         ?>
 
         <?php if ('yes' == $settings['show_thumbnav']): ?>
-            <div class="reveal-muted bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo $thumbs_hide_on_setup; ?>">
+            <div class="reveal-muted bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
                 <ul class="bdt-slider-items bdt-child-width-1-2 bdt-child-width-1-3@s bdt-child-width-1-4@m bdt-child-width-1-5@l bdt-child-width-expand@xl  bdt-grid">
                     <?php
             $slide_index = 1;
@@ -1274,7 +1274,7 @@ class Flogia extends Widget_Base {
 
             ?>
 
-            <li class="bdt-ps-thumbnav bdt-position-relative" bdt-slideshow-item="<?php echo ($slide_index - 1); ?>">
+            <li class="bdt-ps-thumbnav bdt-position-relative" bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>">
                 <a href="#">
                     <div class="bdt-thumb-content">
                         <?php $this->rendar_thumb_image();?>
@@ -1354,12 +1354,12 @@ class Flogia extends Widget_Base {
         }
 
         ?>
-            <div class="bdt-blog-text" <?php echo $parallax_text; ?> data-reveal="reveal-active">
+            <div class="bdt-blog-text" <?php echo wp_kses_post($parallax_text); ?> data-reveal="reveal-active">
                 <?php
                 if (has_excerpt()) {
                     the_excerpt();
                 } else {
-                    echo prime_slider_custom_excerpt($this->get_settings_for_display('excerpt_length'), $strip_shortcode);
+                    echo wp_kses_post(prime_slider_custom_excerpt($this->get_settings_for_display('excerpt_length'), $strip_shortcode));
                 }
                 ?>
             </div>
@@ -1395,13 +1395,13 @@ class Flogia extends Widget_Base {
 
                 <?php if ('yes' == $settings['show_title']): ?>
                     <div class="bdt-main-title">
-                        <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" <?php echo $parallax_title; ?> data-reveal="reveal-active">
+                        <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
 
                             <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
-                                <?php echo prime_slider_first_word(get_the_title()); ?>
+                                <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
                             </a>
 
-                        </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                        </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 
                         <?php $this->render_excerpt();?>
 
@@ -1418,7 +1418,7 @@ class Flogia extends Widget_Base {
                                 <?php if ($settings['published_by'] == 'yes'): ?>
                                     <?php echo esc_html_x('Published by ', 'Frontend', 'bdthemes-prime-slider'); ?>
                                 <?php endif;?>
-                                <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_attr(get_the_author()); ?></a>
+                                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_attr(get_the_author()); ?></a>
                             </span>
                         </div>
                     </div>
@@ -1450,7 +1450,7 @@ class Flogia extends Widget_Base {
 
             ?>
 
-                <li class="bdt-slideshow-item bdt-flex elementor-repeater-item-<?php echo get_the_ID(); ?>">
+                <li class="bdt-slideshow-item bdt-flex elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
                     <?php if ('yes' == $settings['kenburns_animation']): ?>
                         <div class="bdt-position-cover bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">

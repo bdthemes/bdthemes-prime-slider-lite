@@ -830,7 +830,7 @@ class Fiestar extends Widget_Base {
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', $placeholder_image_src, esc_html(get_the_title()));
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
@@ -862,7 +862,7 @@ class Fiestar extends Widget_Base {
                 </a>
             </%1$s>',
             esc_html($settings['title_tags']),
-            $titleClass,
+            wp_kses_post($titleClass),
             esc_url(get_permalink()),
             esc_attr(get_the_title()),
             esc_html(get_the_title())

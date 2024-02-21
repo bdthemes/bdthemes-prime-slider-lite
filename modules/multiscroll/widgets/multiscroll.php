@@ -1192,7 +1192,7 @@ class Multiscroll extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ($content['title'] && ('yes' == $settings['show_title'])) : ?>
-					<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-mltiscroll-slider-title">
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-mltiscroll-slider-title">
 						<?php if ('' !== $content['title_link']['url']) : ?>
 							<a href="<?php echo esc_url($content['title_link']['url']); ?>">
 							<?php endif; ?>
@@ -1200,7 +1200,7 @@ class Multiscroll extends Widget_Base {
 							<?php if ('' !== $content['title_link']['url']) : ?>
 							</a>
 						<?php endif; ?>
-					</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($content['description'] && ('yes' == $settings['show_description'])) : ?>
@@ -1241,7 +1241,7 @@ class Multiscroll extends Widget_Base {
 
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 							<?php if ($slide['slide_image']['url']) : ?>
@@ -1287,7 +1287,7 @@ class Multiscroll extends Widget_Base {
 
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 							<?php if ($slide['slide_image']['url']) : ?>
@@ -1347,7 +1347,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 						</div>
@@ -1389,7 +1389,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 
 						<?php if ($slide['slide_image']['url']) : ?>
 							<?php $this->rendar_item_image($slide); ?>
@@ -1441,7 +1441,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<?php if ($slide['slide_image']['url']) : ?>
 							<?php $this->rendar_item_image($slide); ?>
 						<?php endif; ?>
@@ -1483,7 +1483,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo $slide['title']; ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 						</div>

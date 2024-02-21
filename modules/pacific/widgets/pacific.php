@@ -1101,7 +1101,7 @@ class Pacific extends Widget_Base {
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', $placeholder_image_src, esc_html(get_the_title()));
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
@@ -1145,7 +1145,7 @@ class Pacific extends Widget_Base {
 		$this->add_render_attribute('slider-title', 'data-swiper-parallax-duration', '700', true);
 		$titleClass = $this->get_render_attribute_string('slider-title');
 		echo
-		'<' . esc_html($settings['title_tags']) . ' ' . $titleClass . ' >
+		'<' . esc_html($settings['title_tags']) . ' ' . wp_kses_post($titleClass) . ' >
                     <a href="' . esc_url(get_permalink()) . '" title="' . esc_attr(get_the_title()) . '">
                         ' . esc_html(get_the_title())  . '
                     </a>
@@ -1162,7 +1162,7 @@ class Pacific extends Widget_Base {
 		$this->add_render_attribute('slider-title-modal', 'class', 'bdt-title', true);
 		$titleClass = $this->get_render_attribute_string('slider-title-modal');
 		echo
-		'<' . esc_html($settings['title_tags']) . ' ' . $titleClass . ' >
+		'<' . esc_html($settings['title_tags']) . ' ' . wp_kses_post($titleClass) . ' >
                     <a href="' . esc_url(get_permalink()) . '" title="' . esc_attr(get_the_title()) . '">
                         ' . esc_html(get_the_title())  . '
                     </a>
@@ -1181,7 +1181,7 @@ class Pacific extends Widget_Base {
 				if (has_excerpt()) {
 					the_excerpt();
 				} else {
-					echo prime_slider_custom_excerpt($excerpt_length, $strip_shortcode);
+					echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
 				}
 				?>
 			</div>
@@ -1428,7 +1428,7 @@ class Pacific extends Widget_Base {
 					<div class="bdt-meta-box" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
 						<?php $this->render_author(); ?>
 						<div class="bdt-meta-separator">
-							<span><?php echo $settings['meta_separator']; ?></span>
+							<span><?php echo esc_html($settings['meta_separator']); ?></span>
 						</div>
 						<?php $this->render_date(); ?>
 					</div>
@@ -1436,12 +1436,12 @@ class Pacific extends Widget_Base {
 
 				<div class="bdt-button-wrap"  data-swiper-parallax="-300" data-swiper-parallax-duration="900">
 					<?php if ($settings['show_read_more']) : ?>
-						<a class="bdt-button bdt-padding-remove" href="#<?php echo $modal_id; ?>" data-reveal="reveal-active" bdt-toggle>
+						<a class="bdt-button bdt-padding-remove" href="#<?php echo esc_attr($modal_id); ?>" data-reveal="reveal-active" bdt-toggle>
 							<span class="bdt-btn-text"><?php echo esc_html__($settings['read_more_text']) ?></span>
 							<span class="bdt-readmore-icon eicon-plus"></span>
 						</a>
 					<?php endif; ?>
-					<div id="<?php echo $modal_id; ?>" class="bdt-modal-full" bdt-modal>
+					<div id="<?php echo esc_attr($modal_id); ?>" class="bdt-modal-full" bdt-modal>
 						<div class="bdt-modal-dialog bdt-pacific-slider-modal <?php echo 'bdt-pacific-' . $this->get_id(); ?>">
 							<a class="bdt-modal-close-full bdt-close-large" bdt-close></a>
 							<div class="bdt-grid-collapse bdt-child-width-1-2@s bdt-flex-middle" bdt-grid>

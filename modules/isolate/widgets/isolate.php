@@ -2298,7 +2298,7 @@ class Isolate extends Widget_Base {
 
 		$thumb_url = Group_Control_Image_Size::get_attachment_image_src($slide['image']['id'], 'thumbnail_size', $settings);
 		if (!$thumb_url) {
-			printf('<img src="%1$s" alt="%2$s">', $slide['image']['url'], esc_html($slide['title']));
+			printf('<img src="%1$s" alt="%2$s">', esc_url($slide['image']['url']), esc_html($slide['title']));
 		} else {
 			print(wp_get_attachment_image(
 				$slide['image']['id'],
@@ -2456,33 +2456,33 @@ class Isolate extends Widget_Base {
 
                         <?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])): ?>
                             <div class="bdt-sub-title bdt-ps-sub-title">
-                                <<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?> class="bdt-sub-title-tag" data-reveal="reveal-active" <?php echo $parallax_sub_title; ?>>
+                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_sub_title); ?>>
                                     <?php echo wp_kses_post($slide_content['sub_title']); ?>
-                                </<?php echo Utils::get_valid_html_tag($settings['sub_title_html_tag']); ?>>
+                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
                             </div>
                         <?php endif;?>
 
                         <?php if ($slide_content['title'] && ('yes' == $settings['show_title'])): ?>
                             <div class="bdt-main-title">
-                                <<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo $parallax_title; ?>>
+                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                     <?php if ('' !== $slide_content['title_link']['url']): ?>
                                         <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
                                         <?php endif;?>
-                                        <?php echo prime_slider_first_word($slide_content['title']); ?>
+                                        <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                         <?php if ('' !== $slide_content['title_link']['url']): ?>
                                         </a>
                                     <?php endif;?>
-                                </<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
                             </div>
                         <?php endif;?>
 
                         <?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt'])): ?>
-                            <div class="bdt-slider-excerpt" data-reveal="reveal-active" <?php echo $parallax_excerpt; ?>>
+                            <div class="bdt-slider-excerpt" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_excerpt); ?>>
                                 <?php echo wp_kses_post($slide_content['excerpt']); ?>
                             </div>
                         <?php endif;?>
 
-                        <div class="bdt-isolate-btn" data-reveal="reveal-active" <?php echo $parallax_button; ?>>
+                        <div class="bdt-isolate-btn" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_button); ?>>
                             <?php $this->render_button($slide_content);?>
                         </div>
 

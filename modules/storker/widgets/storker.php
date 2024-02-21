@@ -1684,14 +1684,14 @@ class Storker extends Widget_Base {
 		// $slicer = $settings['swiper_effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-storker-img %3$s">', $placeholder_image_src, esc_html(get_the_title()), $gl . $shutters);
+            printf('<img src="%1$s" alt="%2$s" class="bdt-storker-img %3$s">', esc_url($placeholder_image_src), esc_html(get_the_title()), esc_attr($gl.$shutters));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
                 $size,
                 false,
                 [
-                    'class' => 'bdt-storker-img' . $gl . $shutters,
+                    'class' => 'bdt-storker-img' . esc_attr($gl.$shutters),
                     'alt' => esc_html(get_the_title())
                 ]
             ));
@@ -1710,7 +1710,7 @@ class Storker extends Widget_Base {
             if (has_excerpt()) {
                 the_excerpt();
             } else {
-                echo prime_slider_custom_excerpt($excerpt_length, $strip_shortcode);
+                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
             }
             ?>
         </div>
@@ -1912,7 +1912,7 @@ class Storker extends Widget_Base {
                     <div data-swiper-parallax-y="-65" data-swiper-parallax-duration="650">
                         <div class="bdt-storker-meta" data-reveal="reveal-active">
                             <?php $this->render_author(); ?>
-                            <span class="bdt-ps-separator"><?php echo $settings['meta_separator']; ?></span>
+                            <span class="bdt-ps-separator"><?php echo esc_html($settings['meta_separator']); ?></span>
                             <?php $this->render_date(); ?>
                         </div>
                     </div>

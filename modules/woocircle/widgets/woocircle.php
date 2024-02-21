@@ -1273,9 +1273,9 @@ class Woocircle extends Widget_Base {
 			<div class="bdt-elastic-slide-content">
 
 				<?php if ($settings['show_title']) : ?>
-					<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-elastic-title-preview">
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-elastic-title-preview">
 						<?php the_title(); ?>
-					</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($settings['show_price']) : ?>
@@ -1298,9 +1298,9 @@ class Woocircle extends Widget_Base {
 					<div class="bdt-elastic-modal-details">
 
 						<?php if ($settings['show_title']) : ?>
-							<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-elastic-title--main">
+							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-elastic-title--main">
 								<?php the_title(); ?>
-							</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 						<?php endif; ?>
 
 						<?php if ($settings['show_excerpt']) : ?>

@@ -1422,7 +1422,7 @@ class Woocommerce extends Widget_Base {
 				while ($wp_query->have_posts()) : $wp_query->the_post();
 				?>
 
-					<li bdt-slideshow-item="<?php echo ($slide_index - 1); ?>" data-label="<?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?>"><a href="#"><?php echo str_pad($slide_index, 2, '0', STR_PAD_LEFT); ?></a>
+					<li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a href="#"><?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
 						<?php $slide_index++; ?>
 					</li>
 
@@ -1430,7 +1430,7 @@ class Woocommerce extends Widget_Base {
 				endwhile;
 				wp_reset_postdata();
 				?>
-				<span><?php echo str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT); ?></span>
+				<span><?php echo esc_attr(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
 			</ul>
 		<?php
 	}
@@ -1590,15 +1590,15 @@ class Woocommerce extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ($settings['show_title']) : ?>
-					<<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo $parallax_title; ?>>
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
 						<a href="<?php the_permalink(); ?>">
 							<?php the_title(); ?>
 						</a>
-					</<?php echo Utils::get_valid_html_tag($settings['title_html_tag']); ?>>
+					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($settings['show_excerpt']) : ?>
-					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo $parallax_text; ?>><?php the_excerpt(); ?></div>
+					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>><?php the_excerpt(); ?></div>
 				<?php endif; ?>
 
 				<?php if ($settings['show_price']) : ?>
@@ -1641,7 +1641,7 @@ class Woocommerce extends Widget_Base {
 
 			?>
 
-				<li class="bdt-slideshow-item elementor-repeater-item-<?php echo get_the_ID(); ?>">
+				<li class="bdt-slideshow-item elementor-repeater-item-<?php echo esc_attr(get_the_ID()); ?>">
 
 					<div class="bdt-ps-item-inner bdt-flex bdt-flex-middle" bdt-grid>
 						<div class="bdt-width-expand bdt-content-position-center">
