@@ -196,6 +196,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.12.1 [XX February 2024] =
+
+* Added: Dots horizontal offset added in blog widget
+
 = 3.12.0 [17th February 2024] =
 
 * Added: Overlay option added in pagepiling widget

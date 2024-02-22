@@ -1505,7 +1505,7 @@ class Blog extends Widget_Base {
                 'label'     => esc_html__('Size', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, .bdt-prime-slider-skin-folio .bdt-post-slider-author img' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1885,6 +1885,22 @@ class Blog extends Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+			'dots_x_offset',
+			[
+				'label' => esc_html__('Dots Horizontal Offset', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'type'  => Controls_Manager::SLIDER,
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-slideshow-nav' => 'right: {{SIZE}}{{UNIT}};',
+				],
+				'separator' => 'before',
+                'condition' => [
+                    'show_navigation_dots' => ['yes'],
+                    '_skin'               => '',
+                ],
+			]
+		);
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -2243,9 +2259,9 @@ class Blog extends Widget_Base {
             <div class="bdt-ps-meta" data-reveal="reveal-active">
                 <div class="bdt-child-width-1-1 bdt-child-width-1-3@s bdt-grid-collapse" bdt-grid>
                     <?php if ('yes' == $settings['show_author']) : ?>
-                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle" data-bdt-slideshow-parallax="y: 110,0,-110; opacity: 1,1,0">
+                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle bdt-flex-wrap" data-bdt-slideshow-parallax="y: 110,0,-110; opacity: 1,1,0">
                             <div class="bdt-meta-icon">
-                                <?php echo get_avatar(get_the_author_meta('ID'), 48); ?>
+                                <?php echo get_avatar(get_the_author_meta('ID'), 100); ?>
                             </div>
                             <div class="bdt-meta-text">
                                 <span class="bdt-author bdt-text-capitalize">
@@ -2257,7 +2273,7 @@ class Blog extends Widget_Base {
                     <?php endif; ?>
 
                     <?php if ('yes' == $settings['show_date']) : ?>
-                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle bdt-visible@s" data-bdt-slideshow-parallax="y: 140,0,-140; opacity: 1,1,0">
+                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle bdt-flex-wrap bdt-visible@s" data-bdt-slideshow-parallax="y: 140,0,-140; opacity: 1,1,0">
                             <div class="bdt-meta-icon">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-day" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-day fa-w-14 fa-2x">
                                     <path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm64-192c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-96zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" class=""></path>
@@ -2273,7 +2289,7 @@ class Blog extends Widget_Base {
                     <?php endif; ?>
 
                     <?php if ('yes' == $settings['show_comments']) : ?>
-                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle bdt-visible@s" data-bdt-slideshow-parallax="y: 170,0,-170; opacity: 1,1,0">
+                        <div class="bdt-ps-meta-item bdt-flex bdt-flex-middle bdt-flex-wrap bdt-visible@s" data-bdt-slideshow-parallax="y: 170,0,-170; opacity: 1,1,0">
                             <div class="bdt-meta-icon">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-comment fa-w-16 fa-2x">
                                     <path fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z" class=""></path>
