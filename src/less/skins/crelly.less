@@ -141,7 +141,7 @@
             font-size: clamp(12px, 1vw, 16px);
             margin-left: 8px;
             display: flex;
-            padding: 12px 10px;
+            padding: 12px;
             border-radius: 40px;
             background: rgba(255,255,255,0.1);
             transition: all .3s ease;
@@ -149,14 +149,16 @@
                 color: #fe506c;
                 background: #fff;
                 svg {
-                    color: #fe506c;
+                    fill: #fe506c;
                 }
             }
-            svg {
-                color: #fff;
+            i, svg {
                 height: 1em;
                 width: 1em;
-                transition: color .3s ease;
+            }
+            svg {
+                fill: #fff;
+                transition: fill .3s ease;
             }
         }
     }

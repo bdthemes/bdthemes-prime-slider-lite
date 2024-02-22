@@ -367,6 +367,9 @@ class Sequester extends Widget_Base {
 						'max' => 1,
 					],
 				],
+				'default' => [
+					'size' => 0.1
+				],
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-sequester .bdt-slideshow-item .bdt-slide-image:before' => 'opacity: {{SIZE}};'
 				],
