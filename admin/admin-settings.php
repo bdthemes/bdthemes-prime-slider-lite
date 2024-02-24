@@ -515,7 +515,7 @@ class PrimeSlider_Admin_Settings {
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
 						$used_widgets    = count( self::get_used_widgets() );
@@ -551,7 +551,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
 						$used_only_widgets   = count( self::get_used_only_widgets() );
@@ -587,7 +587,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
 						$used_only_3rdparty   = count( self::get_used_only_3rdparty() );
@@ -624,7 +624,7 @@ class PrimeSlider_Admin_Settings {
 				</div>
 
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">

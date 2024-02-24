@@ -118,7 +118,7 @@ function prime_slider_fail_load() {
 		$admin_message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor Now', 'bdthemes-prime-slider' ) ) . '</p>';
 	}
 
-	echo '<div class="error">' . esc_html($admin_message) . '</div>';
+	echo '<div class="error">' . wp_kses_post($admin_message) . '</div>';
 }
 
 /**
