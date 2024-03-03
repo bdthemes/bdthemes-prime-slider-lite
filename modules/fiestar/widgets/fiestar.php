@@ -201,7 +201,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
             'title_tags',
             [
-                'label'     => __('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SELECT,
                 'options'   => prime_slider_title_tags(),
                 'default'   => 'h3',
@@ -847,24 +847,19 @@ class Fiestar extends Widget_Base {
     public function render_title() {
         $settings = $this->get_settings_for_display();
 
-        if (!$this->get_settings('show_title')) {
+        if ( ! $this->get_settings_for_display('show_title') ) {
             return;
         }
 
-        $this->add_render_attribute('slider-title', 'class', 'bdt-title', true);
-        $this->add_render_attribute('slider-title', 'data-reveal', 'reveal-active', true);
-        $titleClass = $this->get_render_attribute_string('slider-title');
-
         printf(
-            '<%1$s %2$s>
-                <a href="%3$s" title="%4$s">
-                    %5$s
+            '<%1$s class="bdt-title" data-reveal="reveal-active">
+                <a href="%2$s" title="%3$s">
+                    %4$s
                 </a>
             </%1$s>',
-            esc_html($settings['title_tags']),
-            wp_kses_post($titleClass),
+            Utils::get_valid_html_tag($settings['title_tags']),
             esc_url(get_permalink()),
-            esc_attr(get_the_title()),
+            esc_html(get_the_title()),
             esc_html(get_the_title())
         );
         
