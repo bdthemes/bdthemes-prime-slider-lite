@@ -230,7 +230,38 @@ class Mercury extends Widget_Base {
         /**
 		 * Loop, Rewind & mousewheel Controls
 		 */
-		$this->register_loop_rewind_mousewheel_controls();
+		
+        $this->add_control(
+			'loop',
+			[ 
+				'label'     => __( 'Loop', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [ 
+					'effect!' => [ 'slicer', 'tinder' ]
+				],
+			]
+		);
+
+		$this->add_control(
+			'rewind',
+			[ 
+				'label'     => __( 'Rewind', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [ 
+					'effect' => [ 'slicer', 'tinder' ]
+				],
+			]
+		);
+
+		$this->add_control(
+			'mousewheel',
+			[ 
+				'label' => __( 'Mousewheel', 'bdthemes-prime-slider' ),
+				'type'  => Controls_Manager::SWITCHER,
+			]
+		);
 
         /**
 		 * Speed & Observer Controls
