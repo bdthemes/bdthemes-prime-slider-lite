@@ -202,6 +202,12 @@ class Prime_Slider_Loader {
 		if ( prime_slider_is_widget_enabled( 'pieces' ) ) {
 			wp_register_script( 'pieces', BDTPS_CORE_ASSETS_URL . 'vendor/js/pieces.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
 		}
+		if ( prime_slider_is_widget_enabled( 'fortune' ) or prime_slider_is_widget_enabled( 'knily' ) or prime_slider_is_widget_enabled( 'storker' ) or prime_slider_is_widget_enabled( 'omatic' ) or prime_slider_is_widget_enabled( 'sniper' ) or prime_slider_is_widget_enabled( 'mercury' ) or prime_slider_is_widget_enabled( 'coddle' ) or prime_slider_is_widget_enabled( 'escape' ) or prime_slider_is_widget_enabled( 'titanic' ) or prime_slider_is_widget_enabled( 'woohotspot' ) ) {
+			wp_register_script( 'shutters', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-shutters.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'gl', BDTPS_CORE_ASSETS_URL . 'vendor/js/swiper-gl.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'slicer', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-slicer.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'tinder', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-tinder.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+		}
 
 		wp_register_script( 'bdt-parallax', BDTPS_CORE_ASSETS_URL . 'vendor/js/parallax.min.js', [ 'jquery' ], null, true );
 
