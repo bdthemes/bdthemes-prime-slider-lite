@@ -23,15 +23,15 @@ class Prime_Slider_Loader {
 	private $_modules_manager;
 
 	private $classes_aliases = [ 
-		'PrimeSlider\Modules\PanelPostsControl\Module'                       => 'PrimeSlider\Modules\QueryControl\Module',
+		'PrimeSlider\Modules\PanelPostsControl\Module' => 'PrimeSlider\Modules\QueryControl\Module',
 		'PrimeSlider\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSlider\Modules\QueryControl\Controls\Group_Control_Posts',
-		'PrimeSlider\Modules\PanelPostsControl\Controls\Query'               => 'PrimeSlider\Modules\QueryControl\Controls\Query',
+		'PrimeSlider\Modules\PanelPostsControl\Controls\Query' => 'PrimeSlider\Modules\QueryControl\Controls\Query',
 	];
 
 	public $elements_data = [ 
 		'sections' => [],
-		'columns'  => [],
-		'widgets'  => [],
+		'columns' => [],
+		'widgets' => [],
 	];
 
 	/**
@@ -95,7 +95,7 @@ class Prime_Slider_Loader {
 	 */
 	private function _includes() {
 		$duplicator = prime_slider_option( 'duplicator', 'prime_slider_other_settings', 'off' );
-		$live_copy  = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
+		$live_copy = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
 
 		// Admin settings controller
 		require_once BDTPS_CORE_ADMIN_PATH . 'module-settings.php';
@@ -151,7 +151,7 @@ class Prime_Slider_Loader {
 		// Backward Compatibility: Save old class name for set an alias after the new class is loaded
 		if ( $has_class_alias ) {
 			$class_alias_name = $this->classes_aliases[ $class ];
-			$class_to_load    = $class_alias_name;
+			$class_to_load = $class_alias_name;
 		} else {
 			$class_to_load = $class;
 		}
@@ -274,6 +274,11 @@ class Prime_Slider_Loader {
 
 	public function enqueue_admin_scripts() {
 		wp_enqueue_script( 'ps-notice-js', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-notice.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		$script_config = [ 
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'prime-slider' ),
+		];
+		wp_localize_script( 'ps-notice-js', 'PrimeSliderNoticeConfig', $script_config );
 	}
 
 

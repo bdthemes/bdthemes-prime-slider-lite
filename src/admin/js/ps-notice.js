@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-    $('.prime-slider-notice.is-dismissible .notice-dismiss').on('click', function() {
+    $('.prime-slider-notice.is-dismissible .notice-dismiss').on('click', function () {
         $this = $(this).parents('.prime-slider-notice');
         var $id = $this.attr('id') || '';
         var $time = $this.attr('dismissible-time') || '';
@@ -11,7 +11,8 @@ jQuery(document).ready(function ($) {
                 action: 'prime-slider-notices',
                 id: $id,
                 meta: $meta,
-                time: $time
+                time: $time,
+                _wpnonce: PrimeSliderNoticeConfig.nonce
             }
         });
     });
