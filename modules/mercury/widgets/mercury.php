@@ -985,7 +985,7 @@ class Mercury extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
-            <?php echo get_the_category_list( ' ' ); ?>
+            <?php echo wp_kses_post(get_the_category_list( ' ' )); ?>
         </div>
         <?php
     }
@@ -1004,7 +1004,7 @@ class Mercury extends Widget_Base {
                 <i class="ps-wi-calendar" aria-hidden="true"></i>
                 <span>
                     <?php if ( $settings['human_diff_time'] == 'yes' ) {
-                        echo prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' );
+                        echo wp_kses_post(prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ));
                     } else {
                         echo get_the_date();
                     } ?>
@@ -1014,7 +1014,7 @@ class Mercury extends Widget_Base {
             <?php if ($settings['show_time']) : ?>
             <div class="bdt-post-time">
                 <i class="ps-wi-clock-o" aria-hidden="true"></i>
-                <?php echo get_the_time(); ?>
+                <?php echo wp_kses_post(get_the_time()); ?>
             </div>
             <?php endif; ?>
         </div>
@@ -1030,7 +1030,7 @@ class Mercury extends Widget_Base {
         ?>
         <div class="bdt-author">
             <span class="bdt-by"><?php echo esc_html__( 'by', 'bdthemes-prime-slider' ) ?></span>
-            <a class="bdt-author-name" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>">
+            <a class="bdt-author-name" href="<?php echo esc_url(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>">
                 <?php echo get_the_author() ?>
             </a>
         </div>
@@ -1148,7 +1148,7 @@ class Mercury extends Widget_Base {
 
         ?>
 
-        <div <?php echo $this->get_render_attribute_string('thumb-item'); ?>>
+        <div <?php $this->print_render_attribute_string('thumb-item'); ?>>
             <div class="bdt-content">
                 <?php $this->render_category(); ?>
                 <?php if ($settings['show_title']) : ?>
@@ -1204,7 +1204,7 @@ class Mercury extends Widget_Base {
 
         ?>
 
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-img-wrap" data-reveal="reveal-active">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

@@ -857,7 +857,7 @@ class Fiestar extends Widget_Base {
                     %4$s
                 </a>
             </%1$s>',
-            Utils::get_valid_html_tag($settings['title_tags']),
+            esc_attr(Utils::get_valid_html_tag($settings['title_tags'])),
             esc_url(get_permalink()),
             esc_html(get_the_title()),
             esc_html(get_the_title())
@@ -872,7 +872,7 @@ class Fiestar extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(' '); ?>
+            <?php echo wp_kses_post(get_the_category_list(' ')); ?>
         </div>
         <?php
     }
@@ -977,7 +977,7 @@ class Fiestar extends Widget_Base {
         $this->add_render_attribute('slider-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-img-wrap">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

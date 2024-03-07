@@ -1385,7 +1385,7 @@ class Rubix extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(' '); ?>
+            <?php echo wp_kses_post(get_the_category_list(' ')); ?>
         </div>
         <?php
     }
@@ -1414,7 +1414,7 @@ class Rubix extends Widget_Base {
             <?php if ($settings['show_time']) : ?>
                 <div class="bdt-post-time">
                     <i class="ps-wi-clock-o" aria-hidden="true"></i>
-                    <?php echo get_the_time(); ?>
+                    <?php echo wp_kses_post(get_the_time()); ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -1543,7 +1543,7 @@ class Rubix extends Widget_Base {
 
         ?>
 
-            <div <?php echo $this->get_render_attribute_string('thumb-item'); ?>>
+            <div <?php $this->print_render_attribute_string('thumb-item'); ?>>
                 <div class="bdt-content">
                     <?php $this->render_thumbs_title(); ?>
                     <?php if ($settings['show_author']) : ?>
@@ -1564,7 +1564,7 @@ class Rubix extends Widget_Base {
 
         ?>
 
-            <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+            <div <?php $this->print_render_attribute_string('slider-item'); ?>>
                 <div class="bdt-slider-progress"></div>
                 <div class="bdt-img-wrap">
                     <?php $this->render_image($post_id, $image_size); ?>
