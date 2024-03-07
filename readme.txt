@@ -147,6 +147,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.13.3 [XXX March 2024] =
+
+* Fixed: Pagination outline style issue fixed
+
 = 3.13.2 [3rd March 2024] =
 
 * Fixed: Swiper effects issue fixed

@@ -139,7 +139,7 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 				'slug' => 'prime_slider_options',
 			),
 			'review_url'   => 'https://bdt.to/prime-slider-elementor-addons-review',
-			'plugin_title' => 'Yay! Great that you\'re using <strong>Prime Slider</strong>',
+			'plugin_title' => 'Yay! Great that you\'re using Prime Slider',
 			'plugin_msg'   => '<p>Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community.</p>',
 		) );
 
