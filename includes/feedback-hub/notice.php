@@ -38,19 +38,19 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function __construct( $params ) {
-			$this->params     = $params;
+			$this->params = $params;
 			$this->review_url = isset( $params['review_url'] ) ? $params['review_url'] : false;
 
 			// add_action( 'admin_enqueue_scripts', array( $this, 'rc_enqueue_scripts' ) );
 			add_action( 'wp_ajax_rc_sdk_insights', array( $this, 'rc_sdk_insights' ) );
 			add_action( 'wp_ajax_rc_sdk_dismiss_notice', array( $this, 'rc_sdk_dismiss_notice' ) );
 
-			$security_key        = md5( $params['plugin_name'] );
-			$this->rc_name       = 'rc_' . str_replace( '-', '_', sanitize_title( $params['plugin_name'] ) . '_' . $security_key );
+			$security_key = md5( $params['plugin_name'] );
+			$this->rc_name = 'rc_' . str_replace( '-', '_', sanitize_title( $params['plugin_name'] ) . '_' . $security_key );
 			$this->rc_allow_name = 'rc_allow_' . $this->rc_name;
-			$this->rc_date_name  = 'rc_date_' . $this->rc_name;
-			$rc_count_name       = 'rc_attempt_count_' . $this->rc_name;
-			$rc_status_db        = get_option( $this->rc_allow_name, false );
+			$this->rc_date_name = 'rc_date_' . $this->rc_name;
+			$rc_count_name = 'rc_attempt_count_' . $this->rc_name;
+			$rc_status_db = get_option( $this->rc_allow_name, false );
 
 			$this->nonce = wp_create_nonce( $this->rc_allow_name );
 
@@ -68,7 +68,7 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 
 			// if ( $installed && ( time() - $installed ) < 1 * MINUTE_IN_SECONDS ) {
 			if ( $installed && ( time() - $installed ) < 3 * DAY_IN_SECONDS ) {
-				 return;
+				return;
 			}
 
 			/**
@@ -135,7 +135,7 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return boolean
 		 */
 		public function check_date() {
-			$current_date   = strtotime( gmdate( 'Y-m-d' ) );
+			$current_date = strtotime( gmdate( 'Y-m-d' ) );
 			$rc_status_date = strtotime( get_option( $this->rc_date_name, false ) );
 
 			if ( ! $rc_status_date ) {
@@ -162,15 +162,24 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 */
 		public function rc_sdk_insights() {
 			$sanitized_status = isset( $_POST['button_val'] ) ? sanitize_text_field( $_POST['button_val'] ) : '';
-			$nonce            = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-			$allow_name       = isset( $_POST['allow_name'] ) ? sanitize_text_field( $_POST['allow_name'] ) : '';
-			$date_name        = isset( $_POST['date_name'] ) ? sanitize_text_field( $_POST['date_name'] ) : '';
+			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
+			$allow_name = isset( $_POST['allow_name'] ) ? sanitize_text_field( $_POST['allow_name'] ) : '';
+			$date_name = isset( $_POST['date_name'] ) ? sanitize_text_field( $_POST['date_name'] ) : '';
 
 			if ( ! wp_verify_nonce( $nonce, 'rc_sdk' ) ) {
 				wp_send_json( array(
-					'status'  => 'error',
-					'title'   => 'Error',
+					'status' => 'error',
+					'title' => 'Error',
 					'message' => 'Nonce verification failed',
+				) );
+				wp_die();
+			}
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json( array(
+					'status' => 'error',
+					'title' => 'Error',
+					'message' => 'Denied, you don\'t have right permission',
 				) );
 				wp_die();
 			}
@@ -190,10 +199,10 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 			}
 
 			wp_send_json( array(
-				'status'  => 'success',
-				'title'   => 'Success',
+				'status' => 'success',
+				'title' => 'Success',
 				'message' => 'Success.',
-				'action'  => $sanitized_status,
+				'action' => $sanitized_status,
 			) );
 			wp_die();
 		}
@@ -215,55 +224,55 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 */
 		public function display_global_notice() {
 			$plugin_title = isset( $this->params['plugin_title'] ) ? $this->params['plugin_title'] : '';
-			$plugin_msg   = isset( $this->params['plugin_msg'] ) ? $this->params['plugin_msg'] : '';
-			$plugin_icon  = isset( $this->params['plugin_icon'] ) ? $this->params['plugin_icon'] : '';
+			$plugin_msg = isset( $this->params['plugin_msg'] ) ? $this->params['plugin_msg'] : '';
+			$plugin_icon = isset( $this->params['plugin_icon'] ) ? $this->params['plugin_icon'] : '';
 
 			?>
-				<div class="rc-global-notice notice notice-success is-dismissible">
-					<div class="rc-global-header">
-						<?php if ( ! empty( $plugin_icon ) ) : ?>
+			<div class="rc-global-notice notice notice-success is-dismissible">
+				<div class="rc-global-header">
+					<?php if ( ! empty( $plugin_icon ) ) : ?>
 						<div class="bdt-notice-rc-logo">
 							<img src="<?php echo esc_url( $plugin_icon ); ?>" alt="icon">
 						</div>
-						<?php endif; ?>
+					<?php endif; ?>
 
-						<div class="bdt-notice-rc-content">
-							<h3>
-								<?php printf( $plugin_title ); ?>
-							</h3>
-							<?php printf( $plugin_msg); ?>
-							<input type="hidden" name="rc_name" value="<?php echo esc_html( $this->rc_name ); ?>">
-							<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>">
-							<div class="bdt-notice-rc-buttons">
-								<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-									data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-									data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-									data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-									data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="yes"
-									class="rc-button-allow">
-									<span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span> Give us your Review
-								</button>
-								<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-									data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-									data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-									data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-									data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="skip"
-									class="rc-button-skip">
-									I'll skip for now
-								</button>
-								<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-									data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-									data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-									data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-									data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="disallow"
-									class="rc-button-disallow rc-button-danger">
-									Hide and Don't show again
-								</button>
-							</div>
+					<div class="bdt-notice-rc-content">
+						<h3>
+							<?php printf( $plugin_title ); ?>
+						</h3>
+						<?php printf( $plugin_msg ); ?>
+						<input type="hidden" name="rc_name" value="<?php echo esc_html( $this->rc_name ); ?>">
+						<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>">
+						<div class="bdt-notice-rc-buttons">
+							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
+								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
+								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
+								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
+								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="yes"
+								class="rc-button-allow">
+								<span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span> Give us your Review
+							</button>
+							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
+								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
+								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
+								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
+								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="skip"
+								class="rc-button-skip">
+								I'll skip for now
+							</button>
+							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
+								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
+								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
+								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
+								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status"
+								value="disallow" class="rc-button-disallow rc-button-danger">
+								Hide and Don't show again
+							</button>
 						</div>
 					</div>
 				</div>
-				<?php
+			</div>
+			<?php
 		}
 
 		/**
@@ -272,14 +281,23 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function rc_sdk_dismiss_notice() {
-			$nonce   = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
+			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
 			$rc_name = isset( $_POST['rc_name'] ) ? sanitize_text_field( $_POST['rc_name'] ) : '';
 
 			if ( ! wp_verify_nonce( $nonce, 'rc_sdk' ) ) {
 				wp_send_json( array(
-					'status'  => 'error',
-					'title'   => 'Error',
+					'status' => 'error',
+					'title' => 'Error',
 					'message' => 'Nonce verification failed',
+				) );
+				wp_die();
+			}
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json( array(
+					'status' => 'error',
+					'title' => 'Error',
+					'message' => 'Denied, you don\'t have right permission',
 				) );
 				wp_die();
 			}
@@ -287,8 +305,8 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 			set_transient( 'dismissed_notice_' . $rc_name, true, 30 * DAY_IN_SECONDS );
 
 			wp_send_json( array(
-				'status'  => 'success',
-				'title'   => 'Success',
+				'status' => 'success',
+				'title' => 'Success',
 				'message' => 'Success.',
 			) );
 			wp_die();
