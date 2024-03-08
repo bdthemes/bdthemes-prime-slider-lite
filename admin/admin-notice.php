@@ -41,7 +41,10 @@ class Notices {
 		$meta = ( isset( $_POST['meta'] ) ) ? sanitize_text_field( $_POST['meta'] ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'prime-slider' ) ) {
-			echo $nonce;
+			wp_send_json_error();
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error();
 		}
 
