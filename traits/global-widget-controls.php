@@ -2247,11 +2247,15 @@ trait Global_Widget_Controls {
 			return;
 		}
 
-		$this->add_render_attribute( 'slider-title', 'class', 'bdt-title', true );
-		$this->add_render_attribute( 'slider-title', 'data-reveal', 'reveal-active', true );
-		$titleClass = $this->get_render_attribute_string( 'slider-title' );
-
-		printf( '<%1$s %2$s><a href="%3$s" title="%4$s">%5$s</a></%1$s>', esc_html( $settings['title_tags'] ), wp_kses_post( $titleClass ), esc_url( get_permalink() ), esc_attr( get_the_title() ), esc_html( get_the_title() ) );
+		printf(
+			'<%1$s class="bdt-title" data-reveal="reveal-active">
+				<a href="%2$s" title="%3$s">%4$s</a>
+			</%1$s>',
+			esc_attr( Utils::get_valid_html_tag( $settings['title_tags'] ) ),
+			esc_url( get_permalink() ),
+			esc_attr( get_the_title() ),
+			esc_html( get_the_title() )
+		);
 	}
 
 	/**
