@@ -1,10 +1,10 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
+if (!class_exists('RC_Reviews_Collector')) {
 	class RC_Reviews_Collector {
 
 		public $version = '1.0.0';
@@ -24,9 +24,9 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * 
 		 * @since 0.0.0
 		 */
-		public static function get_instance( $params ) {
-			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self( $params );
+		public static function get_instance($params) {
+			if (!isset(self::$instance)) {
+				self::$instance = new self($params);
 			}
 
 			return self::$instance;
@@ -37,44 +37,44 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * param array $params
 		 * @return void
 		 */
-		public function __construct( $params ) {
+		public function __construct($params) {
 			$this->params = $params;
-			$this->review_url = isset( $params['review_url'] ) ? $params['review_url'] : false;
+			$this->review_url = isset($params['review_url']) ? $params['review_url'] : false;
 
 			// add_action( 'admin_enqueue_scripts', array( $this, 'rc_enqueue_scripts' ) );
-			add_action( 'wp_ajax_rc_sdk_insights', array( $this, 'rc_sdk_insights' ) );
-			add_action( 'wp_ajax_rc_sdk_dismiss_notice', array( $this, 'rc_sdk_dismiss_notice' ) );
+			add_action('wp_ajax_rc_sdk_insights', array($this, 'rc_sdk_insights'));
+			add_action('wp_ajax_rc_sdk_dismiss_notice', array($this, 'rc_sdk_dismiss_notice'));
 
-			$security_key = md5( $params['plugin_name'] );
-			$this->rc_name = 'rc_' . str_replace( '-', '_', sanitize_title( $params['plugin_name'] ) . '_' . $security_key );
+			$security_key = md5($params['plugin_name']);
+			$this->rc_name = 'rc_' . str_replace('-', '_', sanitize_title($params['plugin_name']) . '_' . $security_key);
 			$this->rc_allow_name = 'rc_allow_' . $this->rc_name;
 			$this->rc_date_name = 'rc_date_' . $this->rc_name;
 			$rc_count_name = 'rc_attempt_count_' . $this->rc_name;
-			$rc_status_db = get_option( $this->rc_allow_name, false );
+			$rc_status_db = get_option($this->rc_allow_name, false);
 
-			$this->nonce = wp_create_nonce( $this->rc_allow_name );
+			$this->nonce = wp_create_nonce($this->rc_allow_name);
 
 			/**
 			 * Show Notice after 3 days
 			 * Now 5 minutes
 			 */
-			$installed = get_option( $this->rc_date_name . '_installed', false );
+			$installed = get_option($this->rc_date_name . '_installed', false);
 
-			if ( ! $installed ) {
-				update_option( $this->rc_date_name . '_installed', time() );
+			if (!$installed) {
+				update_option($this->rc_date_name . '_installed', time());
 			}
 
-			$installed = get_option( $this->rc_date_name . '_installed', false );
+			$installed = get_option($this->rc_date_name . '_installed', false);
 
 			// if ( $installed && ( time() - $installed ) < 1 * MINUTE_IN_SECONDS ) {
-			if ( $installed && ( time() - $installed ) < 3 * DAY_IN_SECONDS ) {
+			if ($installed && (time() - $installed) < 3 * DAY_IN_SECONDS) {
 				return;
 			}
 
 			/**
 			 * Show Notice
 			 */
-			if ( ! $rc_status_db ) {
+			if (!$rc_status_db) {
 				$this->display_notice();
 				return;
 			}
@@ -82,7 +82,7 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 			/**
 			 * If Disallow
 			 */
-			if ( 'disallow' == $rc_status_db ) {
+			if ('disallow' == $rc_status_db) {
 				return;
 			}
 
@@ -90,7 +90,7 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 			 * Skip & Date Not Expired
 			 * Show Notice
 			 */
-			if ( 'skip' == $rc_status_db && true == $this->check_date() ) {
+			if ('skip' == $rc_status_db && true == $this->check_date()) {
 				$this->display_notice();
 				return;
 			}
@@ -100,20 +100,19 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 			 * No need send data to server
 			 * Else Send Data to Server
 			 */
-			if ( ! $this->check_date() ) {
+			if (!$this->check_date()) {
 				return;
 			}
 
 			/**
 			 * Count attempt every time
 			 */
-			$rc_attempt = get_option( $rc_count_name, 0 );
+			$rc_attempt = get_option($rc_count_name, 0);
 
-			if ( ! $rc_attempt ) {
-				update_option( $rc_count_name, 1 );
+			if (!$rc_attempt) {
+				update_option($rc_count_name, 1);
 			}
-			update_option( $rc_count_name, $rc_attempt + 1 );
-
+			update_option($rc_count_name, $rc_attempt + 1);
 		}
 
 		/**
@@ -122,10 +121,10 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function display_notice() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'rc_enqueue_scripts' ) );
+			add_action('admin_enqueue_scripts', array($this, 'rc_enqueue_scripts'));
 
-			if ( ! get_transient( 'dismissed_notice_' . $this->rc_name ) ) {
-				add_action( 'admin_notices', array( $this, 'display_global_notice' ) );
+			if (!get_transient('dismissed_notice_' . $this->rc_name)) {
+				add_action('admin_notices', array($this, 'display_global_notice'));
 			}
 		}
 
@@ -135,14 +134,14 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return boolean
 		 */
 		public function check_date() {
-			$current_date = strtotime( gmdate( 'Y-m-d' ) );
-			$rc_status_date = strtotime( get_option( $this->rc_date_name, false ) );
+			$current_date = strtotime(gmdate('Y-m-d'));
+			$rc_status_date = strtotime(get_option($this->rc_date_name, false));
 
-			if ( ! $rc_status_date ) {
+			if (!$rc_status_date) {
 				return true;
 			}
 
-			if ( $rc_status_date && $current_date >= $rc_status_date ) {
+			if ($rc_status_date && $current_date >= $rc_status_date) {
 				return true;
 			}
 			return false;
@@ -153,57 +152,57 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function reset_settings() {
-			delete_option( $this->rc_allow_name );
-			delete_option( $this->rc_date_name );
+			delete_option($this->rc_allow_name);
+			delete_option($this->rc_date_name);
 		}
 
 		/**
 		 * Ajax callback
 		 */
 		public function rc_sdk_insights() {
-			$sanitized_status = isset( $_POST['button_val'] ) ? sanitize_text_field( $_POST['button_val'] ) : '';
-			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-			$allow_name = isset( $_POST['allow_name'] ) ? sanitize_text_field( $_POST['allow_name'] ) : '';
-			$date_name = isset( $_POST['date_name'] ) ? sanitize_text_field( $_POST['date_name'] ) : '';
+			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field($_POST['button_val']) : '';
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+			$allow_name = isset($_POST['allow_name']) ? sanitize_text_field($_POST['allow_name']) : '';
+			$date_name = isset($_POST['date_name']) ? sanitize_text_field($_POST['date_name']) : '';
 
-			if ( ! wp_verify_nonce( $nonce, 'rc_sdk' ) ) {
-				wp_send_json( array(
+			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
+				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
 					'message' => 'Nonce verification failed',
-				) );
+				));
 				wp_die();
 			}
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json( array(
+			if (!current_user_can('manage_options')) {
+				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
 					'message' => 'Denied, you don\'t have right permission',
-				) );
+				));
 				wp_die();
 			}
 
-			if ( 'disallow' == $sanitized_status ) {
-				update_option( $allow_name, 'disallow' );
+			if ('disallow' == $sanitized_status) {
+				update_option($allow_name, 'disallow');
 			}
 
-			if ( $sanitized_status == 'skip' ) {
-				update_option( $allow_name, 'skip' );
+			if ($sanitized_status == 'skip') {
+				update_option($allow_name, 'skip');
 				/**
 				 * Next schedule date for attempt
 				 */
-				update_option( $date_name, gmdate( 'Y-m-d', strtotime( "+1 month" ) ) );
-			} elseif ( $sanitized_status == 'yes' ) {
-				update_option( $allow_name, 'yes' );
+				update_option($date_name, gmdate('Y-m-d', strtotime("+1 month")));
+			} elseif ($sanitized_status == 'yes') {
+				update_option($allow_name, 'yes');
 			}
 
-			wp_send_json( array(
+			wp_send_json(array(
 				'status' => 'success',
 				'title' => 'Success',
 				'message' => 'Success.',
 				'action' => $sanitized_status,
-			) );
+			));
 			wp_die();
 		}
 
@@ -213,8 +212,8 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @since 1.0.0
 		 */
 		public function rc_enqueue_scripts() {
-			wp_enqueue_style( 'rc-sdk', plugins_url( 'assets/rc.css', __FILE__ ), array(), '1.0.0' );
-			wp_enqueue_script( 'rc-sdk', plugins_url( 'assets/rc.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_style('rc-sdk', plugins_url('assets/rc.css', __FILE__), array(), '1.0.0');
+			wp_enqueue_script('rc-sdk', plugins_url('assets/rc.js', __FILE__), array('jquery'), '1.0.0', true);
 		}
 
 		/**
@@ -223,56 +222,41 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function display_global_notice() {
-			$plugin_title = isset( $this->params['plugin_title'] ) ? $this->params['plugin_title'] : '';
-			$plugin_msg = isset( $this->params['plugin_msg'] ) ? $this->params['plugin_msg'] : '';
-			$plugin_icon = isset( $this->params['plugin_icon'] ) ? $this->params['plugin_icon'] : '';
+			$plugin_title = isset($this->params['plugin_title']) ? $this->params['plugin_title'] : '';
+			$plugin_msg = isset($this->params['plugin_msg']) ? $this->params['plugin_msg'] : '';
+			$plugin_icon = isset($this->params['plugin_icon']) ? $this->params['plugin_icon'] : '';
 
-			?>
-			<div class="rc-global-notice notice notice-success is-dismissible">
+?>
+			<div class="rc-global-notice notice notice-success is-dismissible <?php echo esc_attr(substr($this->rc_name, 0, -33)); ?>">
 				<div class="rc-global-header">
-					<?php if ( ! empty( $plugin_icon ) ) : ?>
+					<?php if (!empty($plugin_icon)) : ?>
 						<div class="bdt-notice-rc-logo">
-							<img src="<?php echo esc_url( $plugin_icon ); ?>" alt="icon">
+							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>
 
 					<div class="bdt-notice-rc-content">
 						<h3>
-							<?php printf(wp_kses_post($plugin_title) ); ?>
+							<?php printf(wp_kses_post($plugin_title)); ?>
 						</h3>
-						<?php printf(wp_kses_post($plugin_msg) ); ?>
-						<input type="hidden" name="rc_name" value="<?php echo esc_html( $this->rc_name ); ?>">
-						<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>">
+						<?php printf(wp_kses_post($plugin_msg)); ?>
+						<input type="hidden" name="rc_name" value="<?php echo esc_html($this->rc_name); ?>">
+						<input type="hidden" name="nonce" value="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>">
 						<div class="bdt-notice-rc-buttons">
-							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="yes"
-								class="rc-button-allow">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="yes" class="rc-button-allow">
 								<span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span> Give us your Review
 							</button>
-							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status" value="skip"
-								class="rc-button-skip">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="skip" class="rc-button-skip">
 								I'll skip for now
 							</button>
-							<button data-rc_name="<?php echo esc_html( $this->rc_name ); ?>"
-								data-date_name="<?php echo esc_html( $this->rc_date_name ); ?>"
-								data-allow_name="<?php echo esc_html( $this->rc_allow_name ); ?>"
-								data-nonce="<?php echo esc_html( wp_create_nonce( 'rc_sdk' ) ); ?>"
-								data-review_url="<?php echo esc_html( $this->review_url ); ?>" name="rc_allow_status"
-								value="disallow" class="rc-button-disallow rc-button-danger">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="disallow" class="rc-button-disallow rc-button-danger">
 								Hide and Don't show again
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php
+<?php
 		}
 
 		/**
@@ -281,48 +265,47 @@ if ( ! class_exists( 'RC_Reviews_Collector' ) ) {
 		 * @return void
 		 */
 		public function rc_sdk_dismiss_notice() {
-			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-			$rc_name = isset( $_POST['rc_name'] ) ? sanitize_text_field( $_POST['rc_name'] ) : '';
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+			$rc_name = isset($_POST['rc_name']) ? sanitize_text_field($_POST['rc_name']) : '';
 
-			if ( ! wp_verify_nonce( $nonce, 'rc_sdk' ) ) {
-				wp_send_json( array(
+			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
+				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
 					'message' => 'Nonce verification failed',
-				) );
+				));
 				wp_die();
 			}
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json( array(
+			if (!current_user_can('manage_options')) {
+				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
 					'message' => 'Denied, you don\'t have right permission',
-				) );
+				));
 				wp_die();
 			}
 
-			set_transient( 'dismissed_notice_' . $rc_name, true, 30 * DAY_IN_SECONDS );
+			set_transient('dismissed_notice_' . $rc_name, true, 30 * DAY_IN_SECONDS);
 
-			wp_send_json( array(
+			wp_send_json(array(
 				'status' => 'success',
 				'title' => 'Success',
 				'message' => 'Success.',
-			) );
+			));
 			wp_die();
 		}
 	}
-
 }
 
 /**
  * Main Insights Function
  */
-if ( ! function_exists( 'rc_sdk_automate' ) ) {
-	function rc_sdk_automate( $params ) {
-		if ( class_exists( 'RC_Reviews_Collector' ) ) {
+if (!function_exists('rc_sdk_automate')) {
+	function rc_sdk_automate($params) {
+		if (class_exists('RC_Reviews_Collector')) {
 			// RC_Reviews_Collector::get_instance( $params );
-			new RC_Reviews_Collector( $params );
+			new RC_Reviews_Collector($params);
 		}
 	}
 }
