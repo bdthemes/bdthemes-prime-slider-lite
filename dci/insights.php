@@ -398,9 +398,9 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 					<?php endif; ?>
 					<div class="bdt-dci-notice-content">
 						<h3>
-							<?php printf( $plugin_title ); ?>
+							<?php printf(wp_kses_post($plugin_title )); ?>
 						</h3>
-						<?php printf( $plugin_msg ); ?>
+						<?php printf(wp_kses_post($plugin_msg) ); ?>
 						<p>
 							<a href="<?php echo esc_url( $admin_url ); ?>">Learn More</a>?
 						</p>
