@@ -147,6 +147,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.13.5 [XXX March 2024] =
+
+* Fixed: Image height issue fixed in fiestar widget
+* Updated: Admin dashboard license notice improved
+
 = 3.13.4 [10th March 2024] =
 
 * Fixed: Security issue fixed
