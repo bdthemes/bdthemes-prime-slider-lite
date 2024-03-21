@@ -9,7 +9,7 @@ Stable tag: 3.13.5
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
-Elementor tested up to: 3.20.1
+Elementor tested up to: 3.20.2
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -147,7 +147,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.13.5 [20th March 2024] =
+= 3.13.5 [21th March 2024] =
 
 * Fixed: Image height issue fixed in fiestar widget
 * Updated: Admin dashboard license notice improved
