@@ -2317,7 +2317,7 @@ class Isolate extends Widget_Base {
         $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
 
         if (isset($content['button_link']['url'])) {
-            $this->add_render_attribute('slider-button', 'href', $content['button_link']['url'], true);
+            $this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
 
             if ($content['button_link']['is_external']) {
                 $this->add_render_attribute('slider-button', 'target', '_blank', true);
@@ -2327,7 +2327,7 @@ class Isolate extends Widget_Base {
                 $this->add_render_attribute('slider-button', 'rel', 'nofollow', true);
             }
         } else {
-            $this->add_render_attribute('slider-button', 'href', '#', true);
+            $this->add_render_attribute('slider-button', 'href', 'javascript:void(0);', true);
         }
 
         ?>
