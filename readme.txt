@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.4.3
 Requires PHP: 7.4.0
-Stable tag: 3.13.6
+Stable tag: 3.13.7
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
-Elementor tested up to: 3.20.2
+Elementor tested up to: 3.20.3
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -52,29 +52,52 @@ In search of an all-in-one plugin for creating a slider for a WordPress website?
 
 == Free Core Widgets for Lifetime 🔥 ==
 
-**[Blog](https://primeslider.pro/demo/blog-base/)** | **[Coral Slider Skin](https://primeslider.pro/demo/blog-skin-coral/)** | **[Crelly Slider Skin](https://primeslider.pro/demo/general-skin-crelly/)** | **[Dragon](https://primeslider.pro/demo/dragon/)** | **[Elysium](https://primeslider.pro/demo/elysium/)** | **[Fiestar](https://primeslider.pro/demo/fiestar/)** | **[Flogia](https://primeslider.pro/demo/flogia/)** | **[Folio Slider Skin](https://primeslider.pro/demo/blog-skin-folio/)** | **[General](https://primeslider.pro/demo/general/)** | **[Isolate](https://primeslider.pro/demo/isolate/)** | **[Locate Slider Skin](https://primeslider.pro/demo/isolate-skin-locate/)** | **[Meteor Slider Skin](https://primeslider.pro/demo/general-skin-meteor/)** | **[Mercury](https://primeslider.pro/demo/mercury/)** | **[Mount](https://primeslider.pro/demo/mount/)** | **[Multiscroll](https://primeslider.pro/demo/multiscroll/)** | **[Omatic](https://primeslider.pro/demo/omatic/)** | **[Pacific](https://primeslider.pro/demo/pacific/)** | **[Pagepiling](https://primeslider.pro/demo/pagepiling/)** | **[Rubix](https://primeslider.pro/demo/rubix/)** | **[Sequester](https://primeslider.pro/demo/sequester/)** | **[Slide Slider Skin](https://primeslider.pro/demo/general-skin-slide/)** | **[Slice Slider Skin](https://primeslider.pro/demo/isolate-skin-slice/)** | **[Storker](https://primeslider.pro/demo/storker/)** | **[Sniper](https://primeslider.pro/demo/sniper/)** | **[Tango](https://primeslider.pro/demo/tango/)** | **[Vertex](https://primeslider.pro/demo/vertex/)** | **[Zinest Slider Skin](https://primeslider.pro/demo/blog-skin-zinest/)**
+**Post 👇**
+
+[Blog](https://primeslider.pro/demo/blog-base/) | [Coral Slider Skin](https://primeslider.pro/demo/blog-skin-coral/) | [Folio Slider Skin](https://primeslider.pro/demo/blog-skin-folio/) | [Zinest Slider Skin](https://primeslider.pro/demo/blog-skin-zinest/) 
+[Fiestar](https://primeslider.pro/demo/fiestar/) | [Flogia](https://primeslider.pro/demo/flogia/) | [Mercury](https://primeslider.pro/demo/mercury/) | [Pacific](https://primeslider.pro/demo/pacific/) | [Rubix](https://primeslider.pro/demo/rubix/) | [Storker](https://primeslider.pro/demo/storker/) | [Vertex](https://primeslider.pro/demo/vertex/) 
+
+**Custom 👇**
+
+[General](https://primeslider.pro/demo/general/) | [Crelly Slider Skin](https://primeslider.pro/demo/general-skin-crelly/) | [Meteor Slider Skin](https://primeslider.pro/demo/general-skin-meteor/) | [Slide Slider Skin](https://primeslider.pro/demo/general-skin-slide/) 
+[Isolate](https://primeslider.pro/demo/isolate/) | [Locate Slider Skin](https://primeslider.pro/demo/isolate-skin-locate/) | [Slice Slider Skin](https://primeslider.pro/demo/isolate-skin-slice/)
+[Dragon](https://primeslider.pro/demo/dragon/) | [Elysium](https://primeslider.pro/demo/elysium/) | [Mount](https://primeslider.pro/demo/mount/) | [Omatic](https://primeslider.pro/demo/omatic/) | [Sequester](https://primeslider.pro/demo/sequester/) | [Sniper](https://primeslider.pro/demo/sniper/) | [Tango](https://primeslider.pro/demo/tango/) 
+
+**Fullscreen 👇**
+
+[Multiscroll](https://primeslider.pro/demo/multiscroll/) | [Pagepiling](https://primeslider.pro/demo/pagepiling/) 
 
 == Free 3rd Party Widgets for Lifetime 🔥 ==
 
-**[WooCommerce](https://primeslider.pro/demo/woocommerce/)** | **[Woocircle](https://primeslider.pro/demo/woocircle/)** | **[Woolamp](https://primeslider.pro/demo/woolamp/)**
+[WooCommerce](https://primeslider.pro/demo/woocommerce/) | [Woocircle](https://primeslider.pro/demo/woocircle/) | [Woolamp](https://primeslider.pro/demo/woolamp/)
 
 == Free Features for Lifetime 🔥 ==
 
-**[Live Copy or Paste](https://www.elementpack.pro/knowledge-base/how-to-use-live-copy-option/)** | **[Duplicator](https://www.elementpack.pro/knowledge-base/how-to-use-element-pack-duplicator/)**
+[Live Copy or Paste](https://www.elementpack.pro/knowledge-base/how-to-use-live-copy-option/) | [Duplicator](https://www.elementpack.pro/knowledge-base/how-to-use-element-pack-duplicator/)
 
 More free widgets & extensions are coming soon...
 
 == Pro Version Core Widgets 🔥 ==
 
-**[Astoria](https://primeslider.pro/demo/astoria/)** | **[Avatar](https://primeslider.pro/demo/avatar/)** | **[Crossroad](https://primeslider.pro/demo/crossroad/)** | **[Custom](https://primeslider.pro/demo/custom/)** | **[Escape](https://primeslider.pro/demo/escape/)** | **[Flexure](https://primeslider.pro/demo/flexure/)** | **[Fluent](https://primeslider.pro/demo/fluent/)** | **[Fortune](https://primeslider.pro/demo/fortune/)** | **[Knily](https://primeslider.pro/demo/knily/)** | **[Marble](https://primeslider.pro/demo/marble/)** | **[Monster](https://primeslider.pro/demo/monster/)** | **[Material](https://primeslider.pro/demo/material/)** | **[Paranoia](https://primeslider.pro/demo/paranoia/)** | **[Pieces](https://primeslider.pro/demo/pieces/)** | **[Prism](https://primeslider.pro/demo/prism/)** | **[Coddle](https://primeslider.pro/demo/coddle/)** | **[Reveal](https://primeslider.pro/demo/reveal/)** | **[Remote Arrows](https://primeslider.pro/demo/remote-arrows/)** | **[Remote Fraction](https://primeslider.pro/demo/remote-fraction/)** | **[Remote Pagination](https://primeslider.pro/demo/remote-pagination/)** | **[Remote Thumbs](https://primeslider.pro/demo/remote-thumbs/)** | **[Woo HotSpot](https://primeslider.pro/demo/woohotspot/)** | **[Titanic](https://primeslider.pro/demo/titanic/)**
+**Post 👇**
+
+[Fluent](https://primeslider.pro/demo/fluent/) | [Knily](https://primeslider.pro/demo/knily/) | [Marble](https://primeslider.pro/demo/marble/) | [Material](https://primeslider.pro/demo/material/) 
+
+**Custom 👇**
+
+[Astoria](https://primeslider.pro/demo/astoria/) | [Avatar](https://primeslider.pro/demo/avatar/) | [Crossroad](https://primeslider.pro/demo/crossroad/) | [Custom](https://primeslider.pro/demo/custom/) | [Escape](https://primeslider.pro/demo/escape/) | [Flexure](https://primeslider.pro/demo/flexure/) | [Fortune](https://primeslider.pro/demo/fortune/) | [Monster](https://primeslider.pro/demo/monster/) | [Paranoia](https://primeslider.pro/demo/paranoia/) | [Pieces](https://primeslider.pro/demo/pieces/) | [Prism](https://primeslider.pro/demo/prism/) | [Coddle](https://primeslider.pro/demo/coddle/) | [Reveal](https://primeslider.pro/demo/reveal/) | [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) | [Titanic](https://primeslider.pro/demo/titanic/)
+
+**Remote Control 👇**
+
+[Remote Arrows](https://primeslider.pro/demo/remote-arrows/) | [Remote Fraction](https://primeslider.pro/demo/remote-fraction/) | [Remote Pagination](https://primeslider.pro/demo/remote-pagination/) | [Remote Thumbs](https://primeslider.pro/demo/remote-thumbs/) 
 
 == Pro Version 3rd Party Widgets 🔥 ==
 
-**[Event Calendar](https://primeslider.pro/demo/event-calendar/)** | **[Wooexpand](https://primeslider.pro/demo/wooexpand/)** | **[WooStand](https://primeslider.pro/demo/woostand/)**
+[Event Calendar](https://primeslider.pro/demo/event-calendar/) | [Wooexpand](https://primeslider.pro/demo/wooexpand/) | [WooStand](https://primeslider.pro/demo/woostand/)
 
 == Pro Version Extension 🔥 ==
 
-**[Adaptive Background](https://primeslider.pro/demo/adaptive-bg/)**
+[Adaptive Background](https://primeslider.pro/demo/adaptive-bg/)
 
 
 == Featured By - Famous Publications 🎇 ==
@@ -147,9 +170,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.13.7 [XX March 2024] =
+= 3.13.7 [28th March 2024] =
 
 * Fixed: Thumbs height issue fixed in flogia widget
+* Fixed: Admin feeds issue fixed
 
 = 3.13.6 [21th March 2024] =
 
