@@ -49,10 +49,10 @@ class Prime_Slider_Admin_Feeds {
 		$feeds = $this->bdthemes_prime_slider_get_feeds_remote_data();
 		if (is_array($feeds)) :
 			foreach ($feeds as $key => $feed) {
-				printf('<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', esc_url($feed->demo_link), esc_html($feed->image), esc_html($feed->content));
+				printf('<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', $feed->demo_link, $feed->image, $feed->content);
 			}
 		endif;
-		echo wp_kses_post($this->bdthemes_prime_slider_get_feeds_posts_data());
+		echo $this->bdthemes_prime_slider_get_feeds_posts_data();
 	}
 
 	/**
