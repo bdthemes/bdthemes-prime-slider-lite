@@ -147,6 +147,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.13.7 [XX March 2024] =
+
+* Fixed: Thumbs height issue fixed in flogia widget
+
 = 3.13.6 [21th March 2024] =
 
 * Fixed: Notice error issue fixed
