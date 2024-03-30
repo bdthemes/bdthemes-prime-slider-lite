@@ -24,11 +24,6 @@ module.exports = function (grunt) {
 						src: '**',
 						dest: 'assets/vendor/',
 					},
-					// {
-					// 	expand: false,
-					// 	src: 'node_modules/uikit/dist/js/uikit.min.js',
-					// 	dest: 'assets/js/bdt-uikit.min.js',
-					// },
 				],
 			},
 		},

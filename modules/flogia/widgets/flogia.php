@@ -52,15 +52,15 @@ class Flogia extends Widget_Base {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-flogia'];
+                return ['gsap', 'split-text', 'mThumbnailScroller', 'anime', 'revealFx', 'ps-flogia'];
             } else {
-                return [];
+                return ['mThumbnailScroller', 'ps-flogia'];
             }
         } else {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'ps-flogia'];
+                return ['gsap', 'split-text', 'mThumbnailScroller', 'ps-flogia'];
             } else {
-                return [];
+                return ['mThumbnailScroller', 'ps-flogia'];
             }
         }
     }
@@ -1259,7 +1259,8 @@ class Flogia extends Widget_Base {
 
         <?php if ('yes' == $settings['show_thumbnav']): ?>
             <div class="reveal-muted bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
-                <ul class="bdt-slider-items bdt-child-width-1-2 bdt-child-width-1-3@s bdt-child-width-1-4@m bdt-child-width-1-5@l bdt-child-width-expand@xl  bdt-grid">
+            <div class="bdt-thumbnav-scroller">
+                <ul class="bdt-slider-items">
                     <?php
             $slide_index = 1;
 
@@ -1290,6 +1291,7 @@ class Flogia extends Widget_Base {
         wp_reset_postdata();?>
 
                     </ul>
+                </div>
                 </div>
             <?php endif;?>
 
