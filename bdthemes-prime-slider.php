@@ -59,9 +59,7 @@ if ( ! function_exists( '_is_ps_pro_activated' ) ) {
 
 // Helper function here
 include dirname( __FILE__ ) . '/includes/helper.php';
-
 require_once BDTPS_CORE_INC_PATH . 'class-pro-widget-map.php';
-
 include dirname( __FILE__ ) . '/includes/utils.php';
 
 /**

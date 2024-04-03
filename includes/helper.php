@@ -756,3 +756,23 @@ function prime_slider_static_menu( $config, $menu_align = 'bdt-navbar-right' ) {
 
 	<?php endif;
 }
+
+/**
+ * License Validation
+ */
+if (!function_exists('ps_license_validation')) {
+	function ps_license_validation() {
+
+		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
+			return false;
+		}
+
+		$license_key = get_option(\PrimeSliderPro\Base\Prime_Slider_Base::get_lic_key_param('prime_slider_license_key'));
+
+		if (isset($license_key) && !empty($license_key)) {
+			return true;
+		}
+
+		return false;
+	}
+}
