@@ -1,9 +1,7 @@
 <?php
 
-use PrimeSlider\Notices;
 use PrimeSlider\Utils;
 use PrimeSlider\Admin\ModuleService;
-use PrimeSlider\Base\Prime_Slider_Base;
 use Elementor\Modules\Usage\Module;
 use Elementor\Tracker;
 
