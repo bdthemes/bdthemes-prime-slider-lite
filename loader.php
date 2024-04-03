@@ -251,9 +251,29 @@ class Prime_Slider_Loader {
 
 	public function enqueue_editor_scripts() {
 
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
+		wp_enqueue_script('ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [
+			'backbone-marionette',
+			'elementor-common-modules',
+			'elementor-editor-modules',
+		], BDTPS_CORE_VER, true);
 
-		wp_enqueue_script( 'prime-slider', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor' . $suffix . '.js', [ 'backbone-marionette', 'elementor-common-modules', 'elementor-editor-modules',], BDTPS_CORE_VER, true );
+		$_is_ps_pro_activated = false;
+		if (function_exists('ps_license_validation') && true === ps_license_validation()) {
+			$_is_ps_pro_activated = true;
+		}
+
+		$localize_data = [
+			'pro_installed'  => _is_ps_pro_activated(),
+			'pro_license_activated'  => $_is_ps_pro_activated,
+			'promotional_widgets'   => [],
+		];
+
+		if (!$_is_ps_pro_activated) {
+			$pro_widget_map = new \PrimeSlider\Includes\Pro_Widget_Map();
+			$localize_data['promotional_widgets'] = $pro_widget_map->get_pro_widget_map();
+		}
+
+		wp_localize_script('ps-editor', 'PrimeSliderConfigEditor', $localize_data);
 	}
 
 	/**
@@ -308,10 +328,9 @@ class Prime_Slider_Loader {
 		add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_site_scripts' ] );
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
-		//add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] ); // TODO
+		add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
 
 		add_action( 'elementor/frontend/after_register_styles', [ $this, 'enqueue_site_styles' ] );
-		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_site_scripts' ] );
 
 		// load WordPress dashboard scripts
