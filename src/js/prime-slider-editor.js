@@ -87,19 +87,19 @@
 		});
 
 		elementsCollection.each(function (widget) {
-			"ultimate-post-kit-pro" === widget.get("categories")[0] &&
+			"prime-slider-pro" === widget.get("categories")[0] &&
 				proWidgets.push(widget);
 		});
 
 		freeCategoryIndex = categories.findIndex({
-			name: "ultimate-post-kit",
+			name: "prime-slider",
 		});
 
 		freeCategoryIndex &&
 			categories.add(
 				{
-					name: "ultimate-post-kit-pro",
-					title: "Ultimate Post Kit Pro",
+					name: "prime-slider-pro",
+					title: "Prime Slider Pro",
 					defaultActive: !1,
 					items: proWidgets,
 				},
