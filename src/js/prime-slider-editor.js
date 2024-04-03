@@ -34,19 +34,7 @@
 			// eslint-disable-next-line prettier/prettier
 		},
 		onPreviewLoaded: function () {
-			var elementorFrontend = $("#elementor-preview-iframe")[0].contentWindow
-				.elementorFrontend;
-
-			elementorFrontend.hooks.addAction(
-				"frontend/element_ready/widget",
-				function ($scope) {
-					$scope
-						.find(".ps-elementor-template-edit-link")
-						.on("click", function (event) {
-							window.open($(this).attr("href"));
-						});
-				},
-			);
+			
 		},
 	};
 
@@ -99,7 +87,7 @@
 			categories.add(
 				{
 					name: "prime-slider-pro",
-					title: "Prime Slider Pro",
+					title: "Prime Slider ( Pro )",
 					defaultActive: !1,
 					items: proWidgets,
 				},

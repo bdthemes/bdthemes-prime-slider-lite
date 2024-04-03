@@ -311,16 +311,21 @@ class Prime_Slider_Loader {
 	 */
 	public function prime_slider_init() {
 		$this->_modules_manager = new Manager();
-
-		$elementor = Plugin::$instance;
-
-		// Add element category in panel
-		$elementor->elements_manager->add_category( BDTPS_CORE_SLUG, [ 'title' => BDTPS_CORE_TITLE, 'icon' => 'font' ] );
-
 		do_action( 'bdthemes_prime_slider/init' );
 	}
 
+	/**
+	 * initialize the category
+	 */
+	public function category_register() {
+		$elementor = Plugin::$instance;
+
+		// Add element category in panel
+		$elementor->elements_manager->add_category(BDTPS_CORE_SLUG, ['title' => BDTPS_CORE_TITLE, 'icon' => 'font']);
+	}
+
 	private function setup_hooks() {
+		add_action('elementor/elements/categories_registered', [$this, 'category_register']);
 		add_action( 'elementor/init', [ $this, 'prime_slider_init' ] );
 		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 

@@ -24,7 +24,7 @@ class Pro_Widget_Map {
                             'categories' => ['prime-slider-pro'],
                             'name'       => $widget['name'],
                             'title'      => $widget['label'],
-                            'icon'       => 'ps-icon-' . $widget['name'] . ' bdt-pro-unlock-icon',
+                            'icon'       => 'bdt-widget-icon ps-wi-' . $widget['name'] . ' bdt-pro-unlock-icon',
                             'action_button' => [
                                 'classes'   => ['elementor-button', 'elementor-button-success'],
                                 'text'      => esc_html__('See it in Action', 'bdthemes-prime-slider'),
