@@ -1,9 +1,7 @@
 <?php
 
-use PrimeSlider\Notices;
 use PrimeSlider\Utils;
 use PrimeSlider\Admin\ModuleService;
-use PrimeSlider\Base\Prime_Slider_Base;
 use Elementor\Modules\Usage\Module;
 use Elementor\Tracker;
 
@@ -36,15 +34,6 @@ class PrimeSlider_Admin_Settings {
 		if (!defined('BDTPS_CORE_HIDE')) {
 			add_action('admin_init', [$this, 'admin_init']);
 			add_action('admin_menu', [$this, 'admin_menu'], 201);
-		}
-
-
-		if (!Tracker::is_allow_track() && (isset($_GET['page']) && 'prime_slider_options' != $_GET['page'])) {
-			add_action('admin_notices', [$this, 'allow_tracker_activate_notice'], 10, 3);
-		}
-
-		if (isset($_GET['page']) && 'prime_slider_options' == $_GET['page']) {
-			add_action('admin_notices', [$this, 'allow_tracker_dashboard_notice'], 10, 3);
 		}
 
 		/**
@@ -627,6 +616,17 @@ class PrimeSlider_Admin_Settings {
 				</div>
 			</div>
 
+			<?php if ( !Tracker::is_allow_track() ) : ?>
+				<div class="bdt-border-rounded bdt-box-shadow-small bdt-alert-warning" bdt-alert>
+					<a href class="bdt-alert-close" bdt-close></a>
+					<div class="bdt-text-default">
+						<?php
+						esc_html_e('To view widgets analytics, Elementor Usage Data Sharing feature by Elementor needs to be activated. Please activate the feature to get widget analytics instantly ', 'bdthemes-element-pack');
+						echo '<a href="' . esc_url(admin_url('admin.php?page=elementor')) . '">from here.</a>';
+						?>
+					</div>
+				</div>
+			<?php endif; ?>
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-3@m ps-support-section">
@@ -883,8 +883,6 @@ class PrimeSlider_Admin_Settings {
 									</div>
 								</li>
 							</ul>
-
-							<!-- <div class="ps-dashboard-divider"></div> -->
 
 							<?php if (true !== _is_ps_pro_activated()) : ?>
 								<div class="ps-purchase-button">
@@ -1342,48 +1340,6 @@ class PrimeSlider_Admin_Settings {
 		</div>
 
 <?php
-	}
-
-	/**
-	 * 
-	 * Allow Tracker deactivated warning
-	 * If Allow Tracker disable in elementor then this notice will be show
-	 *
-	 * @access public
-	 */
-
-	public function allow_tracker_activate_notice() {
-
-		Notices::add_notice(
-			[
-				'id'               => 'ps-allow-tracker',
-				'type'             => 'warning',
-				'dismissible'      => true,
-				'dismissible-time' => MONTH_IN_SECONDS * 2,
-				'message'          => __('Please activate <strong>Usage Data Sharing</strong> features from Elementor, otherwise Widgets Analytics will not work. Please activate the settings from <strong>Elementor > Settings > General Tab >  Usage Data Sharing.</strong> Thank you.', 'bdthemes-prime-slider'),
-			]
-		);
-	}
-
-	/**
-	 * 
-	 * Allow Tracker deactivated warning only in Element Pack Dashboard
-	 * If Allow Tracker disable in elementor then this notice will be show
-	 *
-	 * @access public
-	 */
-
-	public function allow_tracker_dashboard_notice() {
-
-		Notices::add_notice(
-			[
-				'id'               => 'ep-allow-tracker-dashboard',
-				'type'             => 'warning',
-				'dismissible'      => true,
-				'dismissible-time' => WEEK_IN_SECONDS,
-				'message'          => __('Please activate <strong>Usage Data Sharing</strong> features from Elementor, otherwise Widgets Analytics will not work. Please activate the settings from <strong>Elementor > Settings > General Tab >  Usage Data Sharing.</strong> Thank you.', 'bdthemes-prime-slider'),
-			]
-		);
 	}
 
 	/**
