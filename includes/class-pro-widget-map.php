@@ -21,7 +21,7 @@ class Pro_Widget_Map {
                     if ('pro' == $widget['widget_type']) {
 
                         $ar = [
-                            'categories' => ['prime-slider-pro'],
+                            'categories' => ['prime-slider-pro-tweeks'],
                             'name'       => $widget['name'],
                             'title'      => $widget['label'],
                             'icon'       => 'bdt-widget-icon ps-wi-' . $widget['name'] . ' bdt-pro-unlock-icon',

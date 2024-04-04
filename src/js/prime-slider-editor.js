@@ -75,7 +75,7 @@
 		});
 
 		elementsCollection.each(function (widget) {
-			"prime-slider-pro" === widget.get("categories")[0] &&
+			"prime-slider-pro-tweeks" === widget.get("categories")[0] &&
 				proWidgets.push(widget);
 		});
 
@@ -86,7 +86,7 @@
 		freeCategoryIndex &&
 			categories.add(
 				{
-					name: "prime-slider-pro",
+					name: "prime-slider-pro-tweeks",
 					title: "Prime Slider ( Pro )",
 					defaultActive: !1,
 					items: proWidgets,
