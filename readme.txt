@@ -173,6 +173,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.14.0 [XX March 2024] =
 
 * Added: Thumbs scroll option added in flogia widget
+* Updated: Admin dashboard system improved
 
 = 3.13.7 [28th March 2024] =
 
