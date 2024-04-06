@@ -140,7 +140,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 					$class .= ' ps-widget-' . esc_attr( $field['args']['widget_type'] );
 				}
 
-				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== _is_ps_pro_activated() ) {
+				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== ps_license_validation() ) {
 					$class .= ' ps-pro-inactive';
 				}
 
@@ -944,12 +944,12 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 									<div>
 										<ul class="bdt-subnav bdt-subnav-pill ps-widget-onoff">
 											<li>
-												<a href="#" class="ps-active-all-widget">
+												<a href="javascript:void(0);" class="ps-active-all-widget">
 													<?php esc_html_e( 'Activate All', 'bdthemes-prime-slider' ); ?>
 												</a>
 											</li>
 											<li>
-												<a href="#" class="ps-deactive-all-widget">
+												<a href="javascript:void(0);" class="ps-deactive-all-widget">
 													<?php esc_html_e( 'Deactivate All', 'bdthemes-prime-slider' ); ?>
 												</a>
 											</li>
