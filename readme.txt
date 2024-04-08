@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.4.3
+Tested up to: 6.5
 Requires PHP: 7.4.0
 Stable tag: 3.14.0
 License: GPL3
@@ -170,7 +170,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.14.0 [XX March 2024] =
+= 3.14.0 [8th April 2024] =
 
 * Added: Thumbs scroll option added in flogia widget
 * Updated: Admin dashboard system improved
