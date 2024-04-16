@@ -1278,13 +1278,10 @@ class Sequester extends Widget_Base {
 
 		$image_src = Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail_size', $settings);
 
-		if ( $image_src ) {
-			$image_src = $image_src;
-		} elseif ( $item['image']['url'] ) {
+		if ( ! $image_src ) {
 			$image_src = $item['image']['url'];
-		} else {
-			return;
 		}
+
 		?>
 
 		<img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_html($alt); ?>">
@@ -1299,7 +1296,7 @@ class Sequester extends Widget_Base {
 		$this->add_render_attribute('slider-button', 'data-reveal', 'reveal-active', true);
 
 		if ($content['button_link']['url']) {
-			$this->add_render_attribute('slider-button', 'href', $content['button_link']['url'], true);
+			$this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
 
 			if ($content['button_link']['is_external']) {
 				$this->add_render_attribute('slider-button', 'target', '_blank', true);

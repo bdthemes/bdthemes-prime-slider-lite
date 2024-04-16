@@ -2376,26 +2376,26 @@ class Isolate extends Widget_Base {
 
 		if ($slide['image_link_type']) {
 			if ('google-map' == $slide['image_link_type'] and '' != $slide['image_link_google_map']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['image_link_google_map']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_google_map']['url']));
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'iframe');
 			} elseif ('video' == $slide['image_link_type'] and '' != $slide['image_link_video']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['image_link_video']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_video']['url']));
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'video');
 			} elseif ('youtube' == $slide['image_link_type'] and '' != $slide['lightbox_link']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['lightbox_link']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['lightbox_link']['url']));
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', false);
 			} elseif ('vimeo' == $slide['image_link_type'] and '' != $slide['image_link_vimeo']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['image_link_vimeo']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_vimeo']['url']));
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', false);
 			} else {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['image_link_website']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_website']['url']));
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'iframe');
 			}
 		} else {
 			if (!$image_url) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $slide['image']['url']);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image']['url']));
 			} else {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', $image_url[0]);
+				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($image_url[0]));
 			}
 		}
 
