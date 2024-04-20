@@ -706,7 +706,7 @@ function prime_slider_dynamic_menu( $config, $menu_align = 'bdt-navbar-right' ) 
 
 	?>
 
-	<nav <?php echo $config->get_render_attribute_string( 'navbar-attr' ); ?>>
+	<nav <?php $config->print_render_attribute_string( 'navbar-attr' ); ?>>
 		<div class="<?php echo esc_attr( $menu_align ); ?>">
 			<?php wp_nav_menu( apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $settings ) ); ?>
 		</div>
@@ -732,7 +732,7 @@ function prime_slider_static_menu( $config, $menu_align = 'bdt-navbar-right' ) {
 		<nav class="bdt-navbar">
 			<div class="<?php echo esc_attr( $menu_align ); ?>">
 
-				<ul <?php echo $config->get_render_attribute_string( 'nav_menu' ); ?>>
+				<ul <?php $config->print_render_attribute_string( 'nav_menu' ); ?>>
 
 					<?php foreach ( $settings['menus'] as $index => $item ) : ?>
 
