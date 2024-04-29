@@ -170,6 +170,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XX April 2024] =
+
+* Fixed: Item gap issue fixed in tango widget
+
 = 3.14.2 [21th April 2024] =
 
 * Fixed: Security issue fixed
