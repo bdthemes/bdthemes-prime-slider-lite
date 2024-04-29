@@ -172,6 +172,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.14.X [XX April 2024] =
 
+* Fixed: Modal issue fixed in woocircle widget
 * Fixed: Item gap issue fixed in tango widget
 
 = 3.14.2 [21th April 2024] =
