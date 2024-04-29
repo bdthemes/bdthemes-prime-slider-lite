@@ -97,10 +97,10 @@ class Tango extends Widget_Base {
 				'label'   => __('Item Gap', 'ultimate-post-kit'),
 				'type'    => Controls_Manager::SLIDER,
 				'default' => [
-					'size' => 0,
+					'size' => 20,
 				],
 				'tablet_default' => [
-					'size' => 0,
+					'size' => 20,
 				],
 				'mobile_default' => [
 					'size' => 0,
