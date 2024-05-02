@@ -170,6 +170,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= XXXX [XXX April 2024] =
+
+* Fixed: Security issue fixed
+
 = 3.14.3 [30th April 2024] =
 
 * Fixed: Modal issue fixed in woocircle widget
