@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.5.2
 Requires PHP: 7.4.0
-Stable tag: 3.14.4
+Stable tag: 3.14.5
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -152,6 +152,8 @@ Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widge
 
 * **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor based WordPress gallery addon that provides the easiest image gallery making experience.
 
+* **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering greater web design experience.
+
 
 Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder based products, informative blogs, and documentations.
 
@@ -170,7 +172,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.14.5 [XX May 2024] =
+= 3.14.5 [5th May 2024] =
 
 * Added: Navigation horizontal offset added in flogia widget
 
