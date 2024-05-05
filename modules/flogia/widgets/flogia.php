@@ -1040,6 +1040,9 @@ class Flogia extends Widget_Base {
             [
                 'label' => __('Navigation', 'bdthemes-prime-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'show_navigation_arrows_dots' => ['yes'],
+                ],
             ]
         );
 
@@ -1049,9 +1052,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_style',
             [
                 'label' => __('Normal', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1062,9 +1062,6 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg' => 'color: {{VALUE}}',
-                ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
                 ],
             ]
         );
@@ -1077,10 +1074,6 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li a:before' => 'background: {{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
-                'separator' => 'before',
             ]
         );
 
@@ -1090,9 +1083,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_hover_style',
             [
                 'label' => __('Hover', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1103,9 +1093,6 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover svg' => 'color: {{VALUE}}',
-                ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
                 ],
             ]
         );
@@ -1118,10 +1105,6 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li:hover a:before' => 'background: {{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
-                'separator' => 'before',
             ]
         );
 
@@ -1131,9 +1114,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_active_style',
             [
                 'label' => __('Active', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1144,9 +1124,6 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li.bdt-active a:before' => 'background: {{VALUE}}',
-                ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
                 ],
             ]
         );
@@ -1159,15 +1136,30 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li.bdt-active a:after' => 'border-color:{{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'nav_offset',
+            [
+                'label' => __('Horizontal Offset', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-navigation-arrows' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }

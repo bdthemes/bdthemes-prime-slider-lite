@@ -170,6 +170,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.5 [XX May 2024] =
+
+* Added: Navigation horizontal offset added in flogia widget
+
 = 3.14.4 [2nd May 2024] =
 
 * Fixed: Security issue fixed
