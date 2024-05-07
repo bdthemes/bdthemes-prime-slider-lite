@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= XXXXX [XXXX May 2024] =
+
+* Fixed: PHP warning fixed in Sequester widget
+
 = 3.14.5 [5th May 2024] =
 
 * Added: Navigation horizontal offset added in flogia widget
