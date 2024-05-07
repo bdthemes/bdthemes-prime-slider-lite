@@ -1295,7 +1295,7 @@ class Sequester extends Widget_Base {
 		$this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
 		$this->add_render_attribute('slider-button', 'data-reveal', 'reveal-active', true);
 
-		if ($content['button_link']['url']) {
+		if (isset($content['button_link']['url'])) {
 			$this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
 
 			if ($content['button_link']['is_external']) {
