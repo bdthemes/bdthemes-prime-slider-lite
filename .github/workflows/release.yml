@@ -1,0 +1,36 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release-free:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Archive release
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          filename: bdthemes-prime-slider-lite.zip
+          exclusions: "/*node_modules/* /*src/* /*gruntfile.js /*package.json /*package-lock.json /*sync.ffs_db /*.idea/* /*.DS_Store/* /*.gitignore /*.github/* /*.git/* /*LICENSE /*.eslintrc /*.gitattributes /*.prettierrc"
+
+      - name: display release
+        run: ls -a
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: "bdthemes-prime-slider-lite.zip"
+          token: ${{ secrets.TOKEN }}
+          removeArtifacts: true
+          allowUpdates: true
+          makeLatest: true
+          tag: ${{ github.ref_name }}
