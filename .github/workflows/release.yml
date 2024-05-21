@@ -1,36 +1,39 @@
 name: Publish Release
 
 on:
-  push:
-    tags:
-      - "*"
+    push:
+        tags:
+            - '*'
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  release-free:
-    runs-on: ubuntu-latest
+    release-free:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Archive release
-        uses: thedoctor0/zip-release@0.7.1
-        with:
-          type: zip
-          filename: bdthemes-prime-slider-lite.zip
-          exclusions: "/*node_modules/* /*src/* /*gruntfile.js /*package.json /*package-lock.json /*sync.ffs_db /*.idea/* /*.DS_Store/* /*.gitignore /*.github/* /*.git/* /*LICENSE /*.eslintrc /*.gitattributes /*.prettierrc"
+            - name: Create bdthemes-prime-slider-lite directory and move files
+              run: |
+                  mkdir -p bdthemes-prime-slider-lite &&
+                  find . -maxdepth 1 -not -name 'bdthemes-prime-slider-lite' -exec mv {} bdthemes-prime-slider-lite \;
 
-      - name: display release
-        run: ls -a
+            - name: Archive release
+              uses: thedoctor0/zip-release@0.7.6
+              with:
+                  filename: 'bdthemes-prime-slider-lite.zip'
+                  exclusions: "/*node_modules/* /*less/* /*gruntfile.js /*package.json /*package-lock.json /*sync.ffs_db /*.idea/* /*.DS_Store /*.gitignore /*.github/* /*.git/* /*LICENSE /*.eslintrc /*.gitattributes /*.prettierrc"
+            - name: Display release
+              run: ls -a
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1.12.0
-        with:
-          artifacts: "bdthemes-prime-slider-lite.zip"
-          token: ${{ secrets.TOKEN }}
-          removeArtifacts: true
-          allowUpdates: true
-          makeLatest: true
-          tag: ${{ github.ref_name }}
+            - name: Create Release
+              uses: ncipollo/release-action@v1.14.0
+              with:
+                  artifacts: './bdthemes-prime-slider-lite.zip'
+                  token: ${{ secrets.TOKEN }}
+                  removeArtifacts: true
+                  allowUpdates: true
+                  makeLatest: true
+                  tag: ${{ github.ref_name }}
