@@ -24,7 +24,7 @@ jobs:
               uses: thedoctor0/zip-release@0.7.6
               with:
                   filename: 'bdthemes-prime-slider-lite.zip'
-                  exclusions: "/*node_modules/* /*less/* /*gruntfile.js /*package.json /*package-lock.json /*sync.ffs_db /*.idea/* /*.DS_Store /*.gitignore /*.github/* /*.git/* /*LICENSE /*.eslintrc /*.gitattributes /*.prettierrc"
+                  exclusions: "/*node_modules/* /*src/* /*less/* /*gruntfile.js /*package.json /*package-lock.json /*sync.ffs_db /*.idea/* /*.DS_Store /*.gitignore /*.github/* /*.git/* /*LICENSE /*.eslintrc /*.gitattributes /*.prettierrc"
             - name: Display release
               run: ls -a
 
