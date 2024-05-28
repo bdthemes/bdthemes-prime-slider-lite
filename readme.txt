@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XX May 2024] =
+
+* Fixed: Skin folio social design issue fixed in blog widget
+
 = 3.14.6 [21th May 2024] =
 
 * Fixed: PHP warning fixed in Sequester widget
