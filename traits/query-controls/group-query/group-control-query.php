@@ -151,7 +151,8 @@ trait Group_Control_Query {
 				],
 				'condition'   => [
 					'posts_source!' => ['manual_selection', 'current_query'],
-				]
+				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -400,6 +401,7 @@ trait Group_Control_Query {
 				'description' => __('Give your Query a custom unique id to allow server side filtering', 'bdthemes-prime-slider'),
 				'type'        => Controls_Manager::TEXT,
 				'separator'   => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 	}

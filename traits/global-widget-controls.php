@@ -404,6 +404,7 @@ trait Global_Widget_Controls {
 				'label_off'    => __( 'None', 'bdthemes-element-pack' ),
 				'label_on'     => __( 'Custom', 'bdthemes-element-pack' ),
 				'return_value' => 'yes',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1478,6 +1479,7 @@ trait Global_Widget_Controls {
 				'condition'   => [ 
 					'show_excerpt' => 'yes',
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
