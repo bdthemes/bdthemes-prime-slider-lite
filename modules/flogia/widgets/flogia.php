@@ -1250,7 +1250,7 @@ class Flogia extends Widget_Base {
         ?>
 
         <?php if ('yes' == $settings['show_thumbnav']): ?>
-            <div class="reveal-muted bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
+            <div class="bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
             <div class="bdt-thumbnav-scroller">
                 <ul class="bdt-slider-items">
                     <?php

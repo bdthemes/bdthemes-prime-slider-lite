@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XXX May 2024] =
+
+* Fixed: Thumbs issue fixed in flogia widget
+
 = 3.14.7 [29th May 2024] =
 
 * Fixed: Skin folio social design issue fixed in blog widget
