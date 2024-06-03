@@ -261,7 +261,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'content_max_width',
 			[ 
-				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', '%' ],
 				'range'      => [ 
@@ -325,7 +325,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_button_icon',
 			[ 
-				'label'     => esc_html__( 'Show Button Icon', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Show Button Icon', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -347,7 +347,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_otherview',
 			[ 
-				'label'     => esc_html__( 'Show Otherview Text', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Show Otherview Text', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -359,7 +359,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'alter_btn_excerpt',
 			[ 
-				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => [ 
 					'_skin' => '',
@@ -371,7 +371,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_share_us',
 			[ 
-				'label'     => esc_html__( 'Show Share Us', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Show Share Us', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -596,7 +596,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'draggable',
 			[ 
-				'label'   => esc_html__( 'Draggable', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => esc_html__( 'Draggable', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -625,7 +625,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'animation_parallax',
 			[ 
-				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-element-pack' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-element-pack' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
@@ -717,6 +717,7 @@ class General extends Widget_Base {
 					'background' => esc_html__( 'Background', 'bdthemes-prime-slider' ),
 					'blend'      => esc_html__( 'Blend', 'bdthemes-prime-slider' ),
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -811,7 +812,7 @@ class General extends Widget_Base {
 		// $this->add_control(
 		// 	'show_text_stroke',
 		// 	[
-		// 		'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+		// 		'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
 		// 		'type'    => Controls_Manager::SWITCHER,
 		// 		'prefix_class' => 'bdt-text-stroke--',
 		// 		'condition' => [
@@ -853,7 +854,7 @@ class General extends Widget_Base {
 				'selector'       => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'fields_options' => [ 
 					'text_stroke_type' => [ 
-						'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+						'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ),
 					],
 				],
 				'condition'      => [ 
@@ -1067,7 +1068,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_title_spacing',
 			[ 
-				'label'     => esc_html__( 'Top Spacing', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Top Spacing', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1260,7 +1261,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1288,7 +1289,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'icon_custom_style',
 			[ 
-				'label' => esc_html__( 'Icon Custom Style', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label' => esc_html__( 'Icon Custom Style', 'bdthemes-prime-slider' ),
 				'type'  => Controls_Manager::SWITCHER,
 				// 'default' => 'yes',
 			]
@@ -1463,7 +1464,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_custom_bg_color',
 			[ 
-				'label'     => __( 'Custom Background', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => __( 'Custom Background', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-slide-btn:before' => 'background: {{VALUE}};',
@@ -1716,7 +1717,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_left_spacing',
 			[ 
-				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1852,7 +1853,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'scroll_down_spacing',
 			[ 
-				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2081,7 +2082,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_spacing',
 			[ 
-				'label'     => __( 'Dots Space Between', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => __( 'Dots Space Between', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2102,7 +2103,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_h_spacing',
 			[ 
-				'label'     => __( 'Dots Horizontal Spacing', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => __( 'Dots Horizontal Spacing', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2123,7 +2124,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_v_spacing',
 			[ 
-				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 

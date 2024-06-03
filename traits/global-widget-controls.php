@@ -1399,6 +1399,7 @@ trait Global_Widget_Controls {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 	}
