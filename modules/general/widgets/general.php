@@ -249,7 +249,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[ 
-				'label' => esc_html__( 'Additional Settings', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
 			]
 		);
 

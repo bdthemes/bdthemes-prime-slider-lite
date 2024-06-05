@@ -112,6 +112,7 @@ class Mercury extends Widget_Base {
                 'selectors'   => [
                     '{{WRAPPER}} .bdt-mercury-content-slider .bdt-content' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -121,7 +122,8 @@ class Mercury extends Widget_Base {
                 'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'prefix_class' => 'bdt-reverse--',
-                'render_type' => 'template'
+                'render_type' => 'template',
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -173,7 +175,7 @@ class Mercury extends Widget_Base {
         $this->start_controls_section(
             'section_additional_settings',
             [
-                'label' => esc_html__( 'Additional Settings', 'bdthemes-prime-slider' ),
+                'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
             ]
         );
 
@@ -861,6 +863,7 @@ class Mercury extends Widget_Base {
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-next' => 'right: {{SIZE}}px;',
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-prev' => 'left: {{SIZE}}px;',
                 ],
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 

@@ -528,7 +528,7 @@ class Woocircle extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-elastic-slider .bdt-elastic-modal-wrap',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+						'label' => esc_html__('Background', 'bdthemes-prime-slider'),
 					],
 				],
 			]

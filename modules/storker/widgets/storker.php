@@ -115,6 +115,7 @@ class Storker extends Widget_Base {
                 'selectors'   => [
                     '{{WRAPPER}} .bdt-prime-slider-storker .bdt-storker-content' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -177,7 +178,7 @@ class Storker extends Widget_Base {
         $this->start_controls_section(
             'section_additional_settings',
             [
-                'label' => esc_html__('Additional Settings', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Additional Options', 'bdthemes-prime-slider'),
             ]
         );
 
@@ -250,7 +251,7 @@ class Storker extends Widget_Base {
         $this->add_control(
 			'rewind',
 			[
-				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => __( 'Rewind', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -262,7 +263,7 @@ class Storker extends Widget_Base {
 		$this->add_control(
 			'mousewheel',
 			[
-				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => __( 'Mousewheel', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);
@@ -278,7 +279,7 @@ class Storker extends Widget_Base {
 		$this->add_control(
 			'swiper_effect',
 			[
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'fade',
 				'options' => [
@@ -381,7 +382,7 @@ class Storker extends Widget_Base {
                 'exclude'        => ['image'],
                 'fields_options' => [
                     'background' => [
-                        'label'   => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                        'label'   => esc_html__('Overlay', 'bdthemes-prime-slider'),
                         'default' => 'classic',
                     ],
                     'color' => [
@@ -490,7 +491,7 @@ class Storker extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => __('Text Stroke', 'bdthemes-prime-slider'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider-storker .bdt-title',
             ]
         );
@@ -973,7 +974,8 @@ class Storker extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-storker-thumbs' => 'height: {{SIZE}}%;',
                 ],
-                'render_type' => 'template'
+                'render_type' => 'template',
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -1449,6 +1451,7 @@ class Storker extends Widget_Base {
             [
                 'label'     => __('Advanced Size', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SWITCHER,
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 

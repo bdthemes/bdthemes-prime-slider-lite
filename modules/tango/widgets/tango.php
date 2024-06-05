@@ -65,10 +65,79 @@ class Tango extends Widget_Base {
 
 	protected function register_controls() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
+
+		$this->start_controls_section(
+			'section_content_sliders',
+			[
+				'label' => esc_html__('Sliders', 'bdthemes-prime-slider'),
+			]
+		);
+
+		$repeater = new Repeater();
+
+		$repeater->add_control(
+			'sub_title',
+			[
+				'label'       => esc_html__('Label', 'bdthemes-prime-slider'),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'dynamic'     => ['active' => true],
+			]
+		);
+
+		/**
+         * Repeater Title Controls
+         */
+        $this->register_repeater_title_controls($repeater);
+
+		/**
+         * Repeater Title Link Controls
+         */
+        $this->register_repeater_title_link_controls($repeater);
+
+		/**
+         * Repeater Image Controls
+         */
+        $this->register_repeater_image_controls($repeater);
+
+		$this->add_control(
+			'slides',
+			[
+				'label'   => esc_html__('Slider Items', 'bdthemes-prime-slider'),
+				'type'    => Controls_Manager::REPEATER,
+				'fields'  => $repeater->get_controls(),
+				'default' => [
+					[
+						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item One', 'bdthemes-prime-slider'),
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
+					],
+					[
+						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider'),
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
+					],
+					[
+						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider'),
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
+					],
+					[
+						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider'),
+						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
+					],
+				],
+				'title_field' => '{{{ title }}}',
+			]
+		);
+
+		$this->end_controls_section();
+		
 		$this->start_controls_section(
 			'section_content_layout',
 			[
-				'label' => esc_html__('Layout', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Additional Options', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -88,6 +157,7 @@ class Tango extends Widget_Base {
 					5 => '5',
 					6 => '6',
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -194,6 +264,7 @@ class Tango extends Widget_Base {
 					'show_navigation_dots' => 'yes'
 				],
 				'prefix_class' => 'bdt-pagination-hide-',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -230,74 +301,6 @@ class Tango extends Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_content_sliders',
-			[
-				'label' => esc_html__('Sliders', 'bdthemes-prime-slider'),
-			]
-		);
-
-		$repeater = new Repeater();
-
-		$repeater->add_control(
-			'sub_title',
-			[
-				'label'       => esc_html__('Label', 'bdthemes-prime-slider'),
-				'type'        => Controls_Manager::TEXT,
-				'label_block' => true,
-				'dynamic'     => ['active' => true],
-			]
-		);
-
-		/**
-         * Repeater Title Controls
-         */
-        $this->register_repeater_title_controls($repeater);
-
-		/**
-         * Repeater Title Link Controls
-         */
-        $this->register_repeater_title_link_controls($repeater);
-
-		/**
-         * Repeater Image Controls
-         */
-        $this->register_repeater_image_controls($repeater);
-
-		$this->add_control(
-			'slides',
-			[
-				'label'   => esc_html__('Slider Items', 'bdthemes-prime-slider'),
-				'type'    => Controls_Manager::REPEATER,
-				'fields'  => $repeater->get_controls(),
-				'default' => [
-					[
-						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
-						'title'     => esc_html__('Item One', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
-					],
-					[
-						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
-						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
-					],
-					[
-						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
-						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
-					],
-					[
-						'sub_title' => esc_html__('Label', 'bdthemes-prime-slider'),
-						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider'),
-						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
-					],
-				],
-				'title_field' => '{{{ title }}}',
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
 			'section_carousel_settings',
 			[
 				'label' => __( 'Slider Settings', 'bdthemes-prime-slider' ),
@@ -316,6 +319,7 @@ class Tango extends Widget_Base {
 				],
 				'prefix_class' => 'bdt-carousel-style-',
 				'render_type'  => 'template',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 

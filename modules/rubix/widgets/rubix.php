@@ -90,6 +90,7 @@ class Rubix extends Widget_Base {
 					2 => '2',
 					3 => '3',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -158,15 +159,17 @@ class Rubix extends Widget_Base {
 						'icon'  => 'eicon-v-align-bottom',
 					],
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_control(
 			'content_reverse',
 			[ 
-				'label'        => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'        => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'         => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-ps-reverese--',
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -218,7 +221,7 @@ class Rubix extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[ 
-				'label' => esc_html__( 'Additional Settings', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
 			]
 		);
 
@@ -260,7 +263,7 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'read_more_text',
 			[ 
-				'label'       => esc_html__( 'Readmore Text', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'       => esc_html__( 'Readmore Text', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
 				'label_block' => false,
@@ -406,6 +409,7 @@ class Rubix extends Widget_Base {
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-item .bdt-slider-progress' => 'height: {{SIZE}}{{UNIT}};',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 

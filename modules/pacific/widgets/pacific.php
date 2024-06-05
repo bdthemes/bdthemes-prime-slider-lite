@@ -89,13 +89,14 @@ class Pacific extends Widget_Base {
 					1 => 'Style 1',
 					2 => 'Style 2',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_responsive_control(
 			'columns',
 			[ 
-				'label'          => __( 'Columns', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'          => __( 'Columns', 'bdthemes-prime-slider' ),
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 3,
 				'tablet_default' => 2,
@@ -199,7 +200,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[ 
-				'label' => esc_html__( 'Additional Settings', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
 			]
 		);
 
@@ -256,7 +257,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'read_more_text',
 			[ 
-				'label'       => esc_html__( 'Readmore Text', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'       => esc_html__( 'Readmore Text', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
 				'label_block' => false,
@@ -273,6 +274,7 @@ class Pacific extends Widget_Base {
 				'label'   => __( 'Show Pagination', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -372,6 +374,7 @@ class Pacific extends Widget_Base {
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-item.swiper-slide-active .bdt-image-wrap:before' => 'background: {{VALUE}};',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -951,7 +954,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_title_heading',
 			[ 
-				'label' => __( 'T I T L E', 'bdthemes-prime-slider' ),
+				'label' => __( 'TITLE', 'bdthemes-prime-slider' ),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
@@ -1010,7 +1013,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'text_heading',
 			[ 
-				'label'     => __( 'T E X T', 'bdthemes-prime-slider' ),
+				'label'     => __( 'TEXT', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1426,6 +1429,8 @@ class Pacific extends Widget_Base {
 		$this->add_render_attribute( 'slider-item', 'class', 'bdt-item swiper-slide', true );
 		$modal_id = 'bdt-pacific-slider-' . $post_id;
 
+		$modal_dialog_id = 'bdt-pacific-' . $this->get_id();
+
 		?>
 		<div <?php echo $this->get_render_attribute_string( 'slider-item' ); ?>>
 			<div class="bdt-image-wrap">
@@ -1459,7 +1464,7 @@ class Pacific extends Widget_Base {
 						</a>
 					<?php endif; ?>
 					<div id="<?php echo esc_attr( $modal_id ); ?>" class="bdt-modal-full" bdt-modal>
-						<div class="bdt-modal-dialog bdt-pacific-slider-modal <?php echo 'bdt-pacific-' . $this->get_id(); ?>">
+						<div class="bdt-modal-dialog bdt-pacific-slider-modal <?php echo esc_attr($modal_dialog_id); ?>">
 							<a class="bdt-modal-close-full bdt-close-large" bdt-close></a>
 							<div class="bdt-grid-collapse bdt-child-width-1-2@s bdt-flex-middle" bdt-grid>
 								<?php $this->render_image_thumb( get_post_thumbnail_id( $post_id ), $image_size ); ?>

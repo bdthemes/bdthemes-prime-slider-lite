@@ -91,6 +91,7 @@ class Vertex extends Widget_Base {
                     3 => '3',
                     5 => '5',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -126,6 +127,7 @@ class Vertex extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-vertex-slider .swiper-vertex' => 'padding: {{SIZE}}{{UNIT}} 0;',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -315,6 +317,7 @@ class Vertex extends Widget_Base {
                     '{{WRAPPER}} .bdt-vertex-slider .swiper-vertex::before' => 'height: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .bdt-vertex-slider .bdt-img-wrap .bdt-img' => 'border-width: {{SIZE}}{{UNIT}};',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
