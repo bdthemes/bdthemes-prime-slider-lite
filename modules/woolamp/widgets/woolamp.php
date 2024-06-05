@@ -157,6 +157,7 @@ class Woolamp extends Widget_Base {
 				'label'   => esc_html__('Social Share Hide on Mobile', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-social-share-hide--',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -269,7 +270,7 @@ class Woolamp extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -334,7 +335,8 @@ class Woolamp extends Widget_Base {
 				'description' => esc_html__('NOTE: It just works on Mobile Device.', 'bdthemes-prime-slider'),
 				'selectors' => [
 					'(mobile){{WRAPPER}} .bdt-prime-slider-woolamp .bdt-ps-wc-product-img:before' => 'background: {{VALUE}};',
-				]
+				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 

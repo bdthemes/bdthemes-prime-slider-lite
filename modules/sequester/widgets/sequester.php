@@ -67,98 +67,6 @@ class Sequester extends Widget_Base {
 
 	protected function register_controls() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-		$this->start_controls_section(
-			'section_content_layout',
-			[
-				'label' => esc_html__('Layout', 'bdthemes-prime-slider'),
-			]
-		);
-
-		/**
-         * Slider Height Controls
-         */
-        $this->register_slider_height_controls();
-
-		/**
-		* Show Title Controls
-		*/
-		$this->register_show_title_controls();
-
-		/**
-		* Show Sub Title Controls
-		*/
-		$this->register_show_sub_title_controls();
-
-		/**
-		* Show Button Text Controls
-		*/
-		$this->register_show_button_text_controls();
-
-		/**
-		* Show Excerpt Controls
-		*/
-		$this->register_show_excerpt_controls();
-
-		/**
-         * Show social links Controls
-         */
-        $this->register_show_social_link_controls();
-
-		/**
-		* Show Navigation Controls
-		*/
-		$this->register_show_navigation_controls();
-
-		/**
-		* Show Pagination Controls
-		*/
-		$this->register_show_pagination_controls();
-
-		$this->add_responsive_control(
-            'content_alignment',
-            [
-                'label'   => esc_html__( 'Alignment', 'bdthemes-prime-slider' ),
-                'type'    => Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__( 'Left', 'bdthemes-prime-slider' ),
-                        'icon'  => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__( 'Center', 'bdthemes-prime-slider' ),
-                        'icon'  => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__( 'Right', 'bdthemes-prime-slider' ),
-                        'icon'  => 'eicon-text-align-right',
-                    ],
-					'justify' => [
-						'title' => esc_html__( 'Justified', 'bdthemes-prime-slider' ),
-						'icon'  => 'eicon-text-align-justify',
-					],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content' => 'text-align: {{VALUE}};',
-                ],
-            ]
-        );
-
-		/**
-		* Thumbnail Size Controls
-		*/
-		$this->register_thumbnail_size_controls();
-
-		$this->add_control(
-			'show_image_match_height',
-			[
-				'label'   => esc_html__('Image Match Height', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
-				'type'    => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-				'prefix_class' => 'bdt-ps-image-match-height--',
-			]
-		);
-		
-		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_content_sliders',
@@ -250,6 +158,102 @@ class Sequester extends Widget_Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_content_layout',
+			[
+				'label' => esc_html__('Additional Options', 'bdthemes-prime-slider'),
+			]
+		);
+
+		/**
+         * Slider Height Controls
+         */
+        $this->register_slider_height_controls();
+
+		/**
+		* Show Title Controls
+		*/
+		$this->register_show_title_controls();
+
+		/**
+		* Show Sub Title Controls
+		*/
+		$this->register_show_sub_title_controls();
+
+		/**
+		* Show Button Text Controls
+		*/
+		$this->register_show_button_text_controls();
+
+		/**
+		* Show Excerpt Controls
+		*/
+		$this->register_show_excerpt_controls();
+
+		/**
+         * Show social links Controls
+         */
+        $this->register_show_social_link_controls();
+
+		/**
+		* Show Navigation Controls
+		*/
+		$this->register_show_navigation_controls();
+
+		/**
+		* Show Pagination Controls
+		*/
+		$this->register_show_pagination_controls();
+
+		$this->add_responsive_control(
+            'content_alignment',
+            [
+                'label'   => esc_html__( 'Alignment', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__( 'Left', 'bdthemes-prime-slider' ),
+                        'icon'  => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__( 'Center', 'bdthemes-prime-slider' ),
+                        'icon'  => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__( 'Right', 'bdthemes-prime-slider' ),
+                        'icon'  => 'eicon-text-align-right',
+                    ],
+					'justify' => [
+						'title' => esc_html__( 'Justified', 'bdthemes-prime-slider' ),
+						'icon'  => 'eicon-text-align-justify',
+					],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+		/**
+		* Thumbnail Size Controls
+		*/
+		$this->register_thumbnail_size_controls();
+
+		$this->add_control(
+			'show_image_match_height',
+			[
+				'label'   => esc_html__('Image Match Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'prefix_class' => 'bdt-ps-image-match-height--',
+				'classes'    => BDTPS_CORE_IS_PC
+			]
+		);
+		
+		$this->end_controls_section();
+
+		
+
 		/**
 		 * Social links Text Controls
 		 */
@@ -275,7 +279,7 @@ class Sequester extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -338,6 +342,7 @@ class Sequester extends Widget_Base {
 			[
 				'label'   => esc_html__('Custom Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -428,7 +433,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag .frist-word' => 'color: {{VALUE}};',
@@ -436,6 +441,7 @@ class Sequester extends Widget_Base {
                 'condition' => [
 					'show_title' => ['yes'],
 				],
+				'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -456,15 +462,9 @@ class Sequester extends Widget_Base {
 			[
 				'name' => 'title_text_stroke',
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
-				'fields_options' => [
-					'text_stroke_type' => [
-						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
-					],
-				],
 				'condition' => [
 					'show_title' => ['yes'],
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -724,7 +724,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_color',
 			[
-				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label' 	=> __('Color', 'bdthemes-prime-slider'),
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-slide-btn svg *' => 'stroke: {{VALUE}} !important;',
@@ -735,7 +735,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_background_color',
 			[
-				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label' 	=> __('Background', 'bdthemes-prime-slider'),
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-sequester .bdt-slide-btn .bdt-slide-btn-icon' => 'background-color: {{VALUE}};',
@@ -801,7 +801,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_color',
 			[
-				'label' 	=> __('Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label' 	=> __('Color', 'bdthemes-prime-slider'),
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-slide-btn:hover svg *' => 'stroke: {{VALUE}} !important;',
@@ -812,7 +812,7 @@ class Sequester extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_bg_color',
 			[
-				'label' 	=> __('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label' 	=> __('Background', 'bdthemes-prime-slider'),
 				'type' 		=> Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-sequester .bdt-slide-btn .bdt-slide-btn-icon::after' => 'background-color: {{VALUE}};',

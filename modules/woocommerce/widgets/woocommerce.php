@@ -242,7 +242,7 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'tab'       => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -311,6 +311,7 @@ class Woocommerce extends Widget_Base {
 					'background' => esc_html__('Background', 'bdthemes-prime-slider'),
 					'blend'      => esc_html__('Blend', 'bdthemes-prime-slider'),
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -344,7 +345,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label'      => esc_html__('Content Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label'      => esc_html__('Content Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -418,7 +419,7 @@ class Woocommerce extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title a',
 				'fields_options' => [
 					'text_stroke_type' => [
-						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
 					],
 				],
 				'condition' => [

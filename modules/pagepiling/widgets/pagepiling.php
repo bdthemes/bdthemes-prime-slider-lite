@@ -148,7 +148,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_fancy_slider',
 			[
-				'label' => esc_html__( 'Additional Settings', 'bdthemes-element-pack' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-element-pack' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -275,7 +275,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'social_main_title',
 			[
-				'label'   => __('Social Text', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label'   => __('Social Text', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::TEXT,
 				'default' => __('Follow Us', 'bdthemes-prime-slider'),
 			]
@@ -362,6 +362,7 @@ class Pagepiling extends Widget_Base {
                     'left'       => __( 'Left', 'bdthemes-element-pack' ),
                     'bottom'     => __( 'Bottom', 'bdthemes-element-pack' ),
 				],
+				'classes'    => BDTPS_CORE_IS_PC
             ]
 		);
 
@@ -389,6 +390,7 @@ class Pagepiling extends Widget_Base {
 				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -435,7 +437,7 @@ class Pagepiling extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-ps-overlay:before',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+						'label' => esc_html__('Overlay', 'bdthemes-prime-slider'),
 					],
 				],
 			]
@@ -498,11 +500,6 @@ class Pagepiling extends Widget_Base {
 			[
 				'name' => 'title_text_stroke',
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
-				'fields_options' => [
-                    'text_stroke_type' => [
-                        'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
-                    ],
-                ],
 				'condition' => [
 					'show_title' => ['yes'],
 				],
@@ -1075,6 +1072,7 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'width: {{SIZE}}{{UNIT}};',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1091,6 +1089,7 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'height: {{SIZE}}{{UNIT}};',
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
