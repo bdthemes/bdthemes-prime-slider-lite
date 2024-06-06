@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XX June 2024] =
+
+* Added: Item up down option added in tango widget
+
 = 3.14.8 [5th June 2024] =
 
 * Fixed: Thumbs issue fixed in flogia widget
