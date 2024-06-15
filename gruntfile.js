@@ -24,11 +24,6 @@ module.exports = function (grunt) {
 						src: '**',
 						dest: 'assets/vendor/',
 					},
-					// {
-					// 	expand: false,
-					// 	src: 'node_modules/uikit/dist/js/uikit.min.js',
-					// 	dest: 'assets/js/bdt-uikit.min.js',
-					// },
 				],
 			},
 		},
@@ -50,6 +45,7 @@ module.exports = function (grunt) {
 						'assets/css/prime-slider-product-feed.css': 'src/less/prime-slider-product-feed.less',
 
 						'admin/assets/css/ps-admin.css': 'src/less/admin.less',
+						'admin/assets/css/ps-admin-notice.css': 'src/less/admin-notice.less',
 					},
 					// all widgets files
 					{

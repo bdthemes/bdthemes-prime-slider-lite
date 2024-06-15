@@ -52,15 +52,15 @@ class Flogia extends Widget_Base {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-flogia'];
+                return ['gsap', 'split-text', 'mThumbnailScroller', 'anime', 'revealFx', 'ps-flogia'];
             } else {
-                return [];
+                return ['mThumbnailScroller', 'ps-flogia'];
             }
         } else {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'ps-flogia'];
+                return ['gsap', 'split-text', 'mThumbnailScroller', 'ps-flogia'];
             } else {
-                return [];
+                return ['mThumbnailScroller', 'ps-flogia'];
             }
         }
     }
@@ -86,7 +86,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'content_max_width',
             [
-                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -97,6 +97,7 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-ps-container' => 'width: {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -104,7 +105,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'content_position',
             [
-                'label' => esc_html__('Content Position', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Content Position', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
@@ -190,12 +191,13 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'published_by',
             [
-                'label' => esc_html__('Published By', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label' => esc_html__('Published By', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
                     'show_admin_info' => 'yes',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -206,13 +208,14 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'separator' => 'before',
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'thumbs_hide_on',
             [
-                'label' => __('Thumbs Hide On', 'bdthemes-element-pack') . BDTPS_CORE_NC,
+                'label' => __('Thumbs Hide On', 'bdthemes-element-pack'),
                 'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
                 'label_block' => false,
@@ -276,7 +279,7 @@ class Flogia extends Widget_Base {
         $this->start_controls_section(
             'section_advanced_animation',
             [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -344,6 +347,7 @@ class Flogia extends Widget_Base {
                     'blend' => esc_html__('Blend', 'bdthemes-prime-slider'),
                 ],
                 'separator' => 'before',
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -358,6 +362,7 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-slideshow .bdt-overlay-default' => 'background-color: {{VALUE}};',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -434,7 +439,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'title_hover_color',
             [
-                'label' => esc_html__('Hover Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Hover Color', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a:hover, {{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a:hover span' => 'color: {{VALUE}};',
@@ -486,12 +491,13 @@ class Flogia extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a',
                 'fields_options' => [
                     'text_stroke_type' => [
-                        'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                        'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                     ],
                 ],
                 'condition' => [
                     'show_title' => ['yes'],
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -715,7 +721,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'category_hover_heading',
             [
-                'label' => __('HOVER', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => __('HOVER', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -783,7 +789,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'meta_text_hover_color',
             [
-                'label' => __('Hover Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => __('Hover Color', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-meta .bdt-author a:hover' => 'color: {{VALUE}}',
@@ -803,7 +809,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'author_avatar_heading',
             [
-                'label' => __('AVATAR', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => __('AVATAR', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -812,7 +818,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'avatar_size',
             [
-                'label'      => _x('Size', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'      => _x('Size', 'bdthemes-prime-slider'),
                 'type'       => Controls_Manager::SELECT,
                 'default'    => '42',
                 'options'    => [
@@ -901,7 +907,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'featured_thumbs_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Border Radius', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -913,7 +919,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'featured_thumbs_padding',
             [
-                'label' => esc_html__('Title Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Title Padding', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -925,7 +931,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'featured_thumbs_title_margin',
             [
-                'label' => esc_html__('Title Margin', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Title Margin', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -937,7 +943,7 @@ class Flogia extends Widget_Base {
         $this->add_responsive_control(
             'featured_thumbs_margin',
             [
-                'label' => esc_html__('Thumbs Margin', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Thumbs Margin', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -983,7 +989,7 @@ class Flogia extends Widget_Base {
         $this->start_controls_tab(
             'tab_featured_post_active',
             [
-                'label' => esc_html__('Active', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => esc_html__('Active', 'bdthemes-prime-slider'),
             ]
         );
 
@@ -1040,6 +1046,9 @@ class Flogia extends Widget_Base {
             [
                 'label' => __('Navigation', 'bdthemes-prime-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'show_navigation_arrows_dots' => ['yes'],
+                ],
             ]
         );
 
@@ -1049,9 +1058,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_style',
             [
                 'label' => __('Normal', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1062,9 +1068,6 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg' => 'color: {{VALUE}}',
-                ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
                 ],
             ]
         );
@@ -1077,10 +1080,6 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li a:before' => 'background: {{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
-                'separator' => 'before',
             ]
         );
 
@@ -1090,9 +1089,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_hover_style',
             [
                 'label' => __('Hover', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1103,9 +1099,6 @@ class Flogia extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover svg' => 'color: {{VALUE}}',
-                ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
                 ],
             ]
         );
@@ -1118,10 +1111,6 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li:hover a:before' => 'background: {{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
-                'separator' => 'before',
             ]
         );
 
@@ -1131,9 +1120,6 @@ class Flogia extends Widget_Base {
             'tab_nav_arrows_dots_active_style',
             [
                 'label' => __('Active', 'bdthemes-prime-slider'),
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
@@ -1145,29 +1131,42 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li.bdt-active a:before' => 'background: {{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
             ]
         );
 
         $this->add_control(
             'dots_active_border_color',
             [
-                'label' => __('Dots Border Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label' => __('Dots Border Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li.bdt-active a:after' => 'border-color:{{VALUE}}',
                 ],
-                'condition' => [
-                    'show_navigation_arrows_dots' => ['yes'],
-                ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'nav_offset',
+            [
+                'label' => __('Horizontal Offset', 'bdthemes-prime-slider'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-navigation-arrows' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -1258,8 +1257,9 @@ class Flogia extends Widget_Base {
         ?>
 
         <?php if ('yes' == $settings['show_thumbnav']): ?>
-            <div class="reveal-muted bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
-                <ul class="bdt-slider-items bdt-child-width-1-2 bdt-child-width-1-3@s bdt-child-width-1-4@m bdt-child-width-1-5@l bdt-child-width-expand@xl  bdt-grid">
+            <div class="bdt-thumb-wrapper bdt-position-bottom-<?php echo esc_attr($settings['featured_post_alignment']); ?> bdt-position-large <?php echo esc_attr($thumbs_hide_on_setup); ?>">
+            <div class="bdt-thumbnav-scroller">
+                <ul class="bdt-slider-items">
                     <?php
             $slide_index = 1;
 
@@ -1290,6 +1290,7 @@ class Flogia extends Widget_Base {
         wp_reset_postdata();?>
 
                     </ul>
+                </div>
                 </div>
             <?php endif;?>
 

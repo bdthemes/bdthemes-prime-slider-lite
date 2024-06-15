@@ -5,11 +5,17 @@
     var widgetFlogia = function ($scope, $) {
 
         var $flogiaSlider = $scope.find('.bdt-prime-slider-flogia'),
+        $thumbNav = $($flogiaSlider).find('.bdt-thumb-wrapper > .bdt-thumbnav-scroller'),
             $settings = $($flogiaSlider).find('.bdt-slideshow').data('settings');
 
         if (!$flogiaSlider.length) {
             return;
         }
+
+        $($thumbNav).mThumbnailScroller({
+            axis: 'x',
+            type: 'hover-precise'
+        });
 
         // start animation 
         var $slideItem = $($settings.id + ' ul > li');

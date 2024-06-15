@@ -720,3 +720,26 @@
 :root{--swiper-tinder-no-color:red;--swiper-tinder-yes-color:green;--swiper-tinder-label-text-color:#fff;--swiper-tinder-label-font-size:32px;--swiper-tinder-button-size:56px;--swiper-tinder-button-icon-size:32px}.swiper-tinder{box-sizing:border-box}.swiper-tinder .swiper-slide{overflow:hidden}.swiper-tinder .swiper-slide img{width:100%;height:100%;object-fit:cover}.swiper-tinder-label{position:absolute;font-size:var(--swiper-tinder-label-font-size);font-weight:700;padding:4px 12px;text-transform:uppercase;border-radius:4px;opacity:0;color:var(--swiper-tinder-label-text-color)}.swiper-tinder-label-yes{left:3%;top:5%;transform:rotate(-20deg);background-color:var(--swiper-tinder-yes-color);transform-origin:right top}.swiper-tinder-label-no{right:3%;top:5%;transform:rotate(20deg);background-color:var(--swiper-tinder-no-color);transform-origin:left top}.swiper-tinder-button{position:absolute;cursor:pointer;bottom:32px;width:var(--swiper-tinder-button-size);height:var(--swiper-tinder-button-size);border:1px solid;border-radius:999px;background:0 0;appearance:none;outline:0;box-shadow:none;z-index:100;transition-duration:.1s;font-size:var(--swiper-tinder-button-icon-size)!important;display:flex;align-items:center;justify-content:center;padding:0;margin:0}.swiper-tinder-button svg{width:var(--swiper-tinder-button-icon-size);height:var(--swiper-tinder-button-icon-size)}.swiper-tinder-button-hidden{opacity:0;pointer-events:none}.swiper-tinder-button-no{border-color:var(--swiper-tinder-no-color);left:calc(33% - 28px)}.swiper-tinder-button-no svg{fill:var(--swiper-tinder-no-color)}.swiper-tinder-button-no.swiper-tinder-button-active,.swiper-tinder-button-no:active{background:var(--swiper-tinder-no-color)}.swiper-tinder-button-no.swiper-tinder-button-active svg,.swiper-tinder-button-no:active svg{fill:#fff}.swiper-tinder-button-yes{border-color:var(--swiper-tinder-yes-color);left:calc(66% - 28px)}.swiper-tinder-button-yes svg{fill:var(--swiper-tinder-yes-color)}.swiper-tinder-button-yes.swiper-tinder-button-active,.swiper-tinder-button-yes:active{background:var(--swiper-tinder-yes-color)}.swiper-tinder-button-yes.swiper-tinder-button-active svg,.swiper-tinder-button-yes:active svg{fill:#fff}
 
 //swiper tinder css end
+
+//Text Hide on Responsive Device
+@media (min-width:768px) and (max-width:1023px) {
+    [class*="elementor-widget-prime-slider-"] {
+        .bdt-tablet {
+            display: none !important;
+        }
+    }
+}
+@media (min-width:1024px) {
+    [class*="elementor-widget-prime-slider-"] {
+        .bdt-desktop {
+            display: none !important;
+        }
+    }
+}
+@media (max-width:767px) {
+    [class*="elementor-widget-prime-slider-"] {
+        .bdt-mobile {
+            display: none !important;
+        }
+    }
+}

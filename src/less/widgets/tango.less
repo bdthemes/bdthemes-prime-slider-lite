@@ -1,10 +1,10 @@
 .bdt-prime-slider-tango {
     position: relative;
-    overflow: hidden;
-    padding-bottom: clamp(2.5rem, 6vw, 3.755rem);
+    // overflow: hidden;
+    margin-bottom: clamp(2.5rem, 6vw, 3.755rem);
     .bdt-item {
         position: relative;
-        clip-path: inset(10% 10% 10% 10%);
+        clip-path: inset(10% 0 10% 0);
         overflow: hidden;
         height: clamp(25rem, 40vw, 31.25rem);
         transition: clip-path .4s cubic-bezier(.3, 0, .3, 1), transform .4s cubic-bezier(.3, 0, .3, 1);
@@ -173,7 +173,7 @@
     .swiper-pagination {
         bottom: 0 !important;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(clamp(2.5rem, 6vw, 3.755rem));
         display: flex;
         align-items: center;
         width: auto;
@@ -189,6 +189,19 @@
             &.swiper-pagination-bullet-active {
                 background: #495157;
                 height: 3px;
+            }
+        }
+    }
+}
+
+.bdt-item-up-down-yes {
+    .bdt-prime-slider-tango {
+        .bdt-item {
+            &.swiper-slide-next, &.swiper-slide-duplicate-next {
+                clip-path: inset(10% 0 5% 0);
+            }
+            &.swiper-slide-prev, &.swiper-slide-duplicate-prev {
+                clip-path: inset(5% 0 10% 0);
             }
         }
     }

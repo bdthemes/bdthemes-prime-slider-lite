@@ -94,7 +94,7 @@
             color: #fff;
             font-size: 10px;
             margin: 3px;
-            padding: 9px 8px;
+            padding: 9px;
             border-radius: 40px;
             display: flex;
             border: 2px solid #fff;
@@ -102,6 +102,17 @@
             &:hover {
                 color: #8EB477;
                 background: #fff;
+                svg {
+                    fill: #8EB477;
+                }
+            }
+            i, svg {
+                height: 1em;
+                width: 1em;
+            }
+            svg {
+                fill: #fff;
+                transition: fill .3s ease;
             }
         }
     }
@@ -273,7 +284,7 @@
                 display: inline-flex;
                 margin: 0;
                 font-size: 14px;
-                padding: 10px 8px;
+                padding: 10px;
             }
         }
         .bdt-scroll-down-wrapper {

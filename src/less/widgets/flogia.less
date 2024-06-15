@@ -3,7 +3,7 @@
 ===========================================================================*/
 .bdt-prime-slider-flogia {
     position: relative;
-
+    
     .bdt-overlay-default {
         background: rgba(0, 0, 0, 0.5);
     }
@@ -192,7 +192,9 @@
 }
 
 .bdt-prime-slider-flogia {
-
+    .bdt-thumbnav-scroller {
+        overflow: hidden;
+    }
     .bdt-ps-thumbnav {
         >a {
             position: relative;
@@ -210,11 +212,11 @@
 
         .bdt-thumb-content {
             position: relative;
-            max-width: 220px;
-            height: 100%;
             border: 5px solid transparent;
             overflow: hidden;
             transition: all .3s ease;
+            height: clamp(100px, 14vw, 150px);
+            width: clamp(150px, 14vw, 220px);
 
             img {
                 width: 100%;
@@ -246,29 +248,6 @@
                     // opacity: 0;
                 }
             }
-        }
-    }
-}
-
-//Text Hide on Responsive Device
-@media (min-width:768px) and (max-width:1023px) {
-    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
-        &.bdt-tablet {
-            display: none;
-        }
-    }
-}
-@media (min-width:1024px) {
-    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
-        &.bdt-desktop {
-            display: none;
-        }
-    }
-}
-@media (max-width:767px) {
-    .bdt-prime-slider-flogia .bdt-thumb-wrapper {
-        &.bdt-mobile {
-            display: none;
         }
     }
 }

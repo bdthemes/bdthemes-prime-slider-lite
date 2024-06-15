@@ -35,11 +35,22 @@ class Notices {
 	 */
 	public function dismiss() {
 
-		$id   = ( isset( $_POST['id'] ) ) ? esc_attr( $_POST['id'] ) : '';
-		$time = ( isset( $_POST['time'] ) ) ? esc_attr( $_POST['time'] ) : '';
-		$meta = ( isset( $_POST['meta'] ) ) ? esc_attr( $_POST['meta'] ) : '';
+		$nonce = ( isset( $_POST['_wpnonce'] ) ) ? sanitize_text_field( $_POST['_wpnonce'] ) : '';
+		$id = ( isset( $_POST['id'] ) ) ? sanitize_text_field( $_POST['id'] ) : '';
+		$time = ( isset( $_POST['time'] ) ) ? sanitize_text_field( $_POST['time'] ) : '';
+		$meta = ( isset( $_POST['meta'] ) ) ? sanitize_text_field( $_POST['meta'] ) : '';
 
-		// Valid inputs?
+		if ( ! wp_verify_nonce( $nonce, 'prime-slider' ) ) {
+			wp_send_json_error();
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error();
+		}
+
+		/**
+		 * Valid inputs?
+		 */
 		if ( ! empty( $id ) ) {
 
 			if ( 'user' === $meta ) {
@@ -60,15 +71,15 @@ class Notices {
 	public function show_notices() {
 
 		$defaults = [ 
-			'id'               => '',
-			'type'             => 'info',
-			'show_if'          => true,
-			'message'          => '',
-			'class'            => 'prime-slider-notice',
-			'dismissible'      => false,
+			'id' => '',
+			'type' => 'info',
+			'show_if' => true,
+			'message' => '',
+			'class' => 'prime-slider-notice',
+			'dismissible' => false,
 			'dismissible-meta' => 'transient',
 			'dismissible-time' => WEEK_IN_SECONDS,
-			'data'             => '',
+			'data' => '',
 		];
 
 		foreach ( self::$notices as $key => $notice ) {
@@ -91,10 +102,10 @@ class Notices {
 			}
 
 			// Notice ID.
-			$notice_id    = 'prime-slider-notice-id-' . $notice['id'];
+			$notice_id = 'prime-slider-notice-id-' . $notice['id'];
 			$notice['id'] = $notice_id;
 			if ( ! isset( $notice['id'] ) ) {
-				$notice_id    = 'prime-slider-notice-id-' . $notice['id'];
+				$notice_id = 'prime-slider-notice-id-' . $notice['id'];
 				$notice['id'] = $notice_id;
 			} else {
 				$notice_id = $notice['id'];
@@ -137,9 +148,17 @@ class Notices {
 
 		?>
 		<div id="<?php echo esc_attr( $notice['id'] ); ?>" class="<?php echo esc_attr( $notice['classes'] ); ?>" <?php echo esc_attr( $notice['data'] ); ?>>
+		<?php if(isset($notice['message']) && !empty($notice['message'])): ?>
 			<p>
 				<?php echo wp_kses_post( $notice['message'] ); ?>
 			</p>
+		<?php endif; ?>
+
+		<?php 
+		if(isset($notice['html_message']) && !empty($notice['html_message'])):
+			echo wp_kses_post( $notice['html_message'] );
+		endif; ?>
+
 		</div>
 		<?php
 	}

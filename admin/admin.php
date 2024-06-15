@@ -32,6 +32,12 @@ class Admin {
 		add_action( 'after_setup_theme', [ $this, 'whitelabel' ] );
 
 		// register_activation_hook(BDTPS_CORE__FILE__, 'install_and_activate');
+		
+		add_action('admin_init', [ $this, 'notice_styles' ] );
+	}
+
+	function notice_styles(){
+		wp_enqueue_style('ps-admin-notice', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-notice.css', [], BDTPS_CORE_VER);
 	}
 
 	function install_and_activate() {

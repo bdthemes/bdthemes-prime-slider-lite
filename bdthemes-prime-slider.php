@@ -4,20 +4,20 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Prime Slider is a packed of elementor widget that gives you some awesome header and slider combination for your website.
- * Version: 3.12.0
+ * Version: 3.14.9
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider
  * Domain Path: /languages
  * License: GPL3
  * Elementor requires at least: 3.0.0
- * Elementor tested up to: 3.19.2
+ * Elementor tested up to: 3.21.8
  */
 
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '3.12.0' );
+	define( 'BDTPS_CORE_VER', '3.14.9' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );
@@ -59,6 +59,7 @@ if ( ! function_exists( '_is_ps_pro_activated' ) ) {
 
 // Helper function here
 include dirname( __FILE__ ) . '/includes/helper.php';
+require_once BDTPS_CORE_INC_PATH . 'class-pro-widget-map.php';
 include dirname( __FILE__ ) . '/includes/utils.php';
 
 /**
@@ -118,7 +119,7 @@ function prime_slider_fail_load() {
 		$admin_message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor Now', 'bdthemes-prime-slider' ) ) . '</p>';
 	}
 
-	echo '<div class="error">' . esc_html($admin_message) . '</div>';
+	echo '<div class="error">' . wp_kses_post( $admin_message ) . '</div>';
 }
 
 /**
@@ -139,7 +140,7 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 				'slug' => 'prime_slider_options',
 			),
 			'review_url'   => 'https://bdt.to/prime-slider-elementor-addons-review',
-			'plugin_title' => 'Yay! Great that you\'re using <strong>Prime Slider</strong>',
+			'plugin_title' => 'Yay! Great that you\'re using Prime Slider',
 			'plugin_msg'   => '<p>Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community.</p>',
 		) );
 

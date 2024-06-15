@@ -166,7 +166,7 @@ if (!class_exists('BdThemes_Duplicator')) :
 
                 exit;
             } else {
-                wp_die('Failed. Not Found Post: ' . $post_id);
+                wp_die('Failed. Not Found Post: ' . esc_html($post_id));
             }
         }
 

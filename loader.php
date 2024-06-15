@@ -23,15 +23,15 @@ class Prime_Slider_Loader {
 	private $_modules_manager;
 
 	private $classes_aliases = [ 
-		'PrimeSlider\Modules\PanelPostsControl\Module'                       => 'PrimeSlider\Modules\QueryControl\Module',
+		'PrimeSlider\Modules\PanelPostsControl\Module' => 'PrimeSlider\Modules\QueryControl\Module',
 		'PrimeSlider\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSlider\Modules\QueryControl\Controls\Group_Control_Posts',
-		'PrimeSlider\Modules\PanelPostsControl\Controls\Query'               => 'PrimeSlider\Modules\QueryControl\Controls\Query',
+		'PrimeSlider\Modules\PanelPostsControl\Controls\Query' => 'PrimeSlider\Modules\QueryControl\Controls\Query',
 	];
 
 	public $elements_data = [ 
 		'sections' => [],
-		'columns'  => [],
-		'widgets'  => [],
+		'columns' => [],
+		'widgets' => [],
 	];
 
 	/**
@@ -95,7 +95,7 @@ class Prime_Slider_Loader {
 	 */
 	private function _includes() {
 		$duplicator = prime_slider_option( 'duplicator', 'prime_slider_other_settings', 'off' );
-		$live_copy  = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
+		$live_copy = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
 
 		// Admin settings controller
 		require_once BDTPS_CORE_ADMIN_PATH . 'module-settings.php';
@@ -151,7 +151,7 @@ class Prime_Slider_Loader {
 		// Backward Compatibility: Save old class name for set an alias after the new class is loaded
 		if ( $has_class_alias ) {
 			$class_alias_name = $this->classes_aliases[ $class ];
-			$class_to_load    = $class_alias_name;
+			$class_to_load = $class_alias_name;
 		} else {
 			$class_to_load = $class;
 		}
@@ -202,6 +202,15 @@ class Prime_Slider_Loader {
 		if ( prime_slider_is_widget_enabled( 'pieces' ) ) {
 			wp_register_script( 'pieces', BDTPS_CORE_ASSETS_URL . 'vendor/js/pieces.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
 		}
+		if ( prime_slider_is_widget_enabled( 'fortune' ) or prime_slider_is_widget_enabled( 'knily' ) or prime_slider_is_widget_enabled( 'storker' ) or prime_slider_is_widget_enabled( 'omatic' ) or prime_slider_is_widget_enabled( 'sniper' ) or prime_slider_is_widget_enabled( 'mercury' ) or prime_slider_is_widget_enabled( 'coddle' ) or prime_slider_is_widget_enabled( 'escape' ) or prime_slider_is_widget_enabled( 'titanic' ) or prime_slider_is_widget_enabled( 'woohotspot' ) ) {
+			wp_register_script( 'shutters', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-shutters.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'gl', BDTPS_CORE_ASSETS_URL . 'vendor/js/swiper-gl.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'slicer', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-slicer.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'tinder', BDTPS_CORE_ASSETS_URL . 'vendor/js/effect-tinder.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+		}
+		if ( prime_slider_is_widget_enabled( 'fluent' ) or prime_slider_is_widget_enabled( 'flogia' ) ) {
+			wp_register_script( 'mThumbnailScroller', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.mThumbnailScroller.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+		}
 
 		wp_register_script( 'bdt-parallax', BDTPS_CORE_ASSETS_URL . 'vendor/js/parallax.min.js', [ 'jquery' ], null, true );
 
@@ -242,9 +251,29 @@ class Prime_Slider_Loader {
 
 	public function enqueue_editor_scripts() {
 
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
+		wp_enqueue_script('ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [
+			'backbone-marionette',
+			'elementor-common-modules',
+			'elementor-editor-modules',
+		], BDTPS_CORE_VER, true);
 
-		wp_enqueue_script( 'prime-slider', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor' . $suffix . '.js', [ 'backbone-marionette', 'elementor-common-modules', 'elementor-editor-modules',], BDTPS_CORE_VER, true );
+		$_is_ps_pro_activated = false;
+		if (function_exists('ps_license_validation') && true === ps_license_validation()) {
+			$_is_ps_pro_activated = true;
+		}
+
+		$localize_data = [
+			'pro_installed'  => _is_ps_pro_activated(),
+			'pro_license_activated'  => $_is_ps_pro_activated,
+			'promotional_widgets'   => [],
+		];
+
+		if (!$_is_ps_pro_activated) {
+			$pro_widget_map = new \PrimeSlider\Includes\Pro_Widget_Map();
+			$localize_data['promotional_widgets'] = $pro_widget_map->get_pro_widget_map();
+		}
+
+		wp_localize_script('ps-editor', 'PrimeSliderConfigEditor', $localize_data);
 	}
 
 	/**
@@ -268,6 +297,11 @@ class Prime_Slider_Loader {
 
 	public function enqueue_admin_scripts() {
 		wp_enqueue_script( 'ps-notice-js', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-notice.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		$script_config = [ 
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'prime-slider' ),
+		];
+		wp_localize_script( 'ps-notice-js', 'PrimeSliderNoticeConfig', $script_config );
 	}
 
 
@@ -277,16 +311,21 @@ class Prime_Slider_Loader {
 	 */
 	public function prime_slider_init() {
 		$this->_modules_manager = new Manager();
-
-		$elementor = Plugin::$instance;
-
-		// Add element category in panel
-		$elementor->elements_manager->add_category( BDTPS_CORE_SLUG, [ 'title' => BDTPS_CORE_TITLE, 'icon' => 'font' ] );
-
 		do_action( 'bdthemes_prime_slider/init' );
 	}
 
+	/**
+	 * initialize the category
+	 */
+	public function category_register() {
+		$elementor = Plugin::$instance;
+
+		// Add element category in panel
+		$elementor->elements_manager->add_category(BDTPS_CORE_SLUG, ['title' => BDTPS_CORE_TITLE, 'icon' => 'font']);
+	}
+
 	private function setup_hooks() {
+		add_action('elementor/elements/categories_registered', [$this, 'category_register']);
 		add_action( 'elementor/init', [ $this, 'prime_slider_init' ] );
 		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 
@@ -294,10 +333,9 @@ class Prime_Slider_Loader {
 		add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_site_scripts' ] );
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
-		//add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] ); // TODO
+		add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
 
 		add_action( 'elementor/frontend/after_register_styles', [ $this, 'enqueue_site_styles' ] );
-		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_site_scripts' ] );
 
 		// load WordPress dashboard scripts

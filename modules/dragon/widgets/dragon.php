@@ -201,10 +201,11 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'show_blur_effect',
 			[
-				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'prefix_class' => 'bdt-ps-blur-effect--',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -291,7 +292,7 @@ class dragon extends Widget_Base {
         $this->start_controls_section(
             'section_advanced_animation',
             [
-                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'tab'       => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -299,7 +300,7 @@ class dragon extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
                 'type'    => Controls_Manager::SWITCHER,
                 'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -360,6 +361,7 @@ class dragon extends Widget_Base {
 					'blend'      => esc_html__('Blend', 'bdthemes-prime-slider'),
 				],
 				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -470,7 +472,7 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'first_word_title_color',
 			[
-				'label'     => esc_html__( 'First Word Color', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => esc_html__( 'First Word Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .frist-word' => 'color: {{VALUE}}; -webkit-text-stroke-color: {{VALUE}};',
@@ -494,7 +496,7 @@ class dragon extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
             ]
         );
@@ -948,6 +950,7 @@ class dragon extends Widget_Base {
 				'condition' => [
 					'show_navigation_dots' => ['yes'],
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 

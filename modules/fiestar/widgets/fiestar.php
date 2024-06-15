@@ -94,6 +94,7 @@ class Fiestar extends Widget_Base {
                     5 => '5',
                     6 => '6',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -151,6 +152,7 @@ class Fiestar extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-fiestar-slider' => 'padding: {{SIZE}}{{UNIT}} 0;',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -201,13 +203,14 @@ class Fiestar extends Widget_Base {
         $this->add_control(
             'title_tags',
             [
-                'label'     => __('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Title HTML Tag', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SELECT,
                 'options'   => prime_slider_title_tags(),
                 'default'   => 'h3',
                 'condition' => [
                     'show_title' => 'yes',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -224,16 +227,17 @@ class Fiestar extends Widget_Base {
         $this->add_control(
             'wrapper_link',
             [
-                'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
-                'separator' => 'before'
+                'separator' => 'before',
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
 			'show_navigation_arrows',
 			[
-				'label'   => esc_html__('Show Arrows', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label'   => esc_html__('Show Arrows', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before'
@@ -434,7 +438,7 @@ class Fiestar extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label' => __('Text Stroke', 'bdthemes-prime-slider'),
                 'selector' => '{{WRAPPER}} .bdt-fiestar-slider .bdt-title a',
             ]
         );
@@ -626,7 +630,7 @@ class Fiestar extends Widget_Base {
         $this->add_control(
 			'nav_arrows_icon',
 			[
-				'label'   => esc_html__( 'Arrows Icon', 'bdthemes-element-pack' ) . BDTPS_CORE_NC,
+				'label'   => esc_html__( 'Arrows Icon', 'bdthemes-element-pack' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '8',
 				'options' => [
@@ -728,6 +732,7 @@ class Fiestar extends Widget_Base {
                     '{{WRAPPER}} .bdt-fiestar-slider .bdt-navigation-wrap .bdt-navigation-next' => 'right: {{SIZE}}%;',
                     '{{WRAPPER}} .bdt-fiestar-slider .bdt-navigation-wrap .bdt-navigation-prev' => 'left: {{SIZE}}%;',
                 ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -847,24 +852,19 @@ class Fiestar extends Widget_Base {
     public function render_title() {
         $settings = $this->get_settings_for_display();
 
-        if (!$this->get_settings('show_title')) {
+        if ( ! $this->get_settings_for_display('show_title') ) {
             return;
         }
 
-        $this->add_render_attribute('slider-title', 'class', 'bdt-title', true);
-        $this->add_render_attribute('slider-title', 'data-reveal', 'reveal-active', true);
-        $titleClass = $this->get_render_attribute_string('slider-title');
-
         printf(
-            '<%1$s %2$s>
-                <a href="%3$s" title="%4$s">
-                    %5$s
+            '<%1$s class="bdt-title" data-reveal="reveal-active">
+                <a href="%2$s" title="%3$s">
+                    %4$s
                 </a>
             </%1$s>',
-            esc_html($settings['title_tags']),
-            wp_kses_post($titleClass),
+            esc_attr(Utils::get_valid_html_tag($settings['title_tags'])),
             esc_url(get_permalink()),
-            esc_attr(get_the_title()),
+            esc_html(get_the_title()),
             esc_html(get_the_title())
         );
         
@@ -877,7 +877,7 @@ class Fiestar extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active">
-            <?php echo get_the_category_list(' '); ?>
+            <?php echo wp_kses_post(get_the_category_list(' ')); ?>
         </div>
         <?php
     }
@@ -982,7 +982,7 @@ class Fiestar extends Widget_Base {
         $this->add_render_attribute('slider-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-img-wrap">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

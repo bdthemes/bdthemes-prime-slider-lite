@@ -153,7 +153,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[
-				'label' => esc_html__('Additional Settings', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Additional Options', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -193,6 +193,7 @@ class Elysium extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap .bdt-img' => 'height: {{SIZE}}{{UNIT}};',
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -414,7 +415,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -623,6 +624,7 @@ class Elysium extends Widget_Base {
 				'condition' => [
 					'show_navigation_dots' => ['yes'],
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -637,6 +639,7 @@ class Elysium extends Widget_Base {
 				'condition' => [
 					'show_navigation_dots' => ['yes'],
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 

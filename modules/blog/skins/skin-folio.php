@@ -38,7 +38,7 @@ class Skin_Folio extends Elementor_Skin_Base {
         <?php if ('yes' == $settings['show_admin_info']) : ?>
           <div class="bdt-prime-slider-meta bdt-flex bdt-flex-middle" data-bdt-slideshow-parallax="x: 250,-250">
             <div class="bdt-post-slider-author bdt-margin-small-right bdt-border-circle bdt-overflow-hidden bdt-visible@s">
-              <?php echo get_avatar(get_the_author_meta('ID'), 48); ?>
+              <?php echo get_avatar(get_the_author_meta('ID'), 100); ?>
             </div>
             <div class="bdt-meta-author">
               <span class="bdt-author bdt-text-capitalize">

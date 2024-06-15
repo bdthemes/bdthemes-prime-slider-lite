@@ -528,7 +528,7 @@ class Woocircle extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-elastic-slider .bdt-elastic-modal-wrap',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__('Background', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+						'label' => esc_html__('Background', 'bdthemes-prime-slider'),
 					],
 				],
 			]
@@ -1286,14 +1286,14 @@ class Woocircle extends Widget_Base {
 			<div class="bdt-elastic-image-action-btn">
 				<div class="bdt-elastic-image-action__inner">
 
-					<img class="bdt-elastic-img bdt-elastic-img-small" src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
+					<img class="bdt-elastic-img bdt-elastic-img-small" src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
 
 					<button class="bdt-elastic-action bdt-elastic-action--open" aria-label="View details"><i class="ps-wi-plus"></i></button>
 				</div>
 			</div>
 			<div class="bdt-elastic-modal-wrap">
 				<div class="bdt-elastic-content-scroller">
-					<img class="bdt-elastic-img bdt-elastic-img-large" src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
+					<img class="bdt-elastic-img bdt-elastic-img-large" src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
 
 					<div class="bdt-elastic-modal-details">
 

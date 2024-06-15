@@ -326,7 +326,8 @@ class Multiscroll extends Widget_Base {
 						'icon'  => 'eicon-h-align-right',
 					],
 				],
-				'toggle' => false
+				'toggle' => false,
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -345,6 +346,7 @@ class Multiscroll extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content' => 'max-width: {{SIZE}}{{UNIT}};'
 				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -430,7 +432,8 @@ class Multiscroll extends Widget_Base {
 				],
 				'condition' => [
 					'show_button' => 'yes'
-				]
+				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -492,7 +495,8 @@ class Multiscroll extends Widget_Base {
 				],
 				'condition' => [
 					'navigation' => 'yes'
-				]
+				],
+				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 

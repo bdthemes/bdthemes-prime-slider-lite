@@ -1,9 +1,7 @@
 <?php
 
-use PrimeSlider\Notices;
 use PrimeSlider\Utils;
 use PrimeSlider\Admin\ModuleService;
-use PrimeSlider\Base\Prime_Slider_Base;
 use Elementor\Modules\Usage\Module;
 use Elementor\Tracker;
 
@@ -33,18 +31,9 @@ class PrimeSlider_Admin_Settings {
 	function __construct() {
 		$this->settings_api = new PrimeSlider_Settings_API;
 
-		if ( ! defined( 'BDTPS_CORE_HIDE' ) ) {
-			add_action( 'admin_init', [ $this, 'admin_init' ] );
-			add_action( 'admin_menu', [ $this, 'admin_menu' ], 201 );
-		}
-
-
-		if ( ! Tracker::is_allow_track() && ( isset( $_GET['page'] ) && 'prime_slider_options' != $_GET['page'] ) ) {
-			add_action( 'admin_notices', [ $this, 'allow_tracker_activate_notice' ], 10, 3 );
-		}
-
-		if ( isset( $_GET['page'] ) && 'prime_slider_options' == $_GET['page'] ) {
-			add_action( 'admin_notices', [ $this, 'allow_tracker_dashboard_notice' ], 10, 3 );
+		if (!defined('BDTPS_CORE_HIDE')) {
+			add_action('admin_init', [$this, 'admin_init']);
+			add_action('admin_menu', [$this, 'admin_menu'], 201);
 		}
 
 		/**
@@ -53,19 +42,17 @@ class PrimeSlider_Admin_Settings {
 		 * If both is activated then Show Notice
 		 */
 
-		$ps_3rdPartyOption = get_option( 'prime_slider_third_party_widget' );
+		$ps_3rdPartyOption = get_option('prime_slider_third_party_widget');
 
-		$el_use_mini_cart = get_option( 'elementor_use_mini_cart_template' );
+		$el_use_mini_cart = get_option('elementor_use_mini_cart_template');
 
-		if ( $el_use_mini_cart !== false && $ps_3rdPartyOption !== false ) {
-			if ( $ps_3rdPartyOption ) {
-				if ( 'yes' == $el_use_mini_cart && isset( $ps_3rdPartyOption['wc-mini-cart'] ) && 'off' !== trim( $ps_3rdPartyOption['wc-mini-cart'] ) ) {
-					add_action( 'admin_notices', [ $this, 'el_use_mini_cart' ], 10, 3 );
+		if ($el_use_mini_cart !== false && $ps_3rdPartyOption !== false) {
+			if ($ps_3rdPartyOption) {
+				if ('yes' == $el_use_mini_cart && isset($ps_3rdPartyOption['wc-mini-cart']) && 'off' !== trim($ps_3rdPartyOption['wc-mini-cart'])) {
+					add_action('admin_notices', [$this, 'el_use_mini_cart'], 10, 3);
 				}
 			}
 		}
-
-
 	}
 
 	/**
@@ -80,21 +67,21 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = array();
 
-		if ( class_exists( 'Elementor\Modules\Usage\Module' ) ) {
+		if (class_exists('Elementor\Modules\Usage\Module')) {
 
 			$module     = Module::instance();
-			$elements   = $module->get_formatted_usage( 'raw' );
+			$elements   = $module->get_formatted_usage('raw');
 			$ps_widgets = self::get_ps_widgets_names();
 
-			if ( is_array( $elements ) || is_object( $elements ) ) {
+			if (is_array($elements) || is_object($elements)) {
 
-				foreach ( $elements as $post_type => $data ) {
-					foreach ( $data['elements'] as $element => $count ) {
-						if ( in_array( $element, $ps_widgets, true ) ) {
-							if ( isset( $used_widgets[ $element ] ) ) {
-								$used_widgets[ $element ] += $count;
+				foreach ($elements as $post_type => $data) {
+					foreach ($data['elements'] as $element => $count) {
+						if (in_array($element, $ps_widgets, true)) {
+							if (isset($used_widgets[$element])) {
+								$used_widgets[$element] += $count;
 							} else {
-								$used_widgets[ $element ] = $count;
+								$used_widgets[$element] = $count;
 							}
 						}
 					}
@@ -118,21 +105,21 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = array();
 
-		if ( class_exists( 'Elementor\Modules\Usage\Module' ) ) {
+		if (class_exists('Elementor\Modules\Usage\Module')) {
 
 			$module     = Module::instance();
-			$elements   = $module->get_formatted_usage( 'raw' );
+			$elements   = $module->get_formatted_usage('raw');
 			$ps_widgets = self::get_ps_only_widgets();
 
-			if ( is_array( $elements ) || is_object( $elements ) ) {
+			if (is_array($elements) || is_object($elements)) {
 
-				foreach ( $elements as $post_type => $data ) {
-					foreach ( $data['elements'] as $element => $count ) {
-						if ( in_array( $element, $ps_widgets, true ) ) {
-							if ( isset( $used_widgets[ $element ] ) ) {
-								$used_widgets[ $element ] += $count;
+				foreach ($elements as $post_type => $data) {
+					foreach ($data['elements'] as $element => $count) {
+						if (in_array($element, $ps_widgets, true)) {
+							if (isset($used_widgets[$element])) {
+								$used_widgets[$element] += $count;
 							} else {
-								$used_widgets[ $element ] = $count;
+								$used_widgets[$element] = $count;
 							}
 						}
 					}
@@ -156,21 +143,21 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = array();
 
-		if ( class_exists( 'Elementor\Modules\Usage\Module' ) ) {
+		if (class_exists('Elementor\Modules\Usage\Module')) {
 
 			$module     = Module::instance();
-			$elements   = $module->get_formatted_usage( 'raw' );
+			$elements   = $module->get_formatted_usage('raw');
 			$ps_widgets = self::get_ps_only_3rdparty_names();
 
-			if ( is_array( $elements ) || is_object( $elements ) ) {
+			if (is_array($elements) || is_object($elements)) {
 
-				foreach ( $elements as $post_type => $data ) {
-					foreach ( $data['elements'] as $element => $count ) {
-						if ( in_array( $element, $ps_widgets, true ) ) {
-							if ( isset( $used_widgets[ $element ] ) ) {
-								$used_widgets[ $element ] += $count;
+				foreach ($elements as $post_type => $data) {
+					foreach ($data['elements'] as $element => $count) {
+						if (in_array($element, $ps_widgets, true)) {
+							if (isset($used_widgets[$element])) {
+								$used_widgets[$element] += $count;
 							} else {
-								$used_widgets[ $element ] = $count;
+								$used_widgets[$element] = $count;
 							}
 						}
 					}
@@ -192,7 +179,7 @@ class PrimeSlider_Admin_Settings {
 
 	public static function get_unused_widgets() {
 
-		if ( ! current_user_can( 'install_plugins' ) ) {
+		if (!current_user_can('install_plugins')) {
 			die();
 		}
 
@@ -200,7 +187,7 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = self::get_used_widgets();
 
-		$unused_widgets = array_diff( $ps_widgets, array_keys( $used_widgets ) );
+		$unused_widgets = array_diff($ps_widgets, array_keys($used_widgets));
 
 		return $unused_widgets;
 	}
@@ -216,7 +203,7 @@ class PrimeSlider_Admin_Settings {
 
 	public static function get_unused_only_widgets() {
 
-		if ( ! current_user_can( 'install_plugins' ) ) {
+		if (!current_user_can('install_plugins')) {
 			die();
 		}
 
@@ -224,7 +211,7 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = self::get_used_only_widgets();
 
-		$unused_widgets = array_diff( $ps_widgets, array_keys( $used_widgets ) );
+		$unused_widgets = array_diff($ps_widgets, array_keys($used_widgets));
 
 		return $unused_widgets;
 	}
@@ -240,7 +227,7 @@ class PrimeSlider_Admin_Settings {
 
 	public static function get_unused_only_3rdparty() {
 
-		if ( ! current_user_can( 'install_plugins' ) ) {
+		if (!current_user_can('install_plugins')) {
 			die();
 		}
 
@@ -248,7 +235,7 @@ class PrimeSlider_Admin_Settings {
 
 		$used_widgets = self::get_used_only_3rdparty();
 
-		$unused_widgets = array_diff( $ps_widgets, array_keys( $used_widgets ) );
+		$unused_widgets = array_diff($ps_widgets, array_keys($used_widgets));
 
 		return $unused_widgets;
 	}
@@ -265,10 +252,10 @@ class PrimeSlider_Admin_Settings {
 	public static function get_ps_widgets_names() {
 		$names = self::$modules_names;
 
-		if ( null === $names ) {
+		if (null === $names) {
 			$names = array_map(
 				function ($item) {
-					return isset( $item['name'] ) ? 'prime-slider-' . str_replace( '_', '-', $item['name'] ) : 'none';
+					return isset($item['name']) ? 'prime-slider-' . str_replace('_', '-', $item['name']) : 'none';
 				},
 				self::$modules_list
 			);
@@ -289,10 +276,10 @@ class PrimeSlider_Admin_Settings {
 	public static function get_ps_only_widgets() {
 		$names = self::$modules_names_only_widgets;
 
-		if ( null === $names ) {
+		if (null === $names) {
 			$names = array_map(
 				function ($item) {
-					return isset( $item['name'] ) ? 'prime-slider-' . str_replace( '_', '-', $item['name'] ) : 'none';
+					return isset($item['name']) ? 'prime-slider-' . str_replace('_', '-', $item['name']) : 'none';
 				},
 				self::$modules_list_only_widgets
 			);
@@ -313,10 +300,10 @@ class PrimeSlider_Admin_Settings {
 	public static function get_ps_only_3rdparty_names() {
 		$names = self::$modules_names_only_3rdparty;
 
-		if ( null === $names ) {
+		if (null === $names) {
 			$names = array_map(
 				function ($item) {
-					return isset( $item['name'] ) ? 'prime-slider-' . str_replace( '_', '-', $item['name'] ) : 'none';
+					return isset($item['name']) ? 'prime-slider-' . str_replace('_', '-', $item['name']) : 'none';
 				},
 				self::$modules_list_only_3rdparty
 			);
@@ -333,7 +320,7 @@ class PrimeSlider_Admin_Settings {
 	 */
 
 	public static function get_url() {
-		return admin_url( 'admin.php?page=' . self::PAGE_ID );
+		return admin_url('admin.php?page=' . self::PAGE_ID);
 	}
 
 	/**
@@ -346,8 +333,8 @@ class PrimeSlider_Admin_Settings {
 	public function admin_init() {
 
 		//set the settings
-		$this->settings_api->set_sections( $this->get_settings_sections() );
-		$this->settings_api->set_fields( $this->prime_slider_admin_settings() );
+		$this->settings_api->set_sections($this->get_settings_sections());
+		$this->settings_api->set_fields($this->prime_slider_admin_settings());
 
 		//initialize settings
 		$this->settings_api->admin_init();
@@ -362,11 +349,11 @@ class PrimeSlider_Admin_Settings {
 
 	public function admin_menu() {
 		add_menu_page(
-			BDTPS_CORE_TITLE . ' ' . esc_html__( 'Dashboard', 'bdthemes-prime-slider' ),
+			BDTPS_CORE_TITLE . ' ' . esc_html__('Dashboard', 'bdthemes-prime-slider'),
 			BDTPS_CORE_TITLE,
 			'manage_options',
 			self::PAGE_ID,
-			[ $this, 'plugin_page' ],
+			[$this, 'plugin_page'],
 			$this->prime_slider_icon(),
 			58
 		);
@@ -374,28 +361,28 @@ class PrimeSlider_Admin_Settings {
 		add_submenu_page(
 			self::PAGE_ID,
 			BDTPS_CORE_TITLE,
-			esc_html__( 'Core Widgets', 'bdthemes-prime-slider' ),
+			esc_html__('Core Widgets', 'bdthemes-prime-slider'),
 			'manage_options',
 			self::PAGE_ID . '#prime_slider_active_modules',
-			[ $this, 'display_page' ]
+			[$this, 'display_page']
 		);
 
 		add_submenu_page(
 			self::PAGE_ID,
 			BDTPS_CORE_TITLE,
-			esc_html__( '3rd Party Widgets', 'bdthemes-prime-slider' ),
+			esc_html__('3rd Party Widgets', 'bdthemes-prime-slider'),
 			'manage_options',
 			self::PAGE_ID . '#prime_slider_third_party_widget',
-			[ $this, 'display_page' ]
+			[$this, 'display_page']
 		);
 
 		add_submenu_page(
-		    self::PAGE_ID,
-		    BDTPS_CORE_TITLE,
-		    esc_html__('Extensions', 'bdthemes-prime-slider'),
-		    'manage_options',
-		    self::PAGE_ID . '#prime_slider_elementor_extend',
-		    [$this, 'display_page']
+			self::PAGE_ID,
+			BDTPS_CORE_TITLE,
+			esc_html__('Extensions', 'bdthemes-prime-slider'),
+			'manage_options',
+			self::PAGE_ID . '#prime_slider_elementor_extend',
+			[$this, 'display_page']
 		);
 
 		// add_submenu_page(
@@ -410,23 +397,22 @@ class PrimeSlider_Admin_Settings {
 		add_submenu_page(
 			self::PAGE_ID,
 			BDTPS_CORE_TITLE,
-			esc_html__( 'Other Settings', 'bdthemes-prime-slider' ),
+			esc_html__('Other Settings', 'bdthemes-prime-slider'),
 			'manage_options',
 			self::PAGE_ID . '#prime_slider_other_settings',
-			[ $this, 'display_page' ]
+			[$this, 'display_page']
 		);
 
-		if ( true !== _is_ps_pro_activated() ) {
+		if (true !== _is_ps_pro_activated()) {
 			add_submenu_page(
 				self::PAGE_ID,
 				BDTPS_CORE_TITLE,
-				esc_html__( 'Get Pro', 'bdthemes-prime-slider' ),
+				esc_html__('Get Pro', 'bdthemes-prime-slider'),
 				'manage_options',
 				self::PAGE_ID . '#prime_slider_get_pro',
-				[ $this, 'display_page' ]
+				[$this, 'display_page']
 			);
 		}
-
 	}
 
 	/**
@@ -448,26 +434,26 @@ class PrimeSlider_Admin_Settings {
 	 */
 
 	public function get_settings_sections() {
-		$sections = [ 
-			[ 
+		$sections = [
+			[
 				'id'    => 'prime_slider_active_modules',
-				'title' => esc_html__( 'Core Widgets', 'bdthemes-prime-slider' )
-			],
-			[ 
-				'id'    => 'prime_slider_third_party_widget',
-				'title' => esc_html__( '3rd Party Widgets', 'bdthemes-prime-slider' )
+				'title' => esc_html__('Core Widgets', 'bdthemes-prime-slider')
 			],
 			[
-			    'id'    => 'prime_slider_elementor_extend',
-			    'title' => esc_html__('Extensions', 'bdthemes-prime-slider')
+				'id'    => 'prime_slider_third_party_widget',
+				'title' => esc_html__('3rd Party Widgets', 'bdthemes-prime-slider')
+			],
+			[
+				'id'    => 'prime_slider_elementor_extend',
+				'title' => esc_html__('Extensions', 'bdthemes-prime-slider')
 			],
 			// [
 			//     'id'    => 'prime_slider_api_settings',
 			//     'title' => esc_html__('API Settings', 'bdthemes-prime-slider'),
 			// ],
-			[ 
+			[
 				'id'    => 'prime_slider_other_settings',
-				'title' => esc_html__( 'Other Settings', 'bdthemes-prime-slider' ),
+				'title' => esc_html__('Other Settings', 'bdthemes-prime-slider'),
 			],
 		];
 
@@ -483,16 +469,15 @@ class PrimeSlider_Admin_Settings {
 
 	protected function prime_slider_admin_settings() {
 
-		return ModuleService::get_widget_settings( function ($settings) {
+		return ModuleService::get_widget_settings(function ($settings) {
 			$settings_fields = $settings['settings_fields'];
 
-			self::$modules_list               = array_merge( $settings_fields['prime_slider_active_modules'], $settings_fields['prime_slider_third_party_widget'] );
+			self::$modules_list               = array_merge($settings_fields['prime_slider_active_modules'], $settings_fields['prime_slider_third_party_widget']);
 			self::$modules_list_only_widgets  = $settings_fields['prime_slider_active_modules'];
 			self::$modules_list_only_3rdparty = $settings_fields['prime_slider_third_party_widget'];
 
 			return $settings_fields;
-		} );
-
+		});
 	}
 
 	/**
@@ -504,22 +489,21 @@ class PrimeSlider_Admin_Settings {
 
 	public function prime_slider_welcome() {
 		$track_nw_msg = '';
-		if ( ! Tracker::is_allow_track() ) {
-			$track_nw     = esc_html__( 'This feature is not working because the Elementor Usage Data Sharing feature is Not Enabled.', 'bdthemes-prime-slider' );
+		if (!Tracker::is_allow_track()) {
+			$track_nw     = esc_html__('This feature is not working because the Elementor Usage Data Sharing feature is Not Enabled.', 'bdthemes-prime-slider');
 			$track_nw_msg = 'bdt-tooltip="' . $track_nw . '"';
 		}
-		?>
+?>
 
-		<div class="ps-dashboard-panel"
-			bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
+		<div class="ps-dashboard-panel" bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
-						$used_widgets    = count( self::get_used_widgets() );
-						$un_used_widgets = count( self::get_unused_widgets() );
+						$used_widgets    = count(self::get_used_widgets());
+						$un_used_widgets = count(self::get_unused_widgets());
 						?>
 
 
@@ -540,22 +524,18 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;"
-									data-label="Total Widgets Status - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)"
-									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
-									data-value="<?php echo esc_attr( $used_widgets ) . ',' . esc_attr( $un_used_widgets ); ?>"
-									data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;" data-label="Total Widgets Status - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_widgets) . ',' . esc_attr($un_used_widgets); ?>" data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
-						$used_only_widgets   = count( self::get_used_only_widgets() );
-						$unused_only_widgets = count( self::get_unused_only_widgets() );
+						$used_only_widgets   = count(self::get_used_only_widgets());
+						$unused_only_widgets = count(self::get_unused_only_widgets());
 						?>
 
 
@@ -576,22 +556,18 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;"
-									data-label="Core Widgets Status - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)"
-									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
-									data-value="<?php echo esc_attr( $used_only_widgets ) . ',' . esc_attr( $unused_only_widgets ); ?>"
-									data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;" data-label="Core Widgets Status - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_widgets) . ',' . esc_attr($unused_only_widgets); ?>" data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
 					</div>
 				</div>
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
-						$used_only_3rdparty   = count( self::get_used_only_3rdparty() );
-						$unused_only_3rdparty = count( self::get_unused_only_3rdparty() );
+						$used_only_3rdparty   = count(self::get_used_only_3rdparty());
+						$unused_only_3rdparty = count(self::get_unused_only_3rdparty());
 						?>
 
 
@@ -612,11 +588,7 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;"
-									data-label="3rd Party Widgets Status - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)"
-									data-labels="<?php echo esc_attr( 'Used, Unused' ); ?>"
-									data-value="<?php echo esc_attr( $used_only_3rdparty ) . ',' . esc_attr( $unused_only_3rdparty ); ?>"
-									data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;" data-label="3rd Party Widgets Status - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_3rdparty) . ',' . esc_attr($unused_only_3rdparty); ?>" data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
@@ -624,7 +596,7 @@ class PrimeSlider_Admin_Settings {
 				</div>
 
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
-					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo esc_attr($track_nw_msg); ?>>
+					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
@@ -635,10 +607,7 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-total-widgets-status" style="height: 120px; width: 120px;"
-									data-label="Total Active Widgets Status"
-									data-labels="<?php echo esc_attr( 'Core, 3rd Party' ); ?>" data-bg="#0680d6, #B0EBFF"
-									data-bg-hover="#0673e1, #B0EBFF">
+								<canvas id="bdt-total-widgets-status" style="height: 120px; width: 120px;" data-label="Total Active Widgets Status" data-labels="<?php echo esc_attr('Core, 3rd Party'); ?>" data-bg="#0680d6, #B0EBFF" data-bg-hover="#0673e1, #B0EBFF">
 								</canvas>
 							</div>
 						</div>
@@ -647,22 +616,30 @@ class PrimeSlider_Admin_Settings {
 				</div>
 			</div>
 
+			<?php if ( !Tracker::is_allow_track() ) : ?>
+				<div class="bdt-border-rounded bdt-box-shadow-small bdt-alert-warning" bdt-alert>
+					<a href class="bdt-alert-close" bdt-close></a>
+					<div class="bdt-text-default">
+						<?php
+						esc_html_e('To view widgets analytics, Elementor Usage Data Sharing feature by Elementor needs to be activated. Please activate the feature to get widget analytics instantly ', 'bdthemes-element-pack');
+						echo '<a href="' . esc_url(admin_url('admin.php?page=elementor')) . '">from here.</a>';
+						?>
+					</div>
+				</div>
+			<?php endif; ?>
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-3@m ps-support-section">
 					<div class="ps-support-content bdt-card bdt-card-body">
 						<h1 class="ps-feature-title">Support And Feedback</h1>
-						<p>Feeling like to consult with an expert? Take live Chat support immediately from <a
-								href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. We are always
+						<p>Feeling like to consult with an expert? Take live Chat support immediately from <a href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. We are always
 							ready to help
 							you 24/7.</p>
 						<p><strong>Or if you’re facing technical issues with our plugin, then please create a support
 								ticket</strong></p>
-						<a class="bdt-button bdt-btn-blue bdt-margin-small-top bdt-margin-small-right" target="_blank" rel=""
-							href="https://bdthemes.com/all-knowledge-base-of-prime-slider/">Knowledge
+						<a class="bdt-button bdt-btn-blue bdt-margin-small-top bdt-margin-small-right" target="_blank" rel="" href="https://bdthemes.com/all-knowledge-base-of-prime-slider/">Knowledge
 							Base</a>
-						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank"
-							href="https://bdthemes.com/support/">Get Support</a>
+						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" href="https://bdthemes.com/support/">Get Support</a>
 					</div>
 				</div>
 
@@ -680,8 +657,7 @@ class PrimeSlider_Admin_Settings {
 						<h1 class="ps-feature-title">Missing Any Feature?</h1>
 						<p style="max-width: 520px;">Are you in need of a feature that’s not available in our plugin?
 							Feel free to do a feature request from here,</p>
-						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" rel=""
-							href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/">Request Feature</a>
+						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" rel="" href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/">Request Feature</a>
 					</div>
 				</div>
 
@@ -693,25 +669,15 @@ class PrimeSlider_Admin_Settings {
 							for <b>Elementor</b> is the best slider, blogs and eCommerce plugin for WordPress.
 						</p>
 						<div class="bdt-others-plugins-link">
-							<a class="bdt-button bdt-btn-ep bdt-margin-small-right" target="_blank"
-								href="https://wordpress.org/plugins/bdthemes-element-pack-lite/"
-								bdt-tooltip="Element Pack Lite provides more than 50+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Element
+							<a class="bdt-button bdt-btn-ep bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/bdthemes-element-pack-lite/" bdt-tooltip="Element Pack Lite provides more than 50+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Element
 								pack</a>
-							<a class="bdt-button bdt-btn-ps bdt-margin-small-right" target="_blank" rel=""
-								href="https://wordpress.org/plugins/ultimate-post-kit/"
-								bdt-tooltip="Best blogging addon for building quality blogging website with fine-tuned features and widgets. It's Free! Download it.">Ultimate
+							<a class="bdt-button bdt-btn-ps bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-post-kit/" bdt-tooltip="Best blogging addon for building quality blogging website with fine-tuned features and widgets. It's Free! Download it.">Ultimate
 								Post Kit</a>
-							<a class="bdt-button bdt-btn-usk bdt-margin-small-right" target="_blank" rel=""
-								href="https://wordpress.org/plugins/ultimate-store-kit/"
-								bdt-tooltip="The only eCommmerce addon for answering all your online store design problems in one package. It's Free! Download it.">Ultimate
+							<a class="bdt-button bdt-btn-usk bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-store-kit/" bdt-tooltip="The only eCommmerce addon for answering all your online store design problems in one package. It's Free! Download it.">Ultimate
 								Store Kit</a>
-							<a class="bdt-button bdt-btn-pg bdt-margin-small-right" target="_blank"
-								href="https://wordpress.org/plugins/pixel-gallery/"
-								bdt-tooltip="Pixel Gallery provides more than 30+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Pixel
+							<a class="bdt-button bdt-btn-pg bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/pixel-gallery/" bdt-tooltip="Pixel Gallery provides more than 30+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Pixel
 								Gallery</a>
-							<a class="bdt-button bdt-btn-live-copy bdt-margin-small-right" target="_blank" rel=""
-								href="https://wordpress.org/plugins/live-copy-paste/"
-								bdt-tooltip="Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience. It's Free! Download it.">Live
+							<a class="bdt-button bdt-btn-live-copy bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/live-copy-paste/" bdt-tooltip="Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience. It's Free! Download it.">Live
 								Copy Paste</a>
 						</div>
 					</div>
@@ -721,7 +687,7 @@ class PrimeSlider_Admin_Settings {
 		</div>
 
 
-		<?php
+	<?php
 	}
 
 	/**
@@ -732,12 +698,10 @@ class PrimeSlider_Admin_Settings {
 	 */
 
 	function prime_slider_get_pro() {
-		?>
-		<div class="ps-dashboard-panel"
-			bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
+	?>
+		<div class="ps-dashboard-panel" bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
 
-			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card"
-				style="max-width: 800px; margin-left: auto; margin-right: auto;">
+			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card" style="max-width: 800px; margin-left: auto; margin-right: auto;">
 				<div class="bdt-width-1-1@m ps-comparision bdt-text-center">
 					<h1 class="bdt-text-bold">WHY GO WITH PRO?</h1>
 					<h2>Just Compare With Prime Slider Free Vs Pro</h2>
@@ -757,8 +721,7 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><span
-											bdt-tooltip="pos: top-left; title: Free have 27+ Widgets but Pro have 21+ core widgets">Core
+									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 27+ Widgets but Pro have 21+ core widgets">Core
 											Widgets</span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
@@ -766,8 +729,7 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><span
-											bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd
+									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd
 											Party Widgets</span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
@@ -922,9 +884,7 @@ class PrimeSlider_Admin_Settings {
 								</li>
 							</ul>
 
-							<!-- <div class="ps-dashboard-divider"></div> -->
-
-							<?php if ( true !== _is_ps_pro_activated() ) : ?>
+							<?php if (true !== _is_ps_pro_activated()) : ?>
 								<div class="ps-purchase-button">
 									<a href="https://primeslider.pro/pricing/" target="_blank">Purchase Now</a>
 								</div>
@@ -937,7 +897,7 @@ class PrimeSlider_Admin_Settings {
 			</div>
 
 		</div>
-		<?php
+	<?php
 	}
 
 
@@ -950,16 +910,16 @@ class PrimeSlider_Admin_Settings {
 
 	function prime_slider_system_requirement() {
 		$php_version        = phpversion();
-		$max_execution_time = ini_get( 'max_execution_time' );
-		$memory_limit       = ini_get( 'memory_limit' );
-		$post_limit         = ini_get( 'post_max_size' );
+		$max_execution_time = ini_get('max_execution_time');
+		$memory_limit       = ini_get('memory_limit');
+		$post_limit         = ini_get('post_max_size');
 		$uploads            = wp_upload_dir();
 		$upload_path        = $uploads['basedir'];
 
 		$environment = Utils::get_environment_info();
 
 
-		?>
+	?>
 		<ul class="check-system-status bdt-grid bdt-child-width-1-2@m bdt-grid-small ">
 			<li>
 				<div>
@@ -967,7 +927,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">PHP Version: </span>
 
 					<?php
-					if ( version_compare( $php_version, '7.0.0', '<' ) ) {
+					if (version_compare($php_version, '7.0.0', '<')) {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2" title="Min: 7.0 Recommended" bdt-tooltip>Currently: ' . esc_html($php_version) . '</span>';
 					} else {
@@ -983,7 +943,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">Max execution time: </span>
 
 					<?php
-					if ( $max_execution_time < '90' ) {
+					if ($max_execution_time < '90') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>Currently: ' . esc_html($max_execution_time) . '</span>';
 					} else {
@@ -998,7 +958,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">Memory Limit: </span>
 
 					<?php
-					if ( intval( $memory_limit ) < '812' ) {
+					if (intval($memory_limit) < '812') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2" title="Min: 812M Recommended" bdt-tooltip>Currently: ' . esc_html($memory_limit) . '</span>';
 					} else {
@@ -1013,7 +973,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">Max Post Limit: </span>
 
 					<?php
-					if ( intval( $post_limit ) < '32' ) {
+					if (intval($post_limit) < '32') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>Currently: ' . esc_html($post_limit) . '</span>';
 					} else {
@@ -1029,7 +989,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">Uploads folder writable: </span>
 
 					<?php
-					if ( ! is_writable( $upload_path ) ) {
+					if (!is_writable($upload_path)) {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
@@ -1043,7 +1003,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">MultiSite: </span>
 
 					<?php
-					if ( $environment['wp_multisite'] ) {
+					if ($environment['wp_multisite']) {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 						echo '<span class="label2">MultiSite</span>';
 					} else {
@@ -1059,7 +1019,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1">GZip Enabled: </span>
 
 					<?php
-					if ( $environment['gzip_enabled'] ) {
+					if ($environment['gzip_enabled']) {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 					} else {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
@@ -1072,7 +1032,7 @@ class PrimeSlider_Admin_Settings {
 				<div>
 					<span class="label1">Debug Mode: </span>
 					<?php
-					if ( $environment['wp_debug_mode'] ) {
+					if ($environment['wp_debug_mode']) {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
 						echo '<span class="label2">Currently Turned On</span>';
 					} else {
@@ -1090,7 +1050,7 @@ class PrimeSlider_Admin_Settings {
 			requirement some
 			cases so make sure you added more memory for others addon too.
 		</div>
-		<?php
+	<?php
 	}
 
 	/**
@@ -1107,14 +1067,14 @@ class PrimeSlider_Admin_Settings {
 
 		$this->settings_api->show_navigation();
 
-		?>
+	?>
 
 
 		<div class="bdt-switcher bdt-tab-container bdt-container-xlarge">
 			<div id="prime_slider_welcome_page" class="ps-option-page group">
 				<?php $this->prime_slider_welcome(); ?>
 
-				<?php if ( ! defined( 'BDTPS_CORE_WL' ) ) {
+				<?php if (!defined('BDTPS_CORE_WL')) {
 					$this->footer_info();
 				} ?>
 			</div>
@@ -1123,7 +1083,7 @@ class PrimeSlider_Admin_Settings {
 			$this->settings_api->show_forms();
 			?>
 
-			<?php if ( _is_ps_pro_activated() !== true ) : ?>
+			<?php if (_is_ps_pro_activated() !== true) : ?>
 				<div id="prime_slider_get_pro" class="ps-option-page group">
 					<?php $this->prime_slider_get_pro(); ?>
 				</div>
@@ -1132,8 +1092,8 @@ class PrimeSlider_Admin_Settings {
 			<div id="prime_slider_pro_license_settings_page" class="ps-option-page group">
 
 				<?php
-				if ( _is_ps_pro_activated() == true ) {
-					apply_filters( 'ps_license_page', '' );
+				if (_is_ps_pro_activated() == true) {
+					apply_filters('ps_license_page', '');
 				}
 				?>
 			</div>
@@ -1148,7 +1108,7 @@ class PrimeSlider_Admin_Settings {
 
 		?>
 
-		<?php
+	<?php
 	}
 
 
@@ -1158,9 +1118,9 @@ class PrimeSlider_Admin_Settings {
 	 * This code uses localstorage for displaying active tabs
 	 */
 	function script() {
-		?>
+	?>
 		<script>
-			jQuery(document).ready(function () {
+			jQuery(document).ready(function() {
 				jQuery('.ps-no-result').removeClass('bdt-animation-shake');
 			});
 
@@ -1169,7 +1129,7 @@ class PrimeSlider_Admin_Settings {
 
 				var search = jQuery(parentID).find('.bdt-search-input').val().toLowerCase();
 
-				jQuery(".ps-options .ps-option-item").filter(function () {
+				jQuery(".ps-options .ps-option-item").filter(function() {
 					jQuery(this).toggle(jQuery(this).attr('data-widget-name').toLowerCase().indexOf(search) > -1)
 				});
 
@@ -1183,13 +1143,13 @@ class PrimeSlider_Admin_Settings {
 				}
 			}
 
-			jQuery('.ps-options-parent').each(function (e, item) {
+			jQuery('.ps-options-parent').each(function(e, item) {
 				var eachItem = '#' + jQuery(item).attr('id');
-				jQuery(eachItem).on("beforeFilter", function () {
+				jQuery(eachItem).on("beforeFilter", function() {
 					jQuery(eachItem).find('.ps-no-result').removeClass('bdt-animation-shake');
 				});
 
-				jQuery(eachItem).on("afterFilter", function () {
+				jQuery(eachItem).on("afterFilter", function() {
 
 					var isElementVisible = false;
 					var i = 0;
@@ -1210,13 +1170,13 @@ class PrimeSlider_Admin_Settings {
 			});
 
 
-			jQuery('.ps-widget-filter-nav li a').on('click', function (e) {
+			jQuery('.ps-widget-filter-nav li a').on('click', function(e) {
 				jQuery(this).closest('.bdt-widget-filter-wrapper').find('.bdt-search-input').val('');
 				jQuery(this).closest('.bdt-widget-filter-wrapper').find('.bdt-search-input').val('').attr('bdt-filter-control', '');
 			});
 
 
-			jQuery(document).ready(function ($) {
+			jQuery(document).ready(function($) {
 				'use strict';
 
 				function hashHandler() {
@@ -1227,20 +1187,20 @@ class PrimeSlider_Admin_Settings {
 					}
 				}
 
-				jQuery(window).on('load', function () {
+				jQuery(window).on('load', function() {
 					hashHandler();
 				});
 
 				window.addEventListener("hashchange", hashHandler, true);
 
-				jQuery('.toplevel_page_prime_slider_options > ul > li > a ').on('click', function (event) {
+				jQuery('.toplevel_page_prime_slider_options > ul > li > a ').on('click', function(event) {
 					jQuery(this).parent().siblings().removeClass('current');
 					jQuery(this).parent().addClass('current');
 				});
 
-				jQuery('#prime_slider_active_modules_page a.ps-active-all-widget').click(function () {
+				jQuery('#prime_slider_active_modules_page a.ps-active-all-widget').click(function() {
 
-					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
 					});
 
@@ -1248,9 +1208,9 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_active_modules_page a.ps-deactive-all-widget').click(function () {
+				jQuery('#prime_slider_active_modules_page a.ps-deactive-all-widget').click(function() {
 
-					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
 					});
 
@@ -1258,9 +1218,9 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-active-all-widget').click(function () {
+				jQuery('#prime_slider_third_party_widget_page a.ps-active-all-widget').click(function() {
 
-					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
 					});
 
@@ -1268,9 +1228,9 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').click(function () {
+				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').click(function() {
 
-					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
 					});
 
@@ -1278,9 +1238,9 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').click(function () {
+				jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').click(function() {
 
-					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
 					});
 
@@ -1288,9 +1248,9 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_elementor_extend_page a.ps-deactive-all-widget').click(function () {
+				jQuery('#prime_slider_elementor_extend_page a.ps-deactive-all-widget').click(function() {
 
-					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function () {
+					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
 					});
 
@@ -1299,26 +1259,26 @@ class PrimeSlider_Admin_Settings {
 				});
 
 
-				jQuery('form.settings-save').submit(function (event) {
+				jQuery('form.settings-save').submit(function(event) {
 					event.preventDefault();
 
 					bdtUIkit.notification({
-						message: '<div bdt-spinner></div> <?php esc_html_e( 'Please wait, Saving settings...', 'bdthemes-prime-slider' ) ?>',
+						message: '<div bdt-spinner></div> <?php esc_html_e('Please wait, Saving settings...', 'bdthemes-prime-slider') ?>',
 						timeout: false
 					});
 
 					jQuery(this).ajaxSubmit({
-						success: function () {
+						success: function() {
 							bdtUIkit.notification.closeAll();
 							bdtUIkit.notification({
-								message: '<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Settings Saved Successfully.', 'bdthemes-prime-slider' ) ?>',
+								message: '<span class="dashicons dashicons-yes"></span> <?php esc_html_e('Settings Saved Successfully.', 'bdthemes-prime-slider') ?>',
 								status: 'primary'
 							});
 						},
-						error: function (data) {
+						error: function(data) {
 							bdtUIkit.notification.closeAll();
 							bdtUIkit.notification({
-								message: '<span bdt-icon=\'icon: warning\'></span> <?php esc_html_e( 'Unknown error, make sure access is correct!', 'bdthemes-prime-slider' ) ?>',
+								message: '<span bdt-icon=\'icon: warning\'></span> <?php esc_html_e('Unknown error, make sure access is correct!', 'bdthemes-prime-slider') ?>',
 								status: 'warning'
 							});
 						}
@@ -1327,22 +1287,26 @@ class PrimeSlider_Admin_Settings {
 					return false;
 				});
 
-				jQuery('#prime_slider_active_modules_page .ps-pro-inactive .checkbox').each(function () {
+				jQuery('#prime_slider_active_modules_page .ps-pro-inactive .checkbox').each(function() {
 					jQuery(this).removeAttr('checked');
 					jQuery(this).attr("disabled", true);
 				});
-				jQuery('#prime_slider_third_party_widget_page .ps-pro-inactive .checkbox').each(function () {
+				jQuery('#prime_slider_third_party_widget_page .ps-pro-inactive .checkbox').each(function() {
 					jQuery(this).removeAttr('checked');
 					jQuery(this).attr("disabled", true);
 				});
-				jQuery('#prime_slider_other_settings_page .ps-pro-inactive .checkbox').each(function () {
+				jQuery('#prime_slider_elementor_extend_page .ps-pro-inactive .checkbox').each(function() {
+					jQuery(this).removeAttr('checked');
+					jQuery(this).attr("disabled", true);
+				});
+				jQuery('#prime_slider_other_settings_page .ps-pro-inactive .checkbox').each(function() {
 					jQuery(this).removeAttr('checked');
 					jQuery(this).attr("disabled", true);
 				});
 
 			});
 		</script>
-		<?php
+	<?php
 	}
 
 	/**
@@ -1353,7 +1317,7 @@ class PrimeSlider_Admin_Settings {
 	 */
 
 	function footer_info() {
-		?>
+	?>
 
 		<div class="prime-slider-footer-info bdt-margin-medium-top">
 
@@ -1375,49 +1339,7 @@ class PrimeSlider_Admin_Settings {
 
 		</div>
 
-		<?php
-	}
-
-	/**
-	 * 
-	 * Allow Tracker deactivated warning
-	 * If Allow Tracker disable in elementor then this notice will be show
-	 *
-	 * @access public
-	 */
-
-	public function allow_tracker_activate_notice() {
-
-		Notices::add_notice(
-			[ 
-				'id'               => 'ps-allow-tracker',
-				'type'             => 'warning',
-				'dismissible'      => true,
-				'dismissible-time' => MONTH_IN_SECONDS * 2,
-				'message'          => __( 'Please activate <strong>Usage Data Sharing</strong> features from Elementor, otherwise Widgets Analytics will not work. Please activate the settings from <strong>Elementor > Settings > General Tab >  Usage Data Sharing.</strong> Thank you.', 'bdthemes-prime-slider' ),
-			]
-		);
-	}
-
-	/**
-	 * 
-	 * Allow Tracker deactivated warning only in Element Pack Dashboard
-	 * If Allow Tracker disable in elementor then this notice will be show
-	 *
-	 * @access public
-	 */
-
-	public function allow_tracker_dashboard_notice() {
-
-		Notices::add_notice(
-			[ 
-				'id'               => 'ep-allow-tracker-dashboard',
-				'type'             => 'warning',
-				'dismissible'      => true,
-				'dismissible-time' => WEEK_IN_SECONDS,
-				'message'          => __( 'Please activate <strong>Usage Data Sharing</strong> features from Elementor, otherwise Widgets Analytics will not work. Please activate the settings from <strong>Elementor > Settings > General Tab >  Usage Data Sharing.</strong> Thank you.', 'bdthemes-prime-slider' ),
-			]
-		);
+<?php
 	}
 
 	/**
@@ -1428,9 +1350,9 @@ class PrimeSlider_Admin_Settings {
 	function get_pages() {
 		$pages         = get_pages();
 		$pages_options = [];
-		if ( $pages ) {
-			foreach ( $pages as $page ) {
-				$pages_options[ $page->ID ] = $page->post_title;
+		if ($pages) {
+			foreach ($pages as $page) {
+				$pages_options[$page->ID] = $page->post_title;
 			}
 		}
 

@@ -541,14 +541,14 @@ class ModuleService {
 			],
 			'prime_slider_elementor_extend' => [
 				[
-					'name'        => 'adaptive-bg',
-					'label'       => esc_html__('Adaptive Background', 'bdthemes-prime-slider'),
-					'type'        => 'checkbox',
-					'default'     => 'off',
-					'widget_type' => 'pro',
-					'content_type' => 'upcoming',
-					'demo_url'    => '',
-					'video_url'   => '',
+					'name'        	=> 'adaptive-bg',
+					'label'       	=> esc_html__('Adaptive Background', 'bdthemes-prime-slider'),
+					'type'        	=> 'checkbox',
+					'default'     	=> 'off',
+					'widget_type' 	=> 'pro',
+					'content_type' 	=> 'new',
+					'demo_url'    	=> '',
+					'video_url'   	=> '',
 				],
 			]
 		];

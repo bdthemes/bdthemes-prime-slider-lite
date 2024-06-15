@@ -404,6 +404,7 @@ trait Global_Widget_Controls {
 				'label_off'    => __( 'None', 'bdthemes-element-pack' ),
 				'label_on'     => __( 'Custom', 'bdthemes-element-pack' ),
 				'return_value' => 'yes',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1398,6 +1399,7 @@ trait Global_Widget_Controls {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 	}
@@ -1478,6 +1480,7 @@ trait Global_Widget_Controls {
 				'condition'   => [ 
 					'show_excerpt' => 'yes',
 				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -2205,7 +2208,7 @@ trait Global_Widget_Controls {
 		}
 
 		printf(
-			'<%1$s %2$s data-reveal="%3$s">%4$s</%1$s>',
+			'<%1$s class="%2$s" data-reveal="%3$s">%4$s</%1$s>',
 			esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ),
 			esc_attr( $class ), esc_attr( $data_reveal ),
 			wp_kses_post( $slide['sub_title'] ),
@@ -2247,11 +2250,15 @@ trait Global_Widget_Controls {
 			return;
 		}
 
-		$this->add_render_attribute( 'slider-title', 'class', 'bdt-title', true );
-		$this->add_render_attribute( 'slider-title', 'data-reveal', 'reveal-active', true );
-		$titleClass = $this->get_render_attribute_string( 'slider-title' );
-
-		printf( '<%1$s %2$s><a href="%3$s" title="%4$s">%5$s</a></%1$s>', esc_html( $settings['title_tags'] ), wp_kses_post( $titleClass ), esc_url( get_permalink() ), esc_attr( get_the_title() ), esc_html( get_the_title() ) );
+		printf(
+			'<%1$s class="bdt-title" data-reveal="reveal-active">
+				<a href="%2$s" title="%3$s">%4$s</a>
+			</%1$s>',
+			esc_attr( Utils::get_valid_html_tag( $settings['title_tags'] ) ),
+			esc_url( get_permalink() ),
+			esc_attr( get_the_title() ),
+			esc_html( get_the_title() )
+		);
 	}
 
 	/**

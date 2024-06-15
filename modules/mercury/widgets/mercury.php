@@ -6,7 +6,6 @@
     use Elementor\Group_Control_Background;
     use Elementor\Group_Control_Border;
     use Elementor\Group_Control_Box_Shadow;
-    use Elementor\Group_Control_Image_Size;
     use Elementor\Group_Control_Typography;
     use Elementor\Group_Control_Text_Shadow;
     use Elementor\Widget_Base;
@@ -113,6 +112,7 @@ class Mercury extends Widget_Base {
                 'selectors'   => [
                     '{{WRAPPER}} .bdt-mercury-content-slider .bdt-content' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -122,7 +122,8 @@ class Mercury extends Widget_Base {
                 'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'prefix_class' => 'bdt-reverse--',
-                'render_type' => 'template'
+                'render_type' => 'template',
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -174,7 +175,7 @@ class Mercury extends Widget_Base {
         $this->start_controls_section(
             'section_additional_settings',
             [
-                'label' => esc_html__( 'Additional Settings', 'bdthemes-prime-slider' ),
+                'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
             ]
         );
 
@@ -230,7 +231,38 @@ class Mercury extends Widget_Base {
         /**
 		 * Loop, Rewind & mousewheel Controls
 		 */
-		$this->register_loop_rewind_mousewheel_controls();
+		
+        $this->add_control(
+			'loop',
+			[ 
+				'label'     => __( 'Loop', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [ 
+					'effect!' => [ 'slicer', 'tinder' ]
+				],
+			]
+		);
+
+		$this->add_control(
+			'rewind',
+			[ 
+				'label'     => __( 'Rewind', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [ 
+					'effect' => [ 'slicer', 'tinder' ]
+				],
+			]
+		);
+
+		$this->add_control(
+			'mousewheel',
+			[ 
+				'label' => __( 'Mousewheel', 'bdthemes-prime-slider' ),
+				'type'  => Controls_Manager::SWITCHER,
+			]
+		);
 
         /**
 		 * Speed & Observer Controls
@@ -831,6 +863,7 @@ class Mercury extends Widget_Base {
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-next' => 'right: {{SIZE}}px;',
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-prev' => 'left: {{SIZE}}px;',
                 ],
+                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -954,7 +987,7 @@ class Mercury extends Widget_Base {
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
-            <?php echo get_the_category_list( ' ' ); ?>
+            <?php echo wp_kses_post(get_the_category_list( ' ' )); ?>
         </div>
         <?php
     }
@@ -973,7 +1006,7 @@ class Mercury extends Widget_Base {
                 <i class="ps-wi-calendar" aria-hidden="true"></i>
                 <span>
                     <?php if ( $settings['human_diff_time'] == 'yes' ) {
-                        echo prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' );
+                        echo wp_kses_post(prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ));
                     } else {
                         echo get_the_date();
                     } ?>
@@ -983,7 +1016,7 @@ class Mercury extends Widget_Base {
             <?php if ($settings['show_time']) : ?>
             <div class="bdt-post-time">
                 <i class="ps-wi-clock-o" aria-hidden="true"></i>
-                <?php echo get_the_time(); ?>
+                <?php echo wp_kses_post(get_the_time()); ?>
             </div>
             <?php endif; ?>
         </div>
@@ -999,7 +1032,7 @@ class Mercury extends Widget_Base {
         ?>
         <div class="bdt-author">
             <span class="bdt-by"><?php echo esc_html__( 'by', 'bdthemes-prime-slider' ) ?></span>
-            <a class="bdt-author-name" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>">
+            <a class="bdt-author-name" href="<?php echo esc_url(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>">
                 <?php echo get_the_author() ?>
             </a>
         </div>
@@ -1117,7 +1150,7 @@ class Mercury extends Widget_Base {
 
         ?>
 
-        <div <?php echo $this->get_render_attribute_string('thumb-item'); ?>>
+        <div <?php $this->print_render_attribute_string('thumb-item'); ?>>
             <div class="bdt-content">
                 <?php $this->render_category(); ?>
                 <?php if ($settings['show_title']) : ?>
@@ -1173,7 +1206,7 @@ class Mercury extends Widget_Base {
 
         ?>
 
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-img-wrap" data-reveal="reveal-active">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

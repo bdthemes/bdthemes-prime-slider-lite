@@ -7,6 +7,9 @@
 		display: inline-block;
 		margin-top: clamp(1.875rem, 4vw, 2rem);
 	}
+    .bdt-prime-slider-desc {
+        margin-bottom: clamp(4.063rem, 9vw, 7.5rem);
+    }
 	.bdt-slide-btn {
 		font-size: clamp(0.75rem, 1.5vw, 0.875rem);
 		font-weight: 700;
@@ -84,7 +87,7 @@
         color: #fff;
         padding-top: clamp(0.938rem, 3vw, 1.875rem);
         max-width: 825px;
-        margin: auto;
+        display: inline-block;
 
         * {
             margin: 0;
@@ -138,6 +141,11 @@
         opacity: 1;
     }
     }
+    .bdt-post-slider-author img {
+        width: 48px;
+        height: 48px;
+        display: flex;
+    }
 
     .bdt-ps-meta {
         .bdt-meta-icon {
@@ -151,6 +159,9 @@
             svg {
                 width: 16px;
                 color: #fff;
+            }
+            img {
+                width: 100%;
             }
         }
 
@@ -186,7 +197,7 @@
             font-size: 12px;
             margin: 0 5px;
             display: flex;
-            padding: clamp(0.375rem, 1vw, 0.625rem) clamp(0.5rem, 1.4vw, 0.75rem);
+            padding: clamp(0.5rem, 1.4vw, 0.75rem);
             border-radius: 40px;
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
@@ -223,9 +234,14 @@
                 position: relative;
             }
             svg {
+                fill: #fff;
+            }
+            i, svg {
                 width: 1em;
                 height: 1em;
-                fill: #fff;
+            }
+            span {
+                display: inline-flex;
             }
         }
     }
