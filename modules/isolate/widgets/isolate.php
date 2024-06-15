@@ -113,17 +113,17 @@ class Isolate extends Widget_Base {
         $repeater->add_control(
 			'image_link_type',
 			[
-				'label'       => esc_html__('Lightbox/Link', 'bdthemes-element-pack'),
+				'label'       => esc_html__('Lightbox/Link', 'bdthemes-prime-slider'),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => 'youtube',
 				'label_block' => true,
 				'options'     => [
-					''           => esc_html__('Selected Image', 'bdthemes-element-pack'),
-					'website'    => esc_html__('Website', 'bdthemes-element-pack'),
-					'video'      => esc_html__('Video', 'bdthemes-element-pack'),
-					'youtube'    => esc_html__('YouTube', 'bdthemes-element-pack'),
-					'vimeo'      => esc_html__('Vimeo', 'bdthemes-element-pack'),
-					'google-map' => esc_html__('Google Map', 'bdthemes-element-pack'),
+					''           => esc_html__('Selected Image', 'bdthemes-prime-slider'),
+					'website'    => esc_html__('Website', 'bdthemes-prime-slider'),
+					'video'      => esc_html__('Video', 'bdthemes-prime-slider'),
+					'youtube'    => esc_html__('YouTube', 'bdthemes-prime-slider'),
+					'vimeo'      => esc_html__('Vimeo', 'bdthemes-prime-slider'),
+					'google-map' => esc_html__('Google Map', 'bdthemes-prime-slider'),
 				],
 			]
 		);
@@ -131,7 +131,7 @@ class Isolate extends Widget_Base {
 		$repeater->add_control(
 			'image_link_video',
 			[
-				'label'         => __('Video Source', 'bdthemes-element-pack'),
+				'label'         => __('Video Source', 'bdthemes-prime-slider'),
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'default'       => [
@@ -149,7 +149,7 @@ class Isolate extends Widget_Base {
 		$repeater->add_control(
 			'lightbox_link',
 			[
-				'label'         => __('YouTube Source', 'bdthemes-element-pack'),
+				'label'         => __('YouTube Source', 'bdthemes-prime-slider'),
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'default'       => [
@@ -167,7 +167,7 @@ class Isolate extends Widget_Base {
 		$repeater->add_control(
 			'image_link_vimeo',
 			[
-				'label'         => __('Vimeo Source', 'bdthemes-element-pack'),
+				'label'         => __('Vimeo Source', 'bdthemes-prime-slider'),
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'default'       => [
@@ -185,7 +185,7 @@ class Isolate extends Widget_Base {
 		$repeater->add_control(
 			'image_link_google_map',
 			[
-				'label'         => __('Goggle Map Embed URL', 'bdthemes-element-pack'),
+				'label'         => __('Goggle Map Embed URL', 'bdthemes-prime-slider'),
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'default'       => [
@@ -204,7 +204,7 @@ class Isolate extends Widget_Base {
 			'image_link_website',
 			[
 				'name'          => 'image_link_website',
-				'label'         => esc_html__('Custom Link', 'bdthemes-element-pack'),
+				'label'         => esc_html__('Custom Link', 'bdthemes-prime-slider'),
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'condition'     => [
@@ -430,10 +430,10 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'image_offset_toggle',
             [
-                'label' => __('Image Match Height', 'bdthemes-element-pack') . BDTPS_CORE_PC,
+                'label' => __('Image Match Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __('None', 'bdthemes-element-pack'),
-                'label_on' => __('Custom', 'bdthemes-element-pack'),
+                'label_off' => __('None', 'bdthemes-prime-slider'),
+                'label_on' => __('Custom', 'bdthemes-prime-slider'),
                 'return_value' => 'yes',
                 'condition' => [
                     '_skin' => '',
@@ -657,7 +657,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'animation_parallax',
             [
-                'label' => esc_html__('Parallax Animation', 'bdthemes-element-pack'),
+                'label' => esc_html__('Parallax Animation', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'separator' => 'before',
@@ -689,7 +689,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SWITCHER,
                 'classes' => BDTPS_CORE_IS_PC,
             ]
@@ -700,13 +700,13 @@ class Isolate extends Widget_Base {
             $this->add_control(
                 'animation_of',
                 [
-                    'label' => __('Animation Of', 'bdthemes-element-pack'),
+                    'label' => __('Animation Of', 'bdthemes-prime-slider'),
                     'type' => Controls_Manager::SELECT2,
                     'multiple' => true,
                     'options' => [
-                        '.bdt-ps-sub-title' => __('Sub Title', 'bdthemes-element-pack'),
-                        '.bdt-title-tag' => __('Title', 'bdthemes-element-pack'),
-                        '.bdt-slider-excerpt' => __('Excerpt', 'bdthemes-element-pack'),
+                        '.bdt-ps-sub-title' => __('Sub Title', 'bdthemes-prime-slider'),
+                        '.bdt-title-tag' => __('Title', 'bdthemes-prime-slider'),
+                        '.bdt-slider-excerpt' => __('Excerpt', 'bdthemes-prime-slider'),
                     ],
                     'default' => ['.bdt-title-tag'],
                     'condition' => [
@@ -1360,13 +1360,13 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'fancy_animation',
             [
-                'label' => esc_html__('Animation', 'bdthemes-element-pack'),
+                'label' => esc_html__('Animation', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'shadow-pulse',
                 'options' => [
-                    'shadow-pulse' => esc_html__('Shadow Pulse', 'bdthemes-element-pack'),
-                    'multi-shadow' => esc_html__('Multi Shadow', 'bdthemes-element-pack'),
-                    'line-bounce' => esc_html__('Line Bounce', 'bdthemes-element-pack'),
+                    'shadow-pulse' => esc_html__('Shadow Pulse', 'bdthemes-prime-slider'),
+                    'multi-shadow' => esc_html__('Multi Shadow', 'bdthemes-prime-slider'),
+                    'line-bounce' => esc_html__('Line Bounce', 'bdthemes-prime-slider'),
                 ],
                 'condition' => [
                     '_skin' => '',
@@ -1377,7 +1377,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'fancy_border_color',
             [
-                'label' => esc_html__('Animated Border Color', 'bdthemes-element-pack'),
+                'label' => esc_html__('Animated Border Color', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-play-button a:before, {{WRAPPER}} .bdt-prime-slider .bdt-slide-play-button a:after' => 'border-color: {{VALUE}};',
@@ -1392,7 +1392,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'button_shadow_color',
             [
-                'label' => esc_html__('Animated Shadow Color', 'bdthemes-element-pack'),
+                'label' => esc_html__('Animated Shadow Color', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-play-button a' => '--box-shadow-color: {{VALUE}};',

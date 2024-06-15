@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.XX.X [XXth June 2024] =
+
+* Fixed: Text Domain and Translation issue fixed (Thanks to itapress)
+
 = 3.14.9 [12th June 2024] =
 
 * Added: Item up down option added in tango widget

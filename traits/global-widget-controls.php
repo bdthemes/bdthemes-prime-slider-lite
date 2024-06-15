@@ -399,10 +399,10 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'background_image_toggle',
 			[ 
-				'label'        => __( 'Background Image Settings', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
+				'label'        => __( 'Background Image Settings', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
-				'label_off'    => __( 'None', 'bdthemes-element-pack' ),
-				'label_on'     => __( 'Custom', 'bdthemes-element-pack' ),
+				'label_off'    => __( 'None', 'bdthemes-prime-slider' ),
+				'label_on'     => __( 'Custom', 'bdthemes-prime-slider' ),
 				'return_value' => 'yes',
 				'classes'   => BDTPS_CORE_IS_PC
 			]
@@ -930,7 +930,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'animation_on',
 			[ 
-				'label'     => __( 'Animation On', 'bdthemes-element-pack' ),
+				'label'     => __( 'Animation On', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'words',
 				'options'   => [ 
@@ -947,10 +947,10 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'animation_options',
 			[ 
-				'label'        => __( 'Animation Options', 'bdthemes-element-pack' ),
+				'label'        => __( 'Animation Options', 'bdthemes-prime-slider' ),
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
-				'label_off'    => __( 'Default', 'bdthemes-element-pack' ),
-				'label_on'     => __( 'Custom', 'bdthemes-element-pack' ),
+				'label_off'    => __( 'Default', 'bdthemes-prime-slider' ),
+				'label_on'     => __( 'Custom', 'bdthemes-prime-slider' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 				'condition'    => [ 
@@ -1321,7 +1321,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'title_html_tag',
 			[ 
-				'label'     => __( 'Title HTML Tag', 'bdthemes-element-pack' ),
+				'label'     => __( 'Title HTML Tag', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'h1',
 				'options'   => prime_slider_title_tags(),
@@ -1377,7 +1377,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'sub_title_html_tag',
 			[ 
-				'label'     => __( 'Sub Title HTML Tag', 'bdthemes-element-pack' ),
+				'label'     => __( 'Sub Title HTML Tag', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'h4',
 				'options'   => prime_slider_title_tags(),

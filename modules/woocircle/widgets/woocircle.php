@@ -379,7 +379,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'open_button_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--open' => 'color: {{VALUE}};',
@@ -399,7 +399,7 @@ class Woocircle extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'open_button_border',
-				'label'       => esc_html__('Border', 'bdthemes-element-pack'),
+				'label'       => esc_html__('Border', 'bdthemes-prime-slider'),
 				'placeholder' => '1px',
 				'default'     => '1px',
 				'selector'    => '{{WRAPPER}} .bdt-elastic-action--open',
@@ -410,7 +410,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'open_button_radius',
 			[
-				'label'      => esc_html__('Border Radius', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -422,7 +422,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'open_button_padding',
 			[
-				'label'      => esc_html__('Padding', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -434,7 +434,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'open_button_margin',
 			[
-				'label'      => esc_html__('Margin', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Margin', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -472,7 +472,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'open_button_hover_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--open:focus,
@@ -492,7 +492,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'open_button_hover_border_color',
 			[
-				'label'     => esc_html__('Border Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'close_button_border_border!' => '',
@@ -800,7 +800,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'close_button_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--close' => 'color: {{VALUE}};',
@@ -820,7 +820,7 @@ class Woocircle extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'close_button_border',
-				'label'       => esc_html__('Border', 'bdthemes-element-pack'),
+				'label'       => esc_html__('Border', 'bdthemes-prime-slider'),
 				'placeholder' => '1px',
 				'default'     => '1px',
 				'selector'    => '{{WRAPPER}} .bdt-elastic-action--close',
@@ -831,7 +831,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'close_button_radius',
 			[
-				'label'      => esc_html__('Border Radius', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -843,7 +843,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'close_button_padding',
 			[
-				'label'      => esc_html__('Padding', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -855,7 +855,7 @@ class Woocircle extends Widget_Base {
 		$this->add_responsive_control(
 			'close_button_margin',
 			[
-				'label'      => esc_html__('Margin', 'bdthemes-element-pack'),
+				'label'      => esc_html__('Margin', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -893,7 +893,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'close_button_hover_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--close:hover' => 'color: {{VALUE}};',
@@ -912,7 +912,7 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'close_button_hover_border_color',
 			[
-				'label'     => esc_html__('Border Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				// 'condition' => [
 				// 	'close_button_border_border!' => '',

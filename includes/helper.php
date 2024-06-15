@@ -474,7 +474,7 @@ function prime_slider_time_diff( $from, $to = '' ) {
 }
 
 function prime_slider_post_time_diff( $format = '' ) {
-	$displayAgo = esc_html__( 'ago', 'bdthemes-element-pack' );
+	$displayAgo = esc_html__( 'ago', 'bdthemes-prime-slider' );
 
 	if ( $format == 'short' ) {
 		$output = prime_slider_time_diff( strtotime( get_the_date() ), current_time( 'timestamp' ) );
