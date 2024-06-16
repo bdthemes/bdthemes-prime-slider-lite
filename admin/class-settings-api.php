@@ -112,7 +112,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				}
 				echo '<div class="ps-options bdt-grid bdt-child-width-1-1 bdt-child-width-1-2@m bdt-child-width-1-3@l' . esc_attr( $section_class ) . '" role="presentation" bdt-grid="masonry: true" ' . esc_attr( $data_settings ) . '>';
 
-				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4"'.esc_html__('>Ops! Your Searched widget not found! Do you have any idea? If yes, ', 'bdthemes-prime-slider').'<a href="https://feedback.PrimeSlider.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">Submit here</a></p>';
+				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4"'.esc_html__('>Ops! Your Searched widget not found! Do you have any idea? If yes, ', 'bdthemes-prime-slider').'<a href="https://feedback.PrimeSlider.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">'.esc_html__('Submit here', 'bdthemes-prime-slider').'</a></p>';
 
 				$this->do_settings_fields( $page, $section['id'] );
 
@@ -581,7 +581,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 			$id    = $args['section'] . '[' . $args['id'] . ']';
-			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File' );
+			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File', 'bdthemes-prime-slider' );
 
 			$html = sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
 			$html .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
