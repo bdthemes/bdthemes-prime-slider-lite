@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.XX.X [XXth June 2024] =
+
+* Added: Responsive Viewport Height added (Thanks to Jade)
+
 = 3.14.9 [12th June 2024] =
 
 * Added: Item up down option added in tango widget

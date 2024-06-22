@@ -2217,21 +2217,21 @@ class General extends Widget_Base {
 		//Viewport Height
 		$ratio = ( ! empty( $settings['slider_size_ratio']['width'] ) && ! empty( $settings['slider_size_ratio']['height'] ) ) ? $settings['slider_size_ratio']['width'] . ":" . $settings['slider_size_ratio']['height'] : '16:9';
 
-		if ( isset( $settings["viewport_height"]["size"] ) && 'vh' == $settings['viewport_height']['unit'] ) {
+		if ( $settings['enable_height'] && !empty( $settings["viewport_height"]["size"] )  ) {
 			$ratio = false;
 		}
 
 		$this->add_render_attribute( 'slideshow-items', 'class', 'bdt-slideshow-items' );
 
-		if ( isset( $settings["viewport_height"]["size"] ) && $ratio == false ) {
-			$this->add_render_attribute(
-				[ 
-					'slideshow-items' => [ 
-						'style' => 'min-height:' . $settings["viewport_height"]["size"] . 'vh'
-					]
-				]
-			);
-		}
+		// if ( isset( $settings["viewport_height"]["size"] ) && $ratio == false ) {
+		// 	$this->add_render_attribute(
+		// 		[ 
+		// 			'slideshow-items' => [ 
+		// 				'style' => 'min-height:' . $settings["viewport_height"]["size"] . 'vh'
+		// 			]
+		// 		]
+		// 	);
+		// }
 
 		$this->add_render_attribute(
 			[ 
