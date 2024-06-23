@@ -625,7 +625,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'animation_parallax',
 			[ 
-				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-element-pack' ),
+				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
@@ -663,7 +663,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'animation_status',
 			[ 
-				'label'   => esc_html__( 'Advanced Animation', 'bdthemes-element-pack' ),
+				'label'   => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'classes' => BDTPS_CORE_IS_PC,
 			]
@@ -674,13 +674,13 @@ class General extends Widget_Base {
 			$this->add_control(
 				'animation_of',
 				[ 
-					'label'     => __( 'Animation Of', 'bdthemes-element-pack' ),
+					'label'     => __( 'Animation Of', 'bdthemes-prime-slider' ),
 					'type'      => Controls_Manager::SELECT2,
 					'multiple'  => true,
 					'options'   => [ 
-						'.bdt-ps-sub-title'   => __( 'Sub Title', 'bdthemes-element-pack' ),
-						'.bdt-title-tag'      => __( 'Title', 'bdthemes-element-pack' ),
-						'.bdt-slider-excerpt' => __( 'Excerpt', 'bdthemes-element-pack' ),
+						'.bdt-ps-sub-title'   => __( 'Sub Title', 'bdthemes-prime-slider' ),
+						'.bdt-title-tag'      => __( 'Title', 'bdthemes-prime-slider' ),
+						'.bdt-slider-excerpt' => __( 'Excerpt', 'bdthemes-prime-slider' ),
 					],
 					'default'   => [ '.bdt-title-tag' ],
 					'condition' => [ 

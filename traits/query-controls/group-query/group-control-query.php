@@ -230,13 +230,13 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_show_product_type',
 			[
-				'label'   => esc_html__('Show Product', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Show Product', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'all',
 				'options' => [
-					'all'      => esc_html__('All Products', 'bdthemes-element-pack'),
-					'onsale'   => esc_html__('On Sale', 'bdthemes-element-pack'),
-					'featured' => esc_html__('Featured', 'bdthemes-element-pack'),
+					'all'      => esc_html__('All Products', 'bdthemes-prime-slider'),
+					'onsale'   => esc_html__('On Sale', 'bdthemes-prime-slider'),
+					'featured' => esc_html__('Featured', 'bdthemes-prime-slider'),
 				],
 				'condition' => [
 					'posts_source'                => 'product',
@@ -351,7 +351,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_hide_free',
 			[
-				'label'   => esc_html__('Hide Free Product', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Hide Free Product', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'condition' => [
 					'posts_source' => 'product',
@@ -361,7 +361,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_hide_out_stock',
 			[
-				'label'   => esc_html__('Hide Out of Stock', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Hide Out of Stock', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'condition' => [
 					'posts_source' => 'product',

@@ -86,12 +86,12 @@ class Prime_Slider_Admin_Feeds {
 				<?php
 				// Check items
 				if ( $maxitems == 0 ) {
-					echo '<li class="bdt-ps-overview__post">' . esc_html( 'No item', 'bdthemes-prime-slider-lite' ) . '.</li>';
+					echo '<li class="bdt-ps-overview__post">' . esc_html( 'No item', 'bdthemes-prime-slider' ) . '.</li>';
 				} else {
 					foreach ( $rss_items as $item ) :
 						$feed_url     = $item->get_permalink();
 						$feed_title   = $item->get_title();
-						$feed_date    = human_time_diff( $item->get_date( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'bdthemes-prime-slider-lite' );
+						$feed_date    = human_time_diff( $item->get_date( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'bdthemes-prime-slider' );
 						$content      = $item->get_content();
 						$feed_content = wp_html_excerpt( $content, 120 ) . ' [...]';
 						?>
@@ -112,19 +112,19 @@ class Prime_Slider_Admin_Feeds {
 					$footer_link = [ 
 						[ 
 							'url'   => 'https://bdthemes.com/blog/',
-							'title' => esc_html__( 'Blog', 'bdthemes-prime-slider-lite' ),
+							'title' => esc_html__( 'Blog', 'bdthemes-prime-slider' ),
 						],
 						[ 
 							'url'   => 'https://bdthemes.com/knowledge-base/',
-							'title' => esc_html__( 'Docs', 'bdthemes-prime-slider-lite' ),
+							'title' => esc_html__( 'Docs', 'bdthemes-prime-slider' ),
 						],
 						[ 
 							'url'   => 'https://www.PrimeSlider.pro/pricing/',
-							'title' => esc_html__( 'Get Pro', 'bdthemes-prime-slider-lite' ),
+							'title' => esc_html__( 'Get Pro', 'bdthemes-prime-slider' ),
 						],
 						[ 
 							'url'   => 'https://bdthemes.frill.co/announcements/',
-							'title' => esc_html__( 'Changelog', 'bdthemes-prime-slider-lite' ),
+							'title' => esc_html__( 'Changelog', 'bdthemes-prime-slider' ),
 						],
 					];
 					foreach ( $footer_link as $key => $link ) {

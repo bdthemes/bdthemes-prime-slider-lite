@@ -25,7 +25,7 @@ class Pagepiling extends Widget_Base {
 	}
 
 	public function get_title() {
-		return BDTPS . esc_html__( 'Pagepiling', 'bdthemes-element-pack' );
+		return BDTPS . esc_html__( 'Pagepiling', 'bdthemes-prime-slider' );
 	}
 
 	public function get_icon() {
@@ -57,7 +57,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_sliders',
 			[
-				'label' => esc_html__('Slide Items', 'bdthemes-element-pack'),
+				'label' => esc_html__('Slide Items', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -148,7 +148,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_fancy_slider',
 			[
-				'label' => esc_html__( 'Additional Options', 'bdthemes-element-pack' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -198,7 +198,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
             'content_max_width',
             [
-                'label' => __( 'Content Max Width', 'bdthemes-element-pack' ),
+                'label' => __( 'Content Max Width', 'bdthemes-prime-slider' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -216,7 +216,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
             'content_min_height',
             [
-                'label' => __( 'Height', 'bdthemes-element-pack' ),
+                'label' => __( 'Height', 'bdthemes-prime-slider' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -234,23 +234,23 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_text_align',
 			[
-				'label'   => __( 'Alignment', 'bdthemes-element-pack' ),
+				'label'   => __( 'Alignment', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'bdthemes-element-pack' ),
+						'title' => __( 'Left', 'bdthemes-prime-slider' ),
 						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'bdthemes-element-pack' ),
+						'title' => __( 'Center', 'bdthemes-prime-slider' ),
 						'icon'  => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'bdthemes-element-pack' ),
+						'title' => __( 'Right', 'bdthemes-prime-slider' ),
 						'icon'  => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __( 'Justified', 'bdthemes-element-pack' ),
+						'title' => __( 'Justified', 'bdthemes-prime-slider' ),
 						'icon'  => 'eicon-text-align-justify',
 					],
 				],
@@ -329,7 +329,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[
-				'label' => esc_html__( 'Slider Settings', 'bdthemes-element-pack' ),
+				'label' => esc_html__( 'Slider Settings', 'bdthemes-prime-slider' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -337,7 +337,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'scrollingSpeed',
 			[
-				'label'   => esc_html__( 'Scrolling Speed', 'bdthemes-element-pack' ),
+				'label'   => esc_html__( 'Scrolling Speed', 'bdthemes-prime-slider' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' 		 => [
 					'size' 			=> 700,
@@ -355,12 +355,12 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'navigation_position',
             [
-                'label'   => __( 'Navigation Position', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
+                'label'   => __( 'Navigation Position', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type' 	  => Controls_Manager::SELECT,
 				'default' => 'left',
                 'options' => [
-                    'left'       => __( 'Left', 'bdthemes-element-pack' ),
-                    'bottom'     => __( 'Bottom', 'bdthemes-element-pack' ),
+                    'left'       => __( 'Left', 'bdthemes-prime-slider' ),
+                    'bottom'     => __( 'Bottom', 'bdthemes-prime-slider' ),
 				],
 				'classes'    => BDTPS_CORE_IS_PC
             ]
@@ -369,7 +369,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'loopBottom',
 			[
-				'label'   => esc_html__( 'loop Bottom', 'bdthemes-element-pack' ),
+				'label'   => esc_html__( 'loop Bottom', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -378,7 +378,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'loopTop',
 			[
-				'label'   => esc_html__( 'loop Top', 'bdthemes-element-pack' ),
+				'label'   => esc_html__( 'loop Top', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -387,7 +387,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__( 'Autoplay', 'bdthemes-element-pack' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Autoplay', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
 				'classes'    => BDTPS_CORE_IS_PC
@@ -397,7 +397,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'autoplay_duration',
 			[
-				'label'   => esc_html__( 'AutoPlay Duration', 'bdthemes-element-pack' ),
+				'label'   => esc_html__( 'AutoPlay Duration', 'bdthemes-prime-slider' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' 	 => 1000,
@@ -666,7 +666,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'readmore_text_color',
             [
-                'label'     => __('Text Color', 'bdthemes-element-pack'),
+                'label'     => __('Text Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-slide-btn .bdt-button-text' => 'color: {{VALUE}};',
@@ -677,7 +677,7 @@ class Pagepiling extends Widget_Base {
         $this->add_control(
             'readmore_icon_color',
             [
-                'label'     => __('Icon Color', 'bdthemes-element-pack'),
+                'label'     => __('Icon Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-slide-btn:hover .bdt-button-circle .icon.arrow' => 'background: {{VALUE}};',
@@ -707,7 +707,7 @@ class Pagepiling extends Widget_Base {
         $this->add_responsive_control(
             'readmore_radius',
             [
-                'label'      => __('Border Radius', 'bdthemes-element-pack'),
+                'label'      => __('Border Radius', 'bdthemes-prime-slider'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -719,7 +719,7 @@ class Pagepiling extends Widget_Base {
         $this->add_responsive_control(
             'readmore_icon_spacing',
             [
-                'label'      => __('Icon Spacing', 'bdthemes-element-pack'),
+                'label'      => __('Icon Spacing', 'bdthemes-prime-slider'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -748,7 +748,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'readmore_hover_text_color',
             [
-                'label'     => __('Text Color', 'bdthemes-element-pack'),
+                'label'     => __('Text Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-slide-btn:hover .bdt-button-text' => 'color: {{VALUE}};',
@@ -759,7 +759,7 @@ class Pagepiling extends Widget_Base {
         $this->add_control(
             'readmore_hover_icon_color',
             [
-                'label'     => __('Icon Color', 'bdthemes-element-pack'),
+                'label'     => __('Icon Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-slide-btn:hover .bdt-button-circle .icon.arrow' => 'background: {{VALUE}};',
@@ -779,7 +779,7 @@ class Pagepiling extends Widget_Base {
         $this->add_control(
             'readmore_hover_border_color',
             [
-                'label'     => __('Border Color', 'bdthemes-element-pack'),
+                'label'     => __('Border Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-slide-btn:hover .bdt-button-circle' => 'border-color: {{VALUE}};',

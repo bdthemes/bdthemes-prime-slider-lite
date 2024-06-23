@@ -278,7 +278,7 @@ class Woolamp extends Widget_Base {
 		$this->add_control(
 			'animation_status',
 			[
-				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'classes'   => BDTPS_CORE_IS_PC,
 			]
@@ -289,12 +289,12 @@ class Woolamp extends Widget_Base {
 			$this->add_control(
 				'animation_of',
 				[
-					'label'	   => __('Animation Of', 'bdthemes-element-pack'),
+					'label'	   => __('Animation Of', 'bdthemes-prime-slider'),
 					'type' 	   => Controls_Manager::SELECT2,
 					'multiple' => true,
 					'options'  => [
-						'.bdt-ps-title' => __('Title', 'bdthemes-element-pack'),
-						'.bdt-ps-text' => __('Excerpt', 'bdthemes-element-pack'),
+						'.bdt-ps-title' => __('Title', 'bdthemes-prime-slider'),
+						'.bdt-ps-text' => __('Excerpt', 'bdthemes-prime-slider'),
 					],
 					'default'  => ['.bdt-ps-title'],
 					'condition' => [

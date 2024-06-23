@@ -621,7 +621,7 @@ class PrimeSlider_Admin_Settings {
 					<a href class="bdt-alert-close" bdt-close></a>
 					<div class="bdt-text-default">
 						<?php
-						esc_html_e('To view widgets analytics, Elementor Usage Data Sharing feature by Elementor needs to be activated. Please activate the feature to get widget analytics instantly ', 'bdthemes-element-pack');
+						esc_html_e('To view widgets analytics, Elementor Usage Data Sharing feature by Elementor needs to be activated. Please activate the feature to get widget analytics instantly ', 'bdthemes-prime-slider');
 						echo '<a href="' . esc_url(admin_url('admin.php?page=elementor')) . '">from here.</a>';
 						?>
 					</div>
@@ -1063,7 +1063,7 @@ class PrimeSlider_Admin_Settings {
 	function plugin_page() {
 
 		echo '<div class="wrap prime-slider-dashboard">';
-		echo '<h1>' . wp_kses_post(BDTPS_CORE_TITLE) . ' Settings</h1>';
+		echo '<h1>' . wp_kses_post(BDTPS_CORE_TITLE) . esc_html__(' Settings', 'bdthemes-prime-slider') . '</h1>';
 
 		$this->settings_api->show_navigation();
 

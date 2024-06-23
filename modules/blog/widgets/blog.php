@@ -486,7 +486,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+                'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
                 'type'    => Controls_Manager::SWITCHER,
                 'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -497,12 +497,12 @@ class Blog extends Widget_Base {
             $this->add_control(
                 'animation_of',
                 [
-                    'label'       => __('Animation Of', 'bdthemes-element-pack'),
+                    'label'       => __('Animation Of', 'bdthemes-prime-slider'),
                     'type'        => Controls_Manager::SELECT2,
                     'multiple' => true,
                     'options'  => [
-                        '.bdt-title-tag'            => __('Title', 'bdthemes-element-pack'),
-                        '.bdt-blog-text' => __('Text', 'bdthemes-element-pack'),
+                        '.bdt-title-tag'            => __('Title', 'bdthemes-prime-slider'),
+                        '.bdt-blog-text' => __('Text', 'bdthemes-prime-slider'),
                     ],
                     'default'  => ['.bdt-title-tag'],
                     'condition' => [
@@ -1584,9 +1584,9 @@ class Blog extends Widget_Base {
         $this->add_control(
             'glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-element-pack') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SWITCHER,
-                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-element-pack'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
+                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
                 'classes'   => BDTPS_CORE_IS_PC
             ]
         );
@@ -1594,7 +1594,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'glassmorphism_blur_level',
             [
-                'label'       => __('Blur Level', 'bdthemes-element-pack'),
+                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::SLIDER,
                 'range'       => [
                     'px' => [
@@ -1982,9 +1982,9 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-element-pack') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SWITCHER,
-                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-element-pack'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
+                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
                 'classes'   => BDTPS_CORE_IS_PC
             ]
         );
@@ -1992,7 +1992,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_glassmorphism_blur_level',
             [
-                'label'       => __('Blur Level', 'bdthemes-element-pack'),
+                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::SLIDER,
                 'range'       => [
                     'px' => [

@@ -175,6 +175,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.XX.X [XXth June 2024] =
 
 * Added: Responsive Viewport Height added (Thanks to Jade)
+* Fixed: Text Domain and Translation issue fixed (Thanks to itapress)
 
 = 3.14.9 [12th June 2024] =
 
