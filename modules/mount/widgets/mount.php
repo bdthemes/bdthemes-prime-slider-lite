@@ -293,7 +293,7 @@ class Mount extends Widget_Base {
 		$this->add_control(
 			'animation_status',
 			[
-				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'classes'   => BDTPS_CORE_IS_PC,
 			]
@@ -304,12 +304,12 @@ class Mount extends Widget_Base {
 			$this->add_control(
 				'animation_of',
 				[
-					'label'	   => __('Animation Of', 'bdthemes-element-pack'),
+					'label'	   => __('Animation Of', 'bdthemes-prime-slider'),
 					'type' 	   => Controls_Manager::SELECT2,
 					'multiple' => true,
 					'options'  => [
-						'.bdt-sub-title-inner' => __('Sub Title', 'bdthemes-element-pack'),
-						'.bdt-title-tag' => __('Title', 'bdthemes-element-pack'),
+						'.bdt-sub-title-inner' => __('Sub Title', 'bdthemes-prime-slider'),
+						'.bdt-title-tag' => __('Title', 'bdthemes-prime-slider'),
 					],
 					'default'  => ['.bdt-title-tag'],
 					'condition' => [

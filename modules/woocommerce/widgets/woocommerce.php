@@ -250,7 +250,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'animation_status',
 			[
-				'label'   => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'classes'   => BDTPS_CORE_IS_PC,
 			]
@@ -261,12 +261,12 @@ class Woocommerce extends Widget_Base {
 			$this->add_control(
 				'animation_of',
 				[
-					'label'	   => __('Animation Of', 'bdthemes-element-pack'),
+					'label'	   => __('Animation Of', 'bdthemes-prime-slider'),
 					'type' 	   => Controls_Manager::SELECT2,
 					'multiple' => true,
 					'options'  => [
-						'.bdt-ps-title' => __('Title', 'bdthemes-element-pack'),
-						'.bdt-ps-text' => __('Excerpt', 'bdthemes-element-pack'),
+						'.bdt-ps-title' => __('Title', 'bdthemes-prime-slider'),
+						'.bdt-ps-text' => __('Excerpt', 'bdthemes-prime-slider'),
 					],
 					'default'  => ['.bdt-ps-title'],
 					'condition' => [
@@ -463,7 +463,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'category_heading_normal',
 			[
-				'label' => __('Normal', 'bdthemes-element-pack'),
+				'label' => __('Normal', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
@@ -494,7 +494,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'category_border',
-				'label'       => __('Border', 'bdthemes-element-pack'),
+				'label'       => __('Border', 'bdthemes-prime-slider'),
 				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a',
 			]
 		);
@@ -554,7 +554,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'category_heading_hover',
 			[
-				'label' => __('Hover', 'bdthemes-element-pack'),
+				'label' => __('Hover', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -585,7 +585,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'category_hover_border_color',
 			[
-				'label'     => __('Border Color', 'bdthemes-element-pack'),
+				'label'     => __('Border Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a:hover' => 'border-color: {{VALUE}};',
@@ -677,7 +677,7 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_style_price',
 			[
-				'label'     => __('Price', 'bdthemes-element-pack'),
+				'label'     => __('Price', 'bdthemes-prime-slider'),
 				'condition' => [
 					'show_price' => 'yes',
 				],
@@ -687,7 +687,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'old_price_heading',
 			[
-				'label' => __('Old Price', 'bdthemes-element-pack'),
+				'label' => __('Old Price', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
@@ -695,7 +695,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'old_price_color',
 			[
-				'label'     => __('Color', 'bdthemes-element-pack'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price .price > span' => 'color: {{VALUE}};',
@@ -706,7 +706,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'old_price_margin',
 			[
-				'label'      => __('Margin', 'bdthemes-element-pack'),
+				'label'      => __('Margin', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -719,7 +719,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'old_price_typography',
-				'label'    => __('Typography', 'bdthemes-element-pack'),
+				'label'    => __('Typography', 'bdthemes-prime-slider'),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price .price > span',
 			]
 		);
@@ -727,7 +727,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'sale_price_heading',
 			[
-				'label'     => __('Sale Price', 'bdthemes-element-pack'),
+				'label'     => __('Sale Price', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -736,7 +736,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'sale_price_color',
 			[
-				'label'     => __('Color', 'bdthemes-element-pack'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price ins' => 'color: {{VALUE}};',
@@ -747,7 +747,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'sale_price_margin',
 			[
-				'label'      => __('Margin', 'bdthemes-element-pack'),
+				'label'      => __('Margin', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -760,7 +760,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'sale_price_typography',
-				'label'    => __('Typography', 'bdthemes-element-pack'),
+				'label'    => __('Typography', 'bdthemes-prime-slider'),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price ins',
 			]
 		);
@@ -769,7 +769,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'sale_price_spacing',
 			[
-				'label'      => __('Spacing', 'bdthemes-element-pack'),
+				'label'      => __('Spacing', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -787,7 +787,7 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_button',
 			[
-				'label'     => __('Add to Cart Button', 'bdthemes-element-pack'),
+				'label'     => __('Add to Cart Button', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_cart' => 'yes',
@@ -800,14 +800,14 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
-				'label' => __('Normal', 'bdthemes-element-pack'),
+				'label' => __('Normal', 'bdthemes-prime-slider'),
 			]
 		);
 
 		$this->add_control(
 			'button_color',
 			[
-				'label'     => __('Color', 'bdthemes-element-pack'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button' => 'color: {{VALUE}};',
@@ -818,7 +818,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'button_background',
 			[
-				'label'     => __('Background', 'bdthemes-element-pack'),
+				'label'     => __('Background', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button:before' => 'background-color: {{VALUE}};',
@@ -830,7 +830,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'button_border',
-				'label'       => __('Border', 'bdthemes-element-pack'),
+				'label'       => __('Border', 'bdthemes-prime-slider'),
 				'placeholder' => '1px',
 				'default'     => '1px',
 				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button',
@@ -840,7 +840,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'button_radius',
 			[
-				'label'      => __('Border Radius', 'bdthemes-element-pack'),
+				'label'      => __('Border Radius', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -852,7 +852,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'button_padding',
 			[
-				'label'      => __('Padding', 'bdthemes-element-pack'),
+				'label'      => __('Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -882,14 +882,14 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			[
-				'label' => __('Hover', 'bdthemes-element-pack'),
+				'label' => __('Hover', 'bdthemes-prime-slider'),
 			]
 		);
 
 		$this->add_control(
 			'button_hover_color',
 			[
-				'label'     => __('Color', 'bdthemes-element-pack'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button:hover' => 'color: {{VALUE}};',
@@ -900,7 +900,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'button_hover_border_color',
 			[
-				'label'     => __('Border Color', 'bdthemes-element-pack'),
+				'label'     => __('Border Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'button_border_border!' => '',
@@ -916,14 +916,14 @@ class Woocommerce extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_quantity',
 			[
-				'label' => __('Quantity', 'bdthemes-element-pack'),
+				'label' => __('Quantity', 'bdthemes-prime-slider'),
 			]
 		);
 
 		$this->add_control(
 			'quantity_button_color',
 			[
-				'label'     => __('Color', 'bdthemes-element-pack'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'color: {{VALUE}};',
@@ -934,7 +934,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'quantity_button_background',
 			[
-				'label'     => __('Background', 'bdthemes-element-pack'),
+				'label'     => __('Background', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'background-color: {{VALUE}};',
@@ -955,7 +955,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'quantity_button_radius',
 			[
-				'label'      => __('Border Radius', 'bdthemes-element-pack'),
+				'label'      => __('Border Radius', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -967,7 +967,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_responsive_control(
 			'quantity_button_padding',
 			[
-				'label'      => __('Padding', 'bdthemes-element-pack'),
+				'label'      => __('Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [

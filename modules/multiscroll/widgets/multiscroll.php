@@ -131,16 +131,16 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background',
 			[
-				'label'   => esc_html__('Left Background', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Left Background', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'color',
 				'options' => [
 					'color' => [
-						'title' => esc_html__('Color', 'bdthemes-element-pack'),
+						'title' => esc_html__('Color', 'bdthemes-prime-slider'),
 						'icon'  => 'eicon-paint-brush',
 					],
 					'image' => [
-						'title' => esc_html__('Image', 'bdthemes-element-pack'),
+						'title' => esc_html__('Image', 'bdthemes-prime-slider'),
 						'icon'  => 'eicon-image',
 					],
 				],
@@ -150,7 +150,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'left_background' => 'color'
@@ -164,7 +164,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background_image',
 			[
-				'label'   => esc_html__('Image', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Image', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
@@ -179,16 +179,16 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background',
 			[
-				'label'   => esc_html__('Right Background', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Right Background', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'color',
 				'options' => [
 					'color' => [
-						'title' => esc_html__('Color', 'bdthemes-element-pack'),
+						'title' => esc_html__('Color', 'bdthemes-prime-slider'),
 						'icon'  => 'eicon-paint-brush',
 					],
 					'image' => [
-						'title' => esc_html__('Image', 'bdthemes-element-pack'),
+						'title' => esc_html__('Image', 'bdthemes-prime-slider'),
 						'icon'  => 'eicon-image',
 					],
 				],
@@ -198,7 +198,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-element-pack'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'right_background' => 'color'
@@ -212,7 +212,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background_image',
 			[
-				'label'   => esc_html__('Image', 'bdthemes-element-pack'),
+				'label'   => esc_html__('Image', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
@@ -227,7 +227,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'custom_style_popover',
 			[
-				'label'        => esc_html__('Custom Style', 'bdthemes-element-pack') . BDTPS_CORE_NC,
+				'label'        => esc_html__('Custom Style', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
 				'render_type'  => 'ui',
 				'return_value' => 'yes',
@@ -239,7 +239,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_title_color',
 			[
-				'label'     => __('Title Color', 'bdthemes-element-pack'),
+				'label'     => __('Title Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'color: {{VALUE}}; -webkit-text-stroke-color: {{VALUE}};',
@@ -250,7 +250,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_sub_title_color',
 			[
-				'label'     => __('Sub Title Color', 'bdthemes-element-pack'),
+				'label'     => __('Sub Title Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-subtitle' => 'color: {{VALUE}};',
@@ -261,7 +261,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_description_color',
 			[
-				'label'     => __('Text Color', 'bdthemes-element-pack'),
+				'label'     => __('Text Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-description' => 'color: {{VALUE}};',

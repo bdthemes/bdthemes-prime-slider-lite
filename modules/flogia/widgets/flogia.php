@@ -215,14 +215,14 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'thumbs_hide_on',
             [
-                'label' => __('Thumbs Hide On', 'bdthemes-element-pack'),
+                'label' => __('Thumbs Hide On', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
                 'label_block' => false,
                 'options' => [
-                    'desktop' => __('Desktop', 'bdthemes-element-pack'),
-                    'tablet' => __('Tablet', 'bdthemes-element-pack'),
-                    'mobile' => __('Mobile', 'bdthemes-element-pack'),
+                    'desktop' => __('Desktop', 'bdthemes-prime-slider'),
+                    'tablet' => __('Tablet', 'bdthemes-prime-slider'),
+                    'mobile' => __('Mobile', 'bdthemes-prime-slider'),
                 ],
                 'frontend_available' => true,
                 'condition' => [
@@ -287,7 +287,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-element-pack'),
+                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SWITCHER,
                 'classes' => BDTPS_CORE_IS_PC,
             ]
@@ -297,12 +297,12 @@ class Flogia extends Widget_Base {
             $this->add_control(
                 'animation_of',
                 [
-                    'label' => __('Animation Of', 'bdthemes-element-pack'),
+                    'label' => __('Animation Of', 'bdthemes-prime-slider'),
                     'type' => Controls_Manager::SELECT2,
                     'multiple' => true,
                     'options' => [
-                        '.bdt-title-tag' => __('Title', 'bdthemes-element-pack'),
-                        '.bdt-blog-text' => __('Excerpt', 'bdthemes-element-pack'),
+                        '.bdt-title-tag' => __('Title', 'bdthemes-prime-slider'),
+                        '.bdt-blog-text' => __('Excerpt', 'bdthemes-prime-slider'),
                     ],
                     'default' => ['.bdt-title-tag'],
                     'condition' => [

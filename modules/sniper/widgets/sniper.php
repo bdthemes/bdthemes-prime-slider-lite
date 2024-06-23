@@ -295,13 +295,13 @@ class Sniper extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'image_background',
-				'label' => esc_html__('Background', 'pixel-gallery'),
+				'label' => esc_html__('Background', 'bdthemes-prime-slider'),
 				'types' => ['classic', 'gradient'],
 				'exclude' => ['image'],
 				'selector' => '{{WRAPPER}} .bdt-sniper-slider .bdt-ps-iamge-overlay::before',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__('Overlay Color', 'pixel-gallery'),
+						'label' => esc_html__('Overlay Color', 'bdthemes-prime-slider'),
 						'default' => 'gradient',
 					],
 					'color' => [
