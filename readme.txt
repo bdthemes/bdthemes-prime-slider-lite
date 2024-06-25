@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XXth June 2024] =
+
+* Added: Wrapper spacing & navigation size option added in isolate widget
+
 = 3.14.10 [24th June 2024] =
 
 * Added: Responsive Viewport Height added (Thanks to Jade)

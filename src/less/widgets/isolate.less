@@ -6,6 +6,9 @@
 ===========================================================================*/
 .bdt-prime-slider-skin-isolate {
     position: relative;
+    .bdt-slideshow {
+        padding: 30px;
+    }
     &.content-position-column-reverse {
         .bdt-prime-slider-desc {
             padding-top: 30px;
@@ -146,7 +149,7 @@
     }
 
     .bdt-slideshow-item {
-        margin: 100px 30px 50px;
+        // margin: 100px 30px 50px;
         img {
             height: 100%;
             width: 100%;
@@ -388,8 +391,8 @@
         position: relative;
     }
     .bdt-navigation-arrows {
-        margin: -98px 30px 0;
-        padding-bottom: 50px;
+        margin: -48px 0 0;
+        // padding-bottom: 50px;
     }
     .bdt-prime-slider-next {
         margin-left: -5px;
@@ -444,7 +447,7 @@
     }
     &.content-position-column-reverse {
         .bdt-navigation-arrows {
-            margin: -48px 30px 0;
+            margin: 0;
         }
     }
 }
@@ -483,6 +486,9 @@
 ===========================================================================*/
 @media (min-width: 640px) {
     .bdt-prime-slider-skin-isolate {
+        .bdt-slideshow {
+            padding: 50px;
+        }
         &.content-position-inherit {
             .bdt-slideshow-item.bdt-flex-column, 
             .bdt-slideshow-item.bdt-flex-column-reverse, 
@@ -506,7 +512,7 @@
             }
         }
         .bdt-navigation-arrows {
-            margin: -110px 30px 0;
+            margin: -60px 0 0;
         }
         .bdt-prime-slider-next, 
         .bdt-prime-slider-previous {
@@ -548,7 +554,7 @@
     .bdt-prime-slider-skin-isolate {
         &.content-position-column-reverse {
             .bdt-navigation-arrows {
-                margin: -110px 30px 0;
+                margin: -60px 0 0;
             }
             .bdt-prime-slider-desc {
                 padding-top: 0px;
@@ -572,18 +578,12 @@
 
 @media (min-width: 1024px) {
     .bdt-prime-slider-skin-isolate {
-        .bdt-slideshow-item {
-            margin: 110px 100px 100px;
+        .bdt-slideshow {
+            padding: 100px;
         }
-        .bdt-navigation-arrows {
-            margin: -160px 100px 0;
-            padding-bottom: 100px;
-        }
-        &.content-position-column-reverse {
-            .bdt-navigation-arrows {
-                margin: -160px 100px 0;
-            }
-        }
+        // .bdt-slideshow-item {
+        //     margin: 110px 100px 100px;
+        // }
         .bdt-prime-slider-desc {
             .bdt-title-tag {
                 font-size: 70px;

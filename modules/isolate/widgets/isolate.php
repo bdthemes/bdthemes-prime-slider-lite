@@ -863,6 +863,22 @@ class Isolate extends Widget_Base {
             ]
         );
 
+        //slideer wrap spacing
+        $this->add_responsive_control(
+            'slider_wrap_spacing',
+            [
+                'label' => esc_html__('Wrapper Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type' => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-slideshow' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-scroll-down-wrapper' => 'left: {{SIZE}}{{UNIT}}; bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    '_skin' => '',
+                ],
+            ]
+        );
+
         $this->start_controls_tabs('slider_item_style');
 
         $this->start_controls_tab(
@@ -1972,6 +1988,7 @@ class Isolate extends Widget_Base {
                 ],
                 'condition' => [
                     'show_navigation_arrows' => ['yes'],
+                    '_skin!' => '',
                 ],
             ]
         );
@@ -1999,6 +2016,23 @@ class Isolate extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous',
                 'condition' => [
                     'show_navigation_arrows' => ['yes'],
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'navigation_arrows_size',
+            [
+                'label' => __('Size', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-prime-slider-previous' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-isolate .bdt-navigation-arrows' => 'margin: -{{SIZE}}{{UNIT}} 0 0;',
+                ],
+                'condition' => [
+                    'show_navigation_arrows' => ['yes'],
+                    '_skin' => '',
                 ],
             ]
         );
