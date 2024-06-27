@@ -378,6 +378,7 @@ class Isolate extends Widget_Base {
             [
                 'label' => esc_html__('Content Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::CHOOSE,
+                'description' => esc_html__('This option will work only for desktop view.', 'bdthemes-prime-slider'),
                 'options' => [
                     'inherit' => [
                         'title' => esc_html__('Left', 'bdthemes-prime-slider'),
@@ -403,6 +404,7 @@ class Isolate extends Widget_Base {
             [
                 'label' => esc_html__('Column Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                 'type' => Controls_Manager::CHOOSE,
+                'description' => esc_html__('This option will work only for mobile view.', 'bdthemes-prime-slider'),
                 'options' => [
                     'column' => [
                         'title' => esc_html__('Top', 'bdthemes-prime-slider'),
