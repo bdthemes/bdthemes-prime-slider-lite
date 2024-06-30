@@ -509,14 +509,14 @@ class PrimeSlider_Admin_Settings {
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title">All Widgets</h1>
-								<div class="ps-widget-count">Used: <b>
+								<h1 class="ps-feature-title"><?php echo esc_html__('All Widgets', 'bdthemes-prime-slider'); ?></h1>
+								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($used_widgets); ?>
 									</b></div>
-								<div class="ps-widget-count">Unused: <b>
+								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($un_used_widgets); ?>
 									</b></div>
-								<div class="ps-widget-count">Total:
+								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
 									<b>
 										<?php echo esc_html($used_widgets + $un_used_widgets); ?>
 									</b>
@@ -524,7 +524,7 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;" data-label="Total Widgets Status - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_widgets) . ',' . esc_attr($un_used_widgets); ?>" data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Total Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_widgets) . ',' . esc_attr($un_used_widgets); ?>" data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
@@ -541,14 +541,14 @@ class PrimeSlider_Admin_Settings {
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title">Core</h1>
-								<div class="ps-widget-count">Used: <b>
+								<h1 class="ps-feature-title"><?php echo esc_html__('Core', 'bdthemes-prime-slider'); ?></h1>
+								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($used_only_widgets); ?>
 									</b></div>
-								<div class="ps-widget-count">Unused: <b>
+								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($unused_only_widgets); ?>
 									</b></div>
-								<div class="ps-widget-count">Total:
+								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
 									<b>
 										<?php echo esc_html($used_only_widgets + $unused_only_widgets); ?>
 									</b>
@@ -556,7 +556,7 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;" data-label="Core Widgets Status - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_widgets) . ',' . esc_attr($unused_only_widgets); ?>" data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Core Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_widgets) . ',' . esc_attr($unused_only_widgets); ?>" data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
@@ -573,14 +573,14 @@ class PrimeSlider_Admin_Settings {
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title">3rd Party</h1>
-								<div class="ps-widget-count">Used: <b>
+								<h1 class="ps-feature-title"><?php echo esc_html__('3rd Party', 'bdthemes-prime-slider'); ?></h1>
+								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($used_only_3rdparty); ?>
 									</b></div>
-								<div class="ps-widget-count">Unused: <b>
+								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
 										<?php echo esc_html($unused_only_3rdparty); ?>
 									</b></div>
-								<div class="ps-widget-count">Total:
+								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
 									<b>
 										<?php echo esc_html($used_only_3rdparty + $unused_only_3rdparty); ?>
 									</b>
@@ -588,7 +588,7 @@ class PrimeSlider_Admin_Settings {
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;" data-label="3rd Party Widgets Status - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_3rdparty) . ',' . esc_attr($unused_only_3rdparty); ?>" data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
+								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('3rd Party Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_3rdparty) . ',' . esc_attr($unused_only_3rdparty); ?>" data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
 							</div>
 						</div>
 
@@ -600,14 +600,14 @@ class PrimeSlider_Admin_Settings {
 
 						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
 							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title">Active</h1>
-								<div class="ps-widget-count">Core: <b id="bdt-total-widgets-status-core"></b></div>
-								<div class="ps-widget-count">3rd Party: <b id="bdt-total-widgets-status-3rd"></b></div>
-								<div class="ps-widget-count">Total: <b id="bdt-total-widgets-status-heading"></b></div>
+								<h1 class="ps-feature-title"><?php echo esc_html__('Active', 'bdthemes-prime-slider'); ?></h1>
+								<div class="ps-widget-count"><?php echo esc_html__('Core:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-core"></b></div>
+								<div class="ps-widget-count"><?php echo esc_html__('3rd Party:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-3rd"></b></div>
+								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-heading"></b></div>
 							</div>
 
 							<div class="ps-canvas-wrap">
-								<canvas id="bdt-total-widgets-status" style="height: 120px; width: 120px;" data-label="Total Active Widgets Status" data-labels="<?php echo esc_attr('Core, 3rd Party'); ?>" data-bg="#0680d6, #B0EBFF" data-bg-hover="#0673e1, #B0EBFF">
+								<canvas id="bdt-total-widgets-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Total Active Widgets Status', 'bdthemes-prime-slider'); ?>" data-labels="<?php echo esc_attr('Core, 3rd Party'); ?>" data-bg="#0680d6, #B0EBFF" data-bg-hover="#0673e1, #B0EBFF">
 								</canvas>
 							</div>
 						</div>
@@ -631,21 +631,17 @@ class PrimeSlider_Admin_Settings {
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-3@m ps-support-section">
 					<div class="ps-support-content bdt-card bdt-card-body">
-						<h1 class="ps-feature-title">Support And Feedback</h1>
-						<p>Feeling like to consult with an expert? Take live Chat support immediately from <a href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. We are always
-							ready to help
-							you 24/7.</p>
-						<p><strong>Or if you’re facing technical issues with our plugin, then please create a support
-								ticket</strong></p>
-						<a class="bdt-button bdt-btn-blue bdt-margin-small-top bdt-margin-small-right" target="_blank" rel="" href="https://bdthemes.com/all-knowledge-base-of-prime-slider/">Knowledge
-							Base</a>
-						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" href="https://bdthemes.com/support/">Get Support</a>
+						<h1 class="ps-feature-title"><?php echo esc_html__('Support And Feedback', 'bdthemes-prime-slider'); ?></h1>
+						<p><?php echo esc_html__('Feeling like to consult with an expert? Take live Chat support immediately from', 'bdthemes-prime-slider'); ?> <a href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. <?php echo esc_html__('We are always ready to help you 24/7.', 'bdthemes-prime-slider'); ?></p>
+						<p><strong><?php echo esc_html__('Or if you are facing technical issues with our plugin, then please create a support ticket', 'bdthemes-prime-slider'); ?></strong></p>
+						<a class="bdt-button bdt-btn-blue bdt-margin-small-top bdt-margin-small-right" target="_blank" rel="" href="https://bdthemes.com/all-knowledge-base-of-prime-slider/"><?php echo esc_html__('Knowledge Base', 'bdthemes-prime-slider'); ?></a>
+						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" href="https://bdthemes.com/support/"><?php echo esc_html__('Get Support', 'bdthemes-prime-slider'); ?></a>
 					</div>
 				</div>
 
 				<div class="bdt-width-2-3@m">
 					<div class="bdt-card bdt-card-body ps-system-requirement">
-						<h1 class="ps-feature-title bdt-margin-small-bottom">System Requirement</h1>
+						<h1 class="ps-feature-title bdt-margin-small-bottom"><?php echo esc_html__('System Requirement', 'bdthemes-prime-slider'); ?></h1>
 						<?php $this->prime_slider_system_requirement(); ?>
 					</div>
 				</div>
@@ -654,31 +650,30 @@ class PrimeSlider_Admin_Settings {
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m ps-support-section">
 					<div class="bdt-card bdt-card-body ps-feedback-bg">
-						<h1 class="ps-feature-title">Missing Any Feature?</h1>
-						<p style="max-width: 520px;">Are you in need of a feature that’s not available in our plugin?
-							Feel free to do a feature request from here,</p>
-						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" rel="" href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/">Request Feature</a>
+						<h1 class="ps-feature-title"><?php echo esc_html__('Missing Any Feature?', 'bdthemes-prime-slider'); ?></h1>
+						<p style="max-width: 520px;"><?php echo esc_html__('Are you in need of a feature that is not available in our plugin?
+							Feel free to do a feature request from here,', 'bdthemes-prime-slider'); ?></p>
+						<a class="bdt-button bdt-btn-grey bdt-margin-small-top" target="_blank" rel="" href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/"><?php echo esc_html__('Request Feature', 'bdthemes-prime-slider'); ?></a>
 					</div>
 				</div>
 
 				<div class="bdt-width-1-2@m">
 					<div class="bdt-card bdt-card-body ps-tryaddon-bg">
-						<h1 class="ps-feature-title">Try Our Others Addons</h1>
+						<h1 class="ps-feature-title"><?php echo esc_html__('Try Our Others Plugins', 'bdthemes-prime-slider'); ?></h1>
 						<p style="max-width: 520px;">
-							<b>Element Pack, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery & Live Copy Paste </b> addons
-							for <b>Elementor</b> is the best slider, blogs and eCommerce plugin for WordPress.
+							<?php 
+								echo esc_html__('Element Pack, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery & Live Copy Paste addons for Elementor is the best slider, blogs and eCommerce plugin for WordPress.', 'bdthemes-prime-slider');
+								echo '<br>';
+								echo esc_html__('Also, try our new plugin ZoloBlocks for Gutenberg.', 'bdthemes-prime-slider');
+							?>
 						</p>
 						<div class="bdt-others-plugins-link">
-							<a class="bdt-button bdt-btn-ep bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/bdthemes-element-pack-lite/" bdt-tooltip="Element Pack Lite provides more than 50+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Element
-								pack</a>
-							<a class="bdt-button bdt-btn-ps bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-post-kit/" bdt-tooltip="Best blogging addon for building quality blogging website with fine-tuned features and widgets. It's Free! Download it.">Ultimate
-								Post Kit</a>
-							<a class="bdt-button bdt-btn-usk bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-store-kit/" bdt-tooltip="The only eCommmerce addon for answering all your online store design problems in one package. It's Free! Download it.">Ultimate
-								Store Kit</a>
-							<a class="bdt-button bdt-btn-pg bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/pixel-gallery/" bdt-tooltip="Pixel Gallery provides more than 30+ essential elements for everyday applications to simplify the whole web building process. It's Free! Download it.">Pixel
-								Gallery</a>
-							<a class="bdt-button bdt-btn-live-copy bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/live-copy-paste/" bdt-tooltip="Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience. It's Free! Download it.">Live
-								Copy Paste</a>
+							<a class="bdt-button bdt-btn-ep bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/bdthemes-element-pack-lite/" bdt-tooltip="<?php echo esc_html__('Element Pack Lite provides more than 50+ essential elements for everyday applications to simplify the whole web building process. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">Element pack</a>
+							<a class="bdt-button bdt-btn-zb bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/zoloblocks/" bdt-tooltip="<?php echo esc_html__('ZoloBlocks is a collection of creative Gutenberg blocks for WordPress. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">ZoloBlocks</a>
+							<a class="bdt-button bdt-btn-upk bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-post-kit/" bdt-tooltip="<?php echo esc_html__('Best blogging addon for building quality blogging website with fine-tuned features and widgets. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">Ultimate Post Kit</a>
+							<a class="bdt-button bdt-btn-usk bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/ultimate-store-kit/" bdt-tooltip="<?php echo esc_html__('The only eCommmerce addon for answering all your online store design problems in one package. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">Ultimate Store Kit</a>
+							<a class="bdt-button bdt-btn-pg bdt-margin-small-right" target="_blank" href="https://wordpress.org/plugins/pixel-gallery/" bdt-tooltip="<?php echo esc_html__('Pixel Gallery provides more than 30+ essential elements for everyday applications to simplify the whole web building process. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">Pixel Gallery</a>
+							<a class="bdt-button bdt-btn-live-copy bdt-margin-small-right" target="_blank" rel="" href="https://wordpress.org/plugins/live-copy-paste/" bdt-tooltip="<?php echo esc_html__('Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience. It\'s Free! Download it.', 'bdthemes-prime-slider'); ?>">Live Copy Paste</a>
 						</div>
 					</div>
 				</div>
@@ -703,8 +698,8 @@ class PrimeSlider_Admin_Settings {
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card" style="max-width: 800px; margin-left: auto; margin-right: auto;">
 				<div class="bdt-width-1-1@m ps-comparision bdt-text-center">
-					<h1 class="bdt-text-bold">WHY GO WITH PRO?</h1>
-					<h2>Just Compare With Prime Slider Free Vs Pro</h2>
+					<h1 class="bdt-text-bold"><?php echo esc_html__('WHY GO WITH PRO?', 'bdthemes-prime-slider'); ?></h1>
+					<h2><?php echo esc_html__('Just Compare With ', 'bdthemes-prime-slider'); ?>Prime Slider<?php echo esc_html__(' Free Vs Pro', 'bdthemes-prime-slider'); ?></h2>
 
 
 					<div>
@@ -714,107 +709,105 @@ class PrimeSlider_Admin_Settings {
 
 							<li class="bdt-text-bold">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Features</div>
-									<div class="bdt-width-auto@m">Free</div>
-									<div class="bdt-width-auto@m">Pro</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Features', 'bdthemes-prime-slider'); ?></div>
+									<div class="bdt-width-auto@m"><?php echo esc_html__('Free', 'bdthemes-prime-slider'); ?></div>
+									<div class="bdt-width-auto@m"><?php echo esc_html__('Pro', 'bdthemes-prime-slider'); ?></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 27+ Widgets but Pro have 21+ core widgets">Core
-											Widgets</span></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-								</div>
-							</li>
-							<li class="">
-								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: Free have 3+ Widgets but Pro have 3+ 3rd party widgets">3rd
-											Party Widgets</span></div>
+									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: <?php echo esc_html__('Free have 27+ Widgets but Pro have 21+ core widgets', 'bdthemes-prime-slider'); ?>"><?php echo esc_html__('Core Widgets', 'bdthemes-prime-slider'); ?></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Theme Compatibility</div>
+									<div class="bdt-width-expand@m"><span bdt-tooltip="pos: top-left; title: <?php echo esc_html__('Free have 3+ Widgets but Pro have 3+ 3rd party widgets', 'bdthemes-prime-slider'); ?>"><?php echo esc_html__('3rd Party Widgets', 'bdthemes-prime-slider'); ?></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Dynamic Content & Custom Fields Capabilities</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Theme Compatibility', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Proper Documentation</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Dynamic Content & Custom Fields Capabilities', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Updates & Support</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Proper Documentation', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Rooten Theme Pro Features</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Updates & Support', 'bdthemes-prime-slider'); ?></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+								</div>
+							</li>
+							<li class="">
+								<div class="bdt-grid">
+									<div class="bdt-width-expand@m">Rooten<?php echo esc_html__(' Theme Pro Features', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Priority Support</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Priority Support', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Ready Made Pages</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Ready Made Pages', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Ready Made Blocks</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Ready Made Blocks', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Elementor Extended Widgets</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Elementor Extended Widgets', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Live Copy or Paste</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Live Copy or Paste', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Duplicator</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Duplicator', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Reveal Effects</div>
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Reveal Effects', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 								</div>
@@ -830,27 +823,13 @@ class PrimeSlider_Admin_Settings {
 								<li>
 									<div class="bdt-grid">
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Incredibly Advanced
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Incredibly Advanced', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Refund or Cancel Anytime
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Refund or Cancel Anytime', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Dynamic Content
-										</div>
-									</div>
-								</li>
-
-								<li>
-									<div class="bdt-grid">
-										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Super-Flexible Widgets
-										</div>
-										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> 24/7 Premium Support
-										</div>
-										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Third Party Plugins
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Dynamic Content', 'bdthemes-prime-slider'); ?>
 										</div>
 									</div>
 								</li>
@@ -858,13 +837,13 @@ class PrimeSlider_Admin_Settings {
 								<li>
 									<div class="bdt-grid">
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Special Discount!
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Super-Flexible Widgets', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Custom Field Integration
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' 24/7 Premium Support', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> With Live Chat Support
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Third Party Plugins', 'bdthemes-prime-slider'); ?>
 										</div>
 									</div>
 								</li>
@@ -872,13 +851,27 @@ class PrimeSlider_Admin_Settings {
 								<li>
 									<div class="bdt-grid">
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Trusted Payment Methods
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Special Discount!', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Interactive Effects
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Custom Field Integration', 'bdthemes-prime-slider'); ?>
 										</div>
 										<div class="bdt-width-1-3@m">
-											<span class="dashicons dashicons-heart"></span> Video Tutorial
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' With Live Chat Support', 'bdthemes-prime-slider'); ?>
+										</div>
+									</div>
+								</li>
+
+								<li>
+									<div class="bdt-grid">
+										<div class="bdt-width-1-3@m">
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Trusted Payment Methods', 'bdthemes-prime-slider'); ?>
+										</div>
+										<div class="bdt-width-1-3@m">
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Interactive Effects', 'bdthemes-prime-slider'); ?>
+										</div>
+										<div class="bdt-width-1-3@m">
+											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Video Tutorial', 'bdthemes-prime-slider'); ?>
 										</div>
 									</div>
 								</li>
@@ -886,7 +879,7 @@ class PrimeSlider_Admin_Settings {
 
 							<?php if (true !== _is_ps_pro_activated()) : ?>
 								<div class="ps-purchase-button">
-									<a href="https://primeslider.pro/pricing/" target="_blank">Purchase Now</a>
+									<a href="https://primeslider.pro/pricing/" target="_blank"><?php echo esc_html__('Purchase Now', 'bdthemes-prime-slider'); ?></a>
 								</div>
 							<?php endif; ?>
 
@@ -924,15 +917,15 @@ class PrimeSlider_Admin_Settings {
 			<li>
 				<div>
 
-					<span class="label1">PHP Version: </span>
+					<span class="label1"><?php echo esc_html__('PHP Version:', 'bdthemes-prime-slider'); ?> </span>
 
 					<?php
 					if (version_compare($php_version, '7.0.0', '<')) {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2" title="Min: 7.0 Recommended" bdt-tooltip>Currently: ' . esc_html($php_version) . '</span>';
+						echo '<span class="label2" title=" '. esc_html__('Min: 7.0 Recommended', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .' ' . esc_html($php_version) . '</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">Currently: ' . esc_html($php_version) . '</span>';
+						echo '<span class="label2">'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($php_version) . '</span>';
 					}
 					?>
 				</div>
@@ -940,45 +933,45 @@ class PrimeSlider_Admin_Settings {
 
 			<li>
 				<div>
-					<span class="label1">Max execution time: </span>
+					<span class="label1"><?php echo esc_html__('Max execution time: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if ($max_execution_time < '90') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>Currently: ' . esc_html($max_execution_time) . '</span>';
+						echo '<span class="label2" title="'. esc_html__('Min: 90 Recommended', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($max_execution_time) . '</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">Currently: ' . esc_html($max_execution_time) . '</span>';
+						echo '<span class="label2">'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($max_execution_time) . '</span>';
 					}
 					?>
 				</div>
 			</li>
 			<li>
 				<div>
-					<span class="label1">Memory Limit: </span>
+					<span class="label1"><?php echo esc_html__('Memory Limit: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if (intval($memory_limit) < '812') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2" title="Min: 812M Recommended" bdt-tooltip>Currently: ' . esc_html($memory_limit) . '</span>';
+						echo '<span class="label2" title="'. esc_html__(''. esc_html__('Min: 812M Recommended', 'bdthemes-prime-slider') .'', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($memory_limit) . '</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">Currently: ' . esc_html($memory_limit) . '</span>';
+						echo '<span class="label2">'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($memory_limit) . '</span>';
 					}
 					?>
 				</div>
 			</li>
 			<li>
 				<div>
-					<span class="label1">Max Post Limit: </span>
+					<span class="label1"><?php echo esc_html__('Max Post Limit: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if (intval($post_limit) < '32') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>Currently: ' . esc_html($post_limit) . '</span>';
+						echo '<span class="label2" title="'. esc_html__('Min: 32M Recommended', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($post_limit) . '</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">Currently: ' . esc_html($post_limit) . '</span>';
+						echo '<span class="label2">'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($post_limit) . '</span>';
 					}
 					?>
 				</div>
@@ -986,7 +979,7 @@ class PrimeSlider_Admin_Settings {
 
 			<li>
 				<div>
-					<span class="label1">Uploads folder writable: </span>
+					<span class="label1"><?php echo esc_html__('Uploads folder writable: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if (!is_writable($upload_path)) {
@@ -1000,15 +993,15 @@ class PrimeSlider_Admin_Settings {
 
 			<li>
 				<div>
-					<span class="label1">MultiSite: </span>
+					<span class="label1"><?php echo esc_html__('MultiSite: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if ($environment['wp_multisite']) {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">MultiSite</span>';
+						echo '<span class="label2">'. esc_html__('MultiSite', 'bdthemes-prime-slider') .'</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">No MultiSite </span>';
+						echo '<span class="label2">'. esc_html__('No MultiSite', 'bdthemes-prime-slider') .'</span>';
 					}
 					?>
 				</div>
@@ -1016,7 +1009,7 @@ class PrimeSlider_Admin_Settings {
 
 			<li>
 				<div>
-					<span class="label1">GZip Enabled: </span>
+					<span class="label1"><?php echo esc_html__('GZip Enabled: ', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
 					if ($environment['gzip_enabled']) {
@@ -1030,14 +1023,14 @@ class PrimeSlider_Admin_Settings {
 
 			<li>
 				<div>
-					<span class="label1">Debug Mode: </span>
+					<span class="label1"><?php echo esc_html__('Debug Mode: ', 'bdthemes-prime-slider'); ?></span>
 					<?php
 					if ($environment['wp_debug_mode']) {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2">Currently Turned On</span>';
+						echo '<span class="label2">'. esc_html__('Currently Turned On', 'bdthemes-prime-slider') .'</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
-						echo '<span class="label2">Currently Turned Off</span>';
+						echo '<span class="label2">'. esc_html__('Currently Turned Off', 'bdthemes-prime-slider') .'</span>';
 					}
 					?>
 				</div>
@@ -1046,9 +1039,10 @@ class PrimeSlider_Admin_Settings {
 		</ul>
 
 		<div class="bdt-admin-alert">
-			<strong>Note:</strong> If you have multiple addons like <b>Prime Slider</b> so you need some more
-			requirement some
-			cases so make sure you added more memory for others addon too.
+			<?php 
+			echo '<strong>' . esc_html__('Note: ', 'bdthemes-prime-slider') . '</strong>';
+			echo esc_html__('If you have multiple addons like Prime Slider so you need some more requirement some cases so make sure you added more memory for others addon too.', 'bdthemes-prime-slider');
+			?>
 		</div>
 	<?php
 	}
@@ -1331,8 +1325,11 @@ class PrimeSlider_Admin_Settings {
 
 				<div class="bdt-width-expand@s bdt-text-right">
 					<p class="">
-						Prime Slider plugin made with love by <a target="_blank" href="https://bdthemes.com">BdThemes</a> Team.
-						<br>All rights reserved by <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>.
+						<?php 
+						echo esc_html__('Prime Slider plugin made with love by', 'bdthemes-prime-slider') . ' <a target="_blank" href="https://bdthemes.com">BdThemes</a> ' . esc_html__('Team.', 'bdthemes-prime-slider');
+						echo '<br>';
+						echo esc_html__('All rights reserved by', 'bdthemes-prime-slider') . ' <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>.';
+						?>
 					</p>
 				</div>
 			</div>

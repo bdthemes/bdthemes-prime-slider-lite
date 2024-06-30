@@ -86,7 +86,7 @@ class Prime_Slider_Admin_Feeds {
 				<?php
 				// Check items
 				if ( $maxitems == 0 ) {
-					echo '<li class="bdt-ps-overview__post">' . esc_html( 'No item', 'bdthemes-prime-slider' ) . '.</li>';
+					echo '<li class="bdt-ps-overview__post">' . esc_html__( 'No item', 'bdthemes-prime-slider' ) . '.</li>';
 				} else {
 					foreach ( $rss_items as $item ) :
 						$feed_url     = $item->get_permalink();

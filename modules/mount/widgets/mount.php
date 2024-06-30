@@ -986,7 +986,7 @@ class Mount extends Widget_Base {
 
 			<div <?php $this->print_render_attribute_string('social-icon'); ?>>
 
-				<h3><?php echo esc_html('Follow Us', 'bdthemes-prime-slider') ?></h3>
+				<h3><?php echo esc_html__('Follow Us', 'bdthemes-prime-slider') ?></h3>
 
 				<?php foreach ($settings['social_link_list'] as $link) : ?>
 
