@@ -148,7 +148,7 @@ class Skin_Crelly extends Elementor_Skin_Base {
                     <?php if ($slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] )) : ?>
                     <div class="bdt-slider-excerpt-content" <?php echo wp_kses_post($parallax_excerpt); ?>>
                         <?php if ($settings['show_otherview'] == 'yes') : ?>
-                        <h3 data-reveal="reveal-active"><?php echo esc_html('Overview', 'bdthemes-prime-slider') ?></h3>
+                        <h3 data-reveal="reveal-active"><?php echo esc_html__('Overview', 'bdthemes-prime-slider') ?></h3>
                         <?php endif; ?>
                         <div class="bdt-slider-excerpt" data-reveal="reveal-active">
                             <?php echo wp_kses_post($slide_content['excerpt']); ?>

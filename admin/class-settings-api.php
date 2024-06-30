@@ -937,7 +937,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 									<div class="bdt-widget-search">
 										<input data-id="ps-options-parent-<?php echo esc_attr( $i ); ?>" onkeyup="filterSearch(this);"
 											bdt-filter-control="" class="bdt-search-input bdt-flex-middle" type="search"
-											placeholder="Search widget..." autofocus>
+											placeholder="<?php esc_html_e('Search widget...', 'bdthemes-prime-slider'); ?>" autofocus>
 									</div>
 
 									<?php if ($form['id'] !== 'prime_slider_elementor_extend' or $form['id'] == 'prime_slider_third_party_widget' ) : ?>
@@ -1000,11 +1000,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 									</div>
 
 									<div class="bdt-width-expand@s bdt-text-right">
-										<p class="">
-											Prime Slider plugin made with love by <a target="_blank"
-												href="https://bdthemes.com">BdThemes</a> Team.
-											<br>All rights reserved by <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>.
-										</p>
+										<p class="">Prime Slider plugin made with love by <a target="_blank" href="https://bdthemes.com">BdThemes</a> Team. <br>All rights reserved by <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>. </p>
 									</div>
 								</div>
 
