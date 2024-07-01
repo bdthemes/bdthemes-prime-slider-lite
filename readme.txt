@@ -172,9 +172,9 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.14.12 [30th June 2024] =
+= 3.14.12 [1st July 2024] =
 
-* Fixed: Dashboard translation issue fixed (Thanks to itapress)
+* Fixed: Translation issue fixed (Thanks to itapress)
 
 = 3.14.11 [27th June 2024] =
 
