@@ -953,7 +953,7 @@ class PrimeSlider_Admin_Settings {
 					<?php
 					if (intval($memory_limit) < '812') {
 						echo '<span class="invalid"><i class="dashicons-before dashicons-no-alt"></i></span>';
-						echo '<span class="label2" title="'. esc_html__(''. esc_html__('Min: 812M Recommended', 'bdthemes-prime-slider') .'', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($memory_limit) . '</span>';
+						echo '<span class="label2" title="'. esc_html__('Min: 812M Recommended', 'bdthemes-prime-slider') .'" bdt-tooltip>'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($memory_limit) . '</span>';
 					} else {
 						echo '<span class="valid"><i class="dashicons-before dashicons-yes"></i></span>';
 						echo '<span class="label2">'. esc_html__('Currently: ', 'bdthemes-prime-slider') .'' . esc_html($memory_limit) . '</span>';
