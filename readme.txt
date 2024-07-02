@@ -174,7 +174,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.14.13 [2nd July 2024] =
 
-* Fixed: Translation issue fixed (Thanks to itapress)
+* Fixed: Syntax error fixed (Thanks to itapress)
 
 = 3.14.12 [1st July 2024] =
 
