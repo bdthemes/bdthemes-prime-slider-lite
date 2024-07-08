@@ -33,17 +33,29 @@
  * `bdt-dark` is or dark colors on light backgrounds
  */
 
-.bdt-light when (@inverse-global-color-mode = light) {
+// .bdt-light when (@inverse-global-color-mode = light) {
 
-    //.hook-inverse();
+//     .hook-inverse();
 
-}
+// }
 
-.bdt-dark when (@inverse-global-color-mode = dark) {
+// .bdt-dark when (@inverse-global-color-mode = dark) {
 
-    //.hook-inverse();
+//     .hook-inverse();
 
-}
+// }
+
+/*
+ * Pass dropbar behind color to JS
+ */
+
+* { --bdt-inverse: initial; }
+
+.bdt-light { --bdt-inverse: light; }
+.bdt-dark { --bdt-inverse: dark; }
+
+.bdt-inverse-light { --bdt-inverse: light !important; }
+.bdt-inverse-dark { --bdt-inverse: dark !important; }
 
 
 // Hooks

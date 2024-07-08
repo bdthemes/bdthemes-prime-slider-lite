@@ -118,7 +118,7 @@
 .bdt-grid-small,
 .bdt-grid-column-small { margin-left: -@grid-small-gutter-horizontal; }
 .bdt-grid-small > *,
-.bdt-grid-column-small > *  { padding-left: @grid-small-gutter-horizontal; }
+.bdt-grid-column-small > * { padding-left: @grid-small-gutter-horizontal; }
 
 /* Vertical */
 .bdt-grid + .bdt-grid-small,
@@ -376,8 +376,8 @@
     flex-wrap: wrap;
 }
 
-.bdt-grid-match > * > :not([class*='bdt-width']),
-.bdt-grid-item-match > :not([class*='bdt-width']) {
+.bdt-grid-match > * > :not([class*="bdt-width"]),
+.bdt-grid-item-match > :not([class*="bdt-width"]) {
     /* 2 */
     box-sizing: border-box;
     width: 100%;

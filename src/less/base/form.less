@@ -206,12 +206,15 @@
 
 /*
  * Define consistent border, margin, and padding.
+ * 1. Reset `min-width`
  */
 
 .bdt-fieldset {
     border: none;
     margin: 0;
     padding: 0;
+    /* 1 */
+    min-width: 0;
 }
 
 
@@ -377,7 +380,7 @@ textarea.bdt-form-large,
  */
 
 .bdt-form-success,
-.bdt-form-success:focus  {
+.bdt-form-success:focus {
     color: @form-success-color;
     .hook-form-success();
 }

@@ -36,7 +36,7 @@
 
 @navbar-background:                             @global-muted-background;
 @navbar-gap:                                    0px; // Must have a unit because of `calc`
-@navbar-color-mode:                             none;
+@navbar-color-mode:                             dark;
 
 @navbar-nav-gap:                                0px; // Must have a unit because of `calc`
 
@@ -66,7 +66,7 @@
 @navbar-dropdown-padding:                       15px;
 @navbar-dropdown-background:                    @global-muted-background;
 @navbar-dropdown-color:                         @global-color;
-@navbar-dropdown-color-mode:                    none;
+@navbar-dropdown-color-mode:                    dark;
 @navbar-dropdown-focus-outline:                 @base-focus-outline;
 @navbar-dropdown-grid-gutter-horizontal:        @global-gutter;
 @navbar-dropdown-grid-gutter-vertical:          @navbar-dropdown-grid-gutter-horizontal;
@@ -136,7 +136,7 @@
 
 .bdt-navbar-left,
 .bdt-navbar-right,
-[class*='bdt-navbar-center'] {
+[class*="bdt-navbar-center"] {
     display: flex;
     gap: @navbar-gap;
     /* 1 */
@@ -165,7 +165,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     /* 2 */
     width: max-content;
     box-sizing: border-box;
@@ -180,10 +180,10 @@
    top: 0;
 }
 
-.bdt-navbar-center-left { right:  ~'calc(100% + @{navbar-gap})'; }
+.bdt-navbar-center-left { right: ~'calc(100% + @{navbar-gap})'; }
 .bdt-navbar-center-right { left: ~'calc(100% + @{navbar-gap})'; }
 
-[class*='bdt-navbar-center-'] {
+[class*="bdt-navbar-center-"] {
     width: max-content;
     box-sizing: border-box;
 }
@@ -383,6 +383,7 @@
     --bdt-position-offset: @navbar-dropdown-margin;
     --bdt-position-shift-offset: @navbar-dropdown-shift-margin;
     --bdt-position-viewport-offset: @navbar-dropdown-viewport-margin;
+    --bdt-inverse: @navbar-dropdown-color-mode;
     /* 1 */
     width: @navbar-dropdown-width;
     /* 2 */
@@ -396,7 +397,7 @@
  * Remove margin from the last-child
  */
 
- .bdt-navbar-dropdown > :last-child { margin-bottom: 0; }
+.bdt-navbar-dropdown > :last-child { margin-bottom: 0; }
 
 // Color Mode
 .bdt-navbar-dropdown:extend(.bdt-light all) when (@navbar-dropdown-color-mode = light) {}
@@ -555,16 +556,6 @@
 
 .bdt-navbar-dropbar {
     .hook-navbar-dropbar();
-}
-
-/*
- * Create navbar placeholder space if dropbar is behind navbar
- */
-
-.bdt-navbar-dropbar-behind::before {
-    content: "";
-    display: block;
-    height: @navbar-nav-item-height;
 }
 
 

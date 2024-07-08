@@ -60,6 +60,7 @@
 @card-default-color:                           @global-color;
 @card-default-title-color:                     @global-emphasis-color;
 @card-default-hover-background:                darken(@card-default-background, 5%);
+@card-default-color-mode:                      dark;
 
 @card-primary-background:                      @global-primary-background;
 @card-primary-color:                           @global-inverse-color;
@@ -148,13 +149,13 @@
  * Implemented by the theme
  */
 
-[class*='bdt-card-media'] {
+[class*="bdt-card-media"] {
     .hook-card-media();
 }
 
 .bdt-card-media-top,
 .bdt-grid-stack > .bdt-card-media-left,
-.bdt-grid-stack > .bdt-card-media-right  {
+.bdt-grid-stack > .bdt-card-media-right {
     .hook-card-media-top();
 }
 
@@ -237,6 +238,7 @@
  */
 
 .bdt-card-default {
+    --bdt-inverse: @card-default-color-mode;
     background-color: @card-default-background;
     color: @card-default-color;
     .hook-card-default();
@@ -260,11 +262,18 @@
     .hook-card-default-footer();
 }
 
+// Color Mode
+.bdt-card-default.bdt-card-body:extend(.bdt-light all) when (@card-default-color-mode = light) {}
+.bdt-card-default > :not([class*="bdt-card-media"]):extend(.bdt-light all) when (@card-default-color-mode = light) {}
+.bdt-card-default.bdt-card-body:extend(.bdt-dark all) when (@card-default-color-mode = dark) {}
+.bdt-card-default > :not([class*="bdt-card-media"]):extend(.bdt-dark all) when (@card-default-color-mode = dark) {}
+
 /*
  * Primary
  */
 
 .bdt-card-primary {
+    --bdt-inverse: @card-primary-color-mode;
     background-color: @card-primary-background;
     color: @card-primary-color;
     .hook-card-primary();
@@ -282,15 +291,16 @@
 
 // Color Mode
 .bdt-card-primary.bdt-card-body:extend(.bdt-light all) when (@card-primary-color-mode = light) {}
-.bdt-card-primary > :not([class*='bdt-card-media']):extend(.bdt-light all) when (@card-primary-color-mode = light) {}
+.bdt-card-primary > :not([class*="bdt-card-media"]):extend(.bdt-light all) when (@card-primary-color-mode = light) {}
 .bdt-card-primary.bdt-card-body:extend(.bdt-dark all) when (@card-primary-color-mode = dark) {}
-.bdt-card-primary > :not([class*='bdt-card-media']):extend(.bdt-dark all) when (@card-primary-color-mode = dark) {}
+.bdt-card-primary > :not([class*="bdt-card-media"]):extend(.bdt-dark all) when (@card-primary-color-mode = dark) {}
 
 /*
  * Secondary
  */
 
 .bdt-card-secondary {
+    --bdt-inverse: @card-secondary-color-mode;
     background-color: @card-secondary-background;
     color: @card-secondary-color;
     .hook-card-secondary();
@@ -308,9 +318,9 @@
 
 // Color Mode
 .bdt-card-secondary.bdt-card-body:extend(.bdt-light all) when (@card-secondary-color-mode = light) {}
-.bdt-card-secondary > :not([class*='bdt-card-media']):extend(.bdt-light all) when (@card-secondary-color-mode = light) {}
+.bdt-card-secondary > :not([class*="bdt-card-media"]):extend(.bdt-light all) when (@card-secondary-color-mode = light) {}
 .bdt-card-secondary.bdt-card-body:extend(.bdt-dark all) when (@card-secondary-color-mode = dark) {}
-.bdt-card-secondary > :not([class*='bdt-card-media']):extend(.bdt-dark all) when (@card-secondary-color-mode = dark) {}
+.bdt-card-secondary > :not([class*="bdt-card-media"]):extend(.bdt-dark all) when (@card-secondary-color-mode = dark) {}
 
 
 /* Size modifier

@@ -126,10 +126,10 @@
 .bdt-float-right { float: right; }
 
 /* 1 */
-[class*='bdt-float-'] { max-width: 100%; }
+[class*="bdt-float-"] { max-width: 100%; }
 
 
-/* Overfow
+/* Overflow
  ========================================================================== */
 
 .bdt-overflow-hidden { overflow: hidden; }
@@ -179,7 +179,7 @@
  * 6. Clip child elements
  */
 
-[class*='bdt-inline'] {
+[class*="bdt-inline"] {
     /* 1 */
     display: inline-block;
     /* 2 */
@@ -290,7 +290,7 @@
  * Fix `overflow: hidden` to be ignored with border-radius and CSS transforms in Webkit
  */
 
-.bdt-inline-clip[class*='bdt-border-'] { -webkit-transform: translateZ(0); }
+.bdt-inline-clip[class*="bdt-border-"] { -webkit-transform: translateZ(0); }
 
 
 /* Box-shadow
@@ -305,7 +305,7 @@
  * Hover
  */
 
-[class*='bdt-box-shadow-hover'] { transition: box-shadow @box-shadow-duration ease-in-out; }
+[class*="bdt-box-shadow-hover"] { transition: box-shadow @box-shadow-duration ease-in-out; }
 
 .bdt-box-shadow-hover-small:hover { box-shadow: @global-small-box-shadow; }
 .bdt-box-shadow-hover-medium:hover { box-shadow: @global-medium-box-shadow; }
@@ -528,8 +528,7 @@
         .hook-inverse-logo-hover();
     }
 
-    .bdt-logo > picture:not(:only-of-type) > :not(.bdt-logo-inverse),
-    .bdt-logo > :not(picture):not(.bdt-logo-inverse):not(:only-of-type) { display: none; }
+    .bdt-logo:has(.bdt-logo-inverse) > :not(picture:has(.bdt-logo-inverse)):not(.bdt-logo-inverse) { display: none; }
     .bdt-logo-inverse { display: block; }
 
 }

@@ -12,6 +12,7 @@
 //                  `bdt-transition-slide-right-*`
 //                  `bdt-transition-opaque`
 //                  `bdt-transition-slow`
+//                  `bdt-transition-disable`
 //
 // Sub-objects:     `bdt-transition-toggle`,
 //                  `bdt-transition-active`
@@ -49,15 +50,15 @@
  */
 
 :where(.bdt-transition-fade),
-:where([class*='bdt-transition-scale']),
-:where([class*='bdt-transition-slide']) {
+:where([class*="bdt-transition-scale"]),
+:where([class*="bdt-transition-slide"]) {
     --bdt-position-translate-x: 0;
     --bdt-position-translate-y: 0;
 }
 
 .bdt-transition-fade,
-[class*='bdt-transition-scale'],
-[class*='bdt-transition-slide'] {
+[class*="bdt-transition-scale"],
+[class*="bdt-transition-slide"] {
     --bdt-translate-x: 0;
     --bdt-translate-y: 0;
     --bdt-scale-x: 1;
@@ -85,7 +86,7 @@
  */
 
 /* 1 */
-[class*='bdt-transition-scale'] { -webkit-backface-visibility: hidden; }
+[class*="bdt-transition-scale"] { -webkit-backface-visibility: hidden; }
 
 .bdt-transition-scale-up {
     --bdt-scale-x: 1;
@@ -135,10 +136,10 @@
 .bdt-transition-slide-right-medium { --bdt-translate-x: @transition-slide-medium-translate; }
 
 /* Show */
-.bdt-transition-toggle:hover [class*='bdt-transition-slide'],
-.bdt-transition-toggle:focus [class*='bdt-transition-slide'],
-.bdt-transition-toggle [class*='bdt-transition-slide']:focus-within,
-.bdt-transition-active.bdt-active [class*='bdt-transition-slide'] {
+.bdt-transition-toggle:hover [class*="bdt-transition-slide"],
+.bdt-transition-toggle:focus [class*="bdt-transition-slide"],
+.bdt-transition-toggle [class*="bdt-transition-slide"]:focus-within,
+.bdt-transition-active.bdt-active [class*="bdt-transition-slide"] {
     --bdt-translate-x: 0;
     --bdt-translate-y: 0;
     opacity: 1;
@@ -151,10 +152,16 @@
 .bdt-transition-opaque { opacity: 1; }
 
 
-/* Duration modifiers
+/* Duration modifier
  ========================================================================== */
 
 .bdt-transition-slow { transition-duration: @transition-slow-duration; }
+
+/* Disable modifier
+ ========================================================================== */
+
+.bdt-transition-disable,
+.bdt-transition-disable * { transition: none !important; }
 
 
 // Hooks

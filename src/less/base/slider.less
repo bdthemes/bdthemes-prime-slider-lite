@@ -39,10 +39,16 @@
  ========================================================================== */
 
 /*
- * Clip child elements
+ * 1. Clip child elements
+ * 2. Prevent accidental scrolling through elements in slide getting focused
  */
 
-.bdt-slider-container { overflow: hidden; }
+.bdt-slider-container {
+    /* 1 */
+    overflow: hidden;
+    /* 2 */
+    overflow: clip;
+}
 
 /*
  * Widen container to prevent box-shadows from clipping, `large-box-shadow`
@@ -100,7 +106,7 @@
 
 .bdt-slider-items > * {
     /* 1 */
-    flex: none;
+    flex: none !important;
     box-sizing: border-box;
     max-width: 100%;
     /* 2 */
