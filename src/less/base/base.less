@@ -84,58 +84,6 @@
 @base-selection-background:                     #39f;
 @base-selection-color:                          @global-inverse-color;
 
-
-/* Pass media breakpoints to JS
- ========================================================================== */
-
-/*
- * Breakpoints
- */
-
-:root {
-    --bdt-breakpoint-s: @breakpoint-small;
-    --bdt-breakpoint-m: @breakpoint-medium;
-    --bdt-breakpoint-l: @breakpoint-large;
-    --bdt-breakpoint-xl: @breakpoint-xlarge;
-}
-
-// Hooks
-// ========================================================================
-
-.hook-base-misc();
-
-.hook-base-body() {}
-.hook-base-link() {}
-.hook-base-link-hover() {}
-.hook-base-code() {}
-.hook-base-heading() {}
-.hook-base-h1() {}
-.hook-base-h2() {}
-.hook-base-h3() {}
-.hook-base-h4() {}
-.hook-base-h5() {}
-.hook-base-h6() {}
-.hook-base-hr() {}
-.hook-base-blockquote() {}
-.hook-base-blockquote-footer() {}
-.hook-base-pre() {}
-.hook-base-misc() {}
-
-
-// Inverse
-// ========================================================================
-
-@inverse-base-color:                           @inverse-global-color;
-@inverse-base-link-color:                      @inverse-global-emphasis-color;
-@inverse-base-link-hover-color:                @inverse-global-emphasis-color;
-@inverse-base-code-color:                      @inverse-global-color;
-@inverse-base-em-color:                        @inverse-global-emphasis-color;
-@inverse-base-heading-color:                   @inverse-global-emphasis-color;
-@inverse-base-hr-border:                       @inverse-global-border;
-@inverse-base-focus-outline:                   @inverse-global-emphasis-color;
-
-.hook-inverse() {}
-
 .hook-inverse-base-link() {}
 .hook-inverse-base-link-hover() {}
 .hook-inverse-base-code() {}

@@ -35,8 +35,10 @@
 @section-xlarge-padding-vertical-m:               (@global-large-margin + @global-xlarge-margin);
 
 @section-default-background:                      @global-background;
+@section-default-color-mode:                      dark;
 
 @section-muted-background:                        @global-muted-background;
+@section-muted-color-mode:                        dark;
 
 @section-primary-background:                      @global-primary-background;
 @section-primary-color-mode:                      light;
@@ -118,7 +120,6 @@
 
 }
 
-
 /*
  * XLarge
  */
@@ -147,24 +148,34 @@
  */
 
 .bdt-section-default {
+    --bdt-inverse: @section-default-color-mode;
     background: @section-default-background;
     .hook-section-default();
 }
+
+.bdt-section-default:not(.bdt-preserve-color):extend(.bdt-light all) when (@section-default-color-mode = light) {}
+.bdt-section-default:not(.bdt-preserve-color):extend(.bdt-dark all) when (@section-default-color-mode = dark) {}
 
 /*
  * Muted
  */
 
 .bdt-section-muted {
+    --bdt-inverse: @section-muted-color-mode;
     background: @section-muted-background;
     .hook-section-muted();
 }
+
+.bdt-section-muted:not(.bdt-preserve-color):extend(.bdt-light all) when (@section-muted-color-mode = light) {}
+.bdt-section-muted:not(.bdt-preserve-color):extend(.bdt-dark all) when (@section-muted-color-mode = dark) {}
+
 
 /*
  * Primary
  */
 
 .bdt-section-primary {
+    --bdt-inverse: @section-primary-color-mode;
     background: @section-primary-background;
     .hook-section-primary();
 }
@@ -177,6 +188,7 @@
  */
 
 .bdt-section-secondary {
+    --bdt-inverse: @section-secondary-color-mode;
     background: @section-secondary-background;
     .hook-section-secondary();
 }

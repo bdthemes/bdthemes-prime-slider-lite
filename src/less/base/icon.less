@@ -92,14 +92,14 @@ button.bdt-icon:not(:disabled) { cursor: pointer; }
  * Set the fill and stroke color of all SVG elements to the current text color
  */
 
-.bdt-icon:not(.bdt-preserve) [fill*='#']:not(.bdt-preserve) { fill: currentcolor; }
-.bdt-icon:not(.bdt-preserve) [stroke*='#']:not(.bdt-preserve) { stroke: currentcolor; }
+.bdt-icon:not(.bdt-preserve) [fill*="#"]:not(.bdt-preserve) { fill: currentcolor; }
+.bdt-icon:not(.bdt-preserve) [stroke*="#"]:not(.bdt-preserve) { stroke: currentcolor; }
 
 /*
  * Fix Firefox blurry SVG rendering: https://bugzilla.mozilla.org/show_bug.cgi?id=1046835
  */
 
-.bdt-icon > * { transform: translate(0,0); }
+.bdt-icon > * { transform: translate(0, 0); }
 
 
 /* Image modifier

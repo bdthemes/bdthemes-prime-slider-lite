@@ -265,7 +265,7 @@
  * Adopts `bdt-close`
  ========================================================================== */
 
-[class*='bdt-modal-close-'] {
+[class*="bdt-modal-close-"] {
     position: absolute;
     z-index: @modal-z-index;
     top: @modal-close-position;
@@ -278,13 +278,13 @@
  * Remove margin from adjacent element
  */
 
-[class*='bdt-modal-close-']:first-child + * { margin-top: 0; }
+[class*="bdt-modal-close-"]:first-child + * { margin-top: 0; }
 
 /*
  * Hover
  */
 
-[class*='bdt-modal-close-']:hover {
+[class*="bdt-modal-close-"]:hover {
     .hook-modal-close-hover();
 }
 

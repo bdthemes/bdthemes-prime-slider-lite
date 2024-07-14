@@ -29,7 +29,6 @@
 .bdt-flex-between { justify-content: space-between; }
 .bdt-flex-around { justify-content: space-around; }
 
-
 /* Phone landscape and bigger */
 @media (min-width: @breakpoint-small) {
 
@@ -85,6 +84,46 @@
 .bdt-flex-middle { align-items: center; }
 .bdt-flex-bottom { align-items: flex-end; }
 
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-flex-stretch\@s { align-items: stretch; }
+    .bdt-flex-top\@s { align-items: flex-start; }
+    .bdt-flex-middle\@s { align-items: center; }
+    .bdt-flex-bottom\@s { align-items: flex-end; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-flex-stretch\@m { align-items: stretch; }
+    .bdt-flex-top\@m { align-items: flex-start; }
+    .bdt-flex-middle\@m { align-items: center; }
+    .bdt-flex-bottom\@m { align-items: flex-end; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-flex-stretch\@l { align-items: stretch; }
+    .bdt-flex-top\@l { align-items: flex-start; }
+    .bdt-flex-middle\@l { align-items: center; }
+    .bdt-flex-bottom\@l { align-items: flex-end; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-flex-stretch\@xl { align-items: stretch; }
+    .bdt-flex-top\@xl { align-items: flex-start; }
+    .bdt-flex-middle\@xl { align-items: center; }
+    .bdt-flex-bottom\@xl { align-items: flex-end; }
+
+}
+
 
 /* Direction
  ========================================================================== */
@@ -94,6 +133,38 @@
 .bdt-flex-row-reverse { flex-direction: row-reverse; }
 .bdt-flex-column { flex-direction: column; }
 .bdt-flex-column-reverse { flex-direction: column-reverse; }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-flex-row\@s { flex-direction: row; }
+    .bdt-flex-column\@s { flex-direction: column; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-flex-row\@m { flex-direction: row; }
+    .bdt-flex-column\@m { flex-direction: column; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-flex-row\@l { flex-direction: row; }
+    .bdt-flex-column\@l { flex-direction: column; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-flex-row\@xl { flex-direction: row; }
+    .bdt-flex-column\@xl { flex-direction: column; }
+
+}
 
 
 /* Wrap
@@ -127,7 +198,6 @@
 
 .bdt-flex-first { order: -1;}
 .bdt-flex-last { order: 99;}
-
 
 /* Phone landscape and bigger */
 @media (min-width: @breakpoint-small) {
@@ -170,6 +240,8 @@
  * Content dimensions, but shrinks
  */
 
+.bdt-flex-initial { flex: initial; }
+
 /*
  * No Flex: 0 0 auto
  * Content dimensions
@@ -190,6 +262,42 @@
  */
 
 .bdt-flex-1 { flex: 1; }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+    .bdt-flex-initial\@s { flex: initial; }
+    .bdt-flex-none\@s { flex: none; }
+    .bdt-flex-1\@s { flex: 1; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-flex-initial\@m { flex: initial; }
+    .bdt-flex-none\@m { flex: none; }
+    .bdt-flex-1\@m { flex: 1; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+    .bdt-flex-initial\@l { flex: initial; }
+    .bdt-flex-none\@l { flex: none; }
+    .bdt-flex-1\@l { flex: 1; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+    .bdt-flex-initial\@xl { flex: initial; }
+    .bdt-flex-none\@xl { flex: none; }
+    .bdt-flex-1\@xl { flex: 1; }
+
+}
 
 
 // Hooks

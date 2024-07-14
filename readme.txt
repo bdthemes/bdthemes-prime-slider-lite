@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.5.5
 Requires PHP: 7.4.0
-Stable tag: 3.14.13
+Stable tag: 3.14.14
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.14 [14th July 2024] =
+
+* Updated: UIKit framework updated
+
 = 3.14.13 [2nd July 2024] =
 
 * Fixed: Syntax error fixed (Thanks to itapress)
@@ -231,110 +235,6 @@ https://youtu.be/XjFiW5rFrac
 
 * Added: Thumbs scroll option added in flogia widget
 * Updated: Admin dashboard system improved
-
-= 3.13.7 [28th March 2024] =
-
-* Fixed: Thumbs height issue fixed in flogia widget
-* Fixed: Admin feeds issue fixed
-
-= 3.13.6 [21th March 2024] =
-
-* Fixed: Notice error issue fixed
-
-= 3.13.5 [21th March 2024] =
-
-* Fixed: Image height issue fixed in fiestar widget
-* Updated: Admin dashboard license notice improved
-
-= 3.13.4 [10th March 2024] =
-
-* Fixed: Security issue fixed
-
-= 3.13.3 [8th March 2024] =
-
-* Fixed: Security issue fixed
-* Fixed: Pagination outline style issue fixed
-
-= 3.13.2 [3rd March 2024] =
-
-* Fixed: Swiper effects issue fixed
-
-= 3.13.1 [24th February 2024] =
-
-* Updated: System improved
-
-= 3.13.0 [24th February 2024] =
-
-* Added: Adaptive background extension added (pro)
-* Added: Dots horizontal offset added in blog widget
-* Fixed: Security issue fixed
-
-= 3.12.0 [17th February 2024] =
-
-* Added: Overlay option added in pagepiling widget
-* Fixed: Content alignment issue fixed in pagepiling widget (Thanks to Maarten Bloemen)
-* Fixed: Security issue fixed
-
-= 3.11.13 [4th February 2024] =
-
-* Fixed: Link issue fixed in isolate widget (Thanks to Saul Lones)
-
-= 3.11.12 [11th January 2024] =
-
-* Updated: System improved
-
-= 3.11.11 [4th January 2024] =
-
-* Added: Material widget added (Pro)
-* Fixed: Duplicator issue fixed
-
-= 3.11.10 [31th December 2023] =
-
-* Updated: Mount widget design improved & optimized
-
-= 3.11.9 [21th December 2023] =
-
-* Fixed: System improved
-
-= 3.11.8 [21th December 2023] =
-
-* Fixed: Title & button inline issue fixed in blog widget
-* Fixed: Separator conflict issue fixed in mercury widget
-* Updated: Rubix, blog, mercury, pacific & pagepiling widgets design improved & optimized
-
-= 3.11.7 [11th December 2023] =
-
-Added: Bottom spacing control added in tango widget
-Fixed: Live copy & paste issue fixed
-Updated: Tango, storker, sniper widgets design improved & optimized
-
-= 3.11.6 [6th December 2023] =
-
-* Fixed: Plugin header fixed
-
-= 3.11.5 [4th December 2023] =
-
-* Updated: System improved
-
-= 3.11.4 [4th December 2023] =
-
-* Updated: System improved
-
-= 3.11.3 [4th December 2023] =
-
-* Fixed: Link issue fixed in dragon widget
-
-= 3.11.2 [29th November 2023] =
-
-Fixed: Unnecessary file removed
-
-= 3.11.1 [29th November 2023] =
-
-* Fixed: Fatal error fixed
-
-= 3.11.0 [29th November 2023] =
-
-* Updated: System improved
 
 Details [changelog here](https://feedback.bdthemes.com/announcements?category=category_7wo5zoxl)
 

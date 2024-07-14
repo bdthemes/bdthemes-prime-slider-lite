@@ -21,7 +21,7 @@
 @dropdown-padding:                              15px;
 @dropdown-background:                           @global-muted-background;
 @dropdown-color:                                @global-color;
-@dropdown-color-mode:                           none;
+@dropdown-color-mode:                           dark;
 @dropdown-focus-outline:                        @base-focus-outline;
 
 @dropdown-large-padding:                        40px;
@@ -59,6 +59,7 @@
 .bdt-dropdown {
     --bdt-position-offset: @dropdown-margin;
     --bdt-position-viewport-offset: @dropdown-viewport-margin;
+    --bdt-inverse: @dropdown-color-mode;
     /* 1 */
     width: auto;
     /* 2 */
