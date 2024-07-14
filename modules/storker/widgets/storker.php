@@ -279,7 +279,7 @@ class Storker extends Widget_Base {
 		$this->add_control(
 			'swiper_effect',
 			[
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'fade',
 				'options' => [
@@ -294,6 +294,7 @@ class Storker extends Widget_Base {
 					'gl'    => esc_html__( 'GL', 'bdthemes-prime-slider' ),
 					'creative' => esc_html__( 'Creative', 'bdthemes-prime-slider' ),
 				],
+                'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 		//gl_shader control

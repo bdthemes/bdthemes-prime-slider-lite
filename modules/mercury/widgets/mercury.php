@@ -272,7 +272,7 @@ class Mercury extends Widget_Base {
         $this->add_control(
             'effect',
             [
-                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'slide',
                 'options' => [
@@ -287,6 +287,7 @@ class Mercury extends Widget_Base {
                     'gl'    => esc_html__( 'GL', 'bdthemes-prime-slider' ),
                     'creative' => esc_html__( 'Creative', 'bdthemes-prime-slider' ),
                 ],
+                'classes' => BDTPS_CORE_IS_PC
             ]
         );
         //gl_shader control
