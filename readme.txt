@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.XX [XX July 2024] =
+
+* Added: Item wrapper link option added in tango widget
+
 = 3.14.14 [14th July 2024] =
 
 * Updated: UIKit framework updated
