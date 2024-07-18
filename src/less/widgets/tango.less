@@ -73,6 +73,8 @@
         text-transform: capitalize;
         transform: translateX(50px);
         transition: transform .3s cubic-bezier(.3, 0, .3, 1);
+        position: relative;
+        z-index: 1;
         a {
             color: #eff1ff;
             text-decoration: none;
@@ -205,4 +207,13 @@
             }
         }
     }
+}
+.bdt-tango-item-wrap-link {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
 }

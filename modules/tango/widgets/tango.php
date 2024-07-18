@@ -297,11 +297,20 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'item_up_down',
 			[
-				'label'   => esc_html__('Item Up Down', 'bdthemes-prime-slider') .BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'   => esc_html__('Item Up Down', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-item-up-down-',
 				'render_type'  => 'template',
 				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_control(
+			'item_wrapper_link',
+			[
+				'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'type'    => Controls_Manager::SWITCHER,
+				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1141,42 +1150,43 @@ class Tango extends Widget_Base {
 	public function render_slides_loop() {
         $settings = $this->get_settings_for_display();
 
-        foreach ($settings['slides'] as $slide) : ?>
+        foreach ($settings['slides'] as $slide) : 
+		
+			if(!empty($slide['title_link']['is_external'])){
+				$target = 'target="_blank"';
+			} else {
+				$target = '';
+			}
+		
+			?>
 
             <div class="swiper-slide bdt-item">
-					<div class="bdt-image-wrap">
-						<?php $this->rendar_item_image($slide); ?>
-					</div>
-					<div class="bdt-content-wrap">
+				<div class="bdt-image-wrap">
+					<?php $this->rendar_item_image($slide); ?>
+				</div>
+				<div class="bdt-content-wrap">
 
-					<?php if ($slide['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
-							<div class="bdt-subtitle" data-reveal="reveal-active">
-								<?php echo wp_kses_post($slide['sub_title']); ?>
-							</div>
-						<?php endif; ?>
+				<?php if ($slide['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
+						<div class="bdt-subtitle" data-reveal="reveal-active">
+							<?php echo wp_kses_post($slide['sub_title']); ?>
+						</div>
+					<?php endif; ?>
 
-						<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
-							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
-								<?php if ('' !== $slide['title_link']['url']) : ?>
-
-									<?php
-										if(!empty($slide['title_link']['is_external'])){
-											$target = 'target="_blank"';
-										} else {
-											$target = '';
-										}
-										?>
-
-									<a href="<?php echo esc_url($slide['title_link']['url']); ?>" <?php echo wp_kses_post($target); ?>>
-									<?php endif; ?>
-									<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
-									<?php if ('' !== $slide['title_link']['url']) : ?>
-									</a>
+					<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
+						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
+							<?php if ('' !== $slide['title_link']['url']) : ?>
+								<a href="<?php echo esc_url($slide['title_link']['url']); ?>" <?php echo wp_kses_post($target); ?>>
 								<?php endif; ?>
-							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
-						<?php endif; ?>
-					</div>
-
+								<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
+								<?php if ('' !== $slide['title_link']['url']) : ?>
+								</a>
+							<?php endif; ?>
+						</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
+					<?php endif; ?>
+				</div>
+				<?php if ($settings['item_wrapper_link'] == 'yes' and '' !== $slide['title_link']['url']) : ?>
+					<a class="bdt-tango-item-wrap-link" href="<?php echo esc_url($slide['title_link']['url']); ?>" <?php echo wp_kses_post($target); ?>></a>
+				<?php endif; ?>
 			</div>
 
         <?php endforeach;
