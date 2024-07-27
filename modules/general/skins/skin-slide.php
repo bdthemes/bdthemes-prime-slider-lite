@@ -210,6 +210,7 @@ class Skin_Slide extends Elementor_Skin_Base {
 
         </div>
 
+        <?php if ( $settings['show_button_text'] == 'yes' or 'yes' == $settings['show_excerpt'] ) : ?>
         <div class="bdt-slide-featured bdt-flex">
             
             <?php if ($slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] )) : ?>
@@ -225,6 +226,7 @@ class Skin_Slide extends Elementor_Skin_Base {
             </div>
 
         </div>
+        <?php endif; ?>
 
         <?php
     }

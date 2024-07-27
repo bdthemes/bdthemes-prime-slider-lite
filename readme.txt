@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.14.X [XX July 2024] =
+
+* Added: Skin slide secondary shape color option added in general widget
+
 = 3.14.15 [18th July 2024] =
 
 * Added: Item wrapper link option added in tango widget (Thanks to Luxantica)

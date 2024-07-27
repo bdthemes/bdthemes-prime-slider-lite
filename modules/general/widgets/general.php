@@ -769,6 +769,20 @@ class General extends Widget_Base {
 				],
 			]
 		);
+		$this->add_control(
+			'secondary_shape_color',
+			[ 
+				'label'     => __( 'Secondary Shape Color', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide:after' => 'background: {{VALUE}};',
+				],
+				'condition' => [ 
+					'_skin' => 'slide',
+				],
+			]
+		);
 
 		$this->start_controls_tabs( 'slider_item_style' );
 
