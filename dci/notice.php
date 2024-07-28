@@ -21,7 +21,7 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 						<?php esc_html_e( 'Never miss an important update.', 'data-collector-insights' ); ?>
 					</h2>
 					<p class="dci-desc">
-						<?php esc_html_e( 'Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.', 'data-collector-insights' ); ?>
+						<?php esc_html_e( 'Get notified when there are new updates available for your plugins and themes. In the current version of this message it is clear that you are being sent a confirmation email to confirm your opt-in.', 'data-collector-insights' ); ?>
 					</p>
 				</div>
 				<div class="dci-actions">

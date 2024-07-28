@@ -14,18 +14,16 @@ if ( ! function_exists( 'dci_dynamic_init' ) ) {
 			return;
 		}
 
-		$menu_slug = isset( $params['menu']['slug'] ) ? $params['menu']['slug'] : false;
-
-		if ( ! $menu_slug ) {
-			return;
-		}
-
+		$menu_slug    = isset( $params['menu']['slug'] ) ? $params['menu']['slug'] : false;
 		$current_page = isset( $_GET['page'] ) ? $_GET['page'] : false;
+		$text_domain  = isset( $params['text_domain'] ) && !empty( $params['text_domain'] ) ? $params['text_domain'] : $params['slug'];
+
 		/**
-		 * Attach SDK to current page
+		 * For Attach SDK to current page
 		 */
 		$params['current_page'] = $current_page;
 		$params['menu_slug']    = $menu_slug;
+		$params['text_domain']  = $text_domain;
 
 		/**
 		 * Include SDK
