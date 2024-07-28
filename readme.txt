@@ -3,13 +3,13 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.6
+Tested up to: 6.6.1
 Requires PHP: 7.4.0
-Stable tag: 3.14.15
+Stable tag: 3.15.0
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
-Elementor tested up to: 3.23.1
+Elementor tested up to: 3.23.3
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -172,10 +172,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.14.X [XX July 2024] =
+= 3.15.0 [28th July 2024] =
 
 * Added: Element caching feature added
 * Added: Skin slide secondary shape color option added in general widget
+* Updated: System improved
 
 = 3.14.15 [18th July 2024] =
 
