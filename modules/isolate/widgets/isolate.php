@@ -75,7 +75,11 @@ class Isolate extends Widget_Base {
         $this->add_skin(new Skins\Skin_Slice($this));
     }
 
-    protected function register_controls() {
+    protected function is_dynamic_content(): bool {
+		return false;
+	}
+
+	protected function register_controls() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_sliders',
