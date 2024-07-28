@@ -54,6 +54,10 @@ class Omatic extends Widget_Base {
 		return 'https://youtu.be/ndqeKBM8wfw?si=F3-PLdDn_79QizNM';
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_controls() {
 
 		$this->start_controls_section(

@@ -52,6 +52,10 @@ class Pagepiling extends Widget_Base {
 		return 'https://youtu.be/L7eWKJaZj5I';
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_controls() {
 
 		$this->start_controls_section(

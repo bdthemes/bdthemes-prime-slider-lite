@@ -65,6 +65,10 @@ class Sequester extends Widget_Base {
 		return 'https://youtu.be/pk5kCstNHBY';
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_controls() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 

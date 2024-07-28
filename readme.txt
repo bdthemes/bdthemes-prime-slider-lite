@@ -174,6 +174,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.14.X [XX July 2024] =
 
+* Added: Element caching feature added
 * Added: Skin slide secondary shape color option added in general widget
 
 = 3.14.15 [18th July 2024] =

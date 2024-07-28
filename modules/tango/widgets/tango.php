@@ -63,6 +63,10 @@ class Tango extends Widget_Base {
 		return 'https://youtu.be/OdXH9cSgdz4';
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_controls() {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 

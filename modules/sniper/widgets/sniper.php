@@ -53,6 +53,10 @@ class Sniper extends Widget_Base {
 		return 'https://youtu.be/KZstgwk-pog?si=k0t9Gj7POSuEzDIi';
 	}
 
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	protected function register_controls() {
 
 		$this->start_controls_section(

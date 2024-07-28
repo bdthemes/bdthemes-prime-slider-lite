@@ -69,7 +69,11 @@ class Flogia extends Widget_Base {
         return 'https://youtu.be/Ayo1oEALF_8';
     }
 
-    protected function register_controls() {
+    protected function is_dynamic_content(): bool {
+		return false;
+	}
+
+	protected function register_controls() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_layout',
