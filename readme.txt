@@ -174,6 +174,10 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.15.0 [28th July 2024] =
 
+* Added: Button vertical ofset added in Multiscroll widget (Thanks to Fouzi) 
+
+= 3.15.0 [28th July 2024] =
+
 * Added: Element caching feature added
 * Added: Skin slide secondary shape color option added in general widget
 * Updated: System improved

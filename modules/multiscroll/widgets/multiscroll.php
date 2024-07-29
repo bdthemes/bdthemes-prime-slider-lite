@@ -53,10 +53,6 @@ class Multiscroll extends Widget_Base {
 		return 'https://youtu.be/uzBHDw_mdRE';
 	}
 
-	protected function is_dynamic_content(): bool {
-		return false;
-	}
-
 	protected function register_controls() {
 
 		$this->start_controls_section(
@@ -438,6 +434,26 @@ class Multiscroll extends Widget_Base {
 					'show_button' => 'yes'
 				],
 				'classes'    => BDTPS_CORE_IS_PC
+			]
+		);
+		
+		$this->add_responsive_control(
+			'button_vertical_offset',
+			[
+				'label' => esc_html__('Button Vertical Offset', 'bdthemes-prime-slider'),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -300,
+						'max' => 300,
+					],
+				],
+				'default' => [
+					'size' => 0,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-mltiscroll-slider-button' => 'transform: translateY({{SIZE}}{{UNIT}});',
+				],
 			]
 		);
 
