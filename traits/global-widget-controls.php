@@ -2398,7 +2398,23 @@ trait Global_Widget_Controls {
 		}
 	}
 
-
-
-
+	protected function ps_taxonomy_switcher() {		
+		switch ( $this->get_settings( 'posts_source' ) ) {
+			case 'post':
+				$taxonomy = 'category';
+				break;
+			case 'product':
+				$taxonomy = 'product_cat';
+				break;
+			case 'portfolio':
+				$taxonomy = 'product_filter';
+				break;
+			case 'bdthemes-testimonial':
+				$taxonomy = 'testimonial_categories';
+				break;
+			case 'faq':
+				$taxonomy = 'faq_filter';
+				break;
+		}
+	}
 }
