@@ -16,10 +16,11 @@ if ( ! function_exists( 'dci_deactivate_feedback' ) ) {
 		$dci_name     = isset( $data['name'] ) ? $data['name'] : '';
 		$nonce        = isset( $data['nonce'] ) ? $data['nonce'] : '';
 		$slug         = isset( $data['slug'] ) ? $data['slug'] : '';
+		$plugin_deactivate_id         = isset( $data['plugin_deactivate_id'] ) ? $data['plugin_deactivate_id'] : '';
 
 		$deactivate_url = wp_nonce_url(
-			admin_url( 'plugins.php?action=deactivate&plugin=' . $slug . '/' . $slug . '.php' ),
-			'deactivate-plugin_' . $slug . '/' . $slug . '.php'
+			admin_url( 'plugins.php?action=deactivate&plugin=' . $slug . '/' . $plugin_deactivate_id . '.php' ),
+			'deactivate-plugin_' . $slug . '/' . $plugin_deactivate_id . '.php'
 		);
 
 		$plugin_page_url = admin_url( 'plugins.php' );
@@ -27,14 +28,14 @@ if ( ! function_exists( 'dci_deactivate_feedback' ) ) {
 		/**
 		 * If deactivate id not match with Slug
 		 */
-		$plugin_deactivate_id = $slug;
+		// $plugin_deactivate_id = $slug;
 
-		if ( false !== $data['plugin_deactivate_id'] ) {
-			$plugin_deactivate_id = $data['plugin_deactivate_id'];
-		}
+		// if ( false !== $data['plugin_deactivate_id'] ) {
+		// 	$plugin_deactivate_id = $data['plugin_deactivate_id'];
+		// }
 
 		?>
-		<div class="dci-feedback-wrapper" id="<?php echo esc_attr( $plugin_deactivate_id ); ?>" style="display:none;">
+		<div class="dci-feedback-wrapper" id="<?php echo esc_attr( $slug ); ?>" style="display:none;">
 			<div class="dci-feedback-card">
 				<h2><?php esc_html_e( 'Give feedback', 'data-collector-insights' ); ?></h2>
 				<p><?php esc_html_e( 'Goodbyes are never easy. If you have a moment, please share your feedback on how we can improve.', 'data-collector-insights' ); ?>

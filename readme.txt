@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XXth July 2024] =
+
+* Fixed: Plugin deactivation issue fixed (Thanks to Moin Ahmed) 
+
 = 3.15.0 [28th July 2024] =
 
 * Added: Button vertical ofset added in Multiscroll widget (Thanks to Fouzi) 

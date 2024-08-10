@@ -166,7 +166,8 @@ if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
 			'plugin_title'        => 'Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', // You can describe your plugin title here
 			'plugin_icon'         => BDTPS_CORE_ASSETS_URL . 'images/logo.png',
 			'api_endpoint'        => 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
-			'slug'                => 'bdthemes-prime-slider-lite',
+			'slug'                => 'bdthemes-prime-slider-lite', // plugin folder name
+			'plugin_deactivate_id'                => 'bdthemes-prime-slider', // plugin file name
 			'menu'                => array(
 				'slug' => 'prime_slider_options',
 			),
