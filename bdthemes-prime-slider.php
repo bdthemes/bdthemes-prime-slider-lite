@@ -160,21 +160,23 @@ if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
 		require_once dirname( __FILE__ ) . '/dci/start.php';
 
 		dci_dynamic_init( array(
-			'sdk_version'         => '1.2.0',
-			'product_id'          => 2,
-			'plugin_name'         => 'Prime Slider', // make simple, must not empty
-			'plugin_title'        => 'Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', // You can describe your plugin title here
-			'plugin_icon'         => BDTPS_CORE_ASSETS_URL . 'images/logo.png',
-			'api_endpoint'        => 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
-			'slug'                => 'bdthemes-prime-slider-lite',
-			'menu'                => array(
-				'slug' => 'prime_slider_options',
+			'sdk_version'         	=> '1.2.1',
+			'product_id'          	=> 2,
+			'plugin_name'         	=> 'Prime Slider', // make simple, must not empty
+			'plugin_title'        	=> 'Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', // You can describe your plugin title here
+			'plugin_icon'         	=> BDTPS_CORE_ASSETS_URL . 'images/logo.png',
+			'api_endpoint'        	=> 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
+			'slug'                	=> 'bdthemes-prime-slider-lite',
+			'core_file'           	=> 'bdthemes-prime-slider',
+			'plugin_deactivate_id'	=> 'bdthemes-prime-slider-lite',
+			'menu'                	=> array(
+				'slug'	=> 'prime_slider_options',
 			),
-			'public_key'          => 'pk_DktcEizxpygp4RjRkhYtVrtseZPaHrtr',
-			'is_premium'          => false,
-			'popup_notice'        => true,
-			'deactivate_feedback' => true,
-			'plugin_msg'          => '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.</p>',
+			'public_key'          	=> 'pk_DktcEizxpygp4RjRkhYtVrtseZPaHrtr',
+			'is_premium'          	=> true,
+			'popup_notice'        	=> false,
+			'deactivate_feedback' 	=> true,
+			'plugin_msg'          	=> '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.</p>',
 		) );
 
 	}
