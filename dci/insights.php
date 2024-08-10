@@ -16,7 +16,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 	 */
 	class Insights_SDK {
 
-		public $version = '1.3.0';
+		public $version;
 
 		public $dci_name;
 		public $dci_allow_name;
@@ -32,8 +32,9 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 * @return void
 		 */
 		public function __construct( $params ) {
-			$this->params      = $params;
-			$this->text_domain = $params['text_domain'];
+			$this->params      	= $params;
+			$this->text_domain 	= isset($params['text_domain']) ? $params['text_domain'] : 'dci';
+			$this->version    	= isset($params['sdk_version']) ? $params['sdk_version'] : '1.0.0';
 
 			add_action( 'wp_ajax_dci_sdk_insights', array( $this, 'dci_sdk_insights' ) );
 			add_action( 'wp_ajax_dci_sdk_dismiss_notice', array( $this, 'dci_sdk_dismiss_notice' ) );
@@ -216,6 +217,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 			$dci_data['api_endpoint']         = $params['api_endpoint'];
 			$dci_data['public_key']           = $params['public_key'];
 			$dci_data['product_id']           = $params['product_id'];
+			$dci_data['core_file'] 			  = isset( $params['core_file'] ) ? $params['core_file'] : false;
 			$dci_data['plugin_deactivate_id'] = isset( $params['plugin_deactivate_id'] ) ? $params['plugin_deactivate_id'] : false;
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'dci_enqueue_scripts' ) );

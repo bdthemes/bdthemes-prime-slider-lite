@@ -17,9 +17,19 @@ if ( ! function_exists( 'dci_deactivate_feedback' ) ) {
 		$nonce        = isset( $data['nonce'] ) ? $data['nonce'] : '';
 		$slug         = isset( $data['slug'] ) ? $data['slug'] : '';
 
+
+		/**
+		 * If Core file name not match with Slug
+		 */
+		$core_file = $slug;
+
+		if ( false !== $data['core_file'] ) {
+			$core_file = $data['core_file'];
+		}
+
 		$deactivate_url = wp_nonce_url(
-			admin_url( 'plugins.php?action=deactivate&plugin=' . $slug . '/' . $slug . '.php' ),
-			'deactivate-plugin_' . $slug . '/' . $slug . '.php'
+			admin_url( 'plugins.php?action=deactivate&plugin=' . $slug . '/' . $core_file . '.php' ),
+			'deactivate-plugin_' . $slug . '/' . $core_file . '.php'
 		);
 
 		$plugin_page_url = admin_url( 'plugins.php' );
