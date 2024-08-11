@@ -174,6 +174,10 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.15.1 [10th August 2024] =
 
+* Fixed: Image radius issue fixed in tango widget
+
+= 3.15.1 [10th August 2024] =
+
 * Updated: System improved
 
 = 3.15.0 [28th July 2024] =
