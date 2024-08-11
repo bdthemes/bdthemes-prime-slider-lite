@@ -171,10 +171,10 @@ class Tango extends Widget_Base {
 				'label'   => __('Item Gap', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SLIDER,
 				'default' => [
-					'size' => 20,
+					'size' => 40,
 				],
 				'tablet_default' => [
-					'size' => 20,
+					'size' => 30,
 				],
 				'mobile_default' => [
 					'size' => 0,
@@ -589,7 +589,7 @@ class Tango extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider-tango .bdt-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; clip-path: inset(10% 10% 10% 10% round {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}});',
+					'{{WRAPPER}} .bdt-prime-slider-tango .bdt-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; clip-path: inset(10% 0 10% 0 round {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}});',
 				],
 			]
 		);
