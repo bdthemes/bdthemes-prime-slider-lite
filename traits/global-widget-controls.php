@@ -2398,7 +2398,8 @@ trait Global_Widget_Controls {
 		}
 	}
 
-	protected function ps_taxonomy_switcher() {		
+	protected function ps_taxonomy_switcher() {	
+		$taxonomy = '';	
 		switch ( $this->get_settings( 'posts_source' ) ) {
 			case 'post':
 				$taxonomy = 'category';
@@ -2418,11 +2419,7 @@ trait Global_Widget_Controls {
 			case 'courses':
 				$taxonomy = 'course-category';
 				break;
-			default:
-				$taxonomy = null; // Optional: Handle unknown cases
-				break;
 		}
-
 		return $taxonomy;
 	}
 
