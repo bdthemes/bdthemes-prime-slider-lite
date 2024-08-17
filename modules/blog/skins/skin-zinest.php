@@ -21,14 +21,6 @@ class Skin_Zinest extends Elementor_Skin_Base {
         return esc_html__('Zinest', 'bdthemes-prime-slider');
     }
 
-    public function render_category() {
-?>
-        <div class="bdt-ps-category" data-reveal="reveal-active">
-            <?php echo wp_kses_post(get_the_category_list(', ')); ?>
-        </div>
-    <?php
-    }
-
     public function render_navigation_arrows() {
         $settings = $this->parent->get_settings_for_display();
 
@@ -165,7 +157,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
                         <?php if ('yes' == $settings['show_category']) : ?>
                             <div class="bdt-ps-category-wrapper" data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0">
-                                <?php $this->render_category(); ?>
+                                <?php $this->parent->render_category(); ?>
                             </div>
                         <?php endif; ?>
 
