@@ -192,7 +192,7 @@ class Prime_Slider_Loader {
 			wp_register_script( 'jquery-pagepiling', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.pagepiling.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
 		}
 		if ( prime_slider_is_widget_enabled( 'knily' ) or prime_slider_is_third_party_enabled( 'woolamp' ) ) {
-			wp_register_script( 'goodshare', BDTPS_CORE_ASSETS_URL . 'vendor/js/goodshare.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'bdt-goodshare', BDTPS_CORE_ASSETS_URL . 'vendor/js/goodshare.min.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
 		}
 
 		if ( prime_slider_is_third_party_enabled( 'woocircle' ) ) {
