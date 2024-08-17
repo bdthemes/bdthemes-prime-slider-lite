@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.6.1
 Requires PHP: 7.4.0
-Stable tag: 3.15.1
+Stable tag: 3.15.2
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.0.0
@@ -172,9 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.15.X [XXth August 2024] =
+= 3.15.2 [17th August 2024] =
 
 * Added: Category Taxonomy support added for some of post types ( Thanks to Matthieu Verneau )
+* Fixed: Animation conflict issue fixed
 
 = 3.15.1 [10th August 2024] =
 
@@ -193,75 +194,6 @@ https://youtu.be/XjFiW5rFrac
 * Added: Element caching feature added
 * Added: Skin slide secondary shape color option added in general widget
 * Updated: System improved
-
-= 3.14.15 [18th July 2024] =
-
-* Added: Item wrapper link option added in tango widget (Thanks to Luxantica)
-* Updated: UIKit framework updated
-
-= 3.14.14 [14th July 2024] =
-
-* Updated: UIKit framework updated
-
-= 3.14.13 [2nd July 2024] =
-
-* Fixed: Syntax error fixed (Thanks to itapress)
-
-= 3.14.12 [1st July 2024] =
-
-* Fixed: Translation issue fixed (Thanks to itapress)
-
-= 3.14.11 [27th June 2024] =
-
-* Added: Wrapper spacing & navigation size option added in isolate widget
-
-= 3.14.10 [24th June 2024] =
-
-* Added: Responsive Viewport Height added (Thanks to Jade)
-* Fixed: Text Domain and Translation issue fixed (Thanks to itapress)
-
-= 3.14.9 [12th June 2024] =
-
-* Added: Item up down option added in tango widget
-
-= 3.14.8 [5th June 2024] =
-
-* Fixed: Thumbs issue fixed in flogia widget
-* Updated: Security improved in pacific widget
-
-= 3.14.7 [29th May 2024] =
-
-* Fixed: Skin folio social design issue fixed in blog widget
-
-= 3.14.6 [21th May 2024] =
-
-* Fixed: PHP warning fixed in Sequester widget
-
-= 3.14.5 [5th May 2024] =
-
-* Added: Navigation horizontal offset added in flogia widget
-
-= 3.14.4 [2nd May 2024] =
-
-* Fixed: Security issue fixed
-
-= 3.14.3 [30th April 2024] =
-
-* Fixed: Modal issue fixed in woocircle widget
-* Fixed: Item gap issue fixed in tango widget
-
-= 3.14.2 [21th April 2024] =
-
-* Fixed: Security issue fixed
-
-= 3.14.1 [17th April 2024] =
-
-* Fixed: Security issue fixed
-
-= 3.14.0 [8th April 2024] =
-
-* Added: Thumbs scroll option added in flogia widget
-* Updated: Admin dashboard system improved
 
 Details [changelog here](https://feedback.bdthemes.com/announcements?category=category_7wo5zoxl)
 
