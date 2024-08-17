@@ -1392,9 +1392,11 @@ class Rubix extends Widget_Base {
 			return;
 		}
 
+		$post_id = get_the_ID();
+
 		?>
 		<div class="bdt-category" data-reveal="reveal-active">
-			<?php echo wp_kses_post( get_the_category_list( ' ' ) ); ?>
+		<?php echo $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ); ?>
 		</div>
 		<?php
 	}

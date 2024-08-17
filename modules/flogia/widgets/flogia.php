@@ -1215,9 +1215,11 @@ class Flogia extends Widget_Base {
     }
 
     public function render_category() {
+
+        $post_id = get_the_ID();
         ?>
         <span class="bdt-ps-category" data-reveal="reveal-active">
-            <span><?php echo get_the_category_list(', '); ?></span>
+            <span><?php echo $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ); ?></span>
         </span>
         <?php
     }

@@ -2398,7 +2398,37 @@ trait Global_Widget_Controls {
 		}
 	}
 
+	protected function ps_taxonomy_switcher() {	
+		$taxonomy = '';	
+		switch ( $this->get_settings( 'posts_source' ) ) {
+			case 'post':
+				$taxonomy = 'category';
+				break;
+			case 'product':
+				$taxonomy = 'product_cat';
+				break;
+			case 'portfolio':
+				$taxonomy = 'product_filter';
+				break;
+			case 'bdthemes-testimonial':
+				$taxonomy = 'testimonial_categories';
+				break;
+			case 'faq':
+				$taxonomy = 'faq_filter';
+				break;
+			case 'courses':
+				$taxonomy = 'course-category';
+				break;
+		}
+		return $taxonomy;
+	}
 
-
-
+	// General function to get a list of terms for any taxonomy
+	protected function ps_get_taxonomy_list( $post_id, $taxonomy = 'category' ) {
+		$terms = get_the_term_list( $post_id, $taxonomy, '', ' ' );
+		if ( is_wp_error( $terms ) || !$terms ) {
+			return '';
+		}
+		return $terms;
+	}
 }

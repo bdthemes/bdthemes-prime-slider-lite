@@ -989,10 +989,11 @@ class Mercury extends Widget_Base {
         if ( !$this->get_settings( 'show_category' ) ) {
             return;
         }
+        $post_id = get_the_ID();
 
         ?>
         <div class="bdt-category" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
-            <?php echo wp_kses_post(get_the_category_list( ' ' )); ?>
+        <?php echo $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ); ?>
         </div>
         <?php
     }

@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XXth August 2024] =
+
+* Added: Category Taxonomy support added for some of post types ( Thanks to Matthieu Verneau )
+
 = 3.15.1 [10th August 2024] =
 
 * Fixed: Image radius issue fixed in tango widget
