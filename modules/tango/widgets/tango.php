@@ -1070,8 +1070,7 @@ class Tango extends Widget_Base {
 
 		$this->add_render_attribute( 'prime-slider', 'class', 'bdt-prime-slider' );
 
-		$swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute('swiper', 'class', 'swiper-tango ' . $swiper_class);
+		$this->add_render_attribute('swiper', 'class', 'swiper-tango swiper');
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider' ); ?>>

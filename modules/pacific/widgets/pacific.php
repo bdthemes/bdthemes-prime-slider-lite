@@ -1331,8 +1331,7 @@ class Pacific extends Widget_Base {
 		);
 
 		$layout_style = 'bdt-slider-style-' . $settings['layout_style'];
-		$swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute( 'swiper', 'class', 'swiper-pacific ' . $swiper_class . ' ' . $layout_style );
+		$this->add_render_attribute( 'swiper', 'class', 'swiper-pacific swiper' . $layout_style );
 
 
 		?>

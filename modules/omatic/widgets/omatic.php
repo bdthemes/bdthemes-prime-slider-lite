@@ -1243,8 +1243,7 @@ class Omatic extends Widget_Base {
 			]
 		);
 
-		$swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute('swiper', 'class', 'swiper-carousel ' . $swiper_class);
+		$this->add_render_attribute('swiper', 'class', 'swiper-carousel swiper');
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider-omatic' ); ?>>

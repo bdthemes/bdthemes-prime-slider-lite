@@ -1850,8 +1850,7 @@ class Storker extends Widget_Base {
             ]
         );
 
-        $swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute('swiper', 'class', 'swiper-storker ' . $swiper_class);
+		$this->add_render_attribute('swiper', 'class', 'swiper-storker swiper');
 
         ?>
         <div <?php $this->print_render_attribute_string('prime-slider'); ?>>
@@ -1943,8 +1942,7 @@ class Storker extends Widget_Base {
             return;
         }
 
-        $swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-        $this->add_render_attribute('swiper-thumbs', 'class', 'bdt-storker-thumbs reveal-muted ' . $swiper_class);
+        $this->add_render_attribute('swiper-thumbs', 'class', 'bdt-storker-thumbs reveal-muted swiper');
 
         ?>
         
