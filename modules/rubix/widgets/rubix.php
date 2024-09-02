@@ -1530,8 +1530,7 @@ class Rubix extends Widget_Base {
 			]
 		);
 
-		$swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute( 'swiper', 'class', 'bdt-main-slider ' . $swiper_class );
+		$this->add_render_attribute( 'swiper', 'class', 'bdt-main-slider swiper' );
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider' ); ?>>
@@ -1616,8 +1615,7 @@ class Rubix extends Widget_Base {
 			return;
 		}
 
-		$swiper_class = Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		$this->add_render_attribute( 'swiper-thumbs', 'class', 'bdt-thumb-slider ' . $swiper_class );
+		$this->add_render_attribute( 'swiper-thumbs', 'class', 'bdt-thumb-slider swiper' );
 
 		?>
 
