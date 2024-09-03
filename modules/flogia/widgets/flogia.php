@@ -241,6 +241,28 @@ class Flogia extends Widget_Base {
                 'label' => esc_html__('Show Navigation', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'navigation_position',
+            [
+                'label' => esc_html__('Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC . BDTPS_CORE_NC,
+                'type' => Controls_Manager::SELECT,
+                'default' => 'center-left',
+                'options' => [
+                    'center-left' => esc_html__('Center Left', 'bdthemes-prime-slider'),
+                    'center-right' => esc_html__('Center Right', 'bdthemes-prime-slider'),
+                    'top-left' => esc_html__('Top Left', 'bdthemes-prime-slider'),
+                    'top-right' => esc_html__('Top Right', 'bdthemes-prime-slider'),
+                    'bottom-left' => esc_html__('Bottom Left', 'bdthemes-prime-slider'),
+                    'bottom-center' => esc_html__('Bottom Center', 'bdthemes-prime-slider'),
+                    'bottom-right' => esc_html__('Bottom Right', 'bdthemes-prime-slider'),
+                ],
+                'condition' => [
+                    'show_navigation_arrows_dots' => 'yes',
+                ],
+                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -1167,7 +1189,24 @@ class Flogia extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-navigation-arrows' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-navigation-arrows' => 'margin-right: {{SIZE}}{{UNIT}}; margin-left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'nav_vertical_offset',
+            [
+                'label' => __('Vertical Offset', 'bdthemes-prime-slider'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-navigation-arrows' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1226,13 +1265,30 @@ class Flogia extends Widget_Base {
 
     public function render_navigation_arrows_dots() {
         $settings = $this->get_settings_for_display();
+
+        if (!$settings['show_navigation_arrows_dots']) {
+            return;
+        }
+        
+        if ($settings['navigation_position'] == 'center-left' || $settings['navigation_position'] == 'center-right') {
+            $this->add_render_attribute('navigation_arrows_dots', 'class', 'bdt-navigation-arrows bdt-position-large bdt-position-z-index reveal-muted bdt-position-' . $settings['navigation_position']);
+        } else {
+            $this->add_render_attribute('navigation_arrows_dots', 'class', 'bdt-flex bdt-flex-middle bdt-navigation-arrows bdt-position-large bdt-position-z-index reveal-muted bdt-position-' . $settings['navigation_position']);
+        }
+
+        if ($settings['navigation_position'] == 'center-left' || $settings['navigation_position'] == 'center-right') {
+            $this->add_render_attribute('dotnav_direction', 'class', 'bdt-slideshow-nav bdt-ps-dotnav bdt-dotnav bdt-dotnav-vertical');
+        } else {
+            $this->add_render_attribute('dotnav_direction', 'class', 'bdt-slideshow-nav bdt-ps-dotnav bdt-dotnav bdt-dotnav-horizontal');
+        }
+
         ?>
 
         <?php if ($settings['show_navigation_arrows_dots']): ?>
-            <div class="bdt-navigation-arrows bdt-position-center-right bdt-position-large bdt-position-z-index  reveal-muted">
+            <div <?php $this->print_render_attribute_string('navigation_arrows_dots');?>>
                 <a class="bdt-prime-slider-previous" href="#" bdt-slidenav-previous bdt-slideshow-item="previous"></a>
 
-                <ul class="bdt-slideshow-nav bdt-ps-dotnav bdt-dotnav bdt-dotnav-vertical"></ul>
+                <ul <?php $this->print_render_attribute_string('dotnav_direction');?>></ul>
 
                 <a class="bdt-prime-slider-next" href="#" bdt-slidenav-next bdt-slideshow-item="next"></a>
             </div>

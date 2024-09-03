@@ -172,7 +172,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.15.3 [2nd August 2024] =
+= 3.15.X [XX September 2024] =
+
+* Added: Navigation position added in flogia widget
+
+= 3.15.3 [2nd September 2024] =
 
 * Updated: Swiper library old support completely removed
 
