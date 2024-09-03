@@ -84,6 +84,14 @@
 .bdt-prime-slider-flogia {
     .bdt-navigation-arrows {
         text-align: center;
+        &.bdt-flex {
+            .bdt-prime-slider-next svg, .bdt-prime-slider-previous svg {
+                color: #fff;
+                width: 8px;
+                transform: rotate(0);
+                transition: all .3s ease-out;
+            }
+        }
     }
 
     .bdt-prime-slider-next {
@@ -116,14 +124,23 @@
             }
         }
     }
+    .bdt-dotnav-horizontal {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
     .bdt-ps-dotnav {
         &.bdt-dotnav-vertical>* {
             padding-top: 0;
             margin-bottom: 5px;
         }
-
-        left: 30px;
+        &.bdt-dotnav-horizontal>* {
+            padding-left: 0;
+            margin-right: 5px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
 
         li {
             position: relative;
