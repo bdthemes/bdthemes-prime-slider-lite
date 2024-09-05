@@ -175,6 +175,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.15.X [XX September 2024] =
 
 * Added: Navigation position added in flogia widget
+* Fixed: Security issue fixed ( Thanks to Tiffany Tyson and Robert DeVore )
 
 = 3.15.3 [2nd September 2024] =
 
