@@ -2344,10 +2344,19 @@ trait Global_Widget_Controls {
 								</h3>
 							<?php endif; ?>
 
-							<?php foreach ( $settings['social_link_list'] as $link ) :
-								$tooltip = ( 'yes' == $settings['social_icon_tooltip'] ) ? ' title="' . esc_attr( $link['social_link_title'] ) . '" bdt-tooltip="pos: ' . $position . '"' : ''; ?>
+							<?php foreach ( $settings['social_link_list'] as $index => $link ) :
 
-								<a href="<?php echo esc_url( $link['social_link'] ); ?>" target="_blank" <?php echo wp_kses_post( $tooltip ); ?>>
+								$link_key = 'link_' . $index;
+								$this->add_render_attribute($link_key, 'href', $link['social_link']);
+								$this->add_render_attribute($link_key, 'target', '_blank');
+
+								if ( 'yes' == $settings['social_icon_tooltip'] ) {
+									$this->add_render_attribute( $link_key, 'title', $link['social_link_title'] );
+									$this->add_render_attribute( $link_key, 'bdt-tooltip', 'pos: ' . $position );
+								} 
+								
+								?>
+								<a <?php $this->print_render_attribute_string($link_key); ?>>
 									<span><span>
 											<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
 										</span></span>
