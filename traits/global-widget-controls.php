@@ -2347,12 +2347,12 @@ trait Global_Widget_Controls {
 							<?php foreach ( $settings['social_link_list'] as $index => $link ) :
 
 								$link_key = 'link_' . $index;
-								$this->add_render_attribute($link_key, 'href', $link['social_link']);
+								$this->add_render_attribute($link_key, 'href', esc_url($link['social_link']));
 								$this->add_render_attribute($link_key, 'target', '_blank');
 
 								if ( 'yes' == $settings['social_icon_tooltip'] ) {
-									$this->add_render_attribute( $link_key, 'title', $link['social_link_title'] );
-									$this->add_render_attribute( $link_key, 'bdt-tooltip', 'pos: ' . $position );
+									$this->add_render_attribute( $link_key, 'title', esc_attr($link['social_link_title']) );
+									$this->add_render_attribute( $link_key, 'bdt-tooltip', 'pos: ' . esc_attr($position) );
 								} 
 								
 								?>
