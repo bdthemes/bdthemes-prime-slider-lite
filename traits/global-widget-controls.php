@@ -2428,6 +2428,9 @@ trait Global_Widget_Controls {
 			case 'courses':
 				$taxonomy = 'course-category';
 				break;
+			case 'project':
+				$taxonomy = 'category';
+				break;
 		}
 		return $taxonomy;
 	}

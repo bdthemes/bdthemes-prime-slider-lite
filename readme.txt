@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [Xth September 2024] =
+
+* Added: Custom Post Type Project support added ( Thanks to Owen Kane )
+
 = 3.15.4 [5th September 2024] =
 
 * Added: Navigation position added in flogia widget
