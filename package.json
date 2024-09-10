@@ -22,11 +22,11 @@
 		"grunt-rtlcss": "^2.0.2",
 		"grunt-terser": "^2.0.0",
 		"jit-grunt": "^0.10.0",
-		"rimraf": "^5.0.5",
+		"rimraf": "^6.0.1",
 		"terser": "^5.21.0"
 	},
 	"dependencies": {
 		"uglify": "^0.1.5",
-		"uikit": "3.17.0"
+		"uikit": "3.21.12"
 	}
 }
