@@ -67,11 +67,6 @@
                 revealFX.reveal();
                 this.destroy();
             };
-            // new Waypoint({
-            //     element: revealWrapper,
-            //     handler: runReveal,
-            //     offset: "bottom-in-view",
-            // });
 
             bdtPsObserveTarget(revealWrapper, function () {
                 revealFX.reveal();
