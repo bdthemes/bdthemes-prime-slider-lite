@@ -1,8 +1,25 @@
-(function($, elementor) {
+(function ($, elementor) {
 
     'use strict';
 
-    var primeSliderScrollButton = function($scope, $) {
+    function bdtPsObserveTarget(target, callback) {
+        var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+        // Set the rootMargin to trigger when the target is 10% past the viewport
+        options.rootMargin = options.rootMargin || '10% 0px 0px 0px';
+        var observer = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    callback(entry);
+
+                    if (!options.loop)
+                        observer.unobserve(entry.target); // Unobserve after the first intersection
+                }
+            });
+        }, options);
+        observer.observe(target);
+    }
+
+    var primeSliderScrollButton = function ($scope, $) {
 
         var $primeSlider = $scope.find('.bdt-prime-slider'),
             $scrollButton = $primeSlider.find('.bdt-scroll-down'),
@@ -15,7 +32,7 @@
             return;
         }
 
-        $($scrollButton).on('click', function(event) {
+        $($scrollButton).on('click', function (event) {
             event.preventDefault();
             bdtUIkit.scroll($scrollButton, $settings).scrollTo($($selector));
         });
@@ -23,14 +40,14 @@
     };
     var RevealEffects = function ($scope, $) {
         var widgetID = $scope.data("id"),
-        $revealEnable = $scope.find(`[data-reveal-enable]`).data('reveal-enable');
-         if (($revealEnable === undefined) || ($revealEnable !== 'yes')) {
-           return;
+            $revealEnable = $scope.find(`[data-reveal-enable]`).data('reveal-enable');
+        if (($revealEnable === undefined) || ($revealEnable !== 'yes')) {
+            return;
         }
 
 
         const revealID = $('.reveal-active-' + widgetID).find(`[data-reveal="reveal-active"]`);
-        $(revealID).css({'opacity': '1' });
+        $(revealID).css({ 'opacity': '1' });
         const revealOptions = $scope.find(`[data-reveal-settings]`).data(`reveal-settings`);
         let counter = 0;
         $(revealID).each(function (index, revealWrapper) {
@@ -50,11 +67,20 @@
                 revealFX.reveal();
                 this.destroy();
             };
-            new Waypoint({
-                element: revealWrapper,
-                handler: runReveal,
-                offset: "bottom-in-view",
+            // new Waypoint({
+            //     element: revealWrapper,
+            //     handler: runReveal,
+            //     offset: "bottom-in-view",
+            // });
+
+            bdtPsObserveTarget(revealWrapper, function () {
+                revealFX.reveal();
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.8
             });
+
         });
 
         setTimeout(() => {
@@ -67,7 +93,7 @@
         }, (revealOptions.duration + counter) * 1.3);
     }
 
-    jQuery(window).on('elementor/frontend/init', function() {
+    jQuery(window).on('elementor/frontend/init', function () {
         // initialize reveal effects
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', RevealEffects);
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.slide', RevealEffects);
@@ -103,7 +129,7 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-fortune.default', RevealEffects);
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-knily.default', RevealEffects);
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-monster.default', RevealEffects);
-        
+
 
         //scroll button
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', primeSliderScrollButton);
