@@ -2351,9 +2351,9 @@ trait Global_Widget_Controls {
 								$this->add_render_attribute($link_key, 'target', '_blank');
 
 								if ( 'yes' == $settings['social_icon_tooltip'] ) {
-									$this->add_render_attribute( $link_key, 'title', esc_attr($link['social_link_title']) );
+									$this->add_render_attribute( $link_key, 'title', esc_html($link['social_link_title']) );
 									$this->add_render_attribute( $link_key, 'bdt-tooltip', 'pos: ' . esc_attr($position) );
-								} 
+								}
 								
 								?>
 								<a <?php $this->print_render_attribute_string($link_key); ?>>
