@@ -246,7 +246,7 @@ class Prime_Slider_Loader {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
 
 		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7' );
-		wp_enqueue_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER );
+		wp_enqueue_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
 	}
 
 	public function enqueue_editor_scripts() {

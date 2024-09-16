@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XXth September 2024] =
+
+* Fixed: Site js loading position fixed ( Thanks to Anupam Srivastav )
+
 = 3.15.7 [12th September 2024] =
 
 * Fixed: Security improved
