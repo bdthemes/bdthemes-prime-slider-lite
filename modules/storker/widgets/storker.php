@@ -153,9 +153,6 @@ class Storker extends Widget_Base {
          */
         $this->register_primary_thumbnail_controls();
 
-        //Global background settings Controls
-        $this->register_background_settings('.bdt-prime-slider-storker .bdt-image-wrap .bdt-storker-img');
-
         $this->end_controls_section();
 
         //New Query Builder Settings
