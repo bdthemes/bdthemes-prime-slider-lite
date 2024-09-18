@@ -175,6 +175,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.15.X [XXth September 2024] =
 
 * Fixed: Site js loading position fixed ( Thanks to Anupam Srivastav )
+* Removed: Unnecessary Background Image Settings removed from Storker widget
 
 = 3.15.7 [12th September 2024] =
 
