@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.6.2
 Requires PHP: 7.4.0
-Stable tag: 3.15.8
+Stable tag: 3.15.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
@@ -172,7 +172,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.15.X [XX September 2024] =
+= 3.15.9 [23th September 2024] =
 
 * Fixed: Security improved in general, isolate & multiscroll widgets
 
