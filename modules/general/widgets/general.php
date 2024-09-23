@@ -2321,7 +2321,7 @@ class General extends Widget_Base {
 
 			<?php
 			foreach ( $settings['social_link_list'] as $link ) :
-				$tooltip = ( 'yes' == $settings['social_icon_tooltip'] ) ? ' title="' . esc_attr( $link['social_link_title'] ) . '" bdt-tooltip="pos: ' . $position . '"' : ''; ?>
+				$tooltip = ( 'yes' == $settings['social_icon_tooltip'] ) ? ' title="' . esc_html( $link['social_link_title'] ) . '" bdt-tooltip="pos: ' . $position . '"' : ''; ?>
 
 				<a class="bdt-social-animate" href="<?php echo esc_url( $link['social_link'] ); ?>" target="_blank" <?php echo wp_kses_post( $tooltip ); ?>>
 					<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>

@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XX September 2024] =
+
+* Fixed: Security improved in general, isolate & multiscroll widgets
+
 = 3.15.8 [19th September 2024] =
 
 * Fixed: Site js loading position fixed ( Thanks to Anupam Srivastav )
