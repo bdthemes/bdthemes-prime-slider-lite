@@ -1269,7 +1269,7 @@ class Multiscroll extends Widget_Base {
 
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 							<?php if ($slide['slide_image']['url']) : ?>
@@ -1315,7 +1315,7 @@ class Multiscroll extends Widget_Base {
 
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 							<?php if ($slide['slide_image']['url']) : ?>
@@ -1375,7 +1375,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 						</div>
@@ -1417,7 +1417,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 
 						<?php if ($slide['slide_image']['url']) : ?>
 							<?php $this->rendar_item_image($slide); ?>
@@ -1469,7 +1469,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_left'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($left_bg); ?>">
 						<?php if ($slide['slide_image']['url']) : ?>
 							<?php $this->rendar_item_image($slide); ?>
 						<?php endif; ?>
@@ -1511,7 +1511,7 @@ class Multiscroll extends Widget_Base {
 					}
 					?>
 
-					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_attr($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
+					<div <?php $this->print_render_attribute_string('ms_section_right'); ?> data-label="<?php echo esc_html($slide['title']); ?>" style="<?php echo esc_attr($right_bg); ?>">
 						<div class="intro">
 							<?php $this->rendar_item_content($slide); ?>
 						</div>
