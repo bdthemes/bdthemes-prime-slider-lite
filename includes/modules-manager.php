@@ -71,7 +71,7 @@ final class Manager {
             }
             // register widget JS
             if ( ModuleService::has_module_script($module_id, BDTPS_CORE_MODULES_PATH) ) {
-                wp_register_script('ps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit', 'elementor-frontend'], BDTPS_CORE_VER, true);
+                wp_register_script('ps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit'], BDTPS_CORE_VER, true);
             }
         }
         
