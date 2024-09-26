@@ -2360,24 +2360,25 @@ class Isolate extends Widget_Base {
         $settings = $this->get_settings_for_display();
 
         $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
+        $this->add_link_attributes('slider-button', $content['button_link'], true);
 
-        if (isset($content['button_link']['url'])) {
-            $this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
+        // if (isset($content['button_link']['url'])) {
+        //     $this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
 
-            if ($content['button_link']['is_external']) {
-                $this->add_render_attribute('slider-button', 'target', '_blank', true);
-            }
+        //     if ($content['button_link']['is_external']) {
+        //         $this->add_render_attribute('slider-button', 'target', '_blank', true);
+        //     }
 
-            if ($content['button_link']['nofollow']) {
-                $this->add_render_attribute('slider-button', 'rel', 'nofollow', true);
-            }
-        } else {
-            $this->add_render_attribute('slider-button', 'href', 'javascript:void(0);', true);
-        }
+        //     if ($content['button_link']['nofollow']) {
+        //         $this->add_render_attribute('slider-button', 'rel', 'nofollow', true);
+        //     }
+        // } else {
+        //     $this->add_render_attribute('slider-button', 'href', 'javascript:void(0);', true);
+        // }
 
         ?>
 
-			<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text'])): ?>
+			<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url'])): ?>
 
 				<a <?php $this->print_render_attribute_string('slider-button');?>>
 
@@ -2421,30 +2422,29 @@ class Isolate extends Widget_Base {
 
 		if ($slide['image_link_type']) {
 			if ('google-map' == $slide['image_link_type'] and '' != $slide['image_link_google_map']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_google_map']['url']));
+                $this->add_link_attributes('lightbox-content-' . $index, $slide['image_link_google_map']);
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'iframe');
 			} elseif ('video' == $slide['image_link_type'] and '' != $slide['image_link_video']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_video']['url']));
+                $this->add_link_attributes('lightbox-content-' . $index, $slide['image_link_video']);
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'video');
 			} elseif ('youtube' == $slide['image_link_type'] and '' != $slide['lightbox_link']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['lightbox_link']['url']));
+                $this->add_link_attributes('lightbox-content-' . $index, $slide['lightbox_link']);
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', false);
 			} elseif ('vimeo' == $slide['image_link_type'] and '' != $slide['image_link_vimeo']) {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_vimeo']['url']));
+                $this->add_link_attributes('lightbox-content-' . $index, $slide['image_link_vimeo']);
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', false);
 			} else {
-				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image_link_website']['url']));
+                $this->add_link_attributes('lightbox-content-' . $index, $slide['image_link_website']);
 				$this->add_render_attribute('lightbox-content-' . $index, 'data-type', 'iframe');
 			}
 		} else {
 			if (!$image_url) {
 				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($slide['image']['url']));
+
 			} else {
 				$this->add_render_attribute('lightbox-content-' . $index, 'href', esc_url($image_url[0]));
 			}
 		}
-
-
 
         if ('shadow-pulse' == $settings['fancy_animation']) {
             $this->add_render_attribute('lightbox', 'class', 'bdt-slide-play-button bdt-position-center bdt-shadow-pulse reveal-muted', true);
@@ -2493,6 +2493,8 @@ class Isolate extends Widget_Base {
             }
         }
 
+        $this->add_link_attributes('title-link', $slide_content['title_link'], true);
+
         ?>
         <div class="bdt-slideshow-content-wrapper">
             <div class="bdt-prime-slider-wrapper">
@@ -2511,7 +2513,7 @@ class Isolate extends Widget_Base {
                             <div class="bdt-main-title">
                                 <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                     <?php if ('' !== $slide_content['title_link']['url']): ?>
-                                        <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
+                                        <a <?php $this->print_render_attribute_string('title-link');?>>
                                         <?php endif;?>
                                         <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                         <?php if ('' !== $slide_content['title_link']['url']): ?>

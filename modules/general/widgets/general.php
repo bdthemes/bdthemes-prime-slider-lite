@@ -2487,26 +2487,11 @@ class General extends Widget_Base {
 
 		$this->add_render_attribute( 'slider-button', 'class', 'bdt-slide-btn', true );
 		$this->add_render_attribute( 'slider-button', 'data-reveal', 'reveal-active', true );
-
-		if ( isset( $content['button_link']['url'] ) && ! empty( $content['button_link']['url'] ) ) {
-			$this->add_render_attribute( 'slider-button', 'href', esc_url( $content['button_link']['url'] ), true );
-
-			if ( $content['button_link']['is_external'] ) {
-				$this->add_render_attribute( 'slider-button', 'target', '_blank', true );
-			} else {
-				$this->add_render_attribute( 'slider-button', 'target', '_self', true );
-			}
-
-			if ( $content['button_link']['nofollow'] ) {
-				$this->add_render_attribute( 'slider-button', 'rel', 'nofollow', true );
-			}
-		} else {
-			$this->add_render_attribute( 'slider-button', 'href', 'javascript:void(0);', true );
-		}
+		$this->add_link_attributes( 'slider-button', $content['button_link'], true );
 
 		?>
 
-		<?php if ( $content['slide_button_text'] && ( 'yes' == $settings['show_button_text'] ) ) : ?>
+		<?php if ( $content['slide_button_text'] && ( 'yes' == $settings['show_button_text'] ) && ! empty( $content['button_link']['url'] ) ) : ?>
 
 			<a <?php $this->print_render_attribute_string( 'slider-button' ); ?>>
 
@@ -2570,25 +2555,8 @@ class General extends Widget_Base {
 
 		$this->add_render_attribute( 'slide_content_animate', 'class', 'bdt-prime-slider-content' );
 
-		if ( $slide_content['title'] ) {
-			$title_link_href   = isset( $slide_content['title_link']['url'] ) ? esc_url( $slide_content['title_link']['url'] ) : 'javascript:void(0);';
-			$title_link_target = $slide_content['title_link']['is_external'] ? '_blank' : '_self';
-
-			$this->add_render_attribute(
-				[ 
-					'title-link' => [ 
-						'class'  => [ 
-							'bdt-slider-title-link',
-						],
-						'href'   => $title_link_href,
-						'target' => $title_link_target
-					]
-				],
-				'',
-				'',
-				true
-			);
-		}
+		$this->add_render_attribute( 'title-link', 'class', 'bdt-slider-title-link', true );
+		$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
 
 		?>
 		<div class="bdt-position-z-index bdt-position-large">

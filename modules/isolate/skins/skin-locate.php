@@ -117,27 +117,29 @@ class Skin_Locate extends Elementor_Skin_Base {
         $settings = $this->parent->get_settings_for_display();
 
         $parallax_button = $parallax_sub_title = $parallax_title = $parallax_inner_excerpt = $parallax_excerpt = '';
-			if ( $settings['animation_parallax'] == 'yes' ) {
-				$parallax_sub_title     = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
-				$parallax_title 	    = ' data-bdt-slideshow-parallax="y: 75,0,-75; opacity: 1,1,0"'; 
-				$parallax_excerpt 	    = 'data-bdt-slideshow-parallax="y: 100,0,-80; opacity: 1,1,0"';
-				$parallax_button 	    = 'data-bdt-slideshow-parallax="y: 150,0,-100; opacity: 1,1,0"';
-			}
+        if ( $settings['animation_parallax'] == 'yes' ) {
+            $parallax_sub_title     = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
+            $parallax_title 	    = ' data-bdt-slideshow-parallax="y: 75,0,-75; opacity: 1,1,0"'; 
+            $parallax_excerpt 	    = 'data-bdt-slideshow-parallax="y: 100,0,-80; opacity: 1,1,0"';
+            $parallax_button 	    = 'data-bdt-slideshow-parallax="y: 150,0,-100; opacity: 1,1,0"';
+        }
 
-			if ( true === _is_ps_pro_activated() ) {
-				if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
+        if ( true === _is_ps_pro_activated() ) {
+            if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
 
-					if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
-						$parallax_sub_title = '';
-					}
-					if (in_array(".bdt-title-tag", $settings['animation_of'])) {
-						$parallax_title = '';
-					}
-					if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
-						$parallax_excerpt = '';
-					}
-				}
-			}
+                if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
+                    $parallax_sub_title = '';
+                }
+                if (in_array(".bdt-title-tag", $settings['animation_of'])) {
+                    $parallax_title = '';
+                }
+                if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
+                    $parallax_excerpt = '';
+                }
+            }
+        }
+
+        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
 
         ?>
             <div class="bdt-slideshow-content-wrapper">
@@ -158,7 +160,7 @@ class Skin_Locate extends Elementor_Skin_Base {
                                     <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> 
                                     class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                         <?php if ('' !== $slide_content['title_link']['url']) : ?>
-                                            <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
+                                            <a <?php $this->parent->print_render_attribute_string('title-link');?>>
                                             <?php endif; ?>
                                             <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                             <?php if ('' !== $slide_content['title_link']['url']) : ?>
