@@ -231,9 +231,12 @@ class Prime_Slider_Loader {
 
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
-		wp_enqueue_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.21.7' );
-		wp_enqueue_style( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-site' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		wp_register_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.21.7' );
+		wp_register_style( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-site' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 		wp_register_style( 'splitting', BDTPS_CORE_ASSETS_URL . 'vendor/css/splitting' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+
+		wp_enqueue_style( 'bdt-uikit' );
+		wp_enqueue_style( 'prime-slider-site' );
 	}
 
 
@@ -245,17 +248,22 @@ class Prime_Slider_Loader {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
 
-		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7' );
-		wp_enqueue_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+		wp_register_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7' );
+		wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery', 'elementor-frontend' ], BDTPS_CORE_VER, true );
+
+		wp_enqueue_script( 'bdt-uikit' );
+		wp_enqueue_script( 'prime-slider-site' );
 	}
 
 	public function enqueue_editor_scripts() {
 
-		wp_enqueue_script('ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [
+		wp_register_script('ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [
 			'backbone-marionette',
 			'elementor-common-modules',
 			'elementor-editor-modules',
 		], BDTPS_CORE_VER, true);
+
+		wp_enqueue_script ('ps-editor');
 
 		$_is_ps_pro_activated = false;
 		if (function_exists('ps_license_validation') && true === ps_license_validation()) {
@@ -283,25 +291,32 @@ class Prime_Slider_Loader {
 	public function enqueue_preview_styles() {
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
-		wp_enqueue_style( 'prime-slider-preview', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-preview' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
+		wp_register_style( 'prime-slider-preview', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-preview' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
+
+		wp_enqueue_style( 'prime-slider-preview' );
 	}
 
 
 	public function enqueue_editor_styles() {
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 
-		wp_enqueue_style( 'prime-slider-editor', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-editor' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
-		wp_enqueue_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		wp_register_style( 'prime-slider-editor', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-editor' . $direction_suffix . '.css', array(), BDTPS_CORE_VER );
+		wp_register_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+
+		wp_enqueue_style( 'prime-slider-editor' );
+		wp_enqueue_style( 'prime-slider-font' );
 	}
 
 
 	public function enqueue_admin_scripts() {
-		wp_enqueue_script( 'ps-notice-js', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-notice.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		wp_register_script( 'ps-notice-js', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-notice.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		$script_config = [ 
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'nonce' => wp_create_nonce( 'prime-slider' ),
 		];
 		wp_localize_script( 'ps-notice-js', 'PrimeSliderNoticeConfig', $script_config );
+
+		wp_enqueue_script( 'ps-notice-js' );
 	}
 
 
@@ -329,14 +344,14 @@ class Prime_Slider_Loader {
 		add_action( 'elementor/init', [ $this, 'prime_slider_init' ] );
 		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 
-		add_action( 'elementor/frontend/before_register_styles', [ $this, 'register_site_styles' ] );
-		add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_site_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_site_styles' ], 99999 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_site_scripts' ], 99999 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_site_styles' ], 99999 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_site_scripts' ], 99999 );
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
 		add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
 
-		add_action( 'elementor/frontend/after_register_styles', [ $this, 'enqueue_site_styles' ] );
-		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_site_scripts' ] );
 
 		// load WordPress dashboard scripts
 		add_action( 'admin_init', [ $this, 'enqueue_admin_scripts' ] );
