@@ -457,14 +457,23 @@ class General extends Widget_Base {
 			]
 		);
 
-		$repeater->add_control(
-			'social_link',
-			[ 
-				'label'   => __( 'Link', 'bdthemes-prime-slider' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider' ),
-			]
-		);
+		/**
+		 * TODO: It should be removed after 3.18.0 release
+		 */
+        $repeater->add_control(
+            'social_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::HIDDEN,
+            ]
+        );
+        $repeater->add_control(
+            'social_icon_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::URL,
+            ]
+        );
 
 		$repeater->add_control(
 			'social_icon',
@@ -479,39 +488,45 @@ class General extends Widget_Base {
 		);
 
 		$this->add_control(
-			'social_link_list',
-			[ 
-				'type'        => Controls_Manager::REPEATER,
-				'fields'      => $repeater->get_controls(),
-				'default'     => [ 
-					[ 
-						'social_link'       => __( 'http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_icon'       => [ 
-							'value'   => 'fab fa-facebook-f',
-							'library' => 'fa-brands',
-						],
-						'social_link_title' => 'Facebook',
-					],
-					[ 
-						'social_link'       => __( 'http://www.twitter.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_icon'       => [ 
-							'value'   => 'fab fa-twitter',
-							'library' => 'fa-brands',
-						],
-						'social_link_title' => 'Twitter',
-					],
-					[ 
-						'social_link'       => __( 'http://www.instagram.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_icon'       => [ 
-							'value'   => 'fab fa-instagram',
-							'library' => 'fa-brands',
-						],
-						'social_link_title' => 'Instagram',
-					],
-				],
-				'title_field' => '{{{ social_link_title }}}',
-			]
-		);
+            'social_link_list',
+            [ 
+                'type'        => Controls_Manager::REPEATER,
+                'fields'      => $repeater->get_controls(),
+                'default'     => [ 
+                    [ 
+                        'social_icon_link'       => [ 
+                            'url' => 'http://www.facebook.com/bdthemes/',
+                        ],
+                        'social_icon'       => [ 
+                            'value'   => 'fab fa-facebook-f',
+                            'library' => 'fa-brands',
+                        ],
+                        'social_link_title' => 'Facebook',
+                    ],
+                    [ 
+                        'social_icon_link'       => [ 
+                            'url' => 'http://www.twitter.com/bdthemes/',
+                        ],    
+                        'social_icon'       => [ 
+                            'value'   => 'fab fa-twitter',
+                            'library' => 'fa-brands',
+                        ],
+                        'social_link_title' => 'Twitter',
+                    ],
+                    [ 
+                        'social_icon_link'       => [ 
+                            'url' => 'http://www.instagram.com/bdthemes/',
+                        ],    
+                        'social_icon'       => [ 
+                            'value'   => 'fab fa-instagram',
+                            'library' => 'fa-brands',
+                        ],
+                        'social_link_title' => 'Instagram',
+                    ],
+                ],
+                'title_field' => '{{{ social_link_title }}}',
+            ]
+        );
 
 		$this->end_controls_section();
 
@@ -2320,13 +2335,38 @@ class General extends Widget_Base {
 			<?php endif; ?>
 
 			<?php
-			foreach ( $settings['social_link_list'] as $link ) :
-				$tooltip = ( 'yes' == $settings['social_icon_tooltip'] ) ? ' title="' . esc_html( $link['social_link_title'] ) . '" bdt-tooltip="pos: ' . $position . '"' : ''; ?>
+			foreach ( $settings['social_link_list'] as $index => $link ) :
+                
+                $link_key = 'link_' . $index;
+                $this->add_render_attribute($link_key, 'class', 'bdt-social-animate', true);
 
-				<a class="bdt-social-animate" href="<?php echo esc_url( $link['social_link'] ); ?>" target="_blank" <?php echo wp_kses_post( $tooltip ); ?>>
-					<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
-				</a>
-			<?php endforeach; ?>
+                if ( 'yes' == $settings['social_icon_tooltip'] ) {
+                    $this->add_render_attribute(
+                        [
+                            $link_key => [
+                                'title' => esc_html( $link['social_link_title'] ),
+                                'bdt-tooltip' => 'pos: ' . esc_html($position),
+                            ]
+                        ], '', '', true );
+                }                
+
+                if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
+                    $this->add_link_attributes($link_key, $link['social_icon_link']);
+                } else { // TODO: Condition should be removed after 3.18.0
+                    $this->add_render_attribute(
+                        [
+                            $link_key => [
+                                'href' => esc_attr($link['social_link']),
+                                'target' => '_blank',
+                            ]
+                        ], '', '', true );
+                }
+                
+                ?>
+                <a <?php $this->print_render_attribute_string($link_key); ?>>
+                    <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+                </a>
+            <?php endforeach; ?>
 		</div>
 
 		<?php
