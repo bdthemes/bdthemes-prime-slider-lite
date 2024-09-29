@@ -888,8 +888,9 @@ class Elysium extends Widget_Base {
 	public function render_slides_loop() {
         $settings = $this->get_settings_for_display();
 
-        foreach ($settings['slides'] as $slide) : ?>
-
+        foreach ($settings['slides'] as $slide) : 
+			$this->add_link_attributes('title_link', $slide['title_link'], true);
+			?>
             <div class="bdt-item swiper-slide">
 					<?php $this->rendar_item_image($slide); ?>
 
@@ -898,7 +899,7 @@ class Elysium extends Widget_Base {
 							<div class="bdt-title-wrap"> 
 							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
 									<?php if ('' !== $slide['title_link']['url']) : ?>
-										<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
+										<a <?php $this->print_render_attribute_string('title_link'); ?>>
 										<?php endif; ?>
 											<?php echo esc_html($slide['title']); ?>
 											<?php if ('' !== $slide['title_link']['url']) : ?>

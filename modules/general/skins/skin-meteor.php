@@ -110,22 +110,11 @@ class Skin_Meteor extends Elementor_Skin_Base {
     public function render_item_content($slide_content) {
         $settings = $this->parent->get_settings_for_display();
 
-        $this->parent->add_render_attribute(
-			[
-				'title-link' => [
-					'class' => [
-						'bdt-slider-title-link',
-					],
-					'href'   => $slide_content['title_link']['url'] ? esc_url($slide_content['title_link']['url']) : 'javascript:void(0);',
-					'target' => $slide_content['title_link']['is_external'] ? '_blank' : '_self'
-				]
-			], '', '', true
-		);
-
+        $this->parent->add_render_attribute('title-link', 'class', 'bdt-slider-title-link', true);
+        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
 
         $parallax_sub_title = 'data-bdt-slideshow-parallax="x: 300,0,-100; opacity: 1,1,0"';   
         $parallax_title     = 'data-bdt-slideshow-parallax="x: 500,0,-100; opacity: 1,1,0"';
-        $parallax_excerpt   = 'data-bdt-slideshow-parallax="y: 200,0,-100; opacity: 1,1,0"';
 
         if ( true === _is_ps_pro_activated() ) {
             if($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])){
@@ -137,10 +126,6 @@ class Skin_Meteor extends Elementor_Skin_Base {
                 if( in_array( ".bdt-title-tag" ,$settings['animation_of'] ) )
                 {
                     $parallax_title ='';
-                }
-                if( in_array( ".bdt-slider-excerpt" ,$settings['animation_of'] ) )
-                {
-                    $parallax_excerpt ='';
                 }
 
             }

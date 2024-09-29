@@ -132,22 +132,24 @@ class Skin_Slice extends Elementor_Skin_Base {
         $settings = $this->parent->get_settings_for_display();
 
         $parallax_sub_title = $parallax_title = '';
-			if ( $settings['animation_parallax'] == 'yes' ) {
-				$parallax_sub_title     = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
-				$parallax_title 	    = ' data-bdt-slideshow-parallax="y: 75,0,-75; opacity: 1,1,0"'; 
-			}
+        if ( $settings['animation_parallax'] == 'yes' ) {
+            $parallax_sub_title     = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
+            $parallax_title 	    = ' data-bdt-slideshow-parallax="y: 75,0,-75; opacity: 1,1,0"'; 
+        }
 
-			if ( true === _is_ps_pro_activated() ) {
-				if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
+        if ( true === _is_ps_pro_activated() ) {
+            if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
 
-					if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
-						$parallax_sub_title = '';
-					}
-					if (in_array(".bdt-title-tag", $settings['animation_of'])) {
-						$parallax_title = '';
-					}
-				}
-			}
+                if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
+                    $parallax_sub_title = '';
+                }
+                if (in_array(".bdt-title-tag", $settings['animation_of'])) {
+                    $parallax_title = '';
+                }
+            }
+        }
+
+        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
 
         ?>
             <div class="bdt-prime-slider-wrapper">
@@ -163,7 +165,7 @@ class Skin_Slice extends Elementor_Skin_Base {
                             <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> 
                             class="bdt-title-tag" data-reveal="reveal-active"  <?php echo wp_kses_post($parallax_title); ?>>
                                 <?php if ('' !== $slide_content['title_link']['url']) : ?>
-                                    <a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
+                                    <a <?php $this->parent->print_render_attribute_string('title-link');?>>
                                     <?php endif; ?>
                                     <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                     <?php if ('' !== $slide_content['title_link']['url']) : ?>
@@ -223,6 +225,7 @@ class Skin_Slice extends Elementor_Skin_Base {
 
 		$this->parent->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
 
+        //Button link code no need to change
 		$target_issue = '_self';
 		if ($content['button_link']['url']) {
 			$target_issue = '_self';
@@ -234,13 +237,11 @@ class Skin_Slice extends Elementor_Skin_Base {
 			if ($content['button_link']['nofollow']) {
 				$this->parent->add_render_attribute('slider-button', 'rel', 'nofollow', true);
 			}
-		} else {
-			$this->parent->add_render_attribute('slider-button', 'href', '#', true);
 		}
 	 
 		?>
 
-		<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text'])) : ?>
+		<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text']) && !empty($content['button_link']['url'])) : ?>
 
 			<a <?php $this->parent->print_render_attribute_string('slider-button'); ?> 
 			onclick="window.open('<?php echo esc_url($content['button_link']['url']); ?>', '<?php echo wp_kses_post($target_issue); ?>')">

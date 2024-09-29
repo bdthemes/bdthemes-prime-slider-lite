@@ -1176,24 +1176,11 @@ class Pagepiling extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
-
-		if ($content['button_link']['url']) {
-			$this->add_render_attribute('slider-button', 'href', esc_url($content['button_link']['url']), true);
-
-			if ($content['button_link']['is_external']) {
-				$this->add_render_attribute('slider-button', 'target', '_blank', true);
-			}
-
-			if ($content['button_link']['nofollow']) {
-				$this->add_render_attribute('slider-button', 'rel', 'nofollow', true);
-			}
-		} else {
-			$this->add_render_attribute('slider-button', 'href', '#', true);
-		}
+		$this->add_link_attributes('slider-button', $content['button_link'], true);
 
 		?>
 
-		<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text'])) : ?>
+		<?php if ( $content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url']) ) : ?>
 
 			<a <?php $this->print_render_attribute_string('slider-button'); ?>>
 
@@ -1220,7 +1207,7 @@ class Pagepiling extends Widget_Base {
 
 		// remove global lightbox
 		$this->add_render_attribute( 'lightbox-content', 'data-elementor-open-lightbox', 'no', true );
-		$this->add_render_attribute( 'lightbox-content', 'href', esc_url($slide['lightbox_link']['url']), true );
+		$this->add_link_attributes( 'lightbox-content', $slide['lightbox_link'], true );
 		
 		$this->add_render_attribute( 'lightbox', 'class', 'bdt-slide-play-button', true );
 		$this->add_render_attribute( 'lightbox', 'bdt-lightbox', 'video-autoplay: true;', true );

@@ -2231,18 +2231,20 @@ trait Global_Widget_Controls {
 			return;
 		}
 
+		$this->add_link_attributes( 'title_link', $slide['title_link'], true );
+
 		?>
-						<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?> class="
-							<?php echo esc_attr( $class ); ?>" data-reveal="<?php echo esc_attr( $data_reveal ); ?>">
-							<?php if ( '' !== $slide['title_link']['url'] ) : ?>
-								<a href="<?php echo esc_url( $slide['title_link']['url'] ); ?>">
-								<?php endif; ?>
-								<?php echo wp_kses_post( prime_slider_first_word( $slide['title'] ) ); ?>
-								<?php if ( '' !== $slide['title_link']['url'] ) : ?>
-								</a>
-							<?php endif; ?>
-						</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
-						<?php
+		<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?> class="
+			<?php echo esc_attr( $class ); ?>" data-reveal="<?php echo esc_attr( $data_reveal ); ?>">
+			<?php if ( '' !== $slide['title_link']['url'] ) : ?>
+				<a <?php $this->print_render_attribute_string('title_link'); ?>>
+				<?php endif; ?>
+				<?php echo wp_kses_post( prime_slider_first_word( $slide['title'] ) ); ?>
+				<?php if ( '' !== $slide['title_link']['url'] ) : ?>
+				</a>
+			<?php endif; ?>
+		</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
+		<?php
 	}
 
 	/**
