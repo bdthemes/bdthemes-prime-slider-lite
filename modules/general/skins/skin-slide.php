@@ -138,17 +138,8 @@ class Skin_Slide extends Elementor_Skin_Base {
     public function rendar_item_content($slide_content) {
         $settings = $this->parent->get_settings_for_display();
 
-        $this->parent->add_render_attribute(
-			[
-				'title-link' => [
-					'class' => [
-						'bdt-slider-title-link',
-					],
-					'href'   => $slide_content['title_link']['url'] ? esc_url($slide_content['title_link']['url']) : 'javascript:void(0);',
-					'target' => $slide_content['title_link']['is_external'] ? '_blank' : '_self'
-				]
-			], '', '', true
-		);
+        $this->parent->add_render_attribute('title-link', 'class', 'bdt-slider-title-link', true);
+        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
 
         $parallax_sub_title = 'data-bdt-slideshow-parallax="x: 50,0,-10; opacity: 1,1,0"';   
         $parallax_title     = 'data-bdt-slideshow-parallax="x: 100,0,-20; opacity: 1,1,0"';

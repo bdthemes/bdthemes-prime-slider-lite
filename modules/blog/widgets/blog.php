@@ -2190,15 +2190,11 @@ class Blog extends Widget_Base {
     public function render_button($post) {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
-
-        $this->add_render_attribute('slider-button', 'href', esc_url(get_permalink($post->ID)), true);
-
         ?>
 
         <?php if ('yes' == $settings['show_button_text']) : ?>
 
-            <a <?php $this->print_render_attribute_string('slider-button'); ?>>
+            <a class="bdt-slide-btn"  href="<?php echo esc_url(get_permalink($post->ID)); ?>">
 
                 <?php $this->add_render_attribute([
                         'content-wrapper' => [

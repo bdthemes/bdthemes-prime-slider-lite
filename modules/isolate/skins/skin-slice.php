@@ -225,6 +225,7 @@ class Skin_Slice extends Elementor_Skin_Base {
 
 		$this->parent->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
 
+        //Button link code no need to change
 		$target_issue = '_self';
 		if ($content['button_link']['url']) {
 			$target_issue = '_self';
@@ -236,8 +237,6 @@ class Skin_Slice extends Elementor_Skin_Base {
 			if ($content['button_link']['nofollow']) {
 				$this->parent->add_render_attribute('slider-button', 'rel', 'nofollow', true);
 			}
-		} else {
-			$this->parent->add_render_attribute('slider-button', 'href', '#', true);
 		}
 	 
 		?>
