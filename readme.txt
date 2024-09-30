@@ -172,6 +172,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XX September 2024] =
+
+* Fixed: Security improved
+* Updated: Social link controls improved
+
 = 3.15.10 [26th September 2024] =
 
 * Fixed: JS script issue fixed

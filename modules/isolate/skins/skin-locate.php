@@ -34,17 +34,41 @@ class Skin_Locate extends Elementor_Skin_Base {
 			<div <?php $this->parent->print_render_attribute_string('social-icon'); ?>>
 
 				<?php if ($label) : ?>
-					<h3><?php esc_html_e('Share Us', 'bdthemes-prime-slider'); ?></h3>
+					<h3><?php esc_html_e('Follow Us', 'bdthemes-prime-slider'); ?></h3>
 				<?php endif; ?>
 
-				<?php
-						foreach ($settings['social_link_list'] as $link) :
-							$tooltip = ('yes' == $settings['social_icon_tooltip']) ? ' title="' . esc_html($link['social_link_title']) . '" bdt-tooltip="pos: ' . $position . '"' : ''; ?>
+                <?php
+                foreach ( $settings['social_link_list'] as $index => $link ) :
+                    
+                    $link_key = 'link_' . $index;
 
-					<a href="<?php echo esc_url($link['social_link']); ?>" target="_blank" <?php echo wp_kses_post($tooltip); ?>>
-						<?php Icons_Manager::render_icon($link['social_icon'], ['aria-hidden' => 'true', 'class' => 'fa-fw']); ?>
-					</a>
-				<?php endforeach; ?>
+                    if ( 'yes' == $settings['social_icon_tooltip'] ) {
+                        $this->parent->add_render_attribute(
+                            [
+                                $link_key => [
+                                    'title' => esc_html( $link['social_link_title'] ),
+                                    'bdt-tooltip' => 'pos: ' . esc_html($position),
+                                ]
+                            ], '', '', true );
+                    }                
+
+                    if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
+                        $this->parent->add_link_attributes($link_key, $link['social_icon_link']);
+                    } else { // TODO: Condition should be removed after 3.18.0 
+                        $this->parent->add_render_attribute(
+                            [
+                                $link_key => [
+                                    'href' => esc_attr($link['social_link']),
+                                    'target' => '_blank',
+                                ]
+                            ], '', '', true );
+                    }
+                    
+                    ?>
+                    <a <?php $this->parent->print_render_attribute_string($link_key); ?>>
+                        <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+                    </a>
+                <?php endforeach; ?>
 			</div>
 
 		<?php

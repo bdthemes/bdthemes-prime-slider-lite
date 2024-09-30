@@ -529,11 +529,21 @@ class Isolate extends Widget_Base {
             ]
         );
 
+        /**
+		 * TODO: It should be removed after 3.18.0 release
+		 */
         $repeater->add_control(
             'social_link',
-            [
-                'label' => __('Link', 'bdthemes-prime-slider'),
-                'type' => Controls_Manager::TEXT,
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::HIDDEN,
+            ]
+        );
+        $repeater->add_control(
+            'social_icon_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::URL,
             ]
         );
 
@@ -552,28 +562,28 @@ class Isolate extends Widget_Base {
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'social_link' => __('http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider'),
+                        'social_icon_link' => [ 'url' => 'http://www.facebook.com/bdthemes/' ],
                         'social_icon' => [
                             'value' => 'fab fa-facebook-f',
                             'library' => 'fa-brands',
                         ],
-                        'social_link_title' => 'Facebook',
+                        'social_link_title' => __('Facebook', 'bdthemes-prime-slider'),
                     ],
                     [
-                        'social_link' => __('http://www.twitter.com/bdthemes/', 'bdthemes-prime-slider'),
+                        'social_icon_link' => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
                         'social_icon' => [
                             'value' => 'fab fa-twitter',
                             'library' => 'fa-brands',
                         ],
-                        'social_link_title' => 'Twitter',
+                        'social_link_title' => __('Twitter', 'bdthemes-prime-slider'),
                     ],
                     [
-                        'social_link' => __('http://www.instagram.com/bdthemes/', 'bdthemes-prime-slider'),
+                        'social_icon_link' => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
                         'social_icon' => [
                             'value' => 'fab fa-instagram',
                             'library' => 'fa-brands',
                         ],
-                        'social_link_title' => 'Instagram',
+                        'social_link_title' => __('Instagram', 'bdthemes-prime-slider'),
                     ],
                 ],
                 'title_field' => '{{{ social_link_title }}}',
