@@ -2410,7 +2410,7 @@ trait Global_Widget_Controls {
                     $this->add_render_attribute(
                         [
                             $link_key => [
-                                'href' => esc_attr($link['social_link']),
+                                'href' => esc_url($link['social_link']),
                                 'target' => '_blank',
                             ]
                         ], '', '', true );

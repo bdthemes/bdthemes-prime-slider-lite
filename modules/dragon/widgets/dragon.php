@@ -1089,7 +1089,7 @@ class dragon extends Widget_Base {
 				<?php endif; ?>
 
 				<div data-bdt-slideshow-parallax="x: 400,-400; opacity: 1,1,0">
-					<?php $this->render_button($slide_content, $link_key); ?>
+					<?php $this->render_button($slide_content, 'bdt-ps-button' . $link_key); ?>
 				</div>
 					
 			</div>
