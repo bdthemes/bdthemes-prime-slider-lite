@@ -453,7 +453,6 @@ class General extends Widget_Base {
 			[ 
 				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => 'Facebook',
 			]
 		);
 
@@ -501,27 +500,27 @@ class General extends Widget_Base {
                             'value'   => 'fab fa-facebook-f',
                             'library' => 'fa-brands',
                         ],
-                        'social_link_title' => 'Facebook',
-                    ],
-                    [ 
-                        'social_icon_link'       => [ 
-                            'url' => 'http://www.twitter.com/bdthemes/',
-                        ],    
-                        'social_icon'       => [ 
-                            'value'   => 'fab fa-twitter',
-                            'library' => 'fa-brands',
-                        ],
-                        'social_link_title' => 'Twitter',
-                    ],
-                    [ 
-                        'social_icon_link'       => [ 
-                            'url' => 'http://www.instagram.com/bdthemes/',
-                        ],    
-                        'social_icon'       => [ 
-                            'value'   => 'fab fa-instagram',
-                            'library' => 'fa-brands',
-                        ],
-                        'social_link_title' => 'Instagram',
+						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
+					],
+					[ 
+						'social_icon_link'       => [ 
+							'url' => 'http://www.twitter.com/bdthemes/',
+						],
+						'social_icon'       => [ 
+							'value'   => 'fab fa-twitter',
+							'library' => 'fa-brands',
+						],
+						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
+					],
+					[ 
+						'social_icon_link'       => [ 
+							'url' => 'http://www.instagram.com/bdthemes/',
+						],
+						'social_icon'       => [ 
+							'value'   => 'fab fa-instagram',
+							'library' => 'fa-brands',
+						],
+						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
                     ],
                 ],
                 'title_field' => '{{{ social_link_title }}}',
@@ -2330,7 +2329,7 @@ class General extends Widget_Base {
 
 			<?php if ( $label ) : ?>
 				<?php if ( '' !== $settings['show_share_us'] ) : ?>
-					<h3><?php esc_html_e( 'Share Us', 'bdthemes-prime-slider' ); ?></h3>
+					<h3><?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?></h3>
 				<?php endif; ?>
 			<?php endif; ?>
 
@@ -2352,7 +2351,7 @@ class General extends Widget_Base {
 
                 if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
                     $this->add_link_attributes($link_key, $link['social_icon_link']);
-                } else { // TODO: Condition should be removed after 3.18.0
+                } else { // TODO: Condition should be removed after 3.18.0 
                     $this->add_render_attribute(
                         [
                             $link_key => [

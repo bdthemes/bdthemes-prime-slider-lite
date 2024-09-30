@@ -568,13 +568,23 @@ trait Global_Widget_Controls {
 			]
 		);
 
-		$repeater->add_control(
-			'social_link',
-			[ 
-				'label' => __( 'Link', 'bdthemes-prime-slider' ),
-				'type'  => Controls_Manager::TEXT,
-			]
-		);
+		/**
+		 * TODO: It should be removed after 3.18.0 release
+		 */
+        $repeater->add_control(
+            'social_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::HIDDEN,
+            ]
+        );
+        $repeater->add_control(
+            'social_icon_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::URL,
+            ]
+        );
 
 		$repeater->add_control(
 			'social_icon',
@@ -591,28 +601,28 @@ trait Global_Widget_Controls {
 				'fields'      => $repeater->get_controls(),
 				'default'     => [ 
 					[ 
-						'social_link'       => __( 'http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider' ),
+						'social_icon_link'       => [ 'url' => 'http://www.facebook.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-facebook-f',
 							'library' => 'fa-brands',
 						],
-						'social_link_title' => 'Facebook',
+						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_link'       => __( 'http://www.twitter.com/bdthemes/', 'bdthemes-prime-slider' ),
+						'social_icon_link'       => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-twitter',
 							'library' => 'fa-brands',
 						],
-						'social_link_title' => 'Twitter',
+						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_link'       => __( 'http://www.instagram.com/bdthemes/', 'bdthemes-prime-slider' ),
+						'social_icon_link'       => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-instagram',
 							'library' => 'fa-brands',
 						],
-						'social_link_title' => 'Instagram',
+						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
 					],
 				],
 				'title_field' => '{{{ social_link_title }}}',
@@ -2003,7 +2013,7 @@ trait Global_Widget_Controls {
 		$this->start_controls_section(
 			'section_content_social_link',
 			[ 
-				'label'     => __( 'Social Share', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Social Link', 'bdthemes-prime-slider' ),
 				'condition' => [ 
 					'show_social_icon' => 'yes',
 				],
@@ -2017,18 +2027,26 @@ trait Global_Widget_Controls {
 			[ 
 				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => 'Facebook',
 			]
 		);
 
-		$repeater->add_control(
-			'social_link',
-			[ 
-				'label'   => __( 'Link', 'bdthemes-prime-slider' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider' ),
-			]
-		);
+		/**
+		 * TODO: It should be removed after 3.18.0 release
+		 */
+        $repeater->add_control(
+            'social_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::HIDDEN,
+            ]
+        );
+        $repeater->add_control(
+            'social_icon_link',
+            [ 
+                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'type'    => Controls_Manager::URL,
+            ]
+        );
 
 		$this->add_control(
 			'social_link_list',
@@ -2037,16 +2055,16 @@ trait Global_Widget_Controls {
 				'fields'      => $repeater->get_controls(),
 				'default'     => [ 
 					[ 
-						'social_link'       => __( 'http://www.facebook.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_link_title' => 'Facebook',
+						'social_icon_link'  => [ 'url' => 'http://www.facebook.com/bdthemes/' ],
+						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_link'       => __( 'http://www.twitter.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_link_title' => 'Twitter',
+						'social_icon_link'       => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
+						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_link'       => __( 'http://www.instagram.com/bdthemes/', 'bdthemes-prime-slider' ),
-						'social_link_title' => 'Instagram',
+						'social_icon_link'       => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
+						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
 					],
 				],
 				'title_field' => '{{{ social_link_title }}}',
@@ -2055,10 +2073,6 @@ trait Global_Widget_Controls {
 
 		$this->end_controls_section();
 	}
-
-
-
-
 
 	/**
 	 * Render part start from here
@@ -2269,6 +2283,37 @@ trait Global_Widget_Controls {
 	}
 
 	/**
+	 * Social Link (pagepiling, mount, dragon, sequester, woocommerce)
+	 */
+	public function render_social_link_repeater() {
+		$settings = $this->get_settings_for_display();
+
+		foreach ( $settings['social_link_list'] as $index => $link ) :
+					
+		$link_key = 'link_' . $index;
+
+		if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
+			$this->add_link_attributes($link_key, $link['social_icon_link']);
+		} else { // TODO: Condition should be removed after 3.18.0 
+			$this->add_render_attribute(
+				[
+					$link_key => [
+						'href' => esc_attr($link['social_link']),
+						'target' => '_blank',
+					]
+				], '', '', true );
+		}
+		
+		?>
+		<a <?php $this->print_render_attribute_string($link_key); ?>>
+			<span class="bdt-social-share-title">
+				<?php echo esc_html($link['social_link_title']); ?>
+			</span>
+		</a>
+		<?php endforeach; 
+	}
+
+	/**
 	 * Background image
 	 */
 	public function rendar_item_image( $item, $class ) {
@@ -2285,10 +2330,9 @@ trait Global_Widget_Controls {
 		}
 		?>
 
-						<div class="<?php echo esc_attr( $class ); ?>"
-							style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
+		<div class="<?php echo esc_attr( $class ); ?>" style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
 
-						<?php
+		<?php
 	}
 
 	/**
@@ -2302,26 +2346,25 @@ trait Global_Widget_Controls {
 		$slicer   = $settings['swiper_effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 		?>
 
-						<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>
-							<?php
-							$thumb_url = Group_Control_Image_Size::get_attachment_image_src( $slide['image']['id'], 'thumbnail_size', $settings );
-							if ( ! $thumb_url ) {
-								printf( '<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ), esc_attr( $gl . $shutters . $slicer ) );
-							} else {
-								print( wp_get_attachment_image(
-									$slide['image']['id'],
-									$settings['thumbnail_size_size'],
-									false,
-									[ 
-										'class' => 'bdt-img' . $gl . $shutters . $slicer,
-										'alt'   => esc_html( $slide['title'] )
-									]
-								) );
-							}
-							?>
-						</div>
-
-						<?php
+		<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>
+			<?php
+			$thumb_url = Group_Control_Image_Size::get_attachment_image_src( $slide['image']['id'], 'thumbnail_size', $settings );
+			if ( ! $thumb_url ) {
+				printf( '<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ), esc_attr( $gl . $shutters . $slicer ) );
+			} else {
+				print( wp_get_attachment_image(
+					$slide['image']['id'],
+					$settings['thumbnail_size_size'],
+					false,
+					[ 
+						'class' => 'bdt-img' . $gl . $shutters . $slicer,
+						'alt'   => esc_html( $slide['title'] )
+					]
+				) );
+			}
+			?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -2338,34 +2381,50 @@ trait Global_Widget_Controls {
 		$this->add_render_attribute( 'social-icon', 'class', $class );
 
 		?>
-						<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
+		<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
 
-							<?php if ( $label ) : ?>
-								<h3>
-									<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
-								</h3>
-							<?php endif; ?>
+			<?php if ( $label ) : ?>
+				<h3>
+					<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
+				</h3>
+			<?php endif; ?>
 
-							<?php foreach ( $settings['social_link_list'] as $index => $link ) :
+			<?php
+			foreach ( $settings['social_link_list'] as $index => $link ) :
+                
+                $link_key = 'link_' . $index;
 
-								$link_key = 'link_' . $index;
-								$this->add_render_attribute($link_key, 'href', esc_url($link['social_link']));
-								$this->add_render_attribute($link_key, 'target', '_blank');
+                if ( 'yes' == $settings['social_icon_tooltip'] ) {
+                    $this->add_render_attribute(
+                        [
+                            $link_key => [
+                                'title' => esc_html( $link['social_link_title'] ),
+                                'bdt-tooltip' => 'pos: ' . esc_html($position),
+                            ]
+                        ], '', '', true );
+                }                
 
-								if ( 'yes' == $settings['social_icon_tooltip'] ) {
-									$this->add_render_attribute( $link_key, 'title', esc_html($link['social_link_title']) );
-									$this->add_render_attribute( $link_key, 'bdt-tooltip', 'pos: ' . esc_attr($position) );
-								}
-								
-								?>
-								<a <?php $this->print_render_attribute_string($link_key); ?>>
-									<span><span>
-											<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
-										</span></span>
-								</a>
-							<?php endforeach; ?>
-						</div>
-						<?php
+                if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
+                    $this->add_link_attributes($link_key, $link['social_icon_link']);
+                } else { // TODO: Condition should be removed after 3.18.0 
+                    $this->add_render_attribute(
+                        [
+                            $link_key => [
+                                'href' => esc_attr($link['social_link']),
+                                'target' => '_blank',
+                            ]
+                        ], '', '', true );
+                }
+                
+                ?>
+                <a <?php $this->print_render_attribute_string($link_key); ?>>
+					<span><span>
+						<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+					</span></span>
+                </a>
+            <?php endforeach; ?>
+		</div>
+		<?php
 	}
 
 	public function rendar_post_image( $class ) {
@@ -2383,11 +2442,8 @@ trait Global_Widget_Controls {
 		}
 
 		?>
-
-						<div class="<?php echo esc_attr( $class ); ?>"
-							style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
-
-						<?php
+		<div class="<?php echo esc_attr( $class ); ?>" style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
+		<?php
 	}
 
 	public function render_image( $post_id, $size ) {

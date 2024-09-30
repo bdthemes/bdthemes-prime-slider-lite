@@ -1477,15 +1477,7 @@ class Woocommerce extends Widget_Base {
 
 			<div <?php $this->print_render_attribute_string('social-icon'); ?>>
 
-				<?php foreach ($settings['social_link_list'] as $link) : ?>
-
-					<a href="<?php echo esc_url($link['social_link']); ?>" target="_blank">
-						<span class="bdt-social-share-title">
-							<?php echo esc_html($link['social_link_title']); ?>
-						</span>
-					</a>
-
-				<?php endforeach; ?>
+			<?php $this->render_social_link_repeater(); ?>
 
 			</div>
 
