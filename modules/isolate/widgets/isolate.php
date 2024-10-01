@@ -2369,9 +2369,15 @@ class Isolate extends Widget_Base {
     public function render_button($content) {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
-        $this->add_link_attributes('slider-button', $content['button_link'], true);
+        if ( '' == $settings['show_button_text'] ) {
+            return;
+        }
 
+        $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
+        if ($content['slide_button_text']) {
+            $this->add_link_attributes('slider-button', $content['button_link'], true);
+        }
+        
         ?>
 
 			<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url'])): ?>
@@ -2489,7 +2495,10 @@ class Isolate extends Widget_Base {
             }
         }
 
-        $this->add_link_attributes('title-link', $slide_content['title_link'], true);
+        if ($slide_content['title']) {
+            $this->add_link_attributes('title-link', $slide_content['title_link'], true);
+        }
+        
 
         ?>
         <div class="bdt-slideshow-content-wrapper">

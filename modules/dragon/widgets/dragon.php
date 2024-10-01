@@ -991,7 +991,7 @@ class dragon extends Widget_Base {
 	public function render_button($content, $link_key) {
 		$settings = $this->get_settings_for_display();
 
-		if (!empty($content['button_link']['url'])) {
+		if ($content['slide_button_text'] && !empty($content['button_link']['url'])) {
 			$this->add_link_attributes($link_key, $content['button_link']);
 		}
 		$this->add_render_attribute($link_key, 'class', 'bdt-ps-dragon-button reveal-muted', true);
@@ -1054,8 +1054,10 @@ class dragon extends Widget_Base {
 			}
 		}
 
-		$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
-
+		if ($slide_content['title']) {
+			$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+		}
+		
         ?>
 		<div class="bdt-prime-slider-wrapper">
 			<div class="bdt-prime-slider-content">

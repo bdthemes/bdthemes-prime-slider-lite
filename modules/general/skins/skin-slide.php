@@ -139,8 +139,10 @@ class Skin_Slide extends Elementor_Skin_Base {
         $settings = $this->parent->get_settings_for_display();
 
         $this->parent->add_render_attribute('title-link', 'class', 'bdt-slider-title-link', true);
-        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
-
+        if ($slide_content['title']) {
+            $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
+        }
+        
         $parallax_sub_title = 'data-bdt-slideshow-parallax="x: 50,0,-10; opacity: 1,1,0"';   
         $parallax_title     = 'data-bdt-slideshow-parallax="x: 100,0,-20; opacity: 1,1,0"';
         $parallax_excerpt   = 'data-bdt-slideshow-parallax="y: 50,0,-10; opacity: 1,1,0"';

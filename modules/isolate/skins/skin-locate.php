@@ -163,7 +163,10 @@ class Skin_Locate extends Elementor_Skin_Base {
             }
         }
 
-        $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
+        if ($slide_content['title']) {
+            $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
+        }
+        
 
         ?>
             <div class="bdt-slideshow-content-wrapper">

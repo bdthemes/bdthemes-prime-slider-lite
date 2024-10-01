@@ -1275,7 +1275,9 @@ class Omatic extends Widget_Base {
                 <div class="swiper-wrapper">
 
 				<?php foreach ($settings['slides'] as $slide) : 
-					$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+					if($slide['title']) {
+						$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+					}
 					?>
 					<div class="swiper-slide bdt-omatic-item">
 					<div class="bdt-slide-content">
