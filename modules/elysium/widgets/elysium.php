@@ -889,7 +889,10 @@ class Elysium extends Widget_Base {
         $settings = $this->get_settings_for_display();
 
         foreach ($settings['slides'] as $slide) : 
-			$this->add_link_attributes('title_link', $slide['title_link'], true);
+        	if ($slide['title']) {
+        		$this->add_link_attributes('title_link', $slide['title_link'], true);
+        	}
+			
 			?>
             <div class="bdt-item swiper-slide">
 					<?php $this->rendar_item_image($slide); ?>

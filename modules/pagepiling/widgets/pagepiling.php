@@ -1183,8 +1183,10 @@ class Pagepiling extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
-		$this->add_link_attributes('slider-button', $content['button_link'], true);
-
+		if ($content['slide_button_text']) {
+			$this->add_link_attributes('slider-button', $content['button_link'], true);
+		}
+		
 		?>
 
 		<?php if ( $content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url']) ) : ?>
@@ -1233,6 +1235,11 @@ class Pagepiling extends Widget_Base {
 	public function render_item_content($slide_content) {
         $settings = $this->get_settings_for_display();
 
+        if ($slide_content['title']) {
+        	$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+        }
+		
+
 		?>
 		<div class="bdt-prime-slider-content">
 			<div data-bdt-slideshow-parallax="y: 150,0,-100; opacity: 1,1,0">
@@ -1251,7 +1258,7 @@ class Pagepiling extends Widget_Base {
 				<div class="bdt-main-title">
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag"  data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0">
 						<?php if ('' !== $slide_content['title_link']['url']) : ?>
-							<a href="<?php echo esc_url($slide_content['title_link']['url']); ?>">
+							<a <?php $this->print_render_attribute_string('title-link'); ?>>
 							<?php endif; ?>
 							<?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>

@@ -1249,7 +1249,10 @@ class Multiscroll extends Widget_Base {
 			return;
 		}
 
-		$this->add_link_attributes('button_link', $slide['button_link'], true);
+		if ($slide['slide_button']) {
+			$this->add_link_attributes('button_link', $slide['button_link'], true);
+		}
+		
 
 		$this->add_render_attribute('button-position', 'class', 'bdt-mltiscroll-slider-button bdt-btn-position-' . $settings['button_position']);
 

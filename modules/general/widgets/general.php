@@ -2523,10 +2523,16 @@ class General extends Widget_Base {
 
 	public function render_button( $content ) {
 		$settings = $this->get_settings_for_display();
+		if ( '' == $settings['show_button_text'] ) {
+			return;
+		}
 
 		$this->add_render_attribute( 'slider-button', 'class', 'bdt-slide-btn', true );
 		$this->add_render_attribute( 'slider-button', 'data-reveal', 'reveal-active', true );
-		$this->add_link_attributes( 'slider-button', $content['button_link'], true );
+		if ($content['slide_button_text']) {
+			$this->add_link_attributes( 'slider-button', $content['button_link'], true );
+		}
+		
 
 		?>
 
@@ -2595,7 +2601,9 @@ class General extends Widget_Base {
 		$this->add_render_attribute( 'slide_content_animate', 'class', 'bdt-prime-slider-content' );
 
 		$this->add_render_attribute( 'title-link', 'class', 'bdt-slider-title-link', true );
-		$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+		if ( $slide_content['title'] ) {
+			$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+		}
 
 		?>
 		<div class="bdt-position-z-index bdt-position-large">

@@ -2245,7 +2245,10 @@ trait Global_Widget_Controls {
 			return;
 		}
 
-		$this->add_link_attributes( 'title_link', $slide['title_link'], true );
+		if ($slide['title']) {
+			$this->add_link_attributes( 'title_link', $slide['title_link'], true );
+		}
+		
 
 		?>
 		<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?> class="
