@@ -1274,7 +1274,9 @@ class Omatic extends Widget_Base {
 			<div thumbsSlider="" class="bdt-omatic-thumbs-slide">
                 <div class="swiper-wrapper">
 
-				<?php foreach ($settings['slides'] as $slide) : ?>
+				<?php foreach ($settings['slides'] as $slide) : 
+					$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+					?>
 					<div class="swiper-slide bdt-omatic-item">
 					<div class="bdt-slide-content">
 					<?php $this->render_sub_title($slide); ?>
@@ -1282,7 +1284,7 @@ class Omatic extends Widget_Base {
 						<div class="bdt-title-wrap">
 							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 								<?php if ('' !== $slide['title_link']['url']) : ?>
-									<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
+									<a <?php $this->print_render_attribute_string('title-link'); ?>>
 									<?php endif; ?>
 									<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
 									<?php if ('' !== $slide['title_link']['url']) : ?>
