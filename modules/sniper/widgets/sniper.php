@@ -739,7 +739,12 @@ class Sniper extends Widget_Base {
 			<div thumbsSlider="" class="bdt-thumbs-slider">
                 <div class="swiper-wrapper">
 
-				<?php foreach ($settings['slides'] as $slide) : ?>
+				<?php foreach ($settings['slides'] as $slide) : 
+					if ($slide['title'] && ! empty($slide['title_link']['url'])) {
+						$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+					}
+					
+					?>
 					<div class="swiper-slide bdt-item">
                         <div class="bdt-content">
 
@@ -752,7 +757,7 @@ class Sniper extends Widget_Base {
 							<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 									<?php if ('' !== $slide['title_link']['url']) : ?>
-										<a href="<?php echo esc_url($slide['title_link']['url']); ?>">
+										<a <?php $this->print_render_attribute_string('title-link'); ?>>
 										<?php endif; ?>
 										<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
 										<?php if ('' !== $slide['title_link']['url']) : ?>

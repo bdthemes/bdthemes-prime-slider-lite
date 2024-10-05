@@ -1210,6 +1210,10 @@ class Multiscroll extends Widget_Base {
 	public function rendar_item_content($content) {
 		$settings = $this->get_settings_for_display();
 
+		if ($content['title'] && ! empty($content['title_link']['url'])) {
+			$this->add_link_attributes('title-link', $content['title_link'], true);
+		}
+
 		?>
 		<div class="bdt-mltiscroll-slider-content bdt-position-center">
 			<div class="bdt-position-relative">
@@ -1222,7 +1226,7 @@ class Multiscroll extends Widget_Base {
 				<?php if ($content['title'] && ('yes' == $settings['show_title'])) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-mltiscroll-slider-title">
 						<?php if ('' !== $content['title_link']['url']) : ?>
-							<a href="<?php echo esc_url($content['title_link']['url']); ?>">
+							<a <?php $this->print_render_attribute_string('title-link'); ?>>
 							<?php endif; ?>
 							<?php echo wp_kses_post($content['title']); ?>
 							<?php if ('' !== $content['title_link']['url']) : ?>
