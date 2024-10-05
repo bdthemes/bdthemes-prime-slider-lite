@@ -1155,10 +1155,8 @@ class Tango extends Widget_Base {
 
         foreach ($settings['slides'] as $slide) : 
 		
-			if(!empty($slide['title_link']['is_external'])){
-				$target = 'target="_blank"';
-			} else {
-				$target = '';
+			if( ! empty($slide['title_link']['url']) && $slide['title']){
+				$this->add_link_attributes('title-link', $slide['title_link'], true);
 			}
 		
 			?>
@@ -1178,7 +1176,7 @@ class Tango extends Widget_Base {
 					<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
 							<?php if ('' !== $slide['title_link']['url']) : ?>
-								<a href="<?php echo esc_url($slide['title_link']['url']); ?>" <?php echo wp_kses_post($target); ?>>
+								<a <?php $this->print_render_attribute_string('title-link'); ?>>
 								<?php endif; ?>
 								<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
 								<?php if ('' !== $slide['title_link']['url']) : ?>
@@ -1188,7 +1186,7 @@ class Tango extends Widget_Base {
 					<?php endif; ?>
 				</div>
 				<?php if ($settings['item_wrapper_link'] == 'yes' and '' !== $slide['title_link']['url']) : ?>
-					<a class="bdt-tango-item-wrap-link" href="<?php echo esc_url($slide['title_link']['url']); ?>" <?php echo wp_kses_post($target); ?>></a>
+					<a class="bdt-tango-item-wrap-link" <?php $this->print_render_attribute_string('title-link'); ?>></a>
 				<?php endif; ?>
 			</div>
 
