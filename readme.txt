@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XX October 2024] =
+
+* Added: Thumbs item gap option added in flogia widget
+
 = 3.15.13 [9th October 2024] =
 
 * Added: Title link target added

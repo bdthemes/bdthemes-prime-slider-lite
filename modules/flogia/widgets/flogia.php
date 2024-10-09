@@ -977,6 +977,18 @@ class Flogia extends Widget_Base {
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'featured_thumbs_gap',
+            [
+                'label' => esc_html__('Gap', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'type' => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-thumbnav-scroller .bdt-slider-items' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+                'render_type' => 'template',
+                'classes'   => BDTPS_CORE_IS_PC
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
