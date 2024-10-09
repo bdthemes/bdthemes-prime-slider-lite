@@ -184,7 +184,7 @@ class General extends Widget_Base {
 				'condition' => [ 
 					'background' => 'video'
 				],
-				'default'   => '//clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+				'default'   => '//test-videos.co.uk/vids/bigbuckbunny/mp4/av1/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
 				'dynamic'   => [ 'active' => true ],
 			]
 		);
