@@ -139,7 +139,7 @@ class Isolate extends Widget_Base {
 				'type'          => Controls_Manager::URL,
 				'show_external' => false,
 				'default'       => [
-					'url' => '//clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+					'url' => '//test-videos.co.uk/vids/bigbuckbunny/mp4/av1/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
 				],
 				'placeholder'   => '//example.com/video.mp4',
 				'label_block'   => true,
