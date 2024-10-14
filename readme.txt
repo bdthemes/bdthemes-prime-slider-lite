@@ -175,6 +175,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.15.X [XX October 2024] =
 
 * Added: Thumbs item gap option added in flogia widget
+* Fixed: JS dependency Error fixed ( Thanks to Hasan )
 
 = 3.15.13 [9th October 2024] =
 
