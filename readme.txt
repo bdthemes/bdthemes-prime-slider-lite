@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.6.2
 Requires PHP: 7.4.0
-Stable tag: 3.15.13
+Stable tag: 3.15.14
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.24.5
+Elementor tested up to: 3.24.6
 
 Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
 
@@ -172,10 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.15.X [XX October 2024] =
+= 3.15.14 [14th October 2024] =
 
 * Added: Thumbs item gap option added in flogia widget
-* Fixed: JS dependency Error fixed ( Thanks to Hasan )
+* Fixed: JS dependency Error fixed (Thanks to Hasan)
 
 = 3.15.13 [9th October 2024] =
 
