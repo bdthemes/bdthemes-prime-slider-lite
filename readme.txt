@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XX October 2024] =
+
+* Added: Pandora widget added (Pro)
+
 = 3.15.14 [14th October 2024] =
 
 * Added: Thumbs item gap option added in flogia widget
