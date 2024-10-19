@@ -235,16 +235,6 @@ class Mount extends Widget_Base {
 			]
 		);
 
-		/**
-		 * TODO: It should be removed after 3.18.0 release
-		 */
-        $repeater->add_control(
-            'social_link',
-            [ 
-                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
-                'type'    => Controls_Manager::HIDDEN,
-            ]
-        );
         $repeater->add_control(
             'social_icon_link',
             [ 

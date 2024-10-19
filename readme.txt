@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.XX [XXth October 2024] =
+
+* Removed: Deprecated code removed for security issue.
+
 = 3.15.15 [19th October 2024] =
 
 * Added: Pandora widget added (Pro)

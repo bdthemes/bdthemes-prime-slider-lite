@@ -132,14 +132,6 @@ class Skin_Slice extends Elementor_Skin_Base {
 
                     if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
                         $this->parent->add_link_attributes($link_key, $link['social_icon_link']);
-                    } else { // TODO: Condition should be removed after 3.18.0 
-                        $this->parent->add_render_attribute(
-                            [
-                                $link_key => [
-                                    'href' => esc_attr($link['social_link']),
-                                    'target' => '_blank',
-                                ]
-                            ], '', '', true );
                     }
                     
                     ?>
