@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.6.2
 Requires PHP: 7.4.0
-Stable tag: 3.15.15
+Stable tag: 3.15.16
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
@@ -172,9 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.15.XX [XXth October 2024] =
+= 3.15.16 [23th October 2024] =
 
-* Removed: Deprecated code removed for security issue.
+* Fixed: Security improved
+* Removed: Deprecated code removed for security issue
 
 = 3.15.15 [19th October 2024] =
 
