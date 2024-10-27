@@ -172,6 +172,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.17 [27th October 2024] =
+
+* Fixed: Security improved
+
 = 3.15.16 [23th October 2024] =
 
 * Fixed: Security improved
