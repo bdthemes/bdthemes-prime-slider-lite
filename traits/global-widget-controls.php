@@ -404,7 +404,7 @@ trait Global_Widget_Controls {
 				'label_off'    => __( 'None', 'bdthemes-prime-slider' ),
 				'label_on'     => __( 'Custom', 'bdthemes-prime-slider' ),
 				'return_value' => 'yes',
-				'classes'   => BDTPS_CORE_IS_PC
+				'classes'      => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -568,13 +568,13 @@ trait Global_Widget_Controls {
 			]
 		);
 
-        $repeater->add_control(
-            'social_icon_link',
-            [ 
-                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
-                'type'    => Controls_Manager::URL,
-            ]
-        );
+		$repeater->add_control(
+			'social_icon_link',
+			[ 
+				'label' => __( 'Link', 'bdthemes-prime-slider' ),
+				'type'  => Controls_Manager::URL,
+			]
+		);
 
 		$repeater->add_control(
 			'social_icon',
@@ -591,7 +591,7 @@ trait Global_Widget_Controls {
 				'fields'      => $repeater->get_controls(),
 				'default'     => [ 
 					[ 
-						'social_icon_link'       => [ 'url' => 'http://www.facebook.com/bdthemes/' ],
+						'social_icon_link'  => [ 'url' => 'http://www.facebook.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-facebook-f',
 							'library' => 'fa-brands',
@@ -599,7 +599,7 @@ trait Global_Widget_Controls {
 						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_icon_link'       => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
+						'social_icon_link'  => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-twitter',
 							'library' => 'fa-brands',
@@ -607,7 +607,7 @@ trait Global_Widget_Controls {
 						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_icon_link'       => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
+						'social_icon_link'  => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
 						'social_icon'       => [ 
 							'value'   => 'fab fa-instagram',
 							'library' => 'fa-brands',
@@ -1481,7 +1481,7 @@ trait Global_Widget_Controls {
 				'condition'   => [ 
 					'show_excerpt' => 'yes',
 				],
-				'classes'   => BDTPS_CORE_IS_PC
+				'classes'     => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -2015,18 +2015,18 @@ trait Global_Widget_Controls {
 		$repeater->add_control(
 			'social_link_title',
 			[ 
-				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
-				'type'    => Controls_Manager::TEXT,
+				'label' => __( 'Title', 'bdthemes-prime-slider' ),
+				'type'  => Controls_Manager::TEXT,
 			]
 		);
 
-        $repeater->add_control(
-            'social_icon_link',
-            [ 
-                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
-                'type'    => Controls_Manager::URL,
-            ]
-        );
+		$repeater->add_control(
+			'social_icon_link',
+			[ 
+				'label' => __( 'Link', 'bdthemes-prime-slider' ),
+				'type'  => Controls_Manager::URL,
+			]
+		);
 
 		$this->add_control(
 			'social_link_list',
@@ -2039,11 +2039,11 @@ trait Global_Widget_Controls {
 						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_icon_link'       => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
+						'social_icon_link'  => [ 'url' => 'http://www.twitter.com/bdthemes/' ],
 						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
 					],
 					[ 
-						'social_icon_link'       => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
+						'social_icon_link'  => [ 'url' => 'http://www.instagram.com/bdthemes/' ],
 						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
 					],
 				],
@@ -2153,7 +2153,7 @@ trait Global_Widget_Controls {
 		// 	$ratio = false;
 		// }
 
-		if ( $settings['enable_height'] && !empty( $settings["viewport_height"]["size"] )  ) {
+		if ( $settings['enable_height'] && ! empty( $settings["viewport_height"]["size"] ) ) {
 			$ratio = false;
 		}
 
@@ -2225,21 +2225,22 @@ trait Global_Widget_Controls {
 			return;
 		}
 
-		if ($slide['title']) {
+		if ( $slide['title'] ) {
 			$this->add_link_attributes( 'title_link', $slide['title_link'], true );
 		}
-		
+
 		?>
-		<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?> class="<?php echo esc_attr( $class ); ?>" data-reveal="<?php echo esc_attr( $data_reveal ); ?>">
-			<?php if ( '' !== $slide['title_link']['url'] ) : ?>
-				<a <?php $this->print_render_attribute_string('title_link'); ?>>
-				<?php endif; ?>
-				<?php echo wp_kses_post( prime_slider_first_word( $slide['title'] ) ); ?>
-				<?php if ( '' !== $slide['title_link']['url'] ) : ?>
-				</a>
-			<?php endif; ?>
-		</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
-		<?php
+						<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>
+							class="<?php echo esc_attr( $class ); ?>" data-reveal="<?php echo esc_attr( $data_reveal ); ?>">
+							<?php if ( '' !== $slide['title_link']['url'] ) : ?>
+								<a <?php $this->print_render_attribute_string( 'title_link' ); ?>>
+								<?php endif; ?>
+								<?php echo wp_kses_post( prime_slider_first_word( $slide['title'] ) ); ?>
+								<?php if ( '' !== $slide['title_link']['url'] ) : ?>
+								</a>
+							<?php endif; ?>
+						</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
+						<?php
 	}
 
 	/**
@@ -2270,20 +2271,20 @@ trait Global_Widget_Controls {
 		$settings = $this->get_settings_for_display();
 
 		foreach ( $settings['social_link_list'] as $index => $link ) :
-					
-		$link_key = 'link_' . $index;
 
-		if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
-			$this->add_link_attributes($link_key, $link['social_icon_link']);
-		}
-		
-		?>
-		<a <?php $this->print_render_attribute_string($link_key); ?>>
-			<span class="bdt-social-share-title">
-				<?php echo esc_html($link['social_link_title']); ?>
-			</span>
-		</a>
-		<?php endforeach; 
+			$link_key = 'link_' . $index;
+
+			if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
+				$this->add_link_attributes( $link_key, $link['social_icon_link'] );
+			}
+
+			?>
+							<a <?php $this->print_render_attribute_string( $link_key ); ?>>
+								<span class="bdt-social-share-title">
+									<?php echo esc_html( $link['social_link_title'] ); ?>
+								</span>
+							</a>
+						<?php endforeach;
 	}
 
 	/**
@@ -2303,9 +2304,10 @@ trait Global_Widget_Controls {
 		}
 		?>
 
-		<div class="<?php echo esc_attr( $class ); ?>" style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
+						<div class="<?php echo esc_attr( $class ); ?>"
+							style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
 
-		<?php
+						<?php
 	}
 
 	/**
@@ -2319,25 +2321,25 @@ trait Global_Widget_Controls {
 		$slicer   = $settings['swiper_effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 		?>
 
-		<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>
-			<?php
-			$thumb_url = Group_Control_Image_Size::get_attachment_image_src( $slide['image']['id'], 'thumbnail_size', $settings );
-			if ( ! $thumb_url ) {
-				printf( '<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ), esc_attr( $gl . $shutters . $slicer ) );
-			} else {
-				print( wp_get_attachment_image(
-					$slide['image']['id'],
-					$settings['thumbnail_size_size'],
-					false,
-					[ 
-						'class' => 'bdt-img' . $gl . $shutters . $slicer,
-						'alt'   => esc_html( $slide['title'] )
-					]
-				) );
-			}
-			?>
-		</div>
-		<?php
+						<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>
+							<?php
+							$thumb_url = Group_Control_Image_Size::get_attachment_image_src( $slide['image']['id'], 'thumbnail_size', $settings );
+							if ( ! $thumb_url ) {
+								printf( '<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ), esc_attr( $gl . $shutters . $slicer ) );
+							} else {
+								print ( wp_get_attachment_image(
+									$slide['image']['id'],
+									$settings['thumbnail_size_size'],
+									false,
+									[ 
+										'class' => 'bdt-img' . $gl . $shutters . $slicer,
+										'alt'   => esc_html( $slide['title'] )
+									]
+								) );
+							}
+							?>
+						</div>
+						<?php
 	}
 
 	/**
@@ -2354,42 +2356,42 @@ trait Global_Widget_Controls {
 		$this->add_render_attribute( 'social-icon', 'class', $class );
 
 		?>
-		<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
+						<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
 
-			<?php if ( $label ) : ?>
-				<h3>
-					<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
-				</h3>
-			<?php endif; ?>
+							<?php if ( $label ) : ?>
+								<h3>
+									<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
+								</h3>
+							<?php endif; ?>
 
-			<?php
-			foreach ( $settings['social_link_list'] as $index => $link ) :
-                
-                $link_key = 'link_' . $index;
+							<?php
+							foreach ( $settings['social_link_list'] as $index => $link ) :
 
-                if ( 'yes' == $settings['social_icon_tooltip'] ) {
-                    $this->add_render_attribute(
-                        [
-                            $link_key => [
-                                'title' => esc_html( $link['social_link_title'] ),
-                                'bdt-tooltip' => 'pos: ' . esc_html($position),
-                            ]
-                        ], '', '', true );
-                }                
+								$link_key = 'link_' . $index;
 
-                if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
-                    $this->add_link_attributes($link_key, $link['social_icon_link']);
-                }
-                
-                ?>
-                <a <?php $this->print_render_attribute_string($link_key); ?>>
-					<span><span>
-						<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
-					</span></span>
-                </a>
-            <?php endforeach; ?>
-		</div>
-		<?php
+								if ( 'yes' == $settings['social_icon_tooltip'] ) {
+									$this->add_render_attribute(
+										[ 
+											$link_key => [ 
+												'title'       => wp_kses_post( $link['social_link_title'] ),
+												'bdt-tooltip' => 'pos: ' . wp_kses_post( $position ),
+											]
+										], '', '', true );
+								}
+
+								if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
+									$this->add_link_attributes( $link_key, $link['social_icon_link'] );
+								}
+
+								?>
+								<a <?php $this->print_render_attribute_string( $link_key ); ?>>
+									<span><span>
+											<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+										</span></span>
+								</a>
+							<?php endforeach; ?>
+						</div>
+						<?php
 	}
 
 	public function rendar_post_image( $class ) {
@@ -2407,8 +2409,9 @@ trait Global_Widget_Controls {
 		}
 
 		?>
-		<div class="<?php echo esc_attr( $class ); ?>" style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
-		<?php
+						<div class="<?php echo esc_attr( $class ); ?>"
+							style="background-image: url('<?php echo esc_url( $image_final_src ); ?>')"></div>
+						<?php
 	}
 
 	public function render_image( $post_id, $size ) {
@@ -2418,7 +2421,7 @@ trait Global_Widget_Controls {
 		if ( ! $image_src ) {
 			printf( '<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url( $placeholder_image_src ), esc_html( get_the_title() ) );
 		} else {
-			print( wp_get_attachment_image(
+			print ( wp_get_attachment_image(
 				get_post_thumbnail_id(),
 				$size,
 				false,
@@ -2430,8 +2433,8 @@ trait Global_Widget_Controls {
 		}
 	}
 
-	protected function ps_taxonomy_switcher() {	
-		$taxonomy = '';	
+	protected function ps_taxonomy_switcher() {
+		$taxonomy = '';
 		switch ( $this->get_settings( 'posts_source' ) ) {
 			case 'post':
 				$taxonomy = 'category';
@@ -2461,7 +2464,7 @@ trait Global_Widget_Controls {
 	// General function to get a list of terms for any taxonomy
 	protected function ps_get_taxonomy_list( $post_id, $taxonomy = 'category' ) {
 		$terms = get_the_term_list( $post_id, $taxonomy, '', ' ' );
-		if ( is_wp_error( $terms ) || !$terms ) {
+		if ( is_wp_error( $terms ) || ! $terms ) {
 			return '';
 		}
 		return $terms;
