@@ -2333,7 +2333,7 @@ class General extends Widget_Base {
                     $this->add_render_attribute(
                         [
                             $link_key => [
-                                'title' => esc_html( $link['social_link_title'] ),
+                                'title' => wp_kses_post( $link['social_link_title'] ),
                                 'bdt-tooltip' => 'pos: ' . esc_html($position),
                             ]
                         ], '', '', true );
