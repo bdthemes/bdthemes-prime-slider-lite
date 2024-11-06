@@ -119,16 +119,13 @@ class Skin_Slice extends Elementor_Skin_Base {
                 foreach ( $settings['social_link_list'] as $index => $link ) :
                     
                     $link_key = 'link_' . $index;
+   
 
-                    if ( 'yes' == $settings['social_icon_tooltip'] ) {
-                        $this->parent->add_render_attribute(
-                            [
-                                $link_key => [
-                                    'title' => wp_kses_post( $link['social_link_title'] ),
-                                    'bdt-tooltip' => 'pos: ' . esc_html($position),
-                                ]
-                            ], '', '', true );
-                    }                
+                    if ( 'yes' === $settings['social_icon_tooltip'] ) {
+                        $tooltip = 'title: ' . wp_kses_post( $link['social_link_title'] ) . '; pos: ' . esc_attr( $position );
+                    
+                        $this->parent->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
+                    }           
 
                     if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
                         $this->parent->add_link_attributes($link_key, $link['social_icon_link']);
