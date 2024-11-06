@@ -2329,15 +2329,11 @@ class General extends Widget_Base {
                 $link_key = 'link_' . $index;
                 $this->add_render_attribute($link_key, 'class', 'bdt-social-animate', true);
 
-                if ( 'yes' == $settings['social_icon_tooltip'] ) {
-                    $this->add_render_attribute(
-                        [
-                            $link_key => [
-                                'title' => wp_kses_post( $link['social_link_title'] ),
-                                'bdt-tooltip' => 'pos: ' . esc_html($position),
-                            ]
-                        ], '', '', true );
-                }                
+                if ( 'yes' === $settings['social_icon_tooltip'] ) {
+					$tooltip = 'title: ' . wp_kses_post( $link['social_link_title'] ) . '; pos: ' . esc_attr( $position );
+				
+					$this->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
+				}
 
                 if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
                     $this->add_link_attributes($link_key, $link['social_icon_link']);
