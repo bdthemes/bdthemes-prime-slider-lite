@@ -1,21 +1,24 @@
 .bdt-prime-slider-tango {
     position: relative;
-    // overflow: hidden;
     margin-bottom: clamp(2.5rem, 6vw, 3.755rem);
+
     .bdt-item {
         position: relative;
         clip-path: inset(10% 0 10% 0);
         overflow: hidden;
         height: clamp(25rem, 40vw, 31.25rem);
         transition: clip-path .4s cubic-bezier(.3, 0, .3, 1), transform .4s cubic-bezier(.3, 0, .3, 1);
+
         &.swiper-slide-active {
             clip-path: inset(0 0 0 0) !important;
+
             .bdt-image-wrap {
                 &::before {
                     opacity: 1;
                     transition-delay: .6s;
                 }
             }
+
             .bdt-content-wrap {
                 opacity: 1;
                 transition-delay: .5s;
@@ -42,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0; 
+            opacity: 0;
             transition: opacity .5s cubic-bezier(.3, 0, .3, 1), background-image .5s cubic-bezier(.3, 0, .3, 1);
         }
     }
@@ -75,6 +78,7 @@
         transition: transform .3s cubic-bezier(.3, 0, .3, 1);
         position: relative;
         z-index: 1;
+
         a {
             color: #eff1ff;
             text-decoration: none;
@@ -106,11 +110,13 @@
 
     .bdt-arrows-center {
         &.bdt-navigation-arrows {
+
             .bdt-navigation-next,
             .bdt-navigation-prev {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
+
                 i {
                     transform: scale(1) translateX(0px);
                 }
@@ -118,6 +124,7 @@
 
             .bdt-navigation-prev {
                 left: 20px;
+
                 &:hover {
                     i {
                         transform: scale(1.2) translateX(-5px);
@@ -127,6 +134,7 @@
 
             .bdt-navigation-next {
                 right: 20px;
+
                 &:hover {
                     i {
                         transform: scale(1.2) translateX(5px);
@@ -137,6 +145,7 @@
     }
 
     .bdt-navigation-arrows {
+
         .bdt-navigation-next,
         .bdt-navigation-prev {
             font-size: clamp(1.25rem, 3.5vw, 1.875rem);
@@ -144,9 +153,11 @@
             color: #495157;
             transition: all .3s ease;
             z-index: 1;
+
             svg {
                 width: 1em;
             }
+
             i {
                 display: inline-flex;
                 transition: all .3s ease;
@@ -178,7 +189,8 @@
         transform: translateX(-50%) translateY(clamp(2.5rem, 6vw, 3.755rem));
         display: flex;
         align-items: center;
-        width: auto;
+        width: auto !important;
+
         .swiper-pagination-bullet {
             width: clamp(1.875rem, 4vw, 3.125rem);
             height: 1px;
@@ -188,6 +200,7 @@
             opacity: 1;
             margin: 0;
             transition: .3s ease;
+
             &.swiper-pagination-bullet-active {
                 background: #495157;
                 height: 3px;
@@ -199,15 +212,20 @@
 .bdt-item-up-down-yes {
     .bdt-prime-slider-tango {
         .bdt-item {
-            &.swiper-slide-next, &.swiper-slide-duplicate-next {
+
+            &.swiper-slide-next,
+            &.swiper-slide-duplicate-next {
                 clip-path: inset(10% 0 5% 0);
             }
-            &.swiper-slide-prev, &.swiper-slide-duplicate-prev {
+
+            &.swiper-slide-prev,
+            &.swiper-slide-duplicate-prev {
                 clip-path: inset(5% 0 10% 0);
             }
         }
     }
 }
+
 .bdt-tango-item-wrap-link {
     position: absolute;
     height: 100%;
