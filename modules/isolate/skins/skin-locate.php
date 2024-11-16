@@ -164,9 +164,9 @@ class Skin_Locate extends Elementor_Skin_Base {
 
                             <?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
                                 <div class="bdt-sub-title bdt-ps-sub-title">
-                                    <h4 data-reveal="reveal-active" <?php echo wp_kses_post($parallax_sub_title); ?>>
+                                    <<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>  class="bdt-sub-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_sub_title); ?>>
                                         <?php echo wp_kses_post($slide_content['sub_title']); ?>
-                                    </h4>
+                                    </<?php echo esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ); ?>>
                                 </div>
                             <?php endif; ?>
 
