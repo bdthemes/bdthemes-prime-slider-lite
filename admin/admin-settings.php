@@ -497,7 +497,7 @@ class PrimeSlider_Admin_Settings {
 
 		<div class="ps-dashboard-panel" bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
 
-			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
+			<div class="bdt-grid bdt-grid-medium" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
@@ -507,24 +507,26 @@ class PrimeSlider_Admin_Settings {
 						?>
 
 
-						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
-							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title"><?php echo esc_html__('All Widgets', 'bdthemes-prime-slider'); ?></h1>
-								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($used_widgets); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($un_used_widgets); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
-									<b>
-										<?php echo esc_html($used_widgets + $un_used_widgets); ?>
-									</b>
+						<div class="ps-count-canvas-wrap">
+							<h1 class="ps-feature-title"><?php echo esc_html__('All Widgets', 'bdthemes-prime-slider'); ?></h1>
+							<div class="bdt-flex bdt-flex-between bdt-flex-middle">
+								<div class="ps-count-wrap">
+									<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($used_widgets); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($un_used_widgets); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
+										<b>
+											<?php echo esc_html($used_widgets + $un_used_widgets); ?>
+										</b>
+									</div>
 								</div>
-							</div>
 
-							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-total-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Total Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_widgets) . ',' . esc_attr($un_used_widgets); ?>" data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<div class="ps-canvas-wrap">
+									<canvas id="bdt-db-total-status" style="height: 100px; width: 100px;" data-label="<?php echo esc_html__('Total Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_html($used_widgets + $un_used_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_widgets) . ',' . esc_attr($un_used_widgets); ?>" data-bg="#FFD166, #fff4d9" data-bg-hover="#0673e1, #e71522"></canvas>
+								</div>
 							</div>
 						</div>
 
@@ -539,24 +541,26 @@ class PrimeSlider_Admin_Settings {
 						?>
 
 
-						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
-							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title"><?php echo esc_html__('Core', 'bdthemes-prime-slider'); ?></h1>
-								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($used_only_widgets); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($unused_only_widgets); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
-									<b>
-										<?php echo esc_html($used_only_widgets + $unused_only_widgets); ?>
-									</b>
+						<div class="ps-count-canvas-wrap">
+							<h1 class="ps-feature-title"><?php echo esc_html__('Core', 'bdthemes-prime-slider'); ?></h1>
+							<div class="bdt-flex bdt-flex-between bdt-flex-middle">
+								<div class="ps-count-wrap">
+									<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($used_only_widgets); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($unused_only_widgets); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
+										<b>
+											<?php echo esc_html($used_only_widgets + $unused_only_widgets); ?>
+										</b>
+									</div>
 								</div>
-							</div>
 
-							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-widget-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Core Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_widgets) . ',' . esc_attr($unused_only_widgets); ?>" data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
+								<div class="ps-canvas-wrap">
+									<canvas id="bdt-db-only-widget-status" style="height: 100px; width: 100px;" data-label="<?php echo esc_html__('Core Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_widgets + $unused_only_widgets); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_widgets) . ',' . esc_attr($unused_only_widgets); ?>" data-bg="#EF476F, #ffcdd9" data-bg-hover="#0673e1, #e71522"></canvas>
+								</div>
 							</div>
 						</div>
 
@@ -571,24 +575,26 @@ class PrimeSlider_Admin_Settings {
 						?>
 
 
-						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
-							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title"><?php echo esc_html__('3rd Party', 'bdthemes-prime-slider'); ?></h1>
-								<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($used_only_3rdparty); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
-										<?php echo esc_html($unused_only_3rdparty); ?>
-									</b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
-									<b>
-										<?php echo esc_html($used_only_3rdparty + $unused_only_3rdparty); ?>
-									</b>
+						<div class="ps-count-canvas-wrap">
+							<h1 class="ps-feature-title"><?php echo esc_html__('3rd Party', 'bdthemes-prime-slider'); ?></h1>
+							<div class="bdt-flex bdt-flex-between bdt-flex-middle">
+								<div class="ps-count-wrap">
+									<div class="ps-widget-count"><?php echo esc_html__('Used:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($used_only_3rdparty); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Unused:', 'bdthemes-prime-slider'); ?> <b>
+											<?php echo esc_html($unused_only_3rdparty); ?>
+										</b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?>
+										<b>
+											<?php echo esc_html($used_only_3rdparty + $unused_only_3rdparty); ?>
+										</b>
+									</div>
 								</div>
-							</div>
 
-							<div class="ps-canvas-wrap">
-								<canvas id="bdt-db-only-3rdparty-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('3rd Party Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_3rdparty) . ',' . esc_attr($unused_only_3rdparty); ?>" data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
+								<div class="ps-canvas-wrap">
+									<canvas id="bdt-db-only-3rdparty-status" style="height: 100px; width: 100px;" data-label="<?php echo esc_html__('3rd Party Widgets Status', 'bdthemes-prime-slider'); ?> - (<?php echo esc_attr($used_only_3rdparty + $unused_only_3rdparty); ?>)" data-labels="<?php echo esc_attr('Used, Unused'); ?>" data-value="<?php echo esc_attr($used_only_3rdparty) . ',' . esc_attr($unused_only_3rdparty); ?>" data-bg="#06D6A0, #B6FFEC" data-bg-hover="#0673e1, #e71522"></canvas>
+								</div>
 							</div>
 						</div>
 
@@ -598,17 +604,19 @@ class PrimeSlider_Admin_Settings {
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
-						<div class="ps-count-canvas-wrap bdt-flex bdt-flex-between">
-							<div class="ps-count-wrap">
-								<h1 class="ps-feature-title"><?php echo esc_html__('Active', 'bdthemes-prime-slider'); ?></h1>
-								<div class="ps-widget-count"><?php echo esc_html__('Core:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-core"></b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('3rd Party:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-3rd"></b></div>
-								<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-heading"></b></div>
-							</div>
+						<div class="ps-count-canvas-wrap">
+							<h1 class="ps-feature-title"><?php echo esc_html__('Active', 'bdthemes-prime-slider'); ?></h1>
+							<div class="bdt-flex bdt-flex-between bdt-flex-middle">
+								<div class="ps-count-wrap">
+									<div class="ps-widget-count"><?php echo esc_html__('Core:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-core"></b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('3rd Party:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-3rd"></b></div>
+									<div class="ps-widget-count"><?php echo esc_html__('Total:', 'bdthemes-prime-slider'); ?> <b id="bdt-total-widgets-status-heading"></b></div>
+								</div>
 
-							<div class="ps-canvas-wrap">
-								<canvas id="bdt-total-widgets-status" style="height: 120px; width: 120px;" data-label="<?php echo esc_html__('Total Active Widgets Status', 'bdthemes-prime-slider'); ?>" data-labels="<?php echo esc_attr('Core, 3rd Party'); ?>" data-bg="#0680d6, #B0EBFF" data-bg-hover="#0673e1, #B0EBFF">
-								</canvas>
+								<div class="ps-canvas-wrap">
+									<canvas id="bdt-total-widgets-status" style="height: 100px; width: 100px;" data-label="<?php echo esc_html__('Total Active Widgets Status', 'bdthemes-prime-slider'); ?>" data-labels="<?php echo esc_attr('Core, 3rd Party'); ?>" data-bg="#0680d6, #B0EBFF" data-bg-hover="#0673e1, #B0EBFF">
+									</canvas>
+								</div>
 							</div>
 						</div>
 
@@ -628,8 +636,8 @@ class PrimeSlider_Admin_Settings {
 				</div>
 			<?php endif; ?>
 
-			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
-				<div class="bdt-width-1-3@m ps-support-section">
+			<div class="bdt-grid bdt-grid-medium" bdt-grid bdt-height-match="target: > div > .bdt-card">
+				<div class="bdt-width-2-5@m ps-support-section">
 					<div class="ps-support-content bdt-card bdt-card-body">
 						<h1 class="ps-feature-title"><?php echo esc_html__('Support And Feedback', 'bdthemes-prime-slider'); ?></h1>
 						<p><?php echo esc_html__('Feeling like to consult with an expert? Take live Chat support immediately from', 'bdthemes-prime-slider'); ?> <a href="https://PrimeSlider.pro" target="_blank" rel="">PrimeSlider</a>. <?php echo esc_html__('We are always ready to help you 24/7.', 'bdthemes-prime-slider'); ?></p>
@@ -639,7 +647,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 
-				<div class="bdt-width-2-3@m">
+				<div class="bdt-width-3-5@m">
 					<div class="bdt-card bdt-card-body ps-system-requirement">
 						<h1 class="ps-feature-title bdt-margin-small-bottom"><?php echo esc_html__('System Requirement', 'bdthemes-prime-slider'); ?></h1>
 						<?php $this->prime_slider_system_requirement(); ?>
@@ -647,7 +655,7 @@ class PrimeSlider_Admin_Settings {
 				</div>
 			</div>
 
-			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card">
+			<div class="bdt-grid bdt-grid-medium" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m ps-support-section">
 					<div class="bdt-card bdt-card-body ps-feedback-bg">
 						<h1 class="ps-feature-title"><?php echo esc_html__('Missing Any Feature?', 'bdthemes-prime-slider'); ?></h1>
