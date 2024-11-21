@@ -4,139 +4,223 @@ namespace PrimeSlider;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+}
 
 /**
- * Admin_Feeds class
+ * Class Admin Feeds
  */
+class Admin_Feeds {
 
-class Prime_Slider_Admin_Feeds {
+	private $settings;
 
-	public function __construct() {
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_product_feeds_styles' ] );
-		add_action( 'wp_dashboard_setup', [ $this, 'bdthemes_prime_slider_register_rss_feeds' ] );
+	/**
+	 * Static variable to track if the feed has been displayed
+	 */
+	private static $feed_displayed = false;
+
+	/**
+	 * Admin_Feeds constructor.
+	 */
+	public function __construct( $settings ) {
+		$this->settings = $settings;
+		add_action( 'wp_dashboard_setup', [ $this, 'register_rss_feeds' ] );
 	}
 
 	/**
-	 * Enqueue Admin Style Files
+	 * Register RSS Feeds for Element Pack
 	 */
-	function enqueue_product_feeds_styles( $hook ) {
-		if ( 'index.php' != $hook ) {
+	public function register_rss_feeds() {
+		if ( self::$feed_displayed ) {
+			/**
+			 * If the feed has already been displayed, do not add it again
+			 */
 			return;
 		}
-		$direction_suffix = is_rtl() ? '.rtl' : '';
-		wp_enqueue_style( 'ps-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+
+		wp_add_dashboard_widget(
+			'bdt-dashboard-overview',
+			esc_html( $this->settings['feed_title'] ),
+			[ $this, 'display_rss_feeds_content' ],
+			null,
+			null,
+			'column4',
+			'core'
+		);
+
+		/**
+		 * Mark the feed as displayed
+		 */
+		self::$feed_displayed = true;
 	}
 
-
 	/**
-	 * Prime Slider Feeds Register
+	 * Display RSS Feeds Content
 	 */
-
-	public function bdthemes_prime_slider_register_rss_feeds() {
-		wp_add_dashboard_widget( 'bdt-ps-dashboard-overview', esc_html__( 'Prime Slider News &amp; Updates', 'bdthemes-prime-slider' ), [ 
-			$this,
-			'bdthemes_prime_slider_rss_feeds_content_data'
-		], null, null, 'column4', 'core' );
-	}
-
-	/**
-	 * Prime Slider dashboard overview fetch content data
-	 */
-	public function bdthemes_prime_slider_rss_feeds_content_data() {
-		echo '<div class="bdt-ps-dashboard-widget">';
-		$feeds = array();
-		$feeds = $this->bdthemes_prime_slider_get_feeds_remote_data();
-		if ( is_array( $feeds ) ) :
-			foreach ( $feeds as $key => $feed ) {
-				printf( '<div class="bdt-product-feeds-content activity-block"><a href="%s" target="_blank"><img class="bdt-ps-promo-image" src="%s"></a> <p>%s</p></div>', esc_url( $feed->demo_link ), wp_kses_post( $feed->image ), wp_kses_post( $feed->content ) );
+	public function display_rss_feeds_content() {
+		$feeds = $this->get_remote_feeds_data();
+		if ( is_array( $feeds ) ) {
+			foreach ( $feeds as $feed ) {
+				?>
+				<div class="activity-block">
+					<a href="<?php echo esc_url( $feed->demo_link ); ?>" target="_blank" style="margin-bottom:10px; display: inline-block;">
+						<img src="<?php echo esc_url( $feed->image ); ?>" style="width:100%;min-height:240px;">
+					</a>
+					<p>
+						<?php echo wp_kses_post( wp_trim_words( wp_strip_all_tags( $feed->content ), 50 ) ); ?>
+						<a href="<?php echo esc_url( $feed->demo_link ); ?>" target="_blank">
+							<?php esc_html_e( 'Learn more...', $this->settings['text_domain'] ); ?>
+						</a>
+					</p>
+				</div>
+				<?php
 			}
-		endif;
-		echo wp_kses_post($this->bdthemes_prime_slider_get_feeds_posts_data());
+		}
+		echo wp_kses_post( $this->get_rss_posts_data() );
 	}
 
 	/**
-	 * Prime Slider dashboard overview fetch remote data
+	 * Get Remote Feeds Data
+	 *
+	 * @return array|mixed
 	 */
-	public function bdthemes_prime_slider_get_feeds_remote_data() {
-		$source      = wp_remote_get( 'https://dashboard.bdthemes.io/wp-json/bdthemes/v1/product-feed/?product_category=prime-slider' );
-		$reponse_raw = wp_remote_retrieve_body( $source );
-		$reponse     = json_decode( $reponse_raw );
+	private function get_remote_feeds_data() {
+		$transient_key = $this->settings['transient_key'];
+		$cached_data   = get_transient( $transient_key );
 
-		return $reponse;
+		if ( ! empty( $cached_data ) ) {
+			return json_decode( $cached_data );
+		}
+
+		$response = wp_remote_get( $this->settings['remote_feed_link'],
+			array(
+				'timeout' => 30,
+				'headers' => array(
+					'Accept' => 'application/json',
+				),
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			return [];
+		}
+
+		$response_body = wp_remote_retrieve_body( $response );
+		set_transient( $transient_key, $response_body, 6 * HOUR_IN_SECONDS );
+
+		return json_decode( $response_body );
 	}
 
 	/**
-	 * Prime Slider dashboard overview fetch posts data
+	 * Get RSS Posts Data
+	 *
+	 * @return string
 	 */
-	public function bdthemes_prime_slider_get_feeds_posts_data() {
-		// Get RSS Feed(s)
-		include_once ( ABSPATH . WPINC . '/feed.php' );
-		$rss = fetch_feed( 'https://bdthemes.com/feed' );
-		if ( ! is_wp_error( $rss ) ) {
+	private function get_rss_posts_data() {
+		$transient_key = $this->settings['transient_key'] . '_rss';
+		$cached_data   = get_transient( $transient_key );
+
+		if ( ! empty( $cached_data ) ) {
+			/**
+			 * Decode as associative array
+			 */
+			$rss_items = json_decode( $cached_data, true );
+		} else {
+			include_once ABSPATH . WPINC . '/feed.php';
+
+			$rss = fetch_feed( $this->settings['feed_link'] );
+
+			if ( is_wp_error( $rss ) ) {
+				return '<li>' . esc_html__( 'Items Not Found', $this->settings['text_domain'] ) . '.</li>';
+			}
+
 			$maxitems  = $rss->get_item_quantity( 5 );
 			$rss_items = $rss->get_items( 0, $maxitems );
-		} else {
-			$maxitems = 0;
-		}
-		?>
-		<!-- // Display the container -->
-		<div class="bdt-ps-overview__feed">
-			<ul class="bdt-ps-overview__posts">
-				<?php
-				// Check items
-				if ( $maxitems == 0 ) {
-					echo '<li class="bdt-ps-overview__post">' . esc_html__( 'No item', 'bdthemes-prime-slider' ) . '.</li>';
-				} else {
-					foreach ( $rss_items as $item ) :
-						$feed_url     = $item->get_permalink();
-						$feed_title   = $item->get_title();
-						$feed_date    = human_time_diff( $item->get_date( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'bdthemes-prime-slider' );
-						$content      = $item->get_content();
-						$feed_content = wp_html_excerpt( $content, 120 ) . ' [...]';
-						?>
-						<li class="bdt-ps-overview__post">
-							<?php printf( '<a class="bdt-ps-overview__post-link" href="%1$s" title="%2$s">%3$s</a>', esc_url( $feed_url ), esc_html( $feed_date ), esc_html( $feed_title ) );
-							printf( '<span class="bdt-ps-overview__post-date">%1$s</span>', esc_html( $feed_date ) );
-							printf( '<p class="bdt-ps-overview__post-description">%1$s</p>', esc_html( $feed_content ) ); ?>
 
+			/**
+			 * Convert RSS items to a simpler array to avoid serialization issues
+			 */
+			$simplified_rss_items = array_map( function ($item) {
+				return [ 
+					'title'   => $item->get_title(),
+					'link'    => $item->get_permalink(),
+					'date'    => $item->get_date( 'U' ),
+					'content' => $item->get_content(),
+				];
+			}, $rss_items );
+
+			set_transient( $transient_key, json_encode( $simplified_rss_items ), 6 * HOUR_IN_SECONDS );
+			$rss_items = $simplified_rss_items;
+		}
+
+		ob_start();
+		?>
+		<div class="rss-widget">
+			<ul>
+				<?php if ( empty( $rss_items ) ) : ?>
+					<li><?php esc_html_e( 'Items Not Found', $this->settings['text_domain'] ); ?>.</li>
+				<?php else : ?>
+					<?php foreach ( $rss_items as $item ) : ?>
+						<li>
+							<a target="_blank" href="<?php echo esc_url( $item['link'] ); ?>"
+								title="<?php echo esc_html( $item['date'] ); ?>">
+								<?php echo esc_html( $item['title'] ); ?>
+							</a>
+							<span class="rss-date" style="display: block; margin: 0;">
+								<?php echo esc_html( human_time_diff( $item['date'], current_time( 'timestamp' ) ) . ' ' . __( 'ago', $this->settings['text_domain'] ) ); ?>
+							</span>
+							<div class="rss-summary">
+								<?php echo esc_html( wp_html_excerpt( $item['content'], 120 ) . ' [...]' ); ?>
+							</div>
 						</li>
-						<?php
-					endforeach;
-				}
-				?>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</ul>
-			<div class="bdt-ps-overview__footer bdt-ps-divider_top">
-				<ul>
-					<?php
-					$footer_link = [ 
-						[ 
-							'url'   => 'https://bdthemes.com/blog/',
-							'title' => esc_html__( 'Blog', 'bdthemes-prime-slider' ),
-						],
-						[ 
-							'url'   => 'https://bdthemes.com/knowledge-base/',
-							'title' => esc_html__( 'Docs', 'bdthemes-prime-slider' ),
-						],
-						[ 
-							'url'   => 'https://www.PrimeSlider.pro/pricing/',
-							'title' => esc_html__( 'Get Pro', 'bdthemes-prime-slider' ),
-						],
-						[ 
-							'url'   => 'https://bdthemes.frill.co/announcements/',
-							'title' => esc_html__( 'Changelog', 'bdthemes-prime-slider' ),
-						],
-					];
-					foreach ( $footer_link as $key => $link ) {
-						printf( '<li><a href="%1$s" target="_blank">%2$s<span aria-hidden="true" class="dashicons dashicons-external"></span></a></li>', esc_url( $link['url'] ), esc_html( $link['title'] ) );
-					}
-					?>
-				</ul>
-			</div>
 		</div>
-		</div>
+		<p class="community-events-footer" style="margin: 12px -12px 6px -12px; padding: 12px 12px 0px;">
+			<?php
+			foreach ( $this->settings['footer_links'] as $link ) {
+				printf(
+					'<a href="%s" target="_blank">%s <span class="screen-reader-text"> (opens in a new tab)</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
+					esc_url( $link['url'] ),
+					esc_html( $link['title'] )
+				);
+
+				if ( next( $this->settings['footer_links'] ) ) {
+					echo ' | ';
+				}
+			}
+			?>
+		</p>
 		<?php
+		return ob_get_clean();
 	}
 }
 
-new Prime_Slider_Admin_Feeds();
+$settings = array(
+	'feed_title'       => 'BdThemes News & Updates',
+	'transient_key'    => 'bdthemes_product_feeds',
+	'feed_link'        => 'https://bdthemes.com/feed',
+	'remote_feed_link' => 'https://dashboard.bdthemes.io/wp-json/bdthemes/v1/product-feed/?product_category=element-pack',
+	'text_domain'      => 'bdthemes',
+	'footer_links'     => [ 
+		[ 
+			'url'   => 'https://bdthemes.com/blog/',
+			'title' => 'Blog',
+		],
+		[ 
+			'url'   => 'https://bdthemes.com/knowledge-base/',
+			'title' => 'Docs',
+		],
+		[ 
+			'url'   => 'https://store.bdthemes.com/',
+			'title' => 'Get Pro',
+		],
+		[ 
+			'url'   => 'https://feedback.elementpack.pro/announcements/',
+			'title' => 'Changelog',
+		],
+	],
+);
+
+new Admin_Feeds( $settings );
+
