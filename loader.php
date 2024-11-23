@@ -23,15 +23,15 @@ class Prime_Slider_Loader {
 	private $_modules_manager;
 
 	private $classes_aliases = [ 
-		'PrimeSlider\Modules\PanelPostsControl\Module' => 'PrimeSlider\Modules\QueryControl\Module',
+		'PrimeSlider\Modules\PanelPostsControl\Module'                       => 'PrimeSlider\Modules\QueryControl\Module',
 		'PrimeSlider\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSlider\Modules\QueryControl\Controls\Group_Control_Posts',
-		'PrimeSlider\Modules\PanelPostsControl\Controls\Query' => 'PrimeSlider\Modules\QueryControl\Controls\Query',
+		'PrimeSlider\Modules\PanelPostsControl\Controls\Query'               => 'PrimeSlider\Modules\QueryControl\Controls\Query',
 	];
 
 	public $elements_data = [ 
 		'sections' => [],
-		'columns' => [],
-		'widgets' => [],
+		'columns'  => [],
+		'widgets'  => [],
 	];
 
 	/**
@@ -95,7 +95,7 @@ class Prime_Slider_Loader {
 	 */
 	private function _includes() {
 		$duplicator = prime_slider_option( 'duplicator', 'prime_slider_other_settings', 'off' );
-		$live_copy = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
+		$live_copy  = prime_slider_option( 'live-copy', 'prime_slider_other_settings', 'off' );
 
 		// Admin settings controller
 		require_once BDTPS_CORE_ADMIN_PATH . 'module-settings.php';
@@ -123,17 +123,6 @@ class Prime_Slider_Loader {
 				require_once BDTPS_CORE_PATH . 'includes/live-copy/class-live-copy.php';
 			}
 		}
-
-
-		if ( ps_is_dashboard_enabled() ) {
-			if ( is_admin() ) {
-				// Load admin class for admin related content process
-				require_once BDTPS_CORE_ADMIN_PATH . 'admin-notice.php';
-				require_once BDTPS_CORE_ADMIN_PATH . 'admin.php';
-				// require BDTPS_CORE_PATH . 'includes/admin-feeds.php';
-				new Admin();
-			}
-		}
 	}
 
 	/**
@@ -151,7 +140,7 @@ class Prime_Slider_Loader {
 		// Backward Compatibility: Save old class name for set an alias after the new class is loaded
 		if ( $has_class_alias ) {
 			$class_alias_name = $this->classes_aliases[ $class ];
-			$class_to_load = $class_alias_name;
+			$class_to_load    = $class_alias_name;
 		} else {
 			$class_to_load = $class;
 		}
@@ -257,31 +246,31 @@ class Prime_Slider_Loader {
 
 	public function enqueue_editor_scripts() {
 
-		wp_register_script('ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [
+		wp_register_script( 'ps-editor', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-editor.min.js', [ 
 			'backbone-marionette',
 			'elementor-common-modules',
 			'elementor-editor-modules',
-		], BDTPS_CORE_VER, true);
+		], BDTPS_CORE_VER, true );
 
-		wp_enqueue_script ('ps-editor');
+		wp_enqueue_script( 'ps-editor' );
 
 		$_is_ps_pro_activated = false;
-		if (function_exists('ps_license_validation') && true === ps_license_validation()) {
+		if ( function_exists( 'ps_license_validation' ) && true === ps_license_validation() ) {
 			$_is_ps_pro_activated = true;
 		}
 
-		$localize_data = [
-			'pro_installed'  => _is_ps_pro_activated(),
-			'pro_license_activated'  => $_is_ps_pro_activated,
+		$localize_data = [ 
+			'pro_installed'         => _is_ps_pro_activated(),
+			'pro_license_activated' => $_is_ps_pro_activated,
 			'promotional_widgets'   => [],
 		];
 
-		if (!$_is_ps_pro_activated) {
-			$pro_widget_map = new \PrimeSlider\Includes\Pro_Widget_Map();
+		if ( ! $_is_ps_pro_activated ) {
+			$pro_widget_map                       = new \PrimeSlider\Includes\Pro_Widget_Map();
 			$localize_data['promotional_widgets'] = $pro_widget_map->get_pro_widget_map();
 		}
 
-		wp_localize_script('ps-editor', 'PrimeSliderConfigEditor', $localize_data);
+		wp_localize_script( 'ps-editor', 'PrimeSliderConfigEditor', $localize_data );
 	}
 
 	/**
@@ -312,7 +301,7 @@ class Prime_Slider_Loader {
 		wp_register_script( 'ps-notice-js', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-notice.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		$script_config = [ 
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'nonce' => wp_create_nonce( 'prime-slider' ),
+			'nonce'   => wp_create_nonce( 'prime-slider' ),
 		];
 		wp_localize_script( 'ps-notice-js', 'PrimeSliderNoticeConfig', $script_config );
 
@@ -336,11 +325,11 @@ class Prime_Slider_Loader {
 		$elementor = Plugin::$instance;
 
 		// Add element category in panel
-		$elementor->elements_manager->add_category(BDTPS_CORE_SLUG, ['title' => BDTPS_CORE_TITLE, 'icon' => 'font']);
+		$elementor->elements_manager->add_category( BDTPS_CORE_SLUG, [ 'title' => BDTPS_CORE_TITLE, 'icon' => 'font' ] );
 	}
 
 	private function setup_hooks() {
-		add_action('elementor/elements/categories_registered', [$this, 'category_register']);
+		add_action( 'elementor/elements/categories_registered', [ $this, 'category_register' ] );
 		add_action( 'elementor/init', [ $this, 'prime_slider_init' ] );
 		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_editor_styles' ] );
 
@@ -350,11 +339,22 @@ class Prime_Slider_Loader {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_site_scripts' ], 99999 );
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
-		add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
+		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 
 
 		// load WordPress dashboard scripts
 		add_action( 'admin_init', [ $this, 'enqueue_admin_scripts' ] );
+	}
+
+	/**
+	 * Load files on init
+	 */
+	public function init() {
+		if ( is_admin() && ps_is_dashboard_enabled() ) {
+			require_once BDTPS_CORE_ADMIN_PATH . 'admin-notice.php';
+			require_once BDTPS_CORE_ADMIN_PATH . 'admin.php';
+			new Admin();
+		}
 	}
 
 	/**
@@ -368,6 +368,8 @@ class Prime_Slider_Loader {
 		$this->_includes();
 		// Finally hooked up all things here
 		$this->setup_hooks();
+
+		add_action( 'init', [ $this, 'init' ] );
 	}
 }
 
