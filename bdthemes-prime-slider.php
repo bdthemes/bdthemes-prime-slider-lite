@@ -24,6 +24,19 @@ if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 }
 
 
+/**
+ * Loads translations
+ *
+ * @return void
+ */
+
+if ( ! function_exists( 'prime_slider_load_textdomain' ) ) {
+	function prime_slider_load_textdomain() {
+		load_plugin_textdomain( 'bdthemes-prime-slider', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	}
+	add_action( 'init', 'prime_slider_load_textdomain' );
+}
+
 if ( ! function_exists( '_is_pro_pro_installed' ) ) {
 
 	function _is_pro_pro_installed() {
@@ -79,7 +92,6 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
  * Also loaded the language file from here
  */
 function prime_slider_load_plugin() {
-	load_plugin_textdomain( 'bdthemes-prime-slider', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'prime_slider_fail_load' );
