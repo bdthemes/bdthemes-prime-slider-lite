@@ -784,7 +784,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			}
 
 			if ( true !== _is_ps_pro_activated() ) {
-				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="4">%2$s</a></li>', 'prime_slider_get_pro', esc_html__('Get Pro', 'bdthemes-prime-slider') );
+				$html .= sprintf( '<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="4"><span></span><span></span><span></span><span></span>%2$s</a></li>', 'prime_slider_get_pro', esc_html__('Get Pro', 'bdthemes-prime-slider') );
 			}
 
 			if ( ( true == _is_ps_pro_activated() ) && ! defined( 'BDTPS_LO' ) ) {

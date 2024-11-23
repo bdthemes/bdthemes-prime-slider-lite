@@ -706,13 +706,22 @@ class PrimeSlider_Admin_Settings {
 
 			<div class="bdt-grid" bdt-grid bdt-height-match="target: > div > .bdt-card" style="max-width: 800px; margin-left: auto; margin-right: auto;">
 				<div class="bdt-width-1-1@m ps-comparision bdt-text-center">
-					<h1 class="bdt-text-bold"><?php echo esc_html__('WHY GO WITH PRO?', 'bdthemes-prime-slider'); ?></h1>
-					<h2><?php echo esc_html__('Just Compare With ', 'bdthemes-prime-slider'); ?>Prime Slider<?php echo esc_html__(' Free Vs Pro', 'bdthemes-prime-slider'); ?></h2>
+					<div class="bdt-flex bdt-flex-between bdt-flex-middle">
+						<div class="bdt-text-left">
+							<h1 class="bdt-text-bold"><?php echo esc_html__('WHY GO WITH PRO?', 'bdthemes-prime-slider'); ?></h1>
+							<h2><?php echo esc_html__('Just Compare With ', 'bdthemes-prime-slider'); ?>Prime Slider<?php echo esc_html__(' Free Vs Pro', 'bdthemes-prime-slider'); ?></h2>
+						</div>
+						<?php if (true !== _is_ps_pro_activated()) : ?>
+							<div class="ps-purchase-button">
+								<a href="https://primeslider.pro/pricing/" target="_blank"><?php echo esc_html__('Purchase Now', 'bdthemes-prime-slider'); ?></a>
+							</div>
+						<?php endif; ?>
+					</div>
 
 
 					<div>
 
-						<ul class="bdt-list bdt-list-divider bdt-text-left bdt-text-normal" style="font-size: 16px;">
+						<ul class="bdt-list bdt-list-divider bdt-text-left bdt-text-normal" style="font-size: 15px;">
 
 
 							<li class="bdt-text-bold">
@@ -766,20 +775,6 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
-									<div class="bdt-width-expand@m">Rooten<?php echo esc_html__(' Theme Pro Features', 'bdthemes-prime-slider'); ?></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-								</div>
-							</li>
-							<li class="">
-								<div class="bdt-grid">
-									<div class="bdt-width-expand@m"><?php echo esc_html__('Priority Support', 'bdthemes-prime-slider'); ?></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
-									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
-								</div>
-							</li>
-							<li class="">
-								<div class="bdt-grid">
 									<div class="bdt-width-expand@m"><?php echo esc_html__('Ready Made Pages', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
@@ -815,6 +810,20 @@ class PrimeSlider_Admin_Settings {
 							</li>
 							<li class="">
 								<div class="bdt-grid">
+									<div class="bdt-width-expand@m">Rooten<?php echo esc_html__(' Theme Pro Features', 'bdthemes-prime-slider'); ?></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+								</div>
+							</li>
+							<li class="">
+								<div class="bdt-grid">
+									<div class="bdt-width-expand@m"><?php echo esc_html__('Priority Support', 'bdthemes-prime-slider'); ?></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
+									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
+								</div>
+							</li>
+							<li class="">
+								<div class="bdt-grid">
 									<div class="bdt-width-expand@m"><?php echo esc_html__('Reveal Effects', 'bdthemes-prime-slider'); ?></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-no"></span></div>
 									<div class="bdt-width-auto@m"><span class="dashicons dashicons-yes"></span></div>
@@ -823,13 +832,13 @@ class PrimeSlider_Admin_Settings {
 						</ul>
 
 
-						<div class="ps-dashboard-divider"></div>
+						<!-- <div class="ps-dashboard-divider"></div> -->
 
 
-						<div class="ps-more-features">
-							<ul class="bdt-list bdt-list-divider bdt-text-left" style="font-size: 16px;">
+						<div class="ps-more-features bdt-card bdt-card-body bdt-margin-medium-top bdt-padding-large">
+							<ul class="bdt-list bdt-list-divider bdt-text-left" style="font-size: 15px;">
 								<li>
-									<div class="bdt-grid">
+									<div class="bdt-grid bdt-grid-small">
 										<div class="bdt-width-1-3@m">
 											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Incredibly Advanced', 'bdthemes-prime-slider'); ?>
 										</div>
@@ -843,7 +852,7 @@ class PrimeSlider_Admin_Settings {
 								</li>
 
 								<li>
-									<div class="bdt-grid">
+									<div class="bdt-grid bdt-grid-small">
 										<div class="bdt-width-1-3@m">
 											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Super-Flexible Widgets', 'bdthemes-prime-slider'); ?>
 										</div>
@@ -857,7 +866,7 @@ class PrimeSlider_Admin_Settings {
 								</li>
 
 								<li>
-									<div class="bdt-grid">
+									<div class="bdt-grid bdt-grid-small">
 										<div class="bdt-width-1-3@m">
 											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Special Discount!', 'bdthemes-prime-slider'); ?>
 										</div>
@@ -871,7 +880,7 @@ class PrimeSlider_Admin_Settings {
 								</li>
 
 								<li>
-									<div class="bdt-grid">
+									<div class="bdt-grid bdt-grid-small">
 										<div class="bdt-width-1-3@m">
 											<span class="dashicons dashicons-heart"></span><?php echo esc_html__(' Trusted Payment Methods', 'bdthemes-prime-slider'); ?>
 										</div>
@@ -886,7 +895,7 @@ class PrimeSlider_Admin_Settings {
 							</ul>
 
 							<?php if (true !== _is_ps_pro_activated()) : ?>
-								<div class="ps-purchase-button">
+								<div class="ps-purchase-button bdt-margin-medium-top">
 									<a href="https://primeslider.pro/pricing/" target="_blank"><?php echo esc_html__('Purchase Now', 'bdthemes-prime-slider'); ?></a>
 								</div>
 							<?php endif; ?>
