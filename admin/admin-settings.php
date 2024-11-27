@@ -338,6 +338,7 @@ class PrimeSlider_Admin_Settings {
 
 		//initialize settings
 		$this->settings_api->admin_init();
+		$this->ps_redirect_to_get_pro();
 	}
 
 	/**
@@ -346,6 +347,14 @@ class PrimeSlider_Admin_Settings {
 	 * @access public
 	 *
 	 */
+
+	// Redirect to Prime Slider Pro pricing page
+	public function ps_redirect_to_get_pro() {
+        if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_get_pro') {
+            wp_redirect('https://primeslider.pro/pricing/');
+            exit;
+        }
+    }
 
 	public function admin_menu() {
 		add_menu_page(
@@ -385,15 +394,6 @@ class PrimeSlider_Admin_Settings {
 			[$this, 'display_page']
 		);
 
-		// add_submenu_page(
-		//     self::PAGE_ID,
-		//     BDTPS_CORE_TITLE,
-		//     esc_html__('API Settings', 'bdthemes-prime-slider'),
-		//     'manage_options',
-		//     self::PAGE_ID . '#prime_slider_api_settings',
-		//     [$this, 'display_page']
-		// );
-
 		add_submenu_page(
 			self::PAGE_ID,
 			BDTPS_CORE_TITLE,
@@ -409,7 +409,7 @@ class PrimeSlider_Admin_Settings {
 				BDTPS_CORE_TITLE,
 				esc_html__('Get Pro', 'bdthemes-prime-slider'),
 				'manage_options',
-				self::PAGE_ID . '#prime_slider_get_pro',
+				self::PAGE_ID . '_get_pro',
 				[$this, 'display_page']
 			);
 		}
@@ -447,10 +447,6 @@ class PrimeSlider_Admin_Settings {
 				'id'    => 'prime_slider_elementor_extend',
 				'title' => esc_html__('Extensions', 'bdthemes-prime-slider')
 			],
-			// [
-			//     'id'    => 'prime_slider_api_settings',
-			//     'title' => esc_html__('API Settings', 'bdthemes-prime-slider'),
-			// ],
 			[
 				'id'    => 'prime_slider_other_settings',
 				'title' => esc_html__('Other Settings', 'bdthemes-prime-slider'),
@@ -1316,6 +1312,13 @@ class PrimeSlider_Admin_Settings {
 				});
 
 			});
+
+			jQuery(document).ready(function ($) {
+                const getProLink = $('a[href="admin.php?page=prime_slider_options_get_pro"]');
+                if (getProLink.length) {
+                    getProLink.attr('target', '_blank');
+                }
+            });
 		</script>
 	<?php
 	}

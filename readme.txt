@@ -1,4 +1,4 @@
-=== Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Ecommerce Slider) ===
+=== Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Post Slider and Ecommerce Slider) ===
 Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
 Elementor tested up to: 3.25.9
 
-Best Addon for Elementor WordPress Plugin with 50+ Awesome slider design that you can use your modern website with elementor website builder.
+Best Addon for Elementor WordPress Plugin with 55+ Awesome slider design that you can use your modern website with elementor website builder.
 
 == Description ==
 
@@ -50,54 +50,100 @@ In search of an all-in-one plugin for creating a slider for a WordPress website?
 **[Live Demo](https://primeslider.pro/demo/)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/)** | **[Video Tutorial](https://www.youtube.com/watch?v=VMBuGusjvtM&list=PLP0S85GEw7DP3-yJrkgwpIeDFoXy0PDlM)** | **[Need Support?](https://bdthemes.com/support/)**
 
 
-== Free Core Widgets for Lifetime 🔥 ==
+== Free Core Widgets for Elementor 🔥 ==
 
-**Post 👇**
+= Post 👇 =
 
-[Blog](https://primeslider.pro/demo/blog-base/) | [Coral Slider Skin](https://primeslider.pro/demo/blog-skin-coral/) | [Folio Slider Skin](https://primeslider.pro/demo/blog-skin-folio/) | [Zinest Slider Skin](https://primeslider.pro/demo/blog-skin-zinest/) 
-[Fiestar](https://primeslider.pro/demo/fiestar/) | [Flogia](https://primeslider.pro/demo/flogia/) | [Mercury](https://primeslider.pro/demo/mercury/) | [Pacific](https://primeslider.pro/demo/pacific/) | [Rubix](https://primeslider.pro/demo/rubix/) | [Storker](https://primeslider.pro/demo/storker/) | [Vertex](https://primeslider.pro/demo/vertex/) 
+* [Blog](https://primeslider.pro/demo/blog-base/) - Blog base slider for WordPress with a visually appealing interface and smooth transitions.
+* [Coral Slider Skin](https://primeslider.pro/demo/blog-skin-coral/) - Coral skin enhances your blog slider with thumb post modules and scroll-down navigation.
+* [Folio Slider Skin](https://primeslider.pro/demo/blog-skin-folio/) - Folio skin provides a modern, automated blog slider with clear graphics and smooth transitions.
+* [Zinest Slider Skin](https://primeslider.pro/demo/blog-skin-zinest/) - Vibrant post interface with animated blog info and thumb post gallery for better user engagement.
+* [Fiestar](https://primeslider.pro/demo/fiestar/) - A polymorph slider combining post accordion and slider for an enhanced landing page feature.
+* [Flogia](https://primeslider.pro/demo/flogia/) - Retina-ready slider with animated navigation and floating thumb gallery to engage visitors.
+* [Mercury](https://primeslider.pro/demo/mercury/) - A minimalistic post slider with smooth transitions, great for showcasing blog posts.
+* [Pacific](https://primeslider.pro/demo/pacific/) - Simple and effective slider with a dramatic post background and seamless navigation.
+* [Rubix](https://primeslider.pro/demo/rubix/) - Unique slider with a fresh and innovative design, perfect for dynamic content delivery.
+* [Storker](https://primeslider.pro/demo/storker/) - Fast-paced post delivery with smooth transition effects, ideal for engaging audiences.
+* [Vertex](https://primeslider.pro/demo/vertex/) - A seamless slider combining visual graphics with cool animations for optimal user experience.
 
-**Custom 👇**
+= Custom 👇 =
 
-[General](https://primeslider.pro/demo/general/) | [Crelly Slider Skin](https://primeslider.pro/demo/general-skin-crelly/) | [Meteor Slider Skin](https://primeslider.pro/demo/general-skin-meteor/) | [Slide Slider Skin](https://primeslider.pro/demo/general-skin-slide/) 
-[Isolate](https://primeslider.pro/demo/isolate/) | [Locate Slider Skin](https://primeslider.pro/demo/isolate-skin-locate/) | [Slice Slider Skin](https://primeslider.pro/demo/isolate-skin-slice/)
-[Dragon](https://primeslider.pro/demo/dragon/) | [Elysium](https://primeslider.pro/demo/elysium/) | [Mount](https://primeslider.pro/demo/mount/) | [Omatic](https://primeslider.pro/demo/omatic/) | [Sequester](https://primeslider.pro/demo/sequester/) | [Sniper](https://primeslider.pro/demo/sniper/) | [Tango](https://primeslider.pro/demo/tango/) 
+* [General](https://primeslider.pro/demo/general/) - Optimistic slider with smooth transitions and text animations, suitable for any website.
+* [Crelly Slider Skin](https://primeslider.pro/demo/general-skin-crelly/) - Crelly skin adds fluid color swatches and a wide canvas to bring out the beauty of your posts.
+* [Meteor Slider Skin](https://primeslider.pro/demo/general-skin-meteor/) - Meteor skin offers sleek minimalism with slow transitions and thumb posts for engaging interactions.
+* [Slide Slider Skin](https://primeslider.pro/demo/general-skin-slide/) - A minimalistic design focused on your business identity, great for hero pages.
+* [Isolate](https://primeslider.pro/demo/isolate/) - Product-focused slider featuring images, mega heading and interactive navigation buttons.
+* [Locate Slider Skin](https://primeslider.pro/demo/isolate-skin-locate/) - Minimalistic design that showcases your product with colorful social share buttons and smooth navigation.
+* [Slice Slider Skin](https://primeslider.pro/demo/isolate-skin-slice/) - Heavier version of Isolate with more graphics, transitions and a thumb video button.
+* [Dragon](https://primeslider.pro/demo/dragon/) - A charming slider perfect for displaying posts, products and services with smart navigation and animations.
+* [Elysium](https://primeslider.pro/demo/elysium/) - Elegant slider for showcasing featured products or services with a smooth navigation interface.
+* [Mount](https://primeslider.pro/demo/mount/) - Ideal for impactful hero pages with broad animated headlines and HD background transitions.
+* [Omatic](https://primeslider.pro/demo/omatic/) - A versatile slider designed for a wide range of websites with smooth transitions and modern effects.
+* [Sequester](https://primeslider.pro/demo/sequester/) - Engaging minimalistic slider with animated navigation, mega heading and social share buttons.
+* [Sniper](https://primeslider.pro/demo/sniper/) - Perfect for fashion or portfolio websites, featuring a full-width background and thumb gallery for a dynamic interface.
+* [Tango](https://primeslider.pro/demo/tango/) - A carousel-type slider that focuses on one piece of content at a time, making it perfect for product or image displays.
 
-**Fullscreen 👇**
+= Fullscreen 👇 =
 
-[Multiscroll](https://primeslider.pro/demo/multiscroll/) | [Pagepiling](https://primeslider.pro/demo/pagepiling/) 
+* [Multiscroll](https://primeslider.pro/demo/multiscroll/) - Creative, dynamic full-screen slider with cursor scroll-based transitions for an engaging user experience.
+* [Pagepiling](https://primeslider.pro/demo/pagepiling/) - Minimalistic background graphics and sleek slider scrolling effects, offering a fun and fast page transition experience.
 
-== Free 3rd Party Widgets for Lifetime 🔥 ==
+== Free 3rd Party Widgets 🔥 ==
 
-[WooCommerce](https://primeslider.pro/demo/woocommerce/) | [Woocircle](https://primeslider.pro/demo/woocircle/) | [Woolamp](https://primeslider.pro/demo/woolamp/)
+* [WooCommerce](https://primeslider.pro/demo/woocommerce/) - Display your products in a slider with detailed information, including price and add-to-cart options.
+* [Woocircle](https://primeslider.pro/demo/woocircle/) - Showcase products in circular layouts for a fresh and unique visual appeal.
+* [Woolamp](https://primeslider.pro/demo/woolamp/) - A minimalistic WooCommerce slider designed to enhance the customer shopping experience with smooth navigation.
 
-== Free Features for Lifetime 🔥 ==
+== Free Features 🔥 ==
 
-[Live Copy or Paste](https://www.elementpack.pro/knowledge-base/how-to-use-live-copy-option/) | [Duplicator](https://www.elementpack.pro/knowledge-base/how-to-use-element-pack-duplicator/)
+* [Live Copy or Paste](https://www.elementpack.pro/knowledge-base/how-to-use-live-copy-option/) - Copy and paste demo content directly from the Post Kit website to your own site.
+* [Duplicator](https://www.elementpack.pro/knowledge-base/how-to-use-element-pack-duplicator/) - Duplicate posts, pages or Elementor templates with ease for faster design replication.
 
-More free widgets & extensions are coming soon...
+More free widgets and extensions are coming soon...
 
-== Pro Version Core Widgets 🔥 ==
+== Elementor Pro Widgets 🔥 ==
 
-**Post 👇**
+= Post 👇 =
 
-[Fluent](https://primeslider.pro/demo/fluent/) | [Knily](https://primeslider.pro/demo/knily/) | [Marble](https://primeslider.pro/demo/marble/) | [Material](https://primeslider.pro/demo/material/) 
+* [Fluent](https://primeslider.pro/demo/fluent/) - A full-width slider designed to create a dynamic and engaging blog interface.
+* [Knily](https://primeslider.pro/demo/knily/) - A wide base display slider with floating thumb tabs for showcasing content in style.
+* [Marble](https://primeslider.pro/demo/marble/) - A unique slider that presents posts like a horizontal timeline with customizable options.
+* [Material](https://primeslider.pro/demo/material/) - A clean and professional slider that gives your content a sophisticated, polished look.
 
-**Custom 👇**
+= Custom 👇 =
 
-[Astoria](https://primeslider.pro/demo/astoria/) | [Avatar](https://primeslider.pro/demo/avatar/) | [Crossroad](https://primeslider.pro/demo/crossroad/) | [Custom](https://primeslider.pro/demo/custom/) | [Escape](https://primeslider.pro/demo/escape/) | [Flexure](https://primeslider.pro/demo/flexure/) | [Fortune](https://primeslider.pro/demo/fortune/) | [Monster](https://primeslider.pro/demo/monster/) | [Paranoia](https://primeslider.pro/demo/paranoia/) | [Pieces](https://primeslider.pro/demo/pieces/) | [Prism](https://primeslider.pro/demo/prism/) | [Coddle](https://primeslider.pro/demo/coddle/) | [Reveal](https://primeslider.pro/demo/reveal/) | [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) | [Titanic](https://primeslider.pro/demo/titanic/)
+* [Astoria](https://primeslider.pro/demo/astoria/) - Elegant slider for hero pages with social share buttons for a more engaging visitor experience.
+* [Avatar](https://primeslider.pro/demo/avatar/) - Creative image slider with a breathtaking interface to take your content to the next level.
+* [Crossroad](https://primeslider.pro/demo/crossroad/) - A fun and unique slider for displaying posts with a new concept of art.
+* [Custom](https://primeslider.pro/demo/custom/) - Create your own custom template and select it in the custom slider to personalize your design.
+* [Escape](https://primeslider.pro/demo/escape/) - Escape slider offers a bold design with creative navigation and animations for a modern site look.
+* [Flexure](https://primeslider.pro/demo/flexure/) - Full-width slider with background synchronization and a tab-like layout to change images by hovering over titles.
+* [Fortune](https://primeslider.pro/demo/fortune/) - Fortune slider makes showcasing content easy with dynamic transitions and engaging effects.
+* [Monster](https://primeslider.pro/demo/monster/) - A minimalistic content slider for featuring posts or products with a full-width layout and smooth navigation.
+* [Paranoia](https://primeslider.pro/demo/paranoia/) - A unique, eccentric slider with fun post layout animations for a memorable user experience.
+* [Pieces](https://primeslider.pro/demo/pieces/) - Futuristic slider designed for blog sites with engaging, fun animations and transitions.
+* [Prism](https://primeslider.pro/demo/prism/) - Pristine slider designed to capture attention with centered item images and a clean background.
+* [Coddle](https://primeslider.pro/demo/coddle/) - A simple and elegant slider perfect for delivering key content with seamless transitions.
+* [Reveal](https://primeslider.pro/demo/reveal/) - A slider with active reveal transitions designed to boost user engagement and attention.
+* [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) - WooCommerce-focused slider designed to make product discovery easier for customers.
+* [Titanic](https://primeslider.pro/demo/titanic/) - Titanic slider offers stunning, large-scale content slides for impactful presentations.
 
-**Remote Control 👇**
+= Remote Control 👇 =
 
-[Remote Arrows](https://primeslider.pro/demo/remote-arrows/) | [Remote Fraction](https://primeslider.pro/demo/remote-fraction/) | [Remote Pagination](https://primeslider.pro/demo/remote-pagination/) | [Remote Thumbs](https://primeslider.pro/demo/remote-thumbs/) 
+* [Remote Arrows](https://primeslider.pro/demo/remote-arrows/) - Separate the navigation from sliders and use remote arrows to control them from a different place on your site.
+* [Remote Fraction](https://primeslider.pro/demo/remote-fraction/) - Add fraction navigation to any slider, regardless of its position, with this remote control widget.
+* [Remote Pagination](https://primeslider.pro/demo/remote-pagination/) - Display the number of posts left in the query with remote pagination for enhanced user interaction.
+* [Remote Thumbs](https://primeslider.pro/demo/remote-thumbs/) - Link a thumb gallery to any slider to make it more interactive and visually appealing.
 
 == Pro Version 3rd Party Widgets 🔥 ==
 
-[Event Calendar](https://primeslider.pro/demo/event-calendar/) | [Wooexpand](https://primeslider.pro/demo/wooexpand/) | [WooStand](https://primeslider.pro/demo/woostand/)
+* [Event Calendar](https://primeslider.pro/demo/event-calendar/) - Display event countdowns and details in a beautifully designed calendar slider.
+* [Wooexpand](https://primeslider.pro/demo/wooexpand/) - Accordion-style slider fully integrated with WooCommerce for better product showcasing.
+* [WooStand](https://primeslider.pro/demo/woostand/) - An eye-grabbing WooCommerce slider to present featured products with smooth transitions.
 
 == Pro Version Extension 🔥 ==
 
-[Adaptive Background](https://primeslider.pro/demo/adaptive-bg/)
+* [Adaptive Background](https://primeslider.pro/demo/adaptive-bg/) - Automatically adjusts the background image or color based on the content to create dynamic, engaging visuals.
 
 
 == Featured By - Famous Publications 🎇 ==
@@ -106,7 +152,7 @@ More free widgets & extensions are coming soon...
 
 https://youtu.be/KwDq6wiS6go
 
-Paul Charlton, a renowned WordPress influencer, has featured Prime Slider in WPTuts. He found Prime Slider for creative, responsive, and dynamic slider solution plugins.
+Paul Charlton, a renowned WordPress influencer, has featured Prime Slider in WPTuts. He found Prime Slider for creative, responsive and dynamic slider solution plugins.
 
 = themesCode: =
 
@@ -120,7 +166,7 @@ Uriel Soto, expert in WordPress & Elementor, makes helpful WordPress tutorials f
 
 [Fran Salas - PluginsWeb:](https://youtu.be/h6SvBsNfP7o)
 
-Fran Salas is a WordPress passionate. He makes videos on plugin, template, and extension.Same as he makes Tutorial type video showing-off Prime Slier, an add-on for Elementor.   
+Fran Salas is a WordPress passionate. He makes videos on plugin, template and extension.Same as he makes Tutorial type video showing-off Prime Slier, an add-on for Elementor.   
 
 [Brainstorm Force:](https://youtu.be/ZeogOxqdKJI?t=435)
 
@@ -142,6 +188,8 @@ Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widge
 
 == Check out our other Addons 👑 ==
 
+Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
+
 * **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** 🆕☀️ - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering greater web design experience.
 
 * **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Element Pack Lite Build responsive website from scratch with an all-rounder package for Elementor
@@ -155,7 +203,7 @@ Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widge
 * **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor based WordPress gallery addon that provides the easiest image gallery making experience.
 
 
-Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder based products, informative blogs, and documentations.
+Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder based products, informative blogs and documentations.
 
 
 == Installation ==
@@ -298,11 +346,11 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 
 ### Is Prime Slider responsive?
 
-- Yes, Prime Slider is made to fit any kind of display size (mobile, tablet, laptop, or PC) and offers 100% responsiveness.
+- Yes, Prime Slider is made to fit any kind of display size (mobile, tablet, laptop or PC) and offers 100% responsiveness.
 
 ### Can I customize the fonts of the slider?
 
-- Of course, you can. Prime Slider lets you customize the font using a dedicated Typography option for all slider widgets, texts, headings, and meta so you can enjoy complete freedom over the layout.
+- Of course, you can. Prime Slider lets you customize the font using a dedicated Typography option for all slider widgets, texts, headings and meta so you can enjoy complete freedom over the layout.
 
 ### Can I show multiple sliders on a single page?
 
