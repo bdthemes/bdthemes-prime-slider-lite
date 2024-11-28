@@ -257,17 +257,85 @@ class General extends Widget_Base {
 			]
 		);
 
-		/**
-		 * Slider Height Controls
-		 */
-		$this->register_slider_height_controls();
+		$this->add_control(
+			'slider_size_ratio',
+			[ 
+				'label'       => esc_html__( 'Size Ratio', 'bdthemes-prime-slider' ),
+				'type'        => Controls_Manager::IMAGE_DIMENSIONS,
+				'description' => 'Slider ratio to width and height, such as 16:9',
+				'separator'   => 'before',
+				'condition'   => [ 
+					'enable_height!' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'slider_min_height',
+			[ 
+				'label'     => esc_html__( 'Minimum Height', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 50,
+						'max' => 1024,
+					],
+				],
+				'condition' => [ 
+					'enable_height!' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'enable_height',
+			[ 
+				'label'   => esc_html__( 'Enable Responsive Height', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'    => Controls_Manager::SWITCHER,
+				'classes' => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_responsive_control(
+			'viewport_height',
+			[ 
+				'label'       => esc_html__( 'Height', 'bdthemes-prime-slider' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'vh' ],
+				'range'      => [ 
+					'px' => [ 
+						'min' => 100,
+						'max' => 1024,
+					],
+					'em' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
+					'vh' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
+				],
+				'default'     => [ 
+					'unit' => 'vh',
+					'size' => 70,
+				],
+				'condition'   => [ 
+					'enable_height' => 'yes'
+				],
+				'selectors'   => [ 
+					'{{WRAPPER}} .bdt-slideshow .bdt-slideshow-items' => 'min-height: {{SIZE}}{{UNIT}} !important;',
+				],
+				'render_type' => 'template',
+			]
+		);
 
 		$this->add_responsive_control(
 			'content_max_width',
 			[ 
 				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', 'em', '%' ],
+				'size_units' => [ 'px', 'em', '%', 'vw' ],
 				'range'      => [ 
 					'px' => [ 
 						'min' => 100,
@@ -277,11 +345,19 @@ class General extends Widget_Base {
 						'min' => 10,
 						'max' => 100,
 					],
+					'em' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
+					'vw' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
 				],
 				'selectors'  => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-wrapper' => 'max-width: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC
+				'classes'    => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -792,8 +868,19 @@ class General extends Widget_Base {
 			]
 		);
 
-		$this->start_controls_tabs( 'slider_item_style' );
+		$this->add_responsive_control(
+			'content_margin',
+			[ 
+				'label'      => esc_html__( 'Content Margin', 'bdthemes-prime-slider' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
+		$this->start_controls_tabs( 'slider_item_style' );
 		$this->start_controls_tab(
 			'slider_title_style',
 			[ 
@@ -2010,6 +2097,49 @@ class General extends Widget_Base {
 			]
 		);
 
+		// slide skin arrow size
+		//button size
+		$this->add_responsive_control(
+			'arrows_btn_size',
+			[ 
+				'label'     => __( 'Button Size', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 10,
+						'max' => 50,
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin'                 => [ 'slide', 'crelly' ],
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'arrows_icon_size',
+			[ 
+				'label'     => __( 'Icon Size', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 10,
+						'max' => 50,
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin'                 => [ 'slide', 'crelly' ],
+				],
+			]
+		);
+
 		$this->add_control(
 			'dot_heading',
 			[ 
@@ -2102,6 +2232,27 @@ class General extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
+			'navigation_dots_radius',
+			[ 
+				'label'     => __( 'Dots Radius', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 0,
+						'max' => 50,
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li a' => 'border-radius: {{SIZE}}px;',
+				],
+				'condition' => [ 
+					'show_navigation_dots' => [ 'yes' ],
+					'_skin'                => [ 'slide' ],
+				],
+			]
+		);
+
+		$this->add_responsive_control(
 			'navigation_dots_spacing',
 			[ 
 				'label'     => __( 'Dots Space Between', 'bdthemes-prime-slider' ),
@@ -2135,10 +2286,11 @@ class General extends Widget_Base {
 				],
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-nav' => 'left: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav' => 'margin-left: {{SIZE}}px;',
 				],
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
-					'_skin'                => '',
+					'_skin!'                => ['meteor', 'crelly'],
 				],
 			]
 		);
@@ -2156,10 +2308,11 @@ class General extends Widget_Base {
 				],
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-nav' => 'margin-bottom: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav' => 'margin-bottom: {{SIZE}}px;',
 				],
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
-					'_skin'                => '',
+					'_skin!'               => ['meteor', 'crelly'],
 				],
 			]
 		);
@@ -2244,16 +2397,6 @@ class General extends Widget_Base {
 		}
 
 		$this->add_render_attribute( 'slideshow-items', 'class', 'bdt-slideshow-items' );
-
-		// if ( isset( $settings["viewport_height"]["size"] ) && $ratio == false ) {
-		// 	$this->add_render_attribute(
-		// 		[ 
-		// 			'slideshow-items' => [ 
-		// 				'style' => 'min-height:' . $settings["viewport_height"]["size"] . 'vh'
-		// 			]
-		// 		]
-		// 	);
-		// }
 
 		$this->add_render_attribute(
 			[ 
@@ -2584,56 +2727,54 @@ class General extends Widget_Base {
 		}
 
 		?>
-		<div class="bdt-position-z-index bdt-position-large">
-			<div class="bdt-prime-slider-wrapper">
-				<div <?php $this->print_render_attribute_string( 'slide_content_animate' ); ?>>
-					<div class="bdt-prime-slider-desc">
+		<div class="bdt-prime-slider-wrapper">
+			<div <?php $this->print_render_attribute_string( 'slide_content_animate' ); ?>>
+				<div class="bdt-prime-slider-desc">
 
-						<?php if ( $slide_content['sub_title'] && ( 'yes' == $settings['show_sub_title'] ) ) : ?>
-							<div class="bdt-sub-title">
-								<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ); ?>
-									data-reveal="reveal-active" class="bdt-ps-sub-title"
-									<?php echo wp_kses_post( $parallax_sub_title ); ?>>
-									<?php echo wp_kses_post( $slide_content['sub_title'] ); ?>
-								</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ); ?>>
-							</div>
-						<?php endif; ?>
-
-						<?php if ( $slide_content['title'] && ( 'yes' == $settings['show_title'] ) ) : ?>
-							<div data-reveal="reveal-active" class="bdt-main-title" <?php echo wp_kses_post( $parallax_title ); ?>>
-								<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>
-									class="bdt-title-tag">
-									<?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
-										<a <?php $this->print_render_attribute_string( 'title-link' ); ?>>
-										<?php endif; ?>
-										<?php echo wp_kses_post( $slide_content['title'] ); ?>
-										<?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
-										</a>
-									<?php endif; ?>
-								</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
-							</div>
-						<?php endif; ?>
-
-						<?php if ( $slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] ) && ( 'yes' == $settings['alter_btn_excerpt'] ) ) : ?>
-							<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post( $parallax_inner_excerpt ); ?>>
-								<?php echo wp_kses_post( $slide_content['excerpt'] ); ?>
-							</div>
-						<?php endif; ?>
-
-						<div <?php echo wp_kses_post( $parallax_button ); ?>>
-							<div class="bdt-btn-wrapper">
-								<?php $this->render_button( $slide_content ); ?>
-							</div>
+					<?php if ( $slide_content['sub_title'] && ( 'yes' == $settings['show_sub_title'] ) ) : ?>
+						<div class="bdt-sub-title">
+							<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ); ?>
+								data-reveal="reveal-active" class="bdt-ps-sub-title"
+								<?php echo wp_kses_post( $parallax_sub_title ); ?>>
+								<?php echo wp_kses_post( $slide_content['sub_title'] ); ?>
+							</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ); ?>>
 						</div>
-					</div>
+					<?php endif; ?>
 
-					<?php if ( $slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] ) && ( '' == $settings['alter_btn_excerpt'] ) ) : ?>
-						<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post( $parallax_excerpt ); ?>>
+					<?php if ( $slide_content['title'] && ( 'yes' == $settings['show_title'] ) ) : ?>
+						<div data-reveal="reveal-active" class="bdt-main-title" <?php echo wp_kses_post( $parallax_title ); ?>>
+							<<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>
+								class="bdt-title-tag">
+								<?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
+									<a <?php $this->print_render_attribute_string( 'title-link' ); ?>>
+									<?php endif; ?>
+									<?php echo wp_kses_post( $slide_content['title'] ); ?>
+									<?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
+									</a>
+								<?php endif; ?>
+							</<?php echo esc_attr( Utils::get_valid_html_tag( $settings['title_html_tag'] ) ); ?>>
+						</div>
+					<?php endif; ?>
+
+					<?php if ( $slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] ) && ( 'yes' == $settings['alter_btn_excerpt'] ) ) : ?>
+						<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post( $parallax_inner_excerpt ); ?>>
 							<?php echo wp_kses_post( $slide_content['excerpt'] ); ?>
 						</div>
 					<?php endif; ?>
 
+					<div <?php echo wp_kses_post( $parallax_button ); ?>>
+						<div class="bdt-btn-wrapper">
+							<?php $this->render_button( $slide_content ); ?>
+						</div>
+					</div>
 				</div>
+
+				<?php if ( $slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] ) && ( '' == $settings['alter_btn_excerpt'] ) ) : ?>
+					<div data-reveal="reveal-active" class="bdt-slider-excerpt" <?php echo wp_kses_post( $parallax_excerpt ); ?>>
+						<?php echo wp_kses_post( $slide_content['excerpt'] ); ?>
+					</div>
+				<?php endif; ?>
+
 			</div>
 		</div>
 		<?php
