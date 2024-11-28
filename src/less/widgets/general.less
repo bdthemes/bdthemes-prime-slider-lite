@@ -9,6 +9,11 @@
 .bdt-prime-slider-skin-general {
     position: relative;
     overflow: hidden;
+    .bdt-prime-slider-wrapper {
+        width: 100%;
+        max-width: fit-content;
+        margin: 0 clamp(30px, 5vw, 50px);
+    }
     .bdt-prime-slider-content {
         position: relative;
     }
@@ -22,7 +27,7 @@
     }
 
     .bdt-prime-slider-desc {
-        margin-top: 40px;
+        // margin-top: 40px;
         .bdt-main-title {
             // width: 230px;
             display: inline-block;
@@ -379,6 +384,9 @@
                     }
                 }
             }
+        }
+        .bdt-prime-slider-desc {
+            margin-top: 40px;
         }
         .bdt-prime-slider-social-icon {
             left: 100px;

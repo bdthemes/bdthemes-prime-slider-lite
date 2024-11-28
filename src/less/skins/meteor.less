@@ -11,6 +11,11 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .bdt-prime-slider-wrapper {
+        width: 100%;
+        max-width: fit-content;
+        margin: 0 clamp(30px, 10vw, 200px);
+    }
     .bdt-prime-slider-desc {
         position: relative;
         width: 100%;
@@ -276,9 +281,6 @@
 
 @media (min-width: 1024px) {
     .bdt-prime-slider-skin-meteor {
-        .bdt-prime-slider-container {
-            padding: 0 100px;
-        }
         .bdt-prime-slider-social-icon {
             a {
                 display: inline-flex;

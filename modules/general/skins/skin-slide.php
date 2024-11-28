@@ -23,7 +23,7 @@ class Skin_Slide extends Elementor_Skin_Base {
 
             <?php if ($settings['show_navigation_arrows']) : ?>
 
-                <div class="bdt-navigation-arrows bdt-position-center-right reveal-muted">
+                <div class="bdt-navigation-arrows reveal-muted">
                     <a class="bdt-prime-slider-previous" href="#" bdt-slidenav-previous bdt-slideshow-item="previous"></a>
     
                     <a class="bdt-prime-slider-next" href="#" bdt-slidenav-next bdt-slideshow-item="next"></a>
@@ -143,8 +143,8 @@ class Skin_Slide extends Elementor_Skin_Base {
             $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
         }
         
-        $parallax_sub_title = 'data-bdt-slideshow-parallax="x: 50,0,-10; opacity: 1,1,0"';   
-        $parallax_title     = 'data-bdt-slideshow-parallax="x: 100,0,-20; opacity: 1,1,0"';
+        $parallax_title = 'data-bdt-slideshow-parallax="x: 50,0,-10; opacity: 1,1,0"';   
+        $parallax_sub_title     = 'data-bdt-slideshow-parallax="x: 100,0,-20; opacity: 1,1,0"';
         $parallax_excerpt   = 'data-bdt-slideshow-parallax="y: 50,0,-10; opacity: 1,1,0"';
         
         if ( true === _is_ps_pro_activated() ) {
@@ -168,39 +168,52 @@ class Skin_Slide extends Elementor_Skin_Base {
 
         ?>
 
-        <div class="bdt-ps-content-wrapper bdt-position-z-index bdt-position-large">
-            
-            <div class="bdt-slide-shape" data-bdt-slideshow-parallax="Y: -100,0,100; opacity: 1,1,0"></div>
-            <div class="bdt-prime-slider-wrapper">
-                <div class="bdt-prime-slider-content">
-                    <div class="bdt-prime-slider-desc">
+        <div class="bdt-slide-shape" data-bdt-slideshow-parallax="Y: -100,0,100; opacity: 1,1,0"></div>
+        <div class="bdt-prime-slider-wrapper">
+            <div class="bdt-prime-slider-content">
+                <div class="bdt-prime-slider-desc">
 
-                        <?php if ($slide_content['title'] && ( 'yes' == $settings['show_title'] )) : ?>
-                            <div class="bdt-main-title" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
-                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag">
-                                    <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
-                                        <a <?php $this->parent->print_render_attribute_string( 'title-link' ); ?>>
-                                    <?php endif; ?>
-                                        <?php echo wp_kses_post($slide_content['title']); ?>
-                                    <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
-                                        </a>
-                                    <?php endif; ?>
-                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
-                            </div>
-                        <?php endif; ?>
+                    <?php if ($slide_content['title'] && ( 'yes' == $settings['show_title'] )) : ?>
+                        <div class="bdt-main-title" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
+                            <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag">
+                                <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
+                                    <a <?php $this->parent->print_render_attribute_string( 'title-link' ); ?>>
+                                <?php endif; ?>
+                                    <?php echo wp_kses_post($slide_content['title']); ?>
+                                <?php if ( '' !== $slide_content['title_link']['url'] ) : ?>
+                                    </a>
+                                <?php endif; ?>
+                            </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
+                        </div>
+                    <?php endif; ?>
 
-                        <?php if ($slide_content['sub_title'] && ( 'yes' == $settings['show_sub_title'] )) : ?>
-                            <div class="bdt-sub-title">
-                                <<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> <?php echo wp_kses_post($parallax_sub_title); ?> data-reveal="reveal-active" class="bdt-ps-sub-title">
-                                <?php echo wp_kses_post($slide_content['sub_title']); ?>
-                                </<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
-                            </div>
-                        <?php endif; ?>
-                        
-                    </div>
+                    <?php if ($slide_content['sub_title'] && ( 'yes' == $settings['show_sub_title'] )) : ?>
+                        <div class="bdt-sub-title">
+                            <<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> <?php echo wp_kses_post($parallax_sub_title); ?> data-reveal="reveal-active" class="bdt-ps-sub-title">
+                            <?php echo wp_kses_post($slide_content['sub_title']); ?>
+                            </<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $settings['show_button_text'] == 'yes' or 'yes' == $settings['show_excerpt'] ) : ?>
+                        <div class="bdt-slide-text-mobile">
+
+                            <?php if ($slide_content['excerpt'] && ( 'yes' == $settings['show_excerpt'] )) : ?>
+                                <div class="bdt-slider-excerpt" <?php echo wp_kses_post($parallax_sub_title); ?> data-reveal="reveal-active">
+                                    <?php echo wp_kses_post($slide_content['excerpt']); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ( $settings['show_button_text'] == 'yes' ) : ?>
+                                <div class="bdt-prime-slider-arrow-button" data-bdt-slideshow-parallax="x: 100,0,-50; opacity: 1,1,0">
+                                    <?php $this->parent->render_button($slide_content); ?>
+                                </div>
+                            <?php endif; ?>
+
+                        </div>
+                    <?php endif; ?>
+                    
                 </div>
             </div>
-
         </div>
 
         <?php if ( $settings['show_button_text'] == 'yes' or 'yes' == $settings['show_excerpt'] ) : ?>
