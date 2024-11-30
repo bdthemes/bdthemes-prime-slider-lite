@@ -2159,10 +2159,10 @@ class General extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-general .bdt-slideshow-nav li a, {{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li a' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-dotnav li a:before' => 'background: {{VALUE}}',
 				],
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
-					'_skin!'               => [ 'meteor', 'crelly' ],
 				],
 			]
 		);
@@ -2191,7 +2191,7 @@ class General extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-meteor .bdt-dotnav li.bdt-active a, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-dotnav li.bdt-active a:after' => 'border-color: {{VALUE}}',
-					'{{WRAPPER}} .bdt-prime-slider .bdt-dotnav li.bdt-active a:before, {{WRAPPER}} .bdt-prime-slider .bdt-dotnav li a:before'                            => 'background: {{VALUE}}',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-dotnav li.bdt-active a:before' => 'background: {{VALUE}}',
 				],
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
@@ -2227,6 +2227,27 @@ class General extends Widget_Base {
 				'condition' => [ 
 					'show_navigation_arrows' => [ 'yes' ],
 					'_skin'                  => [ 'crelly' ],
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dot_size',
+			[ 
+				'label'     => __( 'Dot Size', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 5,
+						'max' => 50,
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-dotnav li a' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [ 
+					'show_navigation_dots' => [ 'yes' ],
+					'_skin'                => [ 'meteor', 'crelly' ],
 				],
 			]
 		);
@@ -2285,12 +2306,13 @@ class General extends Widget_Base {
 					],
 				],
 				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-nav' => 'left: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider-skin-general .bdt-slideshow-nav' => 'left: {{SIZE}}px;',
 					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav' => 'margin-left: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider-skin-meteor .bdt-dotnav' => 'margin-right: {{SIZE}}px;',
 				],
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
-					'_skin!'                => ['meteor', 'crelly'],
+					'_skin!'                => ['crelly'],
 				],
 			]
 		);

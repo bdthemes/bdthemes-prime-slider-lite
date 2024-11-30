@@ -15,12 +15,15 @@
         width: 100%;
         max-width: fit-content;
         margin: 0 clamp(30px, 10vw, 200px);
+        .bdt-slider-excerpt {
+            margin-bottom: 25px;
+        }
     }
     .bdt-prime-slider-desc {
         position: relative;
         width: 100%;
         .bdt-main-title {
-            margin-bottom: clamp(30px, 4vw, 50px);
+            margin-bottom: clamp(20px, 4vw, 50px);
             display: inline-block;
         }
         .bdt-title-tag a {
@@ -199,18 +202,13 @@
 ===========================================================================*/
 .bdt-prime-slider-skin-meteor {
     .bdt-dotnav {
-        top: 87%;
-        left: 30px;
-        &.bdt-dotnav-vertical {
-            flex-direction: inherit;
-        }
+        margin-right: clamp(20px, 4vw, 70px);
         li {
             position: relative;
-            margin-right: 10px;
             a {
                 position: relative;
-                width: 24px;
-                height: 24px;
+                width: clamp(24px, 2vw, 30px);
+                height: clamp(24px, 2vw, 30px);
                 background: transparent;
                 border: 2px solid transparent;
                 transform: scale(0.8);
@@ -218,8 +216,8 @@
                 &:before {
                     content: '';
                     position: absolute;
-                    height: 6px;
-                    width: 6px;
+                    height: clamp(6px, 1vw, 8px);
+                    width: clamp(6px, 1vw, 8px);
                     background: rgba(255, 255, 255, .8);
                     top: 50%;
                     left: 50%;
@@ -242,8 +240,13 @@
 /*===========================================================================
     Responsive Css ( Slider Skin Slide )
 ===========================================================================*/
-@media (min-width: 640px) {
+@media (min-width: 768px) {
     .bdt-prime-slider-skin-meteor {
+        .bdt-prime-slider-wrapper {
+            .bdt-slider-excerpt {
+                display: none;
+            }
+        }
         .bdt-slide-btn {
             padding: 12px 75px 12px 30px;
             .bdt-slide-btn-icon {
@@ -258,24 +261,24 @@
         .bdt-height-small {
             height: clamp(120px, 12vw, 150px);
         }
-        .bdt-dotnav {
-            top: 50%;
-            left: auto;
-            &.bdt-dotnav-vertical {
-                flex-direction: column;
-            }
-            li {
-                margin-right: 0px;
-                a {
-                    width: 30px;
-                    height: 30px;
-                    &:before {
-                        height: 8px;
-                        width: 8px;
-                    }
-                }
-            }
-        }
+        // .bdt-dotnav {
+        //     top: 50%;
+        //     left: auto;
+        //     &.bdt-dotnav-vertical {
+        //         flex-direction: column;
+        //     }
+        //     li {
+        //         margin-right: 0px;
+        //         a {
+        //             width: 30px;
+        //             height: 30px;
+        //             &:before {
+        //                 height: 8px;
+        //                 width: 8px;
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
 

@@ -77,7 +77,7 @@ class Skin_Slide extends Elementor_Skin_Base {
 						wp_json_encode([
 							"animation"         => 'fade',
 							"ratio"             => $ratio,
-							'min-height'        => (!empty($settings['slider_min_height']['size']) && $ratio !== false) ? $settings['slider_min_height']['size'] : ($ratio !== false ? 380 : false),
+							'min-height'        => (!empty($settings['slider_min_height']['size']) && $ratio !== false) ? $settings['slider_min_height']['size'] : ($ratio !== false ? 480 : false),
 							"autoplay"          => ($settings["autoplay"]) ? true : false,
 							"autoplay-interval" => $settings["autoplay_interval"],
                             "pause-on-hover"    => ("yes" === $settings["pause_on_hover"]) ? true : false,
