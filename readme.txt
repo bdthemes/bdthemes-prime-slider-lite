@@ -1,50 +1,52 @@
 === Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Post Slider and Ecommerce Slider) ===
 Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
-Tags: wordpress slider, elementor addons, slider, image slider, video slider
+Tags: WordPress slider, Elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 Requires PHP: 7.4.0
-Stable tag: 3.15.22
+Stable tag: 3.15.23
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.25.9
+Elementor tested up to: 3.25.10
 
-Best Addon for Elementor WordPress Plugin with 55+ Awesome slider design that you can use your modern website with elementor website builder.
+Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
 == Description ==
 
-Looking for an addon/ plugin that is dedicated to creating sliders for any website built in WordPress & Elementor? 
+Looking for an addon/ plugin dedicated to creating sliders for any website built in WordPress and Elementor? 
 
-**[Prime slider](http://PrimeSlider.pro/)** is a fast, fully customizable, functional plugin - fit for every site including Blogging, eCommerce, etc. Again, it includes an up-to-date UI/UX.
+**[Prime slider](http://PrimeSlider.pro/)** packs the state-of-the-art UI or UX and is a super fast, fully customizable, functional plugin - fit for every site, including blogging, eCommerce and educational sites. 
 
-It is a slider builder that is compatible with any WP theme & [Elementor Page Builder](https://wordpress.org/plugins/elementor/) plugin - meaning you’re safe from any unexpected issues.
+It's a slider builder compatible with any WordPress theme and [Elementor Page Builder](https://wordpress.org/plugins/elementor/) plugin - meaning you’re safe from any unexpected issues.
 
-Tired of the static & non-functional sliders? Fear not!
+Tired of the static and non-functional sliders? Fear not!
 
-== Why Prime Slider when dozens of slider plugins are out there? The fact is, it will help you make your slider 💡 ==
+== Why Prime Slider when dozens of slider plugins are already out there? The fact is, it'll help you make your slider 💡 ==
 
-* Eye-catchy with useful info
-* Responsive (perfectly viewable on any device including mobile, tablet, & desktop)
-* SEO optimized (with title, bread crumb, link, etc.)
-* Highly optimized for web & server performance. 
+* Eye-catchy with helpful info
+* Responsive (perfectly viewable on any device including mobile, tablet and desktop)
+* SEO optimized (with title, breadcrumb, link etc.)
+* Highly optimized for web and server performance. 
 
-We always give importance to our customer's experience & expectations like you have. So, we put 100+ effort into making our product more active and functional. 
+We always give importance to our customer's experience and expectations like you have. So, we put 100+ effort into making our product more active and functional. 
 
-Moreover, our highly professional team works hard to make room so that your business dominates in today’s competitive digital world. 
+Moreover, our highly professional team works hard to make room so your business dominates today’s competitive digital world. 
 
 Another thing is that we hear our customers and take attempts accordingly.
 
 == The features from Prime Slider 💫 ==
 
-* WooCommerce Ready
+* WooCommerce ready
 * Responsive
-* RTL & Translation Ready
-* Regular Updated
-* Support from the Expert of BdThemes
+* RTL and translation ready
+* Regularly updated
+* Support from the experts of BdThemes
 
-In search of an all-in-one plugin for creating a slider for a WordPress website? Look no further. Prime Slider is speed optimized - good for SEO, easy to customize, **WooCommerce** ready slider addon for Elementor that you can use for building sliders of any sort of website.
+Looking for an all-in-one Elementor addon plugin to create a slider for a WordPress website? Look no further than Prime Slider! 
+
+Designed for speed and SEO optimization, Prime Slider is highly customizable and fully compatible with **WooCommerce**.  Prime Slider covers you whether you're creating a portfolio, eCommerce store or blog!
 
 ###USEFUL LINKS 👇###
 **[Live Demo](https://primeslider.pro/demo/)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/)** | **[Video Tutorial](https://www.youtube.com/watch?v=VMBuGusjvtM&list=PLP0S85GEw7DP3-yJrkgwpIeDFoXy0PDlM)** | **[Need Support?](https://bdthemes.com/support/)**
@@ -54,13 +56,13 @@ In search of an all-in-one plugin for creating a slider for a WordPress website?
 
 = Post 👇 =
 
-* [Blog](https://primeslider.pro/demo/blog-base/) - Blog base slider for WordPress with a visually appealing interface and smooth transitions.
+* [Blog](https://primeslider.pro/demo/blog-base/) - Blog based slider for WordPress with a visually appealing interface and smooth transitions.
 * [Coral Slider Skin](https://primeslider.pro/demo/blog-skin-coral/) - Coral skin enhances your blog slider with thumb post modules and scroll-down navigation.
 * [Folio Slider Skin](https://primeslider.pro/demo/blog-skin-folio/) - Folio skin provides a modern, automated blog slider with clear graphics and smooth transitions.
 * [Zinest Slider Skin](https://primeslider.pro/demo/blog-skin-zinest/) - Vibrant post interface with animated blog info and thumb post gallery for better user engagement.
 * [Fiestar](https://primeslider.pro/demo/fiestar/) - A polymorph slider combining post accordion and slider for an enhanced landing page feature.
 * [Flogia](https://primeslider.pro/demo/flogia/) - Retina-ready slider with animated navigation and floating thumb gallery to engage visitors.
-* [Mercury](https://primeslider.pro/demo/mercury/) - A minimalistic post slider with smooth transitions, great for showcasing blog posts.
+* [Mercury](https://primeslider.pro/demo/mercury/) - A minimalistic Elementor post slider with smooth transitions, great for showcasing blog posts.
 * [Pacific](https://primeslider.pro/demo/pacific/) - Simple and effective slider with a dramatic post background and seamless navigation.
 * [Rubix](https://primeslider.pro/demo/rubix/) - Unique slider with a fresh and innovative design, perfect for dynamic content delivery.
 * [Storker](https://primeslider.pro/demo/storker/) - Fast-paced post delivery with smooth transition effects, ideal for engaging audiences.
@@ -108,7 +110,7 @@ More free widgets and extensions are coming soon...
 * [Fluent](https://primeslider.pro/demo/fluent/) - A full-width slider designed to create a dynamic and engaging blog interface.
 * [Knily](https://primeslider.pro/demo/knily/) - A wide base display slider with floating thumb tabs for showcasing content in style.
 * [Marble](https://primeslider.pro/demo/marble/) - A unique slider that presents posts like a horizontal timeline with customizable options.
-* [Material](https://primeslider.pro/demo/material/) - A clean and professional slider that gives your content a sophisticated, polished look.
+* [Material](https://primeslider.pro/demo/material/) - A clean and professional slider that gives your content a polished and sophisticated look.
 
 = Custom 👇 =
 
@@ -119,11 +121,11 @@ More free widgets and extensions are coming soon...
 * [Escape](https://primeslider.pro/demo/escape/) - Escape slider offers a bold design with creative navigation and animations for a modern site look.
 * [Flexure](https://primeslider.pro/demo/flexure/) - Full-width slider with background synchronization and a tab-like layout to change images by hovering over titles.
 * [Fortune](https://primeslider.pro/demo/fortune/) - Fortune slider makes showcasing content easy with dynamic transitions and engaging effects.
-* [Monster](https://primeslider.pro/demo/monster/) - A minimalistic content slider for featuring posts or products with a full-width layout and smooth navigation.
+* [Monster](https://primeslider.pro/demo/monster/) - A minimalistic content slider for featured posts or products with a full-width layout and smooth navigation.
 * [Paranoia](https://primeslider.pro/demo/paranoia/) - A unique, eccentric slider with fun post layout animations for a memorable user experience.
 * [Pieces](https://primeslider.pro/demo/pieces/) - Futuristic slider designed for blog sites with engaging, fun animations and transitions.
-* [Prism](https://primeslider.pro/demo/prism/) - Pristine slider designed to capture attention with centered item images and a clean background.
-* [Coddle](https://primeslider.pro/demo/coddle/) - A simple and elegant slider perfect for delivering key content with seamless transitions.
+* [Prism](https://primeslider.pro/demo/prism/) - The pristine slider is designed to capture attention with centered item images and a clean background.
+* [Coddle](https://primeslider.pro/demo/coddle/) - A simple, elegant slider perfect for delivering key content with seamless transitions.
 * [Reveal](https://primeslider.pro/demo/reveal/) - A slider with active reveal transitions designed to boost user engagement and attention.
 * [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) - WooCommerce-focused slider designed to make product discovery easier for customers.
 * [Titanic](https://primeslider.pro/demo/titanic/) - Titanic slider offers stunning, large-scale content slides for impactful presentations.
@@ -162,28 +164,28 @@ Thanks to Imran Emu, a professional  Web Designer and Developer, for featuring P
 
 [Uriel Soto:](https://youtu.be/3vR2zk_2LXc)
 
-Uriel Soto, expert in WordPress & Elementor, makes helpful WordPress tutorials for everyone. Prime Slider, an add-on for Elementor, has been featured on Youtube Channel named Uriel Soto by this guy.
+Uriel Soto, expert in WordPress and Elementor, makes helpful WordPress tutorials for everyone. Prime Slider, an add-on for Elementor, has been featured on Youtube Channel named Uriel Soto by this guy.
 
 [Fran Salas - PluginsWeb:](https://youtu.be/h6SvBsNfP7o)
-
-Fran Salas is a WordPress passionate. He makes videos on plugin, template and extension.Same as he makes Tutorial type video showing-off Prime Slier, an add-on for Elementor.   
+ 
+A dedicated WordPress enthusiast, Fran Salas creates informative video content focused on plugins, templates and extensions. His tutorial-style videos showcase tools like Prime Slider, an advanced add-on for Elementor, demonstrating its features and capabilities in detail.
 
 [Brainstorm Force:](https://youtu.be/ZeogOxqdKJI?t=435)
 
-A mastermind of some outstanding WP products including theme Astra, has a Youtube Channel. Thankful to the energetic team who makes an awesome video spotlighting Prime Slider and shares on Brainstorm Force, a channel for WordPress Tutorials.
+A mastermind of outstanding WordPress products, including the Astra theme, has a YouTube channel. Thankful to the energetic team who made an excellent video spotlighting Prime Slider and shared it on Brainstorm Force, a channel for WordPress Tutorials.
 
 
 == Common Issues and Solutions: 🐣 ==
 
 1. **Elementor editor fails to load**
-Ans. It is due to your server PHP setting. You can increase PHP memory limit from wp-config.php file or php.ini file 
+Ans. This is due to your server's PHP settings. You can increase the PHP memory limit from the wp-config.php file or php.ini file 
 [View Documentation](https://bdthemes.com/fix-elementor-stuck-on-loading-screen-instantly/)
 
 == Need Help? 🙂 ==
 
 Is there any feature that you want to get in this plugins?
-Please use the suggest page to send us a message about the feature you think we should add to our products.
-Needs assistance to use this plugins? 
+Please use the suggest page to message us about the features we should add to our products.
+Needs assistance to use these plugins? 
 Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widget Tutorials to learn about how to use them efficiently.
 
 == Check out our other Addons 👑 ==
@@ -192,18 +194,18 @@ Explore the best free addons for Elementor and Gutenberg to boost your site with
 
 * **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** 🆕☀️ - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering greater web design experience.
 
-* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Element Pack Lite Build responsive website from scratch with an all-rounder package for Elementor
+* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Element Pack Lite builds a responsive website from scratch with an all-rounder package for Elementor.
 
-* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building quality blogging website with fine-tuned features and widgets.
+* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building quality websites with fine-tuned features and widgets.
 
-* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommmerce addon for answering all your online store design problems in one package.
+* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommerce addon for answering all your online store design problems in one package.
 
 * **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience.
 
-* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor based WordPress gallery addon that provides the easiest image gallery making experience.
+* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor-based WordPress gallery addon that provides the easiest image gallery-making experience.
 
 
-Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder based products, informative blogs and documentations.
+Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder-based products, informative blogs and documentation.
 
 
 == Installation ==
@@ -220,13 +222,17 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.23 [30th November 2024] =
+
+* Updated: General widget and skins controls improved 
+
 = 3.15.22 [23th November 2024] =
 
 * Fixed: Translation issue fixed
 
 = 3.15.21 [21th November 2024] =
 
-* Fixed: Skin locate sub title tags issue fixed in isolate widget
+* Fixed: Skin locate subtitle tags issue fixed in isolate widget
 
 = 3.15.20 [14th November 2024] =
 
@@ -274,7 +280,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.15.9 [23th September 2024] =
 
-* Fixed: Security improved in general, isolate & multiscroll widgets
+* Fixed: Security improved in general, isolate & multi scroll widgets
 
 = 3.15.8 [19th September 2024] =
 
@@ -305,7 +311,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.15.2 [17th August 2024] =
 
-* Added: Category Taxonomy support added for some of post types ( Thanks to Matthieu Verneau )
+* Added: Category Taxonomy support added for some of the post types ( Thanks to Matthieu Verneau )
 * Fixed: Animation conflict issue fixed
 
 = 3.15.1 [10th August 2024] =
@@ -323,7 +329,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.15.0 [28th July 2024] =
 
 * Added: Element caching feature added
-* Added: Skin slide secondary shape color option added in general widget
+* Added: Skin slide secondary shape color option added in the general widget
 * Updated: System improved
 
 Details [changelog here](https://feedback.bdthemes.com/announcements?category=category_7wo5zoxl)
@@ -338,7 +344,7 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 
 ### Do you have documentation of your plugin?
 
-- Of course, we offer a detailed guideline for each module/widget of Prime Slider in order to get you introduced to the features and functions properly.
+- Of course, we offer detailed guidelines for each module/widget of Prime Slider in order to introduce you to the features and functions properly.
 
 ### What should I do if I face any issues?
 

@@ -28,7 +28,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
 
         <?php if ($settings['show_navigation_dots']) : ?>
 
-            <ul class="bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical bdt-margin-large-right bdt-position-center-right reveal-muted"></ul>
+            <ul class="bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical bdt-position-center-right reveal-muted"></ul>
 
         <?php endif; ?>
 
@@ -158,6 +158,12 @@ class Skin_Meteor extends Elementor_Skin_Base {
                                     </a>
                                 <?php endif; ?>
                             </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($slide_content['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
+                        <div class="bdt-slider-excerpt" data-reveal="reveal-active" data-bdt-slideshow-parallax="x: 600,0,-100; opacity: 1,1,0">
+                            <?php echo wp_kses_post($slide_content['excerpt']); ?>
                         </div>
                     <?php endif; ?>
 
