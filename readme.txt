@@ -1,7 +1,7 @@
 === Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Post Slider and Ecommerce Slider) ===
 Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
-Tags: WordPress slider, Elementor addons, slider, image slider, video slider
+Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 Requires PHP: 7.4.0
