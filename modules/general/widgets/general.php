@@ -856,7 +856,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'secondary_shape_color',
 			[ 
-				'label'     => __( 'Secondary Shape Color', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'label'     => __( 'Secondary Shape Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [ 
@@ -1300,6 +1300,33 @@ class General extends Widget_Base {
 				'label'     => __( 'Button', 'bdthemes-prime-slider' ),
 				'condition' => [ 
 					'show_button_text' => 'yes',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'button_vertical_align',
+			[ 
+				'label'     => esc_html__( 'Vertical Align', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [ 
+					'flex-start'    => [ 
+						'title' => esc_html__( 'Top', 'bdthemes-prime-slider' ),
+						'icon'  => 'eicon-v-align-top',
+					],
+					'center' => [ 
+						'title' => esc_html__( 'Middle', 'bdthemes-prime-slider' ),
+						'icon'  => 'eicon-v-align-middle',
+					],
+					'flex-end' => [ 
+						'title' => esc_html__( 'Bottom', 'bdthemes-prime-slider' ),
+						'icon'  => 'eicon-v-align-bottom',
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-prime-slider-arrow-button' => 'align-items: {{VALUE}};',
+				],
+				'condition' => [ 
+					'_skin' => 'slide',
 				],
 			]
 		);
