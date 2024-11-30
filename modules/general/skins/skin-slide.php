@@ -227,7 +227,7 @@ class Skin_Slide extends Elementor_Skin_Base {
                 </div>
             <?php endif; ?>
             
-            <div class="bdt-prime-slider-arrow-button" data-bdt-slideshow-parallax="x: 100,0,-50; opacity: 1,1,0">
+            <div class="bdt-prime-slider-arrow-button bdt-flex" data-bdt-slideshow-parallax="x: 100,0,-50; opacity: 1,1,0">
                <?php $this->parent->render_button($slide_content); ?>
             </div>
 
