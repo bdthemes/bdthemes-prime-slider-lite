@@ -185,9 +185,10 @@
             overflow: hidden;
             li {
                 transition: opacity 400ms ease-out;
-                * {
-                    min-height: 110%;
-                    width: auto;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
                 }
             }
             li:not(.bdt-active) {
