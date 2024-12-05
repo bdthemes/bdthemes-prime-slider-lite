@@ -222,6 +222,11 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.15.X [XX November 2024] =
+
+* Added: Responsive height option added in blog widget
+* Fixed: Scroll down & meta style controls issue fixed in blog widget
+
 = 3.15.23 [30th November 2024] =
 
 * Updated: General widget and skins controls improved 
