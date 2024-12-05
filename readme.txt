@@ -226,6 +226,7 @@ https://youtu.be/XjFiW5rFrac
 
 * Added: Responsive height option added in blog widget
 * Fixed: Scroll down & meta style controls issue fixed in blog widget
+* Fixed: Skins div tag missing issue fixed in blog widget
 
 = 3.15.23 [30th November 2024] =
 
