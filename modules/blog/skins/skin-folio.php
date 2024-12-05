@@ -80,6 +80,7 @@ class Skin_Folio extends Elementor_Skin_Base {
     </div>
 
     </div>
+    </div>
   <?php
   }
 

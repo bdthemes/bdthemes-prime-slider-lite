@@ -109,6 +109,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
         <?php endif; ?>
 
         </div>
+        </div>
     <?php
     }
 
