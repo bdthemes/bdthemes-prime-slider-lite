@@ -1203,7 +1203,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'enable_height',
 			[ 
-				'label'   => esc_html__( 'Enable Viewport Height', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Enable Responsive Height', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'classes' => BDTPS_CORE_IS_PC
 			]
@@ -1214,28 +1214,36 @@ trait Global_Widget_Controls {
 			[ 
 				'label'       => esc_html__( 'Height', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SLIDER,
-				//'size_units'  => [ 'vh' ],
-				// 'range'       => [ 
-				// 	'vh' => [ 
-				// 		'min' => 0,
-				// 		'max' => 100,
-				// 	],
-				// ],
+				'size_units' => [ 'px', 'em', 'vh' ],
+				'range'      => [ 
+					'px' => [ 
+						'min' => 100,
+						'max' => 1024,
+					],
+					'em' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
+					'vh' => [ 
+						'min' => 10,
+						'max' => 100,
+					],
+				],
 				'default'     => [ 
-					//'unit' => 'vh',
+					'unit' => 'vh',
 					'size' => 70,
 				],
 				'condition'   => [ 
 					'enable_height' => 'yes'
 				],
 				'selectors'   => [ 
-					'{{WRAPPER}} .bdt-slideshow .bdt-slideshow-items' => 'min-height: {{SIZE}}vh;',
+					'{{WRAPPER}} .bdt-slideshow .bdt-slideshow-items' => 'min-height: {{SIZE}}{{UNIT}} !important;',
 				],
 				'render_type' => 'template',
 			]
 		);
 	}
-
+	
 	/**
 	 * Scroll Down controls
 	 */

@@ -1221,6 +1221,7 @@ class Blog extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span'       => 'color: {{VALUE}};',
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span svg *' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-scroll-down .bdt-scroll-icon' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1233,7 +1234,6 @@ class Blog extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span',
             ]
         );
-        //margin bottom controls
         $this->add_responsive_control(
             'scroll_button_space_between',
             [
@@ -1248,7 +1248,6 @@ class Blog extends Widget_Base {
         );
 
         $this->end_controls_tab();
-
         $this->start_controls_tab(
             'tab_scroll_button_hover',
             [
@@ -1264,14 +1263,13 @@ class Blog extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down:hover span'       => 'color: {{VALUE}};',
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down:hover span svg *' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-scroll-down:hover .bdt-scroll-icon' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
 
         $this->end_controls_tab();
-
         $this->end_controls_tabs();
-
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -1475,7 +1473,7 @@ class Blog extends Widget_Base {
             [
                 'name'     => 'meta_icon_background',
                 'label'    => __('Background', 'bdthemes-prime-slider'),
-                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon',
+                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author',
             ]
         );
 
@@ -1483,7 +1481,7 @@ class Blog extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name'     => 'meta_icon_border',
-                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon',
+                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author',
             ]
         );
 
@@ -1494,7 +1492,7 @@ class Blog extends Widget_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1503,7 +1501,7 @@ class Blog extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name'     => 'meta_icon_box_shadow',
-                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon',
+                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author',
             ]
         );
 
@@ -1513,7 +1511,8 @@ class Blog extends Widget_Base {
                 'label'     => esc_html__('Size', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, .bdt-prime-slider-skin-folio .bdt-post-slider-author img' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author img' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1525,6 +1524,7 @@ class Blog extends Widget_Base {
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1549,19 +1549,31 @@ class Blog extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'admin_meta_title_color',
+            [
+                'label'     => __('Admin Text Color', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-prime-slider-meta *' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    '_skin' => 'folio',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'meta_text_typography',
                 'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
-                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-text *',
+                'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-text *, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-prime-slider-meta *',
             ]
         );
 
         $this->end_controls_tab();
-
         $this->end_controls_tabs();
-
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -1738,31 +1750,6 @@ class Blog extends Widget_Base {
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_admin_meta',
-            [
-                'label'     => esc_html__('Admin Meta', 'bdthemes-prime-slider'),
-                'tab'       => Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'show_admin_info' => 'yes',
-                    '_skin'           => 'folio',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'admin_meta_title_color',
-            [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-prime-slider-meta *' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
 
         $this->end_controls_section();
 
