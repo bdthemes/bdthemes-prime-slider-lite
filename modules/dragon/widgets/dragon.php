@@ -352,7 +352,7 @@ class dragon extends Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name' => 'css_filters',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider-dragon .bdt-ps-dragon-bg img',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider-dragon .bdt-ps-dragon-slide-image .bdt-ps-slide-img',
 				'separator' => 'before'
 			]
 		);
