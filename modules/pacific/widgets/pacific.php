@@ -50,7 +50,7 @@ class Pacific extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'prime-slider-font', 'ps-pacific' ];
+		return [ 'e-swiper', 'prime-slider-font', 'ps-pacific' ];
 	}
 
 	public function get_script_depends() {

@@ -48,7 +48,7 @@ class Rubix extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'ps-rubix', 'prime-slider-font' ];
+		return [ 'e-swiper', 'ps-rubix', 'prime-slider-font' ];
 	}
 
 	public function get_script_depends() {

@@ -47,7 +47,7 @@ class Mercury extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['ps-mercury', 'prime-slider-font'];
+        return ['e-swiper', 'ps-mercury', 'prime-slider-font'];
     }
 
     public function get_script_depends() {

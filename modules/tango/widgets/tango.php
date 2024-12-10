@@ -43,7 +43,7 @@ class Tango extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['prime-slider-font', 'ps-tango'];
+		return ['e-swiper', 'prime-slider-font', 'ps-tango'];
 	}
 
 	public function get_script_depends() {

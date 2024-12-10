@@ -49,7 +49,7 @@ class Vertex extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['ps-vertex', 'prime-slider-font'];
+        return ['e-swiper', 'ps-vertex', 'prime-slider-font'];
     }
 
     public function get_script_depends() {

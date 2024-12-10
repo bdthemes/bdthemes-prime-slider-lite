@@ -43,7 +43,7 @@ class Sniper extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['ps-sniper'];
+		return ['e-swiper', 'ps-sniper'];
 	}
 	public function get_script_depends() {
 		return ['shutters', 'gl', 'slicer', 'tinder', 'ps-sniper'];

@@ -44,7 +44,7 @@ class Omatic extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['prime-slider-font', 'ps-omatic'];
+		return ['e-swiper', 'prime-slider-font', 'ps-omatic'];
 	}
 	public function get_script_depends() {
 		return ['shutters', 'gl', 'slicer', 'tinder', 'ps-omatic'];
