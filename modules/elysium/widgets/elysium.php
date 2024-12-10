@@ -267,11 +267,6 @@ class Elysium extends Widget_Base {
 		$this->register_autoplay_controls();
 
 		/**
-		 * Centered Slides Controls
-		 */
-		$this->register_centered_slides_controls();
-
-		/**
 		 * Grab Cursor Controls
 		 */
 		$this->register_grab_cursor_controls();
@@ -761,7 +756,7 @@ class Elysium extends Widget_Base {
 							"pauseOnHover"   => ("yes" == $settings["pauseonhover"]) ? true : false,
 							"slidesPerView"  => isset($settings["columns_mobile"]) ? (int)$settings["columns_mobile"] : 1,
 							"spaceBetween"   => !empty($settings["item_gap_mobile"]["size"]) ? (int)$settings["item_gap_mobile"]["size"] : 0,
-							"centeredSlides" => ($settings["centered_slides"] === "yes") ? true : true,
+							"centeredSlides" => true,
 							"grabCursor"     => ($settings["grab_cursor"] === "yes") ? true : false,
 							"effect"         => 'slide',
                             "parallax"       => true,

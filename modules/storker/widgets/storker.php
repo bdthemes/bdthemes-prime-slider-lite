@@ -50,7 +50,7 @@ class Storker extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['ps-storker', 'prime-slider-font'];
+        return ['e-swiper', 'ps-storker', 'prime-slider-font'];
     }
 
     public function get_script_depends() {
