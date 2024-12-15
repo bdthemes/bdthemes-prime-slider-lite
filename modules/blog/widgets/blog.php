@@ -1523,11 +1523,38 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_icon_spacing',
             [
-                'label'     => esc_html__('Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'meta_item_gap',
+            [
+                'label'     => esc_html__('Item Gap', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type'      => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    '_skin' => 'folio',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'meta_wrap_spacing',
+            [
+                'label'     => esc_html__('Wrapper Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type'      => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'padding: 0 {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    '_skin' => 'folio',
                 ],
             ]
         );
