@@ -222,10 +222,9 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.16.0 [XX December 2024] =
+= 3.16.0 [17th December 2024] =
 
 * Added: Optimized Markup feature compatibility added
-* Added: Slider responsive height option added in custom widget
 * Added: Responsive height option added in blog widget
 * Added: Meta item gap & wrapper spacing controls added in skin folio blog widget
 * Fixed: Scroll down & meta style controls issue fixed in blog widget
