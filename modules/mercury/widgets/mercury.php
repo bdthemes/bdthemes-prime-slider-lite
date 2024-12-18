@@ -47,19 +47,19 @@ class Mercury extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['e-swiper', 'ps-mercury', 'prime-slider-font'];
+        return ['swiper', 'ps-mercury', 'prime-slider-font'];
     }
 
     public function get_script_depends() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
             if ( true === _is_ps_pro_activated() ) {
-                return ['shutters', 'gl', 'slicer', 'tinder', 'anime', 'revealFx', 'ps-mercury'];
+                return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'anime', 'revealFx', 'ps-mercury'];
             } else {
-                return ['shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
+                return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
             }
         } else {
-            return ['shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
+            return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
         }
     }
 

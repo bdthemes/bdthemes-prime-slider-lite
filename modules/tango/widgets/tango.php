@@ -43,19 +43,19 @@ class Tango extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['e-swiper', 'prime-slider-font', 'ps-tango'];
+		return ['swiper', 'prime-slider-font', 'ps-tango'];
 	}
 
 	public function get_script_depends() {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
             if ( true === _is_ps_pro_activated() ) {
-                return ['anime', 'revealFx', 'ps-tango'];
+                return ['swiper', 'anime', 'revealFx', 'ps-tango'];
             } else {
-                return ['ps-tango'];
+                return ['swiper', 'ps-tango'];
             }
         } else {
-            return ['ps-tango'];
+            return ['swiper', 'ps-tango'];
         }
     }
 
