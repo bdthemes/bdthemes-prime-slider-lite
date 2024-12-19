@@ -44,10 +44,10 @@ class Omatic extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['e-swiper', 'prime-slider-font', 'ps-omatic'];
+		return ['swiper', 'prime-slider-font', 'ps-omatic'];
 	}
 	public function get_script_depends() {
-		return ['shutters', 'gl', 'slicer', 'tinder', 'ps-omatic'];
+		return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-omatic'];
 	}
 
 	public function get_custom_help_url() {

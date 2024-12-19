@@ -222,8 +222,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+
 = 3.16.1 [19th December 2024] =
 
+* Fixed: Swiper loading issue fixed
 * Fixed: Navigation RTL issue fixed in tango widget
 
 = 3.16.0 [17th December 2024] =
