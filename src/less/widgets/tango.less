@@ -235,3 +235,33 @@
     bottom: 0;
     right: 0;
 }
+
+.rtl {
+    .bdt-prime-slider-tango {
+        .bdt-arrows-center {
+            &.bdt-navigation-arrows {
+                .bdt-navigation-prev {
+                    right: 20px;
+                    left: auto;
+                }
+    
+                .bdt-navigation-next {
+                    left: 20px;
+                    right: auto;
+                }
+            }
+        }
+    
+        .bdt-navigation-arrows {
+            .bdt-navigation-prev {
+                margin-left: 10px;
+                margin-right: auto;
+            }
+        }
+    }
+    .swiper-pagination {
+        right: 50%;
+        left: auto;
+        transform: translateX(50%) translateY(clamp(2.5rem, 6vw, 3.755rem));
+    }
+}
