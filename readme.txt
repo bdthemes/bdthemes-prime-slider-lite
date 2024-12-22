@@ -223,6 +223,10 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
+= 3.16.X [XXth December 2024] =
+
+* Fixed: Swiper loading issue fixed in Fiester Slider widget ( Thanks to Nathan )
+
 = 3.16.1 [19th December 2024] =
 
 * Fixed: Swiper loading issue fixed
