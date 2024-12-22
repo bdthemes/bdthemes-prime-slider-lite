@@ -223,6 +223,10 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
+= 3.16.X [XX December 2024] =
+
+* Fixed: Container width issue fixed in flogia widget
+
 = 3.16.1 [19th December 2024] =
 
 * Fixed: Swiper loading issue fixed

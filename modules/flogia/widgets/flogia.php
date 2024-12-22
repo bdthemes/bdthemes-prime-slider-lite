@@ -102,7 +102,7 @@ class Flogia extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-ps-container' => 'width: {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-flogia .bdt-ps-container' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
                 'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -420,28 +420,6 @@ class Flogia extends Widget_Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'title_width',
-            [
-                'label' => esc_html__('Content Width', 'bdthemes-prime-slider'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 220,
-                        'max' => 1200,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->start_controls_tabs('tabs_slider_style');
 
         $this->start_controls_tab(
@@ -546,6 +524,28 @@ class Flogia extends Widget_Base {
                 ],
                 'condition' => [
                     'show_title' => ['yes'],
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_width',
+            [
+                'label' => esc_html__('Title Width', 'bdthemes-prime-slider'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 220,
+                        'max' => 1200,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-main-title' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
