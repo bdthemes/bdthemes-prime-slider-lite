@@ -151,7 +151,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
     ?>
 
-        <div class="bdt-container">
+        <div class="bdt-ps-zinest-container">
             <div class="bdt-prime-slider-wrapper">
                 <div class="bdt-prime-slider-content">
                     <div class="bdt-prime-slider-desc">

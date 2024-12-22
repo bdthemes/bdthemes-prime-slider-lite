@@ -226,6 +226,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.16.X [XX December 2024] =
 
 * Added: Thumbs size option added in flogia widget
+* Added: Content max width & margin added in blog widget
 * Fixed: Container width issue fixed in flogia widget
 
 = 3.16.1 [19th December 2024] =

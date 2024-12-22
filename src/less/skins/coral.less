@@ -9,12 +9,14 @@
 	}
 
 	.bdt-slideshow-content-wrapper {
-		padding-left: clamp(3.125rem, 16vw, 12.5rem);
+		margin-left: clamp(3.175rem, 16vw, 12.5rem);
+		margin-right: 15px;
+		max-width: clamp(380px, 40vw, 680px) !important;
 	}
 
 	.bdt-prime-slider-desc {
 		position: relative;
-		padding: 0 15px;
+		// padding: 0 15px;
 		.bdt-main-title {
 			display: inline-block;
 		}
@@ -453,15 +455,8 @@
 /*===========================================================================
     Responsive Css ( Slider Blog )
 ===========================================================================*/
-@media (min-width: 640px) {
+@media (min-width: 768px) {
 	.bdt-prime-slider-skin-coral {
-		.bdt-ps-blog-container {
-			margin: 0 100px;
-		}
-		.bdt-prime-slider-desc {
-			padding-bottom: 0;
-			margin-top: 0;
-		}
 		.bdt-ps-thumbnav,
 		.bdt-ps-dotnav,
 		.bdt-navigation-arrows {

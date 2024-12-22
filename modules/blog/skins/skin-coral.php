@@ -247,8 +247,8 @@ class Skin_Coral extends Elementor_Skin_Base
         <div class="bdt-slideshow-content-wrapper">
             <div class="bdt-prime-slider-wrapper">
                 <div class="bdt-prime-slider-content">
-                    <div class="bdt-prime-slider-desc" bdt-grid>
-                        <div class="bdt-width-1-1 bdt-width-2-3@s">
+                    <div class="bdt-prime-slider-desc">
+                        <div>
 
                             <div data-bdt-slideshow-parallax="y: 20,0,-20; opacity: 1,1,0">
                                 <?php $this->parent->render_category(); ?>
