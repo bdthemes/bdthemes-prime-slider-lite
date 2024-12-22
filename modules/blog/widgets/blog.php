@@ -103,6 +103,33 @@ class Blog extends Widget_Base {
 		 */
 		$this->register_slider_height_controls();
 
+        $this->add_responsive_control(
+            'content_max_width',
+            [
+                'label'     => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type'      => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range'     => [
+                    'px' => [
+                        'min'  => 100,
+                        'max'  => 2000,
+                        'step' => 1,
+                    ],
+                    '%'  => [
+                        'min'  => 10,
+                        'max'  => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-ps-blog-container' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-zinest-container' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-slideshow-content-wrapper' => 'max-width: {{SIZE}}{{UNIT}} !important;',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-container' => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
         /**
 		 * Thumbnail Size Controls
 		 */
@@ -585,6 +612,21 @@ class Blog extends Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'content_margin',
+            [
+                'label'      => esc_html__('Content Margin', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors'  => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-ps-blog-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-zinest-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-slideshow-content-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->start_controls_tabs('slider_item_style');
 
         $this->start_controls_tab(
@@ -658,7 +700,7 @@ class Blog extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_title' => ['yes'],

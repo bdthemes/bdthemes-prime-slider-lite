@@ -223,9 +223,12 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
-= 3.16.X [XXth December 2024] =
+= 3.16.X [XX December 2024] =
 
-* Fixed: Swiper loading issue fixed in Fiester Slider widget ( Thanks to Nathan )
+* Added: Thumbs size option added in flogia widget
+* Added: Content max width & margin added in blog widget
+* Fixed: Container width issue fixed in flogia widget
+* Fixed: Swiper loading issue fixed in Fiester Slider widget (Thanks to Nathan)
 
 = 3.16.1 [19th December 2024] =
 
