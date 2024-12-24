@@ -5,7 +5,7 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 Requires PHP: 7.4.0
-Stable tag: 3.16.2
+Stable tag: 3.16.3
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
@@ -223,9 +223,10 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
-= 3.16.X [XXth December 2024] =
+= 3.16.3 [24th December 2024] =
 
-* Fixed: Swiper loading issue fixed in Elysium Slider widget ( Thanks to Frans van Breukelen )
+* Fixed: Swiper loading issue fixed in Elysium Slider widget
+* Updated: Security improved
 
 = 3.16.2 [23th December 2024] =
 
