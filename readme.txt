@@ -223,6 +223,10 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
+= 3.16.X [XXth December 2024] =
+
+* Fixed: Swiper loading issue fixed in Elysium Slider widget ( Thanks to Frans van Breukelen )
+
 = 3.16.2 [23th December 2024] =
 
 * Added: Thumbs size option added in flogia widget
