@@ -2457,7 +2457,7 @@ class General extends Widget_Base {
                 $this->add_render_attribute($link_key, 'class', 'bdt-social-animate', true);
 
                 if ( 'yes' === $settings['social_icon_tooltip'] ) {
-					$tooltip = 'title: ' . wp_kses_post( $link['social_link_title'] ) . '; pos: ' . esc_attr( $position );
+					$tooltip = 'title: ' . wp_kses_post( strip_tags( $link['social_link_title'] ) ) . '; pos: ' . esc_attr( $position );
 				
 					$this->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
 				}
