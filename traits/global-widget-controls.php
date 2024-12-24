@@ -2378,8 +2378,8 @@ trait Global_Widget_Controls {
 								$link_key = 'link_' . $index;
 
 								if ( 'yes' === $settings['social_icon_tooltip'] ) {
-									$tooltip = 'title: ' . wp_kses_post( $link['social_link_title'] ) . '; pos: ' . esc_attr( $position );
-								
+									$tooltip = 'title: ' . wp_kses_post( strip_tags( $link['social_link_title'] ) ) . '; pos: ' . esc_attr( $position );
+									
 									$this->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
 								}
 

@@ -43,7 +43,7 @@ class Skin_Locate extends Elementor_Skin_Base {
                     $link_key = 'link_' . $index;
 
                     if ( 'yes' === $settings['social_icon_tooltip'] ) {
-                        $tooltip = 'title: ' . wp_kses_post( $link['social_link_title'] ) . '; pos: ' . esc_attr( $position );
+                        $tooltip = 'title: ' . wp_kses_post( strip_tags($link['social_link_title']) ) . '; pos: ' . esc_attr( $position );
                     
                         $this->parent->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
                     }
