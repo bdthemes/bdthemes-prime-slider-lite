@@ -225,7 +225,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.16.X [XXth December 2024] =
 
-* Fixed: Swiper loading issue fixed in Fiester Slider widget ( Thanks to Nathan )
+* Fixed: Swiper loading issue fixed in Fiester and Elysium Slider widget ( Thanks to Nathan and Frans van Breukelen )
 
 = 3.16.1 [19th December 2024] =
 
