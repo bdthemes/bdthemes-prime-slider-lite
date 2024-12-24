@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 Requires PHP: 7.4.0
-Stable tag: 3.16.1
+Stable tag: 3.16.2
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.26.0
+Elementor tested up to: 3.26.3
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -225,7 +225,14 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.16.X [XXth December 2024] =
 
-* Fixed: Swiper loading issue fixed in Fiester and Elysium Slider widget ( Thanks to Nathan and Frans van Breukelen )
+* Fixed: Swiper loading issue fixed in Elysium Slider widget ( Thanks to Frans van Breukelen )
+
+= 3.16.2 [23th December 2024] =
+
+* Added: Thumbs size option added in flogia widget
+* Added: Content max width & margin added in blog widget
+* Fixed: Container width issue fixed in flogia widget
+* Fixed: Swiper loading issue fixed in Fiester Slider widget (Thanks to Nathan)
 
 = 3.16.1 [19th December 2024] =
 
@@ -244,7 +251,7 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.15.23 [30th November 2024] =
 
-* Updated: General widget and skins controls improved 
+* Updated: General widget and skins controls improved
 
 = 3.15.22 [23th November 2024] =
 

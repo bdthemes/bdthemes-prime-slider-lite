@@ -6,6 +6,11 @@
     .bdt-overlay-default {
         background: rgba(0, 0, 0, 0.5);
     }
+    .bdt-ps-zinest-container {
+        margin: 0 clamp(1.875rem, 15vw, 11.25rem);
+        width: 100%;
+        max-width: 1200px;
+    }
     .bdt-social-icon {
 		position: absolute;
         right: clamp(1.875rem, 7vw, 4.375rem);
@@ -31,7 +36,7 @@
         display: inline-block;
     }
     .bdt-prime-slider-desc {
-        width: 100%;
+        // width: 100%;
         position: relative;
         .bdt-title-tag {
             font-size: clamp(1.563rem, 4vw, 2.5rem);
@@ -115,10 +120,14 @@
 
         .bdt-ps-featured-thumbnav {
             position: relative;
+            height: 80px;
             img {
                 border-radius: 10px;
                 transition: transform .5s ease;
                 overflow: hidden;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
 
                 &:hover {
                     transform: scale(0.95) rotate(3deg);
@@ -225,9 +234,9 @@
             margin-left: auto;
             margin-right: 59px;
         }
-        .bdt-prime-slider-desc {
-            width: clamp(28.75rem, 60vw, 50rem);
-        }
+        // .bdt-prime-slider-desc {
+        //     width: clamp(28.75rem, 60vw, 50rem);
+        // }
         .bdt-ps-meta {
             margin-bottom: 100px;
         }
