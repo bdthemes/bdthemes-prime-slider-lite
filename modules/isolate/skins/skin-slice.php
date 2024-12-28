@@ -98,6 +98,7 @@ class Skin_Slice extends Elementor_Skin_Base {
             </div>
             <?php $this->render_social_link(); ?>
         </div>
+        </div>
         <?php
     }
 

@@ -223,6 +223,14 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
+= 3.16.X [XX December 2024] =
+
+* Added: Slide image controls added in isolate widget
+* Added: Navigation arrows offset option added in isolate widget
+* Added: Dots size, position & spacing added in isolate widget
+* Added: Skin slice scroll down controls added in isolate widget
+* Fixed: Button, arrows & scroll down hover radius issue fixed in isolate widget
+
 = 3.16.3 [24th December 2024] =
 
 * Fixed: Swiper loading issue fixed in Elysium Slider widget

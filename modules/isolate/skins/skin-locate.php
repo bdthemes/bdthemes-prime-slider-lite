@@ -122,6 +122,7 @@ class Skin_Locate extends Elementor_Skin_Base {
             <?php $this->render_social_link(); ?>
             <?php $this->parent->render_scroll_button(); ?>
         </div>
+        </div>
         <?php
     }
 
