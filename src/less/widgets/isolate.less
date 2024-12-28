@@ -84,6 +84,7 @@
         // background: #000;
         text-transform: uppercase;
         display: inline-block;
+        overflow: hidden;
         &:before {
             position: absolute;
             display: block;
@@ -158,6 +159,7 @@
         .bdt-slide-overlay {
             height: 100%;
             overflow: hidden;
+            display: flex;
         }
         
     }
@@ -235,6 +237,7 @@
             animation: bounce 3s infinite;
             color: #777d96;
             transition: all .3s ease;
+            overflow: hidden;
             &::before {
                 position: absolute;
                 display: block;
@@ -417,33 +420,14 @@
         align-items: center;
         justify-content: center;
         transition: all .3s ease;
+        overflow: hidden;
+        -webkit-transform: translate(var(--ps-isolate-arrows-h-offset, 0), var(--ps-isolate-arrows-v-offset, 0));
+        transform: translate(var(--ps-isolate-arrows-h-offset, 0), var(--ps-isolate-arrows-v-offset, 0));
         i {
             color: #000;
             z-index: 1;
             transition: all .3s ease-out;
         }
-        // &:hover {
-        //     &::before {
-        //         left: 0;
-        //         right: auto;
-        //         width: 100%;
-        //     }
-        //     i {
-        //         color: #fff;
-        //     }
-        // }
-        // &::before {
-        //     position: absolute;
-        //     display: block;
-        //     content: '';
-        //     top: 0;
-        //     right: 0;
-        //     height: 100%;
-        //     width: 0;
-        //     background: #fe506c;
-        //     transition: all .4s cubic-bezier(.42, 0, .58, 1);
-        
-        // }
     }
     &.content-position-column-reverse {
         .bdt-navigation-arrows {
