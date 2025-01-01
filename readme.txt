@@ -223,6 +223,11 @@ https://youtu.be/XjFiW5rFrac
 == Changelog ==
 
 
+= 3.16.X [XX January 2025] =
+
+* Added: Slide fill color option added in isolate widget
+* Fixed: Skin slice sub title color issue fixed in isolate widget
+
 = 3.16.4 [29th December 2024] =
 
 * Added: Slide image controls added in isolate widget
