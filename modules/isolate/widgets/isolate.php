@@ -873,6 +873,20 @@ class Isolate extends Widget_Base {
                 ],
             ]
         );
+        $this->add_control(
+            'slide_fill_color',
+            [
+                'label' => esc_html__('Slide Fill Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-item.bdt-active .bdt-slide-overlay:before' => 'background-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    '_skin!' => ['slice'],
+                ],
+                'classes' => BDTPS_CORE_IS_PC
+            ]
+        );
         $this->end_controls_section();
 
         /**
@@ -2304,8 +2318,7 @@ class Isolate extends Widget_Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-dotnav.bdt-margin-medium-left' => 'margin-left: {{SIZE}}{{UNIT}} !important;',
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-dotnav.bdt-margin-medium-right' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-dotnav' => 'margin: 0 {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_navigation_dots' => ['yes'],
@@ -2358,6 +2371,14 @@ class Isolate extends Widget_Base {
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
+                'selectors_dictionary' => [
+                    'left' => 'left: 0; right: auto;',
+                    'right' => 'right: 0; left: auto;',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-dotnav' => '{{VALUE}};',
+                ],
+                'render_type' => 'template',
                 'condition' => [
                     'show_navigation_dots' => ['yes'],
                     '_skin' => '',
@@ -2424,7 +2445,7 @@ class Isolate extends Widget_Base {
             return;
         }
 
-        $this->add_render_attribute('dotnav', 'class', 'bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical reveal-muted ' . ' bdt-margin-medium-' . $settings['dots_position'] . ' bdt-position-center-' . $settings['dots_position'] );
+        $this->add_render_attribute('dotnav', 'class', 'bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical reveal-muted' );
 
         ?>
 

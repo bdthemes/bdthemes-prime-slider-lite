@@ -175,7 +175,7 @@ class Skin_Slice extends Elementor_Skin_Base {
                                 
                         <?php if ($slide_content['title'] && ('yes' == $settings['show_title'])) : ?>
                         <div class="bdt-main-title">
-                            <h4 class="bdt-ps-sub-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_sub_title); ?>>
+                            <h4 class="bdt-ps-sub-title bdt-sub-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_sub_title); ?>>
                                 <?php echo wp_kses_post(prime_slider_first_word($slide_content['sub_title'])); ?>
                             </h4>
                             <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> 
