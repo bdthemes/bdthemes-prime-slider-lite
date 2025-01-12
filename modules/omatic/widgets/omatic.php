@@ -1260,7 +1260,6 @@ class Omatic extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		?> 
 				</div>
-
 			</div>
 
 			<?php if ($settings['show_navigation_arrows']) : ?>
@@ -1307,6 +1306,8 @@ class Omatic extends Widget_Base {
 					<?php endforeach; ?>
                </div>
 		   </div>
+		   
+		</div>
 
 		<?php
 	}

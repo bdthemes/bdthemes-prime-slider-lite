@@ -434,7 +434,7 @@ class Pagepiling extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_sliders',
 			[
-				'label'     => esc_html__('Sliders', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Wrapper', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -455,12 +455,24 @@ class Pagepiling extends Widget_Base {
 			]
 		);
 
-		$this->start_controls_tabs('slider_item_style');
-
-		$this->start_controls_tab(
-			'slider_title_style',
+		$this->add_responsive_control(
+			'content_margin',
 			[
-				'label' 	=> __('Title', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Content Margin', 'bdthemes-prime-slider'),
+				'type'  => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_sliders_title',
+			[
+				'label'     => esc_html__('Title', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_title' => ['yes'],
 				],
@@ -475,9 +487,6 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag' => 'color: {{VALUE}};',
 				],
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
 
@@ -489,9 +498,6 @@ class Pagepiling extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag .frist-word' => 'color: {{VALUE}};',
                 ],
-                'condition' => [
-					'show_title' => ['yes'],
-				],
             ]
         );
 
@@ -501,9 +507,6 @@ class Pagepiling extends Widget_Base {
 				'name' => 'text_shadow',
 				'label' => __( 'Text Shadow', 'plugin-domain' ),
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-title-tag',
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
 
@@ -512,9 +515,6 @@ class Pagepiling extends Widget_Base {
 			[
 				'name' => 'title_text_stroke',
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag',
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
 
@@ -524,9 +524,6 @@ class Pagepiling extends Widget_Base {
 				'name'     => 'title_typography',
 				'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
 				'selector' => '{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-title-tag',
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
 
@@ -544,18 +541,15 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-title-tag' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
+		$this->end_controls_section();
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'slider_sub_title_style',
+		$this->start_controls_section(
+			'section_style_sliders_sub_title',
 			[
-				'label' 	=> __('Sub Title', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Sub Title', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_sub_title' => ['yes'],
 				],
@@ -596,18 +590,15 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-sub-title .bdt-sub-title-tag' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_sub_title' => ['yes'],
-				],
 			]
 		);
+		$this->end_controls_section();
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'slider_style_excerpt',
+		$this->start_controls_section(
+			'section_style_excerpt',
 			[
-				'label'     => esc_html__('Excerpt', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Text', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_excerpt' => ['yes'],
 				],
@@ -648,30 +639,26 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider .bdt-prime-slider-content .bdt-slider-excerpt' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_excerpt'  => ['yes'],
-				],
 			]
 		);
+		$this->end_controls_section();
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'slider_button_style',
+		$this->start_controls_section(
+			'section_style_button',
 			[
-				'label' 	=> __('Button', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Button', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'show_button_text' => 'yes',
+					'show_button_text' => ['yes'],
 				],
 			]
 		);
 
-		$this->add_control(
+		$this->start_controls_tabs('tabs_button_style');
+		$this->start_controls_tab(
 			'slider_button_style_normal',
 			[
-				'label' 	=> esc_html__('Normal', 'bdthemes-prime-slider'),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
+				'label' => esc_html__('Normal', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -748,12 +735,11 @@ class Pagepiling extends Widget_Base {
             ]
         );
 
-		$this->add_control(
+		$this->end_controls_tab();
+		$this->start_controls_tab(
 			'slider_button_style_hover',
 			[
-				'label' 	=> esc_html__('Hover', 'bdthemes-prime-slider'),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
+				'label' => esc_html__('Hover', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -801,11 +787,8 @@ class Pagepiling extends Widget_Base {
                 ]
             ]
         );
-
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(

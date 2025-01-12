@@ -10,6 +10,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Text_Stroke;
 use Elementor\Repeater;
 use PrimeSlider\Utils;
 
@@ -665,21 +666,12 @@ class Multiscroll extends Widget_Base {
 		);
 
 		$this->add_control(
-			'show_text_stroke',
-			[
-				'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
-				'type'    => Controls_Manager::SWITCHER,
-				'prefix_class' => 'bdt-text-stroke--',
-			]
-		);
-
-		$this->add_control(
 			'title_color',
 			[
 				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'color: {{VALUE}}; -webkit-text-stroke-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -700,6 +692,15 @@ class Multiscroll extends Widget_Base {
 			[
 				'name' => 'text_shadow',
 				'label' => __('Text Shadow', 'plugin-domain') . BDTPS_CORE_NC,
+				'selector' => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Stroke::get_type(),
+			[
+				'name'     => 'title_text_stroke',
+				'label'    => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title',
 			]
 		);

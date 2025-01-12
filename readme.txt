@@ -222,6 +222,12 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.16.X [XX January 2025] =
+
+* Added: Title text stroke control added in multiscroll widget
+* Added: Content margin added in pagepiling widget
+* Fixed: Missing div tag issue fixed in omatic widget
+* Updated: Content max width issue fixed in pagepiling widget
 
 = 3.16.5 [2nd January 2025] =
 

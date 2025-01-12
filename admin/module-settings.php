@@ -239,7 +239,7 @@ class ModuleService {
 					'widget_type'  => 'pro',
 					'content_type' => 'post carousel swiper',
 					'demo_url'     => 'https://primeslider.pro/demo/material/',
-					'video_url'    => '',
+					'video_url'    => 'https://youtu.be/CXFu1ifIbhg?si=a952nlLC12GlX_Wj',
 				],
 
 				[ 
