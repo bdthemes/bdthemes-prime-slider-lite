@@ -4,20 +4,20 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Prime Slider is a packed of elementor widget that gives you some awesome header and slider combination for your website.
- * Version: 3.16.5
+ * Version: 3.16.6
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider
  * Domain Path: /languages
  * License: GPL3
  * Elementor requires at least: 3.22
- * Elementor tested up to: 3.26.3
+ * Elementor tested up to: 3.26.4
  */
 
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '3.16.5' );
+	define( 'BDTPS_CORE_VER', '3.16.6' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );

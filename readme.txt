@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 Requires PHP: 7.4.0
-Stable tag: 3.16.5
+Stable tag: 3.16.6
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.26.3
+Elementor tested up to: 3.26.4
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -222,7 +222,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.16.X [XX January 2025] =
+= 3.16.6 [14th January 2025] =
 
 * Added: Title text stroke control added in multiscroll widget
 * Added: Content margin added in pagepiling widget
