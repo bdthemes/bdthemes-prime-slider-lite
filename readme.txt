@@ -222,6 +222,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.16.X [XX January 2025] =
+
+* Fixed: Fiestar widget issue fixed
+
 = 3.16.6 [14th January 2025] =
 
 * Added: Title text stroke control added in multiscroll widget
