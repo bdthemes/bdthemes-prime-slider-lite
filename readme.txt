@@ -224,7 +224,9 @@ https://youtu.be/XjFiW5rFrac
 
 = 3.16.X [XX January 2025] =
 
-* Fixed: Fiestar widget issue fixed
+* Added: Element offset, size & max width controls added in woocommerce widget
+* Fixed: Item showing issue fixed in fiestar widget
+* Fixed: Navigation, category, add to cart & social link background issue fixed in woocommerce widget
 
 = 3.16.6 [14th January 2025] =
 

@@ -111,7 +111,7 @@ class Woocommerce extends Widget_Base {
 		$this->register_thumbnail_size_controls();
 
 		//Global background settings Controls
-		$this->register_background_settings('.bdt-prime-slider-skin-woocommerce .bdt-ps-wc-product-img');
+		$this->register_background_settings('.bdt-ps-woocommerce .bdt-ps-wc-product-img');
 
 		/**
 		* Show Title Controls
@@ -178,7 +178,7 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -298,11 +298,10 @@ class Woocommerce extends Widget_Base {
 		}
 
 		//Style Start
-
 		$this->start_controls_section(
 			'section_style_sliders',
 			[
-				'label'     => esc_html__('Sliders', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Wrapper', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -331,7 +330,7 @@ class Woocommerce extends Widget_Base {
 					'overlay' => ['background', 'blend']
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider-skin-woocommerce .bdt-overlay-default' => 'background-color: {{VALUE}};'
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-overlay-default' => 'background-color: {{VALUE}};'
 				]
 			]
 		);
@@ -349,30 +348,64 @@ class Woocommerce extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'content_heading',
+			[
+				'label'     => esc_html__('Content', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label'      => esc_html__('Content Padding', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider-skin-woocommerce .bdt-ps-slideshow-content-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-ps-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-
-		$this->start_controls_tabs('slider_item_style');
-
-		$this->start_controls_tab(
-			'slider_title_style',
+		$this->add_responsive_control(
+			'content_margin',
 			[
-				'label' 	=> __('Title', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Margin', 'bdthemes-prime-slider'),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-ps-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'content_max_width',
+			[
+				'label' => esc_html__('Max Width', 'bdthemes-prime-slider'),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 220,
+						'max' => 1200,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-ps-content' => 'max-width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_slider_title',
+			[
+				'label' => esc_html__('Title', 'bdthemes-prime-slider'),
+				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_title' => ['yes'],
 				],
 			]
 		);
-
 		$this->add_responsive_control(
 			'title_width',
 			[
@@ -385,24 +418,17 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title' => 'width: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_title' => ['yes'],
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-title' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->add_control(
 			'title_color',
 			[
 				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title a' => 'color: {{VALUE}};',
-				],
-				'condition' => [
-					'show_title' => ['yes'],
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-title a' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -412,29 +438,21 @@ class Woocommerce extends Widget_Base {
 			[
 				'name'     => 'title_typography',
 				'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title',
-				'condition' => [
-					'show_title' => ['yes'],
-				],
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-title',
 			]
 		);
-
 		$this->add_group_control(
 			Group_Control_Text_Stroke::get_type(),
 			[
 				'name' => 'title_text_stroke',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title a',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-title a',
 				'fields_options' => [
 					'text_stroke_type' => [
 						'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
 					],
 				],
-				'condition' => [
-					'show_title' => ['yes'],
-				],
 			]
 		);
-
 		$this->add_responsive_control(
 			'prime_slider_title_spacing',
 			[
@@ -447,65 +465,57 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-title' => 'padding-bottom: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_title' => ['yes'],
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-title' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
+		$this->end_controls_section();
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'slider_category_style',
+		$this->start_controls_section(
+			'section_style_slider_category',
 			[
-				'label' 	=> __('Category', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Category', 'bdthemes-prime-slider'),
+				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_category' => ['yes'],
 				],
 			]
 		);
-
-		$this->add_control(
-			'category_heading_normal',
+		$this->start_controls_tabs('tabs_category_style');
+		$this->start_controls_tab(
+			'category_style_normal',
 			[
 				'label' => __('Normal', 'bdthemes-prime-slider'),
-				'type'  => Controls_Manager::HEADING,
 			]
 		);
-
 		$this->add_control(
 			'category_color',
 			[
 				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a' => 'color: {{VALUE}};',
 				],
 			]
 		);
-
 		$this->add_control(
-			'category_background_color',
+			'category_background_normal_color',
 			[
 				'label'     => esc_html__('Background', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a:before' => 'background: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a:after' => 'background: {{VALUE}};',
 				],
 			]
 		);
-
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'category_border',
 				'label'       => __('Border', 'bdthemes-prime-slider'),
-				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a',
+				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a',
 			]
 		);
-
 		$this->add_responsive_control(
 			'category_border_radius',
 			[
@@ -513,11 +523,10 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->add_responsive_control(
 			'category_padding',
 			[
@@ -525,19 +534,17 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'category_typography',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a',
 			]
 		);
-
 		$this->add_responsive_control(
 			'prime_slider_category_spacing',
 			[
@@ -550,75 +557,71 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
 					'show_category' => ['yes'],
 				],
 			]
 		);
-
-		$this->add_control(
-			'category_heading_hover',
+		$this->end_controls_tab();
+		$this->start_controls_tab(
+			'category_style_hover',
 			[
 				'label' => __('Hover', 'bdthemes-prime-slider'),
-				'type'  => Controls_Manager::HEADING,
-				'separator' => 'before',
 			]
 		);
-
 		$this->add_control(
 			'category_hover_color',
 			[
 				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a:hover' => 'color: {{VALUE}};',
 				],
 			]
 		);
-
-		// $this->add_control(
-		// 	'category_hover_background_color',
-		// 	[
-		// 		'label'     => esc_html__('Background', 'bdthemes-prime-slider'),
-		// 		'type'      => Controls_Manager::COLOR,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a:hover' => 'background: {{VALUE}};',
-		// 		],
-		// 	]
-		// );
-
+		$this->add_control(
+			'category_background_color',
+			[
+				'label'     => esc_html__('Background', 'bdthemes-prime-slider'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a:before' => 'background: {{VALUE}};',
+				],
+			]
+		);
 		$this->add_control(
 			'category_hover_border_color',
 			[
 				'label'     => __('Border Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-category a:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a:hover' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
-
 		$this->end_controls_tab();
+		$this->end_controls_tabs();
+		$this->end_controls_section();
 
-		$this->start_controls_tab(
-			'slider_style_excerpt',
+		$this->start_controls_section(
+			'section_style_slider_excerpt',
 			[
-				'label'     => esc_html__('Excerpt', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Text', 'bdthemes-prime-slider'),
+				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_excerpt' => ['yes'],
 				],
 			]
 		);
-
 		$this->add_control(
 			'excerpt_color',
 			[
 				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-text' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-text' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -628,7 +631,7 @@ class Woocommerce extends Widget_Base {
 			[
 				'name'     => 'excerpt_typography',
 				'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-text',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-text',
 			]
 		);
 
@@ -654,7 +657,7 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors'  	 => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-text' => 'max-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-text' => 'max-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -671,41 +674,39 @@ class Woocommerce extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-text' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-text' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
 					'show_excerpt'  => ['yes'],
 				],
 			]
 		);
+		$this->end_controls_section();
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'tab_style_price',
+		$this->start_controls_section(
+			'section_style_price',
 			[
-				'label'     => __('Price', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Price', 'bdthemes-prime-slider'),
+				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'show_price' => 'yes',
+					'show_price' => ['yes'],
 				],
 			]
 		);
-
-		$this->add_control(
-			'old_price_heading',
+		$this->start_controls_tabs('tabs_price_style');
+		$this->start_controls_tab(
+			'tab_price_regular',
 			[
-				'label' => __('Old Price', 'bdthemes-prime-slider'),
-				'type'  => Controls_Manager::HEADING,
+				'label' => __('Regular', 'bdthemes-prime-slider'),
 			]
 		);
-
 		$this->add_control(
 			'old_price_color',
 			[
 				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price .price > span' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price .price > span' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -717,7 +718,7 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price .price > span' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price .price > span' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -727,30 +728,26 @@ class Woocommerce extends Widget_Base {
 			[
 				'name'     => 'old_price_typography',
 				'label'    => __('Typography', 'bdthemes-prime-slider'),
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price .price > span',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price del, {{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price .price > span',
 			]
 		);
-
-		$this->add_control(
-			'sale_price_heading',
+		$this->end_controls_tab();
+		$this->start_controls_tab(
+			'tab_price_sale',
 			[
-				'label'     => __('Sale Price', 'bdthemes-prime-slider'),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
+				'label' => __('Sale', 'bdthemes-prime-slider'),
 			]
 		);
-
 		$this->add_control(
 			'sale_price_color',
 			[
 				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price ins' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price ins' => 'color: {{VALUE}};',
 				],
 			]
 		);
-
 		$this->add_responsive_control(
 			'sale_price_margin',
 			[
@@ -758,21 +755,18 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price ins' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price ins' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'sale_price_typography',
 				'label'    => __('Typography', 'bdthemes-prime-slider'),
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price ins',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price ins',
 			]
 		);
-
-
 		$this->add_responsive_control(
 			'sale_price_spacing',
 			[
@@ -780,21 +774,18 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-price' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-price' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_style_button',
 			[
-				'label'     => __('Add to Cart Button', 'bdthemes-prime-slider'),
+				'label'     => __('Add to Cart', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_cart' => 'yes',
@@ -817,18 +808,18 @@ class Woocommerce extends Widget_Base {
 				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button' => 'color: {{VALUE}};',
 				],
 			]
 		);
 
 		$this->add_control(
-			'button_background',
+			'button_background_normal',
 			[
 				'label'     => __('Background', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button:before' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button:after' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -840,7 +831,7 @@ class Woocommerce extends Widget_Base {
 				'label'       => __('Border', 'bdthemes-prime-slider'),
 				'placeholder' => '1px',
 				'default'     => '1px',
-				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button',
+				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button',
 			]
 		);
 
@@ -851,7 +842,7 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -863,7 +854,7 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -872,7 +863,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'button_shadow',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button',
 			]
 		);
 
@@ -880,7 +871,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'button_typography',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button',
 			]
 		);
 
@@ -899,7 +890,18 @@ class Woocommerce extends Widget_Base {
 				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'button_background',
+			[
+				'label'     => __('Background', 'bdthemes-prime-slider'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button:before' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -913,27 +915,31 @@ class Woocommerce extends Widget_Base {
 					'button_border_border!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .button:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .button:hover' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
-
 		$this->end_controls_tab();
+		$this->end_controls_tabs();
+		$this->end_controls_section();
 
-		$this->start_controls_tab(
-			'tab_button_quantity',
+		$this->start_controls_section(
+			'section_style_quantity',
 			[
-				'label' => __('Quantity', 'bdthemes-prime-slider'),
+				'label'     => __('Quantity', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_cart' => 'yes',
+				],
 			]
 		);
-
 		$this->add_control(
 			'quantity_button_color',
 			[
 				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -944,7 +950,7 @@ class Woocommerce extends Widget_Base {
 				'label'     => __('Background', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -955,7 +961,7 @@ class Woocommerce extends Widget_Base {
 				'name'        => 'quantity_button_border',
 				'placeholder' => '1px',
 				'default'     => '1px',
-				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text',
+				'selector'    => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text',
 			]
 		);
 
@@ -966,7 +972,7 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -978,7 +984,7 @@ class Woocommerce extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -987,7 +993,7 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'quantity_button_shadow',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text',
 			]
 		);
 
@@ -995,20 +1001,15 @@ class Woocommerce extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'quantity_button_typography',
-				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-slideshow-content-wrapper .bdt-ps-add-to-cart .input-text',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-add-to-cart .input-text',
 			]
 		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_style_social_icon',
 			[
-				'label'     => esc_html__('Social Share', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Social Link', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_social_icon' => 'yes',
@@ -1039,8 +1040,8 @@ class Woocommerce extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name'      => 'social_icon_background',
-				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a:before',
+				'name'      => 'social_icon_background_normal',
+				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a:after',
 			]
 		);
 
@@ -1078,10 +1079,10 @@ class Woocommerce extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'social_icon_spacing',
 			[
-				'label' => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Space Between', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1110,6 +1111,57 @@ class Woocommerce extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+            'social_link_offset_toggle',
+            [
+                'label' => __( 'Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'return_value' => 'yes',
+            ]
+		);
+		$this->start_popover();
+		$this->add_responsive_control(
+			'social_link_x_offset',
+			[
+				'label' => __( 'Horizontal', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'social_link_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-prime-slider-social-icon' => 'left: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'social_link_y_offset',
+			[
+				'label' => __( 'Vertical', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'social_link_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-prime-slider-social-icon' => 'bottom: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->end_popover();
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -1130,6 +1182,14 @@ class Woocommerce extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'      => 'social_icon_background',
+				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a:before',
+			]
+		);
+
 		$this->add_control(
 			'icon_hover_border_color',
 			[
@@ -1145,9 +1205,7 @@ class Woocommerce extends Widget_Base {
 		);
 
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1190,6 +1248,57 @@ class Woocommerce extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span',
 			]
 		);
+
+		$this->add_control(
+            'scroll_down_offset_toggle',
+            [
+                'label' => __( 'Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'return_value' => 'yes',
+            ]
+		);
+		$this->start_popover();
+		$this->add_responsive_control(
+			'scroll_down_x_offset',
+			[
+				'label' => __( 'Horizontal', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'scroll_down_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-scroll-down' => 'right: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'scroll_down_y_offset',
+			[
+				'label' => __( 'Vertical', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'scroll_down_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-ps-woocommerce .bdt-scroll-down' => 'bottom: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->end_popover();
 
 		$this->end_controls_tab();
 
@@ -1242,7 +1351,6 @@ class Woocommerce extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:before, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:before' => 'background: {{VALUE}}',
 				],
 				'condition' => [
 					'show_navigation_arrows' => ['yes'],
@@ -1272,7 +1380,7 @@ class Woocommerce extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'arrows_border_radius',
 			[
 				'label' 	 => __('Border Radius', 'bdthemes-prime-slider'),
@@ -1283,11 +1391,70 @@ class Woocommerce extends Widget_Base {
 				],
 			]
 		);
+		$this->add_responsive_control(
+			'arrows_padding',
+			[
+				'label'      => __('Padding', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'arrows_size',
+			[
+				'label'      => __('Size', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 50,
+						'step' => 1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'arrows_x_offset',
+			[
+				'label' => __( 'Horizontal Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 0,
+				],
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next' => 'right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous' => 'left: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'pagination_heading',
+			[
+				'label'     => __('Pagination', 'bdthemes-prime-slider'),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
 		$this->add_control(
 			'dot_number_color',
 			[
-				'label'     => __('Total Number Color', 'bdthemes-prime-slider'),
+				'label'     => __('Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav span' => 'color: {{VALUE}}',
@@ -1296,14 +1463,13 @@ class Woocommerce extends Widget_Base {
 				'condition' => [
 					'show_navigation_dots' => ['yes'],
 				],
-				'separator'	=> 'before',
 			]
 		);
 
 		$this->add_control(
 			'active_dot_number_color',
 			[
-				'label'     => __('Active Number Color', 'bdthemes-prime-slider'),
+				'label'     => __('Active Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li a' => 'color: {{VALUE}}',
@@ -1313,9 +1479,83 @@ class Woocommerce extends Widget_Base {
 				],
 			]
 		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'dot_number_typography',
+				'label'    => __('Typography', 'bdthemes-prime-slider'),
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav span, {{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li a',
+				'condition' => [
+					'show_navigation_dots' => ['yes'],
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'dot_number_spacing',
+			[
+				'label'      => __('Space Between', 'bdthemes-prime-slider'),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav li' => 'left: calc(-50px - {{SIZE}}{{UNIT}});',
+				],
+				'condition' => [
+					'show_navigation_dots' => ['yes'],
+				],
+			]
+		);
+		$this->add_control(
+            'pagination_offset_toggle',
+            [
+                'label' => __( 'Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+                'type' => Controls_Manager::POPOVER_TOGGLE,
+                'return_value' => 'yes',
+            ]
+		);
+		$this->start_popover();
+		$this->add_responsive_control(
+			'pagination_x_offset',
+			[
+				'label' => __( 'Horizontal', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'pagination_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-right: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'pagination_y_offset',
+			[
+				'label' => __( 'Vertical', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+				],
+				'condition' => [
+					'pagination_offset_toggle' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-bottom: {{SIZE}}px;',
+				],
+			]
+		);
+		$this->end_popover();
 
 		$this->end_controls_tab();
-
 		$this->start_controls_tab(
 			'tab_navigation_arrows_hover_style',
 			[
@@ -1330,7 +1570,6 @@ class Woocommerce extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover svg' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:before, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:before' => 'background: {{VALUE}}',
 				],
 				'condition' => [
 					'show_navigation_arrows' => ['yes'],
@@ -1366,9 +1605,7 @@ class Woocommerce extends Widget_Base {
 		);
 
 		$this->end_controls_tab();
-
 		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 	}
 
@@ -1382,7 +1619,7 @@ class Woocommerce extends Widget_Base {
 	public function render_header($skin_name = 'woocommerce') {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('prime-slider', 'class', 'bdt-prime-slider-skin-' . $skin_name);
+		$this->add_render_attribute('prime-slider', 'class', 'bdt-ps-' . $skin_name);
 
 		/**
          * Advanced Animation
@@ -1581,7 +1818,7 @@ class Woocommerce extends Widget_Base {
 		}
 
 		?>
-			<div class="bdt-ps-slideshow-content-wrapper">
+			<div class="bdt-ps-content">
 
 				<?php if ($settings['show_category']) : ?>
 					<div class="bdt-ps-category" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 50,0,-110; opacity: 1,1,0">
