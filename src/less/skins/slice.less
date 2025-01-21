@@ -26,6 +26,7 @@
     .bdt-slide-play-button {
         z-index: 1;
     }
+    .bdt-slideshow-items, 
     .bdt-slideshow {
         z-index: 1;
     }
@@ -57,7 +58,7 @@
         position: relative;
         width: 80%;
         margin-bottom: 40px;
-        // margin-left: -2px;
+        z-index: 1;
     }
     .bdt-slider-excerpt {
         color: #666;
@@ -149,7 +150,7 @@
             color: #000;
             outline: none;
             display: inline-flex;
-            animation: shadow-pulse-slice 2s infinite;
+            // animation: shadow-pulse-slice 2s infinite;
             font-size: 12px;
             svg {
                 width: 1em;
@@ -160,6 +161,41 @@
                 svg {
                     transform: scale(1.2)
                 }
+            }
+        }
+        &.bdt-shadow-pulse {
+            a {
+                animation: shadow-pulse 2s infinite;
+                --box-shadow-color: rgba(129, 138, 145, .1);
+            }
+        }
+        &.bdt-line-bounce {
+            a {
+                position: relative;
+                &:before, 
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    border: 1px solid #818a91;
+                    left: -30px;
+                    right: -30px;
+                    top: -30px;
+                    bottom: -30px;
+                    // border-radius: 0;
+                    animation: line-bounce 1.5s linear infinite;
+                    opacity: 0;
+                    backface-visibility: hidden;
+                }
+                &:after {
+                    animation-delay: .5s;
+                }
+            }
+        }
+        &.bdt-multi-shadow {
+            a {
+                animation: multi-shadow 2s infinite;
+                --box-shadow-color: rgba(129, 138, 145, .1);
             }
         }
     }
