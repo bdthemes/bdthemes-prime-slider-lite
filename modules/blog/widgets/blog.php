@@ -1492,6 +1492,62 @@ class Blog extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'meta_content_heading',
+            [
+                'label'     => __('Meta Content', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_control(
+            'folio_glassmorphism_effect',
+            [
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'type'  => Controls_Manager::SWITCHER,
+                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
+                'classes'   => BDTPS_CORE_IS_PC,
+                'condition' => [
+                    '_skin' => 'folio',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'folio_glassmorphism_blur_level',
+            [
+                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
+                'type'        => Controls_Manager::SLIDER,
+                'range'       => [
+                    'px' => [
+                        'min'  => 0,
+                        'step' => 1,
+                        'max'  => 50,
+                    ]
+                ],
+                'default'     => [
+                    'size' => 5
+                ],
+                'selectors'   => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-wrap' => 'backdrop-filter: blur({{SIZE}}px); -webkit-backdrop-filter: blur({{SIZE}}px);'
+                ],
+                'condition' => [
+                    'folio_glassmorphism_effect' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name'      => 'meta_content_background',
+                'selector'  => '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-wrap',
+                'condition' => [
+                    '_skin' => 'folio',
+                ],
+            ]
+        );
+
         $this->start_controls_tabs('meta_style_tabs');
 
         $this->start_controls_tab(
@@ -1579,7 +1635,7 @@ class Blog extends Widget_Base {
                 'label'     => esc_html__('Item Gap', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-wrap' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     '_skin' => 'folio',
@@ -1594,6 +1650,7 @@ class Blog extends Widget_Base {
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'padding: 0 {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-wrap' => 'padding: 0 {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     '_skin' => 'folio',
@@ -2018,72 +2075,7 @@ class Blog extends Widget_Base {
         );
 
         $this->end_controls_tab();
-
         $this->end_controls_tabs();
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_addition',
-            [
-                'label'      => __('Additional', 'bdthemes-prime-slider'),
-                'tab'        => Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    '_skin' => 'folio',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'meta_content_heading',
-            [
-                'label'     => __('Meta Content', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::HEADING,
-            ]
-        );
-
-        $this->add_control(
-            'folio_glassmorphism_effect',
-            [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
-                'type'  => Controls_Manager::SWITCHER,
-                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
-                'classes'   => BDTPS_CORE_IS_PC
-            ]
-        );
-
-        $this->add_control(
-            'folio_glassmorphism_blur_level',
-            [
-                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
-                'type'        => Controls_Manager::SLIDER,
-                'range'       => [
-                    'px' => [
-                        'min'  => 0,
-                        'step' => 1,
-                        'max'  => 50,
-                    ]
-                ],
-                'default'     => [
-                    'size' => 5
-                ],
-                'selectors'   => [
-                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'backdrop-filter: blur({{SIZE}}px); -webkit-backdrop-filter: blur({{SIZE}}px);'
-                ],
-                'condition' => [
-                    'folio_glassmorphism_effect' => 'yes',
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Background::get_type(),
-            [
-                'name'      => 'meta_content_background',
-                'selector'  => '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content',
-            ]
-        );
-
         $this->end_controls_section();
     }
 
