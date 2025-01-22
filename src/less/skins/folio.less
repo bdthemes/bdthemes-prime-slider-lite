@@ -3,6 +3,7 @@
 ===========================================================================*/
 .bdt-prime-slider-skin-folio {
     position: relative;
+
     .bdt-ps-blog-btn {
 		display: inline-block;
 		margin-top: clamp(1.875rem, 4vw, 2rem);
@@ -125,11 +126,23 @@
         }
     }
 
-    .bdt-ps-meta-content {
+    .bdt-ps-meta-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
         background: #000;
         padding: 0 clamp(1.875rem, 8vw, 6.25rem);
         height: clamp(4.063rem, 9vw, 7.5rem);
+        width: 100%;
+        display: flex;
+        align-items: center;
         gap: 40px;
+    }
+
+    .bdt-ps-meta-content {
+        // background: #000;
+        padding: 0 clamp(1.875rem, 8vw, 6.25rem);
+        height: clamp(4.063rem, 9vw, 7.5rem);
         .bdt-social-icon {
             margin-left: auto;
         }
