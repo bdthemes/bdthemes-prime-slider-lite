@@ -4,14 +4,15 @@
 
     var widgetIsolate = function ($scope, $) {
 
-        var $sliderBlog = $scope.find('.bdt-slideshow'),
-            $settings = $sliderBlog.data('settings');
-        // var slideshow = bdtUIkit.slideshow($settings.id);
+        var $sliderIsolate = $scope.find('.bdt-slideshow'),
+            $settings = $sliderIsolate.data('settings');
+
+        if (!$sliderIsolate.length || $settings.animation_status !== 'yes') return;
 
         var $slideItem = $($settings.id + ' ul > li');
 
         // start animation 
-        $($sliderBlog).find('.bdt-slideshow-item').each(function (i, e) {
+        $($sliderIsolate).find('.bdt-slideshow-item').each(function (i, e) {
 
             var self = $(this),
                 $quote = self.find($settings.animation_of),
@@ -31,9 +32,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -58,14 +57,10 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
-
+            });
+            gsapAnimation();
         });
         // end animation 
 

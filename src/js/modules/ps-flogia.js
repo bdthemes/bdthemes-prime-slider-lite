@@ -5,12 +5,10 @@
     var widgetFlogia = function ($scope, $) {
 
         var $flogiaSlider = $scope.find('.bdt-prime-slider-flogia'),
-        $thumbNav = $($flogiaSlider).find('.bdt-thumb-wrapper > .bdt-thumbnav-scroller'),
+            $thumbNav = $($flogiaSlider).find('.bdt-thumb-wrapper > .bdt-thumbnav-scroller'),
             $settings = $($flogiaSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$flogiaSlider.length) {
-            return;
-        }
+        if ( !$flogiaSlider.length ) return;
 
         $($thumbNav).mThumbnailScroller({
             axis: 'x',
@@ -18,6 +16,7 @@
         });
 
         // start animation 
+        if ( $settings.animation_status !== 'yes' ) return;
         var $slideItem = $($settings.id + ' ul > li');
         $($flogiaSlider).find('.bdt-slideshow-item').each(function (i, e) {
 
@@ -39,9 +38,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -65,15 +62,12 @@
 
                 splitTextTimeline.play();
             }
-
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
-
+            });
+            gsapAnimation();
+            
         });
         // end animation 
 

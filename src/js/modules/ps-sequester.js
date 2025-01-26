@@ -7,9 +7,7 @@
         var $sequesterSlider = $scope.find('.bdt-prime-slider-sequester'),
             $settings = $($sequesterSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$sequesterSlider.length) {
-            return;
-        }
+        if ( !$sequesterSlider.length || $settings.animation_status !== 'yes' ) return;
 
         // start animation 
         var $slideItem = $($settings.id + ' ul > li');
@@ -33,9 +31,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -60,13 +56,10 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
+            });
+            gsapAnimation();
 
         });
         // end animation 

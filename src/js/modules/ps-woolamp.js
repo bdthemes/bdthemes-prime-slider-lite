@@ -7,9 +7,7 @@
         var $woolampSlider = $scope.find('.bdt-prime-slider-woolamp'),
             $settings = $($woolampSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$woolampSlider.length) {
-            return;
-        }
+        if (!$woolampSlider.length || $settings.animation_status !== 'yes') return;
 
         // start animation 
         var $slideItem = $($settings.id + ' ul > li');
@@ -33,9 +31,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -60,19 +56,15 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
+            });
+            gsapAnimation();
 
         });
         // end animation 
 
     };
-
 
     jQuery(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-woolamp.default', widgetwoolamp);

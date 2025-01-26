@@ -8,9 +8,10 @@
             $settings = $sliderGeneral.data('settings'),
             $slideItem = $($settings.id + ' ul > li');
 
+        if (!$sliderGeneral.length || $settings.animation_status !== 'yes') return;
+
         // start animation
         $($sliderGeneral).find('.bdt-slideshow-item').each(function (i, e) {
-
             var self = $(this),
                 $quote = self.find($settings.animation_of),
                 mySplitText = new SplitText($quote, {
@@ -29,9 +30,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -56,18 +55,13 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
-
-
+            });
+            gsapAnimation();
+            
         });
     };
-
 
     jQuery(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', widgetGeneral);
