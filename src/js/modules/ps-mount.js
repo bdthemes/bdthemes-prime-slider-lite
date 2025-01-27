@@ -7,9 +7,7 @@
         var $mountSlider = $scope.find('.bdt-prime-slider-mount'),
             $settings = $($mountSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$mountSlider.length) {
-            return;
-        }
+        if (!$mountSlider.length || $settings.animation_status !== 'yes') return;
 
         // start animation 
         var $slideItem = $($settings.id + ' ul > li');
@@ -33,9 +31,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -60,13 +56,10 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
+            });
+            gsapAnimation();
 
         });
         // end animation 

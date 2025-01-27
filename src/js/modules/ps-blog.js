@@ -6,12 +6,12 @@
 
         var $sliderBlog = $scope.find('.bdt-slideshow'),
             $settings = $sliderBlog.data('settings');
+            
+        if (!$sliderBlog.length || $settings.animation_status !== 'yes') return;
 
-        var slideshow = bdtUIkit.slideshow($settings.id);
 
-        // start animation 
+        // start animation
         var $slideItem = $($settings.id + ' ul > li');
-
         $($sliderBlog).find('.bdt-slideshow-item').each(function (i, e) {
 
             var self = $(this),
@@ -32,9 +32,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -59,18 +57,13 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
-
+            });
+            gsapAnimation();
         });
         // end animation 
     };
-
 
     jQuery(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.default', widgetBlog);

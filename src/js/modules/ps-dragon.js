@@ -7,11 +7,9 @@
         var $dragonSlider = $scope.find('.bdt-prime-slider-dragon'),
             $settings = $($dragonSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$dragonSlider.length) {
-            return;
-        }
+        if ( !$dragonSlider.length || $settings.animation_status !== 'yes' ) return;
 
-        // start animation 
+        // start animation
         var $slideItem = $($settings.id + ' ul > li');
         $($dragonSlider).find('.bdt-slideshow-item').each(function (i, e) {
 
@@ -33,9 +31,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -60,19 +56,14 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
+            });
+            gsapAnimation();
 
         });
         // end animation 
-
     };
-
 
     jQuery(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-dragon.default', widgetDragon);

@@ -7,9 +7,7 @@
         var $woocommerceSlider = $scope.find('.bdt-prime-slider-woocommerce'),
             $settings = $($woocommerceSlider).find('.bdt-slideshow').data('settings');
 
-        if (!$woocommerceSlider.length) {
-            return;
-        }
+        if (!$woocommerceSlider.length || $settings.animation_status !== 'yes') return;
 
         // start animation 
         var $slideItem = $($settings.id + ' ul > li');
@@ -33,9 +31,7 @@
 
             function gsapAnimation() {
                 kill();
-                mySplitText.split({
-                    type: 'chars, words, lines'
-                });
+                mySplitText.split();
 
                 var stringType = '';
 
@@ -60,13 +56,10 @@
                 splitTextTimeline.play();
             }
 
-            if ($settings.animation_status == 'yes') {
-                $slideItem.on('itemshow', function () {
-                    gsapAnimation();
-                });
+            $slideItem.on('itemshow', function () {
                 gsapAnimation();
-            }
-
+            });
+            gsapAnimation();
 
         });
         // end animation 
