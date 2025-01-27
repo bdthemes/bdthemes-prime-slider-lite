@@ -1252,7 +1252,7 @@ class Omatic extends Widget_Base {
 				'class' => 'swiper-carousel swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' Slider',
+				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
 				'dir' => $direction,
 			],
 		]);
