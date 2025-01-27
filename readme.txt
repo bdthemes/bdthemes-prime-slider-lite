@@ -222,6 +222,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.17.1 [XX January 2025] =
+
+* Fixed: Advanced animation error fixed
+
 = 3.17.0 [22th January 2025] =
 
 * Added: Lightbox play button position, size & spacing option added in isolate widget
