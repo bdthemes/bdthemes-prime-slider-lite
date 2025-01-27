@@ -793,7 +793,7 @@ class Vertex extends Widget_Base {
 				'class' => 'swiper-vertex swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' slider',
+				'aria-label' => $this->get_title() . ' Slider',
 				'dir' => $direction,
 			],
 		]);

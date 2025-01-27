@@ -1856,7 +1856,7 @@ class Storker extends Widget_Base {
 				'class' => 'swiper-storker swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' slider',
+				'aria-label' => $this->get_title() . ' Slider',
 				'dir' => $direction,
 			],
 		]);

@@ -961,7 +961,7 @@ class Fiestar extends Widget_Base {
 				'class' => 'bdt-center-slider',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' slider',
+				'aria-label' => $this->get_title() . ' Slider',
 				'dir' => $direction,
 			],
 		]);
