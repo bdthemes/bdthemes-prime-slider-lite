@@ -800,7 +800,7 @@ class Elysium extends Widget_Base {
 				'class' => 'bdt-slider-continer',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title(),
+				'aria-label' => $this->get_title() . ' slider',
 				'dir' => $direction,
 			],
 		]);

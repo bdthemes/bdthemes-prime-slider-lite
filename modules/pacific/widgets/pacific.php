@@ -1339,7 +1339,7 @@ class Pacific extends Widget_Base {
 				'class' => 'swiper-pacific swiper bdt-slider-style-' . esc_attr($settings['layout_style']),
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title(),
+				'aria-label' => $this->get_title() . ' slider',
 				'dir' => $direction,
 			],
 		]);

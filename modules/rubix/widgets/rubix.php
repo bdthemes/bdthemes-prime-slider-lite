@@ -1539,7 +1539,7 @@ class Rubix extends Widget_Base {
 				'class' => 'bdt-main-slider swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title(),
+				'aria-label' => $this->get_title() . ' slider',
 				'dir' => $direction,
 			],
 		]);

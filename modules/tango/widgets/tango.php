@@ -1079,7 +1079,7 @@ class Tango extends Widget_Base {
 				'class' => 'swiper-tango swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title(),
+				'aria-label' => $this->get_title() . ' slider',
 				'dir' => $direction,
 			],
 		]);
