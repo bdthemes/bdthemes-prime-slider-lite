@@ -222,6 +222,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.17.X [XXth January 2025] =
+
+* Added: aria-roledescription=carousel added to slider widget wrapper
+
 = 3.17.0 [22th January 2025] =
 
 * Added: Lightbox play button position, size & spacing option added in isolate widget
