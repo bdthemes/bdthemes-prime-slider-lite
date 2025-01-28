@@ -1333,9 +1333,16 @@ class Pacific extends Widget_Base {
 			]
 		);
 
-		$layout_style = 'bdt-slider-style-' . $settings['layout_style'];
-		$this->add_render_attribute( 'swiper', 'class', 'swiper-pacific swiper' . $layout_style );
-
+		$direction = is_rtl() ? 'rtl' : 'ltr';
+		$this->add_render_attribute([
+			'swiper' => [
+				'class' => 'swiper-pacific swiper bdt-slider-style-' . esc_attr($settings['layout_style']),
+				'role' => 'region',
+				'aria-roledescription' => 'carousel',
+				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'dir' => $direction,
+			],
+		]);
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider' ); ?>>

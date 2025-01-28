@@ -1533,7 +1533,16 @@ class Rubix extends Widget_Base {
 			]
 		);
 
-		$this->add_render_attribute( 'swiper', 'class', 'bdt-main-slider swiper' );
+		$direction = is_rtl() ? 'rtl' : 'ltr';
+		$this->add_render_attribute([
+			'swiper' => [
+				'class' => 'bdt-main-slider swiper',
+				'role' => 'region',
+				'aria-roledescription' => 'carousel',
+				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'dir' => $direction,
+			],
+		]);
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider' ); ?>>

@@ -790,15 +790,25 @@ class Elysium extends Widget_Base {
 					]
 				]
 			]
-		);
-		
+		);		
 
 		$this->add_render_attribute( 'prime-slider', 'class', 'bdt-prime-slider' );
+
+		$direction = is_rtl() ? 'rtl' : 'ltr';
+		$this->add_render_attribute([
+			'swiper' => [
+				'class' => 'bdt-slider-continer',
+				'role' => 'region',
+				'aria-roledescription' => 'carousel',
+				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'dir' => $direction,
+			],
+		]);
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'prime-slider' ); ?>>
 		<div <?php $this->print_render_attribute_string( 'prime-slider-elysium' ); ?>>
-			<div class="bdt-slider-continer">
+			<div <?php $this->print_render_attribute_string( 'swiper' ); ?>>
 				<div class="swiper-wrapper">
 		<?php
 	}

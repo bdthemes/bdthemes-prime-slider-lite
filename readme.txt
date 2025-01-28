@@ -222,8 +222,9 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.17.1 [XX January 2025] =
+= 3.17.X [XX January 2025] =
 
+* Added: aria-roledescription=carousel added to slider widget wrapper
 * Fixed: Advanced animation error fixed
 
 = 3.17.0 [22th January 2025] =
