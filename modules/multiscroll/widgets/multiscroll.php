@@ -412,7 +412,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_description',
 			[
-				'label'   => esc_html__('Show Test', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Text', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before',
