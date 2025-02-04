@@ -222,6 +222,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.17.X [XXth February 2025] =
+
+* Updated: Dashboard widgets searching system improved
+
 = 3.17.1 [28th January 2025] =
 
 * Added: aria-roledescription=carousel added to slider widget wrapper
