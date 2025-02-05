@@ -407,7 +407,7 @@ class PrimeSlider_Admin_Settings {
 			add_submenu_page(
 				self::PAGE_ID,
 				BDTPS_CORE_TITLE,
-				esc_html__('Get Pro', 'bdthemes-prime-slider'),
+				esc_html__('Upgrade For 30% Off!', 'bdthemes-prime-slider'),
 				'manage_options',
 				self::PAGE_ID . '_get_pro',
 				[$this, 'display_page']
