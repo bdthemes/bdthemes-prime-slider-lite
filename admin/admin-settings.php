@@ -1172,16 +1172,22 @@ class PrimeSlider_Admin_Settings {
 						jQuery(eachItem).find('.ps-no-result').addClass('bdt-animation-shake');
 					}
 				});
-
-
 			});
 
+			function clearSearchInputs(context) {
+				context.find('.bdt-search-input').val('').attr('bdt-filter-control', '');
+			}
 
-			jQuery('.ps-widget-filter-nav li a').on('click', function(e) {
-				jQuery(this).closest('.bdt-widget-filter-wrapper').find('.bdt-search-input').val('');
-				jQuery(this).closest('.bdt-widget-filter-wrapper').find('.bdt-search-input').val('').attr('bdt-filter-control', '');
+			jQuery('.ps-widget-filter-nav li a').on('click', function () {
+				const wrapper = jQuery(this).closest('.bdt-widget-filter-wrapper');
+				clearSearchInputs(wrapper);
 			});
 
+			jQuery('.bdt-dashboard-navigation li a').on('click', function () {
+				const tabContainer = jQuery(this).closest('.bdt-dashboard-navigation').siblings('.bdt-tab-container');
+				clearSearchInputs(tabContainer);
+					tabContainer.find('.bdt-search-input').trigger('keyup');
+			});
 
 			jQuery(document).ready(function($) {
 				'use strict';
