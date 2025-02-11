@@ -351,7 +351,7 @@ class PrimeSlider_Admin_Settings {
 	// Redirect to Prime Slider Pro pricing page
 	public function ps_redirect_to_get_pro() {
         if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_get_pro') {
-            wp_redirect('https://primeslider.pro/pricing/');
+            wp_redirect('https://primeslider.pro/pricing/?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=30%OffOnPrimeSlider&coupon=FREETOPRO');
             exit;
         }
     }
