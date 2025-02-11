@@ -223,7 +223,7 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.17.3 [11th February 2025] =
+= 3.17.3 [12th February 2025] =
 
 * Fixed: Dashboard notice dismiss icon conflict issue fixed ( Thanks to pixelwars )
 * Added: [Showcase Page](https://primeslider.pro/demo/) added - View all widgets here.
