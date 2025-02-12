@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 Requires PHP: 7.4.0
-Stable tag: 3.17.2
+Stable tag: 3.17.3
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
@@ -129,6 +129,7 @@ More free widgets and extensions are coming soon...
 * [Reveal](https://primeslider.pro/demo/reveal/) - A slider with active reveal transitions designed to boost user engagement and attention.
 * [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) - WooCommerce-focused slider designed to make product discovery easier for customers.
 * [Titanic](https://primeslider.pro/demo/titanic/) - Titanic slider offers stunning, large-scale content slides for impactful presentations.
+* [Pandora](https://primeslider.pro/demo/pandora/) - A sleek, dynamic slider with fluid transitions and a modern design.
 
 = Remote Control 👇 =
 
@@ -221,6 +222,11 @@ https://youtu.be/XjFiW5rFrac
 
 
 == Changelog ==
+
+= 3.17.3 [12th February 2025] =
+
+* Fixed: Dashboard notice dismiss icon conflict issue fixed ( Thanks to pixelwars )
+* Added: [Showcase Page](https://primeslider.pro/demo/) added - View all widgets here.
 
 = 3.17.2 [5th February 2025] =
 
