@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muha
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 Requires PHP: 7.4.0
 Stable tag: 3.17.3
 License: GPL3
