@@ -223,6 +223,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
+= 3.17.X [XX February 2025] =
+
+* Fixed: Swiper slider cls issue fixed
+
 = 3.17.3 [12th February 2025] =
 
 * Fixed: Dashboard notice dismiss icon conflict issue fixed ( Thanks to pixelwars )
