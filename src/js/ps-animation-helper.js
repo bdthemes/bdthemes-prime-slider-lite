@@ -2,17 +2,17 @@
 
     'use strict';
 
-    var widgetBlog = function ($scope, $) {
+    var widgetSlider = function ($scope, $) {
 
-        var $sliderBlog = $scope.find('.bdt-slideshow'),
-            $settings = $sliderBlog.data('settings');
+        var $slider = $scope.find('.bdt-slideshow'),
+            $settings = $slider.data('settings');
             
-        if (!$sliderBlog.length || $settings.animation_status !== 'yes') return;
+        if (!$slider.length || $settings.animation_status !== 'yes') return;
 
 
         // start animation
         var $slideItem = $($settings.id + ' ul > li');
-        $($sliderBlog).find('.bdt-slideshow-item').each(function (i, e) {
+        $($slider).find('.bdt-slideshow-item').each(function (i, e) {
 
             var self = $(this),
                 $quote = self.find($settings.animation_of),
@@ -65,25 +65,25 @@
         // end animation 
     };
 
-    // jQuery(window).on('elementor/frontend/init', function () {
-    //     elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.default', widgetBlog);
-    //     elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.coral', widgetBlog);
-    //     elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.folio', widgetBlog);
-    //     elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.zinest', widgetBlog);
-    // });
-
-
     jQuery(window).on("elementor/frontend/init", function () {
         var widgets = [
-            "prime-slider-blog.default",
-            "prime-slider-blog.coral",
-            "prime-slider-blog.folio",
-            "prime-slider-blog.zinest",
-            "prime-slider-dragon.default"
+            "blog.default",
+            "blog.coral",
+            "blog.folio",
+            "blog.zinest",
+            "dragon.default",
+            "flogia.default",
+            "general.default",
+            "general.slide",
+            "general.crelly",
+            "general.meteor",
+            "isolate.default",
+            "isolate.locate",
+            "isolate.slice",
         ];
 
         widgets.forEach(function (widget) {
-            elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.coral', widget);
+            elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-' + widget, widgetSlider);
         });
     });
 
