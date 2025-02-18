@@ -212,6 +212,7 @@ class Prime_Slider_Loader {
 			|| prime_slider_is_widget_enabled( 'sequester' )
 			|| prime_slider_is_widget_enabled( 'woocommerce' )
 			|| prime_slider_is_widget_enabled( 'woolamp' )
+			|| prime_slider_is_widget_enabled( 'fluent' ) // Pro widget
 		) {
 			wp_register_script( 'ps-animation-helper', BDTPS_CORE_ASSETS_URL . 'js/ps-animation-helper.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}

@@ -82,6 +82,7 @@
             "sequester.default",
             "woocommerce.default",
             "woolamp.default",
+            "fluent.default", // Pro widget
         ];
 
         widgets.forEach(function (widget) {
