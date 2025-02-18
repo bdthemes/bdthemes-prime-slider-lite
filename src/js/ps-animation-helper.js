@@ -50,9 +50,7 @@
                     y: $settings.anim_rotation_y, //80
                     rotationX: $settings.anim_rotation_x, //180
                     transformOrigin: $settings.anim_transform_origin, //0% 50% -50  
-                }, 0.1).then(function () {
-                    // $($imageExpand).find('.bdt-image-expand-button').removeClass('bdt-invisible');
-                });
+                }, 0.1);
 
                 splitTextTimeline.play();
             }
@@ -66,7 +64,7 @@
     };
 
     jQuery(window).on("elementor/frontend/init", function () {
-        var widgets = [
+        const widgets = [
             "blog.default",
             "blog.coral",
             "blog.folio",
