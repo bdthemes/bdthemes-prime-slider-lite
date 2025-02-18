@@ -208,6 +208,10 @@ class Prime_Slider_Loader {
 			|| prime_slider_is_widget_enabled( 'flogia' )
 			|| prime_slider_is_widget_enabled( 'general' )
 			|| prime_slider_is_widget_enabled( 'isolate' )
+			|| prime_slider_is_widget_enabled( 'mount' )
+			|| prime_slider_is_widget_enabled( 'sequester' )
+			|| prime_slider_is_widget_enabled( 'woocommerce' )
+			|| prime_slider_is_widget_enabled( 'woolamp' )
 		) {
 			wp_register_script( 'ps-animation-helper', BDTPS_CORE_ASSETS_URL . 'js/ps-animation-helper.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}

@@ -226,6 +226,7 @@ https://youtu.be/XjFiW5rFrac
 = 3.17.X [XX February 2025] =
 
 * Fixed: Swiper slider cls issue fixed
+* Updated: Advanced animation js optimized
 
 = 3.17.3 [12th February 2025] =
 

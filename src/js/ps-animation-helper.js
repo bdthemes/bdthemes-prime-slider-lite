@@ -80,6 +80,10 @@
             "isolate.default",
             "isolate.locate",
             "isolate.slice",
+            "mount.default",
+            "sequester.default",
+            "woocommerce.default",
+            "woolamp.default",
         ];
 
         widgets.forEach(function (widget) {

@@ -51,13 +51,13 @@ class Woolamp extends Widget_Base {
 		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 		if ('on' === $reveal_effects) {
 			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-woolamp', 'bdt-goodshare'];
+				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper', 'bdt-goodshare'];
 			} else {
 				return ['bdt-goodshare'];
 			}
 		} else {
 			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'ps-woolamp', 'bdt-goodshare'];
+				return ['gsap', 'split-text', 'ps-animation-helper', 'bdt-goodshare'];
 			} else {
 				return ['bdt-goodshare'];
 			}
