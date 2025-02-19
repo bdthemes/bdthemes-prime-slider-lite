@@ -1,15 +1,15 @@
 === Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Post Slider and Ecommerce Slider) ===
-Contributors: bdthemes, selimmw, mohammaadfarid, bdkoder, abutalib, maudud, muhammadasik
+Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.2
 Requires PHP: 7.4.0
-Stable tag: 3.17.3
+Stable tag: 3.17.4
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.27.3
+Elementor tested up to: 3.27.6
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -223,9 +223,10 @@ https://youtu.be/XjFiW5rFrac
 
 == Changelog ==
 
-= 3.17.X [XX February 2025] =
+= 3.17.4 [19th February 2025] =
 
 * Fixed: Swiper slider cls issue fixed
+* Fixed: Content inline issue fixed in isolate widget
 
 = 3.17.3 [12th February 2025] =
 
