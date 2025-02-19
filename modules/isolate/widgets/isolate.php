@@ -375,8 +375,13 @@ class Isolate extends Widget_Base {
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
+                'selectors_dictionary' => [
+                    'left' => 'align-items: flex-start; text-align: left;',
+                    'right' => 'align-items: flex-end; text-align: right;',
+                    'center' => 'align-items: center; text-align: center;',
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc' => '{{VALUE}};',
                 ],
             ]
         );
@@ -2731,7 +2736,7 @@ class Isolate extends Widget_Base {
         <div class="bdt-slideshow-content-wrapper">
             <div class="bdt-prime-slider-wrapper">
                 <div class="bdt-prime-slider-content">
-                    <div class="bdt-prime-slider-desc">
+                    <div class="bdt-prime-slider-desc bdt-flex bdt-flex-column">
 
                         <?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])): ?>
                             <div class="bdt-sub-title bdt-ps-sub-title">
