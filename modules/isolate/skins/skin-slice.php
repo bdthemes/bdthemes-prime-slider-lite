@@ -170,7 +170,7 @@ class Skin_Slice extends Elementor_Skin_Base {
         ?>
             <div class="bdt-prime-slider-wrapper">
                 <div class="bdt-prime-slider-content">
-                    <div class="bdt-prime-slider-desc">
+                    <div class="bdt-prime-slider-desc bdt-flex bdt-flex-column">
 
                                 
                         <?php if ($slide_content['title'] && ('yes' == $settings['show_title'])) : ?>

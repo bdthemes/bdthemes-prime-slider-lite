@@ -161,7 +161,7 @@ class Skin_Locate extends Elementor_Skin_Base {
             <div class="bdt-slideshow-content-wrapper">
                 <div class="bdt-prime-slider-wrapper">
                     <div class="bdt-prime-slider-content">
-                        <div class="bdt-prime-slider-desc">
+                        <div class="bdt-prime-slider-desc bdt-flex bdt-flex-column">
 
                             <?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
                                 <div class="bdt-sub-title bdt-ps-sub-title">
