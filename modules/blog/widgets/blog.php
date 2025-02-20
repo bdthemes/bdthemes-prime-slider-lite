@@ -59,13 +59,13 @@ class Blog extends Widget_Base {
         $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         if ('on' === $reveal_effects) {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-blog'];
+                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper'];
             } else {
                 return [];
             }
         } else {
             if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'ps-blog'];
+                return ['gsap', 'split-text', 'ps-animation-helper'];
             } else {
                 return [];
             }

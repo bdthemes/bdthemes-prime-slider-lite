@@ -2,16 +2,18 @@
 
     'use strict';
 
-    var widgetGeneral = function ($scope, $) {
+    var widgetSlider = function ($scope, $) {
 
-        var $sliderGeneral = $scope.find('.bdt-slideshow'),
-            $settings = $sliderGeneral.data('settings'),
-            $slideItem = $($settings.id + ' ul > li');
+        var $slider = $scope.find('.bdt-slideshow'),
+            $settings = $slider.data('settings');
+            
+        if (!$slider.length || $settings.animation_status !== 'yes') return;
 
-        if (!$sliderGeneral.length || $settings.animation_status !== 'yes') return;
 
         // start animation
-        $($sliderGeneral).find('.bdt-slideshow-item').each(function (i, e) {
+        var $slideItem = $($settings.id + ' ul > li');
+        $($slider).find('.bdt-slideshow-item').each(function (i, e) {
+
             var self = $(this),
                 $quote = self.find($settings.animation_of),
                 mySplitText = new SplitText($quote, {
@@ -47,10 +49,8 @@
                     scale: $settings.anim_scale, //0
                     y: $settings.anim_rotation_y, //80
                     rotationX: $settings.anim_rotation_x, //180
-                    transformOrigin: $settings.anim_transform_origin, //0% 50% -50
-                }, 0.1).then(function () {
-                    // $($imageExpand).find('.bdt-image-expand-button').removeClass('bdt-invisible');
-                });
+                    transformOrigin: $settings.anim_transform_origin, //0% 50% -50  
+                }, 0.1);
 
                 splitTextTimeline.play();
             }
@@ -59,15 +59,35 @@
                 gsapAnimation();
             });
             gsapAnimation();
-            
         });
+        // end animation 
     };
 
-    jQuery(window).on('elementor/frontend/init', function () {
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', widgetGeneral);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.slide', widgetGeneral);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.crelly', widgetGeneral);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.meteor', widgetGeneral);
+    jQuery(window).on("elementor/frontend/init", function () {
+        const widgets = [
+            "blog.default",
+            "blog.coral",
+            "blog.folio",
+            "blog.zinest",
+            "dragon.default",
+            "flogia.default",
+            "general.default",
+            "general.slide",
+            "general.crelly",
+            "general.meteor",
+            "isolate.default",
+            "isolate.locate",
+            "isolate.slice",
+            "mount.default",
+            "sequester.default",
+            "woocommerce.default",
+            "woolamp.default",
+            "fluent.default", // Pro widget
+        ];
+
+        widgets.forEach(function (widget) {
+            elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-' + widget, widgetSlider);
+        });
     });
 
 }(jQuery, window.elementorFrontend));

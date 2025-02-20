@@ -203,6 +203,20 @@ class Prime_Slider_Loader {
 
 		wp_register_script( 'bdt-parallax', BDTPS_CORE_ASSETS_URL . 'vendor/js/parallax.min.js', [ 'jquery' ], null, true );
 
+		if ( prime_slider_is_widget_enabled( 'blog' )
+			|| prime_slider_is_widget_enabled( 'dragon' )
+			|| prime_slider_is_widget_enabled( 'flogia' )
+			|| prime_slider_is_widget_enabled( 'general' )
+			|| prime_slider_is_widget_enabled( 'isolate' )
+			|| prime_slider_is_widget_enabled( 'mount' )
+			|| prime_slider_is_widget_enabled( 'sequester' )
+			|| prime_slider_is_widget_enabled( 'woocommerce' )
+			|| prime_slider_is_widget_enabled( 'woolamp' )
+			|| prime_slider_is_widget_enabled( 'fluent' ) // Pro widget
+		) {
+			wp_register_script( 'ps-animation-helper', BDTPS_CORE_ASSETS_URL . 'js/ps-animation-helper.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		}
+
 	}
 
 	public function register_site_styles() {
