@@ -333,18 +333,24 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 01. Prime Slider Intro
 02. Best features in prime slider
 03. Widget demo of prime slider
-04. General Slider demo
-05. Slider Example 5.
-06. Slider Example 6.
-07. Slider Example 7.
-08. Slider Example 8.
-09. Slider Example 9.
-10. Slider Example 10.
-11. Slider Example 11.
-12. Slider Example 12.
-13. Slider Example 13.
-14. Slider Example 14.
-15. Prime Slider features
-16. Prime Slider features
-17. Prime Slider features
-18. Check our others popular plugins
+04. General Slider demo #1
+05. WooLamp Slider demo
+06. General Skin Meteor demo
+07. Custom Slider demo #1
+08. Custom Slider demo #2
+09. Isolate Slider demo
+10. Paranoia Slider demo
+11. Multiscroll Slider demo
+12. Prism Slider demo
+13. General Slider demo #2
+14. Crossroad Slider demo
+15. Escape Slider demo
+16. Elysium Slider demo
+17. Custom Slider demo #3
+18. Coddle Slider demo
+19. Sequester Slider demo
+20. Pagepiling Slider demo
+21. Woocommerce Slider demo
+22. Flexure Slider demo
+23. Astoria Slider demo
+24. Check our others popular plugins
