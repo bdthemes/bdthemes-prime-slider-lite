@@ -2456,10 +2456,10 @@ class General extends Widget_Base {
                 $link_key = 'link_' . $index;
                 $this->add_render_attribute($link_key, 'class', 'bdt-social-animate', true);
 
+				$tooltip = '';
                 if ( 'yes' === $settings['social_icon_tooltip'] ) {
-					$tooltip = 'title: ' . wp_kses_post( strip_tags( $link['social_link_title'] ) ) . '; pos: ' . esc_attr( $position );
-				
-					$this->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
+					$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title']));
+					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . '; pos: ' . esc_attr( $position );
 				}
 
                 if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
@@ -2467,7 +2467,7 @@ class General extends Widget_Base {
                 }
                 
                 ?>
-                <a <?php $this->print_render_attribute_string($link_key); ?>>
+                <a <?php $this->print_render_attribute_string($link_key); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
                     <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
                 </a>
             <?php endforeach; ?>
