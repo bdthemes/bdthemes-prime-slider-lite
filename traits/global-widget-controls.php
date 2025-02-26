@@ -2377,10 +2377,12 @@ trait Global_Widget_Controls {
 
 								$link_key = 'link_' . $index;
 
+								$tooltip = '';
 								if ( 'yes' === $settings['social_icon_tooltip'] ) {
-									$tooltip = 'title: ' . wp_kses_post( strip_tags( $link['social_link_title'] ) ) . '; pos: ' . esc_attr( $position );
-									
-									$this->add_render_attribute( $link_key, 'data-bdt-tooltip', $tooltip, true );
+
+									$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title'])); // Escape for safe attribute usage
+									$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
+
 								}
 
 								if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
@@ -2388,7 +2390,7 @@ trait Global_Widget_Controls {
 								}
 
 								?>
-								<a <?php $this->print_render_attribute_string( $link_key ); ?>>
+								<a <?php $this->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
 									<span><span>
 											<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
 										</span></span>
