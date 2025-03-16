@@ -134,10 +134,16 @@ class Admin {
 
 	 public function plugin_action_links( $plugin_meta ) {
 
-        $row_meta = [
-            'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
-            'gopro' => '<a href="https://primeslider.pro/pricing/?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=30%OffOnPrimeSlider&coupon=FREETOPRO" aria-label="' . esc_attr(__('Go get the pro version', 'bdthemes-prime-slider')) . '" target="_blank" title="When you purchase through this link you will get 30% discount!" class="ps-go-pro">' . __('Upgrade For 30% Off!', 'bdthemes-prime-slider') . '</a>',
-        ];
+		if ( true !== _is_ps_pro_activated() ) {
+			$row_meta = [
+				'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
+				'gopro' => '<a href="https://primeslider.pro/pricing/?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=30%OffOnPrimeSlider&coupon=FREETOPRO" aria-label="' . esc_attr(__('Go get the pro version', 'bdthemes-prime-slider')) . '" target="_blank" title="When you purchase through this link you will get 30% discount!" class="ps-go-pro">' . __('Upgrade For 30% Off!', 'bdthemes-prime-slider') . '</a>',
+			];
+		} else {
+			$row_meta = [
+				'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
+			];
+		}
 
         $plugin_meta = array_merge($plugin_meta, $row_meta);
 
