@@ -305,7 +305,7 @@ class ModuleService {
 					'widget_type'  => 'pro',
 					'content_type' => 'static new',
 					'demo_url'     => 'https://primeslider.pro/demo/pandora/',
-					'video_url'    => '',
+					'video_url'    => 'https://youtu.be/SM2YPmcVwTY?si=RASvZ9UP0MFloZHG',
 				],
 
 				[ 
