@@ -1175,7 +1175,7 @@ trait Global_Widget_Controls {
 			[ 
 				'label'       => esc_html__( 'Size Ratio', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::IMAGE_DIMENSIONS,
-				'description' => 'Slider ratio to width and height, such as 16:9',
+				'description' => esc_html__('Slider ratio to width and height, such as 16:9', 'bdthemes-prime-slider'),
 				'separator'   => 'before',
 				'condition'   => [ 
 					'enable_height!' => 'yes'
