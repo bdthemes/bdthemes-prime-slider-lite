@@ -87,7 +87,7 @@
 			categories.add(
 				{
 					name: "prime-slider-pro-tweeks",
-					title: "Prime Slider ( Pro )",
+					title: "Prime Slider Pro",
 					defaultActive: !1,
 					items: proWidgets,
 				},
