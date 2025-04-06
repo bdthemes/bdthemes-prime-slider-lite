@@ -6,15 +6,13 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
+use Elementor\Group_Control_Text_Stroke;
 use Elementor\Widget_Base;
-use Elementor\Plugin;
 
 use PrimeSlider\Traits\Global_Widget_Controls;
 use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
-use PrimeSlider\Utils;
 use WP_Query;
 
 if (!defined('ABSPATH')) {
@@ -102,6 +100,19 @@ class Vertex extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+			'image_size_toggle',
+            [
+                'label'        => __( 'Image Size', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+                'type'         => Controls_Manager::POPOVER_TOGGLE,
+                'label_off'    => __( 'None', 'bdthemes-prime-slider' ),
+				'label_on'     => __( 'Custom', 'bdthemes-prime-slider' ),
+				'return_value' => 'yes',
+                'default'     => 'yes',
+            ]
+		);
+		$this->start_popover();
+
         $this->add_responsive_control(
             'slider_height',
             [
@@ -109,16 +120,41 @@ class Vertex extends Widget_Base {
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
-                        'min' => 200,
+                        'min' => 100,
                         'max' => 300,
                     ],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .bdt-vertex-slider .bdt-item' => 'height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .bdt-vertex-slider .bdt-img-wrap .bdt-img' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-vertex-slider .bdt-img-wrap .bdt-img' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'image_size_toggle' => 'yes',
+                ],
+                'render_type' => 'template',
             ]
         );
+        $this->add_responsive_control(
+            'slider_image_width',
+            [
+                'label' => esc_html__('Width', 'bdthemes-prime-slider'),
+                'type'  => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'max' => 300,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-vertex-slider .bdt-img-wrap .bdt-img' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'image_size_toggle' => 'yes',
+                ],
+                'render_type' => 'template',
+            ]
+        );
+        $this->end_popover();
 
         $this->add_responsive_control(
             'vertical_spacing',
@@ -380,6 +416,14 @@ class Vertex extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-vertex-slider .bdt-title a',
             ]
         );
+        $this->add_group_control(
+            Group_Control_Text_Stroke::get_type(),
+            [
+                'name' => 'title_text_stroke',
+                'label' => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'selector' => '{{WRAPPER}} .bdt-vertex-slider .bdt-title a',
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -610,17 +654,6 @@ class Vertex extends Widget_Base {
             ]
         );
 
-        $this->add_responsive_control(
-            'arrows_size',
-            [
-                'label'     => esc_html__('Size', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::SLIDER,
-                'selectors' => [
-                    '{{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-next, {{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-prev' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; line-height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->add_group_control(
             Group_Control_Box_Shadow::get_type(),
             [
@@ -633,8 +666,35 @@ class Vertex extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'arrows_typography',
-                'label'    => esc_html__('Icon Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Icon Typography (Deprecated)', 'bdthemes-prime-slider'),
                 'selector' => '{{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-next, {{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-prev',
+            ]
+        );
+        $this->add_responsive_control(
+            'arrows_size',
+            [
+                'label'     => esc_html__('Size', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range'     => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-next, {{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-prev' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; line-height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'arrows_icon_size',
+            [
+                'label'     => esc_html__('Icon Size', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-next, {{WRAPPER}} .bdt-vertex-slider .bdt-navigation-wrap .bdt-navigation-prev' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 

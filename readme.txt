@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.7.2
 Requires PHP: 7.4.0
-Stable tag: 3.17.7
+Stable tag: 3.17.8
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.27.7
+Elementor tested up to: 3.28.3
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -247,6 +247,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 3.17.8 [6th April 2025] =
+
+* Added: Title text stroke & arrows icon size option added in vertex widget
+* Updated: Height control replaced with image size controls in vertex widget
+* Updated: Navigation arrows icon typography deprecated in vertex widget
 
 = 3.17.7 [16th March 2025] =
 
