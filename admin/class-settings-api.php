@@ -1000,8 +1000,16 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 									</div>
 
 									<div class="bdt-width-expand@s bdt-text-right">
-										<p class="">Prime Slider plugin made with love by <a target="_blank" href="https://bdthemes.com">BdThemes</a> Team. <br>All rights reserved by <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>. </p>
+									<p class="">
+										<?php 
+										echo esc_html__('Prime Slider plugin made with love by', 'bdthemes-prime-slider') . ' <a target="_blank" href="https://bdthemes.com">BdThemes</a> ' . esc_html__('Team.', 'bdthemes-prime-slider');
+										echo '<br>';
+										echo esc_html__('All rights reserved by', 'bdthemes-prime-slider') . ' <a target="_blank" href="https://bdthemes.com">BdThemes.com</a>.';
+										?>
+									</p>
 									</div>
+
+
 								</div>
 
 							</div>

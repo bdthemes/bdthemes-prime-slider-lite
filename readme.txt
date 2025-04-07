@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [Xth April 2025] =
+
+* Fixed: Translation issue fixed
+
 = 3.17.8 [6th April 2025] =
 
 * Added: Title text stroke & arrows icon size option added in vertex widget

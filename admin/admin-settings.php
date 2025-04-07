@@ -624,10 +624,13 @@ class PrimeSlider_Admin_Settings {
 				<div class="bdt-border-rounded bdt-box-shadow-small bdt-alert-warning" bdt-alert>
 					<a href class="bdt-alert-close" bdt-close></a>
 					<div class="bdt-text-default">
-						<?php
-						esc_html_e('To view widgets analytics, Elementor Usage Data Sharing feature by Elementor needs to be activated. Please activate the feature to get widget analytics instantly ', 'bdthemes-prime-slider');
-						echo '<a href="' . esc_url(admin_url('admin.php?page=elementor')) . '">from here.</a>';
-						?>
+					<?php
+					printf(
+						esc_html__('To view widgets analytics, Elementor Usage Data Sharing feature needs to be activated. Please activate the feature to get widget analytics instantly %s', 'bdthemes-prime-slider'),
+						'<a href="' . esc_url(admin_url('admin.php?page=elementor')) . '">' . esc_html__('from here', 'bdthemes-prime-slider') . '</a>'
+					);
+					?>
+
 					</div>
 				</div>
 			<?php endif; ?>
