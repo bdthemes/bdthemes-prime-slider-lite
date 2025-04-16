@@ -251,6 +251,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 3.17.X [Xth April 2025] =
 
 * Fixed: Translation issue fixed
+* Updated: Only one plugin DCI notice will show at a time
 
 = 3.17.8 [6th April 2025] =
 
