@@ -587,7 +587,12 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		 * @return void
 		 */
 		public function display_global_notice() {
-			$menu_slug = isset( $this->params['menu_slug'] ) ? $this->params['menu_slug'] : 'javascript:void(0);';
+			// Check if another DCI notice is already active
+			if ($this->is_other_dci_notice_active()) {
+				return;
+			}
+
+			$menu_slug = isset($this->params['menu_slug']) ? $this->params['menu_slug'] : 'javascript:void(0);';
 
 			$admin_url = add_query_arg( array(
 				'page' => $menu_slug,
@@ -718,6 +723,21 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 				'message' => 'Success.',
 			) );
 			wp_die();
+		}
+
+		private function is_other_dci_notice_active() {
+			$active_notice = get_transient('dci_active_notice');
+			
+			if (!$active_notice) {
+				set_transient('dci_active_notice', $this->dci_name, DAY_IN_SECONDS);
+				return false;
+			}
+			
+			if ($active_notice === $this->dci_name) {
+				return false;
+			}
+			
+			return true;
 		}
 	}
 }
