@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.7.2
+Tested up to: 6.8
 Requires PHP: 7.4.0
-Stable tag: 3.17.8
+Stable tag: 3.17.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
@@ -248,8 +248,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.17.X [Xth April 2025] =
+= 3.17.9 [21th April 2025] =
 
+* Added: WordPress Version 6.8 compatibility added
 * Fixed: Translation issue fixed
 * Updated: Only one plugin DCI notice will show at a time
 * Updated: System improved
