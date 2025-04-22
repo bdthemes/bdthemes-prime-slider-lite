@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XXth April 2025] =
+
+* Fixed: Dashboard widget usage warning error fixed
+
 = 3.17.9 [21th April 2025] =
 
 * Added: WordPress Version 6.8 compatibility added
