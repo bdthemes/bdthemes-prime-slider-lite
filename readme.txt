@@ -251,6 +251,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 3.17.X [XXth April 2025] =
 
 * Fixed: Dashboard widget usage warning error fixed
+* Translation issue fixed ( Thanks to itapress )
 
 = 3.17.9 [21th April 2025] =
 
