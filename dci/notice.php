@@ -18,10 +18,10 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 				<img src="plugins_url( 'assets/images/logo.png', __FILE__ );" alt="logo">
 						</div> -->
 					<h2 class="dci-title">
-						<?php esc_html_e( 'Never miss an important update.', 'data-collector-insights' ); ?>
+						<?php esc_html_e( 'Never miss an important update.', 'bdthemes-prime-slider' ); ?>
 					</h2>
 					<p class="dci-desc">
-						<?php esc_html_e( 'Get notified when there are new updates available for your plugins and themes. In the current version of this message it is clear that you are being sent a confirmation email to confirm your opt-in.', 'data-collector-insights' ); ?>
+						<?php esc_html_e( 'Get notified when there are new updates available for your plugins and themes. In the current version of this message it is clear that you are being sent a confirmation email to confirm your opt-in.', 'bdthemes-prime-slider' ); ?>
 					</p>
 				</div>
 				<div class="dci-actions">
@@ -39,17 +39,17 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 
 						<button id="dci_allow_yes" name="dci_allow_status" value="yes" type="button"
 							class="dci-button-allow button button-primary">
-							<?php esc_html_e( 'Allow & Continue', 'data-collector-insights' ); ?>
+							<?php esc_html_e( 'Allow & Continue', 'bdthemes-prime-slider' ); ?>
 						</button>
 						<button id="dci_allow_skip" name="dci_allow_status" value="skip" type="button"
 							class="dci-button-skip button button-secondary">
-							<?php esc_html_e( 'Skip', 'data-collector-insights' ); ?>
+							<?php esc_html_e( 'Skip', 'bdthemes-prime-slider' ); ?>
 						</button>
 					</form>
 				</div>
 				<div class="dci-permission">
 					<p>
-						<?php esc_html_e( 'Which permission are being granted?', 'data-collector-insights' ); ?>
+						<?php esc_html_e( 'Which permission are being granted?', 'bdthemes-prime-slider' ); ?>
 					</p>
 				</div>
 				<div class="dci-data-list">
@@ -61,10 +61,10 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 								</div>
 								<div class="dci-desc">
 									<h3>
-										<?php esc_html_e( 'View Basic Profile Info.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'View Basic Profile Info.', 'bdthemes-prime-slider' ); ?>
 									</h3>
 									<p>
-										<?php esc_html_e( 'Your WordPress user\'s first & last name, and email address.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'Your WordPress user\'s first & last name, and email address.', 'bdthemes-prime-slider' ); ?>
 									</p>
 								</div>
 							</div>
@@ -76,10 +76,10 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 								</div>
 								<div class="dci-desc">
 									<h3>
-										<?php esc_html_e( 'View Basic Website Info.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'View Basic Website Info.', 'bdthemes-prime-slider' ); ?>
 									</h3>
 									<p>
-										<?php esc_html_e( 'Homepage URL & title, WP & PHP versions, and site language.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'Homepage URL & title, WP & PHP versions, and site language.', 'bdthemes-prime-slider' ); ?>
 									</p>
 								</div>
 							</div>
@@ -91,10 +91,10 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 								</div>
 								<div class="dci-desc">
 									<h3>
-										<?php esc_html_e( 'View Basic Plugin Info.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'View Basic Plugin Info.', 'bdthemes-prime-slider' ); ?>
 									</h3>
 									<p>
-										<?php esc_html_e( 'Current Plugin & SDK versions, and if active or uninstalled.', 'data-collector-insights' ); ?>
+										<?php esc_html_e( 'Current Plugin & SDK versions, and if active or uninstalled.', 'bdthemes-prime-slider' ); ?>
 									</p>
 								</div>
 							</div>

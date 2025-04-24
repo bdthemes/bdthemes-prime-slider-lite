@@ -282,7 +282,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 			$html .= '<div class="ps-option-item-inner">';
 			if ( $args['video_url'] ) {
-				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="View ' . $args['name'] . ' Video Tutorial"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
 			}
 			$html .= sprintf( '<label for="bdt_ps_%1$s[%2$s]">', $args['section'], $args['id'] );
 			$html .= '<span scope="row" class="ps-option-label">' . $args['name'] . '</span>';
@@ -407,10 +407,10 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 
 			if ( $args['demo_url'] ) {
-				$html .= '<a href=' . $args['demo_url'] . ' target="_blank" class="ps-option-demo" bdt-tooltip="View ' . $args['name'] . ' Widget Demo"><i class="ps-wi-preview" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['demo_url'] . '" target="_blank" class="ps-option-demo" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Widget Demo', 'bdthemes-prime-slider') . '"><i class="ps-wi-preview" aria-hidden="true"></i></a>';
 			}
 			if ( $args['video_url'] ) {
-				$html .= '<a href=' . $args['video_url'] . ' target="_blank" class="ps-option-video" bdt-tooltip="View ' . $args['name'] . ' Video Tutorial"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
 			}
 			$html .= '</div>';
 
@@ -581,7 +581,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 			$id    = $args['section'] . '[' . $args['id'] . ']';
-			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File', 'bdthemes-prime-slider' );
+			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : esc_html__( 'Choose File', 'bdthemes-prime-slider' );
 
 			$html = sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
 			$html .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
@@ -645,7 +645,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$html .= '</label>';
 
 			if ( $args['video_url'] ) {
-				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="View ' . $args['name'] . ' Video Tutorial"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
 			}
 
 			$html .= $this->get_field_description( $args );

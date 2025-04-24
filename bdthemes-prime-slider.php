@@ -152,8 +152,8 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 				'slug' => 'prime_slider_options',
 			),
 			'review_url'   => 'https://bdt.to/prime-slider-elementor-addons-review',
-			'plugin_title' => 'Yay! Great that you\'re using Prime Slider',
-			'plugin_msg'   => '<p>Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community.</p>',
+			'plugin_title' => esc_html__('Yay! Great that you\'re using Prime Slider', 'bdthemes-prime-slider'),
+			'plugin_msg'   => '<p>' . esc_html__('Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community.', 'bdthemes-prime-slider') . '</p>',
 		) );
 
 	}
@@ -175,7 +175,7 @@ if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
 			'sdk_version'         	=> '1.2.1',
 			'product_id'          	=> 2,
 			'plugin_name'         	=> 'Prime Slider', // make simple, must not empty
-			'plugin_title'        	=> 'Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', // You can describe your plugin title here
+			'plugin_title'        	=> esc_html__('Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', 'bdthemes-prime-slider'), // You can describe your plugin title here
 			'plugin_icon'         	=> BDTPS_CORE_ASSETS_URL . 'images/logo.png',
 			'api_endpoint'        	=> 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
 			'slug'                	=> 'bdthemes-prime-slider-lite',
@@ -188,7 +188,7 @@ if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
 			'is_premium'          	=> true,
 			'popup_notice'        	=> false,
 			'deactivate_feedback' 	=> true,
-			'plugin_msg'          	=> '<p>Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.</p>',
+			'plugin_msg'          	=> '<p>' . esc_html__('Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.', 'bdthemes-prime-slider') . '</p>',
 		) );
 
 	}
