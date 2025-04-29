@@ -248,6 +248,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.XX [XXth April 2025] =
+
+### Updated
+- Only one plugin RC notice will show at a time 
+
 = 3.17.10 [24th April 2025] =
 
 * Fixed: Dashboard widget usage warning error fixed

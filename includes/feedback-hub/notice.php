@@ -214,6 +214,10 @@ if (!class_exists('RC_Reviews_Collector')) {
 		public function rc_enqueue_scripts() {
 			wp_enqueue_style('rc-sdk', plugins_url('assets/rc.css', __FILE__), array(), '1.0.0');
 			wp_enqueue_script('rc-sdk', plugins_url('assets/rc.js', __FILE__), array('jquery'), '1.0.0', true);
+
+			// Add inline style to hide all but the first notice on page load
+			$inline_css = '.rc-global-notice { display: none; }';
+			wp_add_inline_style( 'rc-sdk', $inline_css );
 		}
 
 		/**

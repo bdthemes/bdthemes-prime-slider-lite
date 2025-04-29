@@ -579,6 +579,9 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 		public function dci_enqueue_scripts() {
 			wp_enqueue_style( 'dci-sdk', plugins_url( 'assets/css/dci.css', __FILE__ ), array(), $this->version, 'all' );
 			wp_enqueue_script( 'dci-sdk', plugins_url( 'assets/js/dci.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+
+			$inline_css = '.dci-global-notice { display: none; }';
+			wp_add_inline_style( 'dci-sdk', $inline_css );
 		}
 
 		/**
@@ -600,7 +603,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 
 			?>
 			<div
-				class="dci-global-notice dci-notice-data notice notice-success is-dismissible bdt-dci-notice <?php echo esc_attr( substr( $this->dci_name, 0, -33 ) ); ?>">
+				class="dci-global-notice dci-notice-data notice notice-success is-dismissible <?php echo esc_attr( substr( $this->dci_name, 0, -33 ) ); ?>">
 				<div class="dci-global-header bdt-dci-notice-global-header">
 					<?php if ( ! empty( $plugin_icon ) ) : ?>
 						<div class="bdt-dci-notice-logo">
@@ -633,39 +636,6 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 						</div>
 					</div>
 				</div>
-
-				<script>
-				jQuery(document).ready(function($) {
-					// Show only the first DCI notice
-					var $notices = $('.bdt-dci-notice');
-					if ($notices.length > 1) {
-						$notices.not(':first').hide();
-					}
-
-					// When a notice is dismissed, show the next one if available
-					$(document).on('click', '.bdt-dci-notice .notice-dismiss', function() {
-						var $currentNotice = $(this).closest('.bdt-dci-notice');
-						var $nextNotice = $currentNotice.nextAll('.bdt-dci-notice:first');
-						
-						if ($nextNotice.length) {
-							$nextNotice.show();
-						}
-					});
-
-					// Handle button clicks
-					$('.bdt-dci-notice button').on('click', function() {
-						var $notice = $(this).closest('.bdt-dci-notice');
-						var $nextNotice = $notice.nextAll('.bdt-dci-notice:first');
-						
-						$notice.fadeOut(300, function() {
-							if ($nextNotice.length) {
-								$nextNotice.fadeIn();
-							}
-						});
-					});
-				});
-				</script>
-
 			</div>
 
 			<?php
