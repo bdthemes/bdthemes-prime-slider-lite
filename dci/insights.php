@@ -613,7 +613,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 						</h3>
 						<?php printf( wp_kses_post( $plugin_msg ) ); ?>
 						<p>
-							<a href="<?php echo esc_url( $admin_url ); ?>">Learn More</a>?
+							<a href="<?php echo esc_url( $admin_url ); ?>"><?php echo esc_html__( 'Learn More', 'bdthemes-prime-slider' ); ?></a>?
 						</p>
 						<input type="hidden" name="dci_name" value="<?php echo esc_html( $this->dci_name ); ?>">
 						<input type="hidden" name="dci_date_name" value="<?php echo esc_html( $this->dci_date_name ); ?>">
@@ -622,13 +622,13 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 
 						<div class="bdt-dci-notice-button-wrap">
 							<button name="dci_allow_status" value="yes" class="dci-button-allow">
-								Yes, I'd Love To Contribute
+								<?php echo esc_html__( 'Yes, I\'d Love To Contribute', 'bdthemes-prime-slider' ); ?>
 							</button>
 							<button name="dci_allow_status" value="skip" class="dci-button-skip">
-								Skip For Now
+								<?php echo esc_html__( 'Skip For Now', 'bdthemes-prime-slider' ); ?>
 							</button>
 							<button name="dci_allow_status" value="disallow" class="dci-button-disallow dci-button-danger">
-								No Thanks
+								<?php echo esc_html__( 'No Thanks', 'bdthemes-prime-slider' ); ?>
 							</button>
 						</div>
 					</div>
@@ -695,7 +695,7 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 				</div>
 				<?php printf( $plugin_msg ); ?>
 				<p>
-					What we <a href="<?php echo esc_url( $admin_url ); ?>">collect</a>?
+					<?php echo esc_html__( 'What we ', 'bdthemes-prime-slider' ); ?> <a href="<?php echo esc_url( $admin_url ); ?>"><?php echo esc_html__( 'collect', 'bdthemes-prime-slider' ); ?></a>?
 				</p>
 				<input type="hidden" name="dci_name" value="<?php echo esc_html( $this->dci_name ); ?>">
 				<input type="hidden" name="dci_date_name" value="<?php echo esc_html( $this->dci_date_name ); ?>">
@@ -703,13 +703,13 @@ if ( ! class_exists( 'Insights_SDK' ) ) {
 				<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'dci_sdk' ) ); ?>">
 				<p>
 					<button name="dci_allow_status" value="yes" class="button button-primary dci-button-allow">
-						Allow
+						<?php echo esc_html__( 'Allow', 'bdthemes-prime-slider' ); ?>
 					</button>
 					<button name="dci_allow_status" value="skip" class="button dci-button-skip button-secondary">
-						I'll Skip For Now
+						<?php echo esc_html__( "I'll Skip For Now", 'bdthemes-prime-slider' ); ?>
 					</button>
 					<button name="dci_allow_status" value="disallow" class="button dci-button-disallow dci-button-danger">
-						Don't Allow
+						<?php echo esc_html__( 'Don\'t Allow', 'bdthemes-prime-slider' ); ?>
 					</button>
 				</p>
 			</div>
