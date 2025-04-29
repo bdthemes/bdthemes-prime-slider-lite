@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XXth April 2025] =
+
+* Fixed: DCI Notice transition issue fixed
+
 = 3.17.10 [24th April 2025] =
 
 * Fixed: Dashboard widget usage warning error fixed
