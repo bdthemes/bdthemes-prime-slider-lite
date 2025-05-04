@@ -252,6 +252,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 * Fixed: Thumbs slide issue fixed in rubix widget
 * Fixed: DCI Notice transition issue fixed
+* Updated: Only one plugin RC notice will show at a time 
 
 = 3.17.10 [24th April 2025] =
 

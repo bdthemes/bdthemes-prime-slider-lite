@@ -50,4 +50,28 @@
         });
     });
 
+    // Show only the first RC notice
+    var $notices = $('.rc-global-notice');
+    if ($notices.length > 0) {
+        $notices.first().show();
+    }
+    $(document).on('click', '.rc-global-notice .notice-dismiss', function() {
+        var $currentNotice = $(this).closest('.rc-global-notice');
+        var $nextNotice = $currentNotice.nextAll('.rc-global-notice:first');
+
+        if ($nextNotice.length) {
+            $nextNotice.show();
+        }
+    });
+    $('.rc-global-notice button').on('click', function() {
+        var $notice = $(this).closest('.rc-global-notice');
+        var $nextNotice = $notice.nextAll('.rc-global-notice:first');
+
+        $notice.fadeOut(300, function() {
+            if ($nextNotice.length) {
+                $nextNotice.fadeIn();
+            }
+        });
+    });
+
 })(jQuery);
