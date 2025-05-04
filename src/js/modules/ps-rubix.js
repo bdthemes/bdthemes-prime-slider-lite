@@ -22,33 +22,7 @@
                     (this).swiper.autoplay.start();
                 });
             }
-
-
-
-            var $mainWrapper = $scope.find('.bdt-rubix-slider'),
-                $thumbs = $mainWrapper.find('.bdt-thumb-slider');
-
-            var sliderThumbs = await new Swiper($thumbs, {
-                slidesPerView: 2,
-                spaceBetween: 10,
-                loop: ($settings.loop) ? $settings.loop : false,
-                speed: ($settings.speed) ? $settings.speed : 500,
-                touchRatio: 0.2,
-                slideToClickedSlide: true,
-                loopedSlides: 4,
-                breakpoints: {
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 15,
-                    },
-                }
-            });
-
-            swiper.controller.control = sliderThumbs;
-            sliderThumbs.controller.control = swiper;
-
-
-
+            
             var sliderAnimation = {
                 initAnim: function () {
                     $($rubixContainer).find(".bdt-item.swiper-slide-active .bdt-slider-progress").animate({

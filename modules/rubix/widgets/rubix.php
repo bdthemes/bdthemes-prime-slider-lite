@@ -6,11 +6,9 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Widget_Base;
-use Elementor\Plugin;
 
 use PrimeSlider\Traits\Global_Widget_Controls;
 use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
@@ -1527,6 +1525,31 @@ class Rubix extends Widget_Base {
 							"lazy"           => [ 
 								"loadPrevNext" => "true",
 							],
+							"thumbs" => [
+								"swiper" => [
+									"el" => "#" . $id . ' .bdt-thumb-slider',
+									"slidesPerView" => 2,
+									"spaceBetween" => 10,
+									"watchSlidesVisibility" => true,
+									"watchSlidesProgress" => true,
+									"slideToClickedSlide" => true,
+									"observer" => ($settings["observer"]) ? true : false,
+									"observeParents" => ($settings["observer"]) ? true : false,
+									"loop"           => ($settings["loop"] == "yes") ? true : false,
+									"speed"          => $settings["speed"]["size"],
+									"scrollbar" => [
+										"el" => "#" . $id . ' .swiper-scrollbar',
+										"draggable" => true,
+									],
+									"breakpoints" => [
+										768 => [
+											"slidesPerView" => 3,
+											"spaceBetween" => 15,
+										],
+									],
+								]
+							]
+
 						] ) )
 					]
 				]
