@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.XX [XXth May 2025] =
+
+* Fixed: Resolved jQuery Migrate warning ( Thanks to BackuPs )
+
 = 3.17.11 [4th May 2025] =
 
 * Fixed: Thumbs slide issue fixed in rubix widget
