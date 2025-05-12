@@ -1228,9 +1228,15 @@ class PrimeSlider_Admin_Settings {
 					}
 				}
 
-				jQuery(window).on('load', function() {
-					hashHandler();
-				});
+				function onWindowLoad() {
+ 					hashHandler();
+ 				}
+
+ 				if (document.readyState === 'complete') {
+ 					onWindowLoad();
+ 				} else {
+ 					jQuery(window).on('load', onWindowLoad);
+ 				}
 
 				window.addEventListener("hashchange", hashHandler, true);
 
@@ -1239,7 +1245,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery(this).parent().addClass('current');
 				});
 
-				jQuery('#prime_slider_active_modules_page a.ps-active-all-widget').click(function() {
+				jQuery('#prime_slider_active_modules_page a.ps-active-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
@@ -1249,7 +1255,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_active_modules_page a.ps-deactive-all-widget').click(function() {
+				jQuery('#prime_slider_active_modules_page a.ps-deactive-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_active_modules_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
@@ -1259,7 +1265,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-active-all-widget').click(function() {
+				jQuery('#prime_slider_third_party_widget_page a.ps-active-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
@@ -1269,7 +1275,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').click(function() {
+				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
@@ -1279,7 +1285,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').click(function() {
+				jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).attr('checked', 'checked').prop("checked", true);
@@ -1289,7 +1295,7 @@ class PrimeSlider_Admin_Settings {
 					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
 				});
 
-				jQuery('#prime_slider_elementor_extend_page a.ps-deactive-all-widget').click(function() {
+				jQuery('#prime_slider_elementor_extend_page a.ps-deactive-all-widget').on('click', function() {
 
 					jQuery('#prime_slider_elementor_extend_page .checkbox:visible').not("[disabled]").each(function() {
 						jQuery(this).removeAttr('checked');
@@ -1300,7 +1306,7 @@ class PrimeSlider_Admin_Settings {
 				});
 
 
-				jQuery('form.settings-save').submit(function(event) {
+				jQuery('form.settings-save').on('submit', function(event) {
 					event.preventDefault();
 
 					bdtUIkit.notification({
