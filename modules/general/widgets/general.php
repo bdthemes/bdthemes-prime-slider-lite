@@ -362,12 +362,14 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_otherview',
 			[ 
-				'label'     => esc_html__( 'Show Otherview Text', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Overview Text', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
 					'_skin' => [ 'crelly' ],
 				],
+				'prefix_class' => 'bdt-show-otherview-',
+				'render_type' => 'template',
 			]
 		);
 
@@ -386,7 +388,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_share_us',
 			[ 
-				'label'     => esc_html__( 'Show Share Us', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Follow Us', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -1098,7 +1100,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_title_color',
 			[ 
-				'label'     => esc_html__( 'Title Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Overview Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt-content h3' => 'color: {{VALUE}};',
@@ -1171,6 +1173,19 @@ class General extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[ 
+				'name'     => 'excerpt_overview_typography',
+				'label'    => esc_html__( 'Overview Typography', 'bdthemes-prime-slider' ),
+				'condition' => [
+					'show_otherview' => 'yes',
+					'_skin' => 'crelly',
+				],
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt-content h3',
+			]
+		);
+	
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[ 
@@ -1444,14 +1459,19 @@ class General extends Widget_Base {
 			[ 
 				'label'     => esc_html__( 'Size', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SLIDER,
+				'size_units'=> [ 'px', 'rem' ],
 				'range'     => [ 
 					'px' => [ 
 						'min' => 10,
 						'max' => 50,
 					],
+					'rem' => [ 
+						'min' => 1,
+						'max' => 4,
+					]
 				],
 				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon svg' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [ 
 					'icon_custom_style' => 'yes'
@@ -1466,12 +1486,13 @@ class General extends Widget_Base {
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
-						'min' => 0,
+						'min' => -30,
 						'max' => 50,
 					],
 				],
-				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon' => 'bottom: {{SIZE}}{{UNIT}};',
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon' =>
+						'transform: translateY({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [ 
 					'icon_custom_style' => 'yes'
@@ -1486,12 +1507,13 @@ class General extends Widget_Base {
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
-						'min' => 0,
+						'min' => -30,
 						'max' => 50,
 					],
 				],
-				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon' => 'right: {{SIZE}}{{UNIT}};',
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn .bdt-slide-btn-icon' =>
+						'transform: translate({{SIZE}}{{UNIT}}, {{slide_btn_icon_vertical_spacing.SIZE}}{{slide_btn_icon_vertical_spacing.UNIT}});',
 				],
 				'condition' => [ 
 					'icon_custom_style' => 'yes'
@@ -2159,37 +2181,6 @@ class General extends Widget_Base {
 					'show_navigation_dots' => [ 'yes' ],
 					'_skin'                => [ 'meteor', 'crelly' ],
 				],
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'active_dot_number_color',
-			[ 
-				'label'     => __( 'Number Color', 'bdthemes-prime-slider' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li:after, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav span, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li a' => 'color: {{VALUE}}',
-				],
-				'condition' => [ 
-					'show_navigation_arrows' => [ 'yes' ],
-					'_skin'                  => [ 'slide', 'crelly' ],
-				],
-			]
-		);
-
-		$this->add_control(
-			'active_dot_number_color_skin',
-			[ 
-				'label'     => __( 'Active Number Color', 'bdthemes-prime-slider' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [ 
-					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li.bdt-active a' => 'color: {{VALUE}}',
-				],
-				'condition' => [ 
-					'show_navigation_arrows' => [ 'yes' ],
-					'_skin'                  => [ 'crelly' ],
-				],
 			]
 		);
 
@@ -2214,6 +2205,28 @@ class General extends Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'dots_vertical_spacing',
+			[ 
+				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [ 
+					'px' => [ 
+						'min' => 0,
+						'max' => 300,
+					],
+				],
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-nav' => 'transform: translateY(-{{SIZE}}px);',
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav' => 'transform: translateY(-{{SIZE}}px);',
+				],
+				'condition' => [ 
+					'show_navigation_dots' => [ 'yes' ],
+					'_skin' => [ 'crelly', 'meteor' ],
+				],
+			]
+		);
+		
 		$this->add_responsive_control(
 			'navigation_dots_radius',
 			[ 
@@ -2359,6 +2372,66 @@ class General extends Widget_Base {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+		$this->add_control(
+			'fraction_heading',
+			[ 
+				'label' => __( 'FRACTION', 'bdthemes-prime-slider' ),
+				'type' => Controls_Manager::HEADING,
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin' => [ 'crelly' ],
+				],
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'fraction_color',
+			[ 
+				'label'     => __( 'Fraction Color', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li:after, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav span, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li a' => 'color: {{VALUE}}',
+				],
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin'                  => [ 'slide', 'crelly' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'active_fraction_color',
+			[ 
+				'label'     => __( 'Active Fraction Color', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li.bdt-active a' => 'color: {{VALUE}}',
+				],
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin'                  => [ 'crelly' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'seperator_color',
+			[ 
+				'label'     => __( 'Separator Color', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [ 
+					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav:before' => 'background-color: {{VALUE}}',
+				],
+				'condition' => [ 
+					'show_navigation_arrows' => [ 'yes' ],
+					'_skin'                  => [ 'crelly' ],
+				],
+			]
+		);
+
+		$this->end_controls_tab();
 
 		$this->end_controls_section();
 	}

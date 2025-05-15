@@ -248,6 +248,14 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XXth May 2025] =
+
+* Added: Fraction color, active fraction color & separator color option added in crelly skin
+* Added: Overview typography option added in crelly skin
+* Added: Vertical spacing option added in crelly skin
+
+*Fixed: Fixed button icon spacing controls for vertical and horizontal
+
 = 3.17.12 [12th May 2025] =
 
 * Fixed: Resolved jQuery Migrate warning ( Thanks to BackuPs )
