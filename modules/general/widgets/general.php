@@ -2387,7 +2387,7 @@ class General extends Widget_Base {
 		);
 
 		$this->add_control(
-			'fraction_color',
+			'active_dot_number_color',
 			[ 
 				'label'     => __( 'Fraction Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
@@ -2402,7 +2402,7 @@ class General extends Widget_Base {
 		);
 
 		$this->add_control(
-			'active_fraction_color',
+			'active_dot_number_color_skin',
 			[ 
 				'label'     => __( 'Active Fraction Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
