@@ -140,6 +140,7 @@
     /**
      * Button Color
      */
+
     try {
       window.CSS.registerProperty({
         name: "--primaryColor",
@@ -158,5 +159,28 @@
       // Property already registered
     }
 
+    // Show only the first DCI notice
+    var $notices = $('.dci-global-notice');
+    if ($notices.length > 0) {
+        $notices.first().show();
+    }
+    $(document).on('click', '.dci-global-notice .notice-dismiss', function() {
+        var $currentNotice = $(this).closest('.dci-global-notice');
+        var $nextNotice = $currentNotice.nextAll('.dci-global-notice:first');
+
+        if ($nextNotice.length) {
+            $nextNotice.show();
+        }
+    });
+    $('.dci-global-notice button').on('click', function() {
+        var $notice = $(this).closest('.dci-global-notice');
+        var $nextNotice = $notice.nextAll('.dci-global-notice:first');
+
+        $notice.fadeOut(300, function() {
+            if ($nextNotice.length) {
+                $nextNotice.fadeIn();
+            }
+        });
+    });
   });
 })(jQuery);
