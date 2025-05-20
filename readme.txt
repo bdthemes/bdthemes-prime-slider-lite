@@ -255,6 +255,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Added: Vertical spacing option added in crelly skin
 
 *Fixed: Fixed button icon spacing controls for vertical and horizontal
+*Fixed: JS error fixed in Dashboard Settings
 
 = 3.17.12 [12th May 2025] =
 
