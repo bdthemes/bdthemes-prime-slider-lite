@@ -1620,7 +1620,7 @@ class Rubix extends Widget_Base {
 								<a data-reveal="reveal-active" href="<?php echo esc_url( get_permalink() ); ?>">
 									<i class="ps-wi-link"></i>
 									<span>
-										<?php echo esc_html__( $settings['read_more_text'] ) ?>
+										<?php echo esc_html__( $settings['read_more_text'], 'bdthemes-prime-slider' ) ?>
 									</span>
 								</a>
 							</div>

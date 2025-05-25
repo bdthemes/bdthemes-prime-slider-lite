@@ -1036,7 +1036,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_social_icon',
             [
-                'label'     => esc_html__('Social Icon', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Social Link', 'bdthemes-prime-slider'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_social_icon' => 'yes',
