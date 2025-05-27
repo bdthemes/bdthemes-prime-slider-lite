@@ -413,20 +413,20 @@ trait Global_Widget_Controls {
 		$this->add_responsive_control(
 			'background_image_position',
 			[ 
-				'label'       => _x( 'Position', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Position', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
 				'options'     => [ 
-					''              => _x( 'Default', 'bdthemes-prime-slider' ),
-					'center center' => _x( 'Center Center', 'bdthemes-prime-slider' ),
-					'center left'   => _x( 'Center Left', 'bdthemes-prime-slider' ),
-					'center right'  => _x( 'Center Right', 'bdthemes-prime-slider' ),
-					'top center'    => _x( 'Top Center', 'bdthemes-prime-slider' ),
-					'top left'      => _x( 'Top Left', 'bdthemes-prime-slider' ),
-					'top right'     => _x( 'Top Right', 'bdthemes-prime-slider' ),
-					'bottom center' => _x( 'Bottom Center', 'bdthemes-prime-slider' ),
-					'bottom left'   => _x( 'Bottom Left', 'bdthemes-prime-slider' ),
-					'bottom right'  => _x( 'Bottom Right', 'bdthemes-prime-slider' ),
+					''              => esc_html__( 'Default', 'bdthemes-prime-slider' ),
+					'center center' => esc_html__( 'Center Center', 'bdthemes-prime-slider' ),
+					'center left'   => esc_html__( 'Center Left', 'bdthemes-prime-slider' ),
+					'center right'  => esc_html__( 'Center Right', 'bdthemes-prime-slider' ),
+					'top center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider' ),
+					'top left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider' ),
+					'top right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider' ),
+					'bottom center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider' ),
+					'bottom left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider' ),
+					'bottom right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider' ),
 				],
 				'selectors'   => [ 
 					'{{WRAPPER}} ' . $class_name . '' => 'background-position: {{VALUE}};',
@@ -441,13 +441,13 @@ trait Global_Widget_Controls {
 		// $this->add_responsive_control(
 		// 	'background_image_attachment',
 		// 	[
-		// 		'label'   => _x('Attachment', 'bdthemes-prime-slider'),
+		// 		'label'   => esc_html__('Attachment', 'bdthemes-prime-slider'),
 		// 		'type'    => Controls_Manager::SELECT,
 		// 		'default' => '',
 		// 		'options' => [
-		// 			''       => _x('Default', 'bdthemes-prime-slider'),
-		// 			'scroll' => _x('Scroll', 'bdthemes-prime-slider'),
-		// 			'fixed'  => _x('Fixed', 'bdthemes-prime-slider'),
+		// 			''       => esc_html__('Default', 'bdthemes-prime-slider'),
+		// 			'scroll' => esc_html__('Scroll', 'bdthemes-prime-slider'),
+		// 			'fixed'  => esc_html__('Fixed', 'bdthemes-prime-slider'),
 		// 		],
 		// 		'selectors' => [
 		// 			'{{WRAPPER}} ' . $class_name . '' => 'background-attachment: {{VALUE}};',
@@ -462,15 +462,15 @@ trait Global_Widget_Controls {
 		$this->add_responsive_control(
 			'background_image_repeat',
 			[ 
-				'label'       => _x( 'Repeat', 'bdthemes-prime-slider' ),
+				'label'       => esc_html_x( 'Repeat', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
 				'options'     => [ 
-					''          => _x( 'Default', 'bdthemes-prime-slider' ),
-					'no-repeat' => _x( 'No-repeat', 'bdthemes-prime-slider' ),
-					'repeat'    => _x( 'Repeat', 'bdthemes-prime-slider' ),
-					'repeat-x'  => _x( 'Repeat-x', 'bdthemes-prime-slider' ),
-					'repeat-y'  => _x( 'Repeat-y', 'bdthemes-prime-slider' ),
+					''          => esc_html__( 'Default', 'bdthemes-prime-slider' ),
+					'no-repeat' => esc_html__( 'No-repeat', 'bdthemes-prime-slider' ),
+					'repeat'    => esc_html__( 'Repeat', 'bdthemes-prime-slider' ),
+					'repeat-x'  => esc_html__( 'Repeat-x', 'bdthemes-prime-slider' ),
+					'repeat-y'  => esc_html__( 'Repeat-y', 'bdthemes-prime-slider' ),
 				],
 				'selectors'   => [ 
 					'{{WRAPPER}} ' . $class_name . '' => 'background-repeat: {{VALUE}};',
@@ -485,15 +485,15 @@ trait Global_Widget_Controls {
 		$this->add_responsive_control(
 			'background_image_size',
 			[ 
-				'label'       => _x( 'Size', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Size', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
 				'options'     => [ 
-					''        => _x( 'Default', 'bdthemes-prime-slider' ),
-					'auto'    => _x( 'Auto', 'bdthemes-prime-slider' ),
-					'cover'   => _x( 'Cover', 'bdthemes-prime-slider' ),
-					'contain' => _x( 'Contain', 'bdthemes-prime-slider' ),
-					'initial' => _x( 'Custom', 'bdthemes-prime-slider' ),
+					''        => esc_html__( 'Default', 'bdthemes-prime-slider' ),
+					'auto'    => esc_html__( 'Auto', 'bdthemes-prime-slider' ),
+					'cover'   => esc_html__( 'Cover', 'bdthemes-prime-slider' ),
+					'contain' => esc_html__( 'Contain', 'bdthemes-prime-slider' ),
+					'initial' => esc_html__( 'Custom', 'bdthemes-prime-slider' ),
 				],
 				'selectors'   => [ 
 					'{{WRAPPER}} ' . $class_name . '' => 'background-size: {{VALUE}};',
@@ -508,7 +508,7 @@ trait Global_Widget_Controls {
 		$this->add_responsive_control(
 			'background_image_width',
 			[ 
-				'label'       => _x( 'Width', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Width', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SLIDER,
 				'size_units'  => [ 'px', 'em', '%', 'vw' ],
 				'range'       => [ 
