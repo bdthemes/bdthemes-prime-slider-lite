@@ -253,6 +253,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Added: Fraction color, active fraction color & separator color option added in crelly skin
 * Added: Overview typography option added in crelly skin
 * Added: Vertical spacing option added in crelly skin
+* Fixed: Isolate widget skins kenburn animation issue fixed
 
 *Fixed: Fixed button icon spacing controls for vertical and horizontal
 *Fixed: JS error fixed in Dashboard Settings

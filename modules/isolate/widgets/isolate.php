@@ -259,17 +259,17 @@ class Isolate extends Widget_Base {
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Massive', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-4.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.png'],
                     ],
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Vibrant', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-5.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.png'],
                     ],
                     [
                         'sub_title' => esc_html__('Sub Title', 'bdthemes-prime-slider'),
                         'title' => esc_html__('Wallow', 'bdthemes-prime-slider'),
-                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-6.svg'],
+                        'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.png'],
                     ],
                 ],
                 'title_field' => '{{{ title }}}',

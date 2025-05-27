@@ -215,15 +215,16 @@ class Skin_Slice extends Elementor_Skin_Base {
                 <div class="bdt-width-1-1 bdt-width-1-2@s">
                     <div class="bdt-position-relative bdt-text-center bdt-slide-overlay" data-reveal="reveal-active">
                         <?php if ('yes' == $settings['kenburns_animation']) : ?>
-                            <div class="bdt-position-cover bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">
+                            <div class="bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">
                             <?php endif; ?>
         
                                 <?php $this->parent->rendar_item_image($slide); ?>
-                                <?php $this->parent->render_play_button($slide, $index);?>
-        
-                            <?php if ('yes' == $settings['kenburns_animation']) : ?>
+                                
+                                <?php if ('yes' == $settings['kenburns_animation']) : ?>
                             </div>
                         <?php endif; ?>
+                        
+                        <?php $this->parent->render_play_button($slide, $index);?>
         
                         <?php if ('none' !== $settings['overlay']) :
                                         $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>

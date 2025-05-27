@@ -217,7 +217,7 @@ class Skin_Locate extends Elementor_Skin_Base {
 
                     <div class="bdt-position-relative bdt-slide-overlay" data-reveal="reveal-active">
                         <?php if ('yes' == $settings['kenburns_animation']) : ?>
-                            <div class="bdt-position-cover bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">
+                            <div class="bdt-animation-kenburns<?php echo esc_attr($kenburns_reverse); ?> bdt-transform-origin-center-left">
                             <?php endif; ?>
         
                                 <?php $this->parent->rendar_item_image($slide); ?>
