@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.8.1
 Requires PHP: 7.4.0
-Stable tag: 3.17.12
+Stable tag: 3.17.13
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.28.4
+Elementor tested up to: 3.29.0
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -248,15 +248,14 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.17.X [XXth May 2025] =
+= 3.17.13 [28th May 2025] =
 
 * Added: Fraction color, active fraction color & separator color option added in crelly skin
 * Added: Overview typography option added in crelly skin
 * Added: Vertical spacing option added in crelly skin
 * Fixed: Isolate widget skins kenburn animation issue fixed
-
-*Fixed: Fixed button icon spacing controls for vertical and horizontal
-*Fixed: JS error fixed in Dashboard Settings
+* Fixed: Fixed button icon spacing controls for vertical and horizontal
+* Fixed: JS error fixed in Dashboard Settings
 
 = 3.17.12 [12th May 2025] =
 
