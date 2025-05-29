@@ -1141,6 +1141,9 @@ class Blog extends Widget_Base {
             [
                 'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SLIDER,
+                'condition' => [
+                    '_skin!' => ['coral', 'folio'],
+                ],
                 'range'     => [
                     'px' => [
                         'max' => 100,
@@ -1148,6 +1151,25 @@ class Blog extends Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon a' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'social_icon_spacing_coral_folio',
+            [
+                'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::SLIDER,
+                'condition' => [
+                    '_skin' => ['coral', 'folio'],     
+                ],
+                'range'     => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon a' => 'margin-left: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );

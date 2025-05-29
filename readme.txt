@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XXth May 2025] =
+
+* Added: Icon spacing option added for coral & folio skin in blog widget
+
 = 3.17.13 [28th May 2025] =
 
 * Added: Fraction color, active fraction color & separator color option added in crelly skin
