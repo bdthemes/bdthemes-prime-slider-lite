@@ -4,6 +4,7 @@ namespace PrimeSlider\Modules\Blog\Skins;
 
 use PrimeSlider\Utils;
 use Elementor\Group_Control_Image_Size;
+use Elementor\Icons_Manager;
 use Elementor\Skin_Base as Elementor_Skin_Base;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -18,6 +19,59 @@ class Skin_Folio extends Elementor_Skin_Base {
     return esc_html__('Folio', 'bdthemes-prime-slider');
   }
 
+  /**
+	 * Social Icons Here
+	 */
+	public function render_social_link( $position = 'right', $label = false, $class = [] ) {
+		$settings = $this->parent->get_settings_for_display();
+
+		if ( '' == $settings['show_social_icon'] ) {
+			return;
+		}
+
+		$this->parent->add_render_attribute( 'social-icon', 'class', 'bdt-social-icon reveal-muted' );
+		$this->parent->add_render_attribute( 'social-icon', 'class', $class );
+
+		?>
+		<div <?php $this->parent->print_render_attribute_string( 'social-icon' ); ?>>
+
+			<?php if ( $label ) : ?>
+				<h3>
+					<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
+				</h3>
+			<?php endif; ?>
+      <div class="bdt-social-icon-item-wrap bdt-flex bdt-flex-middle">
+
+			<?php
+			foreach ( $settings['social_link_list'] as $index => $link ) :
+
+				$link_key = 'link_' . $index;
+
+				$tooltip = '';
+				if ( 'yes' === $settings['social_icon_tooltip'] ) {
+
+					$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title'])); // Escape for safe attribute usage
+					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
+
+				}
+
+				if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
+					$this->parent->add_link_attributes( $link_key, $link['social_icon_link'] );
+				}
+
+				?>
+        
+          <a <?php $this->parent->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
+            <span><span>
+                <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+              </span></span>
+          </a>
+			<?php endforeach; ?>
+      </div>
+		</div>
+		<?php
+	}
+
   public function render_footer() {
     $settings = $this->parent->get_settings_for_display();
   ?>
@@ -26,7 +80,7 @@ class Skin_Folio extends Elementor_Skin_Base {
     </div>
 
     <div class="bdt-ps-meta-content bdt-position-bottom bdt-flex bdt-flex-between bdt-flex-middle reveal-muted">
-      <?php $this->parent->render_social_link($position = 'top', $label = true, $class = ['bdt-flex bdt-flex-middle']); ?>
+      <?php $this->render_social_link($position = 'top', $label = true, $class = ['bdt-flex bdt-flex-middle']); ?>
     </div>
 
     </div>

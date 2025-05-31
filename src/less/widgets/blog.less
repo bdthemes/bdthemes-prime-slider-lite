@@ -262,10 +262,11 @@
 		z-index: 1;
 		bottom: clamp(0.625rem, 4vw, 4.375rem);
 		display: none;
+		gap: 20px;
 		a {
 			display: flex;
 			font-size: 16px;
-			margin: 20px 0;
+			// margin: 20px 0;
 		}
 		i {
 			color: #fff;
@@ -523,9 +524,12 @@
 			}
 		}
 
-		.bdt-scroll-down,
-		.bdt-social-icon {
+		.bdt-scroll-down {
 			display: inherit;
+		}
+		.bdt-social-icon {
+			display: flex;
+			flex-direction: column;
 		}
 
 		.bdt-navigation-arrows {
