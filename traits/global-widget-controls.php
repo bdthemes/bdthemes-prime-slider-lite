@@ -2364,40 +2364,40 @@ trait Global_Widget_Controls {
 		$this->add_render_attribute( 'social-icon', 'class', $class );
 
 		?>
-						<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
+		<div <?php $this->print_render_attribute_string( 'social-icon' ); ?>>
 
-							<?php if ( $label ) : ?>
-								<h3>
-									<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
-								</h3>
-							<?php endif; ?>
+			<?php if ( $label ) : ?>
+				<h3>
+					<?php esc_html_e( 'Follow Us', 'bdthemes-prime-slider' ); ?>
+				</h3>
+			<?php endif; ?>
 
-							<?php
-							foreach ( $settings['social_link_list'] as $index => $link ) :
+			<?php
+			foreach ( $settings['social_link_list'] as $index => $link ) :
 
-								$link_key = 'link_' . $index;
+				$link_key = 'link_' . $index;
 
-								$tooltip = '';
-								if ( 'yes' === $settings['social_icon_tooltip'] ) {
+				$tooltip = '';
+				if ( 'yes' === $settings['social_icon_tooltip'] ) {
 
-									$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title'])); // Escape for safe attribute usage
-									$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
+					$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title'])); // Escape for safe attribute usage
+					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
 
-								}
+				}
 
-								if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
-									$this->add_link_attributes( $link_key, $link['social_icon_link'] );
-								}
+				if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
+					$this->add_link_attributes( $link_key, $link['social_icon_link'] );
+				}
 
-								?>
-								<a <?php $this->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
-									<span><span>
-											<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
-										</span></span>
-								</a>
-							<?php endforeach; ?>
-						</div>
-						<?php
+				?>
+				<a <?php $this->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
+					<span><span>
+							<?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
+						</span></span>
+				</a>
+			<?php endforeach; ?>
+		</div>
+		<?php
 	}
 
 	public function rendar_post_image( $class ) {

@@ -1139,7 +1139,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'social_icon_spacing',
             [
-                'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Space Between', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -1147,7 +1147,10 @@ class Blog extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon a' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-social-icon' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-social-icon' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-social-icon' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-social-icon .bdt-social-icon-item-wrap' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
