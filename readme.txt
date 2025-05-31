@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XX May 2025] =
+
+* Fixed: Blog widget social link spacing issue fixed
+
 = 3.17.13 [28th May 2025] =
 
 * Added: Fraction color, active fraction color & separator color option added in crelly skin
