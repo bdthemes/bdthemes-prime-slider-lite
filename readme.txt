@@ -251,6 +251,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 3.17.X [XX May 2025] =
 
 * Fixed: Blog widget social link spacing issue fixed
+* Fixed: Thumbs arrows issue fixed in storker widget
 
 = 3.17.13 [28th May 2025] =
 

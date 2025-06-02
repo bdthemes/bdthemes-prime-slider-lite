@@ -1059,7 +1059,7 @@ class Storker extends Widget_Base {
         $this->add_control(
             'thumb_title_heading',
             [
-                'label'     => esc_html__('T I T L E', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('TITLE', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -1088,7 +1088,7 @@ class Storker extends Widget_Base {
         $this->add_control(
             'thumb_arrow_heading',
             [
-                'label'     => esc_html__('A R R O W S', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('ARROWS', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -1200,8 +1200,8 @@ class Storker extends Widget_Base {
         $this->add_control(
             'thumb_arrows_hover_heading',
             [
-                'label'     => esc_html__('A R R O W S', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__('ARROWS', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
         );
@@ -1297,8 +1297,8 @@ class Storker extends Widget_Base {
         $this->add_control(
             'thumb_arrows_active_heading',
             [
-                'label'     => esc_html__('A R R O W S', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__('ARROWS', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
         );
