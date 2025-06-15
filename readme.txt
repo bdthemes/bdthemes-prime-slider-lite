@@ -5,11 +5,11 @@ Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.8.1
 Requires PHP: 7.4.0
-Stable tag: 3.17.13
+Stable tag: 3.17.14
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.29.0
+Elementor tested up to: 3.29.2
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -248,7 +248,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.17.X [XX May 2025] =
+= 3.17.14 [15th June 2025] =
 
 * Fixed: Blog widget social link spacing issue fixed
 * Fixed: Thumbs arrows issue fixed in storker widget
