@@ -248,8 +248,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.17.X [XXth June 2025] =
+= 3.17.X [XX June 2025] =
 
+* Fixed: Blog zinest skin featured post controls updated
 * Updated: Horizontal and Vertical Offset Control Positions Updated in the Flogia Widget
 
 = 3.17.14 [15th June 2025] =

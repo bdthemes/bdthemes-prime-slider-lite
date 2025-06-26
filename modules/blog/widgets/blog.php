@@ -279,18 +279,6 @@ class Blog extends Widget_Base {
         );
 
         $this->add_control(
-            'show_featured_post',
-            [
-                'label'     => esc_html__('Show Featured Post', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::SWITCHER,
-                'default'   => 'yes',
-                'condition' => [
-                    '_skin' => 'zinest',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'show_navigation_arrows',
             [
                 'label'     => esc_html__('Show Arrows', 'bdthemes-prime-slider'),
@@ -382,6 +370,34 @@ class Blog extends Widget_Base {
         );
 
         $this->register_query_builder_controls();
+
+        $this->update_control(
+            'posts_limit',
+            [
+                'type'    => Controls_Manager::NUMBER,
+                'default' => 3,
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_featured_post_settings',
+            [
+                'label'     => esc_html__('Featured Post', 'bdthemes-prime-slider'),
+                'condition' => [
+                    '_skin' => 'zinest',
+                ],
+            ]
+        );
+        $this->add_control(
+            'show_featured_post',
+            [
+                'label'     => esc_html__('Show Featured Post', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::SWITCHER,
+                'default'   => 'yes',
+            ]
+        );
         $this->add_control(
             'featured_query_heading',
             [
@@ -389,7 +405,7 @@ class Blog extends Widget_Base {
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
-                    '_skin' => 'zinest'
+                    'show_featured_post' => 'yes'
                 ]
             ]
         );
@@ -401,19 +417,10 @@ class Blog extends Widget_Base {
                 'multiple'    => true,
                 'label_block' => true,
                 'condition' => [
-                    '_skin' => 'zinest'
+                    'show_featured_post' => 'yes'
                 ]
             ]
         );
-
-        $this->update_control(
-            'posts_limit',
-            [
-                'type'    => Controls_Manager::NUMBER,
-                'default' => 3,
-            ]
-        );
-
         $this->end_controls_section();
 
         /**
