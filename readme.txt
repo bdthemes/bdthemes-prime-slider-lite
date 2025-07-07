@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.X [XXth July 2025] =
+
+* Fixed: Margin - Top & Bottom issue fixed for old price in the WooCircle widget
+
 = 3.17.15 [26th June 2025] =
 
 * Fixed: Blog zinest skin featured post controls updated
