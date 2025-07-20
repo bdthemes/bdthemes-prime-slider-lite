@@ -1447,7 +1447,7 @@ class Pacific extends Widget_Base {
 		$modal_dialog_id = 'bdt-pacific-' . $this->get_id();
 
 		?>
-		<div <?php echo $this->get_render_attribute_string( 'slider-item' ); ?>>
+		<div <?php $this->print_render_attribute_string( 'slider-item' ); ?>>
 			<div class="bdt-image-wrap">
 				<?php $this->render_image( $post_id, $image_size ); ?>
 			</div>

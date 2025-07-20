@@ -892,7 +892,7 @@ class Vertex extends Widget_Base {
         $this->add_render_attribute('slider-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-img-wrap reveal-muted">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

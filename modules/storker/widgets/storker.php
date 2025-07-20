@@ -1889,7 +1889,7 @@ class Storker extends Widget_Base {
         $this->add_render_attribute('thumb-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('thumb-item'); ?>>
+        <div <?php $this->print_render_attribute_string('thumb-item'); ?>>
             <div class="bdt-storker-content">
                 <h3 class="bdt-title">
                     <a href="javascript:void(0);"><?php echo esc_html(get_the_title()); ?></a>
@@ -1911,7 +1911,7 @@ class Storker extends Widget_Base {
         $this->add_render_attribute('slider-item', 'class', 'bdt-item swiper-slide', true);
 
         ?>
-        <div <?php echo $this->get_render_attribute_string('slider-item'); ?>>
+        <div <?php $this->print_render_attribute_string('slider-item'); ?>>
             <div class="bdt-image-wrap">
                 <?php $this->render_image($post_id, $image_size); ?>
             </div>

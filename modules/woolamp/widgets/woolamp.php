@@ -1284,7 +1284,7 @@ class Woolamp extends Widget_Base {
 
 				?>
 					<div class="bdt-social-share-item">
-						<div <?php echo $this->get_render_attribute_string('social-attrs'); ?>>
+						<div <?php $this->print_render_attribute_string('social-attrs'); ?>>
 							<?php echo $button['text'] ? esc_html($button['text']) : Module::get_social_media($social_name)['title']; ?>
 						</div>
 					</div>
