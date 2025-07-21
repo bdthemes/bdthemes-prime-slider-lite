@@ -3,13 +3,13 @@ Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.8.1
+Tested up to: 6.8.2
 Requires PHP: 7.4.0
-Stable tag: 3.17.16
+Stable tag: 3.17.17
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.30.0
+Elementor tested up to: 3.30.2
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -247,6 +247,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 3.17.17 [21st July 2025] =
+
+* Updated: Made compatible with wordpress version 6.8.2
+* Updated: Security improved
 
 = 3.17.16 [7th July 2025] =
 
