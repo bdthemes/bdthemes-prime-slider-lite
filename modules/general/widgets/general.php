@@ -1097,6 +1097,58 @@ class General extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[ 
+				'name'     => 'excerpt_background_color',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[ 
+				'name'     => 'excerpt_border',
+				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt',
+			]
+		);
+
+		$this->add_responsive_control(
+			'excerpt_border_radius',
+			[ 
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'excerpt_text_padding',
+			[ 
+				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'excerpt_margin',
+			[ 
+				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [ 
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_control(
 			'excerpt_title_color',
 			[ 
