@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.17.XX [Xth August 2025] =
+
+* Added: Admin Store API Notice added
+
 = 3.17.17 [21st July 2025] =
 
 * Updated: Made compatible with wordpress version 6.8.2
