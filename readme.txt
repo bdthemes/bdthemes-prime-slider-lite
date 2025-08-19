@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.18.X [XXth August 2025] =
+
+* Fixed: Admin notice loading issue fixed
+
 = 3.18.0 [19th August 2025] =
 
 * Added: Admin Store API Notice added
