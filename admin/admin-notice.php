@@ -44,7 +44,7 @@ class Notices {
 		}
 
 		// API endpoint for notices - you can change this to your actual endpoint
-		$api_url = 'https://devstore.bdthemes.com/api/notices/api-data-by-product';
+		$api_url = 'https://store.bdthemes.com/api/notices/api-data-by-product';
 
 		$response = wp_remote_get($api_url, [
 			'timeout' => 30,
