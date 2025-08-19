@@ -21,59 +21,13 @@ class Notices {
 	public function __construct() {
 
 		// Admin API Notices
-		add_action('admin_notices', [$this, 'show_api_notices']);
 		add_action('admin_notices', [$this, 'cleanup_expired_dismissals']);
 
 		add_action('admin_notices', [$this, 'show_notices']);
 		add_action('wp_ajax_prime-slider-notices', [$this, 'dismiss']);
-	}
 
-	/**
-	 * Fetch and display notices from API
-	 */
-	public function show_api_notices() {
-		$notices = $this->get_api_notices_data();
-		
-		// Group notices by notice_class to avoid duplicates
-		$grouped_notices = [];
-		
-		if (is_array($notices)) {
-			foreach ($notices as $index => $notice) {
-				// Check if notice is enabled and within date range
-				if ($this->should_show_notice($notice)) {
-					$notice_class = isset($notice->notice_class) ? $notice->notice_class : 'default-' . $index;
-					
-					// Check if we should show this notice based on plugin priority
-					if ($this->should_show_notice_based_on_priority($notice)) {
-						// Check if another plugin has already shown this notice
-						if ($this->should_show_notice_cross_plugin($notice)) {
-							// Group by notice_class, keeping the first valid notice
-							if (!isset($grouped_notices[$notice_class])) {
-								$grouped_notices[$notice_class] = $notice;
-							}
-						}
-					}
-				}
-			}
-			
-			// Process grouped notices to avoid duplicates
-			foreach ($grouped_notices as $notice_class => $notice) {
-				$notice_id = isset($notice->id) ? $notice->id : 'api-notice-' . $notice_class;
-				
-				// Check if this notice should be shown (not dismissed)
-				if (!$this->is_notice_dismissed($notice_id)) {
-					// Store notice data for dismissal reference
-					$this->store_notice_data($notice_id, $notice);
-					
-					self::add_notice([
-						'id' => 'api-notice-' . $notice_id,
-						'type' => isset($notice->type) ? $notice->type : 'info',
-						'dismissible' => true,
-						'html_message' => $this->render_api_notice($notice),
-					]);
-				}
-			}
-		}
+		// AJAX endpoint to fetch API notices on demand (after page load)
+		add_action('wp_ajax_ps_fetch_api_notices', [$this, 'ajax_fetch_api_notices']);
 	}
 
 	/**
@@ -82,6 +36,13 @@ class Notices {
 	 * @return array|mixed
 	 */
 	private function get_api_notices_data() {
+		// 6-hour transient cache for API response
+		$transient_key = 'ps_api_notices_prime_slider';
+		$cached = get_transient($transient_key);
+		if ($cached !== false && is_array($cached)) {
+			return $cached;
+		}
+
 		// API endpoint for notices - you can change this to your actual endpoint
 		$api_url = 'https://store.bdthemes.com/api/notices/api-data-by-product';
 
@@ -97,13 +58,16 @@ class Notices {
 		}
 
 		$response_code = wp_remote_retrieve_response_code($response);
-
 		$response_body = wp_remote_retrieve_body($response);
-
 		$notices = json_decode($response_body);
 		
 		if( isset($notices->api) && isset($notices->api->{'prime-slider'}) ) {
-			return $notices->api->{'prime-slider'};
+			$data = $notices->api->{'prime-slider'};
+			if (is_array($data)) {
+				$ttl = apply_filters('ps_api_notices_cache_ttl', 6 * HOUR_IN_SECONDS);
+				set_transient($transient_key, $data, $ttl);
+				return $data;
+			}
 		}
 
 		return [];
@@ -522,6 +486,60 @@ class Notices {
 	}
 
 	/**
+	 * AJAX: Build and return API notices HTML for dynamic injection
+	 */
+	public function ajax_fetch_api_notices() {
+		$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
+		if (!wp_verify_nonce($nonce, 'prime-slider')) {
+			wp_send_json_error([ 'message' => 'invalid_nonce' ]);
+		}
+
+		if (!current_user_can('manage_options')) {
+			wp_send_json_error([ 'message' => 'forbidden' ]);
+		}
+
+		$notices = $this->get_api_notices_data();
+		$grouped_notices = [];
+
+		if (is_array($notices)) {
+			foreach ($notices as $index => $notice) {
+				if ($this->should_show_notice($notice)) {
+					$notice_class = isset($notice->notice_class) ? $notice->notice_class : 'default-' . $index;
+					if ($this->should_show_notice_based_on_priority($notice) && $this->should_show_notice_cross_plugin($notice)) {
+						if (!isset($grouped_notices[$notice_class])) {
+							$grouped_notices[$notice_class] = $notice;
+						}
+					}
+				}
+			}
+		}
+
+		// Build notices using the same pipeline as synchronous rendering
+		foreach ($grouped_notices as $notice_class => $notice) {
+			$notice_id = isset($notice->id) ? $notice_class : $notice->id;
+			if ($this->is_notice_dismissed($notice_id)) {
+				continue;
+			}
+			$this->store_notice_data($notice_id, $notice);
+
+			self::add_notice([
+				'id' => 'api-notice-' . $notice_id,
+				'type' => isset($notice->type) ? $notice->type : 'info',
+				'dismissible' => true,
+				'html_message' => $this->render_api_notice($notice),
+				'dismissible-meta' => 'transient',
+				'dismissible-time' => WEEK_IN_SECONDS,
+			]);
+		}
+
+		ob_start();
+		$this->show_notices();
+		$markup = ob_get_clean();
+
+		wp_send_json_success([ 'html' => $markup ]);
+	}
+
+	/**
 	 * Dismiss Notice.
 	 */
 	public function dismiss() {
@@ -530,7 +548,7 @@ class Notices {
 		$time = (isset($_POST['time'])) ? esc_attr($_POST['time']) : '';
 		$meta = (isset($_POST['meta'])) ? esc_attr($_POST['meta']) : '';
 
-		if ( ! wp_verify_nonce($nonce, 'bdthemes-prime-slider-lite') ) {
+		if ( ! wp_verify_nonce($nonce, 'bdthemes-prime-slider-lite') && ! wp_verify_nonce($nonce, 'prime-slider') ) {
 			wp_send_json_error();
 		}
 
@@ -776,7 +794,7 @@ class Notices {
 		}
 
 	?>
-		<div id="<?php echo esc_attr($notice['id']); ?>" class="<?php echo esc_attr($notice['classes']); ?>" <?php echo esc_attr($notice['data']); ?> style="display: none;">
+		<div id="<?php echo esc_attr($notice['id']); ?>" class="<?php echo esc_attr($notice['classes']); ?>" <?php echo esc_attr($notice['data']); ?>>
 			<div class="bdt-notice-wrapper">
 				<div class="bdt-notice-icon-wrapper">
 					<img height="25" width="25" src="<?php echo esc_url (BDTPS_CORE_ASSETS_URL ); ?>images/logo.png">
@@ -820,7 +838,7 @@ class Notices {
 	public static function new_notice_layout( $notice = [] ) {
 
 		?>
-		<div id="<?php echo esc_attr( $notice['id'] ); ?>" class="<?php echo esc_attr( $notice['classes'] ); ?>" <?php echo esc_attr( $notice['data'] ); ?> style="display: none;">
+		<div id="<?php echo esc_attr( $notice['id'] ); ?>" class="<?php echo esc_attr( $notice['classes'] ); ?>" <?php echo esc_attr( $notice['data'] ); ?>>
 
 				
 			<?php 
