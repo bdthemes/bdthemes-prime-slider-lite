@@ -248,8 +248,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.17.XX [XXth August 2025] =
+= 3.17.XX [Xth August 2025] =
 
+* Added: Admin Store API Notice added
 * Added: Excerpt Style control added in General Slider widget ( Thanks to Rebeka Primožič )
 
 = 3.17.17 [21st July 2025] =
