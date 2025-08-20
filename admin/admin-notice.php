@@ -175,40 +175,6 @@ class Notices {
 	}
 
 	/**
-	 * Check if another plugin has already shown this notice
-	 * This prevents duplicate notices across different plugins with same codebase
-	 * Uses a global option to prevent duplicates across plugin instances
-	 *
-	 * @param object $notice The notice data from the API.
-	 * @return bool True if the notice should be shown, false if already shown by another plugin.
-	 */
-	private function should_show_notice_cross_plugin($notice) {
-		$notice_class = isset($notice->notice_class) ? $notice->notice_class : '';
-		
-		if (empty($notice_class)) {
-			return true; // No notice_class, show it
-		}
-		
-		// Use a global option to track notices shown across all plugin instances
-		$global_notice_key = 'bdt_global_notice_' . $notice_class;
-		$global_notice_data = get_option($global_notice_key, false);
-		
-		// Check if this notice was shown in the last few seconds (same page load)
-		if ($global_notice_data && is_array($global_notice_data)) {
-			return false;
-		}
-		
-		// Mark this notice as shown globally with current timestamp
-		update_option($global_notice_key, [
-			'plugin' => $this->get_current_plugin_slug(),
-			'timestamp' => time(),
-			'notice_class' => $notice_class
-		]);
-		
-		return true;
-	}
-
-	/**
 	 * Check if a notice is compatible with the current plugin installation
 	 *
 	 * @param object $notice The notice data from the API.
@@ -398,10 +364,8 @@ class Notices {
 			foreach ($notices as $index => $notice) {
 				if ($this->should_show_notice($notice)) {
 					$notice_class = isset($notice->notice_class) ? $notice->notice_class : 'default-' . $index;
-					if ($this->should_show_notice_cross_plugin($notice)) {
-						if (!isset($grouped_notices[$notice_class])) {
-							$grouped_notices[$notice_class] = $notice;
-						}
+					if (!isset($grouped_notices[$notice_class])) {
+						$grouped_notices[$notice_class] = $notice;
 					}
 				}
 			}
