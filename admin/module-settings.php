@@ -265,6 +265,17 @@ class ModuleService {
 				],
 
 				[ 
+					'name'         => 'orbit',
+					'label'        => esc_html__( 'Orbit', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "on",
+					'widget_type'  => 'pro',
+					'content_type' => 'static new',
+					'demo_url'     => 'https://primeslider.pro/demo/orbit/',
+					'video_url'    => 'https://youtu.be/BH-0sfptHeQ',
+				],
+
+				[ 
 					'name'         => 'mount',
 					'label'        => esc_html__( 'Mount', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
