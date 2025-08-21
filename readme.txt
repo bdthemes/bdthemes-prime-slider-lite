@@ -248,10 +248,6 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.18.X [XXth August 2025] =
-
-* Updated: System improved
-
 = 3.18.2 [20th August 2025] =
 
 * Updated: System improved
