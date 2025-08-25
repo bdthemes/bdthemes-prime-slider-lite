@@ -131,9 +131,9 @@ jQuery(document).ready(function ($) {
                          var $notice = $(this);
                          var noticeId = $notice.attr('id');
                          
-                         // Extract class pattern from notice ID (e.g., notice-id-api-notice-class-xxxxx)
-                         if (noticeId && noticeId.indexOf('notice-id-api-notice-class-') !== -1) {
-                             var classPattern = noticeId.substring(noticeId.indexOf('notice-id-api-notice-class-'));
+                         // Extract class pattern from notice ID (e.g., bdt-admin-notice-api-notice-class-xxxxx)
+                         if (noticeId && noticeId.indexOf('bdt-admin-notice-api-notice-class-') !== -1) {
+                             var classPattern = noticeId.substring(noticeId.indexOf('bdt-admin-notice-api-notice-class-'));
                              
                              // Check if any existing notice in DOM has similar class pattern from any plugin
                              var existingNotices = $('[id$="' + classPattern + '"]');
