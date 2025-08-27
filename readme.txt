@@ -250,6 +250,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 = 3.18.X [XXst August 2025] =
 
+* Updated: Admin API Notice optimized
 * Fixed: Deprication error fixed
 
 = 3.18.3 [21st August 2025] =

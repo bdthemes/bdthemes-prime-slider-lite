@@ -20,9 +20,6 @@ class Notices {
 
 	public function __construct() {
 
-		// Admin API Notices
-		add_action('admin_notices', [$this, 'cleanup_expired_dismissals']);
-
 		add_action('admin_notices', [$this, 'show_notices']);
 		add_action('wp_ajax_prime-slider-notices', [$this, 'dismiss']);
 
@@ -72,48 +69,6 @@ class Notices {
 		}
 
 		return [];
-	}
-
-	/**
-	 * Check if a notice is dismissed
-	 *
-	 * @param string $notice_id
-	 * @return bool
-	 */
-	private function is_notice_dismissed($notice_id) {
-		$dismissed_notices = get_user_meta(get_current_user_id(), 'ps_dismissed_notices', true);
-		
-		if (!is_array($dismissed_notices)) {
-			$dismissed_notices = [];
-		}
-
-		// Check if notice is dismissed and if the end date has passed
-		if (isset($dismissed_notices[$notice_id])) {
-			$dismissal_data = $dismissed_notices[$notice_id];
-			
-			// If it's just a string (old format), treat it as permanently dismissed
-			if (is_string($dismissal_data)) {
-				return true;
-			}
-			
-			// If it's an array with end_date, check if end date has passed
-			if (is_array($dismissal_data) && isset($dismissal_data['end_date'])) {
-				$end_date = new \DateTime($dismissal_data['end_date'], new \DateTimeZone($dismissal_data['timezone'] ?? 'UTC'));
-				$current_date = new \DateTime('now', new \DateTimeZone($dismissal_data['timezone'] ?? 'UTC'));
-				
-				// If end date has passed, allow notice to show again
-				if ($current_date > $end_date) {
-					// Remove from dismissed list since end date has passed
-					unset($dismissed_notices[$notice_id]);
-					update_user_meta(get_current_user_id(), 'ps_dismissed_notices', $dismissed_notices);
-					return false;
-				}
-				
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -374,14 +329,11 @@ class Notices {
 		// Build notices using the same pipeline as synchronous rendering
 		foreach ($grouped_notices as $notice_class => $notice) {
 			$notice_id = isset($notice->id) ? $notice_class : $notice->id;
-			if ($this->is_notice_dismissed($notice_id)) {
-				continue;
-			}
-			$this->store_notice_data($notice_id, $notice);
 
 			self::add_notice([
 				'id' => 'api-notice-' . $notice_id,
 				'type' => isset($notice->type) ? $notice->type : 'info',
+				'category'         => isset($notice->category) ? $notice->category : 'regular',
 				'dismissible' => true,
 				'html_message' => $this->render_api_notice($notice),
 				'dismissible-meta' => 'transient',
@@ -430,103 +382,6 @@ class Notices {
 		wp_send_json_error();
 	}
 
-
-	/**
-	 * Store notice data for dismissal reference
-	 *
-	 * @param string $notice_id
-	 * @param object $notice
-	 */
-	private function store_notice_data($notice_id, $notice) {
-		$stored_notices = get_user_meta(get_current_user_id(), 'ps_stored_notices', true);
-		
-		if (!is_array($stored_notices)) {
-			$stored_notices = [];
-		}
-		
-		$stored_notices[$notice_id] = [
-			'end_date' => isset($notice->end_date) ? $notice->end_date : null,
-			'timezone' => isset($notice->timezone) ? $notice->timezone : 'UTC',
-			'stored_at' => current_time('mysql')
-		];
-		
-		update_user_meta(get_current_user_id(), 'ps_stored_notices', $stored_notices);
-	}
-
-	/**
-	 * Clean up expired dismissals to keep user meta clean
-	 */
-	public function cleanup_expired_dismissals() {
-		$dismissed_notices = get_user_meta(get_current_user_id(), 'ps_dismissed_notices', true);
-		$stored_notices = get_user_meta(get_current_user_id(), 'ps_stored_notices', true);
-		
-		if (!is_array($dismissed_notices)) {
-			$dismissed_notices = [];
-		}
-		
-		if (!is_array($stored_notices)) {
-			$stored_notices = [];
-		}
-		
-		$cleaned_dismissed = false;
-		$cleaned_stored = false;
-		$current_time = new \DateTime('now', new \DateTimeZone('UTC'));
-		
-		// Clean up expired dismissals
-		foreach ($dismissed_notices as $notice_id => $dismissal_data) {
-			// Skip if it's not an array (old format)
-			if (!is_array($dismissal_data) || !isset($dismissal_data['end_date'])) {
-				continue;
-			}
-			
-			try {
-				$timezone = isset($dismissal_data['timezone']) ? $dismissal_data['timezone'] : 'UTC';
-				$end_date = new \DateTime($dismissal_data['end_date'], new \DateTimeZone($timezone));
-				
-				// If end date has passed, remove from dismissed list
-				if ($current_time > $end_date) {
-					unset($dismissed_notices[$notice_id]);
-					$cleaned_dismissed = true;
-				}
-			} catch (Exception $e) {
-				// If there's an error parsing the date, remove the invalid entry
-				unset($dismissed_notices[$notice_id]);
-				$cleaned_dismissed = true;
-			}
-		}
-		
-		// Clean up stored notices that are no longer valid
-		foreach ($stored_notices as $notice_id => $stored_data) {
-			if (!isset($stored_data['end_date'])) {
-				continue;
-			}
-			
-			try {
-				$timezone = isset($stored_data['timezone']) ? $stored_data['timezone'] : 'UTC';
-				$end_date = new \DateTime($stored_data['end_date'], new \DateTimeZone($timezone));
-				
-				// If end date has passed, remove from stored list
-				if ($current_time > $end_date) {
-					unset($stored_notices[$notice_id]);
-					$cleaned_stored = true;
-				}
-			} catch (Exception $e) {
-				// If there's an error parsing the date, remove the invalid entry
-				unset($stored_notices[$notice_id]);
-				$cleaned_stored = true;
-			}
-		}
-		
-		// Update user meta if we cleaned anything
-		if ($cleaned_dismissed) {
-			update_user_meta(get_current_user_id(), 'ps_dismissed_notices', $dismissed_notices);
-		}
-		
-		if ($cleaned_stored) {
-			update_user_meta(get_current_user_id(), 'ps_stored_notices', $stored_notices);
-		}
-	}
-
 	/**
 	 * Notice Types
 	 */
@@ -535,6 +390,7 @@ class Notices {
 		$defaults = [
 			'id'               => '',
 			'type'             => 'info',
+			'category'         => 'regular',
 			'show_if'          => true,
 			'message'          => '',
 			'class'            => 'prime-slider-notice',
@@ -547,6 +403,11 @@ class Notices {
 		foreach (self::$notices as $key => $notice) {
 
 			$notice = wp_parse_args($notice, $defaults);
+
+			// Check if notice is for White Label
+			if (defined('BDTPS_CORE_WL') && $notice['category'] === 'regular') {
+				continue;
+			}
 
 			$classes = ['notice'];
 
@@ -564,10 +425,10 @@ class Notices {
 			}
 
 			// Notice ID.
-			$notice_id    = 'prime-slider-notice-id-' . $notice['id'];
+			$notice_id    = 'bdt-admin-notice-' . $notice['id'];
 			$notice['id'] = $notice_id;
 			if (!isset($notice['id'])) {
-				$notice_id    = 'prime-slider-notice-id-' . $notice['id'];
+				$notice_id    = 'bdt-admin-notice-' . $notice['id'];
 				$notice['id'] = $notice_id;
 			} else {
 				$notice_id = $notice['id'];

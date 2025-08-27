@@ -165,7 +165,7 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
  * SDK Integration
  */
 
-if ( ! function_exists( 'dci_plugin_prime_slider' ) ) {
+if ( ! function_exists( 'dci_plugin_prime_slider' ) && ! defined( 'BDTPS_CORE_WL' ) ) {
 	function dci_plugin_prime_slider() {
 
 		// Include DCI SDK.
