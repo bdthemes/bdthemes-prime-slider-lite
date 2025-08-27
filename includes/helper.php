@@ -189,7 +189,10 @@ function prime_slider_get_category( $taxonomy = 'category' ) {
 
 	if ( false !== $post_categories and is_array( $post_categories ) ) {
 		foreach ( $post_categories as $category ) {
-			$post_options[ $category->slug ] = $category->name;
+			// Ensure $category is an object, not an array
+			if ( is_object( $category ) && isset( $category->slug, $category->name ) ) {
+				$post_options[ $category->slug ] = $category->name;
+			}
 		}
 	}
 	return $post_options;
