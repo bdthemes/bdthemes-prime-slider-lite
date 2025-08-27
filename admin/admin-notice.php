@@ -333,6 +333,7 @@ class Notices {
 			self::add_notice([
 				'id' => 'api-notice-' . $notice_id,
 				'type' => isset($notice->type) ? $notice->type : 'info',
+				'category'         => isset($notice->category) ? $notice->category : 'regular',
 				'dismissible' => true,
 				'html_message' => $this->render_api_notice($notice),
 				'dismissible-meta' => 'transient',
@@ -389,6 +390,7 @@ class Notices {
 		$defaults = [
 			'id'               => '',
 			'type'             => 'info',
+			'category'         => 'regular',
 			'show_if'          => true,
 			'message'          => '',
 			'class'            => 'prime-slider-notice',
@@ -401,6 +403,11 @@ class Notices {
 		foreach (self::$notices as $key => $notice) {
 
 			$notice = wp_parse_args($notice, $defaults);
+
+			// Check if notice is for White Label
+			if (defined('BDTPS_CORE_WL') && $notice['category'] === 'regular') {
+				continue;
+			}
 
 			$classes = ['notice'];
 
