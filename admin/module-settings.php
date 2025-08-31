@@ -66,6 +66,17 @@ class ModuleService {
 				],
 
 				[ 
+					'name'         => 'crescent',
+					'label'        => esc_html__( 'Crescent', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static new',
+					'demo_url'     => 'https://primeslider.pro/demo/crescent/',
+					'video_url'    => 'https://youtu.be/67XpWZoD5Qo',
+				],
+
+				[ 
 					'name'         => 'crossroad',
 					'label'        => esc_html__( 'Crossroad', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
