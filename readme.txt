@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.18.X [XXth September 2025] =
+
+* Fixed: Fixed an issue where the license activation notice was displayed twice
+
 = 3.18.4 [28th August 2025] =
 
 * Updated: Admin API Notice optimized
