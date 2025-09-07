@@ -540,6 +540,17 @@ class ModuleService {
 					'video_url'    => 'https://youtu.be/EITpA2vI9V4?si=wUIJKjMeB0hzseu8',
 				],
 
+				[ 
+					'name'         => 'turnar',
+					'label'        => esc_html__( 'Turnar', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "on",
+					'widget_type'  => 'pro',
+					'content_type' => 'static new',
+					'demo_url'     => 'https://primeslider.pro/demo/turnar/',
+					'video_url'    => 'https://youtu.be/BH-0sfptHeQ',
+				],
+
 				// [
 				//     'name'         => 'twinkle',
 				//     'label'        => esc_html__( 'Twinkle', 'bdthemes-prime-slider' ),
