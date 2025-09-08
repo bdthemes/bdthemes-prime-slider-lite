@@ -4,20 +4,20 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Prime Slider is a packed of elementor widget that gives you some awesome header and slider combination for your website.
- * Version: 3.18.4
+ * Version: 3.18.5
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider
  * Domain Path: /languages
  * License: GPL3
  * Elementor requires at least: 3.22
- * Elementor tested up to: 3.31.2
+ * Elementor tested up to: 3.31.3
  */
 
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '3.18.4' );
+	define( 'BDTPS_CORE_VER', '3.18.5' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );
@@ -160,37 +160,3 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 	add_action( 'admin_init', 'rc_ps_lite_plugin' );
 }
 
-
-/**
- * SDK Integration
- */
-
-if ( ! function_exists( 'dci_plugin_prime_slider' ) && ! defined( 'BDTPS_CORE_WL' ) ) {
-	function dci_plugin_prime_slider() {
-
-		// Include DCI SDK.
-		require_once dirname( __FILE__ ) . '/dci/start.php';
-
-		dci_dynamic_init( array(
-			'sdk_version'         	=> '1.2.1',
-			'product_id'          	=> 2,
-			'plugin_name'         	=> 'Prime Slider', // make simple, must not empty
-			'plugin_title'        	=> esc_html__('Love using Prime Slider? Congrats 🎉 ( Never miss an Important Update )', 'bdthemes-prime-slider'), // You can describe your plugin title here
-			'plugin_icon'         	=> BDTPS_CORE_ASSETS_URL . 'images/logo.png',
-			'api_endpoint'        	=> 'https://analytics.bdthemes.com/wp-json/dci/v1/data-insights',
-			'slug'                	=> 'bdthemes-prime-slider-lite',
-			'core_file'           	=> 'bdthemes-prime-slider',
-			'plugin_deactivate_id'	=> 'bdthemes-prime-slider-lite',
-			'menu'                	=> array(
-				'slug'	=> 'prime_slider_options',
-			),
-			'public_key'          	=> 'pk_DktcEizxpygp4RjRkhYtVrtseZPaHrtr',
-			'is_premium'          	=> true,
-			'popup_notice'        	=> false,
-			'deactivate_feedback' 	=> true,
-			'plugin_msg'          	=> '<p>' . esc_html__('Be Top-contributor by sharing non-sensitive plugin data and create an impact to the global WordPress community today! You can receive valuable emails periodically.', 'bdthemes-prime-slider') . '</p>',
-		) );
-
-	}
-	add_action( 'admin_init', 'dci_plugin_prime_slider' );
-}
