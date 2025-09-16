@@ -1470,7 +1470,7 @@ class Pacific extends Widget_Base {
 						<a class="bdt-button bdt-padding-remove" href="#<?php echo esc_attr( $modal_id ); ?>"
 							data-reveal="reveal-active" bdt-toggle>
 							<span class="bdt-btn-text">
-								<?php echo esc_html__( $settings['read_more_text'] ) ?>
+								<?php echo esc_html( $settings['read_more_text'] ) ?>
 							</span>
 							<span class="bdt-readmore-icon eicon-plus"></span>
 						</a>
