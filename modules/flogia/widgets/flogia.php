@@ -844,7 +844,7 @@ class Flogia extends Widget_Base {
         $this->add_control(
             'avatar_size',
             [
-                'label'      => _x('Size', 'bdthemes-prime-slider'),
+                'label'      => esc_html__( 'Size', 'bdthemes-prime-slider' ),
                 'type'       => Controls_Manager::SELECT,
                 'default'    => '42',
                 'options'    => [

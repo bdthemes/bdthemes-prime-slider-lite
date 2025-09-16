@@ -462,7 +462,7 @@ trait Global_Widget_Controls {
 		$this->add_responsive_control(
 			'background_image_repeat',
 			[ 
-				'label'       => esc_html_x( 'Repeat', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Repeat', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
 				'options'     => [ 
