@@ -284,6 +284,7 @@ class Pagepiling extends Widget_Base {
 			[
 				'label'   => __('Social Text', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
 				'default' => __('Follow Us', 'bdthemes-prime-slider'),
 			]
 		);
@@ -296,6 +297,7 @@ class Pagepiling extends Widget_Base {
 			[
 				'label'   => __('Title', 'bdthemes-prime-slider'),
 				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 
@@ -304,6 +306,7 @@ class Pagepiling extends Widget_Base {
             [ 
                 'label'   => __( 'Link', 'bdthemes-prime-slider' ),
                 'type'    => Controls_Manager::URL,
+				'dynamic' => [ 'active' => true ],
             ]
         );
 

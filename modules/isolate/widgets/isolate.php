@@ -535,6 +535,7 @@ class Isolate extends Widget_Base {
             [
                 'label' => __('Title', 'bdthemes-prime-slider'),
                 'type' => Controls_Manager::TEXT,
+                'dynamic' => [ 'active' => true ],
             ]
         );
 
@@ -543,6 +544,7 @@ class Isolate extends Widget_Base {
             [ 
                 'label'   => __( 'Link', 'bdthemes-prime-slider' ),
                 'type'    => Controls_Manager::URL,
+                'dynamic' => [ 'active' => true ],
             ]
         );
 

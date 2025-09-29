@@ -202,6 +202,7 @@ class Woolamp extends Widget_Base {
 			[
 				'label' => esc_html__('Custom Label', 'bdthemes-prime-slider'),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 
