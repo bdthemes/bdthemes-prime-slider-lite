@@ -1526,7 +1526,7 @@ class Woocommerce extends Widget_Base {
 					'pagination_offset_toggle' => 'yes'
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-right: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-right: {{SIZE}}px !important;',
 				],
 			]
 		);
@@ -1546,7 +1546,7 @@ class Woocommerce extends Widget_Base {
 					'pagination_offset_toggle' => 'yes'
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-bottom: {{SIZE}}px;',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-dotnav' => 'margin-bottom: {{SIZE}}px !important;',
 				],
 			]
 		);
