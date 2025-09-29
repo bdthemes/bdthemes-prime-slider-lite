@@ -251,6 +251,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 3.18.X [XXth September 2025] =
 
 *Fixed: Default layout issue fixed in woocommerce widget
+* Fixed: redering and js warning issues fixed in woocircle widget
 
 = 3.18.6 [16th September 2025] =
 
