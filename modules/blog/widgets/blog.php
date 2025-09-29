@@ -163,6 +163,7 @@ class Blog extends Widget_Base {
             [
                 'label'       => esc_html__('Button Text', 'bdthemes-prime-slider'),
                 'type'        => Controls_Manager::TEXT,
+                'dynamic'     => [ 'active' => true ],
                 'placeholder' => esc_html__('Read More', 'bdthemes-prime-slider'),
                 'default'     => esc_html__('Read More', 'bdthemes-prime-slider'),
                 'label_block' => false,
