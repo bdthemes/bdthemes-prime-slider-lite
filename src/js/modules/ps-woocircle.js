@@ -215,15 +215,17 @@
 					}
 				);
 		
-				// animate the current title out
-				dynamics.animate(currentTitleEl, 
-					{
-						translateX: dir === 'right' ? -250 : 250, opacity: 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 450
-					}
-				);
+				// animate the current title out (if present)
+				if (currentTitleEl) {
+					dynamics.animate(currentTitleEl, 
+						{
+							translateX: dir === 'right' ? -250 : 250, opacity: 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 450
+						}
+					);
+				}
 		
 				// set the right properties for the next element to come in
 				dynamics.css(itemNext, {visibility: 'visible'});
@@ -243,17 +245,19 @@
 					}
 				);
 		
-				// set the right properties for the next title to come in
-				dynamics.css(nextTitleEl, { translateX: dir === 'right' ? 250 : -250, opacity: 0 });
-				// animate the next title in
-				dynamics.animate(nextTitleEl, 
-					{
-						translateX: 0, opacity: 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
-					}
-				);
+				// set the right properties for the next title to come in (if present)
+				if (nextTitleEl) {
+					dynamics.css(nextTitleEl, { translateX: dir === 'right' ? 250 : -250, opacity: 0 });
+					// animate the next title in
+					dynamics.animate(nextTitleEl, 
+						{
+							translateX: 0, opacity: 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
+						}
+					);
+				}
 			};
 		
 			CircleSlideshow.prototype._moveCircles = function(dir) {
@@ -293,14 +297,14 @@
 		
 				var self = this,
 					expanderEl = item.querySelector('.deco--expander'),
-					scaleVal = Math.ceil(Math.sqrt(Math.pow(docWidth, 2) + Math.pow(docHeight, 2)) / expanderEl.offsetWidth),
+					scaleVal = expanderEl ? Math.ceil(Math.sqrt(Math.pow(docWidth, 2) + Math.pow(docHeight, 2)) / expanderEl.offsetWidth) : 1,
 					smallImgEl = item.querySelector('.bdt-elastic-img-small'),
 					contentEl = item.querySelector('.bdt-elastic-modal-wrap'),
-					largeImgEl = contentEl.querySelector('.bdt-elastic-img-large'),
-					titleEl = contentEl.querySelector('.bdt-elastic-title--main'),
-					descriptionEl = contentEl.querySelector('.bdt-elastic-description'),
-					priceEl = contentEl.querySelector('.bdt-elastic-price'),
-					buyEl = contentEl.querySelector('.bdt-elastic-button--buy');
+					largeImgEl = contentEl ? contentEl.querySelector('.bdt-elastic-img-large') : null,
+					titleEl = contentEl ? contentEl.querySelector('.bdt-elastic-title--main') : null,
+					descriptionEl = contentEl ? contentEl.querySelector('.bdt-elastic-description') : null,
+					priceEl = contentEl ? contentEl.querySelector('.bdt-elastic-price') : null,
+					buyEl = contentEl ? contentEl.querySelector('.bdt-elastic-button--buy') : null;
 		
 				// add slide--open class to the item
 				classie.add(item, 'slide--open');
@@ -308,27 +312,24 @@
 				bodyEl.style.top = -scrollY() + 'px';
 				classie.add(bodyEl, 'lockscroll');
 				
-				// position the content elements:
-				// - image (large image)
-				dynamics.css(largeImgEl, {translateY : 800, opacity: 0});
-				// - title
-				dynamics.css(titleEl, {translateY : 600, opacity: 0});
-				// - description
-				dynamics.css(descriptionEl, {translateY : 400, opacity: 0});
-				// - price
-				dynamics.css(priceEl, {translateY : 400, opacity: 0});
-				// - buy button
-				dynamics.css(buyEl, {translateY : 400, opacity: 0});
+				// position the content elements (only if present)
+				if (largeImgEl) { dynamics.css(largeImgEl, {translateY : 800, opacity: 0}); }
+				if (titleEl) { dynamics.css(titleEl, {translateY : 600, opacity: 0}); }
+				if (descriptionEl) { dynamics.css(descriptionEl, {translateY : 400, opacity: 0}); }
+				if (priceEl) { dynamics.css(priceEl, {translateY : 400, opacity: 0}); }
+				if (buyEl) { dynamics.css(buyEl, {translateY : 400, opacity: 0}); }
 		
-				// animate (scale up) the expander element
-				dynamics.animate(expanderEl, 
-					{
-						scaleX : scaleVal, scaleY : scaleVal
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.5,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.5,"y":1}]}], duration: 1700
-					}
-				);
+				// animate (scale up) the expander element (if present)
+				if (expanderEl) {
+					dynamics.animate(expanderEl, 
+						{
+							scaleX : scaleVal, scaleY : scaleVal
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.5,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.5,"y":1}]}], duration: 1700
+						}
+					);
+				}
 				
 				// animate the small image out
 				dynamics.animate(smallImgEl, 
@@ -340,68 +341,76 @@
 					}
 				);
 		
-				// animate the large image in
-				dynamics.animate(largeImgEl, 
-					{
-						translateY : 0, opacity : 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 300
-					}
-				);
-		
-				// animate the title element in
-				dynamics.animate(titleEl, 
-					{
-						translateY : 0, opacity : 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 400
-					}
-				);
-		
-				// animate the description element in
-				dynamics.animate(descriptionEl, 
-					{
-						translateY : 0, opacity : 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 500
-					}
-				);
-		
-				// animate the price element in
-				dynamics.animate(priceEl, 
-					{
-						translateY : 0, opacity : 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 600
-					}
-				);
-		
-				// animate the buy element in
-				dynamics.animate(buyEl, 
-					{
-						translateY : 0, opacity : 1
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 700,
-						complete: function() {
-							// add .noscroll to body and .scrollable to .slide__content
-							classie.add(bodyEl, 'noscroll');
-							classie.add(contentEl, 'scrollable');
-							
-							// force redraw (chrome)
-							contentEl.style.display = 'none';
-							contentEl.offsetHeight;
-							contentEl.style.display = 'block';
-							
-							// allow scrolling
-							classie.remove(bodyEl, 'lockscroll');
+				// animate the large image in (if present)
+				if (largeImgEl) {
+					dynamics.animate(largeImgEl, 
+						{
+							translateY : 0, opacity : 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 300
 						}
-					}
-				);
+					);
+				}
+		
+				// animate the title element in (if present)
+				if (titleEl) {
+					dynamics.animate(titleEl, 
+						{
+							translateY : 0, opacity : 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 400
+						}
+					);
+				}
+		
+				// animate the description element in (if present)
+				if (descriptionEl) {
+					dynamics.animate(descriptionEl, 
+						{
+							translateY : 0, opacity : 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 500
+						}
+					);
+				}
+		
+				// animate the price element in (if present)
+				if (priceEl) {
+					dynamics.animate(priceEl, 
+						{
+							translateY : 0, opacity : 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 600
+						}
+					);
+				}
+		
+				// animate the buy element in (if present); otherwise finalize open state
+				var finalizeOpen = function() {
+					classie.add(bodyEl, 'noscroll');
+					classie.add(contentEl, 'scrollable');
+					contentEl.style.display = 'none';
+					contentEl.offsetHeight;
+					contentEl.style.display = 'block';
+					classie.remove(bodyEl, 'lockscroll');
+				};
+				if (buyEl) {
+					dynamics.animate(buyEl, 
+						{
+							translateY : 0, opacity : 1
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 700,
+							complete: finalizeOpen
+						}
+					);
+				} else {
+					finalizeOpen();
+				}
 			};
 		
 			CircleSlideshow.prototype._closeContent = function() {
@@ -412,81 +421,91 @@
 					expanderEl = item.querySelector('.deco--expander'),
 					smallImgEl = item.querySelector('.bdt-elastic-img-small'),
 					contentEl = item.querySelector('.bdt-elastic-modal-wrap'),
-					largeImgEl = contentEl.querySelector('.bdt-elastic-img-large'),
-					titleEl = contentEl.querySelector('.bdt-elastic-title--main'),
-					descriptionEl = contentEl.querySelector('.bdt-elastic-description'),
-					priceEl = contentEl.querySelector('.bdt-elastic-price'),
-					buyEl = contentEl.querySelector('.bdt-elastic-button--buy');
+					largeImgEl = contentEl ? contentEl.querySelector('.bdt-elastic-img-large') : null,
+					titleEl = contentEl ? contentEl.querySelector('.bdt-elastic-title--main') : null,
+					descriptionEl = contentEl ? contentEl.querySelector('.bdt-elastic-description') : null,
+					priceEl = contentEl ? contentEl.querySelector('.bdt-elastic-price') : null,
+					buyEl = contentEl ? contentEl.querySelector('.bdt-elastic-button--buy') : null;
 		
 				// add slide--close class to the item
 				classie.add(item, 'slide--close');
 		
 				// remove .noscroll from body and .scrollable from .slide__content
 				classie.remove(bodyEl, 'noscroll');
-				classie.remove(contentEl, 'scrollable');
+				if (contentEl) { classie.remove(contentEl, 'scrollable'); }
 		
-				// animate the buy element out
-				dynamics.stop(buyEl);
-				dynamics.animate(buyEl, 
-					{
-						translateY : 400, opacity : 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
-					}
-				);
-		
-				// animate the price element out
-				dynamics.stop(priceEl);
-				dynamics.animate(priceEl, 
-					{
-						translateY : 400, opacity : 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
-					}
-				);
-		
-				// animate the description element out
-				dynamics.stop(descriptionEl);
-				dynamics.animate(descriptionEl, 
-					{
-						translateY : 400, opacity : 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 100
-					}
-				);
-		
-				// animate the title element out
-				dynamics.stop(titleEl);
-				dynamics.animate(titleEl, 
-					{
-						translateY : 600, opacity : 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 200
-					}
-				);
-		
-				// animate the large image out
-				dynamics.animate(largeImgEl, 
-					{
-						translateY : 800, opacity : 0
-					}, 
-					{
-						type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 500, delay: 300,
-						complete: function() {
-							// remove slide--open class to the item
-							classie.remove(item, 'slide--open');
-							// remove slide--close class to the item
-							classie.remove(item, 'slide--close');
-							// allow scrolling
-							classie.remove(bodyEl, 'lockscroll');
-							self.isExpanded = false;
+				// animate the buy element out (if present)
+				if (buyEl) {
+					dynamics.stop(buyEl);
+					dynamics.animate(buyEl, 
+						{
+							translateY : 400, opacity : 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
 						}
-					}
-				);
+					);
+				}
+		
+				// animate the price element out (if present)
+				if (priceEl) {
+					dynamics.stop(priceEl);
+					dynamics.animate(priceEl, 
+						{
+							translateY : 400, opacity : 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000
+						}
+					);
+				}
+		
+				// animate the description element out (if present)
+				if (descriptionEl) {
+					dynamics.stop(descriptionEl);
+					dynamics.animate(descriptionEl, 
+						{
+							translateY : 400, opacity : 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 100
+						}
+					);
+				}
+		
+				// animate the title element out (if present)
+				if (titleEl) {
+					dynamics.stop(titleEl);
+					dynamics.animate(titleEl, 
+						{
+							translateY : 600, opacity : 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 1000, delay: 200
+						}
+					);
+				}
+		
+				// animate the large image out (if present)
+				var finalizeClose = function() {
+					classie.remove(item, 'slide--open');
+					classie.remove(item, 'slide--close');
+					classie.remove(bodyEl, 'lockscroll');
+					self.isExpanded = false;
+				};
+				if (largeImgEl) {
+					dynamics.animate(largeImgEl, 
+						{
+							translateY : 800, opacity : 0
+						}, 
+						{
+							type: dynamics.bezier, points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}], duration: 500, delay: 300,
+							complete: finalizeClose
+						}
+					);
+				} else {
+					finalizeClose();
+				}
 		
 				// animate the small image in
 				dynamics.animate(smallImgEl, 
