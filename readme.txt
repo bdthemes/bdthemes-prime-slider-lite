@@ -3,13 +3,13 @@ Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
 Tags: wordpress slider, elementor addons, slider, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 6.8.2
+Tested up to: 6.8.3
 Requires PHP: 7.4.0
-Stable tag: 3.18.6
+Stable tag: 3.18.7
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Elementor requires at least: 3.22
-Elementor tested up to: 3.32.0
+Elementor requires at least: 3.28
+Elementor tested up to: 3.32.3
 
 Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
 
@@ -248,7 +248,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 3.18.X [XXth September 2025] =
+= 3.18.7 [6th October 2025] =
 
 * Fixed: Default layout issue fixed in woocommerce widget
 * Fixed: Rendering and js warning issues fixed in woocircle widget
