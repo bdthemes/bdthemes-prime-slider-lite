@@ -1,7 +1,7 @@
-=== Prime Slider - Addons For Elementor (Revolution of a slider, Hero Slider, Post Slider and Ecommerce Slider) ===
+=== Prime Slider - Revolutionary Layer Slider Addon For Elementor ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
 Donate link: http://bdthemes.com/
-Tags: wordpress slider, elementor addons, slider, image slider, video slider
+Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.8.3
 Requires PHP: 7.4.0
@@ -9,23 +9,29 @@ Stable tag: 3.18.7
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 3.32.3
+Elementor tested up to: 3.32.4
 
-Best Addon for Elementor WordPress Plugin with 55+ Awesome slider designs that you can use for your modern website with Elementor website builder.
+Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
 == Description ==
 
-Prime Slider is an award-winning Elementor WordPress plugin that allows you to create sliders on any website. With this plugin, you can highlight key messages, promote products or services and give users control over slide content. 
+Prime Slider is an Elementor addon that lets you build and customize a slider for any purpose. You can design a Hero Slider for your homepage, a Post Slider to feature recent articles, an Ecommerce Slider to highlight products, or a Content Slider to organize information in a clean, dynamic layout. Everything works smoothly inside Elementor’s drag-and-drop editor.
 
-Prime Slider comes with **30+ Free widgets, 8 skins, 3 useful features and 75+ ready sliders**. You can create responsive and beautiful sliders with ease, including—
+The plugin includes 30+ free widgets, 8 skins, 3 essential features, and 75+ ready-made sliders that help you create visually appealing and fully responsive designs.
 
+Available Slider Types:
+
+✅ Hero Slider
 ✅ Logo Slider
 ✅ Image Slider
+✅ Content Slider
 ✅ Carousel Slider
 ✅ Post Slider
 ✅ Video Slider
 ✅ WooCommerce Product Slider
 ✅ Testimonial Slider and more
+
+Prime Slider makes it simple to create sliders that adapt beautifully to any device or layout. Each widget is easy to customize and optimized for performance to help you deliver engaging user experiences without code.
 
 
 **[Free Demo](https://primeslider.pro/demo/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
@@ -34,7 +40,7 @@ Prime Slider comes with **30+ Free widgets, 8 skins, 3 useful features and 75+ r
 
 https://youtu.be/KwDq6wiS6go
 
-## Prime Slider - An Elementor Slider Plugin for Enhancing Your Slider's Building Experience!
+## Prime Slider - An Elementor addon to Add and Design Sliders Effortlessly
 
 There are some key things our plugin has covered to give you a boost in your website slider creation.
 
@@ -53,7 +59,7 @@ There are some key things our plugin has covered to give you a boost in your web
 * **SEO advantages:** Improve visibility with well-optimized sliders
 
 
-## Features of Prime Slider
+## Features
 
 * **Interactive elements:** Enable you to engage with slides through clickable elements, including interactive videos.
 
@@ -216,7 +222,7 @@ Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widge
 
 == Check out our other Addons 👑 ==
 
-Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
+Explore more free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
 
 * **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** 🆕☀️ - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering greater web design experience.
 
@@ -240,7 +246,7 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
+1. Install using the WordPress built-in Plugin installer, or Extract the zip file and drop the contents in the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
@@ -423,6 +429,10 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 ### Does Prime Slider support SSL?
 
 - Yes, Prime Slider supports both http:// and https:// protocols.
+
+### How can I report security bugs? 
+
+- You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fb813-d8f7-41ad-ad27-748af1395dfb)
 
 
 == Screenshots ==
