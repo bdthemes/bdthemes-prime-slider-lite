@@ -61,7 +61,7 @@ class Skin_Folio extends Elementor_Skin_Base {
 
 				?>
         
-          <a <?php $this->parent->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
+          <a <?php $this->parent->print_render_attribute_string( $link_key ); ?> data-bdt-tooltip="<?php echo esc_attr( $tooltip ); ?>">
             <span><span>
                 <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
               </span></span>

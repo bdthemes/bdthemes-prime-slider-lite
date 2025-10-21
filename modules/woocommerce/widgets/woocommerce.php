@@ -1819,7 +1819,7 @@ class Woocommerce extends Widget_Base {
 
 				<?php if ($settings['show_category']) : ?>
 					<div class="bdt-ps-category" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 50,0,-110; opacity: 1,1,0">
-						<?php echo wc_get_product_category_list(get_the_ID(), ' '); ?>
+						<?php echo wp_kses_post( wc_get_product_category_list( get_the_ID(), ' ' ) ); ?>
 					</div>
 				<?php endif; ?>
 

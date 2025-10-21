@@ -2594,7 +2594,7 @@ class General extends Widget_Base {
                 }
                 
                 ?>
-                <a <?php $this->print_render_attribute_string($link_key); ?> data-bdt-tooltip="<?php echo $tooltip; ?>">
+                <a <?php $this->print_render_attribute_string($link_key); ?> data-bdt-tooltip="<?php echo esc_attr( $tooltip ); ?>">
                     <?php Icons_Manager::render_icon( $link['social_icon'], [ 'aria-hidden' => 'true', 'class' => 'fa-fw' ] ); ?>
                 </a>
             <?php endforeach; ?>

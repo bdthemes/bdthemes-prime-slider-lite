@@ -1329,7 +1329,7 @@ class Flogia extends Widget_Base {
         $post_id = get_the_ID();
         ?>
         <span class="bdt-ps-category" data-reveal="reveal-active">
-            <span><?php echo $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ); ?></span>
+            <?php echo wp_kses_post( $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ) ); ?>
         </span>
         <?php
     }
@@ -1411,7 +1411,7 @@ class Flogia extends Widget_Base {
                 <a href="#">
                     <div class="bdt-thumb-content">
                         <?php $this->rendar_thumb_image();?>
-                        <span><?php echo get_the_title(); ?></span>
+                        <span><?php echo esc_html( get_the_title() ); ?></span>
                     </div>
                 </a>
                 <?php $slide_index++;?>
@@ -1462,7 +1462,7 @@ class Flogia extends Widget_Base {
 
         ?>
 
-            <img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
+            <img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
 
         <?php
     }

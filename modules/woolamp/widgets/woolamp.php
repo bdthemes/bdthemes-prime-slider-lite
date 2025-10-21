@@ -1283,7 +1283,7 @@ class Woolamp extends Widget_Base {
 				?>
 					<div class="bdt-social-share-item">
 						<div <?php $this->print_render_attribute_string('social-attrs'); ?>>
-							<?php echo $button['text'] ? esc_html($button['text']) : Module::get_social_media($social_name)['title']; ?>
+							<?php echo $button['text'] ? esc_html($button['text']) : wp_kses_post( Module::get_social_media($social_name)['title'] ); ?>
 						</div>
 					</div>
 				<?php
@@ -1318,7 +1318,7 @@ class Woolamp extends Widget_Base {
 
 				<?php if ($settings['show_category']) : ?>
 					<div class="bdt-ps-category" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 50,0,-110; opacity: 1,1,0">
-						<?php echo wc_get_product_category_list(get_the_ID(), ' '); ?>
+						<?php echo wp_kses_post( wc_get_product_category_list( get_the_ID(), ' ' ) ); ?>
 					</div>
 				<?php endif; ?>
 
@@ -1380,7 +1380,7 @@ class Woolamp extends Widget_Base {
 					<div class="bdt-ps-item-inner bdt-flex bdt-flex-middle">
 
 						<div class="bdt-ps-wc-product-img" data-reveal="reveal-active">
-							<img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo get_the_title(); ?>">
+							<img src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
 						</div>
 
 						<div class="bdt-ps-content-wrapper">
