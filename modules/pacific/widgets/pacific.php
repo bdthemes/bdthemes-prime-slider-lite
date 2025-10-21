@@ -1208,7 +1208,7 @@ class Pacific extends Widget_Base {
 
 		?>
 		<div class="bdt-category" data-reveal="reveal-active" data-swiper-parallax="-300" data-swiper-parallax-duration="600">
-		<?php echo $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ); ?>
+		<?php echo wp_kses_post( $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() ) ); ?>
 		</div>
 		<?php
 	}
@@ -1228,7 +1228,7 @@ class Pacific extends Widget_Base {
 				<i class="ps-wi-calendar" aria-hidden="true"></i>
 				<span>
 					<?php if ( $settings['human_diff_time'] == 'yes' ) {
-						echo prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' );
+						echo wp_kses_post( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
 					} else {
 						echo get_the_date();
 					} ?>
@@ -1237,7 +1237,7 @@ class Pacific extends Widget_Base {
 			<?php if ( $settings['show_time'] ) : ?>
 				<div class="bdt-post-time">
 					<i class="ps-wi-clock-o" aria-hidden="true"></i>
-					<?php echo get_the_time(); ?>
+					<?php echo wp_kses_post( get_the_time() ); ?>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -1252,7 +1252,7 @@ class Pacific extends Widget_Base {
 		?>
 		<div class="bdt-author-wrap">
 			<i class="ps-wi-user-circle-o" aria-hidden="true"></i>
-			<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>">
+			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) ?>">
 				<?php echo get_the_author() ?>
 			</a>
 		</div>

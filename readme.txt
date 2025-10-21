@@ -248,6 +248,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 3.18.X [XXth October 2025] =
+
+* Fixed: Security improved
+
 = 3.18.7 [6th October 2025] =
 
 * Fixed: Default layout issue fixed in woocommerce widget
