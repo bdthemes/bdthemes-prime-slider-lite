@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
- * Description: Prime Slider is a packed of elementor widget that gives you some awesome header and slider combination for your website.
+ * Description: Prime Slider is a pack of elementor widget that gives you some awesome header and slider combination for your website.
  * Version: 3.18.7
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
