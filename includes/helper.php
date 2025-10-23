@@ -13,6 +13,7 @@ define( 'BDTPS_CORE_PATH', plugin_dir_path( BDTPS_CORE__FILE__ ) );
 define( 'BDTPS_CORE_URL', plugins_url( '/', BDTPS_CORE__FILE__ ) );
 define( 'BDTPS_CORE_ADMIN_PATH', BDTPS_CORE_PATH . 'admin/' );
 define( 'BDTPS_CORE_ADMIN_URL', BDTPS_CORE_URL . 'admin/' );
+define( 'BDTPS_CORE_ADMIN_ASSETS_URL', BDTPS_CORE_URL . 'admin/assets/' );
 define( 'BDTPS_CORE_MODULES_PATH', BDTPS_CORE_PATH . 'modules/' );
 define( 'BDTPS_CORE_INC_PATH', BDTPS_CORE_PATH . 'includes/' );
 define( 'BDTPS_CORE_ASSETS_URL', BDTPS_CORE_URL . 'assets/' );

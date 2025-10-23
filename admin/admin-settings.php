@@ -518,6 +518,10 @@ class PrimeSlider_Admin_Settings {
 
 		<div class="ps-dashboard-panel" bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
 
+		<a href="<?php echo admin_url('?ps_setup_wizard=show'); ?>"
+						class="bdt-button bdt-welcome-button bdt-margin-small-top"
+						target="_blank"><?php esc_html_e('Setup Wizard', 'bdthemes-prime-slider'); ?></a>
+
 			<div class="bdt-grid bdt-grid-medium" bdt-grid bdt-height-match="target: > div > .bdt-card">
 				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
