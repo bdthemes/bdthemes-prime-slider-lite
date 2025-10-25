@@ -1013,18 +1013,18 @@ class PrimeSlider_Admin_Settings {
 						<p><?php esc_html_e('Don\'t need more plugins. This pro addon helps you build complex or professional websites—visually stunning, functional and customizable.', 'bdthemes-prime-slider'); ?>
 						</p>
 						<ul>
-							<li><?php esc_html_e('Dynamic Content and Integrations', 'bdthemes-prime-slider'); ?></li>
+							<li><?php esc_html_e('Dynamic Slider and Integrations', 'bdthemes-prime-slider'); ?></li>
 							<li><?php esc_html_e('Live Copy Paste', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Template Builder', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Custom Meta Fields - Category Image, Audio Link, Video Link', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Powerful Widgets and Advanced Extensions', 'bdthemes-prime-slider'); ?>
+							<li><?php esc_html_e('Duplicator', 'bdthemes-prime-slider'); ?></li>
+							<li><?php esc_html_e('Reveal Effects', 'bdthemes-prime-slider'); ?></li>
+							<li><?php esc_html_e('Adaptive Background', 'bdthemes-prime-slider'); ?>
 							</li>
 						</ul>
 						<div class="ps-dashboard-compare-section-buttons">
 							<a href="https://primeslider.pro/pricing/"
 								class="bdt-button bdt-welcome-button bdt-margin-small-right"
 								target="_blank"><?php esc_html_e('Compare Free Vs Pro', 'bdthemes-prime-slider'); ?></a>
-							<a href="https://store.bdthemes.com/bdthemes-prime-slider?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=PrimeSlider&coupon=FREETOPRO"
+							<a href="https://primeslider.pro/pricing?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=PrimeSlider&coupon=FREETOPRO"
 								class="bdt-button bdt-dashboard-sec-btn"
 								target="_blank"><?php esc_html_e('Get Premium at 30% OFF', 'bdthemes-prime-slider'); ?></a>
 						</div>
@@ -1040,7 +1040,7 @@ class PrimeSlider_Admin_Settings {
 						</h1>
 						<p><?php esc_html_e('Build your wordpress websites of any niche—not from scratch and in a single click.', 'bdthemes-prime-slider'); ?>
 						</p>
-						<a href="https://primeslider.pro/"
+						<a href="https://primeslider.pro/demo/"
 							class="bdt-button bdt-dashboard-sec-btn bdt-margin-small-top"
 							target="_blank"><?php esc_html_e('View Templates', 'bdthemes-prime-slider'); ?></a>
 					</div>
@@ -1084,7 +1084,7 @@ class PrimeSlider_Admin_Settings {
 						target="_blank"><?php esc_html_e('Request Your Features', 'bdthemes-prime-slider'); ?></a>
 				</div>
 
-				<a href="https://www.youtube.com/watch?v=zNeoRz94cPw&list=PLP0S85GEw7DNBnZCb4RtJzlf38GCJ7z1b" target="_blank"
+				<a href="https://www.youtube.com/watch?v=sZwJDtxasTg&list=PLP0S85GEw7DP3-yJrkgwpIeDFoXy0PDlM" target="_blank"
 					class="ps-dashboard-item ps-dashboard-footer-item ps-dashboard-video-tutorial bdt-card bdt-card-body bdt-card-small">
 					<span class="ps-dashboard-footer-item-icon">
 						<i class="dashicons dashicons-video-alt3"></i>
@@ -1093,7 +1093,7 @@ class PrimeSlider_Admin_Settings {
 					<p><?php esc_html_e('An invaluable resource for mastering WordPress, Elementor, and Web Creation', 'bdthemes-prime-slider'); ?>
 					</p>
 				</a>
-				<a href="https://bdthemes.com/all-knowledge-base-of-bdthemes-prime-slider/" target="_blank"
+				<a href="https://bdthemes.com/all-knowledge-base-of-prime-slider/" target="_blank"
 					class="ps-dashboard-item ps-dashboard-footer-item ps-dashboard-documentation bdt-card bdt-card-body bdt-card-small">
 					<span class="ps-dashboard-footer-item-icon">
 						<i class="dashicons dashicons-admin-tools"></i>
@@ -1111,7 +1111,7 @@ class PrimeSlider_Admin_Settings {
 					<p><?php esc_html_e('A platform for the opportunity to network, collaboration and innovation', 'bdthemes-prime-slider'); ?>
 					</p>
 				</a>
-				<a href="https://wordpress.org/plugins/bdthemes-prime-slider/#reviews" target="_blank"
+				<a href="https://wordpress.org/support/plugin/bdthemes-prime-slider-lite/reviews/" target="_blank"
 					class="ps-dashboard-item ps-dashboard-footer-item ps-dashboard-review bdt-card bdt-card-body bdt-card-small">
 					<span class="ps-dashboard-footer-item-icon">
 						<i class="dashicons dashicons-star-filled"></i>
@@ -1567,7 +1567,7 @@ class PrimeSlider_Admin_Settings {
                 'use strict';
 
                 function hashHandler() {
-                    var $tab = jQuery('.bdthemes-prime-slider-dashboard .bdt-tab');
+                    var $tab = jQuery('.prime-slider-dashboard .bdt-tab');
                     if (window.location.hash) {
                         var hash = window.location.hash.substring(1);
                         bdtUIkit.tab($tab).show(jQuery('#bdt-' + hash).data('tab-index'));
@@ -1612,24 +1612,36 @@ class PrimeSlider_Admin_Settings {
                     jQuery('a.ps-active-all-widget').removeClass('bdt-active');
                 });
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-active-all-widget').on('click', function() {
+				$('#prime_sliderthird_party_widget_page a.ps-active-all-widget').on('click', function (e) {
+					e.preventDefault();
 
-					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
-						jQuery(this).attr('checked', 'checked').prop("checked", true);
+					$('#prime_sliderthird_party_widget_page .ps-option-item:not(.ps-pro-inactive) .checkbox:visible').each(function () {
+						$(this).attr('checked', 'checked').prop("checked", true);
 					});
 
-					jQuery(this).addClass('bdt-active');
-					jQuery('a.ps-deactive-all-widget').removeClass('bdt-active');
+					$(this).addClass('bdt-active');
+					$('#prime_sliderthird_party_widget_page a.ps-deactive-all-widget').removeClass('bdt-active');
+					
+					// Ensure save button remains visible
+					setTimeout(function() {
+						$('.ps-dashboard-save-btn').show();
+					}, 100);
 				});
 
-				jQuery('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').on('click', function() {
+				$('#prime_sliderthird_party_widget_page a.ps-deactive-all-widget').on('click', function (e) {
+					e.preventDefault();
 
-					jQuery('#prime_slider_third_party_widget_page .checkbox:visible').not("[disabled]").each(function() {
-						jQuery(this).removeAttr('checked');
+					$('#prime_sliderthird_party_widget_page .checkbox:visible').each(function () {
+						$(this).removeAttr('checked').prop("checked", false);
 					});
 
-					jQuery(this).addClass('bdt-active');
-					jQuery('a.ps-active-all-widget').removeClass('bdt-active');
+					$(this).addClass('bdt-active');
+					$('#prime_sliderthird_party_widget_page a.ps-active-all-widget').removeClass('bdt-active');
+					
+					// Ensure save button remains visible
+					setTimeout(function() {
+						$('.ps-dashboard-save-btn').show();
+					}, 100);
 				});
 
                 jQuery('#prime_slider_elementor_extend_page a.ps-active-all-widget').on('click', function(e) {
@@ -1718,7 +1730,7 @@ class PrimeSlider_Admin_Settings {
 					}, 100);
 				});
 
-				$('#prime_slider_active_modules_page, #prime_slider_third_party_widget_page, #prime_slider_elementor_extend_page').find('.ps-pro-inactive .checkbox').each(function () {
+				$('#prime_slider_active_modules_page, #prime_slider_third_party_widget_page, #prime_slider_elementor_extend_page, #prime_slider_other_settings_page').find('.ps-pro-inactive .checkbox').each(function () {
 					$(this).removeAttr('checked');
 					$(this).attr("disabled", true);
 				});
@@ -1745,6 +1757,7 @@ class PrimeSlider_Admin_Settings {
 				// Define pages that need save button - only specific settings pages
 				const pagesWithSave = [
 					'prime_slider_active_modules',        // Core widgets
+					'prime_slider_third_party_widget',        // Core widgets
 					'prime_slider_elementor_extend',      // Extensions
 					'prime_slider_other_settings',        // Special features
 					'prime_slider_api_settings'           // API settings
@@ -1796,7 +1809,7 @@ class PrimeSlider_Admin_Settings {
 				});
 
 				// Listen for individual checkbox changes to maintain save button visibility
-				$(document).on('change', '#prime_slider_elementor_extend_page .checkbox, #prime_slider_active_modules_page .checkbox', function() {
+				$(document).on('change', '#prime_slider_third_party_widget_page .checkbox, #prime_slider_elementor_extend_page .checkbox, #prime_slider_active_modules_page .checkbox', function() {
 					setTimeout(forceSaveButtonVisible, 50);
 				});
 
@@ -1818,7 +1831,7 @@ class PrimeSlider_Admin_Settings {
 				});
 
 				// Handle save button click
-				$(document).on('click', '.bdthemes-prime-slider-settings-save-btn', function(e) {
+				$(document).on('click', '.prime-slider-settings-save-btn', function(e) {
 					e.preventDefault();
 					
 					// Find the active form in the current tab
@@ -2563,9 +2576,11 @@ class PrimeSlider_Admin_Settings {
 				// Update total widgets status
 				function updateTotalStatus() {
 					var coreCount = jQuery('#prime_slider_active_modules_page input:checked').length;
+					var thirdPartyCount = jQuery('#prime_slider_third_party_widget_page input:checked').length;
 					var extensionsCount = jQuery('#prime_slider_elementor_extend_page input:checked').length;
 
 					jQuery('#bdt-total-widgets-status-core').text(coreCount);
+					jQuery('#bdt-total-widgets-status-3rd').text(thirdPartyCount);
 					jQuery('#bdt-total-widgets-status-extensions').text(extensionsCount);
 					jQuery('#bdt-total-widgets-status-heading').text(coreCount + extensionsCount);
 					
@@ -2586,6 +2601,7 @@ class PrimeSlider_Admin_Settings {
 					var chartCanvases = [
 						'bdt-db-total-status',
 						'bdt-db-only-widget-status', 
+						'bdt-db-only-3rdparty-status',
 						'bdt-total-widgets-status'
 					];
 
@@ -2925,7 +2941,7 @@ class PrimeSlider_Admin_Settings {
 		$is_pro_activated = function_exists('_is_ps_pro_activated') ? _is_ps_pro_activated() : false;
 	
 		// Define plugin slug (adjust if needed)
-		$plugin_slug = 'bdthemes-prime-slider-pro/bdthemes-prime-slider-pro.php';
+		$plugin_slug = 'bdthemes-prime-slider/bdthemes-prime-slider.php';
 	
 		// Case 1: Pro not installed
 		if ( ! $is_pro_installed ) : ?>

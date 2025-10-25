@@ -196,7 +196,7 @@ class Setup_Wizard {
 			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider' ),
 			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider' ),
 			'manage_options',
-			'bdthemes-prime-slider-setup-wizard',
+			'prime-slider-setup-wizard',
 			array( $this, 'display_page' )
 		);
 	}
