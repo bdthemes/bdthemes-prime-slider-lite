@@ -98,6 +98,11 @@ function prime_slider_load_plugin() {
 		return;
 	}
 
+	/**
+	 * Setup Wizard Initialization
+	 */
+	require_once( dirname( __FILE__ ) . '/includes/setup-wizard/init.php' );
+
 	// Filters for developer
 	require BDTPS_CORE_PATH . 'includes/prime-slider-filters.php';
 	// Prime Slider widget and assets loader

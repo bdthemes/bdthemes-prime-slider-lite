@@ -3,10 +3,10 @@
 @font-face {
   font-family: '@{icomoon-font-family}';
   src:
-    url('@{icomoon-font-path}/@{icomoon-font-family}.woff2?x2xg2f') format('woff2'),
-    url('@{icomoon-font-path}/@{icomoon-font-family}.ttf?x2xg2f') format('truetype'),
-    url('@{icomoon-font-path}/@{icomoon-font-family}.woff?x2xg2f') format('woff'),
-    url('@{icomoon-font-path}/@{icomoon-font-family}.svg?x2xg2f#@{icomoon-font-family}') format('svg');
+    url('@{icomoon-font-path}/@{icomoon-font-family}.woff2?adb3fg') format('woff2'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.ttf?adb3fg') format('truetype'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.woff?adb3fg') format('woff'),
+    url('@{icomoon-font-path}/@{icomoon-font-family}.svg?adb3fg#@{icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ps-wi-adaptive-bg {
+  &:before {
+    content: @ps-wi-adaptive-bg; 
+  }
+}
 .ps-wi-reveal-effects {
   &:before {
     content: @ps-wi-reveal-effects; 
@@ -425,6 +430,11 @@
 .ps-wi-arrow-right-square-1 {
   &:before {
     content: @ps-wi-arrow-right-square-1; 
+  }
+}
+.ps-wi-turnar {
+  &:before {
+    content: @ps-wi-turnar; 
   }
 }
 .ps-wi-pandora {

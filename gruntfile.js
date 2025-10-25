@@ -14,6 +14,12 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
+						cwd: 'src/admin/images/',
+						src: '**',
+						dest: 'admin/assets/images/',
+					},
+					{
+						expand: true,
 						cwd: 'src/fonts/',
 						src: '**',
 						dest: 'assets/fonts/',
