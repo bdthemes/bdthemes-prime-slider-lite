@@ -528,6 +528,16 @@ class ModuleService {
 					'demo_url'     => 'https://primeslider.pro/demo/turnar/',
 					'video_url'    => '',
 				],
+				[ 
+					'name'         => 'motion',
+					'label'        => esc_html__( 'Motion', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static new',
+					'demo_url'     => 'https://primeslider.pro/demo/motion/',
+					'video_url'    => '',
+				],
 
 				// [
 				//     'name'         => 'twinkle',
