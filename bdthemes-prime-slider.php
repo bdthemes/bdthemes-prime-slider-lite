@@ -107,6 +107,10 @@ function prime_slider_load_plugin() {
 	require BDTPS_CORE_PATH . 'includes/prime-slider-filters.php';
 	// Prime Slider widget and assets loader
 	require BDTPS_CORE_PATH . 'loader.php';
+
+	// Initialize custom CSS/JS injection on frontend
+	add_action( 'wp_head', 'ps_inject_header_custom_code', 999 );
+	add_action( 'wp_footer', 'ps_inject_footer_custom_code', 999 );
 }
 
 add_action( 'plugins_loaded', 'prime_slider_load_plugin' );
