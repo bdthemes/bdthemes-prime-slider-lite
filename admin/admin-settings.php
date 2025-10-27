@@ -183,6 +183,8 @@ class PrimeSlider_Admin_Settings {
 		$white_label_title = isset($_POST['ps_white_label_title']) ? sanitize_text_field($_POST['ps_white_label_title']) : '';
 		$white_label_icon = isset($_POST['ps_white_label_icon']) ? esc_url_raw($_POST['ps_white_label_icon']) : '';
 		$white_label_icon_id = isset($_POST['ps_white_label_icon_id']) ? absint($_POST['ps_white_label_icon_id']) : 0;
+		$white_label_logo = isset($_POST['ps_white_label_logo']) ? esc_url_raw($_POST['ps_white_label_logo']) : '';
+		$white_label_logo_id = isset($_POST['ps_white_label_logo_id']) ? absint($_POST['ps_white_label_logo_id']) : 0;
 		
 		// Save settings
 		update_option('ps_white_label_enabled', $white_label_enabled);
@@ -191,6 +193,8 @@ class PrimeSlider_Admin_Settings {
 		update_option('ps_white_label_title', $white_label_title);
 		update_option('ps_white_label_icon', $white_label_icon);
 		update_option('ps_white_label_icon_id', $white_label_icon_id);
+		update_option('ps_white_label_logo', $white_label_logo);
+		update_option('ps_white_label_logo_id', $white_label_logo_id);
 
 		// Set license title status
 		if ($white_label_enabled) {
@@ -1373,7 +1377,19 @@ class PrimeSlider_Admin_Settings {
 						</div>
 
 						<div class="ps-logo">
-							<img src="<?php echo BDTPS_CORE_URL . 'assets/images/logo-with-text.svg'; ?>" alt="Prime Slider Logo">
+							<?php 
+							$white_label_enabled = get_option( 'ps_white_label_enabled', false );
+							$white_label_logo 	 = get_option( 'ps_white_label_logo', '' );
+							$white_label_title 	 = get_option( 'ps_white_label_title', '' );
+							
+							if ($white_label_enabled && !empty($white_label_logo)) {
+							
+								$alt_text = !empty($white_label_title) ? $white_label_title . ' Logo' : 'Custom Logo';
+								echo '<img src="' . esc_url($white_label_logo) . '" alt="' . esc_attr($alt_text) . '" style="max-height: 40px;">';
+							} else {
+								echo '<img src="' . BDTPS_CORE_URL . 'assets/images/logo-with-text.svg" alt="Prime Slider Logo">';
+							}
+							?>
 						</div>
 					</div>
 
@@ -2119,6 +2135,60 @@ class PrimeSlider_Admin_Settings {
 					$('#ps-icon-preview-img').attr('src', '');
 				});
 
+				// WordPress Media Library Integration for Logo Upload
+				var logoUploader;
+				
+				$('#ps-upload-logo').on('click', function(e) {
+					e.preventDefault();
+					
+					// If the uploader object has already been created, reopen the dialog
+					if (logoUploader) {
+						logoUploader.open();
+						return;
+					}
+					
+					// Create the media frame
+					logoUploader = wp.media.frames.file_frame = wp.media({
+						title: 'Select Logo',
+						button: {
+							text: 'Use This Logo'
+						},
+						library: {
+							type: ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml']
+						},
+						multiple: false
+					});
+					
+					// When an image is selected, run a callback
+					logoUploader.on('select', function() {
+						var attachment = logoUploader.state().get('selection').first().toJSON();
+						
+						// Set the hidden inputs
+						$('#ps-white-label-logo').val(attachment.url);
+						$('#ps-white-label-logo-id').val(attachment.id);
+						
+						// Update preview
+						$('#ps-logo-preview-img').attr('src', attachment.url);
+						$('.ps-logo-preview-container').show();
+					});
+					
+					// Open the uploader dialog
+					logoUploader.open();
+				});
+				
+				// Remove logo functionality
+				$('#ps-remove-logo').on('click', function(e) {
+					e.preventDefault();
+					
+					// Clear the hidden inputs
+					$('#ps-white-label-logo').val('');
+					$('#ps-white-label-logo-id').val('');
+					
+					// Hide preview
+					$('.ps-logo-preview-container').hide();
+					$('#ps-logo-preview-img').attr('src', '');
+				});
+
 				//BDTPS_CORE_HIDE Warning when checkbox is enabled
 				$('#ps-white-label-bdtps-hide').on('change', function() {
 					if ($(this).is(':checked')) {
@@ -2214,7 +2284,9 @@ class PrimeSlider_Admin_Settings {
 						ps_white_label_icon: $('#ps-white-label-icon').val(),
 						ps_white_label_icon_id: $('#ps-white-label-icon-id').val(),
 						ps_white_label_hide_license: $('#ps-white-label-hide-license').is(':checked') ? 1 : 0,
-						ps_white_label_bdtps_hide: $('#ps-white-label-bdtps-hide').is(':checked') ? 1 : 0
+						ps_white_label_bdtps_hide: $('#ps-white-label-bdtps-hide').is(':checked') ? 1 : 0,
+						ps_white_label_logo: $('#ps-white-label-logo').val(),
+						ps_white_label_logo_id: $('#ps-white-label-logo-id').val()
 					};
 					
 					// Send AJAX request
@@ -3158,12 +3230,46 @@ class PrimeSlider_Admin_Settings {
 									</button>
 									<input type="hidden" id="ps-white-label-icon" name="ps_white_label_icon" value="<?php echo esc_attr($icon_url); ?>">
 									<input type="hidden" id="ps-white-label-icon-id" name="ps_white_label_icon_id" value="<?php echo esc_attr($icon_id); ?>">
+								</div>
 							</div>
-						</div>
 
 							<p class="ps-input-help">
 								<?php esc_html_e('Recommended size: 20x20 pixels. The icon will be automatically resized to fit the WordPress admin menu. Supported formats: JPG, PNG, SVG.', 'bdthemes-prime-slider'); ?>
 							</p>
+						</div>
+
+						<!-- White Label Plugin Logo Field -->
+						<div class="ps-white-label-logo-section bdt-margin-medium-top">
+							<h3 class="ps-option-title"><?php esc_html_e('Plugin Logo', 'bdthemes-prime-slider'); ?></h3>
+							<p class="ps-option-description"><?php esc_html_e('Upload a custom logo to replace the Prime Slider logo in the admin header. Supports JPG, PNG, and SVG formats.', 'bdthemes-prime-slider'); ?></p>
+							<div class="ps-icon-upload-wrapper-inner">
+								<div class="ps-logo-upload-wrapper bdt-margin-small-top">
+									<?php 
+									$logo_url = get_option('ps_white_label_logo', '');
+									$logo_id = get_option('ps_white_label_logo_id', '');
+									?>
+									<div class="ps-logo-preview-container" style="<?php echo $logo_url ? '' : 'display: none;'; ?>">
+										<div class="ps-logo-preview">
+											<img id="ps-logo-preview-img" src="<?php echo esc_url($logo_url); ?>" alt="Logo Preview" style="max-width: 200px; max-height: 64px; border: 1px solid #ddd; border-radius: 4px; padding: 8px; background: #fff;">
+										</div>
+										<button type="button" id="ps-remove-logo" class="bdt-button bdt-btn-grey bdt-flex bdt-flex-middle bdt-margin-small-top" style="padding: 8px 12px; font-size: 12px;">
+											<span class="dashicons dashicons-trash"></span>
+										</button>
+									</div>
+									
+									<div class="ps-logo-upload-container">
+										<button type="button" id="ps-upload-logo" class="bdt-button bdt-btn-blue bdt-margin-small-top" <?php disabled(!$is_license_active || !$is_white_label_eligible); ?>>
+											<span class="dashicons dashicons-cloud-upload"></span>
+											<?php esc_html_e('Upload Logo', 'bdthemes-prime-slider'); ?>
+										</button>
+										<input type="hidden" id="ps-white-label-logo" name="ps_white_label_logo" value="<?php echo esc_attr($logo_url); ?>">
+										<input type="hidden" id="ps-white-label-logo-id" name="ps_white_label_logo_id" value="<?php echo esc_attr($logo_id); ?>">
+									</div>
+								</div>
+								<p class="ps-input-help">
+									<?php esc_html_e('Recommended size: 200x40 pixels. The logo will be displayed in the admin header. Supported formats: JPG, PNG, SVG.', 'bdthemes-prime-slider'); ?>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
