@@ -26,7 +26,7 @@ $templates      = json_decode( file_get_contents( $templates_path ), true );
         <div class="template-list">
             <?php foreach ( $templates as $template ) : ?>
             <?php
-                $importUrl = $template['import_url']; // or any file path / URL
+                $importUrl = BDTPS_CORE_URL . 'includes/setup-wizard/assets' . $template['import_url'];
                 $extension = pathinfo($importUrl, PATHINFO_EXTENSION);
                 if (!$extension || !in_array(strtolower($extension), ['json', 'zip'])) {
                     return;
@@ -35,7 +35,7 @@ $templates      = json_decode( file_get_contents( $templates_path ), true );
             ?>
                 <div class="choose-template <?php echo $extension ?> <?php echo $extension =='zip' ? 'bdt-ps-import-temp-zip':'bdt-ps-import-temp-json' ?>" data-import-url="<?php echo esc_url( $importUrl ); ?>">
                     <div class="template-image">
-                        <img src="<?php echo esc_url( $template['thumbnail'] ); ?>" alt="<?php echo esc_attr( $template['title'] ); ?>">
+                        <img src="<?php echo esc_url( BDTPS_CORE_URL . 'includes/setup-wizard/assets' . $template['thumbnail'] ); ?>" alt="<?php echo esc_attr( $template['title'] ); ?>">
                         <div class="template-actions">
                             <a href="<?php echo esc_url( $template['demo_url'] ); ?>" target="_blank" class="template-preview">
                                 <i class="dashicons dashicons-visibility"></i> <?php esc_html_e( 'Preview', 'bdthemes-prime-slider' ); ?>

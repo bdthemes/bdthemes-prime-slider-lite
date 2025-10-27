@@ -2,8 +2,15 @@
   {
     "title": "General Slider",
     "is_pro": 1,
-    "thumbnail": "https://postkit.pro/templates/blaze.jpg",
-    "demo_url": "https://postkit.pro/demo-pages/blaze/",
-    "import_url": "https://postkit.pro/templates/blaze.zip"
+    "thumbnail": "/templates/general.jpg",
+    "demo_url": "https://primeslider.pro/demo/general/general-demo-1/",
+    "import_url": "/templates/general.zip"
+  },
+  {
+    "title": "General Slider Test",
+    "is_pro": 0,
+    "thumbnail": "/templates/general.jpg",
+    "demo_url": "https://primeslider.pro/demo/general/general-demo-1/",
+    "import_url": "/templates/general.zip"
   }
 ]
