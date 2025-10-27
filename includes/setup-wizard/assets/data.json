@@ -1,16 +1,58 @@
 [
   {
-    "title": "General Slider",
+    "title": "General",
     "is_pro": 1,
-    "thumbnail": "/templates/general.jpg",
+    "thumbnail": "/templates/general.webp",
     "demo_url": "https://primeslider.pro/demo/general/general-demo-1/",
     "import_url": "/templates/general.zip"
   },
   {
-    "title": "General Slider Test",
+    "title": "Skin Crelly",
     "is_pro": 0,
-    "thumbnail": "/templates/general.jpg",
+    "thumbnail": "/templates/general-skin-crelly.webp",
     "demo_url": "https://primeslider.pro/demo/general/general-demo-1/",
-    "import_url": "/templates/general.zip"
+    "import_url": "/templates/general-skin-crelly.zip"
+  },
+  {
+    "title": "Elysium",
+    "is_pro": 0,
+    "thumbnail": "/templates/elysium.jpg",
+    "demo_url": "https://primeslider.pro/demo/elysium/elysium-demo-1/",
+    "import_url": "/templates/elysium.zip"
+  },
+  {
+    "title": "Mercury",
+    "is_pro": 0,
+    "thumbnail": "/templates/mercury.jpg",
+    "demo_url": "https://primeslider.pro/demo/mercury/mercury-demo-1/",
+    "import_url": "/templates/mercury.zip"
+  },
+  {
+    "title": "Mount",
+    "is_pro": 0,
+    "thumbnail": "/templates/mount.jpg",
+    "demo_url": "https://primeslider.pro/demo/mount/mount-demo-1/",
+    "import_url": "/templates/mount.zip"
+  },
+  {
+    "title": "storker",
+    "is_pro": 0,
+    "thumbnail": "/templates/storker.jpg",
+    "demo_url": "https://primeslider.pro/demo/storker/storker-demo-1/",
+    "import_url": "/templates/storker.zip"
+  },
+  {
+    "title": "tango",
+    "is_pro": 0,
+    "thumbnail": "/templates/tango.jpg",
+    "demo_url": "https://primeslider.pro/demo/tango/tango-demo-1/",
+    "import_url": "/templates/tango.zip"
+  },
+  {
+    "title": "vertex",
+    "is_pro": 0,
+    "thumbnail": "/templates/vertex.jpg",
+    "demo_url": "https://primeslider.pro/demo/vertex/vertex-demo-1/",
+    "import_url": "/templates/vertex.zip"
   }
 ]
