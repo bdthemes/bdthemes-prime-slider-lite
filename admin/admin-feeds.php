@@ -27,7 +27,7 @@ class Admin_Feeds {
 	}
 
 	/**
-	 * Register RSS Feeds for Element Pack
+	 * Register RSS Feeds for Prime Slider
 	 */
 	public function register_rss_feeds() {
 		if ( self::$feed_displayed ) {
