@@ -3,5 +3,6 @@
 *.po
 *.mo
 *.zip
+!includes/setup-wizard/assets/templates/*.zip
 package-lock.json
 *sync.ffs_db
