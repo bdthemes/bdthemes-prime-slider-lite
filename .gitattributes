@@ -5,3 +5,4 @@ package.json export-ignore
 package-lock.json export-ignore
 /src export-ignore
 LICENSE export-ignore
+.buildignore export-ignore

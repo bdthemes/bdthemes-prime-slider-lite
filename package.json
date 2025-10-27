@@ -1,11 +1,12 @@
 {
 	"name": "bdthemes-prime-slider",
-	"version": "2.0.0",
+	"version": "4.0.0",
 	"main": "index.php",
 	"scripts": {
+		"build": "npm run && npm run clean && cross-env NODE_ENV=production grunt",
+		"clean": "rimraf ./assets",
 		"dev": "cross-env NODE_ENV=development grunt watch",
-		"build": "npm run clean && cross-env NODE_ENV=production grunt",
-		"clean": "rimraf ./assets"
+		"zip": "npm run && npm run clean && cross-env NODE_ENV=production grunt && rsync -av --exclude-from=.buildignore . bdthemes-prime-slider-lite && zip -r bdthemes-prime-slider-lite-v.$npm_package_version.zip bdthemes-prime-slider-lite/* && rm -rf bdthemes-prime-slider-lite"
 	},
 	"keywords": [
 		"bdthemes-prime-slider",
