@@ -2125,10 +2125,9 @@ class PrimeSlider_Admin_Settings {
 						// Show warning modal/alert
 						var warningMessage = '⚠️ WARNING: ADVANCED FEATURE\n\n' +
 							'Enabling BDTPS_CORE_HIDE will activate advanced white label mode that:\n\n' +
-							'• Hides ALL Element Pack branding and menus\n' +
+							'• Hides ALL Prime Slider branding and menus\n' +
 							'• Makes these settings difficult to access later\n' +
-							'• Requires the special access link to return\n' +
-							'• Is intended for client/agency use only\n\n' +
+							'• Requires the special access link to return\n\n' +
 							'An email with access instructions will be sent if you proceed.\n\n' +
 							'Are you sure you want to enable this advanced mode?';
 						
@@ -3227,24 +3226,20 @@ class PrimeSlider_Admin_Settings {
 								</label>
 							</div>
 						</div>
+						<?php if (!$bdtps_hide && $is_license_active && $is_white_label_eligible): ?>
+						<div class="bdt-margin-small-top">
+							<div class="bdt-alert bdt-alert-danger">
+								<p>When you enable BDTPS_CORE_HIDE, an email will be automatically sent to:</p>
+								<ul style="margin: 10px 0;">
+									<li><strong>License Email:</strong> <?php echo esc_html(self::get_license_email()); ?></li>
+								</ul>
+								<p>This email will contain a special access link that allows you to return to these settings even when BDTPS_CORE_HIDE is active.</p>
+							</div>
+						</div>
+						<?php endif; ?>
 					</div>
 				</div>
 				
-				<?php if (!$bdtps_hide && $is_license_active && $is_white_label_eligible): ?>
-				<div class="bdt-margin-small-top">
-					<div class="bdt-alert bdt-alert-danger">
-						<h4>📧 Email Access System</h4>
-						<p>When you enable BDTPS_CORE_HIDE, an email will be automatically sent to:</p>
-						<ul style="margin: 10px 0;">
-							<li><strong>License Email:</strong> <?php echo esc_html(self::get_license_email()); ?></li>
-							<?php if (get_bloginfo('admin_email') !== self::get_license_email()): ?>
-							<li><strong>Admin Email:</strong> <?php echo esc_html(get_bloginfo('admin_email')); ?></li>
-							<?php endif; ?>
-						</ul>
-						<p>This email will contain a special access link that allows you to return to these settings even when BDTPS_CORE_HIDE is active.</p>
-					</div>
-				</div>
-				<?php endif; ?>
 
 				<!-- Success/Error Messages -->
 				<div id="ps-white-label-message" class="ps-white-label-message bdt-margin-small-top" style="display: none;">
