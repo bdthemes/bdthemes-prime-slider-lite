@@ -2462,7 +2462,10 @@ class PrimeSlider_Admin_Settings {
 				$('#ps-reset-custom-code').on('click', function(e) {
 					e.preventDefault();
 					
-					if (confirm('Are you sure you want to reset all custom code? This action cannot be undone.')) {
+					if (confirm('Are you sure you want to reset all custom code? This will clear all code.')) {
+						var $button = $(this);
+						var originalText = $button.html();
+						
 						// Clear CodeMirror editors
 						function clearCodeMirrorEditor(elementId) {
 							if (codeMirrorEditors[elementId] && codeMirrorEditors[elementId].codemirror) {
@@ -2482,17 +2485,73 @@ class PrimeSlider_Admin_Settings {
 						// Clear exclusions
 						$('#ps-excluded-pages').val([]).trigger('change');
 						
+						// Show clearing message
 						$('#ps-custom-code-message').html(
-							'<div class="bdt-alert bdt-alert-warning" bdt-alert>' +
-							'<a href="#" class="bdt-alert-close" onclick="$(this).parent().parent().hide(); return false;">&times;</a>' +
-							'<p>All custom code has been cleared. Don\'t forget to save changes!</p>' +
+							'<div class="bdt-alert bdt-alert-primary" bdt-alert>' +
+							'<p><span bdt-spinner="ratio: 0.6"></span> Clearing custom code...</p>' +
 							'</div>'
 						).show();
 						
-						// Auto-hide message after 3 seconds
-						setTimeout(function() {
-							$('#ps-custom-code-message').fadeOut();
-						}, 3000);
+						// Disable button during save
+						$button.prop('disabled', true).html('<span bdt-spinner="ratio: 0.6"></span> Resetting...');
+						
+						// Prepare empty data for AJAX save
+						var formData = {
+							action: 'ps_save_custom_code',
+							nonce: ps_admin_ajax.nonce,
+							custom_css: '',
+							custom_js: '',
+							custom_css_2: '',
+							custom_js_2: '',
+							excluded_pages: []
+						};
+						
+						// Send AJAX request to save empty values
+						$.ajax({
+							url: ps_admin_ajax.ajax_url,
+							type: 'POST',
+							data: formData,
+							timeout: 30000,
+							success: function(response) {
+								if (response.success) {
+									// Show success message
+									$('#ps-custom-code-message').html(
+										'<div class="bdt-alert bdt-alert-success" bdt-alert>' +
+										'<a href="#" class="bdt-alert-close" onclick="$(this).parent().parent().hide(); return false;">&times;</a>' +
+										'<p><span class="dashicons dashicons-yes"></span> All custom code has been reset successfully!</p>' +
+										'</div>'
+									).show();
+									
+									// Auto-hide message after 5 seconds
+									setTimeout(function() {
+										$('#ps-custom-code-message').fadeOut();
+									}, 5000);
+								} else {
+									// Show error message
+									$('#ps-custom-code-message').html(
+										'<div class="bdt-alert bdt-alert-danger" bdt-alert>' +
+										'<a href="#" class="bdt-alert-close" onclick="$(this).parent().parent().hide(); return false;">&times;</a>' +
+										'<p><span class="dashicons dashicons-warning"></span> ' + (response.data.message || 'Failed to save reset. Please try again.') + '</p>' +
+										'</div>'
+									).show();
+								}
+								
+								// Restore button
+								$button.prop('disabled', false).html(originalText);
+							},
+							error: function(xhr, status, error) {
+								// Show error message
+								$('#ps-custom-code-message').html(
+									'<div class="bdt-alert bdt-alert-danger" bdt-alert>' +
+									'<a href="#" class="bdt-alert-close" onclick="$(this).parent().parent().hide(); return false;">&times;</a>' +
+									'<p><span class="dashicons dashicons-warning"></span> Failed to save reset: ' + error + '</p>' +
+									'</div>'
+								).show();
+								
+								// Restore button
+								$button.prop('disabled', false).html(originalText);
+							}
+						});
 					}
 				});				
 			});
