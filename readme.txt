@@ -164,6 +164,8 @@ More free widgets and extensions are coming soon...
 * [Woo HotSpot](https://primeslider.pro/demo/woohotspot/) - WooCommerce-focused slider designed to make product discovery easier for customers.
 * [Titanic](https://primeslider.pro/demo/titanic/) - Titanic slider offers stunning, large-scale content slides for impactful presentations.
 * [Pandora](https://primeslider.pro/demo/pandora/) - A sleek, dynamic slider with fluid transitions and a modern design.
+* [Turnar](https://primeslider.pro/demo/turnar/) - Dynamic slider with rotating elements and interactive transitions for captivating visual storytelling.
+* [Motion](https://primeslider.pro/demo/motion/) - Animated slider featuring smooth motion effects and kinetic elements for enhanced user engagement. 
 
 = Remote Control 👇 =
 
@@ -254,7 +256,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.0.0 [XXth October 2025] =
+= 4.0.0 [28th October 2025] =
 
 * Added: Turnar widget added
 * Added: Motion widget added
