@@ -259,6 +259,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.0.1 [XX October 2025] =
 
 * Fixed: White label logo size issue fixed 
+* Fixed: Translate issue fixed
 
 = 4.0.0 [28th October 2025] =
 

@@ -245,7 +245,10 @@ class Plugin_Cache_Manager {
                     'slug' => $slug,
                     'name' => $cached_data['name'] ?? $slug,
                     'cached_at' => date('Y-m-d H:i:s', $cached_data['fetched_at']),
-                    'age' => human_time_diff($cached_data['fetched_at'], current_time('timestamp')) . ' ago'
+                    'age' => sprintf(
+                        esc_html__( '%s ago', 'bdthemes-prime-slider' ),
+                        human_time_diff( $cached_data['fetched_at'], current_time( 'timestamp' ) )
+                    ),
                 ];
                 
                 $total_size += strlen(serialize($cached_data));
@@ -259,7 +262,10 @@ class Plugin_Cache_Manager {
         return [
             'total_cached' => count($plugins),
             'cache_size' => $total_size,
-            'oldest_entry' => human_time_diff($oldest_timestamp, current_time('timestamp')) . ' ago',
+            'oldest_entry' => sprintf(
+                esc_html__( '%s ago', 'bdthemes-prime-slider' ),
+                human_time_diff( $oldest_timestamp, current_time( 'timestamp' ) )
+            ),
             'plugins' => $plugins
         ];
     }

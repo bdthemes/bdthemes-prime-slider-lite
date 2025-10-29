@@ -3606,10 +3606,10 @@ class PrimeSlider_Admin_Settings {
 					<?php
 					if ($max_execution_time < '90') {
 						echo wp_kses_post($no_icon);
-						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>Currently: ' . esc_html($max_execution_time) . '</span>';
+						echo '<span class="label2" title="Min: 90 Recommended" bdt-tooltip>' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . esc_html($max_execution_time) . '</span>';
 					} else {
 						echo wp_kses_post($yes_icon);
-						echo '<span class="label2">Currently: ' . esc_html($max_execution_time) . '</span>';
+						echo '<span class="label2">' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . esc_html($max_execution_time) . '</span>';
 					}
 					?>
 				</div>
@@ -3621,10 +3621,10 @@ class PrimeSlider_Admin_Settings {
 					<?php
 					if (intval($memory_limit) < '512') {
 						echo wp_kses_post($no_icon);
-						echo '<span class="label2" title="Min: 512M Recommended" bdt-tooltip>Currently: ' . esc_html($memory_limit) . '</span>';
+						echo '<span class="label2" title="Min: 512M Recommended" bdt-tooltip>' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . esc_html($memory_limit) . '</span>';
 					} else {
 						echo wp_kses_post($yes_icon);
-						echo '<span class="label2">Currently: ' . esc_html($memory_limit) . '</span>';
+						echo '<span class="label2">' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . esc_html($memory_limit) . '</span>';
 					}
 					?>
 				</div>
@@ -3637,10 +3637,10 @@ class PrimeSlider_Admin_Settings {
 					<?php
 					if (intval($post_limit) < '32') {
 						echo wp_kses_post($no_icon);
-						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>Currently: ' . wp_kses_post($post_limit) . '</span>';
+						echo '<span class="label2" title="Min: 32M Recommended" bdt-tooltip>' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . wp_kses_post($post_limit) . '</span>';
 					} else {
 						echo wp_kses_post($yes_icon);
-						echo '<span class="label2">Currently: ' . wp_kses_post($post_limit) . '</span>';
+						echo '<span class="label2">' . esc_html__('Currently:', 'bdthemes-prime-slider') . ' ' . wp_kses_post($post_limit) . '</span>';
 					}
 					?>
 				</div>
@@ -4166,7 +4166,7 @@ class PrimeSlider_Admin_Settings {
 			<div class="ps-dashboard-affiliate">
 				<div class="bdt-card bdt-card-body">
 					<h1 class="ps-feature-title">
-						<?php printf(esc_html__('Earn %s as an Affiliate', 'bdthemes-prime-slider'), '<strong class="ps-highlight-text">Up to 60% Commission</strong>'); ?>
+						<?php printf(esc_html__('Earn %s as an Affiliate', 'bdthemes-prime-slider'), '<strong class="ps-highlight-text">' . esc_html__('Up to 60% Commission', 'bdthemes-prime-slider') . '</strong>'); ?>
 					</h1>
 					<p>
 						<?php esc_html_e('Join our affiliate program and earn up to 60% commission on every sale you refer. It\'s a great way to earn passive income while promoting high-quality WordPress plugins.', 'bdthemes-prime-slider'); ?>
