@@ -5,7 +5,7 @@ Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.8.3
 Requires PHP: 7.4.0
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
@@ -256,7 +256,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.0.1 [XX October 2025] =
+= 4.0.1 [29th October 2025] =
 
 * Fixed: White label logo size issue fixed 
 * Fixed: Translate issue fixed
