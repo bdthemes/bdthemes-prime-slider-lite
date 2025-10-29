@@ -256,9 +256,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.0.X [XXth October 2025] =
+= 4.0.1 [XX October 2025] =
 
-* Fixed: Hardcoded issue fixed
+* Fixed: White label logo size issue fixed 
+* Fixed: Translate issue fixed
 
 = 4.0.0 [28th October 2025] =
 
