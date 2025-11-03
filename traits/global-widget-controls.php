@@ -563,16 +563,18 @@ trait Global_Widget_Controls {
 		$repeater->add_control(
 			'social_link_title',
 			[ 
-				'label' => __( 'Title', 'bdthemes-prime-slider' ),
-				'type'  => Controls_Manager::TEXT,
+				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 
 		$repeater->add_control(
 			'social_icon_link',
 			[ 
-				'label' => __( 'Link', 'bdthemes-prime-slider' ),
-				'type'  => Controls_Manager::URL,
+				'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::URL,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 
@@ -1636,6 +1638,7 @@ trait Global_Widget_Controls {
 			[ 
 				'label'       => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => [ 'active' => true ],
 				'placeholder' => esc_html__( 'More Details', 'bdthemes-prime-slider' ),
 				'default'     => esc_html__( 'More Details', 'bdthemes-prime-slider' ),
 				'label_block' => false,
@@ -2023,8 +2026,9 @@ trait Global_Widget_Controls {
 		$repeater->add_control(
 			'social_link_title',
 			[ 
-				'label' => __( 'Title', 'bdthemes-prime-slider' ),
-				'type'  => Controls_Manager::TEXT,
+				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 
@@ -2033,6 +2037,7 @@ trait Global_Widget_Controls {
 			[ 
 				'label' => __( 'Link', 'bdthemes-prime-slider' ),
 				'type'  => Controls_Manager::URL,
+				'dynamic' => [ 'active' => true ],
 			]
 		);
 

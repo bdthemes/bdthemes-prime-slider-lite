@@ -149,16 +149,25 @@ $ps_plugins = Plugin_Integration_Helper::build_plugin_data($plugin_slugs);
                             
                             if (!empty($logo_url) && filter_var($logo_url, FILTER_VALIDATE_URL)) {
                                 // Show the original logo from API
-                                echo '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($plugin_name) . '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">';
-                                echo '<div class="default-plugin-icon" style="display:none;">📦</div>';
+                                ?>
+                                <img src="<?php echo esc_url($logo_url); ?>" 
+                                    alt="<?php echo esc_attr($plugin_name); ?>" 
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                >
+                                <div class="default-plugin-icon" style="display:none;">📦</div>
+                                <?php
                             } else {
                                 // Generate fallback URLs for WordPress.org
                                 // Extract the actual plugin slug from the file path format
                                 $actual_slug = str_replace('.php', '', basename($plugin_slug));
                                 $fallback_urls = get_plugin_fallback_urls($actual_slug);
-                                
-                                echo '<img src="' . esc_url($fallback_urls[0]) . '" alt="' . esc_attr($plugin_name) . '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">';
-                                echo '<div class="default-plugin-icon" style="display:none;">📦</div>';
+                                ?>
+                                <img src="<?php echo esc_url($fallback_urls[0]); ?>" 
+                                    alt="<?php echo esc_attr($plugin_name); ?>" 
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                >
+                                <div class="default-plugin-icon" style="display:none;">📦</div>
+                                <?php
                             }
                             ?>
                         </span>
@@ -172,16 +181,16 @@ $ps_plugins = Plugin_Integration_Helper::build_plugin_data($plugin_slugs);
                         <?php if ($is_active) : ?>
                             <span class="active-badge"><?php esc_html_e('ACTIVE', 'bdthemes-prime-slider'); ?></span>
                         <?php endif; ?>
-                         <?php
-                         if (!$is_active) : ?>
-                             <label class="switch">
-                                 <input type="checkbox" class="plugin-slider-checkbox" <?php echo wp_kses_post($plugin['recommended']) ? 'checked' : ''; ?>
-                                        name="plugins[]<?php echo isset($plugin['slug']) ? wp_kses_post($plugin['slug']) : ''; ?>">
-                                 <span class="slider round"></span>
-                             </label>
-                         <?php
-                         endif;
-                         ?>
+                        <?php if (!$is_active) : ?>
+                            <label class="switch">
+                                <input type="checkbox" class="plugin-slider-checkbox"
+                                    <?php checked(!empty($plugin['recommended'])); ?>
+                                    name="plugins[<?php echo esc_attr($plugin['slug']); ?>]">
+                                <span class="slider round"></span>
+                            </label>
+                        <?php
+                        endif;
+                        ?>
                         </div>
 					</span>
                     <div class="bdt-flex bdt-flex-middle">
@@ -194,10 +203,10 @@ $ps_plugins = Plugin_Integration_Helper::build_plugin_data($plugin_slugs);
 						<?php //echo wp_kses_post($plugin['description']); ?>
 					</span> -->
                     <span class="active-installs">
-                        <?php esc_html_e('Active Installs: ', 'bdthemes-prime-slider'); 
-                        // echo wp_kses_post($plugin['active_installs'] ?? '0'); 
+                        <?php 
+                        esc_html_e('Active Installs: ', 'bdthemes-prime-slider'); 
                         if (isset($plugin['active_installs_count']) && $plugin['active_installs_count'] > 0) {
-                            echo ' <span class="installs-count">' . number_format($plugin['active_installs_count']) . '+' . '</span>';
+                            echo '<span class="installs-count">' . esc_html(number_format($plugin['active_installs_count'])) . '+</span>';
                         }
                         ?>
                     </span>
@@ -208,7 +217,9 @@ $ps_plugins = Plugin_Integration_Helper::build_plugin_data($plugin_slugs);
                     
                     <div class="rating-section">
                         <!-- <span class="rating-label"><?php //esc_html_e('Ratings', 'bdthemes-prime-slider'); ?></span> -->
-                        <div class="wporg-ratings" title="<?php echo esc_attr($plugin['rating'] ?? '0'); ?> out of 5 stars" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
+                        <div class="wporg-ratings" 
+                            title="<?php echo esc_attr(($plugin['rating'] ?? '0') . ' out of 5 stars'); ?>" 
+                            style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
                             <?php 
                             $rating = floatval($plugin['rating'] ?? 0);
                             $full_stars = floor($rating);
@@ -232,20 +243,24 @@ $ps_plugins = Plugin_Integration_Helper::build_plugin_data($plugin_slugs);
                             ?>
                         </div>
                         <span class="rating-text">
-                            <?php echo esc_html($plugin['rating'] ?? '0'); ?> out of 5 stars.
+                            <?php 
+                            /* translators: %s: rating value out of 5 */
+                            echo esc_html(sprintf(__('%s out of 5 stars.', 'bdthemes-prime-slider'), ($plugin['rating'] ?? '0'))); 
+                            ?>
                             <?php if (isset($plugin['num_ratings']) && $plugin['num_ratings'] > 0): ?>
-                                <span class="rating-count">(<?php echo number_format($plugin['num_ratings']); ?> ratings)</span>
+                                <span class="rating-count">
+                                    <?php 
+                                    /* translators: %s: number of ratings */
+                                    echo esc_html(sprintf(__('(%s ratings)', 'bdthemes-prime-slider'), number_format($plugin['num_ratings']))); 
+                                    ?>
+                                </span>
                             <?php endif; ?>
                         </span>
                     </div>
-                    
-                    
-                    
+
                     <?php if (isset($plugin['last_updated']) && !empty($plugin['last_updated'])): ?>
                     <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider'); echo esc_html(format_last_updated($plugin['last_updated'])); ?></span>
                     <?php endif; ?>
-
-
                 </label>
             <?php
             endforeach; ?>
