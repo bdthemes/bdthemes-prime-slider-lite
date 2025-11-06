@@ -1276,12 +1276,13 @@ class Pagepiling extends Widget_Base {
 			[
 				'pagepiling-slider' => [
 					'data-settings' => [
-						wp_json_encode(array_filter([
-							"scrollingSpeed"     => $settings["scrollingSpeed"]["size"],
-							"autoplay"       => ("yes" == $settings["autoplay"]) ? ["autoplay_duration" => $settings["autoplay_duration"]['size']] : false,
+						wp_json_encode([
+							"scrollingSpeed"     => !empty($settings["scrollingSpeed"]["size"]) ? (int)$settings["scrollingSpeed"]["size"] : 700,
+							"autoplay"       	 => ("yes" == $settings["autoplay"]) ? true : false,
+							"autoplay_duration"  => !empty($settings["autoplay_duration"]['size']) ? (int)$settings["autoplay_duration"]['size'] : 1000,
 							"loopBottom"         => ("yes" == $settings["loopBottom"]) ? true : false,
 							"loopTop"            => ("yes" == $settings["loopTop"]) ? true : false,
-				        ]))
+				        ])
 					]
 				]
 			]
