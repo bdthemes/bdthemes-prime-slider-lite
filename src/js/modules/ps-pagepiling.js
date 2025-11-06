@@ -9,27 +9,31 @@
         if (!$pagepiling.length) {
             return;
         }
+
+        if ($.fn.pagepiling && typeof $.fn.pagepiling.destroy !== 'undefined') {
+            try {
+                $.fn.pagepiling.destroy('all');
+            } catch(e) {
+                console.log('Pagepiling destroy error (safe to ignore):', e);
+            }
+        }
+
         var $settings = $pagepiling.data('settings');
 
-        var interval;
-        var timeout;
-        var autoPlayDuration = (typeof $settings.autoplay !== 'undefined') ? ($settings.autoplay.autoplay_duration || 1000) : 1000;
-
-        if ((typeof $settings.autoplay == 'undefined')) {
-            $settings.autoplay = false;
+        if (!$settings) {
+            return;
         }
 
-        function getInterval() {
-            return setInterval(function () {
-                $.fn.pagepiling.moveSectionDown();
-            }, autoPlayDuration);
-        }
+        let interval;
+        let autoPlayDuration = parseInt($settings.autoplay_duration) || 1000;
+        let scrollingSpeed = parseInt($settings.scrollingSpeed) || 700;
+        let isAutoplay = $settings.autoplay === true;
 
         $($pagepiling).pagepiling({
             menu: null,
             direction: 'vertical',
             verticalCentered: true,
-            scrollingSpeed: $settings.scrollingSpeed,
+            scrollingSpeed: scrollingSpeed,
             easing: 'swing',
             navigation: {
                 'position': 'left',
@@ -43,15 +47,19 @@
             keyboardScrolling: true,
             sectionSelector: '.section',
 
-            afterLoad: $settings.autoplay !== false ? function (anchorLink, index) {
-                clearInterval(interval);
-                clearTimeout(timeout);
-                timeout = setTimeout(function () {
-                    interval = getInterval();
+            afterRender: isAutoplay ? function () {
+                // Start autoplay after initial render
+                interval = setInterval(function () {
+                    $.fn.pagepiling.moveSectionDown();
                 }, autoPlayDuration);
             } : false,
-            afterRender: $settings.autoplay !== false ? function () {
-                interval = getInterval();
+            
+            onLeave: isAutoplay ? function(index, nextIndex, direction) {
+                // Clear and restart interval on any navigation to keep timing consistent
+                clearInterval(interval);
+                interval = setInterval(function () {
+                    $.fn.pagepiling.moveSectionDown();
+                }, autoPlayDuration);
             } : false
         });
 

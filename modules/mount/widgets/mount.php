@@ -417,7 +417,7 @@ class Mount extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_title_style',
 			[
-				'label' 	=> __('Title', 'bdthemes-prime-slider'),
+				'label' 	=> esc_html__('Title', 'bdthemes-prime-slider'),
 				'condition' => [
 					'show_title' => ['yes'],
 				],
@@ -451,6 +451,21 @@ class Mount extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'show_title' => ['yes'],
+				],
+			]
+		);
+
+		$this->add_control(
+			'mount_title_hover_color',
+			[
+				'label'     => esc_html__('Hover Color', 'bdthemes-prime-slider'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-content .bdt-main-title .bdt-title-tag a:hover' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'show_title' => ['yes'],
