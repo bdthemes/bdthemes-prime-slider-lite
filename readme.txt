@@ -1,5 +1,5 @@
 === Prime Slider - Addons for Elementor ===
-Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik
+Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
