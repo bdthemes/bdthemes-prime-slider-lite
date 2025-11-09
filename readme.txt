@@ -262,6 +262,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 * Fixed: Title color issue fixed in mount widget
 * Fixed: scrolling speed control issue fixed in pagepiling widget 
+* Fixed: Title color issue fixed in pagepiling widget 
 
 = 4.0.2 [3rd November 2025] =
 
