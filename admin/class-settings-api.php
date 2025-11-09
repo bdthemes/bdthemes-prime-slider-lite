@@ -845,11 +845,11 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 					'title' => esc_html__('Other Plugins', 'bdthemes-prime-slider'),
 					'icon' => 'dashicons dashicons-admin-plugins',
 				],
-				[
-					'id' => 'prime_slider_affiliate',
-					'title' => esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
-					'icon' => 'dashicons dashicons-money-alt',
-				],
+				// [
+				// 	'id' => 'prime_slider_affiliate',
+				// 	'title' => esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
+				// 	'icon' => 'dashicons dashicons-money-alt',
+				// ],
 				[
 					'id' => 'prime_slider_rollback_version',
 					'title' => esc_html__('Rollback Version', 'bdthemes-prime-slider'),
