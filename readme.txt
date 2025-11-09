@@ -19,6 +19,8 @@ Prime Slider is an Elementor addon that lets you build and customize a slider fo
 
 The plugin includes 30+ free widgets, 8 skins, 3 essential features, and 75+ ready-made sliders that help you create visually appealing and fully responsive designs.
 
+### [🎉 Black Friday Offer: Upgrade to Pro and Save up to 87% on All Plugins! 🎊](https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=prime_slider)
+
 Available Slider Types:
 
 ✅ Hero Slider

@@ -802,7 +802,7 @@ class PrimeSlider_Admin_Settings {
 	// Redirect to Prime Slider Pro pricing page
 	public function ps_redirect_to_get_pro() {
         if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_get_pro') {
-            wp_redirect('https://primeslider.pro/pricing/?utm_source=PrimeSlider&utm_medium=PluginPage&utm_campaign=30%OffOnPrimeSlider&coupon=FREETOPRO');
+            wp_redirect('https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=prime_slider');
             exit;
         }
     }
@@ -889,14 +889,14 @@ class PrimeSlider_Admin_Settings {
 			[$this, 'plugin_page']
 		);
 		
-		add_submenu_page(
-			self::PAGE_ID,
-			BDTPS_CORE_TITLE,
-			esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
-			'manage_options',
-			self::PAGE_ID . '#prime_slider_affiliate',
-			[$this, 'plugin_page']
-		);
+		// add_submenu_page(
+		// 	self::PAGE_ID,
+		// 	BDTPS_CORE_TITLE,
+		// 	esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
+		// 	'manage_options',
+		// 	self::PAGE_ID . '#prime_slider_affiliate',
+		// 	[$this, 'plugin_page']
+		// );
 		
 		add_submenu_page(
 			self::PAGE_ID,
@@ -911,7 +911,7 @@ class PrimeSlider_Admin_Settings {
 			add_submenu_page(
 				self::PAGE_ID,
 				BDTPS_CORE_TITLE,
-				esc_html__('Upgrade For 30% Off!', 'bdthemes-prime-slider'),
+				esc_html__('Black Friday Limited Offer Up To 87%', 'bdthemes-prime-slider'),
 				'manage_options',
 				self::PAGE_ID . '_get_pro',
 				[$this, 'display_page']
@@ -1471,9 +1471,9 @@ class PrimeSlider_Admin_Settings {
 							<?php $this->prime_slider_others_plugin(); ?>
 						</div>
 
-						<div id="prime_slider_affiliate_page" class="ps-option-page group">
-							<?php $this->prime_slider_affiliate_content(); ?>
-						</div>
+						<!-- <div id="prime_slider_affiliate_page" class="ps-option-page group">
+							<?php //$this->prime_slider_affiliate_content(); ?>
+						</div> -->
 
 						<div id="prime_slider_rollback_version_page" class="ps-option-page group">
 							<?php $this->prime_slider_rollback_version_content(); ?>
@@ -4151,44 +4151,6 @@ class PrimeSlider_Admin_Settings {
 				       __('Install', 'bdthemes-prime-slider') . '</a>';
 		}
 	}
-
-    /**
-	 * Display Affiliate Content
-	 *
-	 * @access public
-	 * @return void
-	 */
-
-	public function prime_slider_affiliate_content() {
-		?>
-		<div class="ps-dashboard-panel"
-			bdt-scrollspy="target: > div > div > .bdt-card; cls: bdt-animation-slide-bottom-small; delay: 300">
-			<div class="ps-dashboard-affiliate">
-				<div class="bdt-card bdt-card-body">
-					<h1 class="ps-feature-title">
-						<?php printf(esc_html__('Earn %s as an Affiliate', 'bdthemes-prime-slider'), '<strong class="ps-highlight-text">' . esc_html__('Up to 60% Commission', 'bdthemes-prime-slider') . '</strong>'); ?>
-					</h1>
-					<p>
-						<?php esc_html_e('Join our affiliate program and earn up to 60% commission on every sale you refer. It\'s a great way to earn passive income while promoting high-quality WordPress plugins.', 'bdthemes-prime-slider'); ?>
-					</p>
-					<div class="ps-affiliate-features">
-						<h3 class="ps-affiliate-sub-title"><?php esc_html_e('Benefits of joining our affiliate program:', 'bdthemes-prime-slider'); ?></h3>
-						<ul>
-							<li><?php esc_html_e('Up to 60% commission on all sales', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Real-time tracking of referrals and sales', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Dedicated affiliate support', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Marketing materials provided', 'bdthemes-prime-slider'); ?></li>
-							<li><?php esc_html_e('Monthly payments via PayPal', 'bdthemes-prime-slider'); ?></li>
-						</ul>
-					</div>
-					<a href="https://bdthemes.com/affiliate/?utm_sourcce=ps_wp_dashboard&utm_medium=affiliate_payout&utm_campaign=affiliate_onboarding" target="_blank"
-						class="bdt-button bdt-welcome-button bdt-margin-small-top"><?php esc_html_e('Join Our Affiliate Program', 'bdthemes-prime-slider'); ?></a>
-				</div>
-			</div>
-		</div>
-		<?php
-	}
-
 
     /**
 	 * Extra Options Start Here
