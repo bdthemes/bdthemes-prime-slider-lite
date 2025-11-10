@@ -4,6 +4,9 @@
     box-shadow: none;
     border-left-color: #46d8bb;
     padding: 0;
+    position: relative;
+    margin-bottom: 15px;
+    background-color: #fff;
 }
 
 .rc-global-biggopti .rc-global-header {
@@ -196,4 +199,13 @@
 
 .rc-global-biggopti.rc_prime_slider .rc-button-skip:hover {
     background-color: rgba(252, 142, 108, 0.422);
+}
+
+.rc-biggopti-dismiss {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
 }

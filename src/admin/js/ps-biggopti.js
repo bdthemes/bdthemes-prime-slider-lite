@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
     // Delegate to capture dynamically injected biggopties as well
-    $(document).on('click', '.prime-slider-biggopti.is-dismissible .biggopti-dismiss', function () {
+    $(document).on('click', '.prime-slider-biggopti.is-dismissible .bdt-biggopti-dismiss', function () {
         $this = $(this).parents('.prime-slider-biggopti');
         var $id = $this.attr('id') || '';
         var $time = $this.attr('dismissible-time') || '';
@@ -158,13 +158,11 @@ jQuery(document).ready(function ($) {
 
                     // Re-initialize WP dismiss buttons for dynamically added biggopties
                     if (typeof wp !== 'undefined' && wp.a11y && window.jQuery) {
-                        $(document).trigger('wp-updates-biggopti-added');
-                    } else {
-                        // fallback: manually add close button + click handler
+                       // fallback: manually add close button + click handler
                         $markup.each(function () {
                             var $el = $(this);
-                            if ($el.hasClass('is-dismissible') && !$el.find('.biggopti-dismiss').length) {
-                                var $button = $('<button type="button" class="biggopti-dismiss"><span class="screen-reader-text">Dismiss this biggopti.</span></button>');
+                            if ($el.hasClass('is-dismissible') && !$el.find('.bdt-biggopti-dismiss').length) {
+                                var $button = $('<button type="button" class="bdt-biggopti-dismiss dashicons dashicons-dismiss"><span class="screen-reader-text">Dismiss this biggopti.</span></button>');
                                 $el.append($button);
                                 $button.on('click', function () {
                                     $el.fadeTo(100, 0, function () {
@@ -175,7 +173,7 @@ jQuery(document).ready(function ($) {
                                 });
                             }
                         });
-                    }
+                    } 
 
 
                     // Initialize countdowns in injected content

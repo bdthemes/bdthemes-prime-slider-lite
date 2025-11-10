@@ -79,7 +79,7 @@ class Biggopties {
 	 */
 	private function should_show_biggopti($biggopti) {
 		// Development override - set to true to bypass date checks for testing
-		$development_mode = true; // Set to true to bypass date checks
+		$development_mode = false; // Set to true to bypass date checks
 		
 		if ($development_mode) {
 			return true;
@@ -176,7 +176,7 @@ class Biggopties {
 					break;
 					
 				case 'free':
-					if ($is_lite_active) {
+					if ($is_lite_active && !$is_pro_active) {
 						return true;
 					}
 					break;
