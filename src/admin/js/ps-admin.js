@@ -125,7 +125,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    jQuery('.prime-slider-notice.notice-error img').css({
+    jQuery('.prime-slider-biggopti.biggopti-error img').css({
         'margin-right': '8px',
         'vertical-align': 'middle'
     });

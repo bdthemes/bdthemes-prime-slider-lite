@@ -43,7 +43,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 
 			// add_action( 'admin_enqueue_scripts', array( $this, 'rc_enqueue_scripts' ) );
 			add_action('wp_ajax_rc_sdk_insights', array($this, 'rc_sdk_insights'));
-			add_action('wp_ajax_rc_sdk_dismiss_notice', array($this, 'rc_sdk_dismiss_notice'));
+			add_action('wp_ajax_rc_sdk_dismiss_biggopti', array($this, 'rc_sdk_dismiss_biggopti'));
 
 			$security_key = md5($params['plugin_name']);
 			$this->rc_name = 'rc_' . str_replace('-', '_', sanitize_title($params['plugin_name']) . '_' . $security_key);
@@ -55,7 +55,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 			$this->nonce = wp_create_nonce($this->rc_allow_name);
 
 			/**
-			 * Show Notice after 3 days
+			 * Show Biggopti after 3 days
 			 * Now 5 minutes
 			 */
 			$installed = get_option($this->rc_date_name . '_installed', false);
@@ -72,10 +72,10 @@ if (!class_exists('RC_Reviews_Collector')) {
 			}
 
 			/**
-			 * Show Notice
+			 * Show Biggopti
 			 */
 			if (!$rc_status_db) {
-				$this->display_notice();
+				$this->display_biggopti();
 				return;
 			}
 
@@ -88,10 +88,10 @@ if (!class_exists('RC_Reviews_Collector')) {
 
 			/**
 			 * Skip & Date Not Expired
-			 * Show Notice
+			 * Show Biggopti
 			 */
 			if ('skip' == $rc_status_db && true == $this->check_date()) {
-				$this->display_notice();
+				$this->display_biggopti();
 				return;
 			}
 
@@ -116,15 +116,15 @@ if (!class_exists('RC_Reviews_Collector')) {
 		}
 
 		/**
-		 * Notice Modal
+		 * Biggopti Modal
 		 *
 		 * @return void
 		 */
-		public function display_notice() {
+		public function display_biggopti() {
 			add_action('admin_enqueue_scripts', array($this, 'rc_enqueue_scripts'));
 
-			if (!get_transient('dismissed_notice_' . $this->rc_name)) {
-				add_action('admin_notices', array($this, 'display_global_notice'));
+			if (!get_transient('dismissed_biggopti_' . $this->rc_name)) {
+				add_action('admin_notices', array($this, 'display_global_biggopti'));
 			}
 		}
 
@@ -215,38 +215,38 @@ if (!class_exists('RC_Reviews_Collector')) {
 			wp_enqueue_style('rc-sdk', plugins_url('assets/rc.css', __FILE__), array(), '1.0.0');
 			wp_enqueue_script('rc-sdk', plugins_url('assets/rc.js', __FILE__), array('jquery'), '1.0.0', true);
 
-			// Add inline style to hide all but the first notice on page load
-			$inline_css = '.rc-global-notice { display: none; }';
+			// Add inline style to hide all but the first biggopti on page load
+			$inline_css = '.rc-global-biggopti { display: none; }';
 			wp_add_inline_style( 'rc-sdk', $inline_css );
 		}
 
 		/**
-		 * Display Global Notice
+		 * Display Global Biggopti
 		 *
 		 * @return void
 		 */
-		public function display_global_notice() {
+		public function display_global_biggopti() {
 			$plugin_title = isset($this->params['plugin_title']) ? $this->params['plugin_title'] : '';
 			$plugin_msg = isset($this->params['plugin_msg']) ? $this->params['plugin_msg'] : '';
 			$plugin_icon = isset($this->params['plugin_icon']) ? $this->params['plugin_icon'] : '';
 
 ?>
-			<div class="rc-global-notice notice notice-success is-dismissible <?php echo esc_attr(substr($this->rc_name, 0, -33)); ?>">
+			<div class="rc-global-biggopti biggopti biggopti-success is-dismissible <?php echo esc_attr(substr($this->rc_name, 0, -33)); ?>">
 				<div class="rc-global-header">
 					<?php if (!empty($plugin_icon)) : ?>
-						<div class="bdt-notice-rc-logo">
+						<div class="bdt-biggopti-rc-logo">
 							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>
 
-					<div class="bdt-notice-rc-content">
+					<div class="bdt-biggopti-rc-content">
 						<h3>
 							<?php printf(wp_kses_post($plugin_title)); ?>
 						</h3>
 						<?php printf(wp_kses_post($plugin_msg)); ?>
 						<input type="hidden" name="rc_name" value="<?php echo esc_html($this->rc_name); ?>">
 						<input type="hidden" name="nonce" value="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>">
-						<div class="bdt-notice-rc-buttons">
+						<div class="bdt-biggopti-rc-buttons">
 							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="yes" class="rc-button-allow">
 								<span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span> Give us your Review
 							</button>
@@ -264,11 +264,11 @@ if (!class_exists('RC_Reviews_Collector')) {
 		}
 
 		/**
-		 * Dismiss Notice
+		 * Dismiss Biggopti
 		 *
 		 * @return void
 		 */
-		public function rc_sdk_dismiss_notice() {
+		public function rc_sdk_dismiss_biggopti() {
 			$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
 			$rc_name = isset($_POST['rc_name']) ? sanitize_text_field($_POST['rc_name']) : '';
 
@@ -290,7 +290,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 				wp_die();
 			}
 
-			set_transient('dismissed_notice_' . $rc_name, true, 30 * DAY_IN_SECONDS);
+			set_transient('dismissed_biggopti_' . $rc_name, true, 30 * DAY_IN_SECONDS);
 
 			wp_send_json(array(
 				'status' => 'success',

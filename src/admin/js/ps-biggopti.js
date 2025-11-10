@@ -1,34 +1,34 @@
 jQuery(document).ready(function ($) {
-    // Delegate to capture dynamically injected notices as well
-    $(document).on('click', '.prime-slider-notice.is-dismissible .notice-dismiss', function () {
-        $this = $(this).parents('.prime-slider-notice');
+    // Delegate to capture dynamically injected biggopties as well
+    $(document).on('click', '.prime-slider-biggopti.is-dismissible .bdt-biggopti-dismiss', function () {
+        $this = $(this).parents('.prime-slider-biggopti');
         var $id = $this.attr('id') || '';
         var $time = $this.attr('dismissible-time') || '';
         var $meta = $this.attr('dismissible-meta') || '';
         $.ajax({
-            url: (window.PrimeSliderNoticeConfig && PrimeSliderNoticeConfig.ajaxurl) ? PrimeSliderNoticeConfig.ajaxurl : (typeof ajaxurl !== 'undefined' ? ajaxurl : ''),
+            url: (window.PrimeSliderBiggoptiConfig && PrimeSliderBiggoptiConfig.ajaxurl) ? PrimeSliderBiggoptiConfig.ajaxurl : (typeof ajaxurl !== 'undefined' ? ajaxurl : ''),
             type: 'POST',
             data: {
-                action: 'prime-slider-notices',
+                action: 'prime_slider_biggopties',
                 id: $id,
                 meta: $meta,
                 time: $time,
-                _wpnonce: PrimeSliderNoticeConfig.nonce
+                _wpnonce: PrimeSliderBiggoptiConfig.nonce
             }
         });
     });
 
     /* ===================================
-       Admin Store API NOTICE
+       Admin Store API BIGGOPTI
        =================================== */
     
     /**
-     * Initialize countdown timers for API notices
+     * Initialize countdown timers for API biggopties
      * This function finds all countdown elements and starts the countdown timer
      */
-    function initAPINoticeCountdown() {
+    function initAPIBiggoptiCountdown() {
         // Find all countdown elements on the page
-        jQuery('.bdt-notice-countdown').each(function() {
+        jQuery('.bdt-biggopti-countdown').each(function() {
             var $countdown = jQuery(this);
             var $timer = $countdown.find('.countdown-timer');
             var endDate = $countdown.data('end-date');
@@ -91,26 +91,26 @@ jQuery(document).ready(function ($) {
     }
     
     // Initialize countdown on page load
-    initAPINoticeCountdown();
+    initAPIBiggoptiCountdown();
     
-    // Re-initialize countdown when new notices are added (for dynamic content)
-    // This ensures countdown works even if notices are loaded after page load
-    jQuery(document).on('DOMNodeInserted', '.bdt-notice-countdown', function() {
-        initAPINoticeCountdown();
+    // Re-initialize countdown when new biggopties are added (for dynamic content)
+    // This ensures countdown works even if biggopties are loaded after page load
+    jQuery(document).on('DOMNodeInserted', '.bdt-biggopti-countdown', function() {
+        initAPIBiggoptiCountdown();
     });
 
-    // Fetch API notices after full page load, with try/catch
+    // Fetch API biggopties after full page load, with try/catch
     $(window).on('load', function () {
         // Add delay to let Element Pack load first and avoid race conditions
         setTimeout(function() {
             try {
                 $.ajax({
-                url: (window.PrimeSliderNoticeConfig && PrimeSliderNoticeConfig.ajaxurl) ? PrimeSliderNoticeConfig.ajaxurl : (typeof ajaxurl !== 'undefined' ? ajaxurl : ''),
+                url: (window.PrimeSliderBiggoptiConfig && PrimeSliderBiggoptiConfig.ajaxurl) ? PrimeSliderBiggoptiConfig.ajaxurl : (typeof ajaxurl !== 'undefined' ? ajaxurl : ''),
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    action: 'ps_fetch_api_notices',
-                    _wpnonce: PrimeSliderNoticeConfig.nonce
+                    action: 'ps_fetch_api_biggopties',
+                    _wpnonce: PrimeSliderBiggoptiConfig.nonce
                 }
             })
             .done(function (res) {
@@ -125,19 +125,19 @@ jQuery(document).ready(function ($) {
                         $target = $('#wpbody-content');
                     }
 
-                   // Check for existing notices with same class to avoid duplicates
+                   // Check for existing biggopties with same class to avoid duplicates
                      var shouldInsert = true;
                      $markup.each(function() {
-                         var $notice = $(this);
-                         var noticeId = $notice.attr('id');
+                         var $biggopti = $(this);
+                         var biggoptiId = $biggopti.attr('id');
                          
-                         // Extract class pattern from notice ID (e.g., bdt-admin-notice-api-notice-class-xxxxx)
-                         if (noticeId && noticeId.indexOf('bdt-admin-notice-api-notice-class-') !== -1) {
-                             var classPattern = noticeId.substring(noticeId.indexOf('bdt-admin-notice-api-notice-class-'));
+                         // Extract class pattern from biggopti ID (e.g., bdt-admin-biggopti-api-biggopti-class-xxxxx)
+                         if (biggoptiId && biggoptiId.indexOf('bdt-admin-biggopti-api-biggopti-class-') !== -1) {
+                             var classPattern = biggoptiId.substring(biggoptiId.indexOf('bdt-admin-biggopti-api-biggopti-class-'));
                              
-                             // Check if any existing notice in DOM has similar class pattern from any plugin
-                             var existingNotices = $('[id$="' + classPattern + '"]');
-                             if (existingNotices.length > 0) {
+                             // Check if any existing biggopti in DOM has similar class pattern from any plugin
+                             var existingBiggopties = $('[id$="' + classPattern + '"]');
+                             if (existingBiggopties.length > 0) {
                                  shouldInsert = false;
                                  return false; // break out of each loop
                              }
@@ -156,15 +156,13 @@ jQuery(document).ready(function ($) {
                         }
                     }
 
-                    // Re-initialize WP dismiss buttons for dynamically added notices
+                    // Re-initialize WP dismiss buttons for dynamically added biggopties
                     if (typeof wp !== 'undefined' && wp.a11y && window.jQuery) {
-                        $(document).trigger('wp-updates-notice-added');
-                    } else {
-                        // fallback: manually add close button + click handler
+                       // fallback: manually add close button + click handler
                         $markup.each(function () {
                             var $el = $(this);
-                            if ($el.hasClass('is-dismissible') && !$el.find('.notice-dismiss').length) {
-                                var $button = $('<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>');
+                            if ($el.hasClass('is-dismissible') && !$el.find('.bdt-biggopti-dismiss').length) {
+                                var $button = $('<button type="button" class="bdt-biggopti-dismiss dashicons dashicons-dismiss"><span class="screen-reader-text">Dismiss this biggopti.</span></button>');
                                 $el.append($button);
                                 $button.on('click', function () {
                                     $el.fadeTo(100, 0, function () {
@@ -175,11 +173,11 @@ jQuery(document).ready(function ($) {
                                 });
                             }
                         });
-                    }
+                    } 
 
 
                     // Initialize countdowns in injected content
-                    initAPINoticeCountdown();
+                    initAPIBiggoptiCountdown();
                 }
             })
             .fail(function () {
@@ -192,7 +190,7 @@ jQuery(document).ready(function ($) {
     });
 
     /* ===================================
-       END Admin Store API NOTICE
+       END Admin Store API BIGGOPTI
        =================================== */
 
 });
