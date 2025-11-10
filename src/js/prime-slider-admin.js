@@ -10,7 +10,7 @@ jQuery(document).ready(function ($) {
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'prime-slider-notices',
+                action: 'prime-slider-biggopties',
                 id: $id,
                 meta: $meta,
                 time: $time,

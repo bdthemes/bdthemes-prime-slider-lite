@@ -35,41 +35,41 @@
         });
     });
 
-    $(document).on('click', '.rc-global-notice .notice-dismiss', function () {
-        let rc_name = $(this).closest('.rc-global-notice').find("[name='rc_name']").val(),
-                nonce = $(this).closest('.rc-global-notice').find("[name='nonce']").val();
+    $(document).on('click', '.rc-global-biggopti .biggopti-dismiss', function () {
+        let rc_name = $(this).closest('.rc-global-biggopti').find("[name='rc_name']").val(),
+                nonce = $(this).closest('.rc-global-biggopti').find("[name='nonce']").val();
 
         $.ajax({
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'rc_sdk_dismiss_notice',
+                action: 'rc_sdk_dismiss_biggopti',
                 nonce: nonce,
                 rc_name: rc_name,
             },
         });
     });
 
-    // Show only the first RC notice
-    var $notices = $('.rc-global-notice');
-    if ($notices.length > 0) {
-        $notices.first().show();
+    // Show only the first RC biggopti
+    var $biggopties = $('.rc-global-biggopti');
+    if ($biggopties.length > 0) {
+        $biggopties.first().show();
     }
-    $(document).on('click', '.rc-global-notice .notice-dismiss', function() {
-        var $currentNotice = $(this).closest('.rc-global-notice');
-        var $nextNotice = $currentNotice.nextAll('.rc-global-notice:first');
+    $(document).on('click', '.rc-global-biggopti .biggopti-dismiss', function() {
+        var $currentBiggopti = $(this).closest('.rc-global-biggopti');
+        var $nextBiggopti = $currentBiggopti.nextAll('.rc-global-biggopti:first');
 
-        if ($nextNotice.length) {
-            $nextNotice.show();
+        if ($nextBiggopti.length) {
+            $nextBiggopti.show();
         }
     });
-    $('.rc-global-notice button').on('click', function() {
-        var $notice = $(this).closest('.rc-global-notice');
-        var $nextNotice = $notice.nextAll('.rc-global-notice:first');
+    $('.rc-global-biggopti button').on('click', function() {
+        var $biggopti = $(this).closest('.rc-global-biggopti');
+        var $nextBiggopti = $biggopti.nextAll('.rc-global-biggopti:first');
 
-        $notice.fadeOut(300, function() {
-            if ($nextNotice.length) {
-                $nextNotice.fadeIn();
+        $biggopti.fadeOut(300, function() {
+            if ($nextBiggopti.length) {
+                $nextBiggopti.fadeIn();
             }
         });
     });
