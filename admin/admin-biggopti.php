@@ -20,8 +20,8 @@ class Biggopties {
 
 	public function __construct() {
 
-		//add_action('admin_biggoptis', [$this, 'show_biggopties']);
-		add_action('wp_ajax_prime-slider-biggopties', [$this, 'dismiss']);
+		//add_action('admin_notices', [$this, 'show_biggopties']);
+		add_action('wp_ajax_prime_slider_biggopties', [$this, 'dismiss']);
 
 		// AJAX endpoint to fetch API biggopties on demand (after page load)
 		add_action('wp_ajax_ps_fetch_api_biggopties', [$this, 'ajax_fetch_api_biggopties']);
@@ -349,7 +349,7 @@ class Biggopties {
 	}
 
 	/**
-	 * Dismiss Notice.
+	 * Dismiss Biggopti.
 	 */
 	public function dismiss() {
 		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
@@ -383,7 +383,7 @@ class Biggopties {
 	}
 
 	/**
-	 * Notice Types
+	 * Biggopti Types
 	 */
 	public function show_biggopties() {
 
@@ -424,7 +424,7 @@ class Biggopties {
 				$biggopti['data'] = ' dismissible-time=' . esc_attr($biggopti['dismissible-time']) . ' ';
 			}
 
-			// Notice ID.
+			// Biggopti ID.
 			$biggopti_id    = 'bdt-admin-biggopti-' . $biggopti['id'];
 			$biggopti['id'] = $biggopti_id;
 			if (!isset($biggopti['id'])) {
@@ -463,8 +463,8 @@ class Biggopties {
 	}
 
 	/**
-	 * New Notice Layout
-	 * @param  array $biggopti Notice biggopti_layout.
+	 * New Biggopti Layout
+	 * @param  array $biggopti Biggopti biggopti_layout.
 	 * @return void
 	 * @since 6.11.3
 	 */

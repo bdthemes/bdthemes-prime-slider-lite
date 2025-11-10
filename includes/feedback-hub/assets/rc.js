@@ -4,14 +4,23 @@
     $(document).ready(function() {
         var $biggopties = $('.rc-global-biggopti');
         if ($biggopties.length > 0) {
-            // Try to find the wrap div (after h1)
-            var $wrap = $('.wrap');
-            if ($wrap.length > 0) {
-                var $h1 = $wrap.find('h1, h2').first();
-                if ($h1.length > 0) {
-                    // Move biggop$biggopties after the h1
-                    $biggopties.insertAfter($h1);
-                }
+
+            var $target = $('#wpbody-content .wrap').first();
+
+            if (!$target.length) {
+                $target = $('.wrap').first();
+            }
+            if (!$target.length) {
+                $target = $('#wpbody-content');
+            }
+            
+            // insert right after the <h1> if exists, otherwise at top
+            if ($target.children('hr.wp-header-end').length) {
+                $target.children('hr.wp-header-end').first().after($markup);
+            } else if ($target.children('h1').length) {
+                $target.children('h1').first().after($markup);
+            } else {
+                $target.prepend($markup);
             }
         }
     });

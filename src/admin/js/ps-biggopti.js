@@ -9,7 +9,7 @@ jQuery(document).ready(function ($) {
             url: (window.PrimeSliderBiggoptiConfig && PrimeSliderBiggoptiConfig.ajaxurl) ? PrimeSliderBiggoptiConfig.ajaxurl : (typeof ajaxurl !== 'undefined' ? ajaxurl : ''),
             type: 'POST',
             data: {
-                action: 'prime-slider-biggopties',
+                action: 'prime_slider_biggopties',
                 id: $id,
                 meta: $meta,
                 time: $time,
