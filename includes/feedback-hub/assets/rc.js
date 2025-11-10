@@ -1,16 +1,16 @@
 (function ($) {
     // console.log('rc.js loaded');
-    // Move notice below page title
+    // Move biggopti below page title
     $(document).ready(function() {
-        var $notices = $('.rc-global-biggopti');
-        if ($notices.length > 0) {
+        var $biggopties = $('.rc-global-biggopti');
+        if ($biggopties.length > 0) {
             // Try to find the wrap div (after h1)
             var $wrap = $('.wrap');
             if ($wrap.length > 0) {
                 var $h1 = $wrap.find('h1, h2').first();
                 if ($h1.length > 0) {
-                    // Move notices after the h1
-                    $notices.insertAfter($h1);
+                    // Move biggop$biggopties after the h1
+                    $biggopties.insertAfter($h1);
                 }
             }
         }
