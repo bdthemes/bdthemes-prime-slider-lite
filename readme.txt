@@ -258,9 +258,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.0.4 [11th November 2025] =
+= 4.0.4 [12th November 2025] =
 
-* Updated: System improved
+* Fixed: API Banner duplicate issue fixed
 
 = 4.0.3 [9th November 2025] =
 
