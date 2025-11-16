@@ -225,7 +225,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		 * Create backup of current version (ZIP-based)
 		 */
 		private function create_backup() {
-			$current_version = BDTPS_CORE_VER;
+			$current_version = BDTPS_PRO_VER;
 			$plugin_dir = WP_PLUGIN_DIR . '/' . $this->plugin_slug;
 			
 			// Check if backup already exists for this version
@@ -354,7 +354,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 				return;
 			}
 			
-			$current_version = BDTPS_CORE_VER;
+			$current_version = BDTPS_PRO_VER;
 			$available_versions = $this->get_available_rollback_versions();
 			?>
 			<div class="ps-dashboard-panel"
@@ -395,7 +395,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 											</div>
 											
 											<form id="ps-rollback-form" method="post">
-												<?php wp_nonce_field('ps-rollback-nonce', 'ep_rollback_nonce'); ?>
+												<?php wp_nonce_field('ps-rollback-nonce', 'ps_rollback_nonce'); ?>
 												<input type="hidden" id="ps-rollback-version" name="rollback_version" value="<?php echo esc_attr($previous_version['version']); ?>">
 												<div class="bdt-form-row">
 													<div class="bdt-width-1-1">
@@ -512,7 +512,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		private function get_available_rollback_versions() {
 			$backups = get_option('prime_slider_backups', array());
 			$available_versions = array();
-			$current_version = BDTPS_CORE_VER;
+			$current_version = BDTPS_PRO_VER;
 			
 			foreach ($backups as $version => $backup_info) {
 				// Skip current version - don't allow rollback to current version
