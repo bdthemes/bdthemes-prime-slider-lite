@@ -898,14 +898,16 @@ class PrimeSlider_Admin_Settings {
 		// 	[$this, 'plugin_page']
 		// );
 		
-		add_submenu_page(
-			self::PAGE_ID,
-			BDTPS_CORE_TITLE,
-			esc_html__('Rollback Version', 'bdthemes-prime-slider'),
-			'manage_options',
-			self::PAGE_ID . '#prime_slider_rollback_version',
-			[$this, 'plugin_page']
-		);
+		if (true == _is_ps_pro_activated()) {
+			add_submenu_page(
+				self::PAGE_ID,
+				BDTPS_CORE_TITLE,
+				esc_html__('Rollback Version', 'bdthemes-prime-slider'),
+				'manage_options',
+				self::PAGE_ID . '#prime_slider_rollback_version',
+				[$this, 'plugin_page']
+			);
+		}
 
 		if (true !== _is_ps_pro_activated()) {
 			add_submenu_page(
@@ -1475,9 +1477,11 @@ class PrimeSlider_Admin_Settings {
 							<?php //$this->prime_slider_affiliate_content(); ?>
 						</div> -->
 
-						<div id="prime_slider_rollback_version_page" class="ps-option-page group">
+						<?php if ( true == _is_ps_pro_activated() ) : ?>
+							<div id="prime_slider_rollback_version_page" class="ps-option-page group">
 							<?php $this->prime_slider_rollback_version_content(); ?>
 						</div>
+						<?php endif; ?>						
 
                         <?php if (_is_ps_pro_activated() !== true) : ?>
                             <div id="prime_slider_get_pro" class="ps-option-page group">

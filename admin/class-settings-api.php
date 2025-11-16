@@ -850,12 +850,15 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				// 	'title' => esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
 				// 	'icon' => 'dashicons dashicons-money-alt',
 				// ],
-				[
+			];
+
+			if (true == _is_ps_pro_activated()) {
+				$content_only_sections[] = [
 					'id' => 'prime_slider_rollback_version',
 					'title' => esc_html__('Rollback Version', 'bdthemes-prime-slider'),
 					'icon' => 'dashicons dashicons-update',
-				],
-			];
+				];
+			}
 			
 			// Check if each content section exists in settings sections, if not add it
 			foreach ($content_only_sections as $content_section) {
