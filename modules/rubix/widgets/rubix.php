@@ -82,15 +82,15 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[ 
-				'label'          => __( 'Columns', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'          => esc_html__( 'Columns', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 2,
 				'tablet_default' => 1,
 				'mobile_default' => 1,
 				'options'        => [ 
-					1 => '1',
-					2 => '2',
-					3 => '3',
+					1 => esc_html__( '1' , 'bdthemes-prime-slider' ),
+					2 => esc_html__( '2' , 'bdthemes-prime-slider' ),
+					3 => esc_html__( '3' , 'bdthemes-prime-slider' ),
 				],
 				'classes'    => BDTPS_CORE_IS_PC
 			]
@@ -211,7 +211,7 @@ class Rubix extends Widget_Base {
 		$this->start_controls_section(
 			'section_post_query_builder',
 			[ 
-				'label' => __( 'Query', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Query', 'bdthemes-prime-slider' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -255,7 +255,7 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'show_read_more',
 			[ 
-				'label'     => __( 'Show Read More', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Read More', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before'
@@ -281,7 +281,7 @@ class Rubix extends Widget_Base {
 		$this->start_controls_section(
 			'section_slider_settings',
 			[ 
-				'label' => __( 'Slider Settings', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Slider Settings', 'bdthemes-prime-slider' ),
 			]
 		);
 
@@ -312,8 +312,8 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'centered_slides',
 			[ 
-				'label'       => __( 'Center Slide', 'bdthemes-prime-slider' ),
-				'description' => __( 'Use even items from Layout > Columns settings for better preview.', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Center Slide', 'bdthemes-prime-slider' ),
+				'description' => esc_html__( 'Use even items from Layout > Columns settings for better preview.', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes'
 			]
@@ -352,7 +352,7 @@ class Rubix extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_layout',
 			[ 
-				'label' => __( 'Items', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Items', 'bdthemes-prime-slider' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -368,7 +368,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[ 
-				'label'      => __( 'Content Padding', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Content Padding', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -480,7 +480,7 @@ class Rubix extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[ 
 				'name'     => 'title_text_shadow',
-				'label'    => __( 'Text Shadow', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Text Shadow', 'bdthemes-prime-slider' ),
 				'selector' => '{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-title a',
 			]
 		);
@@ -513,7 +513,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'text_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Margin', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -622,7 +622,7 @@ class Rubix extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[ 
 				'name'     => 'date_icon_border',
-				'label'    => __( 'Border', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Border', 'bdthemes-prime-slider' ),
 				'selector' => '{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-meta .bdt-date-time i.ps-wi-calendar',
 			]
 		);
@@ -654,7 +654,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'date_icon_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Margin', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -746,7 +746,7 @@ class Rubix extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[ 
 				'name'     => 'category_border',
-				'label'    => __( 'Border', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Border', 'bdthemes-prime-slider' ),
 				'selector' => '{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-category a',
 			]
 		);
@@ -861,8 +861,11 @@ class Rubix extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_read_more',
 			[ 
-				'label' => __( 'Read More', 'bdthemes-prime-slider' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label' 	=> esc_html__( 'Read More', 'bdthemes-prime-slider' ),
+				'tab'   	=> Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_read_more' => 'yes',
+				]
 			]
 		);
 
@@ -871,14 +874,14 @@ class Rubix extends Widget_Base {
 		$this->start_controls_tab(
 			'tabs_nav_read_more_normal',
 			[ 
-				'label' => __( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider' ),
 			]
 		);
 
 		$this->add_control(
 			'read_more_color',
 			[ 
-				'label'     => __( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Text Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-read-more a' => 'color: {{VALUE}}',
@@ -889,7 +892,7 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'icon_color',
 			[ 
-				'label'     => __( 'Icon Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-read-more a i' => 'color: {{VALUE}}',
@@ -928,7 +931,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'read_more_icon_padding',
 			[ 
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Padding', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -951,7 +954,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'read_more_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Margin', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -983,14 +986,14 @@ class Rubix extends Widget_Base {
 		$this->start_controls_tab(
 			'tabs_read_more_hover',
 			[ 
-				'label' => __( 'Hover', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider' ),
 			]
 		);
 
 		$this->add_control(
 			'read_more_hover_color',
 			[ 
-				'label'     => __( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Text Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-read-more a:hover' => 'color: {{VALUE}}',
@@ -1001,7 +1004,7 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'read_more_icon_hover_color',
 			[ 
-				'label'     => __( 'Icon Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-read-more a:hover i' => 'color: {{VALUE}}',
