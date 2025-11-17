@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.0.X [XXth November 2025] =
+
+* Fixed: Applied the correct condition for displaying the “Read More” style tab in the rubix widget
+
 = 4.0.5 [13th November 2025] =
 
 * Updated: Notice design improved
