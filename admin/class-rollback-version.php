@@ -9,12 +9,14 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		private $plugin_slug = 'bdthemes-prime-slider';
 		private $backup_dir;
 		private $htaccess_content = "Order deny,allow\nDeny from all";
+		private $pro_version;
 
 		/**
 		 * Constructor
 		 */
 		public function __construct() {
 			$this->backup_dir = wp_upload_dir()['basedir'] . '/bdthemes-prime-slider-backups/';
+			$this->pro_version = defined('BDTPS_PRO_VER') ? BDTPS_PRO_VER : '0.0.0';
 			
 			// Add AJAX handlers for rollback functionality
 			add_action('wp_ajax_ps_rollback_version', array($this, 'handle_rollback_version'));
@@ -225,7 +227,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		 * Create backup of current version (ZIP-based)
 		 */
 		private function create_backup() {
-			$current_version = BDTPS_PRO_VER;
+			$current_version = $this->pro_version;
 			$plugin_dir = WP_PLUGIN_DIR . '/' . $this->plugin_slug;
 			
 			// Check if backup already exists for this version
@@ -354,7 +356,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 				return;
 			}
 			
-			$current_version = BDTPS_PRO_VER;
+			$current_version = $this->pro_version;
 			$available_versions = $this->get_available_rollback_versions();
 			?>
 			<div class="ps-dashboard-panel"
@@ -512,7 +514,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		private function get_available_rollback_versions() {
 			$backups = get_option('prime_slider_backups', array());
 			$available_versions = array();
-			$current_version = BDTPS_PRO_VER;
+			$current_version = $this->pro_version;
 			
 			foreach ($backups as $version => $backup_info) {
 				// Skip current version - don't allow rollback to current version
