@@ -41,13 +41,12 @@ class Biggopties {
 		}
 
 		// API endpoint for biggopties - you can change this to your actual endpoint
-		$api_url = 'https://store.bdthemes.com/api/notices/api-data-records';
+		$api_url = 'https://api.sigmative.io/prod/store/api/biggopti/api-data-records';
 
 		$response = wp_remote_get($api_url, [
 			'timeout' => 30,
 			'headers' => [
 				'Accept' => 'application/json',
-				'X-ALLOW-KEY'  => 'bdthemes',
 			],
 		]);
 
@@ -55,12 +54,11 @@ class Biggopties {
 			return [];
 		}
 
-		$response_code = wp_remote_retrieve_response_code($response);
 		$response_body = wp_remote_retrieve_body($response);
 		$biggopties = json_decode($response_body);
 		
-		if( isset($biggopties->api) && isset($biggopties->api->{'prime-slider'}) ) {
-			$data = $biggopties->api->{'prime-slider'};
+		if( isset($biggopties) && isset($biggopties->{'prime-slider'}) ) {
+			$data = $biggopties->{'prime-slider'};
 			if (is_array($data)) {
 				$ttl = apply_filters('bdt_api_biggopties_cache_ttl', 6 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, $ttl);
@@ -176,7 +174,7 @@ class Biggopties {
 					break;
 					
 				case 'free':
-					if ($is_lite_active && !$is_pro_active) {
+					if ($is_lite_active) {
 						return true;
 					}
 					break;
@@ -318,17 +316,17 @@ class Biggopties {
 		if (is_array($biggopties)) {
 			foreach ($biggopties as $index => $biggopti) {
 				if ($this->should_show_biggopti($biggopti)) {
-					$notice_class = isset($biggopti->notice_class) ? $biggopti->notice_class : 'default-' . $index;
-					if (!isset($grouped_biggopties[$notice_class])) {
-						$grouped_biggopties[$notice_class] = $biggopti;
+					$biggopti_class = isset($biggopti->biggopti_class) ? $biggopti->biggopti_class : 'default-' . $index;
+					if (!isset($grouped_biggopties[$biggopti_class])) {
+						$grouped_biggopties[$biggopti_class] = $biggopti;
 					}
 				}
 			}
 		}
 
 		// Build biggopties using the same pipeline as synchronous rendering
-		foreach ($grouped_biggopties as $notice_class => $biggopti) {
-			$biggopti_id = isset($biggopti->id) ? $notice_class : $biggopti->id;
+		foreach ($grouped_biggopties as $biggopti_class => $biggopti) {
+			$biggopti_id = isset($biggopti->id) ? $biggopti_class : $biggopti->id;
 
 			self::add_biggopti([
 				'id' => 'api-biggopti-' . $biggopti_id,
