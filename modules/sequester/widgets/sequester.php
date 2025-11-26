@@ -1296,6 +1296,8 @@ class Sequester extends Widget_Base {
 
 		$this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
 		$this->add_render_attribute('slider-button', 'data-reveal', 'reveal-active', true);
+		$this->add_render_attribute('slider-button', 'aria-label', $content['slide_button_text'] . ' Button', true);
+
 		if ($content['slide_button_text']) {
 			$this->add_link_attributes('slider-button', $content['button_link'], true);
 		}

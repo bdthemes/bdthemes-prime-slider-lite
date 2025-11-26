@@ -258,6 +258,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.0.X [XXth November 2025] =
+
+* Added: Added aria-label attribute to links for better accessibility
+
+* Fixed: Notice duplicate issue fixed
+
 = 4.0.7 [20th November 2025] =
 
 * Fixed: Notice duplicate issue fixed
