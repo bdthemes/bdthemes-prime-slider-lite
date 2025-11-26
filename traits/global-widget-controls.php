@@ -2289,6 +2289,7 @@ trait Global_Widget_Controls {
 
 			if ( isset( $link['social_icon_link']['url'] ) && ! empty( $link['social_icon_link']['url'] ) ) {
 				$this->add_link_attributes( $link_key, $link['social_icon_link'] );
+				$this->add_render_attribute( $link_key, 'aria-label', 'Social Link ' . $link['social_link_title'], true );
 			}
 
 			?>
