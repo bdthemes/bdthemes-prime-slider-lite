@@ -1819,35 +1819,7 @@ class Woocommerce extends Widget_Base {
 
 				<?php if ($settings['show_category']) : ?>
 					<div class="bdt-ps-category" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 50,0,-110; opacity: 1,1,0">
-						<?php
-						$category_list = wc_get_product_category_list( get_the_ID(), ' ' );
-
-						if ( ! empty( $category_list ) ) {
-
-							$category_list = preg_replace_callback(
-								'/<a\s+([^>]+)>(.*?)<\/a>/i',
-								function ( $matches ) {
-									$attrs = $matches[1];
-									$text  = trim( wp_strip_all_tags( $matches[2] ) );
-
-									// Skip if aria-label already exists
-									if ( stripos( $attrs, 'aria-label=' ) === false ) {
-										return sprintf(
-											'<a %s aria-label="%s">%s</a>',
-											$attrs,
-											esc_attr( sprintf( __( 'View products in %s category', 'bdthemes-prime-slider-lite' ), $text ) ),
-											esc_html( $text )
-										);
-									}
-
-									return $matches[0];
-								},
-								$category_list
-							);
-
-							echo wp_kses_post( $category_list );
-						}
-						?>
+						<?php echo wp_kses_post( wc_get_product_category_list( get_the_ID(), ' ' ) ); ?>
 					</div>
 				<?php endif; ?>
 
