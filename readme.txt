@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.0.X [XXth December 2025] =
+
+Improved: Added aria-label attribute to links for better accessibility
+
 = 4.0.8 [26th November 2025] =
 
 * Added: Added aria-label attribute to links for better accessibility
