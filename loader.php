@@ -3,9 +3,11 @@
 namespace PrimeSlider;
 
 use Elementor\Plugin;
+use PrimeSlider\Includes\PrimeSlider_WPML;
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
+}
 
 /**
  * Main class for element pack
@@ -110,6 +112,9 @@ class Prime_Slider_Loader {
 		//require_once BDTPS_CORE_PATH . 'traits/global-swiper-controls.php';
 		//require_once BDTPS_CORE_PATH . 'traits/global-mask-controls.php';
 
+		// wpml compatibility class for wpml support
+		require_once BDTPS_CORE_PATH . 'includes/class-elements-wpml-compatibility.php';
+
 		require BDTPS_CORE_PATH . 'includes/modules-manager.php';
 
 		if ( ! class_exists( 'BdThemes_Duplicator' ) ) {
@@ -124,6 +129,11 @@ class Prime_Slider_Loader {
 			}
 		}
 	}
+
+	// Load WPML compatibility instance
+    public function wpml_compatiblity() {
+        return PrimeSlider_WPML::get_instance();
+    }
 
 	/**
 	 * Autoloader function for all classes files
@@ -382,6 +392,8 @@ class Prime_Slider_Loader {
 		$this->_includes();
 		// Finally hooked up all things here
 		$this->setup_hooks();
+
+		$this->wpml_compatiblity()->init();
 
 		add_action( 'init', [ $this, 'init' ] );
 	}
