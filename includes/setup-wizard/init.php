@@ -36,7 +36,9 @@ class Setup_Wizard {
 
 	// Constructor
 	private function __construct() {
-		$this->init_hooks();
+		if ( current_user_can( 'manage_options' ) ) {
+			$this->init_hooks();
+		}
 	}
 
 	// Get instance

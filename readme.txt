@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.0.X [Xnd December 2025] =
+
+* Fixed: Security issue fixed
+
 = 4.0.9 [2nd December 2025] =
 
 * Updated: Made compatible with WordPress version 6.9
