@@ -5,11 +5,11 @@ Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9
 Requires PHP: 7.4.0
-Stable tag: 4.0.9
+Stable tag: 4.0.10
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 3.33.2
+Elementor tested up to: 3.33.4
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
