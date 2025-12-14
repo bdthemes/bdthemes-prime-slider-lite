@@ -404,12 +404,17 @@ Setup_Wizard::get_instance();
 
 use Elementor\TemplateLibrary\Source_Local;
 
-add_action('wp_ajax_import_elementor_template', function () {
+	add_action('wp_ajax_import_elementor_template', function () {
 		check_ajax_referer( 'setup_wizard_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+			wp_die();
+		}
 
 		$json_url = isset( $_POST['import_url'] ) ? esc_url_raw( wp_unslash( $_POST['import_url'] ) ) : '';
 
-        $response = wp_remote_get($json_url, array(
+        $response = wp_safe_remote_get($json_url, array(
             'timeout'   => 60,
             'sslverify' => false
         ));
@@ -496,6 +501,11 @@ add_action('wp_ajax_import_elementor_template', function () {
 
 add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+        wp_die();
+    }
 
     $file_url = isset($_POST['import_url']) ? esc_url_raw(wp_unslash($_POST['import_url'])) : '';
 
@@ -586,6 +596,11 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
 
 add_action('wp_ajax_import_ps_elementor_bundle_runner_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+        wp_die();
+    }
 
     $runner = isset($_POST['runner']) ? sanitize_text_field(wp_unslash($_POST['runner'])) : '';
     $sessionId = isset($_POST['sessionId']) ? sanitize_text_field(wp_unslash($_POST['sessionId'])) : '';
