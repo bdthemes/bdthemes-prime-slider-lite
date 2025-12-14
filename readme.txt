@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.0.XX [XXth December 2025] =
+
+* Fixed: Security issue fixed
+
 = 4.0.10 [11th December 2025] =
 
 * Fixed: Security issue fixed
