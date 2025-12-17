@@ -216,8 +216,6 @@ class Mount extends Widget_Base {
 
 		$this->end_controls_section();
 
-		
-
 		$this->start_controls_section(
 			'section_content_social_link',
 			[
@@ -225,6 +223,16 @@ class Mount extends Widget_Base {
 				'condition' => [
 					'show_social_share' => 'yes',
 				],
+			]
+		);
+
+		$this->add_control(
+			'follow_us_text',
+			[
+				'label' => esc_html__('Follow Us Text', 'bdthemes-prime-slider'),
+				'type'  => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
+				'default' => esc_html__('Follow Us', 'bdthemes-prime-slider'),
 			]
 		);
 
@@ -1015,7 +1023,9 @@ class Mount extends Widget_Base {
 
 			<div <?php $this->print_render_attribute_string('social-icon'); ?>>
 
-				<h3><?php echo esc_html__('Follow Us', 'bdthemes-prime-slider') ?></h3>
+				<h3>
+					<?php echo $settings['follow_us_text'] ? $settings['follow_us_text'] : esc_html__('Follow Us', 'bdthemes-prime-slider') ?>
+				</h3>
 
 				<?php $this->render_social_link_repeater(); ?>
 

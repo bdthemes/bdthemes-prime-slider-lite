@@ -56,7 +56,7 @@ class WPML_PrimeSlider_Mount extends WPML_Module_With_Items {
             case 'sub_title':
                 return 'LINE';
             case 'title_link':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }
@@ -110,7 +110,7 @@ class WPML_PrimeSlider_Mount_Social_Link extends WPML_Module_With_Items {
             case 'social_link_title':
                 return 'LINE';
             case 'social_icon_link':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }
