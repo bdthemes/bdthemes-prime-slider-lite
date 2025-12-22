@@ -261,7 +261,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'read_more_text',
 			[ 
-				'label'       => esc_html__( 'Readmore Text', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Read More Text', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
 				'label_block' => false,

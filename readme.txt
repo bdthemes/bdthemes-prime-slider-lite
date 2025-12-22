@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth December 2025] =
+
+* Added: New control to change the hard-coded “Follow Us” text in the general and mount widgets
+
 = 4.1.0 [14th December 2025] =
 
 * Added: WPML compatibility added

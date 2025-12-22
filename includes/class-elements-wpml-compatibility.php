@@ -44,6 +44,7 @@ class PrimeSlider_WPML {
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-isolate.php' );
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-mount.php' );
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-multiscroll.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-omatic.php' );
 
 	}
 
@@ -75,7 +76,18 @@ class PrimeSlider_WPML {
 				__NAMESPACE__ . '\\WPML_PrimeSlider_General',
 				__NAMESPACE__ . '\\WPML_PrimeSlider_General_Social_Link',
 			],
-			'fields'            => [],
+			'fields' => [
+				[
+					'field'       => 'general_follow_us_text',
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'scroll_button_text',
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
 		];
 
         $nodes_to_translate['prime-slider-isolate'] = [
@@ -88,22 +100,28 @@ class PrimeSlider_WPML {
 			],
 			'fields'            => [
 				[
-					'field' => 'scroll_button_text',
-					'type'  => 'LINE',
-					'label' => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'field' 	  => 'scroll_button_text',
+					'type'  	  => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
 				],
 			],
 		];
 
         $nodes_to_translate['prime-slider-mount'] = [
-			'conditions'        => [
+			'conditions' 		=> [
 				'widgetType' => 'prime-slider-mount',
 			],
 			'integration-class' => [
 				__NAMESPACE__ . '\\WPML_PrimeSlider_Mount',
 				__NAMESPACE__ . '\\WPML_PrimeSlider_Mount_Social_Link',
 			],
-			'fields'            => [],
+			'fields'            => [
+				[
+					'field'       => 'follow_us_text',
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
 		];
 
         $nodes_to_translate['prime-slider-multiscroll'] = [
@@ -112,6 +130,27 @@ class PrimeSlider_WPML {
 			],
 			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Multiscroll',
 			'fields'            => [],
+		];
+
+        $nodes_to_translate['prime-slider-omatic'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-omatic',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Omatic',
+			'fields'            => [],
+		];
+
+        $nodes_to_translate['prime-slider-pacific'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-pacific',
+			],
+			'fields'            => [
+				[
+					'field'       => 'read_more_text',
+					'type'        => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			]
 		];
 
 		return $nodes_to_translate;
