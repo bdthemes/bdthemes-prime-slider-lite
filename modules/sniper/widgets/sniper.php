@@ -99,24 +99,29 @@ class Sniper extends Widget_Base {
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'title' => esc_html__('Sniper Slide 1', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
+						'sub_title' => esc_html__('Sub Title 1', 'bdthemes-prime-slider'),
+						'title' 	=> esc_html__('Sniper Slide 1', 'bdthemes-prime-slider'),
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
-						'title' => esc_html__('Sniper Slide 2', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-2.svg']
+						'sub_title' => esc_html__('Sub Title 2', 'bdthemes-prime-slider'),
+						'title' 	=> esc_html__('Sniper Slide 2', 'bdthemes-prime-slider'),
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-2.svg']
 					],
 					[
-						'title' => esc_html__('Sniper Slide 3', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-3.svg']
+						'sub_title' => esc_html__('Sub Title 3', 'bdthemes-prime-slider'),
+						'title' 	=> esc_html__('Sniper Slide 3', 'bdthemes-prime-slider'),
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-3.svg']
 					],
 					[
-						'title' => esc_html__('Sniper Slide 4', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
+						'sub_title' => esc_html__('Sub Title 4', 'bdthemes-prime-slider'),
+						'title' 	=> esc_html__('Sniper Slide 4', 'bdthemes-prime-slider'),
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
-					[
-						'title' => esc_html__('Sniper Slide 5', 'bdthemes-prime-slider'),
-						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
+					[	
+						'sub_title' => esc_html__('Sub Title 5', 'bdthemes-prime-slider'),
+						'title' 	=> esc_html__('Sniper Slide 5', 'bdthemes-prime-slider'),
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 				],
 				'title_field' => '{{{ title }}}',

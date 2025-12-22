@@ -558,6 +558,19 @@ trait Global_Widget_Controls {
 			]
 		);
 
+		$this->add_control(
+			'follow_us_text',
+			[ 
+				'label'   	=> esc_html__( 'Follow Us Text', 'bdthemes-prime-slider' ),
+				'type'    	=> Controls_Manager::TEXT,
+				'dynamic' 	=> [ 'active' => true ],
+				'default' 	=> esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+				'condition' => [ 
+					'_skin' 	=> 'folio',
+				],
+			]
+		);
+
 		$repeater = new Repeater();
 
 		$repeater->add_control(

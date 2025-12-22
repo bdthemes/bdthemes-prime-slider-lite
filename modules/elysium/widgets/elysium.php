@@ -286,6 +286,38 @@ class Elysium extends Widget_Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_advanced_settings',
+			[
+				'label' 	=> __( 'Navigation', 'bdthemes-prime-slider' ),
+				'tab'   	=> Controls_Manager::TAB_CONTENT,
+				'condition' => [
+					'show_navigation_arrows' => 'yes',
+				]
+			]
+		);
+
+		$this->add_control(
+			'navigation_previous_text',
+			[
+				'label'       => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => [ 'active' => true ],
+				'default'     => esc_html__( 'Previous Slide', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->add_control(
+			'navigation_next_text',
+			[
+				'label'        => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+				'type'         => Controls_Manager::TEXT,
+				'dynamic'      => [ 'active' => true ],
+				'default'      => esc_html__( 'Next Slide', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->end_controls_section();
 
 		/**
 		 * Reveal Effects
@@ -823,7 +855,13 @@ class Elysium extends Widget_Base {
 				<div class="bdt-navigation-wrap">
 					<div class="bdt-button-next bdt-navigation-btn">
 						<div class="bdt-link bdt-link--arrowed">
-							<span><?php echo esc_html_x('next slide', 'Frontend', 'bdthemes-prime-slider'); ?></span>
+							<span>
+								<?php
+								echo ! empty( $settings['navigation_next_text'] )
+									? esc_html( $settings['navigation_next_text'] )
+									: esc_html__( 'Next Slide', 'bdthemes-prime-slider' );
+								?>
+							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
 								<g fill="none" stroke="#ff215a" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
 								<circle class="bdt-arrow-icon--circle" cx="16" cy="16" r="15.12"></circle>
@@ -834,7 +872,13 @@ class Elysium extends Widget_Base {
 					</div>
 					<div class=" bdt-button-prev bdt-navigation-btn">
 						<div class="bdt-link bdt-link--arrowed">
-							<span><?php echo esc_html_x('prev slide', 'Frontend', 'bdthemes-prime-slider'); ?></span>
+							<span>
+								<?php
+								echo ! empty( $settings['navigation_previous_text'] )
+									? esc_html( $settings['navigation_previous_text'] )
+									: esc_html__( 'Previous Slide', 'bdthemes-prime-slider' );
+								?>
+							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
 								<g fill="none" stroke="#ff215a" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
 								<circle class="bdt-arrow-icon--circle" cx="16" cy="16" r="15.12"></circle>

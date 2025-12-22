@@ -261,6 +261,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth December 2025] =
 
 * Added: New control to change the hard-coded “Follow Us” text in the general and mount widgets
+* Added: New control to change the hard-coded “Previous Slide and Next Slide” text in the elysium widget
+* Added: New control to change the hard-coded “Previous Slide and Next Slide” text in the elysium widget
+* Added: New control to change the hard-coded “Follow Us” text in the blog widget for folio skin
+* Added: WPML compatiblity added
 
 = 4.1.0 [14th December 2025] =
 
