@@ -1,6 +1,8 @@
 <?php
 
-namespace PrimeSlider\Includes {
+namespace PrimeSlider\Includes;
+
+defined('ABSPATH') || die();
 
 use WPML_PB_String;
 use IWPML_Page_Builders_Module;
@@ -41,9 +43,8 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 	 * @return WPML_PB_String[]
 	 */
 	public function get( $node_id, $element, $strings ) {
-		
 		foreach ( $this->get_items( $element ) as $item ) {
-			foreach( $this->get_fields() as $key => $field ) {
+			foreach ( $this->get_fields() as $key => $field ) {
 				if ( ! is_array( $field ) ) {
 
 					if ( ! isset( $item[ $field ] ) ) {
@@ -87,41 +88,77 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 		// Defensive handling: ensure settings and items exist
 		$settings_key = WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD;
 		$items_field = $this->get_items_field();
-		if ( ! isset( $element[ $settings_key ] ) || ! isset( $element[ $settings_key ][ $items_field ] ) || ! is_array( $element[ $settings_key ][ $items_field ] ) ) {
+		if (
+			! isset( $element[ $settings_key ] )
+			|| ! isset( $element[ $settings_key ][ $items_field ] )
+			|| ! is_array( $element[ $settings_key ][ $items_field ] )
+		) {
 			return null;
 		}
 
 		// Iterate by reference so we can write back into the element when matched
 		foreach ( $element[ $settings_key ][ $items_field ] as $key => &$item ) {
 			foreach ( $this->get_fields() as $field_key => $field ) {
+
 				if ( ! is_array( $field ) ) {
+
 					if ( ! isset( $item[ $field ] ) ) {
 						continue;
 					}
 
-					if ( $this->get_string_name( $node_id, $item[ $field ], $field, isset( $element['widgetType'] ) ? $element['widgetType'] : '', isset( $item['_id'] ) ? $item['_id'] : '' ) === $string->get_name() ) {
+					if (
+						$this->get_string_name(
+							$node_id,
+							$item[ $field ],
+							$field,
+							isset( $element['widgetType'] ) ? $element['widgetType'] : '',
+							isset( $item['_id'] ) ? $item['_id'] : ''
+						) === $string->get_name()
+					) {
 						$item[ $field ] = $string->get_value();
-						// Attach index so WPML core can re-insert the item into the element
+
+						// Attach index so WPML core can re-insert the item into the element.
 						$item['index'] = $key;
-						return $item;
+
+						// Return both index and item so WPML core can list() them safely.
+						return array( $key, $item );
 					}
+
 				} else {
+
 					foreach ( $field as $inner_field ) {
-						if ( ! isset( $item[ $field_key ] ) || ! isset( $item[ $field_key ][ $inner_field ] ) ) {
+
+						if (
+							! isset( $item[ $field_key ] )
+							|| ! isset( $item[ $field_key ][ $inner_field ] )
+						) {
 							continue;
 						}
 
-						if ( $this->get_string_name( $node_id, $item[ $field_key ][ $inner_field ], $field_key . '_' . $inner_field, isset( $element['widgetType'] ) ? $element['widgetType'] : '', isset( $item['_id'] ) ? $item['_id'] : '' ) === $string->get_name() ) {
+						if (
+							$this->get_string_name(
+								$node_id,
+								$item[ $field_key ][ $inner_field ],
+								$field_key . '_' . $inner_field,
+								isset( $element['widgetType'] ) ? $element['widgetType'] : '',
+								isset( $item['_id'] ) ? $item['_id'] : ''
+							) === $string->get_name()
+						) {
 							$item[ $field_key ][ $inner_field ] = $string->get_value();
-							// Attach index so WPML core can re-insert the item into the element
+
+							// Attach index so WPML core can re-insert the item into the element.
 							$item['index'] = $key;
-							return $item;
+
+							// Return both index and item so WPML core can list() them safely.
+							return array( $key, $item );
 						}
 					}
 				}
 			}
 		}
-		return null;
+		// Always return an array with two elements so callers using list($key, $item)
+		// won't trigger "Undefined array key" warnings when the result is empty.
+		return array(null, null);
 	}
 
 	/**
@@ -133,7 +170,7 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 	 *
 	 * @return string
 	 */
-	private function get_string_name( $node_id, $value, $type, $key = '', $item_id = '' ) {
+	private function get_string_name($node_id, $value, $type, $key = '', $item_id = '') {
 		return $key . '-' . $type . '-' . $node_id . '-' . $item_id;
 	}
 
@@ -142,9 +179,7 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 	 *
 	 * @return mixed
 	 */
-	public function get_items( $element ) {
-		return $element[ WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD ][ $this->get_items_field() ];
+	public function get_items($element) {
+		return $element[WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD][$this->get_items_field()];
 	}
-
-}
 }

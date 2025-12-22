@@ -6,10 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WPML_PrimeSlider_Multiscroll
- * Handles translation of repeater 'slides' in the Multiscroll widget
+ * Class WPML_PrimeSlider_Elysium
+ * Handles translation of repeater 'slides' in the Elysium widget
  */
-class WPML_PrimeSlider_Multiscroll extends WPML_Module_With_Items {
+class WPML_PrimeSlider_Elysium extends WPML_Module_With_Items {
 
     /**
      * @return string
@@ -23,12 +23,9 @@ class WPML_PrimeSlider_Multiscroll extends WPML_Module_With_Items {
      */
     public function get_fields() {
         return array(
-            'sub_title',
             'title',
             'title_link' => ['url'],
-            'description',
-            'slide_button',
-            'button_link' => ['url'],
+            'text',
         );
     }
 
@@ -38,18 +35,12 @@ class WPML_PrimeSlider_Multiscroll extends WPML_Module_With_Items {
      */
     protected function get_title( $field ) {
         switch ( $field ) {
-            case 'sub_title':
-                return esc_html__( 'Sub Title', 'bdthemes-prime-slider' );
             case 'title':
                 return esc_html__( 'Title', 'bdthemes-prime-slider' );
             case 'title_link':
                 return esc_html__( 'Title Link', 'bdthemes-prime-slider' );
-            case 'description':
-                return esc_html__( 'Description', 'bdthemes-prime-slider' );
-            case 'slide_button':
-                return esc_html__( 'Button Text', 'bdthemes-prime-slider' );
-            case 'button_link':
-                return esc_html__( 'Button Link', 'bdthemes-prime-slider' );
+            case 'text':
+                return esc_html__( 'Text', 'bdthemes-prime-slider' );
             default:
                 return '';
         }
@@ -61,18 +52,14 @@ class WPML_PrimeSlider_Multiscroll extends WPML_Module_With_Items {
      */
     protected function get_editor_type( $field ) {
         switch ( $field ) {
-            case 'description':
-                return 'AREA';
-            case 'sub_title':
             case 'title':
-            case 'slide_button':
                 return 'LINE';
             case 'title_link':
-            case 'button_link':
                 return 'LINK';
+            case 'text':
+                return 'VISUAL';
             default:
                 return 'LINE';
         }
     }
-
 }
