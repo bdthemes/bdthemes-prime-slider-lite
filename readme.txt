@@ -260,7 +260,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 = 4.1.0 [14th December 2025] =
 
-* Added: WPML compatiblity added
+* Added: WPML compatibility added
 * Fixed: Security issue fixed
 
 = 4.0.10 [11th December 2025] =

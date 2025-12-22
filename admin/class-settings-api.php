@@ -784,7 +784,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$all_sections = $this->get_all_sections();
 
 			foreach ($all_sections as $tab) {
-				$icon = isset($tab['icon']) ? $tab['icon'] : 'dashicons dashicons-admin-generic';
+				$icon = isset($tab['icon']) ? $tab['icon'] : 'dashicons dashicons-screenoptions';
 				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="%4$s"></i>%3$s</a></li>', $tab['id'], $count++, $tab['title'], $icon);
 			}
 
