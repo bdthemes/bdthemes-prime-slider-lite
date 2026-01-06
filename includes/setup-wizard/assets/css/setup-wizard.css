@@ -1249,39 +1249,39 @@
 }
 
 /* Rating Section Styles */
-.rating-section {
+.bdt-setup-wizard .rating-section {
   display: flex;
   align-items: center;
   gap: 8px;
   /* margin: 8px 0; */
 }
 
-.rating-label {
+.bdt-setup-wizard .rating-label {
   font-weight: 600;
   color: var(--ps-text-dark);
   font-size: 14px;
 }
 
-.wporg-ratings {
+.bdt-setup-wizard .wporg-ratings {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.wporg-ratings .dashicons {
+.bdt-setup-wizard .wporg-ratings .dashicons {
   font-size: 16px;
   width: 16px;
   height: 16px;
 }
 
-.rating-text {
+.bdt-setup-wizard .rating-text {
   font-size: 13px;
   color: var(--ps-text-light);
   margin-left: 4px;
 }
 
 /* Default Plugin Icon */
-.default-plugin-icon {
+.bdt-setup-wizard .default-plugin-icon {
   width: 40px;
   height: 40px;
   background: var(--ps-gray-light);
@@ -1303,16 +1303,16 @@
 
 /* Responsive Design for Rating */
 @media (max-width: 768px) {
-  .rating-section {
+  .bdt-setup-wizard .rating-section {
     flex-wrap: wrap;
     gap: 4px;
   }
   
-  .rating-text {
+  .bdt-setup-wizard .rating-text {
     font-size: 12px;
   }
   
-  .wporg-ratings .dashicons {
+  .bdt-setup-wizard .wporg-ratings .dashicons {
     font-size: 14px;
     width: 14px;
     height: 14px;
@@ -1320,48 +1320,48 @@
 }
 
 /* Additional Plugin Data Styles */
-.installs-count {
+.bdt-setup-wizard .installs-count {
   font-size: 12px;
   color: var(--ps-text-light);
   font-weight: normal;
 }
 
-.rating-count {
+.bdt-setup-wizard .rating-count {
   font-size: 12px;
   color: var(--ps-text-light);
   font-weight: normal;
 }
 
-.downloads, .last-updated {
+.bdt-setup-wizard .downloads, .bdt-setup-wizard .last-updated {
   display: block;
   font-size: 13px;
   color: var(--ps-text-light);
   margin: 4px 0;
 }
 
-.downloads {
+.bdt-setup-wizard .downloads {
   color: var(--ps-success);
   font-weight: 500;
 }
 
-.last-updated {
+.bdt-setup-wizard .last-updated {
   font-style: italic;
 }
 
 /* Plugin Data Grid */
-.plugin-item {
+.bdt-setup-wizard .plugin-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.plugin-item .plugin-text {
+.bdt-setup-wizard .plugin-item .plugin-text {
   margin: 8px 0;
 }
 
-.plugin-item .active-installs,
-.plugin-item .downloads,
-.plugin-item .last-updated {
+.bdt-setup-wizard .plugin-item .active-installs,
+.bdt-setup-wizard .plugin-item .downloads,
+.bdt-setup-wizard .plugin-item .last-updated {
   margin: 2px 0;
 }
 
