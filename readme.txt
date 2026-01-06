@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XX January 2026] =
+
+* Fixed: Css conflict issue fixed ( Thanks to Pixelwars )
+
 = 4.1.2 [30th December 2025] =
 
 * Fixed: Translation issue fixed in rubix widget ( Thanks to itapress )
