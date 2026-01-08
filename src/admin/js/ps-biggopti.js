@@ -110,7 +110,8 @@ jQuery(document).ready(function ($) {
                 dataType: 'json',
                 data: {
                     action: 'ps_fetch_api_biggopties',
-                    _wpnonce: PrimeSliderBiggoptiConfig.nonce
+                    _wpnonce: PrimeSliderBiggoptiConfig.nonce,
+                    current_url: window.location.href
                 }
             })
             .done(function (res) {
