@@ -258,6 +258,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth January 2026] =
+
+* Updated: Plugin cache manager optimized by removing unused admin interface components ( Thanks to Hasibul Islam )
+
 = 4.1.3 [12th January 2026] =
 
 * Fixed: Css conflict issue fixed ( Thanks to Pixelwars )
