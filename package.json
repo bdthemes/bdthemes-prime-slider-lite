@@ -1,6 +1,6 @@
 {
 	"name": "bdthemes-prime-slider",
-	"version": "4.1.1",
+	"version": "4.1.3",
 	"main": "index.php",
 	"scripts": {
 		"build": "npm run && npm run clean && cross-env NODE_ENV=production grunt",
