@@ -69,7 +69,7 @@ class WPML_PrimeSlider_Dragon extends WPML_Module_With_Items {
                 return 'LINE';
             case 'button_link':
             case 'title_link':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }

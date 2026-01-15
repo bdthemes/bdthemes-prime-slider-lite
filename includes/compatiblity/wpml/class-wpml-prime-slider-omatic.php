@@ -61,7 +61,7 @@ class WPML_PrimeSlider_Omatic extends WPML_Module_With_Items {
             case 'title':
                 return 'LINE';
             case 'title_link':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }

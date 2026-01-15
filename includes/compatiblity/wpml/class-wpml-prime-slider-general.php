@@ -26,9 +26,9 @@ class WPML_PrimeSlider_General extends WPML_Module_With_Items {
             'sub_title',
             'title',
             'slide_button_text',
+            'video_link',
+            'youtube_link',
             'button_link' => ['url'],
-            'video_link' => ['url'],
-            'youtube_link' => ['url'],
             'title_link' => ['url'],
             'excerpt',
         );
@@ -72,12 +72,12 @@ class WPML_PrimeSlider_General extends WPML_Module_With_Items {
             case 'sub_title':
             case 'title':
             case 'slide_button_text':
-                return 'LINE';
-            case 'button_link':
             case 'video_link':
             case 'youtube_link':
+                return 'LINE';
+            case 'button_link':
             case 'title_link':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }
