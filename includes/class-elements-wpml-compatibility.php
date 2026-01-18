@@ -443,7 +443,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field' 	  => 'scroll_button_text',
-					'type'  	  => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'  	  => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
 					'editor_type' => 'LINE',
 				],
 			],
