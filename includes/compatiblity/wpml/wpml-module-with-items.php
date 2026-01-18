@@ -180,6 +180,24 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 	 * @return mixed
 	 */
 	public function get_items($element) {
+		
+		$items_field = $this->get_items_field();
+
+		if ( is_array( $items_field ) ) {
+			$items = [];
+
+			foreach ( $items_field as $field ) {
+				if ( isset( $element[ WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD ][ $field ] ) ) {
+					$items = array_merge(
+						$items,
+						$element[ WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD ][ $field ]
+					);
+				}
+			}
+
+			return $items;
+		}
+
 		return $element[WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD][$this->get_items_field()];
 	}
 }
