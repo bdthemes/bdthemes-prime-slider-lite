@@ -36,7 +36,7 @@ class PrimeSlider_Others_Plugin_Manager {
         require_once BDTPS_CORE_INC_PATH . 'setup-wizard/class-plugin-integration-helper.php';
         require_once BDTPS_CORE_INC_PATH . 'setup-wizard/class-remote-data-handler.php';
         
-        // Define plugin slugs for reference
+        // Define plugin slugs for reference (data has all; Prime Slider is skipped only when printing)
         $plugin_slugs = array(
             'bdthemes-prime-slider-lite/bdthemes-prime-slider.php',
             'ultimate-post-kit',
@@ -247,6 +247,8 @@ class PrimeSlider_Others_Plugin_Manager {
                     html = '<div class="bdt-text-center bdt-padding-large"><p><?php esc_html_e('No plugins available.', 'bdthemes-prime-slider-lite'); ?></p></div>';
                 } else {
                     plugins.forEach(function(plugin) {
+                        // Skip own plugin (Prime Slider) when printing only; data still includes it for other plugins
+                        if (plugin.slug === 'bdthemes-prime-slider-lite') return;
                         var isActive = false; // We'll determine this via PHP in the actual implementation
                         var logoUrl = plugin.logo || '';
                         var pluginName = plugin.name || '';
@@ -485,7 +487,7 @@ class PrimeSlider_Others_Plugin_Manager {
             wp_die(__('Security check failed.', 'bdthemes-prime-slider-lite'));
         }
 
-        // Get cached data
+        // Get cached data (includes all plugins; Prime Slider is skipped only when printing)
         $plugins_data = \PrimeSlider\SetupWizard\Remote_Data_Handler::get_remote_plugins();
         
         // If cache is empty, try to fetch immediately (but don't block)

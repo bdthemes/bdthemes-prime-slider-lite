@@ -109,7 +109,7 @@ class Remote_Data_Handler {
      * @return array|false Plugins data or false on failure
      */
     public static function fetch_remote_plugins_now() {
-        // Define plugin slugs to fetch
+        // Define plugin slugs to fetch (data includes all; Prime Slider is skipped only when printing)
         $plugin_slugs = [
             'bdthemes-element-pack-lite',
             'bdthemes-prime-slider-lite',

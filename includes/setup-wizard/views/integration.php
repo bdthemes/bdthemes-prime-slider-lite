@@ -80,7 +80,7 @@ if (!function_exists('get_plugin_fallback_urls_ps')) {
     }
 }
 
-// Define plugin slugs
+// Define plugin slugs for reference (data has all; Prime Slider is skipped only when printing)
 $plugin_slugs = array(
     'bdthemes-prime-slider-lite/bdthemes-prime-slider.php',
     'ultimate-post-kit',
@@ -144,6 +144,10 @@ if (!$has_cached_data) {
                 <?php
                 $predefined = \PrimeSlider\SetupWizard\Plugin_Integration_Helper::get_predefined_plugins();
                 foreach ($ps_plugins as $slug_key => $plugin) :
+                    // Skip own plugin (Prime Slider)
+                    if ($slug_key === 'bdthemes-prime-slider-lite') {
+                        continue;
+                    }
                     // Use enhanced status if available, otherwise fall back to old method
                     $plugin_status = $plugin['status'] ?? 'unknown';
                     if ($plugin_status === 'unknown') {
@@ -369,6 +373,8 @@ jQuery(document).ready(function($) {
             html = '<div class="ps-no-plugins" style="text-align: center; padding: 40px;"><p>No plugins found.</p></div>';
         } else {
             plugins.forEach(function(plugin) {
+                // Skip own plugin (Prime Slider) when printing only; data still includes it for other plugins
+                if (plugin.slug === 'bdthemes-prime-slider-lite') return;
                 const isActive = plugin.status === 'active';
                 const isRecommended = plugin.recommended && !isActive;
                 
