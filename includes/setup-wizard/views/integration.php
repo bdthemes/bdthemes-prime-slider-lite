@@ -142,7 +142,8 @@ if (!$has_cached_data) {
         <div class="bdt-plugin-list" id="ps-integration-plugin-list">
             <?php if ($has_cached_data): ?>
                 <?php
-                foreach ($ps_plugins as $plugin) :
+                $predefined = \PrimeSlider\SetupWizard\Plugin_Integration_Helper::get_predefined_plugins();
+                foreach ($ps_plugins as $slug_key => $plugin) :
                     // Use enhanced status if available, otherwise fall back to old method
                     $plugin_status = $plugin['status'] ?? 'unknown';
                     if ($plugin_status === 'unknown') {
@@ -152,7 +153,8 @@ if (!$has_cached_data) {
                         // Use enhanced status
                         $is_active = ($plugin_status === 'active');
                     }
-                    $is_recommended = ($plugin['recommended'] ?? false) && !$is_active;
+                    $plugin_recommended = !empty($predefined[ $slug_key ]['recommended']);
+                    $is_recommended = $plugin_recommended && !$is_active;
                 ?>
                     <label class="plugin-item" data-slug="<?php echo esc_attr($plugin['slug']); ?>">
                         <span class="bdt-flex bdt-flex-middle bdt-flex-between bdt-margin-small-bottom">
@@ -189,7 +191,7 @@ if (!$has_cached_data) {
                              <?php
                              if (!$is_active) : ?>
                                  <label class="switch">
-                                     <input type="checkbox" class="plugin-slider-checkbox" <?php echo ($plugin['recommended'] ?? false) ? 'checked' : ''; ?>
+                                     <input type="checkbox" class="plugin-slider-checkbox" <?php echo $plugin_recommended ? 'checked' : ''; ?>
                                             name="plugins[]<?php echo isset($plugin['slug']) ? wp_kses_post($plugin['slug']) : ''; ?>">
                                      <span class="slider round"></span>
                                  </label>

@@ -174,6 +174,14 @@ class Remote_Data_Handler {
             }
         }
 
+        // Get recommended flags from Plugin_Integration_Helper
+        $predefined = [];
+        $helper_file = __DIR__ . '/class-plugin-integration-helper.php';
+        if (file_exists($helper_file)) {
+            require_once $helper_file;
+            $predefined = \PrimeSlider\SetupWizard\Plugin_Integration_Helper::get_predefined_plugins();
+        }
+
         // Format the response for frontend use
         $formatted_plugins = [];
         foreach ($plugins_data as $slug => $data) {
@@ -206,7 +214,8 @@ class Remote_Data_Handler {
                 'homepage' => $data['homepage'] ?? '',
                 'status' => $plugin_status,
                 'plugin_file' => $plugin_file,
-                'activate_nonce' => $plugin_file ? wp_create_nonce('activate-plugin_' . $plugin_file) : ''
+                'activate_nonce' => $plugin_file ? wp_create_nonce('activate-plugin_' . $plugin_file) : '',
+                'recommended' => !empty($predefined[$slug]['recommended'])
             ];
         }
 
