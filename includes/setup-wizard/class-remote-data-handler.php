@@ -111,6 +111,7 @@ class Remote_Data_Handler {
     public static function fetch_remote_plugins_now() {
         // Define plugin slugs to fetch
         $plugin_slugs = [
+            'bdthemes-element-pack-lite',
             'bdthemes-prime-slider-lite',
             'ultimate-post-kit', 
             'ultimate-store-kit',
@@ -234,21 +235,6 @@ class Remote_Data_Handler {
         if (!wp_next_scheduled(self::CRON_HOOK)) {
             // Don't schedule immediately, only when needed
         }
-    }
-
-    /**
-     * Clear the remote plugins cache
-     */
-    public static function clear_cache() {
-        delete_transient(self::CACHE_KEY);
-    }
-
-    /**
-     * Force refresh of remote data
-     */
-    public static function force_refresh() {
-        self::clear_cache();
-        return self::fetch_remote_plugins_now();
     }
 
     /**
