@@ -20,28 +20,28 @@ class Plugin_Integration_Helper {
      */
     public static function get_predefined_plugins() {
         return [
-            // 'bdthemes-prime-slider-lite' => [
-            //     'recommended' => true,
-            //     'fallback' => [
-            //         'name' => 'Prime Slider',
-            //         'description' => 'Create eye-catching sliders for your website quickly and easily with 55+ modern Elementor slider widgets.',
-            //         'logo' => 'https://ps.w.org/bdthemes-prime-slider-lite/assets/icon-256x256.gif',
-            //         'rating' => 4.7,
-            //         'num_ratings' => 500,
-            //         'active_installs' => '100,000+'
-            //     ]
-            // ],
-            'bdthemes-prime-slider-lite/bdthemes-prime-slider.php' => [
+            'bdthemes-element-pack-lite' => [
                 'recommended' => true,
                 'fallback' => [
-                    'name' => 'Prime Slider',
-                    'description' => 'Create eye-catching sliders for your website quickly and easily with 55+ modern Elementor slider widgets.',
-                    'logo' => 'https://ps.w.org/bdthemes-prime-slider-lite/assets/icon-256x256.png',
+                    'name' => 'Element Pack',
+                    'description' => 'Create eye-catching website quickly and easily with 355+ modern Elementor slider widgets.',
+                    'logo' => 'https://ps.w.org/bdthemes-element-pack-lite/assets/icon-256x256.gif',
                     'rating' => 4.7,
                     'num_ratings' => 500,
                     'active_installs' => '100,000+'
                 ]
             ],
+            // 'bdthemes-prime-slider-lite/bdthemes-prime-slider.php' => [
+            //     'recommended' => true,
+            //     'fallback' => [
+            //         'name' => 'Prime Slider',
+            //         'description' => 'Create eye-catching sliders for your website quickly and easily with 55+ modern Elementor slider widgets.',
+            //         'logo' => 'https://ps.w.org/bdthemes-prime-slider-lite/assets/icon-256x256.png',
+            //         'rating' => 4.7,
+            //         'num_ratings' => 500,
+            //         'active_installs' => '100,000+'
+            //     ]
+            // ],
             'ultimate-post-kit' => [
                 'recommended' => true,
                 'fallback' => [
