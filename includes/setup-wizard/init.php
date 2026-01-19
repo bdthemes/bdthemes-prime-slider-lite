@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Load the Remote Data Handler
+require_once __DIR__ . '/class-remote-data-handler.php';
+
 use PrimeSlider\Admin\ModuleService;
 use Elementor\Plugin;
 /**
@@ -14,10 +17,6 @@ use Elementor\Plugin;
  */
 
 require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
-// Include our plugin API fetcher and cache manager
-require_once __DIR__ . '/class-plugin-api-fetcher.php';
-require_once __DIR__ . '/class-plugin-cache-manager.php';
 
 class Quiet_Upgrader_Skin extends \WP_Upgrader_Skin {
 	/*
