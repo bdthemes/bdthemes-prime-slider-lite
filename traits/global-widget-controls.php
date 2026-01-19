@@ -2081,6 +2081,56 @@ trait Global_Widget_Controls {
 	}
 
 	/**
+	 * Button Previous & Next Text controls
+	 */
+	protected function register_previous_next_buttons_text_controls() {
+		$this->start_controls_tabs(
+			'tabs_previous_next_buttons',
+			[
+				'separator' => 'before',
+			]
+		);
+		
+		$this->start_controls_tab(
+			'tab_button_previous',
+			[
+				'label' => esc_html__( 'Previous', 'bdthemes-prime-slider' ),
+			]
+		);
+		
+		$this->add_control(
+			'button_previous_text',
+			[
+				'label'   => esc_html__( 'Text', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
+				'default' => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+			]
+		);
+		
+		$this->end_controls_tab();
+		
+		$this->start_controls_tab(
+			'tab_button_next',
+			[
+				'label' => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+			]
+		);
+		
+		$this->add_control(
+			'button_next_text',
+			[
+				'label'   => esc_html__( 'Text', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
+				'default' => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+			]
+		);
+		
+		$this->end_controls_tabs();
+	}
+
+	/**
 	 * Render part start from here
 	 */
 	/**
