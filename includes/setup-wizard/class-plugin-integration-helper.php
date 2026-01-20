@@ -24,22 +24,33 @@ class Plugin_Integration_Helper {
                 'recommended' => true,
                 'fallback' => [
                     'name' => 'Element Pack',
-                    'description' => 'Ultimate Elementor addon with 300+ widgets, templates, live copy paste, post grid, header footer, mega menu, dynamic builder, WooCommerce builder and more.',
+                    'description' => 'Create eye-catching website quickly and easily with 355+ modern Elementor slider widgets.',
                     'logo' => 'https://ps.w.org/bdthemes-element-pack-lite/assets/icon-256x256.gif',
-                    'rating' => 4.8,
-                    'num_ratings' => 1000,
+                    'rating' => 4.7,
+                    'num_ratings' => 500,
                     'active_installs' => '100,000+'
                 ]
             ],
+            // 'bdthemes-prime-slider-lite/bdthemes-prime-slider.php' => [
+            //     'recommended' => true,
+            //     'fallback' => [
+            //         'name' => 'Prime Slider',
+            //         'description' => 'Create eye-catching sliders for your website quickly and easily with 55+ modern Elementor slider widgets.',
+            //         'logo' => 'https://ps.w.org/bdthemes-prime-slider-lite/assets/icon-256x256.png',
+            //         'rating' => 4.7,
+            //         'num_ratings' => 500,
+            //         'active_installs' => '100,000+'
+            //     ]
+            // ],
             'ultimate-post-kit' => [
                 'recommended' => true,
                 'fallback' => [
                     'name' => 'Ultimate Post Kit',
-                    'description' => 'Create stunning post grids, carousels, sliders, and lists with ease using Ultimate Post Kit for Elementor.',
-                    'logo' => 'https://ps.w.org/ultimate-post-kit/assets/icon-256x256.gif',
-                    'rating' => 4.7,
-                    'num_ratings' => 500,
-                    'active_installs' => '30,000+'
+                    'description' => 'Design beautiful post layouts with simple, ready-made blocks.',
+                    'logo' => 'https://ps.w.org/ultimate-post-kit/assets/icon-256x256.png',
+                    'rating' => 4.8,
+                    'num_ratings' => 1000,
+                    'active_installs' => '50,000+'
                 ]
             ],
             'live-copy-paste' => [
@@ -58,12 +69,78 @@ class Plugin_Integration_Helper {
                 'fallback' => [
                     'name' => 'Ultimate Store Kit',
                     'description' => 'Improve your online store with tools to display products better.',
-                    'logo' => 'https://ps.w.org/ultimate-store-kit/assets/icon-256x256.gif',
+                    'logo' => 'https://ps.w.org/ultimate-store-kit/assets/icon-256x256.png',
                     'rating' => 4.6,
                     'num_ratings' => 300,
                     'active_installs' => '20,000+'
                 ]
-            ]
+            ],
+            // 'pixel-gallery' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'Pixel Gallery',
+            //         'description' => 'Show off your photos in a stylish, responsive gallery.',
+            //         'logo' => 'https://ps.w.org/pixel-gallery/assets/icon-256x256.gif',
+            //         'rating' => 4.5,
+            //         'num_ratings' => 150,
+            //         'active_installs' => '5,000+'
+            //     ]
+            // ],
+            // 'zoloblocks' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'ZoloBlocks',
+            //         'description' => 'Build amazing WordPress pages with helpful and flexible Gutenberg blocks.',
+            //         'logo' => 'https://ps.w.org/zoloblocks/assets/icon-256x256.gif',
+            //         'rating' => 4.3,
+            //         'num_ratings' => 100,
+            //         'active_installs' => '3,000+'
+            //     ]
+            // ],
+            // 'spin-wheel' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'Spin Wheel',
+            //         'description' => 'Add a fun, interactive spin wheel to offer instant coupons, boost engagement, and grow your email list.',
+            //         'logo' => 'https://ps.w.org/spin-wheel/assets/icon-256x256.gif',
+            //         'rating' => 4.2,
+            //         'num_ratings' => 50,
+            //         'active_installs' => '1,000+'
+            //     ]
+            // ],
+            // 'ai-image' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'Instant Image Generator',
+            //         'description' => 'Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI).',
+            //         'logo' => 'https://ps.w.org/ai-image/assets/icon-256x256.gif',
+            //         'rating' => 4.0,
+            //         'num_ratings' => 25,
+            //         'active_installs' => '500+'
+            //     ]
+            // ],
+            // 'dark-reader' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'Dark Reader',
+            //         'description' => 'Add beautiful dark mode to your WordPress site with customizable settings.',
+            //         'logo' => 'https://ps.w.org/dark-reader/assets/icon-256x256.gif',
+            //         'rating' => 4.1,
+            //         'num_ratings' => 30,
+            //         'active_installs' => '800+'
+            //     ]
+            // ],
+            // 'ar-viewer' => [
+            //     'recommended' => false,
+            //     'fallback' => [
+            //         'name' => 'AR Viewer',
+            //         'description' => 'Augmented Reality Viewer – 3D Model Viewer.',
+            //         'logo' => 'https://ps.w.org/ar-viewer/assets/icon-256x256.gif',
+            //         'rating' => 3.9,
+            //         'num_ratings' => 15,
+            //         'active_installs' => '200+'
+            //     ]
+            // ]
         ];
     }
 
@@ -75,16 +152,28 @@ class Plugin_Integration_Helper {
      */
     public static function build_plugin_data($plugin_slugs = []) {
         $predefined = self::get_predefined_plugins();
-        $fetched_data = Plugin_Api_Fetcher::get_multiple_plugins_data($plugin_slugs);
+        
+        // Use new non-blocking approach - get cached data only from Remote_Data_Handler
+        $fetched_data = [];
+        if (function_exists('ps_get_remote_plugins')) {
+            $fetched_data = ps_get_remote_plugins();
+        }
+        
         $plugins = [];
 
         foreach ($plugin_slugs as $slug) {
             $config = $predefined[$slug] ?? ['recommended' => false, 'fallback' => []];
-            $api_data = $fetched_data[$slug] ?? null;
-
+            
+            // Try to get data from remote cache first
+            $api_slug = (strpos($slug, '/') !== false) ? dirname($slug) : $slug;
+            $api_data = $fetched_data[$api_slug] ?? null;
 
             // Ensure api_data is a valid array with required fields
             if ($api_data && self::validate_plugin_data($api_data)) {
+                // Determine the correct plugin slug format
+                // If slug already contains .php, use it as-is, otherwise append default format
+                $plugin_slug = (strpos($slug, '.php') !== false) ? $slug : $slug . '/' . $slug . '.php';
+                
                 // Use API data with fallbacks and proper null checking
                 $plugins[] = [
                     'logo' => $api_data['logo'] ?? ($config['fallback']['logo'] ?? ''),
@@ -92,7 +181,7 @@ class Plugin_Integration_Helper {
                     'rating_percentage' => $api_data['rating_percentage'] ?? 0,
                     'num_ratings' => $api_data['num_ratings'] ?? 0,
                     'name' => $api_data['name'] ?? ($config['fallback']['name'] ?? $slug),
-                    'slug' => $slug . '/' . $slug . '.php',
+                    'slug' => $plugin_slug,
                     'description' => $api_data['description'] ?? ($config['fallback']['description'] ?? ''),
                     'active_installs' => $api_data['active_installs'] ?? ($config['fallback']['active_installs'] ?? '0'),
                     'active_installs_count' => $api_data['active_installs_count'] ?? 0,
@@ -105,6 +194,10 @@ class Plugin_Integration_Helper {
                     'homepage' => $api_data['homepage'] ?? ''
                 ];
             } else {
+                // Determine the correct plugin slug format
+                // If slug already contains .php, use it as-is, otherwise append default format
+                $plugin_slug = (strpos($slug, '.php') !== false) ? $slug : $slug . '/' . $slug . '.php';
+                
                 // Use fallback data with proper null checking
                 $fallback = $config['fallback'] ?? [];
                 $plugins[] = [
@@ -113,7 +206,7 @@ class Plugin_Integration_Helper {
                     'rating_percentage' => 0,
                     'num_ratings' => $fallback['num_ratings'] ?? 0,
                     'name' => $fallback['name'] ?? $slug,
-                    'slug' => $slug . '/' . $slug . '.php',
+                    'slug' => $plugin_slug,
                     'description' => $fallback['description'] ?? '',
                     'active_installs' => $fallback['active_installs'] ?? '0',
                     'active_installs_count' => 0,
@@ -223,5 +316,4 @@ class Plugin_Integration_Helper {
 
         return true;
     }
-
 }
