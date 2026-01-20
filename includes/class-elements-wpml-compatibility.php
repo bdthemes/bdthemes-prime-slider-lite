@@ -39,6 +39,27 @@ class PrimeSlider_WPML {
 
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/wpml-module-with-items.php' );
 		
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-astoria.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-avatar.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-coddle.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-crossroad.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-escape.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-flexure.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-fluent.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-fortune.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-knily.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-monster.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-motion.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-pandora.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-paranoia.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-pieces.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-prism.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-remote-pagination.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-reveal.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-titanic.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-turnar.php' );
+		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-woohotspot.php' );
+		
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-blog.php' );
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-dragon.php' );
 		require_once( BDTPS_CORE_PATH . 'includes/compatiblity/wpml/class-wpml-prime-slider-elysium.php' );
@@ -63,6 +84,277 @@ class PrimeSlider_WPML {
 	public function add_translatable_nodes( $nodes_to_translate ) {
 
 		$this->load_wpml_modules();
+
+		$nodes_to_translate['prime-slider-astoria'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-astoria',
+			],
+			'integration-class' => [
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Astoria',
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Astoria_Social_Link',
+			],
+			'fields'            => [
+				[
+					'field'       => 'scroll_button_text',
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-avatar'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-avatar',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Avatar',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-coddle'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-coddle',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Coddle',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-crossroad'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-crossroad',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Crossroad',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-escape'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-escape',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Escape',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-event-calendar'] = [
+			'conditions' => [
+				'widgetType' => 'prime-slider-event-calendar',
+			],
+			'fields'     => [
+				[
+					'field'       => 'label_days',
+					'type'        => esc_html__( 'Days', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'label_hours',
+					'type'        => esc_html__( 'Hours', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'label_minutes',
+					'type'        => esc_html__( 'Minutes', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'label_seconds',
+					'type'        => esc_html__( 'Seconds', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				'button_link' => [
+					'field'       => 'url',
+					'type'        => esc_html__( 'Button Link', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINK',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-flexure'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-flexure',
+			],
+			'integration-class' => [
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Flexure',
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Flexure_Social_Link',
+			],
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-fluent'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-fluent',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Fluent',
+			'fields'            => [
+				[
+					'field'       => 'scroll_button_text',
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-fortune'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-fortune',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Fortune',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-knily'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-knily',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Knily',
+			'fields'            => [
+				[
+					'field'       => 'button_text',
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-monster'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-monster',
+			],
+			'integration-class' => [
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Monster',
+				__NAMESPACE__ . '\\WPML_PrimeSlider_Monster_Social_Link',
+			],
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-motion'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-motion',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Motion',
+			'fields'            => [
+				[
+					'field'       => 'info_button_text',
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-pandora'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-pandora',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Pandora',
+			'fields'            => [
+				[
+					'field'       => 'follow_us_text',
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-paranoia'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-paranoia',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Paranoia',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-pieces'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-pieces',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Pieces',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-prism'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-prism',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Prism',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-remote-arrows'] = [
+			'conditions' => [
+				'widgetType' => 'prime-slider-remote-arrows',
+			],
+			'fields'     => [
+				[
+					'field'       => 'next_text',
+					'type'        => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'prev_text',
+					'type'        => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-remote-pagination'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-remote-pagination',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Remote_Pagination',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-reveal'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-reveal',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Reveal',
+			'fields'            => [
+				[
+					'field'       => 'head_static_content_title',
+					'type'        => esc_html__( 'Header Title', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+				[
+					'field'       => 'head_static_content_text',
+					'type'        => esc_html__( 'Header Description', 'bdthemes-prime-slider' ),
+					'editor_type' => 'VISUAL',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-titanic'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-titanic',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Titanic',
+			'fields'            => [],
+		];
+		
+		$nodes_to_translate['prime-slider-turnar'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-turnar',
+			],
+			'integration-class' => __NAMESPACE__ . '\\WPML_PrimeSlider_Turnar',
+			'fields'            => [
+				[
+					'field'       => 'turnar_button_text',
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'editor_type' => 'LINE',
+				],
+			],
+		];
+		
+		$nodes_to_translate['prime-slider-woohotspot'] = [
+			'conditions'        => [
+				'widgetType' => 'prime-slider-woohotspot',
+			],
+			'integration-class' => [
+				__NAMESPACE__ . '\\WPML_PrimeSlider_WooHotspot',
+				__NAMESPACE__ . '\\WPML_PrimeSlider_WooHotspot_Two',
+				__NAMESPACE__ . '\\WPML_PrimeSlider_WooHotspot_Three',
+			],
+			'fields'            => [],
+		];		
 
 		$nodes_to_translate['prime-slider-blog'] = [
 			'conditions'        => [
@@ -151,7 +443,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field' 	  => 'scroll_button_text',
-					'type'  	  => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'  	  => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
 					'editor_type' => 'LINE',
 				],
 			],

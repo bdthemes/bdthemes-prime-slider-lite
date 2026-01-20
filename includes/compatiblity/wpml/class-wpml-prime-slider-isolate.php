@@ -89,7 +89,7 @@ class WPML_PrimeSlider_Isolate extends WPML_Module_With_Items {
             case 'image_link_vimeo':
             case 'image_link_google_map':
             case 'image_link_website':
-                return 'URL';
+                return 'LINK';
             default:
                 return 'LINE';
         }
