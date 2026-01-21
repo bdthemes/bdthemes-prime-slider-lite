@@ -297,7 +297,7 @@ if (!$has_cached_data) {
 .ps-loading-dot {
     width: 12px;
     height: 12px;
-    background-color: #0073aa;
+    background-color: #FC6A2A;
     border-radius: 50%;
     animation: ps-wave 1.4s ease-in-out infinite both;
 }

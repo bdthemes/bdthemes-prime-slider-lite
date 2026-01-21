@@ -174,7 +174,7 @@ class PrimeSlider_Others_Plugin_Manager {
         .ps-loading-dot {
             width: 12px;
             height: 12px;
-            background-color: #0073aa;
+            background-color: #FC6A2A;
             border-radius: 50%;
             animation: ps-wave 1.4s ease-in-out infinite both;
         }
@@ -197,6 +197,11 @@ class PrimeSlider_Others_Plugin_Manager {
         #ps-plugins-list {
             position: relative;
             min-height: 200px;
+        }
+
+        #ps-plugins-list p {
+            max-width: none;
+            margin-top: 60px !important;
         }
         </style>
         
