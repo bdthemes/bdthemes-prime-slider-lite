@@ -1,4 +1,4 @@
-=== Prime Slider - Addons for Elementor ===
+=== Prime Slider - Addons for Elementor ==
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: http://bdthemes.com/
 Tags: layer slider, content slider, elementor addon, image slider, video slider
