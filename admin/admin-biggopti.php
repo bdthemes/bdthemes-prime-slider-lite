@@ -33,13 +33,6 @@ class Biggopties {
 	 * @return array|mixed
 	 */
 	private function get_api_biggopties_data() {
-		// 6-hour transient cache for API response
-		// $transient_key = 'bdt_api_biggopties';
-		// $cached = get_transient($transient_key);
-		// if ($cached !== false && is_array($cached)) {
-		// 	return $cached;
-		// }
-
 		// API endpoint for biggopties - you can change this to your actual endpoint
 		$api_url = 'https://api.sigmative.io/prod/store/api/biggopti/api-data-records';
 
@@ -60,8 +53,6 @@ class Biggopties {
 		if( isset($biggopties) && isset($biggopties->{'prime-slider'}) ) {
 			$data = $biggopties->{'prime-slider'};
 			if (is_array($data)) {
-				// $ttl = apply_filters('bdt_api_biggopties_cache_ttl', 6 * HOUR_IN_SECONDS);
-				// set_transient($transient_key, $data, $ttl);
 				return $data;
 			}
 		}
@@ -125,6 +116,32 @@ class Biggopties {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Check if current user has extended license
+	 *
+	 * @return bool True if user has extended license, false otherwise.
+	 */
+	private function has_extended_license() {
+		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
+			return false;
+		}
+		
+		$license_info = \PrimeSliderPro\Base\Prime_Slider_Base::get_register_info();
+		
+		if (empty($license_info) || empty($license_info->license_title)) {
+			return false;
+		}
+		
+		$license_title = strtolower($license_info->license_title);
+		
+		// Check if license title contains 'extended'
+		if (strpos($license_title, 'extended') !== false) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
@@ -308,6 +325,11 @@ class Biggopties {
 
 		if (!current_user_can('manage_options')) {
 			wp_send_json_error([ 'message' => 'forbidden' ]);
+		}
+
+		// Skip biggopti execution for extended license holders
+		if ($this->has_extended_license()) {
+			wp_send_json_success([ 'html' => '' ]);
 		}
 
 		// Don't show biggopties on plugin/theme install and upload pages
