@@ -9,7 +9,7 @@ Stable tag: 4.1.4
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 3.34.2
+Elementor tested up to: 3.34.3
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
