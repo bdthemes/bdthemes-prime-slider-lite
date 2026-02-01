@@ -25,9 +25,9 @@ if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 
 
 // Load white label configuration if it exists (before defining BDTPS_CORE_TITLE)
-if ( ! defined( 'BDTPS_CORE_WL' ) ) {
+if ( ! defined( 'BDTPS_WL' ) ) {
     if ( get_option( 'ps_white_label_enabled' ) ) {
-        define( 'BDTPS_CORE_WL', true );
+        define( 'BDTPS_WL', true );
 		$white_label_config = dirname( __FILE__ ) . '/includes/white-label-config.php';
 		if ( file_exists( $white_label_config ) ) {
 			require_once( $white_label_config );

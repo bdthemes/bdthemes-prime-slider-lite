@@ -53,10 +53,10 @@ class Admin {
 	/**
 	 * You can easily add white label branding for extended license or multi site license. Don't try for regular license otherwise your license will be invalid.
 	 * @return [type] [description]
-	 * Define BDTPS_CORE_WL for execute white label branding
+	 * Define BDTPS_WL for execute white label branding
 	 */
 	public function whitelabel() {
-		if ( defined( 'BDTPS_CORE_WL' ) ) {
+		if ( defined( 'BDTPS_WL' ) ) {
 
 			add_filter( 'gettext', [ $this, 'prime_slider_name_change' ], 20, 3 );
 

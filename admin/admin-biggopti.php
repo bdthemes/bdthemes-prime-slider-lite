@@ -452,7 +452,7 @@ class Biggopties {
 			$biggopti = wp_parse_args($biggopti, $defaults);
 
 			// Check if biggopti is for White Label
-			if (defined('BDTPS_CORE_WL') && $biggopti['category'] === 'regular') {
+			if (defined('BDTPS_WL') && $biggopti['category'] === 'regular') {
 				continue;
 			}
 
