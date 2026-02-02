@@ -5,10 +5,10 @@ if ( ! defined( 'BDTPS_CORE_TITLE' ) ) {
 	define( 'BDTPS_CORE_TITLE', $white_label_title );
 }
 
-if ( ! defined( 'BDTPS_CORE_LO' ) ) {
+if ( ! defined( 'BDTPS_LO' ) ) {
     $hide_license = get_option( 'ps_white_label_hide_license', false );
     if ( $hide_license ) {
-        define( 'BDTPS_CORE_LO', true );
+        define( 'BDTPS_LO', true );
     }
 }
 

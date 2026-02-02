@@ -62,6 +62,9 @@ class PrimeSlider_Admin_Settings {
 			}
 		}
 
+		// Process license title for white label functionality
+		$this->license_wl_process();
+
 		// Handle white label access link
 		$this->handle_white_label_access();
 
@@ -1502,7 +1505,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 
-				<?php if (!defined('BDTPS_CORE_WL') || false == self::license_wl_status()) {
+				<?php if (!defined('BDTPS_WL') || false == self::license_wl_status()) {
 					$this->footer_info();
 				} ?>
 			</div>
@@ -3170,10 +3173,16 @@ class PrimeSlider_Admin_Settings {
 								</p>
 							</div>
 							<div class="ps-option-switch">
-								<?php
-								$white_label_enabled = ($is_license_active && $is_white_label_eligible) ? get_option('ps_white_label_enabled', false) : false;
-								// Convert to boolean to ensure proper comparison
-								$white_label_enabled = (bool) $white_label_enabled;
+							<?php
+								// Determine white label state in one place
+								if (defined('BDTPS_WL')) {
+									$white_label_enabled = true;
+									update_option('ps_white_label_enabled', true);
+								} else {
+									$white_label_enabled = ($is_license_active && $is_white_label_eligible)
+										? (bool) get_option('ps_white_label_enabled', false)
+										: false;
+								}
 								?>
 								<label class="switch">
 									<input type="checkbox" 
@@ -3200,7 +3209,7 @@ class PrimeSlider_Admin_Settings {
 									   name="ps_white_label_title" 
 									   class="ps-white-label-input" 
 									   placeholder="<?php esc_attr_e('Enter your custom title...', 'bdthemes-prime-slider'); ?>"
-									   value="<?php echo esc_attr(get_option('ps_white_label_title', '')); ?>"
+									   value="<?php echo esc_attr(defined('BDTPS_CORE_TITLE') ? BDTPS_CORE_TITLE : get_option('ps_white_label_title', '')); ?>"
 									   <?php disabled(!$is_license_active || !$is_white_label_eligible); ?>>
 							</div>
 						</div>
@@ -3287,10 +3296,13 @@ class PrimeSlider_Admin_Settings {
 								<p class="ps-option-description"><?php esc_html_e('Hide the license menu from the admin sidebar when white label mode is enabled.', 'bdthemes-prime-slider'); ?></p>
 							</div>
 							<div class="ps-option-switch">
-								<?php
-								$hide_license = get_option('ps_white_label_hide_license', false);
-								// Convert to boolean to ensure proper comparison
-								$hide_license = (bool) $hide_license;
+							<?php
+								if (defined('BDTPS_LO')) {
+									$hide_license = true;
+									update_option('ps_white_label_hide_license', true);
+								} else {
+									$hide_license = (bool) get_option('ps_white_label_hide_license', false);
+								}
 								?>
 								<label class="switch">
 									<input type="checkbox" 
@@ -3313,7 +3325,12 @@ class PrimeSlider_Admin_Settings {
 								<h3 class="ps-option-title"><?php esc_html_e('Enable BDTPS_CORE_HIDE Constant', 'bdthemes-prime-slider'); ?></h3>
 								<p class="ps-option-description"><?php esc_html_e('Define the BDTPS_CORE_HIDE constant to hide additional Prime Slider branding and features throughout the plugin.', 'bdthemes-prime-slider'); ?></p>
 								<?php 
-								$bdtps_hide = get_option('ps_white_label_bdtps_hide', false);
+								if (defined('BDTPS_CORE_HIDE')) {
+									$bdtps_hide = true;
+									update_option('ps_white_label_bdtps_hide', true);
+								} else {
+									$bdtps_hide = (bool) get_option('ps_white_label_bdtps_hide', false);
+								}
 								if ($bdtps_hide): ?>
 									<div class="bdt-alert bdt-alert-warning bdt-margin-small-top">
 										<p><strong>⚠️ BDTPS_CORE_HIDE Currently Active</strong></p>
@@ -3323,8 +3340,13 @@ class PrimeSlider_Admin_Settings {
 							</div>
 							<div class="ps-option-switch">
 								<?php
+								if (defined('BDTPS_CORE_HIDE')) {
+									$bdtps_hide = true;
+									update_option('ps_white_label_bdtps_hide', true);
+								} else {
+									$bdtps_hide = (bool) get_option('ps_white_label_bdtps_hide', false);
+								}
 								// Convert to boolean to ensure proper comparison
-								$bdtps_hide = (bool) $bdtps_hide;
 								?>
 								<label class="switch">
 									<input type="checkbox" 
@@ -3361,6 +3383,45 @@ class PrimeSlider_Admin_Settings {
 			</div>
 		</div>
 		<?php
+	}
+
+	public function license_wl_process() {
+		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
+			return false;
+		}
+
+		// Ensure Pro license singleton is initialized so get_register_info() can read stored license.
+		if (defined('BDTPS_PRO__FILE__')) {
+			\PrimeSliderPro\Base\Prime_Slider_Base::get_instance(BDTPS_PRO__FILE__);
+		}
+		$license_info = \PrimeSliderPro\Base\Prime_Slider_Base::get_register_info();
+
+		if (empty($license_info) || empty($license_info->license_title)) {
+			update_option( 'prime_slider_license_title_status', false );
+			return false;
+		}
+
+		$license_title = strtolower($license_info->license_title);
+		$allowed_types = self::get_white_label_allowed_license_types();
+
+		$allowed_hashes = array_values($allowed_types);
+		
+		// Split license title into words and check each word
+		$words = preg_split('/\s+/', $license_title);
+		foreach ($words as $word) {
+			$word = trim($word);
+			if (empty($word)) continue;
+			
+			// Use SHA-256 instead of MD5 for better security
+			$hash = hash('sha256', $word);
+			if (in_array($hash, $allowed_hashes)) {
+				update_option( 'prime_slider_license_title_status', true );
+				return true;
+			}
+		}
+				
+		update_option( 'prime_slider_license_title_status', false );
+		return false;
 	}
 
     public static function license_wl_status() {

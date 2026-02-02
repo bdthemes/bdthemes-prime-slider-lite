@@ -791,7 +791,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			// License section
 			$license_wl_status = PrimeSlider_Admin_Settings::license_wl_status();
 
-			if (!defined('BDTPS_CORE_LO') || false == $license_wl_status) {
+			if (!defined('BDTPS_LO') || false == $license_wl_status) {
 				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="dashicons dashicons-admin-network"></i>%3$s</a></li>', 'prime_slider_license_settings', $count, esc_html__('License', 'bdthemes-prime-slider'));
 			}
 
