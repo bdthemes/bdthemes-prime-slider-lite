@@ -805,7 +805,7 @@ class PrimeSlider_Admin_Settings {
 	// Redirect to Prime Slider Pro pricing page
 	public function ps_redirect_to_get_pro() {
         if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_get_pro') {
-            wp_redirect('https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=prime_slider');
+            wp_redirect('https://primeslider.pro/pricing/');
             exit;
         }
     }
@@ -916,7 +916,7 @@ class PrimeSlider_Admin_Settings {
 			add_submenu_page(
 				self::PAGE_ID,
 				BDTPS_CORE_TITLE,
-				esc_html__('Black Friday Limited Offer Up To 87%', 'bdthemes-prime-slider'),
+				esc_html__('Get Pro', 'bdthemes-prime-slider'),
 				'manage_options',
 				self::PAGE_ID . '_get_pro',
 				[$this, 'display_page']

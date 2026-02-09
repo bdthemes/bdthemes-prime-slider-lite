@@ -5,11 +5,11 @@ Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9
 Requires PHP: 7.4.0
-Stable tag: 4.1.5
+Stable tag: 4.1.6
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 3.34.4
+Elementor tested up to: 3.35.3
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
@@ -19,7 +19,6 @@ Prime Slider is an Elementor addon that lets you build and customize a slider fo
 
 The plugin includes 30+ free widgets, 8 skins, 3 essential features, and 75+ ready-made sliders that help you create visually appealing and fully responsive designs.
 
-### [🎉 Black Friday Offer: Upgrade to Pro and Save up to 87% on All Plugins! 🎊](https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=prime_slider)
 
 Available Slider Types:
 
@@ -257,6 +256,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.1.6 [9th February 2026] =
+
+* Updated: System improved
 
 = 4.1.5 [2nd February 2026] =
 
