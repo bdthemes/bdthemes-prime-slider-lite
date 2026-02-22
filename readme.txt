@@ -257,6 +257,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth February 2026] =
+
+* Fixed: Navigation and Pagination style section visibility in elysium widget
+
 = 4.1.6 [9th February 2026] =
 
 * Updated: System improved
