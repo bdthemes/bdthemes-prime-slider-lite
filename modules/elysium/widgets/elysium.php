@@ -303,7 +303,7 @@ class Elysium extends Widget_Base {
 				'label'       => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => [ 'active' => true ],
-				'default'     => esc_html__( 'Previous Slide', 'bdthemes-prime-slider' ),
+				'default'     => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
 			]
 		);
 
@@ -313,7 +313,7 @@ class Elysium extends Widget_Base {
 				'label'        => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
 				'type'         => Controls_Manager::TEXT,
 				'dynamic'      => [ 'active' => true ],
-				'default'      => esc_html__( 'Next Slide', 'bdthemes-prime-slider' ),
+				'default'      => esc_html__( 'Next', 'bdthemes-prime-slider' ),
 			]
 		);
 
@@ -545,6 +545,9 @@ class Elysium extends Widget_Base {
 			[
 				'label'     => __('Navigation', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_navigation_arrows' => 'yes',
+				],
 			]
 		);
 
@@ -555,20 +558,8 @@ class Elysium extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-pagi-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-pagi-wrap .bdt-navigation-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				],
-			]
-		);
-
-		$this->add_control(
-			'arrows_heading',
-			[
-				'label'     => __('Arrows', 'bdthemes-prime-slider'),
-				'type'      => Controls_Manager::HEADING,
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
-				'separator' => 'before'
 			]
 		);
 
@@ -580,9 +571,6 @@ class Elysium extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link, 
 					 {{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link--arrowed g' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
 				],
 			]
 		);
@@ -596,9 +584,6 @@ class Elysium extends Widget_Base {
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link:hover, 
 					 {{WRAPPER}}  .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link--arrowed:hover g' => 'color: {{VALUE}}',
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -610,15 +595,28 @@ class Elysium extends Widget_Base {
 			]
 		);
 		
-		$this->add_control(
-			'pagination_heading',
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_pagination',
 			[
-				'label'     => __('Dots', 'bdthemes-prime-slider'),
-				'type'      => Controls_Manager::HEADING,
+				'label'     => __('Pagination', 'bdthemes-prime-slider'),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'show_navigation_dots' => ['yes'],
+					'show_navigation_dots' => 'yes',
 				],
-				'separator' => 'before'
+			]
+		);
+
+		$this->add_responsive_control(
+			'pagination_margin',
+			[
+				'label'      => __( 'Spacing', 'bdthemes-prime-slider' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-pagi-wrap .bdt-pagination' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				],
 			]
 		);
 
@@ -640,9 +638,6 @@ class Elysium extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'background: {{VALUE}}',
-				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
 				],
 			]
 		);
@@ -669,9 +664,6 @@ class Elysium extends Widget_Base {
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
 				],
 				'classes'   => BDTPS_CORE_IS_PC
 			]
@@ -715,9 +707,6 @@ class Elysium extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background: {{VALUE}}',
 				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
-				],
 			]
 		);
 
@@ -729,9 +718,6 @@ class Elysium extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
-				],
 			]
 		);
 
@@ -742,9 +728,6 @@ class Elysium extends Widget_Base {
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'height: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
 				],
 			]
 		);
@@ -859,7 +842,7 @@ class Elysium extends Widget_Base {
 								<?php
 								echo ! empty( $settings['navigation_next_text'] )
 									? esc_html( $settings['navigation_next_text'] )
-									: esc_html__( 'Next Slide', 'bdthemes-prime-slider' );
+									: esc_html__( 'Next', 'bdthemes-prime-slider' );
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
@@ -876,7 +859,7 @@ class Elysium extends Widget_Base {
 								<?php
 								echo ! empty( $settings['navigation_previous_text'] )
 									? esc_html( $settings['navigation_previous_text'] )
-									: esc_html__( 'Previous Slide', 'bdthemes-prime-slider' );
+									: esc_html__( 'Prev', 'bdthemes-prime-slider' );
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
