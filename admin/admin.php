@@ -29,6 +29,8 @@ class Admin {
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		}
 
+		add_action( 'admin_init', [ $this, 'admin_biggopti_script' ] );
+
 		add_action( 'after_setup_theme', [ $this, 'whitelabel' ] );
 
 		// register_activation_hook(BDTPS_CORE__FILE__, 'install_and_activate');
@@ -41,6 +43,7 @@ class Admin {
 
 	function biggopti_styles(){
 		wp_enqueue_style('ps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
+		wp_enqueue_style('ps-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-api-biggopti.css', [], BDTPS_CORE_VER);
 	}
 
 	function install_and_activate() {
@@ -134,16 +137,9 @@ class Admin {
 
 	 public function plugin_action_links( $plugin_meta ) {
 
-		if ( true !== _is_ps_pro_activated() ) {
-			$row_meta = [
-				'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
-				'gopro' => '<a href="https://primeslider.pro/pricing/" aria-label="' . esc_attr(__('Go get the pro version', 'bdthemes-prime-slider')) . '" target="_blank" title="When you purchase through this link you will get up to 87% discount!" class="ps-go-pro">' . __('Get Pro', 'bdthemes-prime-slider') . '</a>',
-			];
-		} else {
-			$row_meta = [
-				'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
-			];
-		}
+		$row_meta = [
+			'settings' => '<a href="'.admin_url( 'admin.php?page=prime_slider_options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'bdthemes-prime-slider')) . '" >' . __('Settings', 'bdthemes-prime-slider') . '</b></a>',
+		];
 
         $plugin_meta = array_merge($plugin_meta, $row_meta);
 
@@ -182,7 +178,7 @@ class Admin {
 			}
 		}
 	}
-
+	
 	/**
 	 * Register admin script
 	 * @access public
@@ -196,6 +192,48 @@ class Admin {
 
 			wp_enqueue_script( 'chart', BDTPS_CORE_ADMIN_URL . 'assets/js/chart.min.js', [ 'jquery' ], '3.9.3', true );
 			wp_enqueue_script( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin' . $suffix . '.js', [ 'jquery', 'chart' ], BDTPS_CORE_VER, true );
+		}
+	}
+
+	/**
+	 * Register admin biggopti script
+	 * @access public
+	 */
+
+	public function admin_biggopti_script() {
+		$suffix = '.min';
+		if ( is_admin() ) { // for Admin Dashboard Only
+
+			wp_enqueue_script( 'ps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+			wp_enqueue_script( 'ps-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin-api-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+
+			$dismissals = get_option('bdt_biggopti_dismissals', []);
+			$dismissed_display_ids = [];
+			$prefix = 'bdt-admin-biggopti-api-biggopti-';
+			foreach (array_keys($dismissals) as $key) {
+				if (strpos($key, $prefix) === 0) {
+					$dismissed_display_ids[] = substr($key, strlen($prefix));
+				} else {
+					$dismissed_display_ids[] = $key;
+				}
+			}
+
+			$current_sector = '';
+			if ( isset( $_GET['page'] ) && $_GET['page'] === 'prime_slider_options' ) {
+				$current_sector = 'plugin_dashboard';
+			}
+
+			$script_config = [
+				'ajaxurl'				=> admin_url('admin-ajax.php'),
+				'nonce'					=> wp_create_nonce('prime-slider'),
+				'isPro'             	=> function_exists('_is_ps_pro_activated') && _is_ps_pro_activated(),
+				'assetsUrl'         	=> defined('BDTPS_CORE_ASSETS_URL') ? BDTPS_CORE_ASSETS_URL : '',
+				'dismissedDisplayIds'	=> $dismissed_display_ids,
+				'currentSector'      	=> $current_sector,
+			];
+			
+			wp_localize_script('ps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config);
+			wp_localize_script('ps-admin-api-biggopti', 'PrimeSliderAdminApiBiggoptiConfig', $script_config);
 		}
 	}
 }
