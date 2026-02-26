@@ -320,19 +320,6 @@ class Prime_Slider_Loader {
 		wp_enqueue_style( 'prime-slider-font' );
 	}
 
-
-	public function enqueue_admin_scripts() {
-		wp_register_script( 'ps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
-		$script_config = [ 
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'nonce'   => wp_create_nonce( 'prime-slider' ),
-		];
-		wp_localize_script( 'ps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config );
-
-		wp_enqueue_script( 'ps-biggopti' );
-	}
-
-
 	/**
 	 * initialize the category
 	 * @return [type] [description]
@@ -364,10 +351,6 @@ class Prime_Slider_Loader {
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
-
-
-		// load WordPress dashboard scripts
-		add_action( 'admin_init', [ $this, 'enqueue_admin_scripts' ] );
 	}
 
 	/**
@@ -376,6 +359,7 @@ class Prime_Slider_Loader {
 	public function init() {
 		if ( is_admin() && ps_is_dashboard_enabled() ) {
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin-biggopti.php';
+			require_once BDTPS_CORE_ADMIN_PATH . 'admin-api-biggopti.php';
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin.php';
 			new Admin();
 		}

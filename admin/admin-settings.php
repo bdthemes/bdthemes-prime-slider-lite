@@ -911,17 +911,6 @@ class PrimeSlider_Admin_Settings {
 				[$this, 'plugin_page']
 			);
 		}
-
-		if (true !== _is_ps_pro_activated()) {
-			add_submenu_page(
-				self::PAGE_ID,
-				BDTPS_CORE_TITLE,
-				esc_html__('Get Pro', 'bdthemes-prime-slider'),
-				'manage_options',
-				self::PAGE_ID . '_get_pro',
-				[$this, 'display_page']
-			);
-		}
 	}
 
 	/**
