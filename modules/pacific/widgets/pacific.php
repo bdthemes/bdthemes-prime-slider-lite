@@ -6,12 +6,10 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Widget_Base;
-use Elementor\Plugin;
 
 use PrimeSlider\Traits\Global_Widget_Controls;
 use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
@@ -273,11 +271,70 @@ class Pacific extends Widget_Base {
 		);
 
 		$this->add_control(
+			'show_navigation',
+			[ 
+				'label'     => __( 'Show Navigation', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'separator' => 'before',
+			]
+		);
+
+		$this->start_controls_tabs(
+			'navigation_tabs',
+			[
+				'condition' => [
+					'show_navigation' => 'yes'
+				]
+			]
+		);
+
+		$this->start_controls_tab(
+			'previous_text_tab',
+			[
+				'label' => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->add_control(
+			'previous_text',
+			[
+				'label'   => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
+				'default' => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'next_text_tab',
+			[
+				'label' => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->add_control(
+			'next_text',
+			[
+				'label'   => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => [ 'active' => true ],
+				'default' => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
 			'show_pagination',
 			[ 
 				'label'   => __( 'Show Pagination', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
+				'separator' => 'before',
 				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
@@ -724,6 +781,9 @@ class Pacific extends Widget_Base {
 			[ 
 				'label' => __( 'Read More', 'bdthemes-prime-slider' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_read_more' => 'yes'
+				],
 			]
 		);
 
@@ -789,6 +849,9 @@ class Pacific extends Widget_Base {
 			[ 
 				'label' => __( 'Navigation', 'bdthemes-prime-slider' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_navigation' => 'yes'
+				]
 			]
 		);
 
@@ -1356,12 +1419,12 @@ class Pacific extends Widget_Base {
 							<div class="bdt-navigation-prev">
 								<span class="bdt-n-p-icon  bdt-prev-icon eicon-arrow-left"></span>
 								<span class="bdt-n-p-text bdt-prev">
-									<?php esc_html_e( 'prev', 'bdthemes-prime-slider' ); ?>
+									<?php echo esc_html( $settings['previous_text'] ); ?>
 								</span>
 							</div>
 							<div class="bdt-navigation-next">
 								<span class="bdt-n-p-text bdt-next">
-									<?php esc_html_e( 'next', 'bdthemes-prime-slider' ); ?>
+									<?php echo esc_html( $settings['next_text'] ); ?>
 								</span>
 								<span class="bdt-n-p-icon bdt-next-icon eicon-arrow-right"></span>
 							</div>
@@ -1370,16 +1433,11 @@ class Pacific extends Widget_Base {
 	}
 
 	function render_pagination() {
-		$settings = $this->get_settings_for_display();
-		if ( $settings['show_pagination'] != 'yes' ) {
-			return;
-		}
-
 		?>
-						<div class="bdt-pagi-wrap bdt-position-bottom-right reveal-muted">
-							<div class="swiper-pagination"></div>
-						</div>
-						<?php
+		<div class="bdt-pagi-wrap bdt-position-bottom-right reveal-muted">
+			<div class="swiper-pagination"></div>
+		</div>
+		<?php
 	}
 
 
@@ -1424,8 +1482,12 @@ class Pacific extends Widget_Base {
 		?>
 					</div>
 					<?php
-					$this->render_pagination();
-					$this->render_navigation();
+					if ( 'yes' === $settings['show_pagination'] ) :
+						$this->render_pagination();
+					endif;
+					if ( 'yes' === $settings['show_navigation'] ) :
+						$this->render_navigation();
+					endif;
 					?>
 				</div>
 
@@ -1456,11 +1518,13 @@ class Pacific extends Widget_Base {
 					<div class="bdt-meta-box" data-reveal="reveal-active" data-swiper-parallax="-300"
 						data-swiper-parallax-duration="800">
 						<?php $this->render_author(); ?>
-						<div class="bdt-meta-separator">
-							<span>
-								<?php echo esc_html( $settings['meta_separator'] ); ?>
-							</span>
-						</div>
+						<?php if ( 'yes' === $settings['show_author'] && 'yes' === $settings['show_date'] ) : ?>
+							<div class="bdt-meta-separator">
+								<span>
+									<?php echo esc_html( $settings['meta_separator'] ); ?>
+								</span>
+							</div>
+						<?php endif; ?>
 						<?php $this->render_date(); ?>
 					</div>
 				<?php endif; ?>
