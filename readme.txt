@@ -5,7 +5,7 @@ Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9
 Requires PHP: 7.4.0
-Stable tag: 4.1.7
+Stable tag: 4.1.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
@@ -256,6 +256,16 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.1.9 [1st March 2026] =
+
+* Fixed: Separator showing issue fixed in the mercury and pacific widgets
+* Fixed: Hard coded issue fixed in the pacific widget
+* Fixed: Read More style tab condition fixed in the pacific widget
+
+= 4.1.8 [26th February 2026] =
+
+* Updated: System improved
 
 = 4.1.7 [24th February 2026] =
 

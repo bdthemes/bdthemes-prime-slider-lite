@@ -321,25 +321,31 @@ jQuery(document).ready(function ($) {
             }
         }
 
-        // Also inject into dashboard widget #bdt-dashboard-overview if present (no dismiss, no dismissed check)
-        if (isCurrentSectorAllowedForPromo()) {
-            var $dashboard = $('#bdt-dashboard-overview .inside');
-            if (!$dashboard.length) $dashboard = $('#bdt-dashboard-overview');
-            if ($dashboard.length && validForDashboard.length) {
-                var dashHtml = '';
-                for (var k = 0; k < validForDashboard.length; k++) {
-                    var did = validForDashboard[k].display_id || validForDashboard[k].id || 'default-' + k;
-                    if ($('#bdt-admin-api-feed-' + did).length) continue;
-                    dashHtml += renderFeedHTML(validForDashboard[k]);
-                }
-                if (dashHtml) {
-                    $dashboard.prepend($(dashHtml));
-                }
-            }
-        }
-
         // Dismiss button is in HTML; delegated handler handles click
         initAPIBiggoptiCountdown();
+    }
+
+    function injectFeedsFromData(data) {
+        var list = data && data['prime-slider'];
+        if (!Array.isArray(list) || !list.length) return;
+
+        // Target dashboard (or anywhere you want)
+        var $dashboard = $('#bdt-dashboard-overview .inside');
+        if (!$dashboard.length) $dashboard = $('#bdt-dashboard-overview');
+        if (!$dashboard.length) return;
+
+        var html = '';
+
+        for (var i = 0; i < list.length; i++) {
+            var did = list[i].display_id || list[i].id || 'default-' + i;
+            if ($('#bdt-admin-api-feed-' + did).length) continue;
+
+            html += renderFeedHTML(list[i]);
+        }
+
+        if (html) {
+            $dashboard.prepend($(html));
+        }
     }
 
     /* ===================================
@@ -377,6 +383,8 @@ jQuery(document).ready(function ($) {
         if (!isExcludedUrl()) {
             injectBiggoptiesFromData(data);
         }
+
+        injectFeedsFromData(data);
 
         skippedDueToProTargetedAndPro = false;
         var promo = getFirstValidPromo(data);
