@@ -257,6 +257,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth February 2026] =
+
+* Fixed: Separator showing issue fixed in the mercury and pacific widgets
+* Fixed: Hard coded issue fixed in the pacific widget
+* Fixed: Read More style tab condition fixed in the pacific widget
+
 = 4.1.8 [26th February 2026] =
 
 * Updated: System improved
