@@ -369,11 +369,11 @@ jQuery(document).ready(function ($) {
         var isPro = (BIGGOPTI_CFG && BIGGOPTI_CFG.isPro) || false;
         if (isPro && !promo) return; /* skip only FALLBACK when Pro */
         var adminSubmenu = document.querySelector('#toplevel_page_prime_slider_options .wp-submenu');
-        if (!adminSubmenu || adminSubmenu.querySelector('.ep-promo-menu-item')) return;
+        if (!adminSubmenu || adminSubmenu.querySelector('.bdt-promo-menu-item')) return;
         var p = promo || FALLBACK;
         var href = (p.link || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
         var text = (p.sub_title).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        var html = '<li class="ep-promo-menu-item"><a href="' + href + '" target="_blank" style="color: #FE506C; font-weight: 600;" rel="noopener noreferrer">' + text + '</a></li>';
+        var html = '<li class="bdt-promo-menu-item"><a href="' + href + '" target="_blank" style="color: #FE506C; font-weight: 600;" rel="noopener noreferrer">' + text + '</a></li>';
         adminSubmenu.insertAdjacentHTML('beforeend', html);
     }
 
