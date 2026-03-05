@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
             url: ajaxUrl,
             type: 'POST',
             data: {
-                action: 'bdt_admin_api_biggopti_dismiss',
+                action: 'ps_admin_api_biggopti_dismiss',
                 display_id: displayId,
                 id: $this.attr('id'),
                 meta: $meta,
@@ -198,7 +198,7 @@ jQuery(document).ready(function ($) {
         if (!imageUrl) return '';
 
         return `
-            <div id="${esc(feedId)}" class="prime-slider-feed">
+            <div id="${esc(feedId)}" class="bdt-dashboard-feed">
                 <a href="${esc(link)}" target="_blank" rel="noopener noreferrer">
                     <img src="${esc(imageUrl)}" alt="" style="max-width:100%; height:auto;">
                 </a>

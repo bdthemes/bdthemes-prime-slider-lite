@@ -17,13 +17,13 @@ class AdminApiBiggopties {
 	}
 
 	public function __construct() {
-		add_action('wp_ajax_bdt_admin_api_biggopti_dismiss', [$this, 'bdt_admin_api_biggopti_dismiss']);
+		add_action('wp_ajax_ps_admin_api_biggopti_dismiss', [$this, 'ps_admin_api_biggopti_dismiss']);
 	}
 
 	/**
 	 * Dismiss Admin API Biggopti.
 	 */
-	public function bdt_admin_api_biggopti_dismiss() {
+	public function ps_admin_api_biggopti_dismiss() {
 		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
 		$display_id = (isset($_POST['display_id'])) ? sanitize_text_field($_POST['display_id']) : '';
 		$id   = (isset($_POST['id'])) ? esc_attr($_POST['id']) : '';

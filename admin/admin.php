@@ -44,6 +44,7 @@ class Admin {
 	function biggopti_styles(){
 		wp_enqueue_style('ps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
 		wp_enqueue_style('ps-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-api-biggopti.css', [], BDTPS_CORE_VER);
+		wp_enqueue_style('bdt-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed.css', [], BDTPS_CORE_VER);
 	}
 
 	function install_and_activate() {
