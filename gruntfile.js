@@ -20,6 +20,12 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
+						cwd: 'src/admin/js/',
+						src: 'chart.min.js',
+						dest: 'admin/assets/js/',
+					},
+					{
+						expand: true,
 						cwd: 'src/fonts/',
 						src: '**',
 						dest: 'assets/fonts/',
