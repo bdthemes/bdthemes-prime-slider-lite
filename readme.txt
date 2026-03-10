@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.XX [XXth March 2026] =
+
+* Fixed: Query controls Include/Exclude By Terms dropdown now hides taxonomy terms with no posts (only terms that have at least one post are shown)
+
 = 4.1.10 [8th March 2026] =
 
 * Updated: Product feed updated
