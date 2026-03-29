@@ -2589,7 +2589,7 @@ class General extends Widget_Base {
 					<h3>
 						<?php
 						echo $settings['general_follow_us_text']
-							? $settings['general_follow_us_text']
+							? esc_html($settings['general_follow_us_text'])
 							: esc_html__( 'Follow Us', 'bdthemes-prime-slider' );
 						?>
 					</h3>

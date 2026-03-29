@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.XX [XXth March 2026] =
 
 * Fixed: Query controls Include/Exclude By Terms dropdown now hides taxonomy terms with no posts (only terms that have at least one post are shown)
+* Fixed: Stored XSS in Mount and General widget ( Thanks to Jitlada )
 
 = 4.1.10 [8th March 2026] =
 
