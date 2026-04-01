@@ -890,6 +890,36 @@ class Mount extends Widget_Base {
 				],
 			]
 		);
+
+		$this->add_responsive_control(
+			'arrows_spacing',
+			[
+				'label'      => __('Arrow Spacing', 'bdthemes-prime-slider'),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'range'      => [
+					'px' => [
+						'min' => 0,
+						'max' => 200,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 50,
+					],
+					'em' => [
+						'min' => 0,
+						'max' => 10,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous' => 'margin-right: calc({{arrows_spacing.SIZE}}{{arrows_spacing.UNIT}}/2);',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next' => 'margin-left: calc({{arrows_spacing.SIZE}}{{arrows_spacing.UNIT}}/2);',
+				],
+				'condition' => [
+					'show_navigation_arrows' => ['yes'],
+				],
+			]
+		);
 		
 		$this->add_control(
 			'pagination_heading',
