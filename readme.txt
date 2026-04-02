@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth April 2026] =
+
+* Added: Title text and excerpt text limit controls in the woocommerce widget
+
 = 4.1.12 [2nd April 2026] =
 
 * Added: Arrows spacing control option to the mount widget
