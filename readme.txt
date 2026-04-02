@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.1.X [XXth April 2026] =
+
+* Added: New arrow spacing control option to the mount widget
+
 = 4.1.11 [29th March 2026] =
 
 * Fixed: Query controls Include/Exclude By Terms dropdown now hides taxonomy terms with no posts (only terms that have at least one post are shown)
