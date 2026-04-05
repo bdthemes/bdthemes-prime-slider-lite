@@ -11,7 +11,6 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Stroke;
 use PrimeSlider\Utils;
-use Elementor\Repeater;
 use PrimeSlider\Traits\Global_Widget_Controls;
 use PrimeSlider\Traits\QueryControls\GroupQuery\Group_Control_Query;
 use WP_Query;
@@ -124,6 +123,33 @@ class Woocommerce extends Widget_Base {
 		* Show Excerpt Controls
 		*/
 		$this->register_show_excerpt_controls();
+
+		$this->add_control(
+			'title_word_limit',
+			[
+				'label'       => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'        => Controls_Manager::NUMBER,
+				'min'         => 0,
+				'separator'   => 'before',
+				'classes'     => BDTPS_CORE_IS_PC,
+				'condition'   => [
+					'show_title' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'excerpt_word_limit',
+			[
+				'label'         => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'          => Controls_Manager::NUMBER,
+				'min'           => 0,
+				'classes'       => BDTPS_CORE_IS_PC,
+				'condition'     => [
+					'show_excerpt' => 'yes',
+				],
+			]
+		);
 
 		/**
 		 * Show Price Controls
@@ -1796,6 +1822,35 @@ class Woocommerce extends Widget_Base {
 		<?php
 	}
 
+	protected function get_wc_pro_word_limit( $settings, $control ) {
+		if ( true !== _is_ps_pro_activated() ) {
+			return 0;
+		}
+
+		return absint( $settings[ $control ] ?? 0 );
+	}
+
+	protected function get_wc_slide_limited_title_or_null( $settings ) {
+		$limit = $this->get_wc_pro_word_limit( $settings, 'title_word_limit' );
+		if ( $limit < 1 ) {
+			return null;
+		}
+
+		return wp_trim_words( wp_strip_all_tags( get_the_title() ), $limit, '' );
+	}
+
+	protected function get_wc_slide_excerpt_for_display( $settings ) {
+		$limit = $this->get_wc_pro_word_limit( $settings, 'excerpt_word_limit' );
+		if ( $limit < 1 ) {
+			return null;
+		}
+
+		$text = get_the_excerpt();
+		$text = wp_trim_words( wp_strip_all_tags( $text ), $limit, '' );
+
+		return wpautop( $text );
+	}
+
 	public function render_item_content() {
 		$settings = $this->get_settings_for_display();
 
@@ -1826,13 +1881,31 @@ class Woocommerce extends Widget_Base {
 				<?php if ($settings['show_title']) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
 						<a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'bdthemes-prime-slider-lite' ), get_the_title() ) ); ?>">
-							<?php the_title(); ?>
+							<?php
+							$wc_title_limited = $this->get_wc_slide_limited_title_or_null( $settings );
+							if ( null !== $wc_title_limited ) {
+								echo esc_html( $wc_title_limited );
+							} else {
+								the_title();
+							}
+							?>
 						</a>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($settings['show_excerpt']) : ?>
-					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>><?php the_excerpt(); ?></div>
+					<?php
+					$wc_excerpt_limited = $this->get_wc_slide_excerpt_for_display( $settings );
+					?>
+					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>>
+						<?php
+						if ( null !== $wc_excerpt_limited ) {
+							echo wp_kses_post( $wc_excerpt_limited );
+						} else {
+							the_excerpt();
+						}
+						?>
+					</div>
 				<?php endif; ?>
 
 				<?php if ($settings['show_price']) : ?>
