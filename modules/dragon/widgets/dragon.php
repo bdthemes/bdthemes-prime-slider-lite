@@ -5,7 +5,6 @@ namespace PrimeSlider\Modules\Dragon\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Text_Stroke;
 use PrimeSlider\Utils;
@@ -837,6 +836,7 @@ class dragon extends Widget_Base {
 			[
 				'label'     => __('Navigation', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [ 'show_navigation_dots' => 'yes' ],
 			]
 		);
 
@@ -849,9 +849,6 @@ class dragon extends Widget_Base {
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li:after' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li:before' => 'background: {{VALUE}}',
 				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
-				],
 			]
 		);
 
@@ -862,9 +859,6 @@ class dragon extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li:hover:after' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
 				],
 			]
 		);
@@ -878,9 +872,6 @@ class dragon extends Widget_Base {
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li.bdt-active:after' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li.bdt-active:before' => 'background: {{VALUE}}',
 				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
-				],
 			]
 		);
 
@@ -892,9 +883,6 @@ class dragon extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li:after' => 'font-size: {{SIZE}}px',
 				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
-				],
 			]
 		);
 
@@ -905,9 +893,6 @@ class dragon extends Widget_Base {
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li.bdt-active:before' => 'width: {{SIZE}}px',
-				],
-				'condition' => [
-					'show_navigation_dots' => ['yes'],
 				],
 				'classes'   => BDTPS_CORE_IS_PC
 			]

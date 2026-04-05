@@ -8,11 +8,9 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
-use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Text_Stroke;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
-use Elementor\Plugin;
 use PrimeSlider\Utils;
 
 use PrimeSlider\Traits\Global_Widget_Controls;
@@ -914,6 +912,7 @@ class Omatic extends Widget_Base {
 			[
 				'label'     => __('Navigation', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [ 'show_navigation_arrows' => 'yes' ],
 			]
 		);
 
@@ -922,9 +921,6 @@ class Omatic extends Widget_Base {
 			[
 				'label'     => __('ARROWS', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::HEADING,
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -960,9 +956,6 @@ class Omatic extends Widget_Base {
 					'circle-4' => esc_html__('Style 22', 'bdthemes-prime-slider'),
 					'square-1' => esc_html__('Style 23', 'bdthemes-prime-slider'),
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -972,9 +965,6 @@ class Omatic extends Widget_Base {
 			'tabs_nav_arrows_normal',
 			[
 				'label'     => __('Normal', 'bdthemes-prime-slider'),
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -985,9 +975,6 @@ class Omatic extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button i' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
 				],
 			]
 		);
@@ -1000,9 +987,6 @@ class Omatic extends Widget_Base {
 				'types' => ['classic', 'gradient'],
 				'exclude' => ['image'],
 				'selector' => '{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button',
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1011,9 +995,6 @@ class Omatic extends Widget_Base {
 			[
 				'name'      => 'nav_arrows_border',
 				'selector'  => '{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button',
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 				'separator' => 'before'
 			]
 		);
@@ -1027,9 +1008,6 @@ class Omatic extends Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1042,9 +1020,6 @@ class Omatic extends Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1056,9 +1031,6 @@ class Omatic extends Widget_Base {
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
 				],
 			]
 		);
@@ -1077,9 +1049,6 @@ class Omatic extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1097,9 +1066,6 @@ class Omatic extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap' => 'gap: {{SIZE}}{{UNIT}};',
 				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1108,9 +1074,6 @@ class Omatic extends Widget_Base {
 			[
 				'name'     => 'arrows_box_shadow',
 				'selector' => '{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button',
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1120,9 +1083,6 @@ class Omatic extends Widget_Base {
 			'tabs_nav_arrows_hover',
 			[
 				'label'     => __('Hover', 'bdthemes-prime-slider'),
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1133,9 +1093,6 @@ class Omatic extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button:hover i' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
 				],
 			]
 		);
@@ -1148,9 +1105,6 @@ class Omatic extends Widget_Base {
 				'types' => ['classic', 'gradient'],
 				'exclude' => ['image'],
 				'selector' => '{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button:hover',
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 
@@ -1164,7 +1118,6 @@ class Omatic extends Widget_Base {
 				],
 				'condition' => [
 					'nav_arrows_border_border!' => '',
-					'show_navigation_arrows' => ['yes'],
 				],
 			]
 		);
@@ -1174,9 +1127,6 @@ class Omatic extends Widget_Base {
 			[
 				'name'     => 'arrows_hover_box_shadow',
 				'selector' => '{{WRAPPER}} .bdt-omatic-slider .bdt-navigation-wrap .bdt-nav-button:hover',
-				'condition' => [
-					'show_navigation_arrows' => ['yes'],
-				],
 			]
 		);
 

@@ -4,7 +4,6 @@ namespace PrimeSlider\Modules\General\Skins;
 
 
 use Elementor\Skin_Base as Elementor_Skin_Base;
-use Elementor\Group_Control_Image_Size;
 use PrimeSlider\Utils;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -85,7 +84,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
                                     <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
 
                                         <?php if ($slide['excerpt'] && ('yes' == $settings['show_excerpt'])) : ?>
-                                            <div class="bdt-slider-excerpt bdt-column-1-2" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 300,0,-100; opacity: 1,1,0">
+                                            <div class="bdt-slider-excerpt" data-reveal="reveal-active" data-bdt-slideshow-parallax="y: 300,0,-100; opacity: 1,1,0">
                                                 <?php echo wp_kses_post($slide['excerpt']); ?>
                                             </div>
                                         <?php endif; ?>

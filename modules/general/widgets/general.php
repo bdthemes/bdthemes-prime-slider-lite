@@ -1265,26 +1265,26 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_width',
 			[ 
-				'label'          => __( 'Width (px)', 'bdthemes-prime-slider' ),
+				'label'          => __( 'Width (%)', 'bdthemes-prime-slider' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => [ 
-					'unit' => 'px',
+					'unit' => '%',
 				],
 				'tablet_default' => [ 
-					'unit' => 'px',
+					'unit' => '%',
 				],
 				'mobile_default' => [ 
-					'unit' => 'px',
+					'unit' => '%',
 				],
-				'size_units'     => [ 'px' ],
+				'size_units'     => [ '%' ],
 				'range'          => [ 
-					'px' => [ 
-						'min' => 100,
-						'max' => 1200,
+					'%' => [ 
+						'min' => 1,
+						'max' => 100,
 					],
 				],
 				'selectors'      => [ 
-					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt' => 'max-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt p' => 'max-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
