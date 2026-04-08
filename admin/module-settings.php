@@ -497,6 +497,17 @@ class ModuleService {
 				],
 
 				[ 
+					'name'         => 'super-flow',
+					'label'        => esc_html__( 'Super Flow', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper',
+					'demo_url'     => '',
+					'video_url'    => '',
+				],
+
+				[ 
 					'name'         => 'tango',
 					'label'        => esc_html__( 'Tango', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
