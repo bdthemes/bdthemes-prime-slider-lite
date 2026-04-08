@@ -3470,7 +3470,7 @@ class PrimeSlider_Admin_Settings {
 		?>
 		<div class="ps-dashboard-widgets-status">
 			<div class="bdt-grid bdt-grid-medium" bdt-grid bdt-height-match="target: > div > .bdt-card">
-				<div class="bdt-width-1-2@m bdt-width-1-3@l">
+				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
@@ -3504,7 +3504,7 @@ class PrimeSlider_Admin_Settings {
 
 					</div>
 				</div>
-				<div class="bdt-width-1-2@m bdt-width-1-3@l">
+				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
@@ -3538,7 +3538,7 @@ class PrimeSlider_Admin_Settings {
 
 					</div>
 				</div>
-				<div class="bdt-width-1-2@m bdt-width-1-3@l">
+				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<?php
@@ -3573,7 +3573,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 				</div>
 
-				<div class="bdt-width-1-2@m bdt-width-1-3@l">
+				<div class="bdt-width-1-2@m bdt-width-1-4@l">
 					<div class="ps-widget-status bdt-card bdt-card-body" <?php echo wp_kses_post($track_nw_msg); ?>>
 
 						<div class="ps-count-canvas-wrap">

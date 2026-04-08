@@ -223,6 +223,7 @@ class Setup_Wizard {
 		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.17.0');
 
 		wp_register_script( 'ps-setup-wizard', plugins_url( 'assets/js/setup-wizard.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+		
 		wp_register_style( 'ps-setup-wizard', plugins_url( 'assets/css/setup-wizard.css', __FILE__ ), array(), '1.0.0' );
 
 		wp_enqueue_script( 'ps-setup-wizard' );
