@@ -17,13 +17,13 @@
 
     // overflow: hidden;
     video {
-        height: 100%;
+        block-size: 100%;
         object-fit: cover;
     }
 
     ul {
         padding: 0;
-        margin-top: 0;
+        margin-block-start: 0;
         list-style: none;
     }
 
@@ -33,7 +33,7 @@
 
     .bdt-slideshow {
         .bdt-slideshow-content-wrapper {
-            max-width: inherit;
+            max-inline-size: inherit;
 
             div {
                 line-height: inherit;
@@ -60,42 +60,42 @@
     iframe,
     object,
     video {
-        max-width: unset !important;
+        max-inline-size: unset !important;
     }
 }
 
 .bdt-ps-container {
     display: flow-root;
     box-sizing: content-box;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px
+    max-inline-size: 1200px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    padding-inline-start: 15px;
+    padding-inline-end: 15px
 }
 
-@media (min-width: 640px) {
+@media (min-inline-size: 640px) {
     .bdt-ps-container {
-        padding-left: 30px;
-        padding-right: 30px
+        padding-inline-start: 30px;
+        padding-inline-end: 30px
     }
 }
 
-@media (min-width: 960px) {
+@media (min-inline-size: 960px) {
     .bdt-ps-container {
-        padding-left: 40px;
-        padding-right: 40px
+        padding-inline-start: 40px;
+        padding-inline-end: 40px
     }
 }
 
 .bdt-ps-item-wrapper-link {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    block-size: 100%;
+    inline-size: 100%;
     z-index: 1;
 }
 
@@ -106,8 +106,8 @@
 //Inline font feature fixing
 [class*=" elementor-widget-prime-slider-"] {
     svg.e-font-icon-svg {
-        height: 1em;
-        width: 1em;
+        block-size: 1em;
+        inline-size: 1em;
     }
 }
 
@@ -123,7 +123,7 @@
 .bdt-header-wrapper {
     .bdt-header-inner {
         position: relative;
-        min-height: 90px;
+        min-block-size: 90px;
 
         .bdt-offcanvas-button {
             background: transparent;
@@ -155,7 +155,7 @@
                     font-size: 13px;
                     font-weight: 700;
                     color: #fff;
-                    min-height: 42px;
+                    min-block-size: 42px;
                     padding: 0;
                     transition: all .3s ease;
                     outline: none;
@@ -166,7 +166,7 @@
                         content: '';
                         position: absolute;
                         background: #fe506c;
-                        left: 0;
+                        inset-inline-start: 0;
                         transition: all .3s ease;
                     }
                 }
@@ -178,7 +178,7 @@
                 }
 
                 .bdt-navbar-dropdown {
-                    padding-left: 25px;
+                    padding-inline-start: 25px;
 
                     li {
                         >a {
@@ -200,7 +200,7 @@
             &.bdt-prime-slider-menu-style-default {
                 >li {
                     >a {
-                        min-height: auto;
+                        min-block-size: auto;
                     }
                 }
             }
@@ -211,21 +211,21 @@
 
                         &:after,
                         &:before {
-                            bottom: 0px;
-                            height: 3px;
-                            width: 0;
-                            left: 50%;
+                            inset-block-end: 0px;
+                            block-size: 3px;
+                            inline-size: 0;
+                            inset-inline-start: 50%;
                         }
                     }
 
                     &:hover {
                         a:after {
-                            width: 50%;
+                            inline-size: 50%;
                         }
 
                         a:before {
-                            left: 0px;
-                            width: 50%;
+                            inset-inline-start: 0px;
+                            inline-size: 50%;
                         }
                     }
                 }
@@ -237,16 +237,16 @@
                         padding: 0 10px;
 
                         &:before {
-                            bottom: 0;
-                            height: 0;
-                            width: 100%;
+                            inset-block-end: 0;
+                            block-size: 0;
+                            inline-size: 100%;
                             z-index: -1;
                         }
                     }
 
                     &:hover {
                         a:before {
-                            height: 100%;
+                            block-size: 100%;
                         }
                     }
                 }
@@ -255,19 +255,19 @@
             &.bdt-prime-slider-menu-style-dotline {
                 >li {
                     position: relative;
-                    margin-right: 30px;
-                    padding-right: 35px;
-                    margin-left: 0;
+                    margin-inline-end: 30px;
+                    padding-inline-end: 35px;
+                    margin-inline-start: 0;
 
                     &::after {
                         content: '';
                         position: absolute;
-                        height: 6px;
-                        width: 6px;
+                        block-size: 6px;
+                        inline-size: 6px;
                         background: #fff;
                         border-radius: 30px;
-                        right: 0;
-                        top: 50%;
+                        inset-inline-end: 0;
+                        inset-block-start: 50%;
                         transform: translateY(-50%);
                         visibility: visible;
                     }
@@ -294,15 +294,15 @@
 
                     >a {
                         display: flex;
-                        min-height: 110px;
+                        min-block-size: 110px;
                         align-items: center;
                         visibility: visible;
 
                         &::before {
-                            height: 16px;
-                            width: 100%;
+                            block-size: 16px;
+                            inline-size: 100%;
                             background: #fe506c;
-                            top: -8px;
+                            inset-block-start: -8px;
                             border-radius: 40px;
                             transform: translateY(-25px);
                             transition: all .3s ease-out;
@@ -318,17 +318,17 @@
 // Header Css
 .bdt-header-wrapper {
     z-index: 10;
-    width: 100%;
+    inline-size: 100%;
 
     header {
-        width: 100%;
+        inline-size: 100%;
 
         &:after {
             content: '';
-            width: 100%;
+            inline-size: 100%;
             position: absolute;
-            height: 0;
-            top: 0;
+            block-size: 0;
+            inset-block-start: 0;
             transition: height 400ms cubic-bezier(0.2, 0.89, 0.58, 1);
             background-color: rgba(0, 0, 0, 0.4);
             z-index: -1;
@@ -337,7 +337,7 @@
         &.bdt-sticky {
             &.bdt-active {
                 &:after {
-                    height: 100%;
+                    block-size: 100%;
                 }
             }
         }
@@ -350,23 +350,23 @@
         position: relative;
 
         .bdt-navbar-dropdown {
-            top: 0 !important;
-            left: 100% !important;
-            right: auto
+            inset-block-start: 0 !important;
+            inset-inline-start: 100% !important;
+            inset-inline-end: auto
         }
     }
 }
 
 // Responsive Css
-@media (min-width: 640px) {
+@media (min-inline-size: 640px) {
     .bdt-header-wrapper {
         .bdt-header-inner {
-            min-height: 110px;
+            min-block-size: 110px;
         }
     }
 }
 
-@media (min-width: 960px) {
+@media (min-inline-size: 960px) {
     .bdt-prime-slider {
         .bdt-header-wrapper {
             .bdt-header-inner {
@@ -392,16 +392,16 @@
             position: relative;
 
             .swiper-pagination-bullet {
-                width: 10px;
-                height: 10px;
+                inline-size: 10px;
+                block-size: 10px;
 
                 +.swiper-pagination-bullet {
-                    margin-left: 5px;
+                    margin-inline-start: 5px;
                 }
             }
 
             &.swiper-pagination-fraction {
-                bottom: auto;
+                inset-block-end: auto;
             }
         }
     }
@@ -411,12 +411,12 @@
     .swiper-pagination-custom,
     .swiper-horizontal .swiper-pagination-bullets,
     .swiper-horizontal+.swiper-pagination-bullets {
-        bottom: -50px;
-        width: 100%;
+        inset-block-end: -50px;
+        inline-size: 100%;
 
         .swiper-pagination-bullet {
-            width: 10px;
-            height: 10px;
+            inline-size: 10px;
+            block-size: 10px;
             margin: 0 5px;
         }
     }
@@ -451,8 +451,8 @@
 
     .swiper-horizontal+.swiper-pagination-progressbar,
     .swiper-vertical+.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
-        width: 100%;
-        height: 4px;
+        inline-size: 100%;
+        block-size: 4px;
     }
 
     .swiper-pagination-progressbar {
@@ -463,10 +463,10 @@
     .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
         background: #007aff;
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
         transform: scale(0);
         transform-origin: left top;
     }
@@ -511,17 +511,17 @@
     .bdt-arrows-align-center,
     .bdt-arrows-dots-align-center {
         .bdt-position-center {
-            width: 100%;
+            inline-size: 100%;
         }
 
         .bdt-navigation-prev {
-            left: 0;
+            inset-inline-start: 0;
             position: absolute;
             transform: translateY(-50%);
         }
 
         .bdt-navigation-next {
-            right: 0;
+            inset-inline-end: 0;
             position: absolute;
             transform: translateY(-50%);
         }
@@ -533,7 +533,7 @@
         .bdt-arrows-dots-container {
             .swiper-pagination {
                 position: absolute;
-                width: 100%;
+                inline-size: 100%;
             }
         }
     }
@@ -542,8 +542,8 @@
 .bdt-navigation-type-progress {
     .swiper-pagination-progress {
         transform: translateY(15px);
-        height: 5px;
-        width: 100%;
+        block-size: 5px;
+        inline-size: 100%;
     }
 }
 
@@ -559,37 +559,37 @@
             justify-content: center;
 
             .swiper-pagination-bullet {
-                width: 10px;
-                height: 10px;
+                inline-size: 10px;
+                block-size: 10px;
                 outline: none;
                 transition: all .3s ease;
 
                 +.swiper-pagination-bullet {
-                    margin-left: var(--bdt-swiper-dots-space-between, 5px);
+                    margin-inline-start: var(--bdt-swiper-dots-space-between, 5px);
                     outline: none;
                 }
             }
 
             &.swiper-pagination-fraction {
-                bottom: auto;
+                inset-block-end: auto;
                 z-index: 1;
             }
         }
 
         .swiper-pagination-bullets {
-            min-height: var(--bdt-swiper-dots-active-height, 10px);
+            min-block-size: var(--bdt-swiper-dots-active-height, 10px);
 
             .swiper-pagination-bullet {
                 position: relative;
 
                 &:after {
                     content: '';
-                    width: calc(100% + 6px);
-                    height: calc(100% + 6px);
+                    inline-size: calc(100% + 6px);
+                    block-size: calc(100% + 6px);
                     position: absolute;
                     transform: translate(-50%, -50%);
-                    left: 50%;
-                    top: 50%;
+                    inset-inline-start: 50%;
+                    inset-block-start: 50%;
                 }
             }
         }
@@ -601,7 +601,7 @@
         .swiper-pagination-bullets-dynamic {
             overflow: hidden;
             font-size: 0;
-            width: 100% !important;
+            inline-size: 100% !important;
         }
 
         .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
@@ -637,17 +637,17 @@
     .bdt-arrows-align-center,
     .bdt-arrows-dots-align-center {
         .bdt-position-center {
-            width: 100%;
+            inline-size: 100%;
         }
 
         .bdt-navigation-prev {
-            left: 0;
+            inset-inline-start: 0;
             position: absolute;
             transform: translateY(-50%);
         }
 
         .bdt-navigation-next {
-            right: 0;
+            inset-inline-end: 0;
             position: absolute;
             transform: translateY(-50%);
 
@@ -660,13 +660,13 @@
     .bdt-arrows-align-center,
     .bdt-arrows-dots-align-center {
         .bdt-navigation-prev {
-            right: 0;
-            left: inherit;
+            inset-inline-end: 0;
+            inset-inline-start: inherit;
         }
 
         .bdt-navigation-next {
-            left: 0;
-            right: inherit;
+            inset-inline-start: 0;
+            inset-inline-end: inherit;
         }
     }
 }
@@ -678,7 +678,7 @@
         .bdt-arrows-dots-container {
             .swiper-pagination {
                 position: absolute;
-                width: 100% !important;
+                inline-size: 100% !important;
             }
         }
     }
@@ -687,15 +687,15 @@
 .bdt-navigation-type-progress {
     .swiper-pagination-progress {
         transform: translateY(15px);
-        height: 5px;
-        width: 100%;
+        block-size: 5px;
+        inline-size: 100%;
     }
 }
 
 //Flexbox container override
 .e-container--row {
     [class*="elementor-widget-prime-slider-"] {
-        width: 100%;
+        inline-size: 100%;
     }
 }
 
@@ -726,10 +726,10 @@
 .swiper-shutters-image-clone,
 .swiper-shutters-image-clones {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     pointer-events: none
 }
 
@@ -749,7 +749,7 @@
 .swiper-gl {
     position: relative;
     margin: 0 auto;
-    max-width: 100%;
+    max-inline-size: 100%;
     overflow: hidden
 }
 
@@ -764,20 +764,20 @@
 
 .swiper-gl>canvas {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%
 }
 
 .swiper-gl-image {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover;
     object-position: center;
     position: absolute;
-    left: 0;
-    top: 0
+    inset-inline-start: 0;
+    inset-block-start: 0
 }
 
 //swiper gl css end
@@ -792,10 +792,10 @@
 .swiper-slicer-image-clone,
 .swiper-slicer-image-clones {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     pointer-events: none
 }
 
@@ -836,8 +836,8 @@
 }
 
 .swiper-tinder .swiper-slide img {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover
 }
 
@@ -853,16 +853,16 @@
 }
 
 .swiper-tinder-label-yes {
-    left: 3%;
-    top: 5%;
+    inset-inline-start: 3%;
+    inset-block-start: 5%;
     transform: rotate(-20deg);
     background-color: var(--swiper-tinder-yes-color);
     transform-origin: right top
 }
 
 .swiper-tinder-label-no {
-    right: 3%;
-    top: 5%;
+    inset-inline-end: 3%;
+    inset-block-start: 5%;
     transform: rotate(20deg);
     background-color: var(--swiper-tinder-no-color);
     transform-origin: left top
@@ -871,9 +871,9 @@
 .swiper-tinder-button {
     position: absolute;
     cursor: pointer;
-    bottom: 32px;
-    width: var(--swiper-tinder-button-size);
-    height: var(--swiper-tinder-button-size);
+    inset-block-end: 32px;
+    inline-size: var(--swiper-tinder-button-size);
+    block-size: var(--swiper-tinder-button-size);
     border: 1px solid;
     border-radius: 999px;
     background: 0 0;
@@ -891,8 +891,8 @@
 }
 
 .swiper-tinder-button svg {
-    width: var(--swiper-tinder-button-icon-size);
-    height: var(--swiper-tinder-button-icon-size)
+    inline-size: var(--swiper-tinder-button-icon-size);
+    block-size: var(--swiper-tinder-button-icon-size)
 }
 
 .swiper-tinder-button-hidden {
@@ -902,7 +902,7 @@
 
 .swiper-tinder-button-no {
     border-color: var(--swiper-tinder-no-color);
-    left: calc(33% - 28px)
+    inset-inline-start: calc(33% - 28px)
 }
 
 .swiper-tinder-button-no svg {
@@ -921,7 +921,7 @@
 
 .swiper-tinder-button-yes {
     border-color: var(--swiper-tinder-yes-color);
-    left: calc(66% - 28px)
+    inset-inline-start: calc(66% - 28px)
 }
 
 .swiper-tinder-button-yes svg {
@@ -941,7 +941,7 @@
 //swiper tinder css end
 
 //Text Hide on Responsive Device
-@media (min-width:768px) and (max-width:1023px) {
+@media (min-inline-size:768px) and (max-inline-size:1023px) {
     [class*="elementor-widget-prime-slider-"] {
         .bdt-tablet {
             display: none !important;
@@ -949,7 +949,7 @@
     }
 }
 
-@media (min-width:1024px) {
+@media (min-inline-size:1024px) {
     [class*="elementor-widget-prime-slider-"] {
         .bdt-desktop {
             display: none !important;
@@ -957,7 +957,7 @@
     }
 }
 
-@media (max-width:767px) {
+@media (max-inline-size:767px) {
     [class*="elementor-widget-prime-slider-"] {
         .bdt-mobile {
             display: none !important;
