@@ -84,7 +84,10 @@ class Admin {
 
 		wp_enqueue_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.15.3' );
 		wp_enqueue_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
-		wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+
+		// wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+
+		wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin.css', [], BDTPS_CORE_VER );
 
 		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.15.3' );
 	}

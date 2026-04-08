@@ -15,7 +15,7 @@
 @card-background: #fff;
 
 @ps-dashboard-gap-size: 20px;
-@ps-dashboard-nav-width: 240px;
+@ps-dashboard-nav-inline-size: 240px;
 @ps-dashboard-border-color: rgba(123, 123, 123, 0.09);
 
 @shape-primary-color: #49ddb4;
@@ -28,7 +28,10 @@
 	position: relative;
 
 	&.wrap {
-		margin: 10px 20px 0 0;
+		margin-block-start: 10px;
+		margin-inline-end: 20px;
+		margin-block-end: 0;
+		margin-inline-start: 0;
 
 		a:focus {
 			outline: none;
@@ -41,7 +44,7 @@
 			gap: @ps-dashboard-gap-size;
 
 			.ps-option-item {
-				margin-bottom: @ps-dashboard-gap-size;
+				margin-block-end: @ps-dashboard-gap-size;
 			}
 		}
 
@@ -78,9 +81,9 @@
 			&.bdt-sticky-fixed {
 				z-index: 999;
 				box-shadow: 0px -32px 0px 0px #ffffff, 0px 5px 15px rgba(0, 0, 0, 0.1);
-				border-bottom-left-radius: 0;
-				border-bottom-right-radius: 0;
-				border-bottom: 0;
+				border-end-start-radius: 0;
+				border-end-end-radius: 0;
+				border-block-end: 0;
 
 				.ps-header-elements {
 					opacity: 0.5;
@@ -94,10 +97,10 @@
 
 			.ps-header-elements {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
+				inset-block-start: 0;
+				inset-inline-start: 0;
+				inline-size: 100%;
+				block-size: 100%;
 				pointer-events: none;
 				z-index: 1;
 			}
@@ -114,46 +117,46 @@
 					display: block;
 
 					&.ps-header-circle {
-						width: 160px;
-						height: 160px;
+						inline-size: 160px;
+						block-size: 160px;
 						border-radius: 50%;
 						background: linear-gradient(45deg, rgba(@shape-primary-color, 0.05), rgba(@shape-secondary-color, 0.08));
-						top: -80px;
-						right: 10%;
+						inset-block-start: -80px;
+						inset-inline-end: 10%;
 					}
 
 					&.ps-header-dots {
-						bottom: 20px;
-						left: 15%;
-						width: 80px;
-						height: 40px;
+						inset-block-end: 20px;
+						inset-inline-start: 15%;
+						inline-size: 80px;
+						block-size: 40px;
 						background-image: radial-gradient(rgba(@shape-primary-color, 0.15) 2px, transparent 2px);
 						background-size: 10px 10px;
 					}
 
 					&.ps-header-line {
-						width: 120px;
-						height: 2px;
-						background: linear-gradient(90deg, rgba(@shape-primary-color, 0), rgba(@shape-secondary-color, 0.2));
+						inline-size: 120px;
+						block-size: 2px;
+						background: linear-gradient(to right, rgba(@shape-primary-color, 0), rgba(@shape-secondary-color, 0.2));
 						transform: rotate(-45deg);
-						top: 40%;
-						right: 25%;
+						inset-block-start: 40%;
+						inset-inline-end: 25%;
 					}
 
 					&.ps-header-square {
-						width: 30px;
-						height: 30px;
+						inline-size: 30px;
+						block-size: 30px;
 						border: 2px solid rgba(@shape-primary-color, 0.1);
-						top: 30px;
-						left: 20%;
+						inset-block-start: 30px;
+						inset-inline-start: 20%;
 						transform: rotate(15deg);
 					}
 
 					&.ps-header-wave {
-						width: 140px;
-						height: 20px;
-						bottom: 20px;
-						right: 15%;
+						inline-size: 140px;
+						block-size: 20px;
+						inset-block-end: 20px;
+						inset-inline-end: 15%;
 						background: linear-gradient(45deg,
 								rgba(@shape-primary-color, 0) 45%,
 								rgba(@shape-secondary-color, 0.1) 50%,
@@ -173,17 +176,16 @@
 		.ps-dashboard-header.bdt-sticky-fixed,
 		.bdt-widget-filter-wrapper.bdt-sticky-fixed {
 			box-shadow: 0px -32px 0px 0px #ffffff, 0px 5px 15px rgba(0, 0, 0, 0.1);
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
+			border-end-start-radius: 0;
+			border-end-end-radius: 0;
 		}
 
 		.ps-dashboard-wrapper {
 			background: #ffffff;
 			border-radius: 6px;
-			;
 			padding: 30px;
 			position: relative;
-			max-width: 1600px;
+			max-inline-size: 1600px;
 		}
 
 		.ps-dashboard-container {
@@ -192,10 +194,10 @@
 
 		.ps-dashboard-header {
 			.ps-logo {
-				width: 300px;
+				inline-size: 300px;
 
 				img {
-					height: 32px;
+					block-size: 32px;
 				}
 			}
 
@@ -205,7 +207,7 @@
 					font-weight: 600;
 
 					i {
-						margin-right: 10px;
+						margin-inline-end: 10px;
 					}
 				}
 			}
@@ -236,22 +238,22 @@
 
 		.ps-dashboard-nav-container-wrapper {
 
-			margin-top: @ps-dashboard-gap-size;
+			margin-block-start: @ps-dashboard-gap-size;
 			display: none;
 		}
 
 		.bdt-dashboard-navigation {
 			box-sizing: border-box;
 			padding: 0;
-			min-width: @ps-dashboard-nav-width;
-			max-width: @ps-dashboard-nav-width;
-			// min-height: 100vh;
+			min-inline-size: @ps-dashboard-nav-inline-size;
+			max-inline-size: @ps-dashboard-nav-inline-size;
+			// min-block-size: 100vh;
 		}
 
 		.ps-dashboard-compare-section {
-			border-top: 1px solid #f5f5f5;
-			margin-top: 50px;
-			padding-top: 50px;
+			border-block-start: 1px solid #f5f5f5;
+			margin-block-start: 50px;
+			padding-block-start: 50px;
 
 			.ps-feature-sub-title {
 				font-size: 15px;
@@ -269,8 +271,9 @@
 				padding: 0;
 				margin: 30px 0 0;
 				font-size: 14px;
-				padding: 0 20px;
-				margin-bottom: 30px;
+				padding-block: 0;
+				padding-inline: 20px;
+				margin-block-end: 30px;
 			}
 
 		}
@@ -284,8 +287,8 @@
 		}
 
 		.ps-content-type-filter {
-			border-top: 2px solid #2196F3;
-			padding-top: 20px;
+			border-block-start: 2px solid #2196F3;
+			padding-block-start: 20px;
 			display: none;
 
 			ul {
@@ -304,12 +307,12 @@
 						&:before {
 							content: '';
 							position: absolute;
-							bottom: 0;
-							left: 0;
-							width: 0;
-							height: 2px;
+							inset-block-end: 0;
+							inset-inline-start: 0;
+							inline-size: 0;
+							block-size: 2px;
 							background: #2196F3;
-							transition: width 0.3s ease;
+							transition: inline-size 0.3s ease;
 						}
 
 						&:hover {
@@ -322,7 +325,7 @@
 							color: #2196F3;
 
 							&:before {
-								width: 100%;
+								inline-size: 100%;
 							}
 						}
 					}
@@ -331,7 +334,7 @@
 
 			.ps-filter-by-text {
 				font-size: 14px;
-				margin-right: 10px;
+				margin-inline-end: 10px;
 				font-weight: 600;
 			}
 		}
@@ -349,11 +352,11 @@
 			display: grid;
 
 			p {
-				margin-bottom: 16px;
+				margin-block-end: 16px;
 			}
 
 			.ps-dashboard-footer-item p {
-				margin-bottom: 0;
+				margin-block-end: 0;
 			}
 		}
 
@@ -375,11 +378,10 @@
 
 		.ps-dashboard-template-quick-access {
 			img {
-				width: 100%;
-				height: auto;
+				inline-size: 100%;
+				block-size: auto;
 				border-radius: 6px;
-				;
-				margin-bottom: 20px;
+				margin-block-end: 20px;
 			}
 		}
 
@@ -390,8 +392,8 @@
 			&:after {
 				content: 'PRO';
 				position: absolute;
-				right: 24px;
-				top: 50%;
+				inset-inline-end: 24px;
+				inset-block-start: 50%;
 				transform: translateY(-50%);
 				font-size: 10px;
 				font-weight: 600;
@@ -413,7 +415,7 @@
 			.bdt-tab {
 				li {
 					margin: 0;
-					border-bottom: 1px solid @ps-dashboard-border-color;
+					border-block-end: 1px solid @ps-dashboard-border-color;
 
 					a {
 						padding: 16px 30px;
@@ -424,14 +426,14 @@
 						color: #666;
 						position: relative;
 						transition: box-shadow 300ms ease-out;
-						justify-content: flex-start;
+						justify-content: start;
 						gap: 12px;
 						font-weight: 600;
 					}
 
 					a:hover,
 					a:focus {
-						border-bottom: none;
+						border-block-end: none;
 						color: #000;
 						box-shadow: none;
 					}
@@ -439,13 +441,13 @@
 					a:after {
 						background-color: #0680d6;
 						content: '';
-						height: 0;
+						block-size: 0;
 						position: absolute;
-						left: 0;
-						width: 4px;
-						transition: height .7s cubic-bezier(.165, .84, .44, 1);
+						inset-inline-start: 0;
+						inline-size: 4px;
+						transition: block-size .7s cubic-bezier(.165, .84, .44, 1);
 						transform: translateY(-50%);
-						top: 50%;
+						inset-block-start: 50%;
 					}
 
 					&.bdt-active {
@@ -453,7 +455,7 @@
 							color: #0680d6;
 
 							&:after {
-								height: 75%;
+								block-size: 75%;
 							}
 						}
 					}
@@ -464,19 +466,18 @@
 
 		.bdt-card {
 			border-radius: 6px;
-			;
 			background-color: @card-background;
 			border: 1px solid @ps-dashboard-border-color;
 		}
 
 		.ps-option-page {
-			margin-top: @ps-dashboard-gap-size;
+			margin-block-start: @ps-dashboard-gap-size;
 
 			p {
 				font-size: 15px;
 				line-height: 1.6;
 				color: #666;
-				max-width: 600px;
+				max-inline-size: 600px;
 			}
 
 
@@ -484,7 +485,7 @@
 				.bdt-width-expand {
 					&>[class^="ps-wi-"] {
 						font-size: 48px;
-						margin-right: 20px;
+						margin-inline-end: 20px;
 					}
 				}
 
@@ -506,16 +507,16 @@
 
 				&[data-content-type~="update"]>.ps-option-item-inner:before,
 				&[data-content-type~="new"]>.ps-option-item-inner:before {
-					width: 70px;
-					height: 20px;
+					inline-size: 70px;
+					block-size: 20px;
 					color: #fff;
 					position: absolute;
 					transform: rotate(-45deg);
 					text-align: center;
 					line-height: 20px;
 					font-size: 9px;
-					left: -20px;
-					top: 4px;
+					inset-inline-start: -20px;
+					inset-block-start: 4px;
 				}
 
 				&[data-content-type~="new"]>.ps-option-item-inner:before {
@@ -531,7 +532,7 @@
 				.ps-option-label-wrap {
 					display: flex;
 					flex-direction: column;
-					align-items: flex-start;
+					align-items: start;
 					gap: 10px;
 
 					.ps-option-links {
@@ -613,36 +614,36 @@
 				z-index: 998;
 				border-radius: 6px;
 				border: 1px solid @ps-dashboard-border-color;
-				margin-bottom: @ps-dashboard-gap-size;
+				margin-block-end: @ps-dashboard-gap-size;
 
 				.bdt-filter-shape {
 					position: absolute;
-					bottom: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
+					inset-block-end: 0;
+					inset-inline-start: 0;
+					inline-size: 100%;
+					block-size: 100%;
 					z-index: -1;
 					pointer-events: none;
 
 					svg {
 						position: absolute;
-						bottom: 0;
-						left: 0;
-						width: 100%;
-						height: 100%;
+						inset-block-end: 0;
+						inset-inline-start: 0;
+						inline-size: 100%;
+						block-size: 100%;
 						transform: scale(1.5);
 					}
 				}
 
 				ul {
-					margin-top: 0;
-					margin-bottom: 0;
+					margin-block-start: 0;
+					margin-block-end: 0;
 				}
 
 				.bdt-badge {
-					height: 18px;
-					width: 18px;
-					margin-left: 5px;
+					block-size: 18px;
+					inline-size: 18px;
+					margin-inline-start: 5px;
 					font-size: 10px;
 				}
 
@@ -669,7 +670,7 @@
 					margin: 0;
 					padding: 0;
 					&:first-child {
-						padding-left: 20px;
+						padding-inline-start: 20px;
 					}
 
 					a {
@@ -802,7 +803,7 @@
 				gap: 15px;
 
 				>.ps-option-item {
-					margin-bottom: 0 !important;
+					margin-block-end: 0 !important;
 
 					.ps-option-group {
 						.ps-option-item {
@@ -814,7 +815,7 @@
 
 					.ps-option-item-inner {
 						.bdt-input {
-							height: 34px;
+							block-size: 34px;
 							border-radius: 6px !important;
 
 							&:focus {
@@ -827,7 +828,7 @@
 						}
 
 						textarea {
-							width: 100%;
+							inline-size: 100%;
 						}
 					}
 
@@ -861,7 +862,7 @@
 			}
 
 			.bdt-widget-search input {
-				min-height: 40px;
+				min-block-size: 40px;
 				padding: 0 8px;
 				border-color: rgba(30, 135, 240, 0.3);
 
@@ -884,11 +885,14 @@
 	}
 
 
+	/* Physical LTR so ::after + translateX() match; rtl:ignore stops rtlcss flipping this in ps-admin.rtl.css */
+	/* rtl:ignore */
 	.switch {
 		position: relative;
 		display: inline-block;
-		width: 44px;
-		height: 24px;
+		direction: ltr;
+		inline-size: 44px;
+		block-size: 24px;
 		background-color: rgba(0, 0, 0, 0.25);
 		border-radius: 20px;
 		transition: all 0.3s ease-out;
@@ -899,12 +903,12 @@
 	.switch::after {
 		content: '';
 		position: absolute;
-		width: 20px;
-		height: 20px;
+		inline-size: 20px;
+		block-size: 20px;
 		border-radius: 20px;
 		background-color: white;
-		top: 2px;
-		left: 3px;
+		inset-block-start: 2px;
+		inset-inline-start: 3px;
 		transition: all .3s cubic-bezier(.24, .85, .58, 1);
 	}
 
@@ -918,7 +922,7 @@
 
 	input[type='checkbox'] {
 		position: absolute;
-		left: -9999px;
+		inset-inline-start: -9999px;
 	}
 
 	.ps-widget-pro {
@@ -939,14 +943,14 @@
 			font-size: 13px;
 
 			li>div {
-				padding-bottom: 5px;
-				margin-bottom: 5px;
-				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding-block-end: 5px;
+				margin-block-end: 5px;
+				border-block-end: 1px solid rgba(0, 0, 0, 0.1);
 			}
 		}
 
 		.check-system-status .label1 {
-			width: 200px;
+			inline-size: 200px;
 		}
 
 		.check-system-status span {
@@ -957,10 +961,10 @@
 		.check-system-status .valid,
 		.check-system-status .invalid {
 			font-size: 15px;
-			width: 20px;
-			height: 18px;
-			margin-left: 10px;
-			margin-right: 15px;
+			inline-size: 20px;
+			block-size: 18px;
+			margin-inline-start: 10px;
+			margin-inline-end: 15px;
 			vertical-align: middle;
 			border-radius: 3px;
 		}
@@ -975,7 +979,7 @@
 			color: #fff;
 
 			i::before {
-				margin-left: -1px;
+				margin-inline-start: -1px;
 			}
 		}
 
@@ -990,8 +994,8 @@
 	.ps-no-result {
 		display: none;
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		inset-block-start: 50%;
+		inset-inline-start: 50%;
 		transform: translate(-50%, -50%) !important;
 	}
 
@@ -1009,7 +1013,7 @@
 	}
 
 	.ps-code-section-header {
-		margin-bottom: 20px;
+		margin-block-end: 20px;
 		background: #fefefe;
 		padding: 20px;
 		border-radius: 6px;
@@ -1035,26 +1039,26 @@
 		border: 1px solid @ps-dashboard-border-color;
 		border-radius: 4px;
 		padding: 20px;
-		margin-bottom: 20px;
+		margin-block-end: 20px;
 	}
 
 	.ps-exclusion-label {
 		display: block;
 		font-weight: 600;
-		margin-bottom: 8px;
+		margin-block-end: 8px;
 		color: #23282d;
 	}
 
 	.ps-page-select {
-		width: 100%;
-		min-height: 120px;
-		max-height: 200px;
+		inline-size: 100%;
+		min-block-size: 120px;
+		max-block-size: 200px;
 		padding: 8px;
 		border: 1px solid @ps-dashboard-border-color;
 		border-radius: 4px;
 		background: #fff;
 		font-size: 14px;
-		max-width: 100%;
+		max-inline-size: 100%;
 	}
 
 	.ps-page-select option {
@@ -1103,7 +1107,7 @@
 					}
 
 					.description {
-						margin-top: 20px;
+						margin-block-start: 20px;
 
 					}
 				}
@@ -1138,10 +1142,10 @@
 					}
 
 					.ps-option-item {
-						margin-top: 10px;
+						margin-block-start: 10px;
 
 						&:nth-last-child(1) {
-							margin-top: 0;
+							margin-block-start: 0;
 						}
 					}
 				}
@@ -1177,8 +1181,8 @@
 
 		.ps-option-video {
 			position: absolute;
-			right: 25px;
-			top: 20px;
+			inset-inline-end: 25px;
+			inset-block-start: 20px;
 			background: #e9f4ff;
 			padding: 8px;
 			border-radius: 6px;
@@ -1186,20 +1190,20 @@
 
 		.ps-option-label {
 			display: block;
-			margin-bottom: 25px;
+			margin-block-end: 25px;
 			font-size: 18px;
 		}
 
 		.ps-option-group {
 			.ps-option-label {
-				margin-bottom: 15px;
+				margin-block-end: 15px;
 			}
 		}
 
 		p.description {
 			font-size: 12px !important;
 			color: #999;
-			margin-top: 10px;
+			margin-block-start: 10px;
 
 			a {
 				color: #888;
@@ -1245,11 +1249,11 @@
 			}
 
 			p {
-				margin-top: 0;
+				margin-block-start: 0;
 			}
 
 			.ps-count-canvas-wrap .ps-feature-title {
-				margin-bottom: 5px;
+				margin-block-end: 5px;
 			}
 
 			.ps-count-wrap {
@@ -1264,10 +1268,10 @@
 			}
 
 			.bdt-others-plugin-content {
-				width: 100%;
+				inline-size: 100%;
 				gap: 20px;
 				flex-direction: column;
-				align-items: flex-start;
+				align-items: start;
 
 				.ps-feature-title {
 					font-weight: 500;
@@ -1278,14 +1282,14 @@
 				}
 
 				img {
-					width: clamp(50px, 8vw, 70px);
-					height: auto;
+					inline-size: clamp(50px, 8vw, 70px);
+					block-size: auto;
 					vertical-align: middle;
 					// border-radius: 6px;
 				}
 
 				.ps-feature-title {
-					margin-bottom: 0;
+					margin-block-end: 0;
 				}
 
 				p {
@@ -1293,7 +1297,7 @@
 					font-size: 15px;
 					line-height: 1.5;
 					color: #656a71;
-					max-width: 600px;
+					max-inline-size: 600px;
 					font-weight: 300;
 				}
 				span.active-installs {
@@ -1312,11 +1316,11 @@
 			.bdt-others-plugins-link {
 				display: flex;
 				flex-wrap: wrap;
-				justify-content: left;
+				justify-content: start;
 				gap: 8px;
-				width: 100%;
+				inline-size: 100%;
 				flex: 1;
-				min-width: 300px;
+				min-inline-size: 300px;
 
 				.bdt-dashboard-sec-btn {
 					padding: 9px 20px !IMPORTANT;
@@ -1429,7 +1433,7 @@
 				color: #333;
 				font-weight: 700;
 				font-size: clamp(18px, 1vw, 20px);
-				margin-bottom: 20px;
+				margin-block-end: 20px;
 				padding: 0;
 			}
 
@@ -1459,7 +1463,7 @@
 			}
 
 			.bdt-accordion {
-				padding-top: 5px;
+				padding-block-start: 5px;
 
 				.bdt-accordion-title {
 					font-size: 16px;
@@ -1483,12 +1487,13 @@
 				}
 
 				.bdt-accordion-content {
-					padding: 0 20px;
+					padding-block: 0;
+				padding-inline: 20px;
 				}
 			}
 
 			.check-system-status {
-				margin-top: 20px;
+				margin-block-start: 20px;
 			}
 
 			&.ps-video-tutorial {
@@ -1496,12 +1501,12 @@
 				flex-direction: column;
 
 				.bdt-list {
-					margin-bottom: 20px;
+					margin-block-end: 20px;
 					flex-grow: 1;
 				}
 
 				.bdt-list-divider>li:nth-child(n+2) {
-					border-top: 1px solid rgba(173, 200, 101, .3);
+					border-block-start: 1px solid rgba(173, 200, 101, .3);
 				}
 
 				.ps-link-title {
@@ -1519,7 +1524,7 @@
 					color: #444;
 					border: 1px solid @green-color;
 					display: inline-block;
-					width: 145px;
+					inline-size: 145px;
 					padding: 5px;
 					text-align: center;
 					border-radius: 3px;
@@ -1547,23 +1552,23 @@
 				padding: 10px;
 				border-radius: 6px;
 				border: 1px solid #f3f3f3;
-				margin-bottom: 18px;
+				margin-block-end: 18px;
 				background: #f5fffc;
 				color: #FC6A2A;
 			}
 
 			i {
 				font-size: 18px;
-				width: 18px;
-				height: 18px;
+				inline-size: 18px;
+				block-size: 18px;
 			}
 
 			&:after {
 				content: "\f504";
 				font-family: dashicons;
 				position: absolute;
-				top: 15px;
-				right: 15px;
+				inset-block-start: 15px;
+				inset-inline-end: 15px;
 				font-size: 20px;
 				color: #FC6A2A;
 				opacity: 0;
@@ -1601,13 +1606,13 @@
 
 
 		.ps-dashboard-support-section {
-			margin-top: 30px;
+			margin-block-start: 30px;
 
 			.ps-feature-title {
 				display: flex;
 				align-items: center;
 				gap: 10px;
-				margin-bottom: 10px;
+				margin-block-end: 10px;
 
 				i {
 					font-size: 20px;
@@ -1624,7 +1629,7 @@
 
 	#prime_slider_active_modules_page .checkbox,
 	#prime_slider_third_party_widget_page .checkbox {
-		margin-top: 5px;
+		margin-block-start: 5px;
 	}
 
 
@@ -1658,7 +1663,7 @@
 			font-size: 14px !important;
 			color: #90b6c3 !important;
 			text-align: center;
-			margin-top: 25px;
+			margin-block-start: 25px;
 
 		}
 
@@ -1672,15 +1677,15 @@
 		border-radius: 2px;
 		padding: 10px 20px;
 		box-sizing: border-box;
-		margin-top: 30px;
+		margin-block-start: 30px;
 	}
 
 
 	.ps-dashboard-divider {
-		width: 100%;
-		margin-top: 50px;
-		margin-bottom: 50px;
-		min-height: 20px;
+		inline-size: 100%;
+		margin-block-start: 50px;
+		margin-block-end: 50px;
+		min-block-size: 20px;
 		background-size: 20px 20px;
 		background-repeat: repeat-x;
 	}
@@ -1702,7 +1707,7 @@
 	}
 
 	.ps-dashboard-panel .ps-comparision {
-		padding-left: 0;
+		padding-inline-start: 0;
 	}
 
 	.ps-dashboard-panel h1 {
@@ -1712,9 +1717,10 @@
 	.ps-purchase-button a {
 		color: #ffffff;
 		border-style: none;
-		border-radius: 4px 4px 4px 4px;
+		border-radius: 4px;
 		box-shadow: 0px 10px 40px 0px rgba(0, 130, 117, 0.29);
-		padding: 18px 45px 18px 45px;
+		padding-block: 18px;
+		padding-inline: 45px;
 		font-weight: 700;
 		cursor: pointer;
 		display: inline-block;
@@ -1750,57 +1756,57 @@
 		h3.el-license-title,
 		.bdt-subsite-license-management-title {
 			font-size: 22px;
-			margin-top: 0;
-			margin-bottom: 50px;
+			margin-block-start: 0;
+			margin-block-end: 50px;
 		}
 
 		ol {
-			margin-bottom: 20px;
+			margin-block-end: 20px;
 		}
 
 		.bdt-ps-license-field {
 			display: block;
-			margin-bottom: 15px;
+			margin-block-end: 15px;
 		}
 
 		.bdt-ps-license-field input {
 			font-size: 200%;
 			padding: 0 10px;
 			display: block;
-			margin-top: 10px;
+			margin-block-start: 10px;
 			border-radius: 6px;
 			border-color: #ddd;
-			width: 100%;
-			max-width: 650px;
+			inline-size: 100%;
+			max-inline-size: 650px;
 		}
 
 		.bdt-ps-license-field label {
 			display: inline-block;
-			margin-bottom: 5px;
+			margin-block-end: 5px;
 		}
 
 		.bdt-ps-license-active-btn {
-			margin-top: 25px;
+			margin-block-start: 25px;
 		}
 
 		.prime-slider-license-info {
 			font-size: 14px;
 			line-height: 24px;
-			max-width: 850px;
-			margin-bottom: 50px;
+			max-inline-size: 850px;
+			margin-block-end: 50px;
 
 			.license-info-title {
-				width: 150px;
+				inline-size: 150px;
 				display: inline-block;
 				position: relative;
-				padding-right: 5px;
-				margin-right: 10px;
+				padding-inline-end: 5px;
+				margin-inline-end: 10px;
 			}
 
 			.license-info-title:after {
 				content: ':';
 				position: absolute;
-				right: 2px;
+				inset-inline-end: 2px;
 			}
 
 			.license-valid,
@@ -1825,10 +1831,10 @@
 		.button {
 			padding: 14px 16px;
 			font-size: 14px;
-			height: auto;
+			block-size: auto;
 			border: 0;
 			border-radius: 6px;
-			min-height: auto;
+			min-block-size: auto;
 			font-weight: 600;
 			line-height: 1;
 		}
@@ -1870,19 +1876,19 @@
 			border-radius: 50%;
 			svg {
 				fill: #fff;
-				width: 24px;
-				height: 24px;
+				inline-size: 24px;
+				block-size: 24px;
 				display: block;
 			}
 		}
 
 		.ps-license-status-success {
-			margin-bottom: 20px;
+			margin-block-end: 20px;
 			padding: 20px;
 			border-radius: 5px;
 			background: rgba(78, 255, 177, 0.071);
-			border-left: 4px solid #10b981;
-			margin-top: 30px;
+			border-inline-start: 4px solid #10b981;
+			margin-block-start: 30px;
 		}
 
 		.ps-license-status-success h3,
@@ -1892,11 +1898,11 @@
 		}
 
 		.ps-license-status-warning {
-			margin-bottom: 20px;
+			margin-block-end: 20px;
 			padding: 15px;
 			border-radius: 5px;
 			background: #fffbeb;
-			border-left: 4px solid #f59e0b;
+			border-inline-start: 4px solid #f59e0b;
 		}
 
 		.ps-license-details,
@@ -1905,7 +1911,7 @@
 			font-size: 16px;
 			ul {
 				margin: 10px 0;
-				padding-left: 0;
+				padding-inline-start: 0;
 				list-style: inside;
 				font-size: 14px;;
 			}
@@ -1920,7 +1926,7 @@
 
 			ol {
 				margin: 10px 0;
-				padding-left: 20px;
+				padding-inline-start: 20px;
 
 				li {
 					margin: 8px 0;
@@ -1929,8 +1935,8 @@
 		}
 
 		.ps-admin-actions {
-			margin-top: 20px;
-			padding-top: 15px;
+			margin-block-start: 20px;
+			padding-block-start: 15px;
 		}
 
 		.license-valid {
@@ -1968,18 +1974,18 @@
 
 				border-collapse: collapse;
 				thead td, thead th {
-					border-bottom: 1px solid rgba(0, 0, 0, 0.059);
+					border-block-end: 1px solid rgba(0, 0, 0, 0.059);
 				}
 				td, th {
 					padding: 14px 16px;
 					border: 1px solid rgba(0, 0, 0, 0.059);
 				}
 				th {
-					border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+					border-block-end: 1px solid rgba(0, 0, 0, 0.1);
 				}
 
 				.bdt-badge {
-					height: 24px;
+					block-size: 24px;
 				}
 
 				tbody {
@@ -2012,7 +2018,7 @@
 	.ps-widget-count-text {
 		font-size: 11px;
 		color: #b7b7b7;
-		margin-top: 7px;
+		margin-block-start: 7px;
 		display: block;
 		text-transform: uppercase;
 	}
@@ -2030,7 +2036,8 @@
 		overflow: hidden;
 		color: #fff;
 		background: linear-gradient(to right, #FE506C, #FC6A2A);
-		margin: 16px 30px;
+		margin-block: 16px;
+		margin-inline: 30px;
 		border-radius: 6px;
 		justify-content: center;
 		&:after {
@@ -2041,7 +2048,7 @@
 	/* Start Custom CSS and JS Styles */
 	.ps-custom-code-section {
 		.ps-code-row {
-			margin-bottom: 20px;
+			margin-block-end: 20px;
 		}
 
 		.CodeMirror-placeholder {
@@ -2055,13 +2062,13 @@
 				font-weight: 600;
 				color: #333;
 				margin: 0 0 15px 0;
-				padding-bottom: 10px;
-				border-bottom: 2px solid #f0f0f0;
+				padding-block-end: 10px;
+				border-block-end: 2px solid #f0f0f0;
 			}
 
 			.ps-code-editor {
-				width: 100%;
-				min-height: 200px;
+				inline-size: 100%;
+				min-block-size: 200px;
 				font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
 				font-size: 13px;
 				line-height: 1.5;
@@ -2089,7 +2096,7 @@
 
 		.ps-code-save-section {
 			padding: 20px 0;
-			border-top: 1px solid #f0f0f0;
+			border-block-start: 1px solid #f0f0f0;
 
 			.bdt-button {
 				color: #FC6A2A;
@@ -2108,8 +2115,8 @@
 
 				.dashicons {
 					font-size: 16px;
-					width: 16px;
-					height: 16px;
+					inline-size: 16px;
+					block-size: 16px;
 					line-height: 1;
 				}
 
@@ -2168,8 +2175,8 @@
 
 				.bdt-alert-close {
 					position: absolute;
-					top: 5px;
-					right: -5px;
+					inset-block-start: 5px;
+					inset-inline-end: -5px;
 					background: none;
 					border: none;
 					font-size: 18px;
@@ -2213,7 +2220,7 @@
 		}
 	}
 
-	// Custom scrollbar for code editors
+	// Custom scrollbar for code editors (WebKit requires physical width on ::-webkit-scrollbar)
 	.ps-code-editor {
 		&::-webkit-scrollbar {
 			width: 8px;
@@ -2243,18 +2250,18 @@
 		border: 1px solid @ps-dashboard-border-color;
 		padding: 20px 0;
 		overflow: hidden;
-		min-height: 100vh;
+		min-block-size: 100vh;
 
 		&.bdt-sticky-fixed {
-			top: 115px !important;
+			inset-block-start: 115px !important;
 		}
 
 		.ps-nav-elements {
 			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			inline-size: 100%;
+			block-size: 100%;
 			pointer-events: none;
 			z-index: 0;
 
@@ -2263,57 +2270,57 @@
 				display: block;
 
 				&.ps-nav-circle {
-					width: 180px;
-					height: 180px;
+					inline-size: 180px;
+					block-size: 180px;
 					border-radius: 50%;
 					background: linear-gradient(45deg, rgba(73, 221, 180, 0.05), rgba(73, 221, 180, 0.1));
-					top: -90px;
-					right: -90px;
+					inset-block-start: -90px;
+					inset-inline-end: -90px;
 				}
 
 				&.ps-nav-dots {
-					bottom: 40px;
-					left: 20px;
-					width: 60px;
-					height: 60px;
+					inset-block-end: 40px;
+					inset-inline-start: 20px;
+					inline-size: 60px;
+					block-size: 60px;
 					background-image: radial-gradient(rgba(73, 221, 180, 0.15) 2px, transparent 2px);
 					background-size: 10px 10px;
 				}
 
 				&.ps-nav-line {
-					width: 100px;
-					height: 2px;
-					background: linear-gradient(90deg, rgba(73, 221, 180, 0), rgba(73, 221, 180, 0.2));
+					inline-size: 100px;
+					block-size: 2px;
+					background: linear-gradient(to right, rgba(73, 221, 180, 0), rgba(73, 221, 180, 0.2));
 					transform: rotate(-45deg);
-					bottom: 100px;
-					right: 20px;
+					inset-block-end: 100px;
+					inset-inline-end: 20px;
 				}
 
 				&.ps-nav-square {
-					width: 40px;
-					height: 40px;
+					inline-size: 40px;
+					block-size: 40px;
 					border: 2px solid rgba(73, 221, 180, 0.1);
-					top: 40px;
-					left: 30px;
+					inset-block-start: 40px;
+					inset-inline-start: 30px;
 					transform: rotate(15deg);
 				}
 
 				&.ps-nav-triangle {
-					width: 0;
-					height: 0;
-					border-left: 25px solid transparent;
-					border-right: 25px solid transparent;
-					border-bottom: 40px solid rgba(73, 221, 180, 0.08);
-					top: 60%;
-					right: 40px;
+					inline-size: 0;
+					block-size: 0;
+					border-inline-start: 25px solid transparent;
+					border-inline-end: 25px solid transparent;
+					border-block-end: 40px solid rgba(73, 221, 180, 0.08);
+					inset-block-start: 60%;
+					inset-inline-end: 40px;
 					transform: rotate(15deg);
 				}
 
 				&.ps-nav-plus {
-					width: 30px;
-					height: 30px;
-					top: 30%;
-					left: 40px;
+					inline-size: 30px;
+					block-size: 30px;
+					inset-block-start: 30%;
+					inset-inline-start: 40px;
 
 					&:before,
 					&:after {
@@ -2323,25 +2330,25 @@
 					}
 
 					&:before {
-						width: 100%;
-						height: 2px;
-						top: 50%;
+						inline-size: 100%;
+						block-size: 2px;
+						inset-block-start: 50%;
 						transform: translateY(-50%);
 					}
 
 					&:after {
-						width: 2px;
-						height: 100%;
-						left: 50%;
+						inline-size: 2px;
+						block-size: 100%;
+						inset-inline-start: 50%;
 						transform: translateX(-50%);
 					}
 				}
 
 				&.ps-nav-wave {
-					width: 100px;
-					height: 20px;
-					bottom: 30px;
-					right: 40px;
+					inline-size: 100px;
+					block-size: 20px;
+					inset-block-end: 30px;
+					inset-inline-end: 40px;
 					background: linear-gradient(45deg, rgba(73, 221, 180, 0) 45%, rgba(73, 221, 180, 0.1) 50%, rgba(73, 221, 180, 0) 55%);
 					background-size: 15px 15px;
 					transform: rotate(-10deg);
@@ -2365,8 +2372,8 @@
 
 		&.bdt-sticky-fixed {
 			z-index: 998;
-			border-top-left-radius: 0 !important;
-			border-top-right-radius: 0 !important;
+			border-start-start-radius: 0 !important;
+			border-start-end-radius: 0 !important;
 			box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 
 
@@ -2381,21 +2388,21 @@
 		}
 
 		.ps-used-unused-widgets {
-			margin-left: 10px;
+			margin-inline-start: 10px;
 
 			li {
 				&:first-child {
-					padding-left: 0 !important;
+					padding-inline-start: 0 !important;
 				}
 			}
 		}
 
 		.ps-filter-elements {
 			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			inline-size: 100%;
+			block-size: 100%;
 			pointer-events: none;
 			z-index: 1;
 
@@ -2404,30 +2411,30 @@
 				display: block;
 
 				&.ps-filter-circle {
-					width: 140px;
-					height: 140px;
+					inline-size: 140px;
+					block-size: 140px;
 					border-radius: 50%;
 					background: linear-gradient(135deg, rgba(@shape-primary-color, 0.05), rgba(@shape-secondary-color, 0.08));
-					top: -70px;
-					right: 5%;
+					inset-block-start: -70px;
+					inset-inline-end: 5%;
 					animation: floatingShape 6s ease-in-out infinite;
 				}
 
 				&.ps-filter-dots {
-					bottom: 10px;
-					left: 10px;
-					width: 70px;
-					height: 35px;
+					inset-block-end: 10px;
+					inset-inline-start: 10px;
+					inline-size: 70px;
+					block-size: 35px;
 					background-image: radial-gradient(rgba(@shape-primary-color, 0.15) 2px, transparent 2px);
 					background-size: 8px 8px;
 					animation: fadeInOut 4s ease-in-out infinite;
 				}
 
 				&.ps-filter-wave {
-					width: 120px;
-					height: 20px;
-					bottom: 25px;
-					right: 10%;
+					inline-size: 120px;
+					block-size: 20px;
+					inset-block-end: 25px;
+					inset-inline-end: 10%;
 					background: repeating-linear-gradient(45deg,
 							rgba(@shape-primary-color, 0) 0px,
 							rgba(@shape-primary-color, 0.1) 2px,
@@ -2437,10 +2444,10 @@
 				}
 
 				&.ps-filter-hexagon {
-					top: 20%;
-					left: 15px;
-					width: 35px;
-					height: 20px;
+					inset-block-start: 20%;
+					inset-inline-start: 15px;
+					inline-size: 35px;
+					block-size: 20px;
 					background: rgba(@shape-secondary-color, 0.1);
 					position: absolute;
 					transform: rotate(30deg);
@@ -2449,28 +2456,28 @@
 					&:after {
 						content: '';
 						position: absolute;
-						width: 0;
-						height: 0;
-						border-left: 18px solid transparent;
-						border-right: 18px solid transparent;
+						inline-size: 0;
+						block-size: 0;
+						border-inline-start: 18px solid transparent;
+						border-inline-end: 18px solid transparent;
 					}
 
 					&:before {
-						bottom: 100%;
-						border-bottom: 10px solid rgba(@shape-secondary-color, 0.1);
+						inset-block-end: 100%;
+						border-block-end: 10px solid rgba(@shape-secondary-color, 0.1);
 					}
 
 					&:after {
-						top: 100%;
-						border-top: 10px solid rgba(@shape-secondary-color, 0.1);
+						inset-block-start: 100%;
+						border-block-start: 10px solid rgba(@shape-secondary-color, 0.1);
 					}
 				}
 
 				&.ps-filter-zigzag {
-					top: 40%;
-					right: 20px;
-					width: 50px;
-					height: 25px;
+					inset-block-start: 40%;
+					inset-inline-end: 20px;
+					inline-size: 50px;
+					block-size: 25px;
 					background: linear-gradient(45deg,
 							transparent 45%,
 							rgba(@shape-primary-color, 0.1) 45%,
@@ -2485,12 +2492,12 @@
 
 
 	#ps-extra-options-tab-content {
-		margin-top: 30px;
+		margin-block-start: 30px;
 	}
 
 	.ps-extra-options-tabs {
 		.bdt-tab {
-			border-bottom: 2px solid #f1f1f1;
+			border-block-end: 2px solid #f1f1f1;
 			margin: 0;
 			padding: 0;
 			list-style: none;
@@ -2515,12 +2522,12 @@
 					&:after {
 						content: '';
 						position: absolute;
-						bottom: -2px;
-						left: 0;
-						width: 0;
-						height: 2px;
+						inset-block-end: -2px;
+						inset-inline-start: 0;
+						inline-size: 0;
+						block-size: 2px;
 						background: #FC6A2A;
-						transition: width 0.3s ease;
+						transition: inline-size 0.3s ease;
 					}
 
 					&:hover {
@@ -2533,7 +2540,7 @@
 						color: #FC6A2A;
 
 						&:after {
-							width: 100%;
+							inline-size: 100%;
 						}
 					}
 				}
@@ -2553,10 +2560,10 @@
 
 	.ps-white-label-options {
 		.slider:before {
-			height: 18px;
-			width: 18px;
-			left: 2px;
-			bottom: 1px;
+			block-size: 18px;
+			inline-size: 18px;
+			inset-inline-start: 2px;
+			inset-block-end: 1px;
 		}
 
 		.switch:after {
@@ -2573,7 +2580,7 @@
 		// padding: 20px;
 
 		.ps-code-row {
-			margin-bottom: 20px;
+			margin-block-end: 20px;
 		}
 
 		.ps-code-editor-wrapper {
@@ -2582,16 +2589,16 @@
 				font-weight: 600;
 				color: #333;
 				margin: 0 0 15px 0;
-				padding-bottom: 10px;
-				border-bottom: 2px solid #f0f0f0;
+				padding-block-end: 10px;
+				border-block-end: 2px solid #f0f0f0;
 			}
 
 			.ps-codemirror-editor-container {
 				position: relative;
 
 				.ps-code-editor {
-					min-height: 200px;
-					width: 100%;
+					min-block-size: 200px;
+					inline-size: 100%;
 					font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
 					font-size: 13px;
 					line-height: 1.5;
@@ -2602,8 +2609,8 @@
 
 				// CodeMirror styling
 				.CodeMirror {
-					min-height: 200px;
-					width: 100% !important;
+					min-block-size: 200px;
+					inline-size: 100% !important;
 					border: 1px solid #ddd;
 					border-radius: 4px;
 					font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
@@ -2619,7 +2626,7 @@
 					}
 
 					.CodeMirror-scroll {
-						min-height: 200px;
+						min-block-size: 200px;
 						padding: 0;
 						box-sizing: border-box;
 					}
@@ -2630,18 +2637,18 @@
 					}
 
 					.CodeMirror-gutters {
-						border-right: 1px solid #ddd;
+						border-inline-end: 1px solid #ddd;
 						background: #fefefe;
 						white-space: nowrap;
-						min-width: 40px;
+						min-inline-size: 40px;
 					}
 
 					.CodeMirror-linenumber {
 						color: #999;
 						padding: 0 8px;
 						white-space: nowrap;
-						text-align: right;
-						min-width: 20px;
+						text-align: end;
+						min-inline-size: 20px;
 					}
 
 					.CodeMirror-line {
@@ -2650,8 +2657,8 @@
 					}
 
 					.CodeMirror-cursor {
-						border-left: 1px solid #333;
-						height: auto;
+						border-inline-start: 1px solid #333;
+						block-size: auto;
 					}
 
 					// Ensure proper text rendering
@@ -2663,13 +2670,13 @@
 
 					// Fix for hidden container issues
 					&.CodeMirror-wrap {
-						width: 100%;
+						inline-size: 100%;
 					}
 
 					// Ensure proper height calculation
 					&.CodeMirror-empty {
 						.CodeMirror-scroll {
-							min-height: 200px;
+							min-block-size: 200px;
 						}
 					}
 				}
@@ -2678,7 +2685,7 @@
 
 		.ps-code-save-section {
 			padding: 20px 0;
-			border-top: 1px solid #f0f0f0;
+			border-block-start: 1px solid #f0f0f0;
 
 			.bdt-button {
 				padding: 12px 24px;
@@ -2730,7 +2737,10 @@
 		.ps-code-message {
 			.bdt-alert {
 				border-radius: 5px;
-				padding: 15px 40px 15px 15px;
+				padding-block-start: 15px;
+				padding-inline-end: 40px;
+				padding-block-end: 15px;
+				padding-inline-start: 15px;
 				position: relative;
 
 				&.bdt-alert-success {
@@ -2782,7 +2792,7 @@
 		}
 	}
 
-	// Custom scrollbar for code editors
+	// Custom scrollbar for code editors (WebKit requires physical width on ::-webkit-scrollbar)
 	.ps-code-editor {
 		&::-webkit-scrollbar {
 			width: 8px;
@@ -2809,23 +2819,23 @@
 		.switch {
 			position: relative;
 			display: inline-block;
-			width: 46px;
-			height: 24px;
+			inline-size: 46px;
+			block-size: 24px;
 		}
 
 		.switch input {
 			opacity: 0;
-			width: 0;
-			height: 0;
+			inline-size: 0;
+			block-size: 0;
 		}
 
 		.slider {
 			position: absolute;
 			cursor: pointer;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
+			inset-block-end: 0;
 			background-color: #ccc;
 			-webkit-transition: .4s;
 			transition: .4s;
@@ -2835,10 +2845,10 @@
 		.slider:before {
 			position: absolute;
 			content: "";
-			height: 20px;
-			width: 20px;
-			left: 3px;
-			bottom: 2px;
+			block-size: 20px;
+			inline-size: 20px;
+			inset-inline-start: 3px;
+			inset-block-end: 2px;
 			background-color: white;
 			-webkit-transition: .4s;
 			transition: .4s;
@@ -2888,7 +2898,7 @@
 		border-radius: 6px;
 	}
 	.prime-slider-custom-code-save-btn {
-		margin-right: 12px;
+		margin-inline-end: 12px;
 		&:hover {
 			background: linear-gradient(to right, #FC6A2A, #FE506C);
 		}
@@ -2904,29 +2914,29 @@
 	.ps-code-message,
 	.ps-white-label-message {
 		position: fixed;
-		top: -100px; /* Start hidden above viewport */
-		left: 50%;
+		inset-block-start: -100px; /* Start hidden above viewport */
+		inset-inline-start: 50%;
 		transform: translateX(-50%);
 		z-index: 999;
 		border-radius: 4px;
 		opacity: 0;
 		animation: slideDown 0.5s ease-out forwards;
 		.bdt-alert{
-			padding-right: 40px;
+			padding-inline-end: 40px;
 		}
 	}
 	
 	/* Slide-down animation keyframes */
 	@keyframes slideDown {
 		to {
-			top: 20px;         /* End position slightly from top */
+			inset-block-start: 20px; /* End position slightly from top */
 			opacity: 1;
 		}
 	}
 
 	.bdt-alert {
 		padding: 15px;
-		margin-bottom: 20px;
+		margin-block-end: 20px;
 		border: 1px solid transparent;
 		border-radius: 4px;
 		position: relative;
@@ -2949,14 +2959,14 @@
 
 	// .bdt-alert-danger strong {
 	// 	display: block;
-	// 	margin-bottom: 8px;
+	// 	margin-block-end: 8px;
 	// 	font-size: 16px;
 	// }
 
 	.bdt-alert-close {
 		position: absolute;
-		top: 0;
-		right: 0;
+		inset-block-start: 0;
+		inset-inline-end: 0;
 		padding: 15px;
 		color: inherit;
 		text-decoration: none;
@@ -2974,16 +2984,16 @@
 		text-rendering: auto;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		width: 20px;
-		height: 20px;
+		inline-size: 20px;
+		block-size: 20px;
 		font-size: 20px;
 		vertical-align: top;
 	}
 
 	/* White Label Title Input Styles */
 	.ps-white-label-input {
-		width: 100%;
-		max-width: 400px;
+		inline-size: 100%;
+		max-inline-size: 400px;
 		padding: 12px 16px;
 		border: 1px solid #ddd;
 		border-radius: 4px;
@@ -3012,12 +3022,12 @@
 	}
 
 	.ps-white-label-title-section {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	.ps-white-label-fields {
 		transition: all 0.3s ease;
-		margin-top: 20px;
+		margin-block-start: 20px;
 	}
 
 
@@ -3064,7 +3074,7 @@
 
 	.bdt-alert-warning strong {
 		display: block;
-		margin-bottom: 8px;
+		margin-block-end: 8px;
 		font-size: 16px;
 	}
 
@@ -3093,13 +3103,13 @@
 	.ps-install-plugin.bdt-installing:before {
 		content: '';
 		display: inline-block;
-		width: 12px;
-		height: 12px;
+		inline-size: 12px;
+		block-size: 12px;
 		border: 2px solid #ffffff;
-		border-top: 2px solid transparent;
+		border-block-start: 2px solid transparent;
 		border-radius: 50%;
 		animation: spin 1s linear infinite;
-		margin-right: 5px;
+		margin-inline-end: 5px;
 	}
 
 	.ps-install-plugin.bdt-installed {
@@ -3109,6 +3119,11 @@
 
 }
 
+/*! rtl:ignore */
+body.rtl .prime-slider-dashboard.wrap .ps-option-page .ps-option-item[data-content-type~="update"] > .ps-option-item-inner:before,
+body.rtl .prime-slider-dashboard.wrap .ps-option-page .ps-option-item[data-content-type~="new"] > .ps-option-item-inner:before {
+	transform: rotate(45deg);
+}
 
 #adminmenu #toplevel_page_prime_slider_options a[href="admin.php?page=prime_slider_options_upgrade"] {
 	font-weight: 600;
@@ -3118,13 +3133,12 @@
 
 #adminmenu #toplevel_page_prime_slider_options a[href="admin.php?page=prime_slider_options_upgrade"]:hover {
 	color: #08aeec;
-	;
 }
 
 .toplevel_page_prime_slider_options {
 	.bdt-notification {
-		top: 43px;
-		width: 400px;
+		inset-block-start: 43px;
+		inline-size: 400px;
 
 		.bdt-notification-message {
 			line-height: 1;
@@ -3141,16 +3155,16 @@
 				align-items: center;
 
 				.bdt-spinner {
-					margin-right: 15px;
+					margin-inline-end: 15px;
 				}
 			}
 
 			.bdt-notification-close {
-				top: 50%;
-				right: 10px;
+				inset-block-start: 50%;
+				inset-inline-end: 10px;
 				transform: translateY(-50%);
-				height: 30px;
-				width: 30px;
+				block-size: 30px;
+				inline-size: 30px;
 				line-height: 32px;
 				background: #fff0f3;
 				border-radius: 6px;
@@ -3161,13 +3175,13 @@
 			}
 
 			.dashicons {
-				margin-right: 5px;
+				margin-inline-end: 5px;
 			}
 
 			svg {
 				display: inline-flex;
 				color: @red-color;
-				width: 12px;
+				inline-size: 12px;
 			}
 		}
 	}
@@ -3287,13 +3301,13 @@
 			.bdt-card {
 				&.ps-welcome-content {
 					p {
-						margin-right: 160px;
+						margin-inline-end: 160px;
 					}
 				}
 
 				&.ps-facebook-community {
 					p {
-						margin-right: 160px;
+						margin-inline-end: 160px;
 					}
 				}
 			}
@@ -3319,8 +3333,8 @@
 
 		.prime-slider-footer-info {
 			p {
-				text-align: right;
-				margin-top: 0;
+				text-align: end;
+				margin-block-start: 0;
 			}
 
 		}
@@ -3353,7 +3367,7 @@
 			}
 
 			.bdt-button {
-				width: 100%;
+				inline-size: 100%;
 			}
 		}
 	}
@@ -3363,7 +3377,7 @@
 	.prime-slider-dashboard {
 		.ps-custom-code-section {
 			.ps-code-editor-wrapper {
-				margin-bottom: 20px;
+				margin-block-end: 20px;
 			}
 		}
 	}
@@ -3389,11 +3403,6 @@
 	.prime-slider-dashboard.wrap .ps-content-type-filter {
 		display: block;
 	}
-
-	// .prime-slider-dashboard.wrap .ps-dashboard-panel .bdt-card .bdt-others-plugin-content {
-	// 	flex-direction: row;
-	// 	align-items: center;
-	// }
 }
 
 @media (min-width: 1200px) {
@@ -3417,7 +3426,7 @@
 				flex-direction: row;
 
 				.bdt-others-plugins-link {
-					justify-content: right;
+					justify-content: end;
 				}
 			}
 		}
@@ -3426,7 +3435,7 @@
 
 @media (min-width: 1440px) {
 	:root {
-		@ps-dashboard-nav-width: 300px;
+		@ps-dashboard-nav-inline-size: 300px;
 	}
 
 	.prime-slider-dashboard {
@@ -3436,20 +3445,20 @@
 			}
 
 			.ps-dashboard-nav-container-wrapper {
-				margin-top: 30px;
+				margin-block-start: 30px;
 			}
 
 			.ps-option-page {
-				margin-top: 30px;
+				margin-block-start: 30px;
 			}
 
 			.bdt-dashboard-navigation {
-				min-width: 300px;
-				max-width: 300px;
+				min-inline-size: 300px;
+				max-inline-size: 300px;
 			}
 
 			.ps-dashboard-header .ps-logo {
-				width: 300px;
+				inline-size: 300px;
 			}
 
 			.ps-dashboard-welcome-container {
@@ -3458,7 +3467,7 @@
 			}
 
 			.bdt-widget-filter-wrapper {
-				margin-bottom: 30px;
+				margin-block-end: 30px;
 			}
 		}
 	}
@@ -3476,7 +3485,7 @@
 		gap: 30px !important;
 
 		.ps-option-item {
-			margin-bottom: 30px !important;
+			margin-block-end: 30px !important;
 		}
 	}
 
@@ -3493,7 +3502,7 @@
 	}
 
 	.prime-slider-dashboard.wrap .bdt-subnav>* {
-		padding-left: 20px;
+		padding-inline-start: 20px;
 	}
 
 	.prime-slider-dashboard.wrap .ps-option-page .ps-options {
@@ -3505,7 +3514,7 @@
 	.prime-slider-dashboard {
 		.ps-custom-code-section {
 			.ps-code-editor-wrapper {
-				margin-bottom: 20px;
+				margin-block-end: 20px;
 			}
 		}
 	}
@@ -3513,6 +3522,6 @@
 
 @media (max-width: 768px) {
 	.prime-slider-dashboard.wrap .ps-white-label-input {
-		max-width: 100%;
+		max-inline-size: 100%;
 	}
 }
