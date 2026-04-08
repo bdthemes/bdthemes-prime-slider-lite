@@ -1021,11 +1021,6 @@
   transition: width 0.3s ease;
 }
 
-
-
-
-
-
 /* Responsive styles for integration page */
 @media (min-width: 768px) {
   .bdt-setup-wizard form#ps-install-plugins .bdt-plugin-list {
