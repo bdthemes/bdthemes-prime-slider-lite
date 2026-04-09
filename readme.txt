@@ -5,11 +5,11 @@ Tags: layer slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9.4
 Requires PHP: 7.4.0
-Stable tag: 4.1.12
+Stable tag: 4.1.13
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 4.0.0
+Elementor tested up to: 4.0.1
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
@@ -274,7 +274,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.1.X [XXth April 2026] =
+= 4.1.13 [9th April 2026] =
 
 * Added: Title text and excerpt text limit controls in the woocommerce widget
 * Fixed: dot navigation style issue and cleaned up related conditions — dragon widget
