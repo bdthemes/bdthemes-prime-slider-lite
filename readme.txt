@@ -277,6 +277,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title text and excerpt text limit controls in the woocommerce widget
+* Fixed: dot navigation style issue and cleaned up related conditions — dragon widget
+* Fixed: advanced style and navigation style visibility issue — mount widget
+* Fixed: arrow navigation style issue and cleaned up related conditions — omatic widget
+* Improved: excerpt width control range updated to 1–100% for excerpt paragraph styling — general widget
+* Updated: added GL_OES_standard_derivatives shader #ifdef compatibility for improved WebGL support — Swiper GL
 
 = 4.1.12 [2nd April 2026] =
 

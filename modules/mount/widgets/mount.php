@@ -8,7 +8,6 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Text_Stroke;
 use PrimeSlider\Utils;
@@ -529,7 +528,8 @@ class Mount extends Widget_Base {
 			[
 				'label' => esc_html__('Advanced Style', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SWITCHER,
-				'classes'    => BDTPS_CORE_IS_PC
+				'classes'   => BDTPS_CORE_IS_PC,
+				'condition' => [ 'show_title' => 'yes' ],
 			]
 		);
 
@@ -858,6 +858,21 @@ class Mount extends Widget_Base {
 			[
 				'label'     => __('Navigation', 'bdthemes-prime-slider'),
 				'tab'       => Controls_Manager::TAB_STYLE,
+				'conditions' => [
+					'relation' => 'or',
+					'terms'    => [
+						[
+							'name'     => 'show_navigation_arrows',
+							'operator' => '==',
+							'value'    => 'yes',
+						],
+						[
+							'name'     => 'show_navigation_dots',
+							'operator' => '==',
+							'value'    => 'yes',
+						],
+					],
+				],
 			]
 		);
 
