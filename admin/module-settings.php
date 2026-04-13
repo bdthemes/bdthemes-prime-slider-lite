@@ -55,6 +55,17 @@ class ModuleService {
 				],
 
 				[ 
+					'name'         => 'carousel-slider',
+					'label'        => esc_html__( 'Carousel Slider', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper',
+					'demo_url'     => 'https://primeslider.pro/',
+					'video_url'    => '',
+				],
+
+				[ 
 					'name'         => 'coddle',
 					'label'        => esc_html__( 'Coddle', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
