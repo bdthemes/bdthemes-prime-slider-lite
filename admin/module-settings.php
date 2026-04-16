@@ -55,6 +55,17 @@ class ModuleService {
 				],
 
 				[ 
+					'name'         => 'cards-stack',
+					'label'        => esc_html__( 'Cards Stack', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/cards-stack/',
+					'video_url'    => 'https://youtu.be/8A2a8ws6364',
+				],
+
+				[ 
 					'name'         => 'coddle',
 					'label'        => esc_html__( 'Coddle', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
@@ -130,6 +141,17 @@ class ModuleService {
 					'content_type' => 'static swiper',
 					'demo_url'     => 'https://primeslider.pro/demo/escape/',
 					'video_url'    => 'https://youtu.be/WTqtALRdhDc',
+				],
+
+				[
+					'name'         => 'expo-slider',
+					'label'        => esc_html__( 'Expo Slider', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/expo-slider/',
+					'video_url'    => 'https://youtu.be/HxwdDoOsdMA',
 				],
 
 				[ 
