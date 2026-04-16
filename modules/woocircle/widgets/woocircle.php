@@ -119,6 +119,33 @@ class Woocircle extends Widget_Base {
 		*/
 		$this->register_show_excerpt_controls();
 
+		$this->add_control(
+			'title_word_limit',
+			[
+				'label'     => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'      => Controls_Manager::NUMBER,
+				'min'       => 0,
+				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC,
+				'condition' => [
+					'show_title' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'excerpt_word_limit',
+			[
+				'label'     => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'      => Controls_Manager::NUMBER,
+				'min'       => 0,
+				'classes'   => BDTPS_CORE_IS_PC,
+				'condition' => [
+					'show_excerpt' => 'yes',
+				],
+			]
+		);
+
 		/**
 		 * Show Price Controls
 		 */
@@ -1258,6 +1285,34 @@ class Woocircle extends Widget_Base {
 		<?php
 	}
 
+	protected function get_wc_pro_word_limit( $settings, $control ) {
+		if ( true !== _is_ps_pro_activated() ) {
+			return 0;
+		}
+
+		return absint( $settings[ $control ] ?? 0 );
+	}
+
+	protected function get_wc_slide_limited_title_or_null( $settings ) {
+		$limit = $this->get_wc_pro_word_limit( $settings, 'title_word_limit' );
+		if ( $limit < 1 ) {
+			return null;
+		}
+
+		return wp_trim_words( wp_strip_all_tags( get_the_title() ), $limit, '' );
+	}
+
+	protected function get_wc_slide_excerpt_for_display( $settings ) {
+		$limit = $this->get_wc_pro_word_limit( $settings, 'excerpt_word_limit' );
+		if ( $limit < 1 ) {
+			return null;
+		}
+
+		$text = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ), $limit, '' );
+
+		return wpautop( $text );
+	}
+
 	public function render_item_content() {
 		$settings = $this->get_settings_for_display();
 
@@ -1278,7 +1333,14 @@ class Woocircle extends Widget_Base {
 
 				<?php if ($settings['show_title']) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-elastic-title-preview">
-						<?php the_title(); ?>
+						<?php
+						$_limited_title = $this->get_wc_slide_limited_title_or_null( $settings );
+						if ( null !== $_limited_title ) {
+							echo esc_html( $_limited_title );
+						} else {
+							the_title();
+						}
+						?>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
@@ -1303,12 +1365,30 @@ class Woocircle extends Widget_Base {
 
 						<?php if ($settings['show_title']) : ?>
 							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-elastic-title--main">
-								<?php the_title(); ?>
+								<?php
+								$_limited_title = $this->get_wc_slide_limited_title_or_null( $settings );
+								if ( null !== $_limited_title ) {
+									echo esc_html( $_limited_title );
+								} else {
+									the_title();
+								}
+								?>
 							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 						<?php endif; ?>
 
 						<?php if ($settings['show_excerpt']) : ?>
-							<div class="bdt-elastic-description"><?php the_excerpt(); ?></div>
+							<?php
+							$_limited_excerpt = $this->get_wc_slide_excerpt_for_display( $settings );
+							?>
+							<div class="bdt-elastic-description">
+								<?php
+								if ( null !== $_limited_excerpt ) {
+									echo wp_kses_post( $_limited_excerpt );
+								} else {
+									the_excerpt();
+								}
+								?>
+							</div>
 						<?php endif; ?>
 
 						<div class="bdt-elastic-price-buy-btn">
