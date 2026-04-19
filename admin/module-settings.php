@@ -65,14 +65,14 @@ class ModuleService {
 					'video_url'    => 'https://youtu.be/8A2a8ws6364',
         ], 
         [
-					'name'         => 'carousel-slider',
-					'label'        => esc_html__( 'Carousel Slider', 'bdthemes-prime-slider' ),
+					'name'         => 'cloud',
+					'label'        => esc_html__( 'Cloud', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
-					'content_type' => 'static swiper',
-					'demo_url'     => 'https://primeslider.pro/',
-					'video_url'    => '',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/carousel-slider/',
+					'video_url'    => 'https://youtu.be/8A2a8ws6364',
 				],
 
 				[ 
@@ -534,9 +534,9 @@ class ModuleService {
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
-					'content_type' => 'static swiper',
-					'demo_url'     => '',
-					'video_url'    => '',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/super-flow/',
+					'video_url'    => 'https://youtu.be/2P10lOZLq94',
 				],
 
 				[ 
