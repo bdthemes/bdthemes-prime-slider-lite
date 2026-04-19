@@ -144,13 +144,13 @@ class ModuleService {
 				],
 
 				[
-					'name'         => 'expo-slider',
-					'label'        => esc_html__( 'Expo Slider', 'bdthemes-prime-slider' ),
+					'name'         => 'expo',
+					'label'        => esc_html__( 'Expo', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
 					'content_type' => 'static swiper new',
-					'demo_url'     => 'https://primeslider.pro/demo/expo-slider/',
+					'demo_url'     => 'https://primeslider.pro/demo/expo/',
 					'video_url'    => 'https://youtu.be/HxwdDoOsdMA',
 				],
 
