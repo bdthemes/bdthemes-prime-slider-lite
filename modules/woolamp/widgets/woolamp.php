@@ -121,6 +121,19 @@ class Woolamp extends Widget_Base {
 		*/
 		$this->register_show_title_controls();
 
+		$this->add_control(
+			'title_length',
+			[
+				'label'       => __( 'Title Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'        => Controls_Manager::NUMBER,
+				'min'         => 0,
+				'condition'   => [
+					'show_title' => 'yes',
+				],
+				'classes'     => BDTPS_CORE_IS_PC,
+			]
+		);
+
 		/**
          * Show Category Controls
          */
@@ -130,6 +143,31 @@ class Woolamp extends Widget_Base {
 		* Show Excerpt Controls
 		*/
 		$this->register_show_excerpt_controls();
+
+		$this->add_control(
+			'excerpt_length',
+			[
+				'label'       => __( 'Text Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'        => Controls_Manager::NUMBER,
+				'min'         => 0,
+				'condition'   => [
+					'show_excerpt' => 'yes',
+				],
+				'classes'     => BDTPS_CORE_IS_PC,
+			]
+		);
+
+		$this->add_control(
+			'strip_shortcode',
+			[
+				'label'     => esc_html__( 'Strip Shortcode', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [
+					'show_excerpt' => 'yes',
+				],
+			]
+		);
 
 		/**
 		 * Show Price Controls
@@ -1325,13 +1363,36 @@ class Woolamp extends Widget_Base {
 				<?php if ($settings['show_title']) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
 						<a href="<?php the_permalink(); ?>">
-							<?php the_title(); ?>
+							<?php
+							$title_limit = absint( $settings['title_length'] ?? 0 );
+							if ( $title_limit > 0 ) {
+								echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_title() ), $title_limit, '' ) );
+							} else {
+								the_title();
+							}
+							?>
 						</a>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($settings['show_excerpt']) : ?>
-					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>><?php the_excerpt(); ?></div>
+					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>>
+						<?php
+						$excerpt_length  = absint( $settings['excerpt_length'] ?? 30 );
+						$strip_shortcode = ( 'yes' === ( $settings['strip_shortcode'] ?? 'yes' ) );
+
+						if ( has_excerpt() ) {
+							if ( $excerpt_length > 0 ) {
+								$text = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ), $excerpt_length, '' );
+								echo wp_kses_post( wpautop( $text ) );
+							} else {
+								the_excerpt();
+							}
+						} else {
+							echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode, '' ) );
+						}
+						?>
+					</div>
 				<?php endif; ?>
 
 				<?php if ($settings['show_price']) : ?>
