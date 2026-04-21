@@ -4,15 +4,11 @@ namespace PrimeSlider\Modules\Sniper\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Box_Shadow;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Text_Stroke;
 use PrimeSlider\Utils;
 use Elementor\Repeater;
-use Elementor\Plugin;
 
 use PrimeSlider\Traits\Global_Widget_Controls;
 
@@ -653,7 +649,7 @@ class Sniper extends Widget_Base {
 				'label'     => __('Active Line Color', 'bdthemes-prime-slider'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .bdt-sniper-slider .bdt-pagination-wrap .swiper-scrollbar-drag' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .bdt-sniper-slider .bdt-pagination-wrap .swiper-scrollbar::before' => 'background: {{VALUE}}',
 				],
 			]
 		);
