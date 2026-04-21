@@ -277,6 +277,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Added: Space between control for providing spacing between navigation in the pagepiling widget
+* Improved: Synced social block (title and links) transitions with slide content in the pagepiling widget
+* Updated: Renamed the spacing control to horizontal and vertical offset for improved clarity in the pagepiling widget
 
 = 4.1.13 [9th April 2026] =
 
