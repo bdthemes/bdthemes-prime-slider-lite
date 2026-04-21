@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Fixed: Navigation arrows and read more icons visibility issues in some browsers in the pacific widget
 
 = 4.1.13 [9th April 2026] =
 
