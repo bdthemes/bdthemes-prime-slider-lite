@@ -1350,14 +1350,7 @@ class Woolamp extends Widget_Base {
 				<?php if ($settings['show_title']) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
 						<a href="<?php the_permalink(); ?>">
-							<?php
-							$title_limit = absint( $settings['title_length'] ?? 0 );
-							if ( $title_limit > 0 ) {
-								echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_title() ), $title_limit, '' ) );
-							} else {
-								the_title();
-							}
-							?>
+							<?php the_title(); ?>
 						</a>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
