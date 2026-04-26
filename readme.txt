@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Fixed: Title link color inheritance issue fixed in the dragon widget
 * Fixed: Corrected fraction pagination and progress indicator misalignment and count inconsistencies in the sniper widget
 * Added: Title and excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
 * Fixed: Return "javascript:void(0)" issue fixed in the rubix widget
