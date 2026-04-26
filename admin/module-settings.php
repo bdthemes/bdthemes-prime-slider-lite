@@ -62,7 +62,7 @@ class ModuleService {
 					'widget_type'  => 'pro',
 					'content_type' => 'static swiper new',
 					'demo_url'     => 'https://primeslider.pro/demo/cards-stack/',
-					'video_url'    => 'https://youtu.be/8A2a8ws6364',
+					'video_url'    => '',
         ], 
         [
 					'name'         => 'cloud',
@@ -71,8 +71,8 @@ class ModuleService {
 					'default'      => "off",
 					'widget_type'  => 'pro',
 					'content_type' => 'static swiper new',
-					'demo_url'     => 'https://primeslider.pro/demo/carousel-slider/',
-					'video_url'    => 'https://youtu.be/8A2a8ws6364',
+					'demo_url'     => 'https://primeslider.pro/demo/cloud/',
+					'video_url'    => '',
 				],
 
 				[ 
@@ -536,7 +536,7 @@ class ModuleService {
 					'widget_type'  => 'pro',
 					'content_type' => 'static swiper new',
 					'demo_url'     => 'https://primeslider.pro/demo/super-flow/',
-					'video_url'    => 'https://youtu.be/2P10lOZLq94',
+					'video_url'    => '',
 				],
 
 				[ 
