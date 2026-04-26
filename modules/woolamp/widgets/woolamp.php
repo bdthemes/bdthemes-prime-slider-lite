@@ -121,19 +121,6 @@ class Woolamp extends Widget_Base {
 		*/
 		$this->register_show_title_controls();
 
-		$this->add_control(
-			'title_length',
-			[
-				'label'       => __( 'Title Limit', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
-				'type'        => Controls_Manager::NUMBER,
-				'min'         => 0,
-				'condition'   => [
-					'show_title' => 'yes',
-				],
-				'classes'     => BDTPS_CORE_IS_PC,
-			]
-		);
-
 		/**
          * Show Category Controls
          */
