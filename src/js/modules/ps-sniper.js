@@ -10,6 +10,26 @@
         }
         var $sniperContainer = $sniper.find('.bdt-main-slider'),
             $settings = $sniper.data('settings');
+
+        // Scope controls to this widget instance (important for multiple widgets / Elementor editor).
+        var $paginationEl = $sniper.find('.bdt-pagination');
+        var $scrollbarEl = $sniper.find('.swiper-scrollbar');
+
+        if ($settings && $settings.pagination && $paginationEl.length) {
+            $settings.pagination.el = $paginationEl[0];
+            if ($settings.pagination.type === 'fraction') {
+                $settings.pagination.formatFractionCurrent = function (number) {
+                    return (number < 10) ? ('0' + number) : String(number);
+                };
+                $settings.pagination.formatFractionTotal = function (number) {
+                    return (number < 10) ? ('0' + number) : String(number);
+                };
+            }
+        }
+
+        if ($settings && $settings.scrollbar && $scrollbarEl.length) {
+            $settings.scrollbar.el = $scrollbarEl[0];
+        }
         
         //swiper effects start
 		if ($settings.effect === 'shutters') {
@@ -78,6 +98,10 @@
         const Swiper = elementorFrontend.utils.swiper;
         initSwiper();
         async function initSwiper() {
+            // Elementor can re-render widgets; prevent duplicate Swipers.
+            if ($sniperContainer && $sniperContainer[0] && $sniperContainer[0].swiper) {
+                try { $sniperContainer[0].swiper.destroy(true, true); } catch (e) {}
+            }
             var swiper = await new Swiper($sniperContainer, $settings);
             if ($settings.pauseOnHover) {
                 $($sniperContainer).hover(function () {
@@ -88,12 +112,15 @@
             }
 
             var $thumbs = $scope.find('.bdt-thumbs-slider');
+            if ($thumbs && $thumbs[0] && $thumbs[0].swiper) {
+                try { $thumbs[0].swiper.destroy(true, true); } catch (e) {}
+            }
 
             var sliderThumbs = await new Swiper($thumbs, {
                 loop: ($settings.loop) ? $settings.loop : false,
                 rewind: ($settings.rewind) ? $settings.rewind : false,
                 speed: ($settings.speed) ? $settings.speed : 500,
-                freemood: true,
+                freeMode: true,
                 parallax: true,
                 spaceBetween: 10,
                 slideToClickedSlide: true,
@@ -107,18 +134,6 @@
                 preventClicks: false,
                 preventClicksPropagation: false,
                 lazyLoadingInPrevNext: true,
-
-                pagination: {
-                    el: ".bdt-pagination",
-                    type: "fraction",
-                    formatFractionCurrent: function (number) {
-                        return '0' + number;
-                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    },
-                    formatFractionTotal: function (number) {
-                        return '0' + number;
-                    }
-                },
 
                 breakpoints: {
                     768: {
@@ -135,6 +150,40 @@
 
             swiper.controller.control = sliderThumbs;
             sliderThumbs.controller.control = swiper;
+
+            function getTotalSlides(mainSwiper) {
+                if (!mainSwiper || !mainSwiper.slides) return 0;
+                // When loop is enabled, Swiper creates duplicates. Count only originals.
+                var count = 0;
+                for (var i = 0; i < mainSwiper.slides.length; i++) {
+                    var slide = mainSwiper.slides[i];
+                    if (slide && slide.classList && !slide.classList.contains('swiper-slide-duplicate')) {
+                        count++;
+                    }
+                }
+                return count || mainSwiper.slides.length || 0;
+            }
+
+            function updateActiveBar(mainSwiper) {
+                if (!$scrollbarEl || !$scrollbarEl.length) return;
+                var total = getTotalSlides(mainSwiper);
+                if (!total) return;
+
+                var index = (typeof mainSwiper.realIndex === 'number') ? mainSwiper.realIndex : (mainSwiper.activeIndex || 0);
+                if (index < 0) index = 0;
+                if (index > total - 1) index = total - 1;
+
+                // Progressive fill from start: width grows and hits 100% on last item.
+                var widthPct = ((index + 1) / total) * 100;
+                $scrollbarEl[0].style.setProperty('--ps-sniper-progress', widthPct + '%');
+            }
+
+            updateActiveBar(swiper);
+            // Keep progress in sync across interactions/responsive changes.
+            swiper.on('realIndexChange', function () { updateActiveBar(swiper); });
+            swiper.on('resize', function () { updateActiveBar(swiper); });
+
+            $sniper.addClass('bdt-sniper-ready');
         }
 
     };

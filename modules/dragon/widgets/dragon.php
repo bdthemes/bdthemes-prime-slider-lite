@@ -147,7 +147,7 @@ class dragon extends Widget_Base {
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
-						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Creative Layout', 'bdthemes-prime-slider'),
 						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-2.svg']
 					],
 					[
