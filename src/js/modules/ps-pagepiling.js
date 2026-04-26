@@ -10,6 +10,18 @@
             return;
         }
 
+        var $social = $scope.find('.bdt-prime-slider-social-icon');
+        var socialFxEnabled = false;
+        var triggerSocialTransition = function () {
+            if (!$social.length || !socialFxEnabled) {
+                return;
+            }
+            $social.removeClass('bdt-ps-social-active');
+            // Force reflow to restart transition reliably.
+            void $social[0].offsetWidth;
+            $social.addClass('bdt-ps-social-active');
+        };
+
         if ($.fn.pagepiling && typeof $.fn.pagepiling.destroy !== 'undefined') {
             try {
                 $.fn.pagepiling.destroy('all');
@@ -47,25 +59,42 @@
             keyboardScrolling: true,
             sectionSelector: '.section',
 
-            afterRender: isAutoplay ? function () {
+            afterRender: function () {
+                if (!isAutoplay) {
+                    return;
+                }
+
                 // Start autoplay after initial render
                 interval = setInterval(function () {
                     $.fn.pagepiling.moveSectionDown();
                 }, autoPlayDuration);
-            } : false,
+            },
+
+            afterLoad: function () {
+                triggerSocialTransition();
+            },
             
-            onLeave: isAutoplay ? function(index, nextIndex, direction) {
+            onLeave: function(index, nextIndex, direction) {
+                if ($social.length) {
+                    if (!socialFxEnabled) {
+                        socialFxEnabled = true;
+                        $pagepiling.addClass('bdt-ps-social-fx');
+                    }
+                    $social.removeClass('bdt-ps-social-active');
+                }
+
+                if (!isAutoplay) {
+                    return;
+                }
+
                 // Clear and restart interval on any navigation to keep timing consistent
                 clearInterval(interval);
                 interval = setInterval(function () {
                     $.fn.pagepiling.moveSectionDown();
                 }, autoPlayDuration);
-            } : false
+            }
         });
-
-
     };
-
 
     jQuery(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-pagepiling.default', widgetPagepiling);

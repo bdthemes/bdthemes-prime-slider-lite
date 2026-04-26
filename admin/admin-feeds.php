@@ -27,7 +27,7 @@ class Admin_Feeds {
 	}
 
 	/**
-	 * Register RSS Feeds for Element Pack
+	 * Register RSS Feeds for Prime Slider admin dashboard.
 	 */
 	public function register_rss_feeds() {
 		if ( self::$feed_displayed ) {
@@ -218,8 +218,8 @@ $settings = array(
 	'feed_title'       => 'BdThemes News & Updates',
 	'transient_key'    => 'bdthemes_product_feeds',
 	'feed_link'        => 'https://bdthemes.com/feed',
-	'remote_feed_link' => 'https://dashboard.bdthemes.io/wp-json/bdthemes/v1/product-feed/?product_category=element-pack',
-	'text_domain'      => 'bdthemes',
+	'remote_feed_link' => 'https://dashboard.bdthemes.io/wp-json/bdthemes/v1/product-feed/?product_category=prime-slider',
+	'text_domain'      => 'bdthemes-prime-slider',
 	'footer_links'     => [ 
 		[ 
 			'url'   => 'https://bdthemes.com/blog/',
@@ -234,7 +234,7 @@ $settings = array(
 			'title' => 'Get Pro',
 		],
 		[ 
-			'url'   => 'https://feedback.elementpack.pro/announcements/',
+			'url'   => 'https://feedback.bdthemes.com/announcements?category=category_7wo5zoxl',
 			'title' => 'Changelog',
 		],
 	],
