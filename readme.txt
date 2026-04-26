@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Added: Title and excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
 * Fixed: Return "javascript:void(0)" issue fixed in the rubix widget
 * Fixed: Navigation arrows and read more icons visibility issues in some browsers in the pacific widget
 * Added: Space between control for providing spacing between navigation in the pagepiling widget
