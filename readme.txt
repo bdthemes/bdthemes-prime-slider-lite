@@ -1,15 +1,15 @@
-=== Prime Slider - Addons for Elementor ===
+=== Prime Slider Addons for Elementor ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf, shaikatazim, shamim496
-Donate link: http://bdthemes.com/
-Tags: layer slider, content slider, elementor addon, image slider, video slider
+Donate link: https://bdthemes.com/
+Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9.4
 Requires PHP: 7.4.0
 Stable tag: 4.1.13
-License: GPL3
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 4.0.1
+Elementor tested up to: 4.0.3
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
@@ -35,7 +35,7 @@ Available Slider Types:
 Prime Slider makes it simple to create sliders that adapt beautifully to any device or layout. Each widget is easy to customize and optimized for performance to help you deliver engaging user experiences without code.
 
 
-**[Free Demo](https://primeslider.pro/demo/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/?utm_source=WordPresss_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
+**[Free Demo](https://primeslider.pro/demo/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
 
 = Featured on WPTuts: =
 
@@ -47,7 +47,7 @@ There are some key things our plugin has covered to give you a boost in your web
 
 * **Design and Usability:** You can use distinct design elements, including buttons, titles, arrows and more.
 
-* **Customization Options:** You can choose or select various slide layouts, colors and fonts, sivers animations, and the appearance and placement of navigation elements.
+* **Customization Options:** You can choose or select various slide layouts, colors and fonts, slider animations, and the appearance and placement of navigation elements.
 
 * **Effortless Workflow:** You can arrange slides and place content utilizing visual editors.
 
@@ -57,14 +57,14 @@ There are some key things our plugin has covered to give you a boost in your web
 
 * **Improved Storytelling:** Engage users by telling a visual story with ease.
 
-* **SEO advantages:** Improve visibility with well-optimized sliders
+* **Image SEO basics:** You can set titles and alt text on images to follow common on-page SEO practices
 
 
 ## Features
 
 * **Interactive elements:** Enable you to engage with slides through clickable elements, including interactive videos.
 
-* **Responsive Design:** Ensures slider works flawlessly on all devices.
+* **Responsive Design:** Layouts adapt for phones, tablets, and desktops.
 
 * **Autoplay with pause functionality:** Allows you to set automatic slide transitions with the option to pause on hover. 
 
@@ -103,7 +103,7 @@ There are some key things our plugin has covered to give you a boost in your web
 * [Storker](https://primeslider.pro/demo/storker/) - Fast-paced post delivery with smooth transition effects, ideal for engaging audiences.
 * [Vertex](https://primeslider.pro/demo/vertex/) - A seamless slider combining visual graphics with cool animations for optimal user experience.
 
-= Custom 👇 =
+= Custom =
 
 * [General](https://primeslider.pro/demo/general/) - Optimistic slider with smooth transitions and text animations, suitable for any website.
 * [Crelly Slider Skin](https://primeslider.pro/demo/general-skin-crelly/) - Crelly skin adds fluid color swatches and a wide canvas to bring out the beauty of your posts.
@@ -278,6 +278,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
 * Added: Title and excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
+* Added: Space between control for providing spacing between navigation in the pagepiling widget
+* Improved: Synced social block (title and links) transitions with slide content in the pagepiling widget
+* Updated: Renamed the spacing control to horizontal and vertical offset for improved clarity in the pagepiling widget
 
 = 4.1.13 [9th April 2026] =
 

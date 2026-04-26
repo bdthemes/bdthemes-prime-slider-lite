@@ -3,15 +3,16 @@
 /**
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
- * Description: Prime Slider is a pack of elementor widget that gives you some awesome header and slider combination for your website.
+ * Description: Elementor addon pack for building responsive headers and sliders (hero, posts, WooCommerce, and more).
  * Version: 4.1.13
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider
  * Domain Path: /languages
- * License: GPL3
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Elementor requires at least: 3.28
- * Elementor tested up to: 4.0.1
+ * Elementor tested up to: 4.0.3
  */
 
 // Some pre define value for easy use

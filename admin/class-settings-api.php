@@ -406,7 +406,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 			$html .= '<div class="ps-option-links">';
 			if ($args['demo_url']) {
-				$html .= '<a href=' . $args['demo_url'] . ' target="_blank" class="ps-option-demo" title="' . esc_html__('View ' . $args['name'] . ' Widget Demo', 'bdthemes-element-pack') . '">' . esc_html__('Demo', 'bdthemes-element-pack') . '<i class="bdt-wi-preview" aria-hidden="true"></i></a>';
+				$html .= '<a href=' . $args['demo_url'] . ' target="_blank" class="ps-option-demo" title="' . esc_html__('View ' . $args['name'] . ' Widget Demo', 'bdthemes-prime-slider') . '">' . esc_html__('Demo', 'bdthemes-prime-slider') . '<i class="bdt-wi-preview" aria-hidden="true"></i></a>';
 			}
 			if ($args['video_url']) {
 				$html .= '<a href=' . $args['video_url'] . ' target="_blank" class="ps-option-video" title="View ' . $args['name'] . ' Video Tutorial">Video<i class="bdt-wi-tutorial" aria-hidden="true"></i></a>';
