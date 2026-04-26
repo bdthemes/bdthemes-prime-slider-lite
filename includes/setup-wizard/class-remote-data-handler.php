@@ -1,9 +1,8 @@
 <?php
 /**
- * Element Pack Remote Data Handler
- * 
- * Handles remote API data loading with proper caching and background processing
- * to prevent blocking admin pages.
+ * Remote Data Handler for Prime Slider setup (recommended plugins).
+ *
+ * Loads public plugin metadata from the WordPress.org Plugin API with caching.
  */
 
 namespace PrimeSlider\SetupWizard;
@@ -38,7 +37,6 @@ class Remote_Data_Handler {
         add_action('init', [__CLASS__, 'schedule_cron']);
         add_action(self::CRON_HOOK, [__CLASS__, 'cron_fetch_plugins']);
         add_action('wp_ajax_ps_get_plugins', [__CLASS__, 'ajax_get_plugins']);
-        add_action('wp_ajax_nopriv_ps_get_plugins', [__CLASS__, 'ajax_get_plugins']);
     }
 
     /**
@@ -49,9 +47,9 @@ class Remote_Data_Handler {
     }
 
     /**
-     * Check if we're on the Element Pack options page
-     * 
-     * @return bool True if on Element Pack options page
+     * Check if the current request is Prime Slider admin or related AJAX.
+     *
+     * @return bool
      */
     public static function is_prime_slider_page() {
         if (!is_admin()) {
@@ -66,8 +64,8 @@ class Remote_Data_Handler {
             }
         }
 
-        $page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
-        return $page === 'element_pack_options';
+        $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+        return $page === 'prime_slider_options';
     }
 
     /**
@@ -149,9 +147,13 @@ class Remote_Data_Handler {
      * AJAX handler for getting plugins data
      */
     public static function ajax_get_plugins() {
+        if (!current_user_can('manage_options')) {
+            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
+        }
+
         // Verify nonce for security
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(__('Security check failed.', 'bdthemes-element-pack'));
+            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
         }
 
         // Get cached data
@@ -170,7 +172,7 @@ class Remote_Data_Handler {
                 wp_send_json_success([
                     'plugins' => [],
                     'loading' => true,
-                    'message' => __('Loading plugin data...', 'bdthemes-element-pack')
+                    'message' => __('Loading plugin data...', 'bdthemes-prime-slider')
                 ]);
             }
         }
@@ -223,7 +225,7 @@ class Remote_Data_Handler {
         wp_send_json_success([
             'plugins' => $formatted_plugins,
             'loading' => false,
-            'message' => __('Plugin data loaded successfully.', 'bdthemes-element-pack')
+            'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider')
         ]);
     }
 
@@ -295,33 +297,33 @@ class Remote_Data_Handler {
      */
     private static function format_last_updated($date_string) {
         if (empty($date_string)) {
-            return __('Unknown', 'bdthemes-element-pack');
+            return __('Unknown', 'bdthemes-prime-slider');
         }
         
         $date = strtotime($date_string);
         if (!$date) {
-            return __('Unknown', 'bdthemes-element-pack');
+            return __('Unknown', 'bdthemes-prime-slider');
         }
         
         $diff = current_time('timestamp') - $date;
         
         if ($diff < 60) {
-            return __('Just now', 'bdthemes-element-pack');
+            return __('Just now', 'bdthemes-prime-slider');
         } elseif ($diff < 3600) {
             $minutes = floor($diff / 60);
-            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-element-pack'), $minutes);
+            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider'), $minutes);
         } elseif ($diff < 86400) {
             $hours = floor($diff / 3600);
-            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-element-pack'), $hours);
+            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider'), $hours);
         } elseif ($diff < 2592000) { // 30 days
             $days = floor($diff / 86400);
-            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-element-pack'), $days);
+            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider'), $days);
         } elseif ($diff < 31536000) { // 1 year
             $months = floor($diff / 2592000);
-            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-element-pack'), $months);
+            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider'), $months);
         } else {
             $years = floor($diff / 31536000);
-            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-element-pack'), $years);
+            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider'), $years);
         }
     }
 
@@ -367,7 +369,7 @@ class Remote_Data_Handler {
         // Security: Use wp_safe_remote_get instead of wp_remote_get
         $response = wp_safe_remote_get($api_url, [
             'timeout' => 30,
-            'user-agent' => 'Element Pack Setup Wizard'
+            'user-agent' => 'Prime Slider Setup Wizard'
         ]);
 
         if (is_wp_error($response)) {

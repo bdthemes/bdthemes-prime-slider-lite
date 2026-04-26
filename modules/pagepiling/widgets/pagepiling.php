@@ -135,7 +135,7 @@ class Pagepiling extends Widget_Base {
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
-						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Creative Layout', 'bdthemes-prime-slider'),
 						'slide_image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.png']
 					],
 					[
