@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.1.X [XXth April 2026] =
 
 * Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Fixed: Title link color inheritance issue fixed in the dragon widget
 
 = 4.1.13 [9th April 2026] =
 
