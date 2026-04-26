@@ -1441,9 +1441,9 @@ class Rubix extends Widget_Base {
 		}
 		?>
 		<div class="bdt-author bdt-flex">
-			<i class="ps-wi-user-circle-o" aria-hidden="true"></i>
-			<a href="javascript:void(0);">
-				<?php echo get_the_author() ?>
+			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+				<i class="ps-wi-user-circle-o" aria-hidden="true"></i>
+				<?php echo esc_html( get_the_author() ); ?>
 			</a>
 		</div>
 		<?php
