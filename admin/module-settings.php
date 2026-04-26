@@ -55,13 +55,23 @@ class ModuleService {
 				],
 
 				[ 
-					'name'         => 'carousel-slider',
-					'label'        => esc_html__( 'Carousel Slider', 'bdthemes-prime-slider' ),
+					'name'         => 'cards-stack',
+					'label'        => esc_html__( 'Cards Stack', 'bdthemes-prime-slider' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
 					'content_type' => 'static swiper new',
-					'demo_url'     => 'https://primeslider.pro/',
+					'demo_url'     => 'https://primeslider.pro/demo/cards-stack/',
+					'video_url'    => '',
+        ], 
+        [
+					'name'         => 'cloud',
+					'label'        => esc_html__( 'Cloud', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/cloud/',
 					'video_url'    => '',
 				],
 
@@ -141,6 +151,17 @@ class ModuleService {
 					'content_type' => 'static swiper',
 					'demo_url'     => 'https://primeslider.pro/demo/escape/',
 					'video_url'    => 'https://youtu.be/WTqtALRdhDc',
+				],
+
+				[
+					'name'         => 'expo',
+					'label'        => esc_html__( 'Expo', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/expo/',
+					'video_url'    => 'https://youtu.be/HxwdDoOsdMA',
 				],
 
 				[ 
