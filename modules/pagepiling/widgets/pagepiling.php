@@ -135,7 +135,7 @@ class Pagepiling extends Widget_Base {
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
-						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Creative Layout', 'bdthemes-prime-slider'),
 						'slide_image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.png']
 					],
 					[
@@ -1092,6 +1092,25 @@ class Pagepiling extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
+			'slide_navigation_space_between',
+			[
+				'label' => esc_html__('Space Between', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'type'  => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 60,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+				'classes'    => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_responsive_control(
 			'slide_navigation_border_radius',
 			[
 				'label' 	 => __('Border Radius', 'bdthemes-prime-slider'),
@@ -1106,7 +1125,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_navigation_left_spacing',
 			[
-				'label' => esc_html__('Spacing', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Horizontal Offset', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav.left' => 'left: {{SIZE}}{{UNIT}};',
@@ -1120,7 +1139,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_navigation_bottom_spacing',
 			[
-				'label' => esc_html__('Spacing', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Vertical Offset', 'bdthemes-prime-slider'),
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider.bdt-ps-navigation-bottom #pp-nav.left' => 'bottom: -{{SIZE}}{{UNIT}};',

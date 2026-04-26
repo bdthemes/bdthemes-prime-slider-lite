@@ -147,7 +147,7 @@ class dragon extends Widget_Base {
 					],
 					[
 						'sub_title' => esc_html__('Addons For Elementor', 'bdthemes-prime-slider'),
-						'title' => esc_html__('Element Pack', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Creative Layout', 'bdthemes-prime-slider'),
 						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-2.svg']
 					],
 					[
@@ -932,7 +932,7 @@ class dragon extends Widget_Base {
                 <ul class="bdt-slideshow-nav bdt-dotnav bdt-dotnav-vertical reveal-muted">
 
                     <?php $slide_index = 1; foreach ( $settings['slides'] as $slide ) : ?>
-                    <li bdt-slideshow-item="<?php echo (esc_attr($slide_index) - 1); ?>" data-label="<?php echo wp_kses_post(str_pad( $slide_index, 2, '0', STR_PAD_LEFT)); ?>" ><a href="#"></a></li>
+                    <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad( $slide_index, 2, '0', STR_PAD_LEFT)); ?>" ><a href="#"></a></li>
                     <?php $slide_index++;  endforeach; ?>
                     
                 </ul>
@@ -1021,6 +1021,7 @@ class dragon extends Widget_Base {
 
 	public function render_item_content($slide_content, $link_key) {
         $settings = $this->get_settings_for_display();
+		$title_link_key = 'title-link-' . $link_key;
 
 		$parallax_sub_title     = 'x: 100,-100; opacity: 1,1,0';
 		$parallax_title         = 'x: 200,-200; opacity: 1,1,0';
@@ -1042,8 +1043,8 @@ class dragon extends Widget_Base {
 			}
 		}
 
-		if ($slide_content['title']) {
-			$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+		if (!empty($slide_content['title_link']['url'])) {
+			$this->add_link_attributes($title_link_key, $slide_content['title_link'], true);
 		}
 		
         ?>
@@ -1064,7 +1065,7 @@ class dragon extends Widget_Base {
 					<div class="bdt-main-title">
 						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-bdt-slideshow-parallax="<?php echo esc_attr($parallax_title); ?>"  data-reveal="reveal-active">
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>
-								<a <?php $this->print_render_attribute_string('title-link'); ?>>
+								<a <?php $this->print_render_attribute_string($title_link_key); ?>>
 								<?php endif; ?>
 								<?php echo wp_kses_post( prime_slider_first_word($slide_content['title']) ); ?>
 								<?php if ('' !== $slide_content['title_link']['url']) : ?>

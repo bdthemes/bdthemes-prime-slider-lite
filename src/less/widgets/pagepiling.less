@@ -246,6 +246,30 @@
             }
         }
     }
+    &.bdt-ps-social-fx {
+        .bdt-prime-slider-social-icon {
+            a,
+            h3 {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-12px);
+            }
+            &.bdt-ps-social-active {
+                a,
+                h3 {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0);
+                }
+                h3 {
+                    transition-delay: .6s;
+                }
+                a {
+                    transition-delay: .7s;
+                }
+            }
+        }
+    }
     &.bdt-ps-navigation-bottom {
         #pp-nav {
             &.left {

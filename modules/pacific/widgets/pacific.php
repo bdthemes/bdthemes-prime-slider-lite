@@ -1417,7 +1417,7 @@ class Pacific extends Widget_Base {
 		?>
 						<div class="bdt-navigation-wrap bdt-position-bottom-left reveal-muted">
 							<div class="bdt-navigation-prev">
-								<span class="bdt-n-p-icon  bdt-prev-icon eicon-arrow-left"></span>
+								<i class="bdt-n-p-icon bdt-prev-icon ps-wi-arrow-left" aria-hidden="true"></i>
 								<span class="bdt-n-p-text bdt-prev">
 									<?php echo esc_html( $settings['previous_text'] ); ?>
 								</span>
@@ -1426,7 +1426,7 @@ class Pacific extends Widget_Base {
 								<span class="bdt-n-p-text bdt-next">
 									<?php echo esc_html( $settings['next_text'] ); ?>
 								</span>
-								<span class="bdt-n-p-icon bdt-next-icon eicon-arrow-right"></span>
+								<i class="bdt-n-p-icon bdt-next-icon ps-wi-arrow-right" aria-hidden="true"></i>
 							</div>
 						</div>
 						<?php
@@ -1536,7 +1536,7 @@ class Pacific extends Widget_Base {
 							<span class="bdt-btn-text">
 								<?php echo esc_html( $settings['read_more_text'] ) ?>
 							</span>
-							<span class="bdt-readmore-icon eicon-plus"></span>
+							<i class="bdt-readmore-icon ps-wi-plus" aria-hidden="true"></i>
 						</a>
 					<?php endif; ?>
 					<div id="<?php echo esc_attr( $modal_id ); ?>" class="bdt-modal-full" bdt-modal>

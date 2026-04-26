@@ -164,7 +164,7 @@
             font-size: 16px;
             display: flex;
             flex-direction: column;
-            height: 50px;
+            height: 54px;
             text-indent: -300px;
             overflow: hidden;
         }
@@ -183,16 +183,33 @@
             left: 0;
         }
         .swiper-scrollbar {
-            height: 1px;
-            border-radius: 0;
-            background: rgba(255, 255, 255, 0.346);
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.20);
+            position: absolute;
+            left: 0;
+            right: 0;
             top: 50%;
+            transform: translateY(-50%);
+            overflow: hidden;
+            --ps-sniper-progress: 0%;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: var(--ps-sniper-progress);
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: inherit;
+                transition: width .35s ease;
+                will-change: width;
+            }
         }
         .swiper-scrollbar-drag {
-            background: rgba(255, 255, 255, 0.951);
-            border-radius: 0;
-            width: 50px !important;
-            margin-left: -24px;
+            opacity: 0;
+            pointer-events: none;
         }
     }
 }
