@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9.4
 Requires PHP: 7.4.0
-Stable tag: 4.1.13
+Stable tag: 4.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
@@ -274,17 +274,21 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.1.X [XXth April 2026] =
+= 4.2.0 [27th April 2026] =
 
-* Added: Title word limit and excerpt text word limit controls added in the woocircle widget
+* Added: Expo widget added
+* Added: Cloud widget added
+* Added: Super Flow widget added
+* Added: Cards Stack widget added
+* Added: Excerpt text word limit controls added in the woocircle widget
+* Added: Space between control for providing spacing between navigation in the pagepiling widget
+* Added: Excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
 * Fixed: “Thumbs Hide On” responsive control now correctly hides thumbnail navigation on selected devices
 * Fixed: Title link color inheritance issue fixed in the dragon widget
 * Fixed: Corrected fraction pagination and progress indicator misalignment and count inconsistencies in the sniper widget
-* Added: Title and excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
 * Fixed: Return "javascript:void(0)" issue fixed in the rubix widget
 * Fixed: Navigation arrows and read more icons visibility issues in some browsers in the pacific widget
-* Added: Space between control for providing spacing between navigation in the pagepiling widget
-* Improved: Synced social block (title and links) transitions with slide content in the pagepiling widget
+* Updated: Synced social block (title and links) transitions with slide content in the pagepiling widget
 * Updated: Renamed the spacing control to horizontal and vertical offset for improved clarity in the pagepiling widget
 
 = 4.1.13 [9th April 2026] =
