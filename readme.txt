@@ -274,6 +274,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.2.X [XX April 2026] =
+
+* Fixed: Admin dashboard 3rd party widgets section save settings issue fixed
+* Fixed: Hard-coded translate issue fixed
+
 = 4.2.0 [27th April 2026] =
 
 * Added: Expo widget added
