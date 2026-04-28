@@ -317,6 +317,10 @@ class Prime_Slider_Loader {
 		wp_register_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 
 		wp_enqueue_style( 'prime-slider-editor' );
+		wp_add_inline_style(
+			'prime-slider-editor',
+			'#elementor-panel{--ps-pro-control-message:' . wp_json_encode( __( 'This is a pro control, available with Prime Slider Pro version.', 'bdthemes-prime-slider' ) ) . ';}'
+		);
 		wp_enqueue_style( 'prime-slider-font' );
 	}
 

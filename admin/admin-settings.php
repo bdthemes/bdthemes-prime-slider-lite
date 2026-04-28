@@ -1624,15 +1624,15 @@ class PrimeSlider_Admin_Settings {
                     jQuery('a.ps-active-all-widget').removeClass('bdt-active');
                 });
 
-				$('#prime_sliderthird_party_widget_page a.ps-active-all-widget').on('click', function (e) {
+				$('#prime_slider_third_party_widget_page a.ps-active-all-widget').on('click', function (e) {
 					e.preventDefault();
 
-					$('#prime_sliderthird_party_widget_page .ps-option-item:not(.ps-pro-inactive) .checkbox:visible').each(function () {
+					$('#prime_slider_third_party_widget_page .ps-option-item:not(.ps-pro-inactive) .checkbox:visible').each(function () {
 						$(this).attr('checked', 'checked').prop("checked", true);
 					});
 
 					$(this).addClass('bdt-active');
-					$('#prime_sliderthird_party_widget_page a.ps-deactive-all-widget').removeClass('bdt-active');
+					$('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').removeClass('bdt-active');
 					
 					// Ensure save button remains visible
 					setTimeout(function() {
@@ -1640,15 +1640,15 @@ class PrimeSlider_Admin_Settings {
 					}, 100);
 				});
 
-				$('#prime_sliderthird_party_widget_page a.ps-deactive-all-widget').on('click', function (e) {
+				$('#prime_slider_third_party_widget_page a.ps-deactive-all-widget').on('click', function (e) {
 					e.preventDefault();
 
-					$('#prime_sliderthird_party_widget_page .checkbox:visible').each(function () {
+					$('#prime_slider_third_party_widget_page .checkbox:visible').each(function () {
 						$(this).removeAttr('checked').prop("checked", false);
 					});
 
 					$(this).addClass('bdt-active');
-					$('#prime_sliderthird_party_widget_page a.ps-active-all-widget').removeClass('bdt-active');
+					$('#prime_slider_third_party_widget_page a.ps-active-all-widget').removeClass('bdt-active');
 					
 					// Ensure save button remains visible
 					setTimeout(function() {
