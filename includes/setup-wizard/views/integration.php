@@ -13,38 +13,68 @@ if (!defined('ABSPATH')) {
 require_once __DIR__ . '/../class-plugin-integration-helper.php';
 require_once __DIR__ . '/../class-remote-data-handler.php';
 
+if (!defined('PRIME_SLIDER_WPORG_ASSET_BASE')) {
+    define('PRIME_SLIDER_WPORG_ASSET_BASE', 'https://ps.w.org');
+}
+
+if (!function_exists('get_plugin_asset_base_url_ps')) {
+    function get_plugin_asset_base_url_ps() {
+        return apply_filters('prime_slider_wporg_asset_base_url', PRIME_SLIDER_WPORG_ASSET_BASE);
+    }
+}
+
 // Helper function for time formatting
 if (!function_exists('format_last_updated_ps')) {
     function format_last_updated_ps($date_string) {
         if (empty($date_string)) {
-            return __('Unknown', 'bdthemes-prime-slider-lite');
+            return __('Unknown', 'bdthemes-prime-slider');
         }
         
         $date = strtotime($date_string);
         if (!$date) {
-            return __('Unknown', 'bdthemes-prime-slider-lite');
+            return __('Unknown', 'bdthemes-prime-slider');
         }
         
         $diff = current_time('timestamp') - $date;
         
-        if ($diff < 60) {
-            return __('Just now', 'bdthemes-prime-slider-lite');
-        } elseif ($diff < 3600) {
-            $minutes = floor($diff / 60);
-            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider-lite'), $minutes);
-        } elseif ($diff < 86400) {
-            $hours = floor($diff / 3600);
-            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider-lite'), $hours);
-        } elseif ($diff < 2592000) { // 30 days
-            $days = floor($diff / 86400);
-            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider-lite'), $days);
-        } elseif ($diff < 31536000) { // 1 year
-            $months = floor($diff / 2592000);
-            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider-lite'), $months);
+        if ($diff < MINUTE_IN_SECONDS) {
+            return __('Just now', 'bdthemes-prime-slider');
+        } elseif ($diff < HOUR_IN_SECONDS) {
+            $minutes = floor($diff / MINUTE_IN_SECONDS);
+            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider'), $minutes);
+        } elseif ($diff < DAY_IN_SECONDS) {
+            $hours = floor($diff / HOUR_IN_SECONDS);
+            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider'), $hours);
+        } elseif ($diff < MONTH_IN_SECONDS) {
+            $days = floor($diff / DAY_IN_SECONDS);
+            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider'), $days);
+        } elseif ($diff < YEAR_IN_SECONDS) {
+            $months = floor($diff / MONTH_IN_SECONDS);
+            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider'), $months);
         } else {
-            $years = floor($diff / 31536000);
-            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider-lite'), $years);
+            $years = floor($diff / YEAR_IN_SECONDS);
+            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider'), $years);
         }
+    }
+}
+
+if (!function_exists('get_integration_i18n_ps')) {
+    function get_integration_i18n_ps() {
+        return array(
+            'unableToLoadData'      => __( 'Unable to load plugin data.', 'bdthemes-prime-slider' ),
+            'networkError'          => __( 'Network error occurred while loading plugin data.', 'bdthemes-prime-slider' ),
+            'noPluginsFound'        => __( 'No plugins found.', 'bdthemes-prime-slider' ),
+            'retry'                 => __( 'Retry', 'bdthemes-prime-slider' ),
+            'recommended'           => __( 'Recommended', 'bdthemes-prime-slider' ),
+            'activeBadge'           => __( 'ACTIVE', 'bdthemes-prime-slider' ),
+            'activeInstallsLabel'   => __( 'Active Installs:', 'bdthemes-prime-slider' ),
+            'downloadsLabel'        => __( 'Downloads:', 'bdthemes-prime-slider' ),
+            'fewerThanTen'          => __( 'Fewer than 10', 'bdthemes-prime-slider' ),
+            'outOfFiveStars'        => __( 'out of 5 stars', 'bdthemes-prime-slider' ),
+            'outOfFiveStarsSentence'=> __( 'out of 5 stars.', 'bdthemes-prime-slider' ),
+            'ratingsLabel'          => __( 'ratings', 'bdthemes-prime-slider' ),
+            'lastUpdatedLabel'      => __( 'Last Updated:', 'bdthemes-prime-slider' ),
+        );
     }
 }
 
@@ -61,10 +91,11 @@ if (!function_exists('get_plugin_fallback_urls_ps')) {
         }
         
         // Custom icon URLs for specific plugins that might not be on WordPress.org
+        $base_url = untrailingslashit(get_plugin_asset_base_url_ps());
         $custom_icons = [
             'ar-viewer' => [
-                'https://ps.w.org/ar-viewer/assets/icon-256x256.gif',
-                'https://ps.w.org/ar-viewer/assets/icon-128x128.gif',
+                "{$base_url}/ar-viewer/assets/icon-256x256.gif",
+                "{$base_url}/ar-viewer/assets/icon-128x128.gif",
             ],
         ];
         
@@ -74,26 +105,18 @@ if (!function_exists('get_plugin_fallback_urls_ps')) {
         }
         
         return [
-            "https://ps.w.org/{$plugin_slug_clean}/assets/icon-256x256.png",  // Large PNG
-            "https://ps.w.org/{$plugin_slug_clean}/assets/icon-128x128.png",  // Medium PNG
+            "{$base_url}/{$plugin_slug_clean}/assets/icon-256x256.png",  // Large PNG
+            "{$base_url}/{$plugin_slug_clean}/assets/icon-128x128.png",  // Medium PNG
         ];
     }
 }
 
-// Define plugin slugs for reference (data has all; Prime Slider is skipped only when printing)
-$plugin_slugs = array(
-    'bdthemes-prime-slider-lite/bdthemes-prime-slider.php',
-    'ultimate-post-kit',
-    'ultimate-store-kit',
-    'zoloblocks',
-    'pixel-gallery',
-    'live-copy-paste',
-    'spin-wheel',
-    'ai-image',
-    'dark-reader',
-    'ar-viewer',
-    'smart-admin-assistant',
-    'website-accessibility',
+$self_plugin_slugs = apply_filters(
+    'prime_slider_setup_self_plugin_slugs',
+    array(
+        'bdthemes-prime-slider',
+        'bdthemes-prime-slider-lite',
+    )
 );
 
 // Get enhanced plugin data using the remote data handler
@@ -109,8 +132,8 @@ if (!$has_cached_data) {
 ?>
 
 <div class="bdt-wizard-step bdt-setup-wizard-integration" data-step="integration">
-    <h2><?php esc_html_e('Add More Firepower', 'bdthemes-prime-slider-lite'); ?></h2>
-    <p><?php esc_html_e('You can onboard additional powerful plugins to extend your web design capabilities.', 'bdthemes-prime-slider-lite'); ?></p>
+    <h2><?php esc_html_e('Add More Firepower', 'bdthemes-prime-slider'); ?></h2>
+    <p><?php esc_html_e('You can onboard additional powerful plugins to extend your web design capabilities.', 'bdthemes-prime-slider'); ?></p>
 
     <div class="progress-bar-container">
         <div id="plugin-install-progress" class="progress-bar"></div>
@@ -124,7 +147,7 @@ if (!$has_cached_data) {
                 <div class="ps-loading-dot"></div>
                 <div class="ps-loading-dot"></div>
             </div>
-            <p style="margin-top: 20px;" id="ps-loading-message"><?php esc_html_e('Installing plugins...', 'bdthemes-prime-slider-lite'); ?></p>
+            <p style="margin-top: 20px;" id="ps-loading-message"><?php esc_html_e('Installing plugins...', 'bdthemes-prime-slider'); ?></p>
         </div>
 
         <!-- Initial loading state - shown while fetching plugin data -->
@@ -135,7 +158,7 @@ if (!$has_cached_data) {
                 <div class="ps-loading-dot"></div>
                 <div class="ps-loading-dot"></div>
             </div>
-            <p style="margin-top: 20px;"><?php esc_html_e('Loading plugin data...', 'bdthemes-prime-slider-lite'); ?></p>
+            <p style="margin-top: 20px;"><?php esc_html_e('Loading plugin data...', 'bdthemes-prime-slider'); ?></p>
         </div>
         <?php endif; ?>
 
@@ -145,7 +168,7 @@ if (!$has_cached_data) {
                 $predefined = \PrimeSlider\SetupWizard\Plugin_Integration_Helper::get_predefined_plugins();
                 foreach ($ps_plugins as $slug_key => $plugin) :
                     // Skip own plugin (Prime Slider)
-                    if ($slug_key === 'bdthemes-prime-slider-lite') {
+                    if (in_array($slug_key, $self_plugin_slugs, true)) {
                         continue;
                     }
                     // Use enhanced status if available, otherwise fall back to old method
@@ -186,11 +209,11 @@ if (!$has_cached_data) {
                             <div class="bdt-plugin-badge-switch-wrap">
 
                             <?php if ($is_recommended) : ?>
-                                <span class="recommended-badge"><?php esc_html_e('Recommended', 'bdthemes-prime-slider-lite'); ?></span>
+                                <span class="recommended-badge"><?php esc_html_e('Recommended', 'bdthemes-prime-slider'); ?></span>
                             <?php endif; ?>
                             
                             <?php if ($is_active) : ?>
-                                <span class="active-badge"><?php esc_html_e('ACTIVE', 'bdthemes-prime-slider-lite'); ?></span>
+                                <span class="active-badge"><?php esc_html_e('ACTIVE', 'bdthemes-prime-slider'); ?></span>
                             <?php endif; ?>
                              <?php
                              if (!$is_active) : ?>
@@ -211,21 +234,21 @@ if (!$has_cached_data) {
                             </div>
                             
                         <span class="active-installs">
-                            <?php esc_html_e('Active Installs: ', 'bdthemes-prime-slider-lite'); 
+                            <?php esc_html_e('Active Installs: ', 'bdthemes-prime-slider'); 
                             if (isset($plugin['active_installs_count']) && $plugin['active_installs_count'] > 0) {
-                                echo ' <span class="installs-count">' . number_format($plugin['active_installs_count']) . '+' . '</span>';
+                                echo ' <span class="installs-count">' . number_format_i18n((int) $plugin['active_installs_count']) . '+' . '</span>';
                             } else {
-                                echo '<span class="installs-count">Fewer than 10</span>';
+                                echo '<span class="installs-count">' . esc_html__('Fewer than 10', 'bdthemes-prime-slider') . '</span>';
                             }
                             ?>
                         </span>
 
                         <?php if (isset($plugin['downloaded_formatted']) && !empty($plugin['downloaded_formatted'])): ?>
-                        <span class="downloads"><?php esc_html_e('Downloads: ', 'bdthemes-prime-slider-lite'); echo wp_kses_post($plugin['downloaded_formatted']); ?></span>
+                        <span class="downloads"><?php esc_html_e('Downloads: ', 'bdthemes-prime-slider'); echo wp_kses_post($plugin['downloaded_formatted']); ?></span>
                         <?php endif; ?>
                         
                         <div class="rating-section">
-                            <div class="wporg-ratings" title="<?php echo esc_attr($plugin['rating'] ?? '0'); ?> out of 5 stars" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
+                            <div class="wporg-ratings" title="<?php echo esc_attr(sprintf(__('%s out of 5 stars', 'bdthemes-prime-slider'), (string) ($plugin['rating'] ?? '0'))); ?>" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
                                 <?php 
                                 $rating = floatval($plugin['rating'] ?? 0);
                                 $full_stars = floor($rating);
@@ -249,9 +272,9 @@ if (!$has_cached_data) {
                                 ?>
                             </div>
                             <span class="rating-text">
-                                <?php echo esc_html($plugin['rating'] ?? '0'); ?> out of 5 stars.
+                                <?php echo esc_html($plugin['rating'] ?? '0'); ?> <?php esc_html_e('out of 5 stars.', 'bdthemes-prime-slider'); ?>
                                 <?php if (isset($plugin['num_ratings']) && $plugin['num_ratings'] > 0): ?>
-                                    <span class="rating-count">(<?php echo number_format($plugin['num_ratings']); ?> ratings)</span>
+                                    <span class="rating-count">(<?php echo esc_html(number_format_i18n((int) $plugin['num_ratings'])); ?> <?php esc_html_e('ratings', 'bdthemes-prime-slider'); ?>)</span>
                                 <?php endif; ?>
                             </span>
                         </div>
@@ -259,9 +282,9 @@ if (!$has_cached_data) {
                         <?php 
                         // Use the enhanced last_updated_formatted if available, otherwise fall back to formatting
                         if (isset($plugin['last_updated_formatted']) && !empty($plugin['last_updated_formatted'])): ?>
-                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html($plugin['last_updated_formatted']); ?></span>
+                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider'); echo esc_html($plugin['last_updated_formatted']); ?></span>
                         <?php elseif (isset($plugin['last_updated']) && !empty($plugin['last_updated'])): ?>
-                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html(format_last_updated_ps($plugin['last_updated'])); ?></span>
+                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider'); echo esc_html(format_last_updated_ps($plugin['last_updated'])); ?></span>
                         <?php endif; ?>
 
                     </label>
@@ -272,16 +295,16 @@ if (!$has_cached_data) {
         
         <div class="wizard-navigation bdt-margin-top">
             <button class="bdt-button bdt-button-primary d-none" type="submit" id="ps-install-plugins-btn">
-                <?php esc_html_e('Install and Continue', 'bdthemes-prime-slider-lite'); ?>
+                <?php esc_html_e('Install and Continue', 'bdthemes-prime-slider'); ?>
             </button>
-            <div class="bdt-close-button bdt-margin-left bdt-wizard-next" data-step="finish"><?php esc_html_e('Skip', 'bdthemes-prime-slider-lite'); ?></div>
+            <div class="bdt-close-button bdt-margin-left bdt-wizard-next" data-step="finish"><?php esc_html_e('Skip', 'bdthemes-prime-slider'); ?></div>
         </div>
     </form>
 
     <div class="bdt-wizard-navigation">
         <button class="bdt-button bdt-button-secondary bdt-wizard-prev" data-step="features">
             <span><i class="dashicons dashicons-arrow-left-alt"></i></span>
-            <?php esc_html_e('Previous Step', 'bdthemes-prime-slider-lite'); ?>
+            <?php esc_html_e('Previous Step', 'bdthemes-prime-slider'); ?>
         </button>
     </div>
 </div>
@@ -326,8 +349,19 @@ if (!$has_cached_data) {
 }
 </style>
 
+<?php
+$ps_integration_i18n = get_integration_i18n_ps();
+$ps_integration_config = array(
+    'ajaxAction' => 'ps_get_plugins',
+    'nonce' => wp_create_nonce('ps_get_plugins_nonce'),
+    'wporgAssetBase' => get_plugin_asset_base_url_ps(),
+    'selfPluginSlugs' => $self_plugin_slugs,
+);
+?>
 <script>
 jQuery(document).ready(function($) {
+    const psIntegrationI18n = <?php echo wp_json_encode($ps_integration_i18n); ?>;
+    const psIntegrationConfig = <?php echo wp_json_encode($ps_integration_config); ?>;
     let integrationDataLoaded = false;
     
     // Function to load integration data
@@ -345,8 +379,8 @@ jQuery(document).ready(function($) {
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'ps_get_plugins',
-                nonce: '<?php echo wp_create_nonce('ps_get_plugins_nonce'); ?>'
+                action: psIntegrationConfig.ajaxAction,
+                nonce: psIntegrationConfig.nonce
             },
             success: function(response) {
                 if (response.success && response.data.plugins) {
@@ -355,11 +389,11 @@ jQuery(document).ready(function($) {
                     renderPluginList(response.data.plugins);
                     integrationDataLoaded = true;
                 } else {
-                    showError('Unable to load plugin data.');
+                    showError(psIntegrationI18n.unableToLoadData);
                 }
             },
             error: function() {
-                showError('Network error occurred while loading plugin data.');
+                showError(psIntegrationI18n.networkError);
             }
         });
     }
@@ -370,11 +404,11 @@ jQuery(document).ready(function($) {
         let html = '';
         
         if (plugins.length === 0) {
-            html = '<div class="ps-no-plugins" style="text-align: center; padding: 40px;"><p>No plugins found.</p></div>';
+            html = `<div class="ps-no-plugins" style="text-align: center; padding: 40px;"><p>${psIntegrationI18n.noPluginsFound}</p></div>`;
         } else {
             plugins.forEach(function(plugin) {
                 // Skip own plugin (Prime Slider) when printing only; data still includes it for other plugins
-                if (plugin.slug === 'bdthemes-prime-slider-lite') return;
+                if (Array.isArray(psIntegrationConfig.selfPluginSlugs) && psIntegrationConfig.selfPluginSlugs.includes(plugin.slug)) return;
                 const isActive = plugin.status === 'active';
                 const isRecommended = plugin.recommended && !isActive;
                 
@@ -385,8 +419,8 @@ jQuery(document).ready(function($) {
                                 ${generatePluginLogo(plugin)}
                             </span>
                             <div class="bdt-plugin-badge-switch-wrap">
-                                ${isRecommended ? '<span class="recommended-badge">Recommended</span>' : ''}
-                                ${isActive ? '<span class="active-badge">ACTIVE</span>' : ''}
+                                ${isRecommended ? `<span class="recommended-badge">${psIntegrationI18n.recommended}</span>` : ''}
+                                ${isActive ? `<span class="active-badge">${psIntegrationI18n.activeBadge}</span>` : ''}
                                 ${!isActive ? `
                                     <label class="switch">
                                         <input type="checkbox" class="plugin-slider-checkbox" ${plugin.recommended ? 'checked' : ''} name="plugins[]${plugin.slug}">
@@ -399,20 +433,20 @@ jQuery(document).ready(function($) {
                             <span class="bdt-plugin-name">${plugin.name}</span>
                         </div>
                         <span class="active-installs">
-                            Active Installs: 
-                            <span class="installs-count">${plugin.active_installs_count > 0 ? plugin.active_installs_count.toLocaleString() + '+' : 'Fewer than 10'}</span>
+                            ${psIntegrationI18n.activeInstallsLabel}
+                            <span class="installs-count">${plugin.active_installs_count > 0 ? plugin.active_installs_count.toLocaleString() + '+' : psIntegrationI18n.fewerThanTen}</span>
                         </span>
-                        ${plugin.downloaded_formatted ? `<span class="downloads">Downloads: ${plugin.downloaded_formatted}</span>` : ''}
+                        ${plugin.downloaded_formatted ? `<span class="downloads">${psIntegrationI18n.downloadsLabel} ${plugin.downloaded_formatted}</span>` : ''}
                         <div class="rating-section">
-                            <div class="wporg-ratings" title="${plugin.rating} out of 5 stars" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
+                            <div class="wporg-ratings" title="${plugin.rating} ${psIntegrationI18n.outOfFiveStars}" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
                                 ${generateStarRating(plugin.rating)}
                             </div>
                             <span class="rating-text">
-                                ${plugin.rating} out of 5 stars.
-                                ${plugin.num_ratings > 0 ? `<span class="rating-count">(${plugin.num_ratings.toLocaleString()} ratings)</span>` : ''}
+                                ${plugin.rating} ${psIntegrationI18n.outOfFiveStarsSentence}
+                                ${plugin.num_ratings > 0 ? `<span class="rating-count">(${plugin.num_ratings.toLocaleString()} ${psIntegrationI18n.ratingsLabel})</span>` : ''}
                             </span>
                         </div>
-                        ${plugin.last_updated_formatted ? `<span class="last-updated">Last Updated: ${plugin.last_updated_formatted}</span>` : ''}
+                        ${plugin.last_updated_formatted ? `<span class="last-updated">${psIntegrationI18n.lastUpdatedLabel} ${plugin.last_updated_formatted}</span>` : ''}
                     </label>
                 `;
             });
@@ -428,7 +462,8 @@ jQuery(document).ready(function($) {
                     <div class="default-plugin-icon" style="display:none;">📦</div>`;
         } else {
             const slug = plugin.slug.includes('/') ? plugin.slug.split('/')[0] : plugin.slug;
-            return `<img src="https://ps.w.org/${slug}/assets/icon-256x256.png" alt="${plugin.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            const wporgAssetBase = String(psIntegrationConfig.wporgAssetBase || 'https://ps.w.org').replace(/\/$/, '');
+            return `<img src="${wporgAssetBase}/${slug}/assets/icon-256x256.png" alt="${plugin.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="default-plugin-icon" style="display:none;">📦</div>`;
         }
     }
@@ -464,7 +499,7 @@ jQuery(document).ready(function($) {
         $pluginList.html(`
             <div class="ps-error-state" style="text-align: center; padding: 40px;">
                 <p style="color: #d63638;">${message}</p>
-                <button type="button" class="bdt-button bdt-button-secondary" onclick="location.reload()">Retry</button>
+                <button type="button" class="bdt-button bdt-button-secondary" onclick="location.reload()">${psIntegrationI18n.retry}</button>
             </div>
         `);
     }

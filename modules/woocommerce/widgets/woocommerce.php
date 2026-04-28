@@ -1880,7 +1880,7 @@ class Woocommerce extends Widget_Base {
 
 				<?php if ($settings['show_title']) : ?>
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
-						<a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'bdthemes-prime-slider-lite' ), get_the_title() ) ); ?>">
+						<a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'bdthemes-prime-slider' ), get_the_title() ) ); ?>">
 							<?php
 							$wc_title_limited = $this->get_wc_slide_limited_title_or_null( $settings );
 							if ( null !== $wc_title_limited ) {

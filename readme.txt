@@ -274,8 +274,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.2.X [XX April 2026] =
+= 4.2.X [XXth April 2026] =
 
+* Fixed: Corrected text domain and hard-coded issues
 * Fixed: Admin dashboard 3rd party widgets section save settings issue fixed
 * Fixed: Hard-coded translate issue fixed
 
