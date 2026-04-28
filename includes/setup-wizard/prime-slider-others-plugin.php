@@ -56,33 +56,33 @@ class PrimeSlider_Others_Plugin_Manager {
         if (!function_exists('format_last_updated_ps')) {
             function format_last_updated_ps($date_string) {
                 if (empty($date_string)) {
-                    return __('Unknown', 'bdthemes-prime-slider-lite');
+                    return __('Unknown', 'bdthemes-prime-slider');
                 }
                 
                 $date = strtotime($date_string);
                 if (!$date) {
-                    return __('Unknown', 'bdthemes-prime-slider-lite');
+                    return __('Unknown', 'bdthemes-prime-slider');
                 }
                 
                 $diff = current_time('timestamp') - $date;
                 
                 if ($diff < 60) {
-                    return __('Just now', 'bdthemes-prime-slider-lite');
+                    return __('Just now', 'bdthemes-prime-slider');
                 } elseif ($diff < 3600) {
                     $minutes = floor($diff / 60);
-                    return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider-lite'), $minutes);
+                    return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider'), $minutes);
                 } elseif ($diff < 86400) {
                     $hours = floor($diff / 3600);
-                    return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider-lite'), $hours);
+                    return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider'), $hours);
                 } elseif ($diff < 2592000) { // 30 days
                     $days = floor($diff / 86400);
-                    return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider-lite'), $days);
+                    return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider'), $days);
                 } elseif ($diff < 31536000) { // 1 year
                     $months = floor($diff / 2592000);
-                    return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider-lite'), $months);
+                    return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider'), $months);
                 } else {
                     $years = floor($diff / 31536000);
-                    return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider-lite'), $years);
+                    return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider'), $years);
                 }
             }
         }
@@ -131,7 +131,7 @@ class PrimeSlider_Others_Plugin_Manager {
                     <div class="bdt-flex bdt-flex-center bdt-flex-middle bdt-text-center" style="min-height: 200px;">
                         <div>
                             <div class="bdt-spinner bdt-spinner-primary"></div>
-                            <p class="bdt-margin-small-top"><?php esc_html_e('Loading plugin data...', 'bdthemes-prime-slider-lite'); ?></p>
+                            <p class="bdt-margin-small-top"><?php esc_html_e('Loading plugin data...', 'bdthemes-prime-slider'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -140,9 +140,9 @@ class PrimeSlider_Others_Plugin_Manager {
                 <div class="ps-plugins-error" id="ps-plugins-error" style="display: none;">
                     <div class="bdt-alert bdt-alert-warning" bdt-alert>
                         <a class="bdt-alert-close" bdt-close></a>
-                        <p><?php esc_html_e('Unable to load plugin data. Please try again later.', 'bdthemes-prime-slider-lite'); ?></p>
+                        <p><?php esc_html_e('Unable to load plugin data. Please try again later.', 'bdthemes-prime-slider'); ?></p>
                         <button class="bdt-button bdt-button-small bdt-margin-small-top" id="ps-retry-load-plugins">
-                            <?php esc_html_e('Retry', 'bdthemes-prime-slider-lite'); ?>
+                            <?php esc_html_e('Retry', 'bdthemes-prime-slider'); ?>
                         </button>
                     </div>
                 </div>
@@ -249,7 +249,7 @@ class PrimeSlider_Others_Plugin_Manager {
                 var html = '';
                 
                 if (plugins.length === 0) {
-                    html = '<div class="bdt-text-center bdt-padding-large"><p><?php esc_html_e('No plugins available.', 'bdthemes-prime-slider-lite'); ?></p></div>';
+                    html = '<div class="bdt-text-center bdt-padding-large"><p><?php esc_html_e('No plugins available.', 'bdthemes-prime-slider'); ?></p></div>';
                 } else {
                     plugins.forEach(function(plugin) {
                         // Skip own plugin (Prime Slider) when printing only; data still includes it for other plugins
@@ -285,7 +285,7 @@ class PrimeSlider_Others_Plugin_Manager {
                         
                         // Active installs
                         html += '<span class="active-installs bdt-margin-small-top">' +
-                            '<?php esc_html_e("Active Installs: ", "bdthemes-prime-slider-lite"); ?> ';
+                            '<?php esc_html_e("Active Installs: ", "bdthemes-prime-slider"); ?> ';
                         if (plugin.active_installs_count > 0) {
                             html += '<span class="installs-count">' + plugin.active_installs_count.toLocaleString() + '+</span>';
                         } else {
@@ -314,10 +314,10 @@ class PrimeSlider_Others_Plugin_Manager {
                         
                         html += '</span>' +
                             '<span class="bdt-others-plugin-rating-text bdt-margin-small-left">' +
-                                rating + ' <?php esc_html_e("out of 5 stars.", "bdthemes-prime-slider-lite"); ?>';
+                                rating + ' <?php esc_html_e("out of 5 stars.", "bdthemes-prime-slider"); ?>';
                         
                         if (plugin.num_ratings > 0) {
-                            html += '<span class="rating-count">(' + plugin.num_ratings.toLocaleString() + ' <?php esc_html_e("ratings", "bdthemes-prime-slider-lite"); ?>)</span>';
+                            html += '<span class="rating-count">(' + plugin.num_ratings.toLocaleString() + ' <?php esc_html_e("ratings", "bdthemes-prime-slider"); ?>)</span>';
                         }
                         
                         html += '</span></div>';
@@ -325,14 +325,14 @@ class PrimeSlider_Others_Plugin_Manager {
                         // Downloads
                         if (plugin.downloaded_formatted) {
                             html += '<div class="bdt-others-plugin-downloads bdt-margin-small-top">' +
-                                '<span><?php esc_html_e("Downloads: ", "bdthemes-prime-slider-lite"); ?>' + plugin.downloaded_formatted + '</span>' +
+                                '<span><?php esc_html_e("Downloads: ", "bdthemes-prime-slider"); ?>' + plugin.downloaded_formatted + '</span>' +
                                 '</div>';
                         }
                         
                         // Last updated
                         if (plugin.last_updated_formatted) {
                             html += '<div class="bdt-others-plugin-updated bdt-margin-small-top">' +
-                                '<span><?php esc_html_e("Last Updated: ", "bdthemes-prime-slider-lite"); ?>' + plugin.last_updated_formatted + '</span>' +
+                                '<span><?php esc_html_e("Last Updated: ", "bdthemes-prime-slider"); ?>' + plugin.last_updated_formatted + '</span>' +
                                 '</div>';
                         }
                         
@@ -343,22 +343,22 @@ class PrimeSlider_Others_Plugin_Manager {
                         if (plugin.status === 'active') {
                             html += '<span class="bdt-button bdt-button-success bdt-disabled">' +
                                 '<span class="dashicons dashicons-yes"></span> ' +
-                                '<?php esc_html_e("Active", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php esc_html_e("Active", "bdthemes-prime-slider"); ?>' +
                                 '</span>';
                         } else if (plugin.status === 'installed') {
                             var activateUrl = '<?php echo admin_url("plugins.php?action=activate&plugin="); ?>' + plugin.plugin_file + '&_wpnonce=' + plugin.activate_nonce;
                             html += '<a class="bdt-button bdt-welcome-button" href="' + activateUrl + '">' +
-                                '<?php esc_html_e("Activate", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php esc_html_e("Activate", "bdthemes-prime-slider"); ?>' +
                                 '</a>';
                         } else {
                             html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + pluginSlug + '" data-nonce="<?php echo wp_create_nonce('ps_install_plugin_nonce'); ?>">' +
-                                '<?php esc_html_e("Install", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php esc_html_e("Install", "bdthemes-prime-slider"); ?>' +
                                 '</button>';
                         }
                         
                         if (plugin.homepage) {
                             html += '<a class="bdt-button bdt-dashboard-sec-btn" target="_blank" href="' + plugin.homepage + '">' +
-                                '<?php esc_html_e("Learn More", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php esc_html_e("Learn More", "bdthemes-prime-slider"); ?>' +
                                 '</a>';
                         }
                         
@@ -379,7 +379,7 @@ class PrimeSlider_Others_Plugin_Manager {
                     
                     // Disable button and show loading state
                     $button.prop('disabled', true)
-                           .text('<?php echo esc_js(__('Installing...', 'bdthemes-prime-slider-lite')); ?>')
+                           .text('<?php echo esc_js(__('Installing...', 'bdthemes-prime-slider')); ?>')
                            .addClass('bdt-installing');
                     
                     // Perform AJAX request
@@ -394,7 +394,7 @@ class PrimeSlider_Others_Plugin_Manager {
                         success: function(response) {
                             if (response.success) {
                                 // Show success message
-                                $button.text('<?php echo esc_js(__('Installed!', 'bdthemes-prime-slider-lite')); ?>')
+                                $button.text('<?php echo esc_js(__('Installed!', 'bdthemes-prime-slider')); ?>')
                                        .removeClass('bdt-installing')
                                        .addClass('bdt-installed');
                                 
@@ -437,11 +437,11 @@ class PrimeSlider_Others_Plugin_Manager {
                             // Show error notification
                             if (typeof bdtUIkit !== 'undefined' && bdtUIkit.notification) {
                                 bdtUIkit.notification({
-                                    message: '<span class="dashicons dashicons-warning"></span> <?php echo esc_js(__('Installation failed. Please try again.', 'bdthemes-prime-slider-lite')); ?>',
+                                    message: '<span class="dashicons dashicons-warning"></span> <?php echo esc_js(__('Installation failed. Please try again.', 'bdthemes-prime-slider')); ?>',
                                     status: 'danger'
                                 });
                             } else {
-                                alert('<?php echo esc_js(__('Installation failed. Please try again.', 'bdthemes-prime-slider-lite')); ?>');
+                                alert('<?php echo esc_js(__('Installation failed. Please try again.', 'bdthemes-prime-slider')); ?>');
                             }
                         }
                     });
@@ -459,7 +459,7 @@ class PrimeSlider_Others_Plugin_Manager {
                                 '<div class="ps-loading-dot"></div>' +
                             '</div>' +
                         '</div>' +
-                        '<p class="bdt-margin-small-top bdt-text-muted"><?php esc_html_e("Loading plugin data...", "bdthemes-prime-slider-lite"); ?></p>' +
+                        '<p class="bdt-margin-small-top bdt-text-muted"><?php esc_html_e("Loading plugin data...", "bdthemes-prime-slider"); ?></p>' +
                     '</div>'
                 );
                 $list.show();
@@ -489,7 +489,7 @@ class PrimeSlider_Others_Plugin_Manager {
     public function ajax_get_plugins() {
         // Verify nonce
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(__('Security check failed.', 'bdthemes-prime-slider-lite'));
+            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
         }
 
         // Get cached data (includes all plugins; Prime Slider is skipped only when printing)
@@ -504,7 +504,7 @@ class PrimeSlider_Others_Plugin_Manager {
             wp_send_json_success([
                 'plugins' => [],
                 'loading' => true,
-                'message' => __('Loading plugin data...', 'bdthemes-prime-slider-lite')
+                'message' => __('Loading plugin data...', 'bdthemes-prime-slider')
             ]);
         }
 
@@ -512,7 +512,7 @@ class PrimeSlider_Others_Plugin_Manager {
         wp_send_json_success([
             'plugins' => $plugins_data,
             'loading' => false,
-            'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider-lite')
+            'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider')
         ]);
     }
 
@@ -522,18 +522,18 @@ class PrimeSlider_Others_Plugin_Manager {
     public function install_plugin_ajax() {
         // Check nonce
         if (!wp_verify_nonce($_POST['nonce'], 'ps_install_plugin_nonce')) {
-            wp_send_json_error(['message' => __('Security check failed', 'bdthemes-prime-slider-lite')]);
+            wp_send_json_error(['message' => __('Security check failed', 'bdthemes-prime-slider')]);
         }
 
         // Check user capability
         if (!current_user_can('install_plugins')) {
-            wp_send_json_error(['message' => __('You do not have permission to install plugins', 'bdthemes-prime-slider-lite')]);
+            wp_send_json_error(['message' => __('You do not have permission to install plugins', 'bdthemes-prime-slider')]);
         }
 
         $plugin_slug = sanitize_text_field($_POST['plugin_slug']);
 
         if (empty($plugin_slug)) {
-            wp_send_json_error(['message' => __('Plugin slug is required', 'bdthemes-prime-slider-lite')]);
+            wp_send_json_error(['message' => __('Plugin slug is required', 'bdthemes-prime-slider')]);
         }
 
         // Include necessary WordPress files
@@ -550,7 +550,7 @@ class PrimeSlider_Others_Plugin_Manager {
         ]);
 
         if (is_wp_error($api)) {
-            wp_send_json_error(['message' => __('Plugin not found: ', 'bdthemes-prime-slider-lite') . $api->get_error_message()]);
+            wp_send_json_error(['message' => __('Plugin not found: ', 'bdthemes-prime-slider') . $api->get_error_message()]);
         }
 
         // Install the plugin
@@ -559,18 +559,18 @@ class PrimeSlider_Others_Plugin_Manager {
         $result = $upgrader->install($api->download_link);
 
         if (is_wp_error($result)) {
-            wp_send_json_error(['message' => __('Installation failed: ', 'bdthemes-prime-slider-lite') . $result->get_error_message()]);
+            wp_send_json_error(['message' => __('Installation failed: ', 'bdthemes-prime-slider') . $result->get_error_message()]);
         } elseif ($skin->get_errors()->has_errors()) {
-            wp_send_json_error(['message' => __('Installation failed: ', 'bdthemes-prime-slider-lite') . $skin->get_error_messages()]);
+            wp_send_json_error(['message' => __('Installation failed: ', 'bdthemes-prime-slider') . $skin->get_error_messages()]);
         } elseif (is_null($result)) {
-            wp_send_json_error(['message' => __('Installation failed: Unable to connect to filesystem', 'bdthemes-prime-slider-lite')]);
+            wp_send_json_error(['message' => __('Installation failed: Unable to connect to filesystem', 'bdthemes-prime-slider')]);
         }
 
         // Get installation status
         $install_status = install_plugin_install_status($api);
         
         wp_send_json_success([
-            'message' => __('Plugin installed successfully!', 'bdthemes-prime-slider-lite'),
+            'message' => __('Plugin installed successfully!', 'bdthemes-prime-slider'),
             'plugin_file' => $install_status['file'],
             'plugin_name' => $api->name
         ]);
