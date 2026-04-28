@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9.4
 Requires PHP: 7.4.0
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
@@ -274,7 +274,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.2.X [XXth April 2026] =
+= 4.2.1 [28th April 2026] =
 
 * Fixed: Corrected text domain and hard-coded issues
 * Fixed: Admin dashboard 3rd party widgets section save settings issue fixed
