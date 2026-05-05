@@ -156,8 +156,9 @@ jQuery(document).ready(function ($) {
         var tz = item.timezone || 'UTC';
         var displayId = item.display_id || item.id || 'default';
         var biggoptiId = 'bdt-admin-biggopti-api-biggopti-' + displayId;
+        var countdown_content = item.countdown_content || '';
 
-        var countdownHtml = showCountdown ? '<div class="bdt-biggopti-countdown" data-end-date="' + esc(endDate) + '" data-timezone="' + esc(tz) + '"><div class="countdown-timer">Loading...</div></div>' : '';
+        var countdownHtml = showCountdown ? '<div class="bdt-biggopti-countdown" data-end-date="' + esc(endDate) + '" data-timezone="' + esc(tz) + '"><div class="countdown-timer">Loading...</div></div>' : '<div class="bdt-biggopti-countdown"><div class="countdown-content">' + esc(countdown_content) + '</div></div>';
         var btnHtml = link ? '<div class="bdt-biggopti-btn"><a href="' + esc(link) + '" target="_blank"><div class="nm-biggopti-btn">' + esc(btnText) + ' <span class="dashicons dashicons-arrow-right-alt"></span></div></a></div>' : '';
         var logoHtml = logoUrl ? '<div class="bdt-biggopti-logo-wrapper"><img width="100" src="' + esc(logoUrl) + '" alt="Logo"></div>' : '';
 
