@@ -317,7 +317,7 @@ jQuery(document).ready(function ($) {
 
         var inner = '<div class="' + wrapperClass + '"' + (bg ? ' style="' + esc(bg) + '"' : '') + '>' +
             '<div class="bdt-api-biggopti-content">' +
-            '<div class="bdt-plugin-logo-wrapper"><img height="auto" width="40" src="' + BIGGOPTI_ASSETS_URL + 'images/logo.svg" alt="Prime Slider Logo"></div>' +
+            '<div class="bdt-plugin-logo-wrapper"><img height="auto" width="40" src="' + BIGGOPTI_ASSETS_URL + 'images/logo.svg" alt="Logo"></div>' +
             '<div class="bdt-biggopti-content">' +
             '<div class="bdt-biggopti-content-inner">' + logoHtml +
             '<div class="bdt-biggopti-title-description">' +
