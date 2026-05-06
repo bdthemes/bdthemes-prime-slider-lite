@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
         return [];
     }
 
-    function isPsPromoItemValid(item) {
+    function isPrimeSliderPromoItemValid(item) {
         if (!item || item.type !== 'adminDashboard') return false;
         if (!isRecordForPrimeSlider(item)) return false;
         var targets = item.client_targets || [];
@@ -442,7 +442,7 @@ jQuery(document).ready(function ($) {
         var validForDashboard = [];
         var seen = {};
         for (var i = 0; i < list.length; i++) {
-            if (!isPsPromoItemValid(list[i])) continue;
+            if (!isPrimeSliderPromoItemValid(list[i])) continue;
             var did = list[i].display_id || list[i].id || 'default-' + i;
             if (seen[did]) continue;
             seen[did] = true;
@@ -511,7 +511,7 @@ jQuery(document).ready(function ($) {
         var list = normalizeToPrimeSliderRecords(data);
         if (!list.length) return null;
         for (var i = 0; i < list.length; i++) {
-            if (isPsPromoItemValid(list[i]) && list[i].link) {
+            if (isPrimeSliderPromoItemValid(list[i]) && list[i].link) {
                 var t = list[i].sub_title;
                 if (t == null || t === '') {
                     t = list[i].button_text || list[i].title || null;
@@ -550,7 +550,7 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function fetchPsPromoData() {
+    function fetchPrimeSliderPromoData() {
         fetch(BIGGOPTI_API_URL).then(function (r) { return r.json(); }).then(processApiData).catch(function () {
             if (isCurrentSectorAllowedForPromo() && !(BIGGOPTI_CFG && BIGGOPTI_CFG.isPro)) {
                 injectPromotionMenu(FALLBACK);
@@ -560,8 +560,8 @@ jQuery(document).ready(function ($) {
 
     $(window).on('load', function () {
         setTimeout(function () {
-            fetchPsPromoData();
-            setTimeout(fetchPsPromoData, 500);
+            fetchPrimeSliderPromoData();
+            setTimeout(fetchPrimeSliderPromoData, 500);
         }, 400);
     });
 
