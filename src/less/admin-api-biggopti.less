@@ -2,8 +2,7 @@
  * admin api biggopti style start
  */
 
-
-  .prime-slider-biggopti {
+[id^="bdt-admin-biggopti-api-biggopti-"] {
     padding: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -20,9 +19,6 @@
         background: transparent;
         border: none;
     }
-}
-
-[id^="bdt-admin-biggopti-api-biggopti-"] {
 
     .bdt-plugin-logo-wrapper {
         img {
@@ -76,10 +72,9 @@
         //10min-height: 80px;
     }
     .has-background-image {
-        background-position: left;
-        background-repeat: no-repeat;
-        background-color: #000;
         background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .bdt-api-biggopti-content {
@@ -110,7 +105,7 @@
     }
 
     .bdt-biggopti-title-description {
-        max-width: 450px;
+        // max-width: 450px;
     }
     
     .bdt-biggopti-logo-wrapper {
@@ -136,6 +131,7 @@
             animation: titleSlideIn 0.8s ease-out 0.4s both;
             transform-origin: left center;
             text-shadow: 2px 2px 2px #000000;
+            line-height: 1.2;
         }
     }
 
@@ -143,6 +139,7 @@
         color: #ffffff;
         text-shadow: 2px 2px 2px #000000;
         animation: titleSlideIn 0.8s ease-out 0.4s both;
+        line-height: 1.2;
     }
 
     .bdt-admin-api-biggopti-dismiss:before {
@@ -205,6 +202,14 @@
             height: 30px;
             width: 1px;
             background: rgba(255, 255, 255, 0.251);
+        }
+        .countdown-content {
+            font-size: clamp(14px, 2vw, 22px);
+            font-weight: 700;
+            color: #5affdb;
+            text-shadow: 2px 2px 2px #000000;
+            animation: titleSlideIn 0.8s ease-out 0.4s both;
+            transform-origin: left center;
         }
     }
 
@@ -345,7 +350,7 @@
     [id^="bdt-admin-biggopti-api-biggopti"] {
         .bdt-biggopti-content-right,
         .bdt-biggopti-content-inner {
-            gap: 30px;
+            gap: 80px;
         }
         .bdt-biggopti-countdown {
             .countdown-timer {
