@@ -274,6 +274,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.2.X [XXth May 2026] =
+
+* Added: Slide per view and Space between controls added in the elysium widget
+* Added: Image blur, brightness, scale controls added in the elysium widget
+* Added: Title and Text reveal effect controls added in the elysium widget
+
 = 4.2.1 [28th April 2026] =
 
 * Fixed: Corrected text domain and hard-coded issues

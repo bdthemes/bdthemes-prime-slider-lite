@@ -11,6 +11,7 @@ use Elementor\Group_Control_Text_Stroke;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Css_Filter;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Repeater;
 use PrimeSlider\Utils;
 
@@ -284,6 +285,53 @@ class Elysium extends Widget_Base {
 		 */
 		$this->register_speed_observer_controls();
 
+		$this->add_responsive_control(
+			'slides_per_view',
+			[
+				'label'      => esc_html__( 'Slides per view', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min'  => 1,
+						'max'  => 3,
+						'step' => 0.1,
+					],
+				],
+				'tablet_default' => [
+					'size' => 1.5,
+				],
+				'default'    => [
+					'size' => 1.8,
+				],
+				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_responsive_control(
+			'space_between',
+			[
+				'label'      => esc_html__( 'Space between', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 320,
+						'step' => 1,
+					],
+				],
+				'default'    => [
+					'size' => 200,
+				],
+				'tablet_default' => [
+					'size' => 100,
+				],
+				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -338,7 +386,7 @@ class Elysium extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name' => 'background',
+				'name'     => 'background',
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium',
 			]
 		);
@@ -360,40 +408,99 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label'     => __( 'Image', 'bdthemes-prime-slider' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
+				'label' => esc_html__( 'Slide image', 'bdthemes-prime-slider' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name' => 'overlay_background',
-				'label' => esc_html__('Background', 'bdthemes-prime-slider'),
-				'types' => ['classic', 'gradient'],
-				'exclude' => ['image'],
-				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-image-wrap::before',
+				'name'           => 'overlay_background',
+				'label'          => esc_html__( 'Overlay', 'bdthemes-prime-slider' ),
+				'types'          => [ 'classic', 'gradient' ],
+				'exclude'        => [ 'image' ],
+				'selector'       => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-image-wrap::before',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__('Overlay Color', 'bdthemes-prime-slider'),
+						'label' => esc_html__( 'Overlay color', 'bdthemes-prime-slider' ),
 					],
 				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'inactive_slide_blur',
+			[
+				'label'       => esc_html__( 'Inactive image blur', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => [ 'px' ],
+				'range'       => [
+					'px' => [
+						'min'  => 0,
+						'max'  => 24,
+						'step' => 1,
+					],
+				],
+				'selectors'   => [
+					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item:not(.swiper-slide-active) .bdt-image-wrap .bdt-img' => 'filter: blur({{SIZE}}{{UNIT}});',
+				],
+				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_responsive_control(
+			'inactive_slide_brightness',
+			[
+				'label'       => esc_html__( 'Inactive image brightness', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => [ '%' ],
+				'range'       => [
+					'%' => [
+						'min' => 35,
+						'max' => 100,
+					],
+				],
+				'selectors'   => [
+					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item:not(.swiper-slide-active) .bdt-image-wrap' => 'filter: brightness( calc({{SIZE}} / 100) ) saturate(.92);',
+				],
+				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_responsive_control(
+			'inactive_slide_scale',
+			[
+				'label'      => esc_html__( 'Inactive image scale', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min'  => 80,
+						'max'  => 100,
+						'step' => 1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item:not(.swiper-slide-active) .bdt-image-wrap' => 'transform: scale( calc({{SIZE}} / 100) );',
+				],
+				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
-				'name'        => 'image_border',
-				'selector'    => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap',
-				'separator' => 'before'
+				'name'      => 'image_border',
+				'selector'  => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap',
+				'separator' => 'before',
 			]
 		);
 
 		$this->add_responsive_control(
 			'image_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border radius', 'bdthemes-prime-slider' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -403,10 +510,21 @@ class Elysium extends Widget_Base {
 		);
 
 		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'     => 'image_box_shadow',
+				'label'    => esc_html__( 'Shadow', 'bdthemes-prime-slider' ),
+				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap',
+			]
+		);
+
+		$this->add_group_control(
 			Group_Control_Css_Filter::get_type(),
 			[
-				'name' => 'custom_css_filters',
+				'name'     => 'custom_css_filters',
+				'label'    => esc_html__( 'Active slide image CSS filters', 'bdthemes-prime-slider' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap .bdt-img',
+				'separator' => 'before',
 			]
 		);
 
@@ -493,6 +611,74 @@ class Elysium extends Widget_Base {
 				'name' => 'title_text_shadow',
 				'label' => __( 'Text Shadow', 'bdthemes-prime-slider'),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-title-wrap .bdt-title',
+			]
+		);
+
+		$this->add_control(
+			'text_reveal_enable',
+			[
+				'label'        => esc_html__( 'Reveal effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default'      => 'off',
+				'separator' => 'before',
+				'classes'   => BDTPS_CORE_IS_PC
+			]
+		);
+
+		$this->add_control(
+			'text_reveal_stagger',
+			[
+				'label'     => esc_html__( 'Title stagger (ms)', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 30,
+				'min'       => 0,
+				'max'       => 200,
+				'condition' => [
+					'text_reveal_enable' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'text_reveal_text_delay',
+			[
+				'label'     => esc_html__( 'Description delay (ms)', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 280,
+				'min'       => 0,
+				'max'       => 1500,
+				'condition' => [
+					'text_reveal_enable' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'text_reveal_translate_y',
+			[
+				'label'     => esc_html__( 'Translate Y (px)', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 10,
+				'min'       => 0,
+				'max'       => 60,
+				'condition' => [
+					'text_reveal_enable' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'text_reveal_blur',
+			[
+				'label'     => esc_html__( 'Blur (px)', 'bdthemes-prime-slider' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 6,
+				'min'       => 0,
+				'max'       => 24,
+				'condition' => [
+					'text_reveal_enable' => 'yes',
+				],
 			]
 		);
 
@@ -761,7 +947,50 @@ class Elysium extends Widget_Base {
 		$this->reveal_effects_attr('prime-slider-elysium');
 
 		$this->add_render_attribute( 'prime-slider-elysium', 'id', $id );
-		$this->add_render_attribute( 'prime-slider-elysium', 'class', [ 'bdt-prime-slider-elysium', 'elementor-swiper' ] );
+
+		$text_reveal_config = [
+			'enabled'    => ( ! empty( $settings['text_reveal_enable'] ) && 'yes' === $settings['text_reveal_enable'] ),
+			'staggerMs'  => isset( $settings['text_reveal_stagger'] ) ? (int) $settings['text_reveal_stagger'] : 30,
+			'textDelayMs'=> isset( $settings['text_reveal_text_delay'] ) ? (int) $settings['text_reveal_text_delay'] : 280,
+			'translateY' => isset( $settings['text_reveal_translate_y'] ) ? (int) $settings['text_reveal_translate_y'] : 10,
+			'blur'       => isset( $settings['text_reveal_blur'] ) ? (int) $settings['text_reveal_blur'] : 6,
+		];
+		$this->add_render_attribute( 'prime-slider-elysium', 'data-elysium-reveal', wp_json_encode( $text_reveal_config ) );
+
+		$wrapper_classes = [ 'bdt-prime-slider-elysium', 'elementor-swiper' ];
+		if ( empty( $settings['elysium_ambient_glow'] ) || 'yes' !== $settings['elysium_ambient_glow'] ) {
+			$wrapper_classes[] = 'bdt-elysium--flat-bg';
+		}
+		$this->add_render_attribute( 'prime-slider-elysium', 'class', $wrapper_classes );
+
+		// Unified responsive control (slides_per_view) + legacy fallback support.
+		$spv_tablet = 1.8;
+		if ( ! empty( $settings['slides_per_view_tablet']['size'] ) ) {
+			$spv_tablet = (float) $settings['slides_per_view_tablet']['size'];
+		} elseif ( ! empty( $settings['slides_per_view']['size'] ) ) {
+			// If user only set desktop value, keep tablet default unless explicitly set.
+			$spv_tablet = 1.8;
+		}
+
+		$spv_desktop = 1.8;
+		if ( ! empty( $settings['slides_per_view']['size'] ) ) {
+			$spv_desktop = (float) $settings['slides_per_view']['size'];
+		} elseif ( ! empty( $settings['slides_per_view_desktop']['size'] ) ) {
+			// Legacy (pre-unified control)
+			$spv_desktop = (float) $settings['slides_per_view_desktop']['size'];
+		}
+		// Unified responsive control (space_between) + legacy fallback support.
+		$sb_tablet = ! empty( $settings['space_between_tablet']['size'] )
+			? (int) $settings['space_between_tablet']['size']
+			: 100;
+
+		$sb_desktop = 200;
+		if ( ! empty( $settings['space_between']['size'] ) ) {
+			$sb_desktop = (int) $settings['space_between']['size'];
+		} elseif ( ! empty( $settings['space_between_desktop']['size'] ) ) {
+			// Legacy (pre-unified control)
+			$sb_desktop = (int) $settings['space_between_desktop']['size'];
+		}
 
 		$this->add_render_attribute(
 			[
@@ -783,12 +1012,12 @@ class Elysium extends Widget_Base {
 							"initialSlide" => 2,
 							"breakpoints" => [
 								"768" => [
-									"slidesPerView" => 1.8,
-									"spaceBetween" => 100,
+									"slidesPerView" => $spv_tablet,
+									"spaceBetween" => $sb_tablet,
 								],
 								"1024" => [
-									"slidesPerView" => 1.8,
-									"spaceBetween" => 200,
+									"slidesPerView" => $spv_desktop,
+									"spaceBetween" => $sb_desktop,
 								],
 							],
 								
@@ -846,7 +1075,7 @@ class Elysium extends Widget_Base {
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
-								<g fill="none" stroke="#ff215a" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
+								<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
 								<circle class="bdt-arrow-icon--circle" cx="16" cy="16" r="15.12"></circle>
 								<path class="bdt-arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
 								</g>
@@ -863,7 +1092,7 @@ class Elysium extends Widget_Base {
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
-								<g fill="none" stroke="#ff215a" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
+								<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
 								<circle class="bdt-arrow-icon--circle" cx="16" cy="16" r="15.12"></circle>
 								<path class="bdt-arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
 								</g>
