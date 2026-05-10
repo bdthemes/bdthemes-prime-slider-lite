@@ -362,6 +362,17 @@ class ModuleService {
 					'video_url'    => 'https://youtu.be/L7eWKJaZj5I',
 				],
 
+				[
+					'name'         => 'panorama',
+					'label'        => esc_html__( 'Panorama', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/panorama/',
+					'video_url'    => '',
+				],
+
 				[ 
 					'name'         => 'paranoia',
 					'label'        => esc_html__( 'Paranoia', 'bdthemes-prime-slider' ),
