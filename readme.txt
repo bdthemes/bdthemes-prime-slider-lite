@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 6.9.4
 Requires PHP: 7.4.0
-Stable tag: 4.2.2
+Stable tag: 4.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 3.28
@@ -273,6 +273,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.3.0 [10th May 2026] =
+
+* Added: Panorama widget added (pro)
+* Updated: System improved
 
 = 4.2.2 [10th May 2026] =
 
@@ -611,6 +616,10 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 ### How can I report security bugs? 
 
 - You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/9e5fb813-d8f7-41ad-ad27-748af1395dfb)
+
+### Is Prime Slider compatible with managed WordPress hosting? 
+
+- Prime Slider has been tested on popular managed WordPress hosting environments, including Kinsta.
 
 
 == Screenshots ==
