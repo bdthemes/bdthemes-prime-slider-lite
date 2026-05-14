@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.3.X [XXth May 2026] =
+
+* Fixed: Pause on Hover issues in the pacific, elysium and rubix widgets
+
 = 4.3.0 [10th May 2026] =
 
 * Added: Panorama widget added (pro)

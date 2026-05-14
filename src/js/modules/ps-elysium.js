@@ -84,6 +84,14 @@
         async function initSwiper() {
             var swiper = await new Swiper($elysiumContainer, $settings);
 
+            if ($settings?.pauseOnHover) {
+                $($elysiumContainer)?.hover(function () {
+                    (this)?.swiper?.autoplay?.stop();
+                }, function () {
+                    (this)?.swiper?.autoplay?.run();
+                }, { passive: true });
+            }
+
             if (!$reveal || $reveal.enabled === false) {
                 return;
             }
@@ -100,14 +108,6 @@
             swiper.on('slideChangeTransitionStart', function () {
                 setActiveReveal(root);
             });
-
-            if ($settings.pauseOnHover) {
-                $($elysiumContainer).hover(function () {
-                    (this).swiper.autoplay.stop();
-                }, function () {
-                    (this).swiper.autoplay.start();
-                });
-            }
         }
     };
 
