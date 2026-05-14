@@ -619,7 +619,7 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 
 ### Is Prime Slider compatible with managed WordPress hosting? 
 
-- Prime Slider has been tested on popular managed WordPress hosting environments, including Kinsta.
+- Prime Slider has been tested on popular managed WordPress hosting environments, including [Kinsta](https://kinsta.com/).
 
 
 == Screenshots ==
