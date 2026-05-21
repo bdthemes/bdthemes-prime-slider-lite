@@ -15,12 +15,12 @@
         initSwiper();
         async function initSwiper() {
             var swiper = await new Swiper($rubixContainer, $settings);
-            if ($settings.pauseOnHover) {
-                $($rubixContainer).hover(function () {
-                    (this).swiper.autoplay.stop();
+            if ($settings?.pauseOnHover) {
+                $($rubixContainer)?.hover(function () {
+                    (this)?.swiper?.autoplay?.stop();
                 }, function () {
-                    (this).swiper.autoplay.start();
-                });
+                    (this)?.swiper?.autoplay?.run();
+                }, { passive: true });
             }
             
             var sliderAnimation = {
