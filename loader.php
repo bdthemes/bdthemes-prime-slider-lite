@@ -364,6 +364,15 @@ class Prime_Slider_Loader {
 		if ( is_admin() && ps_is_dashboard_enabled() ) {
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin-biggopti.php';
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin-api-biggopti/index.php';
+
+			if ( defined( 'BDT_ADMIN_API_BIGGOPTI_PATH' ) && ! defined( 'BDTPS_ADMIN_API_BIGGOPTI_PATH' ) ) {
+				define( 'BDTPS_ADMIN_API_BIGGOPTI_PATH', BDT_ADMIN_API_BIGGOPTI_PATH );
+			}
+
+			if ( defined( 'BDT_ADMIN_API_BIGGOPTI_URL' ) && ! defined( 'BDTPS_ADMIN_API_BIGGOPTI_URL' ) ) {
+				define( 'BDTPS_ADMIN_API_BIGGOPTI_URL', BDT_ADMIN_API_BIGGOPTI_URL );
+			}
+
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin.php';
 			new Admin();
 		}
