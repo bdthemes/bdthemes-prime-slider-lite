@@ -58,7 +58,6 @@ module.exports = function (grunt) {
 
 						'admin/assets/css/ps-admin.css': 'src/less/admin.less',
 						'admin/assets/css/ps-admin-biggopti.css': 'src/less/admin-biggopti.less',
-						'admin/assets/css/ps-admin-api-biggopti.css': 'src/less/admin-api-biggopti.less',
 					},
 					// all widgets files
 					{
@@ -75,6 +74,14 @@ module.exports = function (grunt) {
 			},
 		},
 
+		cssmin: {
+			apiBiggopti: {
+				files: {
+					'admin/admin-api-biggopti/style.css': ['admin/admin-api-biggopti/src/style.css'],
+				},
+			},
+		},
+
 		terser: {
 			options: {
 				mangle: true,
@@ -88,7 +95,7 @@ module.exports = function (grunt) {
 						'assets/js/prime-slider-site.min.js': ['src/js/prime-slider-site.js'],
 						'admin/assets/js/ps-admin.min.js': ['src/admin/js/ps-admin.js'],
 						'admin/assets/js/ps-biggopti.js': ['src/admin/js/ps-biggopti.js'],
-						'admin/assets/js/ps-admin-api-biggopti.js': ['src/admin/js/ps-admin-api-biggopti.js'],
+						'admin/admin-api-biggopti/script.js': ['admin/admin-api-biggopti/src/script.js'],
 						'assets/js/ps-animation-helper.min.js': ['src/js/ps-animation-helper.js'],
 					},
 					{
@@ -157,6 +164,13 @@ module.exports = function (grunt) {
 					spawn: false,
 				},
 			},
+			apiBiggopti: {
+				files: ['admin/admin-api-biggopti/src/**/*.{css,js}'],
+				tasks: ['cssmin', 'terser'],
+				options: {
+					spawn: false,
+				},
+			},
 		},
 	});
 
@@ -165,8 +179,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	if (process.env.NODE_ENV === 'development') {
-		grunt.registerTask('default', ['less', 'terser', 'copy', 'rtlcss', 'watch']);
+		grunt.registerTask('default', ['less', 'cssmin', 'terser', 'copy', 'rtlcss', 'watch']);
 	} else {
-		grunt.registerTask('default', ['less', 'terser', 'copy', 'rtlcss']);
+		grunt.registerTask('default', ['less', 'cssmin', 'terser', 'copy', 'rtlcss']);
 	}
 };

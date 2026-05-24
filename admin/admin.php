@@ -43,7 +43,6 @@ class Admin {
 
 	function biggopti_styles(){
 		wp_enqueue_style('ps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
-		wp_enqueue_style('bdt-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-api-biggopti.css', [], BDTPS_CORE_VER);
 		wp_enqueue_style('bdt-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed.css', [], BDTPS_CORE_VER);
 	}
 
@@ -205,39 +204,14 @@ class Admin {
 	 */
 
 	public function admin_biggopti_script() {
-		$suffix = '.min';
 		if ( is_admin() ) { // for Admin Dashboard Only
 
 			wp_enqueue_script( 'ps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
-			wp_enqueue_script( 'ps-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin-api-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 
-			$dismissals = get_option('bdt_biggopti_dismissals', []);
-			$dismissed_display_ids = [];
-			$prefix = 'bdt-admin-biggopti-api-biggopti-';
-			foreach (array_keys($dismissals) as $key) {
-				if (strpos($key, $prefix) === 0) {
-					$dismissed_display_ids[] = substr($key, strlen($prefix));
-				} else {
-					$dismissed_display_ids[] = $key;
-				}
-			}
-
-			$current_sector = '';
-			if ( isset( $_GET['page'] ) && $_GET['page'] === 'prime_slider_options' ) {
-				$current_sector = 'plugin_dashboard';
-			}
-
-			$script_config = [
-				'ajaxurl'				=> admin_url('admin-ajax.php'),
-				'nonce'					=> wp_create_nonce('prime-slider'),
-				'isPro'             	=> function_exists('_is_ps_pro_activated') && _is_ps_pro_activated(),
-				'assetsUrl'         	=> defined('BDTPS_CORE_ASSETS_URL') ? BDTPS_CORE_ASSETS_URL : '',
-				'dismissedDisplayIds'	=> $dismissed_display_ids,
-				'currentSector'      	=> $current_sector,
-			];
-			
-			wp_localize_script('ps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config);
-			wp_localize_script('ps-admin-api-biggopti', 'PrimeSliderAdminApiBiggoptiConfig', $script_config);
+			wp_localize_script( 'ps-biggopti', 'PrimeSliderBiggoptiConfig', [
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'prime-slider' ),
+			] );
 		}
 	}
 }
