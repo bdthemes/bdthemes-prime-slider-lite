@@ -315,9 +315,17 @@
 		.cart {
 			display: flex;
 			flex-direction: row-reverse;
+			align-items: stretch;
+		}
+
+		.quantity {
+			display: flex;
+			align-items: stretch;
 		}
 
 		.quantity input {
+			height: 100%;
+			box-sizing: border-box;
 			color: #2B2D42;
 			font-size: 14px;
 			width: 60px;
@@ -333,6 +341,9 @@
 		}
 
 		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 			font-weight: 600;
 			margin: 0;
 			font-size: 12px;

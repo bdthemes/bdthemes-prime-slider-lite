@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.3.X [XXth June 2026] =
+
+ * Fixed: Quantity field height now matches the add to cart button in the woocircle widget
+
 = 4.3.1 [21st May 2026] =
 
 * Updated: Made compatible with WordPress version 7.0
