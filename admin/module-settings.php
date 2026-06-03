@@ -484,6 +484,17 @@ class ModuleService {
 					'video_url'    => 'https://youtu.be/pmBWj3tkuO8',
 				],
 
+				[
+					'name'         => 'ring',
+					'label'        => esc_html__( 'Ring', 'bdthemes-prime-slider' ),
+					'type'         => 'checkbox',
+					'default'      => "off",
+					'widget_type'  => 'pro',
+					'content_type' => 'static swiper new',
+					'demo_url'     => 'https://primeslider.pro/demo/ring/',
+					'video_url'    => '',
+				],
+
 				[ 
 					'name'         => 'rubix',
 					'label'        => esc_html__( 'Rubix', 'bdthemes-prime-slider' ),
