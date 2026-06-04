@@ -1,0 +1,3 @@
+[submodule "admin/admin-api-biggopti"]
+	path = admin/admin-api-biggopti
+	url = https://github.com/bdthemes/admin-api-biggopti.git
