@@ -1080,13 +1080,6 @@ class PrimeSlider_Admin_Settings {
 					<a href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/idea/new"
 						class="bdt-button bdt-dashboard-sec-btn bdt-margin-small-top"
 						target="_blank"><?php esc_html_e('Request Your Features', 'bdthemes-prime-slider'); ?></a>
-					<?php
-					if ( function_exists( 'bdt_render_promo_prefs' ) ) {
-						bdt_render_promo_prefs();
-					} else {
-						do_action( 'bdt_admin_api_biggopti_render_promo_prefs' );
-					}
-					?>
 				</div>
 
 				<a href="https://www.youtube.com/watch?v=sZwJDtxasTg&list=PLP0S85GEw7DP3-yJrkgwpIeDFoXy0PDlM" target="_blank"
@@ -2862,6 +2855,9 @@ class PrimeSlider_Admin_Settings {
 					if (activeTab === 1) { // White Label tab is the second tab (index 1)
 						jQuery('.ps-white-label-save-section').show();
 						jQuery('.ps-code-save-section').hide();
+					} else if (activeTab === 2) { // Misc tab
+						jQuery('.ps-white-label-save-section').hide();
+						jQuery('.ps-code-save-section').hide();
 					} else {
 						jQuery('.ps-white-label-save-section').hide();
 						jQuery('.ps-code-save-section').show();
@@ -3060,6 +3056,27 @@ class PrimeSlider_Admin_Settings {
 		}
 		
 		return false;
+	}
+
+	/**
+	 * Render promotional offers preferences section.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function render_misc_section() {
+		?>
+		<div class="ps-misc-options bdt-margin-medium-top">
+			<h1 class="ps-feature-title"><?php esc_html_e( 'Promotional Offers', 'bdthemes-prime-slider' ); ?></h1>
+			<?php
+			if ( function_exists( 'bdt_render_promo_prefs' ) ) {
+				bdt_render_promo_prefs();
+			} else {
+				do_action( 'bdt_admin_api_biggopti_render_promo_prefs' );
+			}
+			?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -4140,6 +4157,7 @@ class PrimeSlider_Admin_Settings {
 							<li class="bdt-active"><a
 									href="#"><?php esc_html_e('Custom CSS & JS', 'bdthemes-prime-slider'); ?></a></li>
 							<li><a href="#"><?php esc_html_e('White Label', 'bdthemes-prime-slider'); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Misc', 'bdthemes-prime-slider' ); ?></a></li>
 						</ul>
 
 						<div id="ps-extra-options-tab-content" class="bdt-switcher">
@@ -4151,6 +4169,11 @@ class PrimeSlider_Admin_Settings {
 							<!-- White Label Tab -->
 							<div>
 								<?php $this->render_white_label_section(); ?>
+							</div>
+
+							<!-- Misc Tab -->
+							<div>
+								<?php $this->render_misc_section(); ?>
 							</div>
 						</div>
 					</div>
