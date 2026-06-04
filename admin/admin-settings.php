@@ -1080,6 +1080,13 @@ class PrimeSlider_Admin_Settings {
 					<a href="https://feedback.bdthemes.com/b/6vr2250l/feature-requests/idea/new"
 						class="bdt-button bdt-dashboard-sec-btn bdt-margin-small-top"
 						target="_blank"><?php esc_html_e('Request Your Features', 'bdthemes-prime-slider'); ?></a>
+					<?php
+					if ( function_exists( 'bdt_render_promo_prefs' ) ) {
+						bdt_render_promo_prefs();
+					} else {
+						do_action( 'bdt_admin_api_biggopti_render_promo_prefs' );
+					}
+					?>
 				</div>
 
 				<a href="https://www.youtube.com/watch?v=sZwJDtxasTg&list=PLP0S85GEw7DP3-yJrkgwpIeDFoXy0PDlM" target="_blank"
