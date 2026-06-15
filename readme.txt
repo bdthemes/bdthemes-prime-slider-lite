@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.X [Xth June 2026] =
+
+* Fixed: Pagination dot color and opacity not applying correctly in the storker widget
+
 = 4.4.0 [3rd June 2026] =
 
 * Added: Ring widget added (pro)
