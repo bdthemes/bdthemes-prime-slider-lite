@@ -5,11 +5,11 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 7.0
 Requires PHP: 7.4.0
-Stable tag: 4.4.0
+Stable tag: 4.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.1.1
+Elementor tested up to: 4.1.3
 
 Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
 
@@ -274,7 +274,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.4.X [XXth June 2026] =
+= 4.4.1 [15th June 2026] =
 
 * Fixed: Swiper GL effect not working properly in the omatic and sniper widgets
 * Fixed: Active pagination separator line incorrectly changing color on hover in the pacific widget
