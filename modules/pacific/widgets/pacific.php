@@ -928,8 +928,8 @@ class Pacific extends Widget_Base {
 				'label'     => __( 'Hover Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
-					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet:hover'        => 'color: {{VALUE}}',
-					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet:hover:before' => 'border-top-color: {{VALUE}}',
+					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover'        => 'color: {{VALUE}}',
+					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover:before' => 'border-top-color: {{VALUE}}',
 				],
 			]
 		);

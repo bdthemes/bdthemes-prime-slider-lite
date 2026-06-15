@@ -97,27 +97,27 @@ class Sniper extends Widget_Base {
 					[
 						'sub_title' => esc_html__('Sub Title 1', 'bdthemes-prime-slider'),
 						'title' 	=> esc_html__('Sniper Slide 1', 'bdthemes-prime-slider'),
-						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.png']
 					],
 					[
 						'sub_title' => esc_html__('Sub Title 2', 'bdthemes-prime-slider'),
 						'title' 	=> esc_html__('Sniper Slide 2', 'bdthemes-prime-slider'),
-						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-2.svg']
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-2.png']
 					],
 					[
 						'sub_title' => esc_html__('Sub Title 3', 'bdthemes-prime-slider'),
 						'title' 	=> esc_html__('Sniper Slide 3', 'bdthemes-prime-slider'),
-						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-3.svg']
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-3.png']
 					],
 					[
 						'sub_title' => esc_html__('Sub Title 4', 'bdthemes-prime-slider'),
 						'title' 	=> esc_html__('Sniper Slide 4', 'bdthemes-prime-slider'),
-						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.png']
 					],
 					[	
 						'sub_title' => esc_html__('Sub Title 5', 'bdthemes-prime-slider'),
 						'title' 	=> esc_html__('Sniper Slide 5', 'bdthemes-prime-slider'),
-						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
+						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.png']
 					],
 				],
 				'title_field' => '{{{ title }}}',

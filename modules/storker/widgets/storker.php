@@ -1412,7 +1412,7 @@ class Storker extends Widget_Base {
                 'label'     => __('Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-storker-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .bdt-storker-pagination .swiper-pagination .swiper-pagination-bullet' => 'background: {{VALUE}}',
                 ],
             ]
         );
@@ -1535,7 +1535,7 @@ class Storker extends Widget_Base {
                 'label'     => __('Color', 'bdthemes-prime-slider'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-storker-pagination .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .bdt-storker-pagination .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background: {{VALUE}}',
                 ],
             ]
         );
