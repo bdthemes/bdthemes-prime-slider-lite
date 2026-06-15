@@ -278,6 +278,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 * Fixed: Swiper GL effect not working properly in the omatic and sniper widgets
 * Fixed: Active pagination separator line incorrectly changing color on hover in the pacific widget
+* Fixed: Pagination dot color and opacity not applying correctly in the storker widget
 
 = 4.4.0 [3rd June 2026] =
 
