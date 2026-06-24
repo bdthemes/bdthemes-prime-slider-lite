@@ -52,37 +52,29 @@ final class Manager {
         });
     }
 
-    /**
-     * Register frontend CSS/JS for a single module.
-     *
-     * @param string $module_id Module ID.
-     * @return void
-     */
-    public static function register_module_assets( $module_id ) {
-        if ( 'elementor' === $module_id ) {
-            return;
-        }
+    public function load_module_instance($module) {
+
 
         $direction = is_rtl() ? '.rtl' : '';
         $suffix    = '.min';
-        $style_id  = 'ps-' . $module_id;
-        $script_id = 'ps-' . $module_id;
-
-        if ( ModuleService::has_module_style( $module_id, BDTPS_CORE_MODULES_PATH ) && ! wp_style_is( $style_id, 'registered' ) ) {
-            wp_register_style( $style_id, BDTPS_CORE_URL . 'assets/css/ps-' . $module_id . $direction . '.css', [], BDTPS_CORE_VER );
-        }
-
-        if ( ModuleService::has_module_script( $module_id, BDTPS_CORE_MODULES_PATH ) && ! wp_script_is( $script_id, 'registered' ) ) {
-            wp_register_script( $script_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', [ 'jquery', 'bdt-uikit' ], BDTPS_CORE_VER, true );
-        }
-    }
-
-    public function load_module_instance($module) {
 
         $module_id  = $module['name'];
         $class_name = str_replace('-', ' ', $module_id);
         $class_name = str_replace(' ', '', ucwords($class_name));
         $class_name = __NAMESPACE__ . '\\Modules\\' . $class_name . '\\Module';
+
+        
+        if ( !prime_slider_is_preview() ) {
+            // register widgets css
+            if ( ModuleService::has_module_style($module_id, BDTPS_CORE_MODULES_PATH) ) {
+                wp_register_style('ps-' . $module_id, BDTPS_CORE_URL . 'assets/css/ps-' . $module_id . $direction . '.css', [], BDTPS_CORE_VER);
+            }
+            // register widget JS
+            if ( ModuleService::has_module_script($module_id, BDTPS_CORE_MODULES_PATH) ) {
+                wp_register_script('ps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit'], BDTPS_CORE_VER, true);
+            }
+        }
+        
 
          if(class_exists($class_name)){
             $class_name::instance();
