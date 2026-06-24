@@ -1771,7 +1771,7 @@ class Storker extends Widget_Base {
         }
         ?>
         <div class="bdt-author-name-wrap">
-            <span class="bdt-by"><?php echo esc_html__('by', 'bdthemes-prime-slider') ?></span>
+            <span class="bdt-by"><?php echo esc_html__('By', 'bdthemes-prime-slider') ?></span>
             <a class="bdt-author-name" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta('ID') ) ); ?>">
                 <?php echo get_the_author() ?>
             </a>
@@ -1927,7 +1927,9 @@ class Storker extends Widget_Base {
                     <div data-swiper-parallax-y="-65" data-swiper-parallax-duration="650">
                         <div class="bdt-storker-meta" data-reveal="reveal-active">
                             <?php $this->render_author(); ?>
-                            <span class="bdt-ps-separator"><?php echo esc_html($settings['meta_separator']); ?></span>
+                            <?php if ( 'yes' === $settings['show_author'] && 'yes' === $settings['show_date'] ) : ?>
+                                <span class="bdt-ps-separator"><?php echo esc_html( $settings['meta_separator'] ); ?></span>
+                            <?php endif; ?>
                             <?php $this->render_date(); ?>
                         </div>
                     </div>

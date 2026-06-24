@@ -1295,7 +1295,7 @@ class Rubix extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[ 
 				'name'     => 'thumbs_active_background',
-				'selector' => '{{WRAPPER}}  .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-active',
+				'selector' => '{{WRAPPER}} .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-thumb-active',
 			]
 		);
 
@@ -1308,7 +1308,7 @@ class Rubix extends Widget_Base {
 					'thumbs_border_border!' => '',
 				],
 				'selectors' => [ 
-					'{{WRAPPER}}  .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-active' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-thumb-active' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -1319,7 +1319,7 @@ class Rubix extends Widget_Base {
 				'label'     => esc_html__( 'Line Color', 'bdthemes-prime-slider' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
-					'{{WRAPPER}} .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-active .bdt-content:before' => 'background: {{VALUE}};',
+					'{{WRAPPER}} .bdt-rubix-slider .bdt-thumb-slider .bdt-item.swiper-slide-thumb-active .bdt-content:before' => 'background: {{VALUE}};',
 				],
 				'separator' => 'before'
 			]

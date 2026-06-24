@@ -274,6 +274,13 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.X [XXth June 2026] =
+
+* Fixed: Active thumb background, border and line color controls not applying correctly in the rubix widget
+* Fixed: Title color changing unexpectedly when a title link is added in the sequester widget
+* Fixed: Pause on Hover control now only shows when autoplay is enabled
+* Fixed: Meta separator rendering incorrectly when only author or date is shown in the storker widget
+
 = 4.4.1 [15th June 2026] =
 
 * Fixed: Swiper GL effect not working properly in the omatic and sniper widgets
