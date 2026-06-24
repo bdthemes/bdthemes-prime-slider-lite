@@ -59,13 +59,10 @@ if (!function_exists('prime_slider_is_third_party_enabled')) {
     }
 }
 
-// if (!function_exists('prime_slider_is_asset_optimization_enabled')) {
-//     function prime_slider_is_asset_optimization_enabled() {
-//         $asset_manager = prime_slider_option('asset-manager', 'prime_slider_other_settings', 'off');
-//         if( $asset_manager == 'on'){
-//             return apply_filters("PrimeSlider/optimization/asset_manager", true);
-//         }
-//     }
-// }
+if ( ! function_exists( 'prime_slider_is_conditional_assets_enabled' ) ) {
+	function prime_slider_is_conditional_assets_enabled() {
+		return apply_filters( 'PrimeSlider/optimization/conditional_assets', true );
+	}
+}
 
 

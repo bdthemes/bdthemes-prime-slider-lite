@@ -4,7 +4,6 @@
 
     function bdtPsObserveTarget(target, callback) {
         var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-        // Set the rootMargin to trigger when the target is 10% past the viewport
         options.rootMargin = options.rootMargin || '10% 0px 0px 0px';
         var observer = new IntersectionObserver(function (entries, observer) {
             entries.forEach(function (entry) {
@@ -12,7 +11,7 @@
                     callback(entry);
 
                     if (!options.loop)
-                        observer.unobserve(entry.target); // Unobserve after the first intersection
+                        observer.unobserve(entry.target);
                 }
             });
         }, options);
@@ -26,8 +25,6 @@
             $selector = $scrollButton.data('selector'),
             $settings = $scrollButton.data('settings');
 
-        //console.log($scrollButton);
-
         if (!$scrollButton.length) {
             return;
         }
@@ -38,13 +35,13 @@
         });
 
     };
+
     var RevealEffects = function ($scope, $) {
         var widgetID = $scope.data("id"),
             $revealEnable = $scope.find(`[data-reveal-enable]`).data('reveal-enable');
         if (($revealEnable === undefined) || ($revealEnable !== 'yes')) {
             return;
         }
-
 
         const revealID = $('.reveal-active-' + widgetID).find(`[data-reveal="reveal-active"]`);
         $(revealID).css({ 'opacity': '1' });
@@ -63,10 +60,6 @@
                     },
                 },
             });
-            var runReveal = function () {
-                revealFX.reveal();
-                this.destroy();
-            };
 
             bdtPsObserveTarget(revealWrapper, function () {
                 revealFX.reveal();
@@ -86,56 +79,19 @@
                 $(muted).removeClass('reveal-muted');
             });
         }, (revealOptions.duration + counter) * 1.3);
+    };
+
+    function registerSiteHooks(hooks, callback) {
+        (hooks || []).forEach(function (hook) {
+            elementorFrontend.hooks.addAction('frontend/element_ready/' + hook, callback);
+        });
     }
 
     jQuery(window).on('elementor/frontend/init', function () {
-        // initialize reveal effects
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.slide', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.crelly', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.meteor', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.coral', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.folio', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.zinest', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-isolate.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-isolate.locate', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-isolate.slice', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-dragon.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-flogia.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-mount.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-elysium.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-fiestar.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-sequester.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-mercury.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-pacific.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-paranoia.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-rubix.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-storker.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-tango.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-vertex.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-woocommerce.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-woolamp.default', RevealEffects);
+        var config = window.PrimeSliderSiteConfig || { reveal: [], scroll: [] };
 
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-astoria.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-avatar.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-flexure.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-fluent.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-fortune.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-knily.default', RevealEffects);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-monster.default', RevealEffects);
-
-
-        //scroll button
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.meteor', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.default', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-blog.coral', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-isolate.default', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-isolate.locate', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-woocommerce.default', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-fluent.default', primeSliderScrollButton);
-        elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-astoria.default', primeSliderScrollButton);
+        registerSiteHooks(config.reveal, RevealEffects);
+        registerSiteHooks(config.scroll, primeSliderScrollButton);
     });
 
 }(jQuery, window.elementorFrontend));

@@ -1,6 +1,7 @@
 <?php
 use PrimeSlider\Prime_Slider_Loader;
 use Elementor\Plugin;
+use PrimeSlider\Admin\ModuleService;
 
 /**
  * You can easily add white label branding for for extended license or multi site license.
@@ -55,6 +56,434 @@ function prime_slider_is_edit() {
 
 function prime_slider_is_preview() {
 	return Plugin::$instance->preview->is_preview_mode();
+}
+
+/**
+ * Whether the current request is Elementor editor or preview canvas.
+ *
+ * @return bool
+ */
+function prime_slider_is_builder() {
+	return prime_slider_is_edit() || prime_slider_is_preview();
+}
+
+/**
+ * Recursively check Elementor element data for Prime Slider widgets.
+ *
+ * @param array $elements Elementor elements data.
+ * @return bool
+ */
+function prime_slider_elements_contain_widget( $elements ) {
+	if ( empty( $elements ) || ! is_array( $elements ) ) {
+		return false;
+	}
+
+	foreach ( $elements as $element ) {
+		if ( ! empty( $element['widgetType'] ) && 0 === strpos( $element['widgetType'], 'prime-slider' ) ) {
+			return true;
+		}
+
+		if ( ! empty( $element['elements'] ) && prime_slider_elements_contain_widget( $element['elements'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Check whether a document contains any Prime Slider widget.
+ *
+ * @param int $post_id Post ID.
+ * @return bool
+ */
+function prime_slider_document_has_widget( $post_id ) {
+	$post_id = (int) $post_id;
+
+	if ( $post_id <= 0 ) {
+		return false;
+	}
+
+	$document = Plugin::$instance->documents->get( $post_id );
+
+	if ( ! $document ) {
+		return false;
+	}
+
+	$data = $document->get_elements_data();
+
+	return prime_slider_elements_contain_widget( $data );
+}
+
+/**
+ * Collect Elementor document IDs that may render on the current request.
+ *
+ * @return int[]
+ */
+function prime_slider_get_documents_to_scan() {
+	$post_ids = [];
+
+	if ( is_singular() ) {
+		$post_ids[] = get_queried_object_id();
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		$posts_page = (int) get_option( 'page_for_posts' );
+		if ( $posts_page ) {
+			$post_ids[] = $posts_page;
+		}
+	}
+
+	if ( is_front_page() ) {
+		$front_page = (int) get_option( 'page_on_front' );
+		if ( $front_page ) {
+			$post_ids[] = $front_page;
+		}
+	}
+
+	if ( class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' ) ) {
+		$conditions = \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_conditions_manager();
+		$locations  = [ 'header', 'footer', 'single', 'archive', 'error404', 'search_results', 'popup' ];
+
+		foreach ( $locations as $location ) {
+			$documents = $conditions->get_documents_for_location( $location );
+
+			foreach ( $documents as $document ) {
+				$post_ids[] = $document->get_main_id();
+			}
+		}
+	}
+
+	return array_values( array_unique( array_filter( array_map( 'intval', $post_ids ) ) ) );
+}
+
+/**
+ * Whether Prime Slider base assets should load on the current request.
+ *
+ * @return bool
+ */
+function prime_slider_page_has_widget() {
+	if ( ! prime_slider_is_conditional_assets_enabled() ) {
+		return true;
+	}
+
+	if ( prime_slider_is_builder() ) {
+		return true;
+	}
+
+	foreach ( prime_slider_get_documents_to_scan() as $post_id ) {
+		if ( prime_slider_document_has_widget( $post_id ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Collect Prime Slider widget instances from Elementor element data.
+ *
+ * @param array $elements Elementor elements data.
+ * @param array $instances Collected widget instances.
+ * @return void
+ */
+function prime_slider_collect_widget_instances_from_elements( $elements, &$instances ) {
+	if ( empty( $elements ) || ! is_array( $elements ) ) {
+		return;
+	}
+
+	foreach ( $elements as $element ) {
+		if ( ! empty( $element['widgetType'] ) && 0 === strpos( $element['widgetType'], 'prime-slider' ) ) {
+			$skin = ! empty( $element['settings']['_skin'] ) ? $element['settings']['_skin'] : 'default';
+
+			$instances[] = [
+				'widget' => $element['widgetType'],
+				'skin'   => $skin,
+				'module' => str_replace( 'prime-slider-', '', $element['widgetType'] ),
+				'hook'   => $element['widgetType'] . '.' . $skin,
+			];
+		}
+
+		if ( ! empty( $element['elements'] ) ) {
+			prime_slider_collect_widget_instances_from_elements( $element['elements'], $instances );
+		}
+	}
+}
+
+/**
+ * @return array<int, array{widget: string, skin: string, module: string, hook: string}>
+ */
+function &prime_slider_runtime_widget_storage() {
+	static $instances = [];
+
+	return $instances;
+}
+
+/**
+ * Track a Prime Slider widget rendered after the initial document scan.
+ *
+ * @param string $widget_name Widget name.
+ * @param string $skin Widget skin.
+ * @return void
+ */
+function prime_slider_add_runtime_widget_instance( $widget_name, $skin = 'default' ) {
+	prime_slider_runtime_widget_storage()[] = [
+		'widget' => $widget_name,
+		'skin'   => $skin,
+		'module' => str_replace( 'prime-slider-', '', $widget_name ),
+		'hook'   => $widget_name . '.' . $skin,
+	];
+}
+
+/**
+ * Prime Slider widgets detected at runtime after the initial document scan.
+ *
+ * @return array<int, array{widget: string, skin: string, module: string, hook: string}>
+ */
+function prime_slider_get_runtime_widget_instances() {
+	return prime_slider_runtime_widget_storage();
+}
+
+/**
+ * Prime Slider widgets used on the current request.
+ *
+ * @return array<int, array{widget: string, skin: string, module: string, hook: string}>
+ */
+function prime_slider_get_page_widget_instances() {
+	static $scanned_instances = null;
+
+	if ( null === $scanned_instances ) {
+		$scanned_instances = [];
+
+		foreach ( prime_slider_get_documents_to_scan() as $post_id ) {
+			$document = Plugin::$instance->documents->get( $post_id );
+
+			if ( ! $document ) {
+				continue;
+			}
+
+			prime_slider_collect_widget_instances_from_elements( $document->get_elements_data(), $scanned_instances );
+		}
+	}
+
+	return array_merge( $scanned_instances, prime_slider_get_runtime_widget_instances() );
+}
+
+/**
+ * Module IDs for Prime Slider widgets on the current request.
+ *
+ * @return string[]
+ */
+function prime_slider_get_page_module_ids() {
+	$modules = array_column( prime_slider_get_page_widget_instances(), 'module' );
+
+	return array_values( array_unique( array_filter( $modules ) ) );
+}
+
+/**
+ * Module IDs enabled in the plugin admin dashboard.
+ *
+ * @return string[]
+ */
+function prime_slider_get_admin_enabled_module_ids() {
+	static $module_ids = null;
+
+	if ( null !== $module_ids ) {
+		return $module_ids;
+	}
+
+	$module_ids = [];
+
+	ModuleService::get_widget_settings(
+		function ( $settings ) use ( &$module_ids ) {
+			foreach ( $settings['settings_fields']['prime_slider_active_modules'] as $widget ) {
+				if ( prime_slider_is_widget_enabled( $widget['name'] ) ) {
+					$module_ids[] = $widget['name'];
+				}
+			}
+
+			foreach ( $settings['settings_fields']['prime_slider_third_party_widget'] as $widget ) {
+				if ( prime_slider_is_third_party_enabled( $widget['name'] ) ) {
+					if ( ! isset( $widget['plugin_path'] ) || ModuleService::is_plugin_active( $widget['plugin_path'] ) ) {
+						$module_ids[] = $widget['name'];
+					}
+				}
+			}
+		}
+	);
+
+	return array_values( array_unique( $module_ids ) );
+}
+
+/**
+ * Module IDs whose assets should register on the current request.
+ *
+ * @return string[]
+ */
+function prime_slider_get_module_ids_for_asset_loading() {
+	if ( ! prime_slider_is_conditional_assets_enabled() || prime_slider_is_builder() ) {
+		return prime_slider_get_admin_enabled_module_ids();
+	}
+
+	return prime_slider_get_page_module_ids();
+}
+
+/**
+ * Whether a module's assets should register on the current request.
+ *
+ * @param string $module_id Module ID.
+ * @return bool
+ */
+function prime_slider_should_register_module_assets( $module_id ) {
+	return in_array( $module_id, prime_slider_get_module_ids_for_asset_loading(), true );
+}
+
+/**
+ * Widget hooks that support the scroll-down button in prime-slider-site.js.
+ *
+ * @return array<string, string[]>
+ */
+function prime_slider_get_scroll_button_widget_map() {
+	return [
+		'prime-slider-general'      => [ 'default', 'meteor' ],
+		'prime-slider-blog'         => [ 'default', 'coral' ],
+		'prime-slider-isolate'      => [ 'default', 'locate' ],
+		'prime-slider-woocommerce'  => [ 'default' ],
+		'prime-slider-fluent'       => [ 'default' ],
+		'prime-slider-astoria'      => [ 'default' ],
+	];
+}
+
+/**
+ * Widget skins that support reveal effects in prime-slider-site.js.
+ *
+ * @return array<string, string[]>
+ */
+function prime_slider_get_reveal_widget_skin_map() {
+	return [
+		'prime-slider-general'     => [ 'default', 'slide', 'crelly', 'meteor' ],
+		'prime-slider-blog'        => [ 'default', 'coral', 'folio', 'zinest' ],
+		'prime-slider-isolate'     => [ 'default', 'locate', 'slice' ],
+		'prime-slider-dragon'      => [ 'default' ],
+		'prime-slider-flogia'      => [ 'default' ],
+		'prime-slider-mount'       => [ 'default' ],
+		'prime-slider-elysium'     => [ 'default' ],
+		'prime-slider-fiestar'     => [ 'default' ],
+		'prime-slider-sequester'   => [ 'default' ],
+		'prime-slider-mercury'     => [ 'default' ],
+		'prime-slider-pacific'     => [ 'default' ],
+		'prime-slider-paranoia'    => [ 'default' ],
+		'prime-slider-rubix'       => [ 'default' ],
+		'prime-slider-storker'     => [ 'default' ],
+		'prime-slider-tango'       => [ 'default' ],
+		'prime-slider-vertex'      => [ 'default' ],
+		'prime-slider-woocommerce' => [ 'default' ],
+		'prime-slider-woolamp'     => [ 'default' ],
+		'prime-slider-astoria'     => [ 'default' ],
+		'prime-slider-avatar'      => [ 'default' ],
+		'prime-slider-flexure'     => [ 'default' ],
+		'prime-slider-fluent'      => [ 'default' ],
+		'prime-slider-fortune'     => [ 'default' ],
+		'prime-slider-knily'       => [ 'default' ],
+		'prime-slider-monster'     => [ 'default' ],
+	];
+}
+
+/**
+ * Build reveal hook names for the given module IDs.
+ *
+ * @param string[] $module_ids Module IDs.
+ * @return string[]
+ */
+function prime_slider_build_reveal_hooks_for_modules( array $module_ids ) {
+	$map   = prime_slider_get_reveal_widget_skin_map();
+	$hooks = [];
+
+	foreach ( $module_ids as $module_id ) {
+		$widget = 'prime-slider-' . $module_id;
+		$skins  = $map[ $widget ] ?? [ 'default' ];
+
+		foreach ( $skins as $skin ) {
+			$hooks[] = $widget . '.' . $skin;
+		}
+	}
+
+	return array_values( array_unique( $hooks ) );
+}
+
+/**
+ * Build scroll hook names for the given module IDs.
+ *
+ * @param string[] $module_ids Module IDs.
+ * @return string[]
+ */
+function prime_slider_build_scroll_hooks_for_modules( array $module_ids ) {
+	$map   = prime_slider_get_scroll_button_widget_map();
+	$hooks = [];
+
+	foreach ( $module_ids as $module_id ) {
+		$widget = 'prime-slider-' . $module_id;
+
+		if ( ! isset( $map[ $widget ] ) ) {
+			continue;
+		}
+
+		foreach ( $map[ $widget ] as $skin ) {
+			$hooks[] = $widget . '.' . $skin;
+		}
+	}
+
+	return array_values( array_unique( $hooks ) );
+}
+
+/**
+ * prime-slider-site.js hook config for the current request.
+ *
+ * @return array{reveal: string[], scroll: string[]}
+ */
+function prime_slider_get_site_script_hooks() {
+	if ( ! prime_slider_is_conditional_assets_enabled() || prime_slider_is_builder() ) {
+		$modules = prime_slider_get_admin_enabled_module_ids();
+
+		return [
+			'reveal' => prime_slider_build_reveal_hooks_for_modules( $modules ),
+			'scroll' => prime_slider_build_scroll_hooks_for_modules( $modules ),
+		];
+	}
+
+	$reveal_enabled = 'on' === prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
+	$scroll_map     = prime_slider_get_scroll_button_widget_map();
+	$reveal         = [];
+	$scroll         = [];
+
+	foreach ( prime_slider_get_page_widget_instances() as $instance ) {
+		if ( $reveal_enabled ) {
+			$reveal[] = $instance['hook'];
+		}
+
+		if (
+			isset( $scroll_map[ $instance['widget'] ] )
+			&& in_array( $instance['skin'], $scroll_map[ $instance['widget'] ], true )
+		) {
+			$scroll[] = $instance['hook'];
+		}
+	}
+
+	return [
+		'reveal' => array_values( array_unique( $reveal ) ),
+		'scroll' => array_values( array_unique( $scroll ) ),
+	];
+}
+
+/**
+ * Whether prime-slider-site.js is needed on the current request.
+ *
+ * @return bool
+ */
+function prime_slider_page_needs_site_script() {
+	$hooks = prime_slider_get_site_script_hooks();
+
+	return ! empty( $hooks['reveal'] ) || ! empty( $hooks['scroll'] );
 }
 
 
