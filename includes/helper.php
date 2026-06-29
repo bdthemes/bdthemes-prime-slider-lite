@@ -57,6 +57,119 @@ function prime_slider_is_preview() {
 	return Plugin::$instance->preview->is_preview_mode();
 }
 
+/**
+ * Recursively check Elementor element data for Prime Slider widgets.
+ *
+ * @param array $elements Elementor elements data.
+ * @return bool
+ */
+function prime_slider_elements_contain_widget( $elements ) {
+	if ( empty( $elements ) || ! is_array( $elements ) ) {
+		return false;
+	}
+
+	foreach ( $elements as $element ) {
+		if ( ! empty( $element['widgetType'] ) && 0 === strpos( $element['widgetType'], 'prime-slider' ) ) {
+			return true;
+		}
+
+		if ( ! empty( $element['elements'] ) && prime_slider_elements_contain_widget( $element['elements'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Check whether a document contains any Prime Slider widget.
+ *
+ * @param int $post_id Post ID.
+ * @return bool
+ */
+function prime_slider_document_has_widget( $post_id ) {
+	$post_id = (int) $post_id;
+
+	if ( $post_id <= 0 ) {
+		return false;
+	}
+
+	$document = Plugin::$instance->documents->get( $post_id );
+
+	if ( ! $document ) {
+		return false;
+	}
+
+	$data = $document->get_elements_data();
+
+	return prime_slider_elements_contain_widget( $data );
+}
+
+/**
+ * Collect Elementor document IDs that may render on the current request.
+ *
+ * @return int[]
+ */
+function prime_slider_get_documents_to_scan() {
+	$post_ids = [];
+
+	if ( is_singular() ) {
+		$post_ids[] = get_queried_object_id();
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		$posts_page = (int) get_option( 'page_for_posts' );
+		if ( $posts_page ) {
+			$post_ids[] = $posts_page;
+		}
+	}
+
+	if ( is_front_page() ) {
+		$front_page = (int) get_option( 'page_on_front' );
+		if ( $front_page ) {
+			$post_ids[] = $front_page;
+		}
+	}
+
+	if ( class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' ) ) {
+		$conditions = \ElementorPro\Modules\ThemeBuilder\Module::instance()->get_conditions_manager();
+		$locations  = [ 'header', 'footer', 'single', 'archive', 'error404', 'search_results', 'popup' ];
+
+		foreach ( $locations as $location ) {
+			$documents = $conditions->get_documents_for_location( $location );
+
+			foreach ( $documents as $document ) {
+				$post_ids[] = $document->get_main_id();
+			}
+		}
+	}
+
+	return array_values( array_unique( array_filter( array_map( 'intval', $post_ids ) ) ) );
+}
+
+/**
+ * Whether Prime Slider base assets should load on the current request.
+ *
+ * @return bool
+ */
+function prime_slider_page_has_widget() {
+	if ( ! prime_slider_is_conditional_assets_enabled() ) {
+		return true;
+	}
+
+	if ( prime_slider_is_edit() || prime_slider_is_preview() ) {
+		return true;
+	}
+
+	foreach ( prime_slider_get_documents_to_scan() as $post_id ) {
+		if ( prime_slider_document_has_widget( $post_id ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 /**
  * Show any alert by this function

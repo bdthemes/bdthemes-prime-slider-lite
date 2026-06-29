@@ -24,6 +24,13 @@ class Prime_Slider_Loader {
 	 */
 	private $_modules_manager;
 
+	/**
+	 * Tracks whether base site assets were already enqueued this request.
+	 *
+	 * @var bool
+	 */
+	private $site_assets_enqueued = false;
+
 	private $classes_aliases = [ 
 		'PrimeSlider\Modules\PanelPostsControl\Module'                       => 'PrimeSlider\Modules\QueryControl\Module',
 		'PrimeSlider\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'PrimeSlider\Modules\QueryControl\Controls\Group_Control_Posts',
@@ -181,6 +188,16 @@ class Prime_Slider_Loader {
 	 */
 	public function register_site_scripts() {
 
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
+
+		if ( ! wp_script_is( 'bdt-uikit', 'registered' ) ) {
+			wp_register_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7', true );
+		}
+
+		if ( ! wp_script_is( 'prime-slider-site', 'registered' ) ) {
+			wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		}
+
 		//TODO more attractive animation
 		//Thirdparty widgets
 		if ( prime_slider_is_widget_enabled( 'multiscroll' ) ) {
@@ -234,6 +251,15 @@ class Prime_Slider_Loader {
 
 		wp_register_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 
+		if ( ! wp_style_is( 'bdt-uikit', 'registered' ) ) {
+			wp_register_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.21.7' );
+		}
+
+		if ( ! wp_style_is( 'prime-slider-site', 'registered' ) ) {
+			wp_register_style( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-site' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		}
+
+		wp_register_style( 'splitting', BDTPS_CORE_ASSETS_URL . 'vendor/css/splitting' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 	}
 
 	/**
@@ -241,15 +267,11 @@ class Prime_Slider_Loader {
 	 * @return [type] [description]
 	 */
 	public function enqueue_site_styles() {
+		if ( ! prime_slider_page_has_widget() ) {
+			return;
+		}
 
-		$direction_suffix = is_rtl() ? '.rtl' : '';
-
-		wp_register_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.21.7' );
-		wp_register_style( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-site' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
-		wp_register_style( 'splitting', BDTPS_CORE_ASSETS_URL . 'vendor/css/splitting' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
-
-		wp_enqueue_style( 'bdt-uikit' );
-		wp_enqueue_style( 'prime-slider-site' );
+		$this->enqueue_base_site_assets();
 	}
 
 
@@ -258,14 +280,73 @@ class Prime_Slider_Loader {
 	 * @return [type] [description]
 	 */
 	public function enqueue_site_scripts() {
+		if ( ! prime_slider_page_has_widget() ) {
+			return;
+		}
 
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
+		$this->enqueue_base_site_assets();
+	}
 
-		wp_register_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7' );
-		wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+	/**
+	 * Enqueue shared Prime Slider frontend assets once per request.
+	 *
+	 * @return void
+	 */
+	private function enqueue_base_site_assets() {
+		if ( $this->site_assets_enqueued ) {
+			return;
+		}
 
-		wp_enqueue_script( 'bdt-uikit' );
+		$this->site_assets_enqueued = true;
+
+		$direction_suffix = is_rtl() ? '.rtl' : '';
+		$suffix           = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '.min';
+
+		if ( ! wp_style_is( 'bdt-uikit', 'registered' ) ) {
+			wp_register_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.21.7' );
+		}
+
+		if ( ! wp_style_is( 'prime-slider-site', 'registered' ) ) {
+			wp_register_style( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-site' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		}
+
+		if ( ! wp_script_is( 'bdt-uikit', 'registered' ) ) {
+			wp_register_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.21.7', true );
+		}
+
+		if ( ! wp_script_is( 'prime-slider-site', 'registered' ) ) {
+			wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+		}
+
+		if ( ! wp_style_is( 'bdt-uikit', 'enqueued' ) ) {
+			wp_enqueue_style( 'bdt-uikit' );
+		}
+
+		wp_enqueue_style( 'prime-slider-site' );
+
+		if ( ! wp_script_is( 'bdt-uikit', 'enqueued' ) ) {
+			wp_enqueue_script( 'bdt-uikit' );
+		}
+
 		wp_enqueue_script( 'prime-slider-site' );
+	}
+
+	/**
+	 * Fallback enqueue when a Prime Slider widget renders after the scan missed it.
+	 *
+	 * @param \Elementor\Element_Base $element Elementor element instance.
+	 * @return void
+	 */
+	public function maybe_enqueue_on_widget_render( $element ) {
+		if ( ! $element instanceof \Elementor\Widget_Base ) {
+			return;
+		}
+
+		if ( 0 !== strpos( $element->get_name(), 'prime-slider' ) ) {
+			return;
+		}
+
+		$this->enqueue_base_site_assets();
 	}
 
 	public function enqueue_editor_scripts() {
@@ -352,6 +433,7 @@ class Prime_Slider_Loader {
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_site_scripts' ], 99999 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_site_styles' ], 99999 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_site_scripts' ], 99999 );
+		add_action( 'elementor/frontend/widget/before_render', [ $this, 'maybe_enqueue_on_widget_render' ], 10 );
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
