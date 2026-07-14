@@ -274,6 +274,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.X [XXth July 2026] =
+
+* Fixed: Output escaping issues in the mercury, mount, omatic and pacific widgets
+
 = 4.4.2 [29th June 2026] =
 
 * Fixed: Active thumb background, border and line color controls not applying correctly in the rubix widget

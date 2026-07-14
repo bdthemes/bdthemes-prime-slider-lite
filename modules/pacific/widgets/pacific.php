@@ -1253,7 +1253,7 @@ class Pacific extends Widget_Base {
 		<div class="bdt-text" data-reveal="reveal-active">
 			<?php
 			if ( has_excerpt() ) {
-				the_excerpt();
+				echo wp_kses_post( get_the_excerpt() );
 			} else {
 				echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode ) );
 			}
@@ -1291,16 +1291,16 @@ class Pacific extends Widget_Base {
 				<i class="ps-wi-calendar" aria-hidden="true"></i>
 				<span>
 					<?php if ( $settings['human_diff_time'] == 'yes' ) {
-						echo wp_kses_post( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
+						echo esc_html( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
 					} else {
-						echo get_the_date();
+						echo esc_html( get_the_date() );
 					} ?>
 				</span>
 			</div>
 			<?php if ( $settings['show_time'] ) : ?>
 				<div class="bdt-post-time">
 					<i class="ps-wi-clock-o" aria-hidden="true"></i>
-					<?php echo wp_kses_post( get_the_time() ); ?>
+					<?php echo esc_html( get_the_time() ); ?>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -1316,7 +1316,7 @@ class Pacific extends Widget_Base {
 		<div class="bdt-author-wrap">
 			<i class="ps-wi-user-circle-o" aria-hidden="true"></i>
 			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) ?>">
-				<?php echo get_the_author() ?>
+				<?php echo esc_html( get_the_author() ); ?>
 			</a>
 		</div>
 		<?php
@@ -1399,7 +1399,7 @@ class Pacific extends Widget_Base {
 				'class' => 'swiper-pacific swiper bdt-slider-style-' . esc_attr($settings['layout_style']),
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
 				'dir' => $direction,
 			],
 		]);
@@ -1447,13 +1447,13 @@ class Pacific extends Widget_Base {
 
 		?>
 						<div
-							class="reveal-muted bdt-position-z-index bdt-position-<?php echo esc_html( $settings['arrows_fraction_position'] ); ?>">
+							class="reveal-muted bdt-position-z-index bdt-position-<?php echo esc_attr( $settings['arrows_fraction_position'] ); ?>">
 							<div class="bdt-arrows-fraction-container bdt-slidenav-container ">
 
 								<div class="bdt-flex bdt-flex-middle">
-									<div class="<?php echo esc_html( $hide_arrow_on_mobile ); ?>">
+									<div class="<?php echo esc_attr( $hide_arrow_on_mobile ); ?>">
 										<a href="" class="bdt-navigation-prev">
-											<i class="ps-wi-arrow-left-<?php echo esc_html( $settings['nav_arrows_icon'] ); ?>"
+											<i class="ps-wi-arrow-left-<?php echo esc_attr( $settings['nav_arrows_icon'] ); ?>"
 												aria-hidden="true"></i>
 										</a>
 									</div>
@@ -1462,9 +1462,9 @@ class Pacific extends Widget_Base {
 										<div class="swiper-pagination"></div>
 									<?php endif; ?>
 
-									<div class="<?php echo esc_html( $hide_arrow_on_mobile ); ?>">
+									<div class="<?php echo esc_attr( $hide_arrow_on_mobile ); ?>">
 										<a href="" class="bdt-navigation-next">
-											<i class="ps-wi-arrow-right-<?php echo esc_html( $settings['nav_arrows_icon'] ); ?>"
+											<i class="ps-wi-arrow-right-<?php echo esc_attr( $settings['nav_arrows_icon'] ); ?>"
 												aria-hidden="true"></i>
 										</a>
 									</div>
