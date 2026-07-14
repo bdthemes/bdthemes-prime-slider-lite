@@ -975,9 +975,9 @@ class Mercury extends Widget_Base {
         <div class="bdt-desc" data-reveal="reveal-active" data-swiper-parallax="-150" data-swiper-parallax-duration="1100">
             <?php
             if (has_excerpt()) {
-                the_excerpt();
+                echo wp_kses_post( get_the_excerpt() );
             } else {
-                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
+                echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode ) );
             }
             ?>
         </div>
@@ -1011,9 +1011,9 @@ class Mercury extends Widget_Base {
                 <i class="ps-wi-calendar" aria-hidden="true"></i>
                 <span>
                     <?php if ( $settings['human_diff_time'] == 'yes' ) {
-                        echo wp_kses_post(prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ));
+                        echo esc_html( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
                     } else {
-                        echo get_the_date();
+                        echo esc_html( get_the_date() );
                     } ?>
                 </span>
 
@@ -1021,7 +1021,7 @@ class Mercury extends Widget_Base {
             <?php if ($settings['show_time']) : ?>
             <div class="bdt-post-time">
                 <i class="ps-wi-clock-o" aria-hidden="true"></i>
-                <?php echo wp_kses_post(get_the_time()); ?>
+                <?php echo esc_html( get_the_time() ); ?>
             </div>
             <?php endif; ?>
         </div>
@@ -1038,7 +1038,7 @@ class Mercury extends Widget_Base {
         <div class="bdt-author">
             <span class="bdt-by"><?php echo esc_html__( 'by', 'bdthemes-prime-slider' ) ?></span>
             <a class="bdt-author-name" href="<?php echo esc_url(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>">
-                <?php echo get_the_author() ?>
+                <?php echo esc_html( get_the_author() ); ?>
             </a>
         </div>
         <?php
@@ -1125,7 +1125,7 @@ class Mercury extends Widget_Base {
 				'class' => 'bdt-mercury-image-slider swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__('Slider', 'bdthemes-prime-slider'),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
 				'dir' => $direction,
 			],
 		]);

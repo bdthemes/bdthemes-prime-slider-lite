@@ -1027,10 +1027,10 @@ class Mount extends Widget_Base {
 
             <ul class="bdt-ps-dotnav reveal-muted">
                 <?php $slide_index = 1; foreach ( $settings['slides'] as $slide ) : ?>
-                    <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad( $slide_index, 2, '0', STR_PAD_LEFT)); ?>" ><a href="#"><?php echo esc_attr(str_pad( $slide_index, 2, '0', STR_PAD_LEFT)); ?></a></li>
+                    <li bdt-slideshow-item="<?php echo esc_attr( $slide_index - 1 ); ?>" data-label="<?php echo esc_attr( str_pad( $slide_index, 2, '0', STR_PAD_LEFT ) ); ?>"><a href="#"><?php echo esc_html( str_pad( $slide_index, 2, '0', STR_PAD_LEFT ) ); ?></a></li>
                 <?php $slide_index++;  endforeach; ?>
 
-                <span><?php echo esc_attr(str_pad( $slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
+                <span><?php echo esc_html( str_pad( $slide_index - 1, 2, '0', STR_PAD_LEFT ) ); ?></span>
             </ul>
 
         <?php endif; ?>
@@ -1092,7 +1092,7 @@ class Mount extends Widget_Base {
 				<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 					<div class="bdt-sub-title">
 						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title-inner" data-reveal="reveal-active">
-							<?php echo wp_kses_post($slide_content['sub_title']); ?>
+							<?php echo esc_html( $slide_content['sub_title'] ); ?>
 						</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 					</div>
 				<?php endif; ?>
@@ -1103,7 +1103,7 @@ class Mount extends Widget_Base {
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								<a <?php $this->print_render_attribute_string('title-link'); ?>>
 								<?php endif; ?>
-								<?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
+								<?php echo wp_kses( prime_slider_first_word( $slide_content['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 								<?php if ('' !== $slide_content['title_link']['url']) : ?>
 								</a>
 							<?php endif; ?>
@@ -1126,7 +1126,7 @@ class Mount extends Widget_Base {
 				<?php $this->rendar_item_image($slide, "bdt-ps-slide-img") ?>
 
 				<?php if ('none' !== $settings['overlay']) :
-					$blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
+					$blend_type = ( 'blend' === $settings['overlay'] ) ? ' bdt-blend-' . esc_attr( $settings['blend_type'] ) : ''; ?>
 					<div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
 				<?php endif; ?>
 				
