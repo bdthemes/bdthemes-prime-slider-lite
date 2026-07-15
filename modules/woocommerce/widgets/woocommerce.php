@@ -1690,7 +1690,7 @@ class Woocommerce extends Widget_Base {
 				while ($wp_query->have_posts()) : $wp_query->the_post();
 				?>
 
-					<li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a href="#"><?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
+					<li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a href="#"><?php echo esc_html(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
 						<?php $slide_index++; ?>
 					</li>
 
@@ -1698,7 +1698,7 @@ class Woocommerce extends Widget_Base {
 				endwhile;
 				wp_reset_postdata();
 				?>
-				<span><?php echo esc_attr(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
+				<span><?php echo esc_html(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
 			</ul>
 		<?php
 	}
@@ -1879,14 +1879,14 @@ class Woocommerce extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ($settings['show_title']) : ?>
-					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
-						<a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'bdthemes-prime-slider' ), get_the_title() ) ); ?>">
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo $parallax_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded parallax attribute. ?>>
+						<a href="<?php echo esc_url( get_permalink() ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View details for %s', 'bdthemes-prime-slider' ), get_the_title() ) ); ?>">
 							<?php
 							$wc_title_limited = $this->get_wc_slide_limited_title_or_null( $settings );
 							if ( null !== $wc_title_limited ) {
 								echo esc_html( $wc_title_limited );
 							} else {
-								the_title();
+								echo esc_html( get_the_title() );
 							}
 							?>
 						</a>
@@ -1897,12 +1897,12 @@ class Woocommerce extends Widget_Base {
 					<?php
 					$wc_excerpt_limited = $this->get_wc_slide_excerpt_for_display( $settings );
 					?>
-					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>>
+					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo $parallax_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded parallax attribute. ?>>
 						<?php
 						if ( null !== $wc_excerpt_limited ) {
 							echo wp_kses_post( $wc_excerpt_limited );
 						} else {
-							the_excerpt();
+							echo wp_kses_post( get_the_excerpt() );
 						}
 						?>
 					</div>
@@ -1960,7 +1960,7 @@ class Woocommerce extends Widget_Base {
 						</div>
 					</div>
 					<?php if ('none' !== $settings['overlay']) :
-							$blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
+							$blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . esc_attr( $settings['blend_type'] ) : ''; ?>
 						<div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
 					<?php endif; ?>
 

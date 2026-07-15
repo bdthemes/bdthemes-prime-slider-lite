@@ -1713,9 +1713,9 @@ class Storker extends Widget_Base {
         <div class="bdt-storker-text" data-reveal="reveal-active" data-swiper-parallax-y="-80" data-swiper-parallax-duration="600">
             <?php
             if (has_excerpt()) {
-                the_excerpt();
+                echo wp_kses_post( get_the_excerpt() );
             } else {
-                echo wp_kses_post(prime_slider_custom_excerpt($excerpt_length, $strip_shortcode));
+                echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode ) );
             }
             ?>
         </div>
@@ -1748,7 +1748,7 @@ class Storker extends Widget_Base {
         <div class="bdt-flex bdt-flex-middle">
             <div class="bdt-storker-date">
                 <?php if ($settings['human_diff_time'] == 'yes') {
-                    echo wp_kses_post( prime_slider_post_time_diff(($settings['human_diff_time_short'] == 'yes') ? 'short' : '') );
+                    echo esc_html( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
                 } else {
                     echo esc_html( get_the_date() );
                 } ?>
@@ -1756,7 +1756,7 @@ class Storker extends Widget_Base {
             <?php if ($settings['show_time']) : ?>
                 <div class="bdt-post-time">
                     <i class="ps-wi-clock-o" aria-hidden="true"></i>
-                    <?php echo wp_kses_post( get_the_time() ); ?>
+                    <?php echo esc_html( get_the_time() ); ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -1773,7 +1773,7 @@ class Storker extends Widget_Base {
         <div class="bdt-author-name-wrap">
             <span class="bdt-by"><?php echo esc_html__('By', 'bdthemes-prime-slider') ?></span>
             <a class="bdt-author-name" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta('ID') ) ); ?>">
-                <?php echo get_the_author() ?>
+                <?php echo esc_html( get_the_author() ); ?>
             </a>
         </div>
         <?php
@@ -1853,7 +1853,7 @@ class Storker extends Widget_Base {
 				'class' => 'swiper-storker swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
 				'dir' => $direction,
 			],
 		]);

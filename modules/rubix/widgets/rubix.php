@@ -1379,7 +1379,7 @@ class Rubix extends Widget_Base {
 		<div class="bdt-text" data-reveal="reveal-active">
 			<?php
 			if ( has_excerpt() ) {
-				the_excerpt();
+				echo wp_kses_post( get_the_excerpt() );
 			} else {
 				echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode ) );
 			}
@@ -1416,9 +1416,9 @@ class Rubix extends Widget_Base {
 				<i class="ps-wi-calendar" aria-hidden="true"></i>
 				<span>
 					<?php if ( $settings['human_diff_time'] == 'yes' ) {
-						echo wp_kses_post( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
+						echo esc_html( prime_slider_post_time_diff( ( $settings['human_diff_time_short'] == 'yes' ) ? 'short' : '' ) );
 					} else {
-						echo get_the_date();
+						echo esc_html( get_the_date() );
 					} ?>
 				</span>
 
@@ -1426,7 +1426,7 @@ class Rubix extends Widget_Base {
 			<?php if ( $settings['show_time'] ) : ?>
 				<div class="bdt-post-time">
 					<i class="ps-wi-clock-o" aria-hidden="true"></i>
-					<?php echo wp_kses_post( get_the_time() ); ?>
+					<?php echo esc_html( get_the_time() ); ?>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -1480,7 +1480,7 @@ class Rubix extends Widget_Base {
 		$this->reveal_effects_attr( 'prime-slider-rubix' );
 
 		$this->add_render_attribute( 'prime-slider-rubix', 'id', $id );
-		$this->add_render_attribute( 'prime-slider-rubix', 'class', [ 'bdt-rubix-slider', 'elementor-swiper', $settings['thumbs_position'] ] );
+		$this->add_render_attribute( 'prime-slider-rubix', 'class', [ 'bdt-rubix-slider', 'elementor-swiper', esc_attr( $settings['thumbs_position'] ) ] );
 
 
 		$elementor_vp_lg = get_option( 'elementor_viewport_lg' );
@@ -1562,7 +1562,7 @@ class Rubix extends Widget_Base {
 				'class' => 'bdt-main-slider swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
 				'dir' => $direction,
 			],
 		]);
