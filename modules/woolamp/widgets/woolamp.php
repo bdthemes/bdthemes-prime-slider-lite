@@ -1253,7 +1253,7 @@ class Woolamp extends Widget_Base {
 				while ($wp_query->have_posts()) : $wp_query->the_post();
 				?>
 
-					<li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a href="#"><?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
+					<li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>"><a href="#"><?php echo esc_html(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
 						<?php $slide_index++; ?>
 					</li>
 
@@ -1348,15 +1348,15 @@ class Woolamp extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ($settings['show_title']) : ?>
-					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
-						<a href="<?php the_permalink(); ?>">
-							<?php the_title(); ?>
+					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-ps-title" data-reveal="reveal-active" <?php echo $parallax_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded parallax attribute. ?>>
+						<a href="<?php echo esc_url( get_permalink() ); ?>">
+							<?php echo esc_html( get_the_title() ); ?>
 						</a>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
 				<?php endif; ?>
 
 				<?php if ($settings['show_excerpt']) : ?>
-					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_text); ?>>
+					<div class="bdt-ps-text" data-reveal="reveal-active" <?php echo $parallax_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded parallax attribute. ?>>
 						<?php
 						$excerpt_length  = absint( $settings['excerpt_length'] ?? 30 );
 						$strip_shortcode = ( 'yes' === ( $settings['strip_shortcode'] ?? 'yes' ) );
@@ -1366,7 +1366,7 @@ class Woolamp extends Widget_Base {
 								$text = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ), $excerpt_length, '' );
 								echo wp_kses_post( wpautop( $text ) );
 							} else {
-								the_excerpt();
+								echo wp_kses_post( get_the_excerpt() );
 							}
 						} else {
 							echo wp_kses_post( prime_slider_custom_excerpt( $excerpt_length, $strip_shortcode, '' ) );

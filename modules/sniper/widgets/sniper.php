@@ -717,7 +717,7 @@ class Sniper extends Widget_Base {
 				'class' => 'bdt-main-slider swiper',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
 				'dir' => $direction,
 			],
 		]);
@@ -763,7 +763,7 @@ class Sniper extends Widget_Base {
 
 							<?php if ($slide['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title">
-									<span><?php echo wp_kses_post($slide['sub_title']); ?></span>
+									<span><?php echo esc_html( $slide['sub_title'] ); ?></span>
 								</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 							<?php endif; ?>
 
@@ -772,7 +772,7 @@ class Sniper extends Widget_Base {
 									<?php if ('' !== $slide['title_link']['url']) : ?>
 										<a <?php $this->print_render_attribute_string('title-link'); ?>>
 										<?php endif; ?>
-										<?php echo wp_kses_post(prime_slider_first_word($slide['title'])); ?>
+										<?php echo wp_kses( prime_slider_first_word( $slide['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 										<?php if ('' !== $slide['title_link']['url']) : ?>
 										</a>
 									<?php endif; ?>

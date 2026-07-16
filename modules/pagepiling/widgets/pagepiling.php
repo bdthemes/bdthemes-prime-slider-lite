@@ -1184,7 +1184,7 @@ class Pagepiling extends Widget_Base {
 
 		if ($content['slide_button_text']) {
 			$this->add_link_attributes('slider-button', $content['button_link'], true);
-			$this->add_render_attribute('slider-button', 'aria-label', $content['slide_button_text'] . ' Button', true);
+			$this->add_render_attribute( 'slider-button', 'aria-label', esc_attr( $content['slide_button_text'] . ' Button' ), true );
 		}
 		
 		?>
@@ -1249,7 +1249,7 @@ class Pagepiling extends Widget_Base {
 			<?php if ($slide_content['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 				<div class="bdt-sub-title">
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title-tag" data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0">
-						<?php echo wp_kses_post($slide_content['sub_title']); ?>
+						<?php echo esc_html( $slide_content['sub_title'] ); ?>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 				</div>
 			<?php endif; ?>
@@ -1260,7 +1260,7 @@ class Pagepiling extends Widget_Base {
 						<?php if ('' !== $slide_content['title_link']['url']) : ?>
 							<a <?php $this->print_render_attribute_string('title-link'); ?>>
 							<?php endif; ?>
-							<?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
+							<?php echo wp_kses( prime_slider_first_word( $slide_content['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>
 							</a>
 						<?php endif; ?>

@@ -1276,7 +1276,7 @@ class Woocircle extends Widget_Base {
 
 			public function render_footer() {
 				?>
-					<button class="bdt-elastic-action bdt-elastic-action--close" aria-label="Close">
+					<button class="bdt-elastic-action bdt-elastic-action--close" aria-label="<?php echo esc_attr__( 'Close', 'bdthemes-prime-slider' ); ?>">
 						<i class="ps-wi-close"></i>
 					</button>
 				</div>
@@ -1338,7 +1338,7 @@ class Woocircle extends Widget_Base {
 						if ( null !== $_limited_title ) {
 							echo esc_html( $_limited_title );
 						} else {
-							the_title();
+							echo esc_html( get_the_title() );
 						}
 						?>
 					</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
@@ -1354,7 +1354,7 @@ class Woocircle extends Widget_Base {
 
 					<img class="bdt-elastic-img bdt-elastic-img-small" src="<?php echo esc_url($image_final_src); ?>" alt="<?php echo esc_html(get_the_title()); ?>">
 
-					<button class="bdt-elastic-action bdt-elastic-action--open" aria-label="View details"><i class="ps-wi-plus"></i></button>
+					<button class="bdt-elastic-action bdt-elastic-action--open" aria-label="<?php echo esc_attr__( 'View details', 'bdthemes-prime-slider' ); ?>"><i class="ps-wi-plus"></i></button>
 				</div>
 			</div>
 			<div class="bdt-elastic-modal-wrap">
@@ -1370,7 +1370,7 @@ class Woocircle extends Widget_Base {
 								if ( null !== $_limited_title ) {
 									echo esc_html( $_limited_title );
 								} else {
-									the_title();
+									echo esc_html( get_the_title() );
 								}
 								?>
 							</<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
@@ -1385,7 +1385,7 @@ class Woocircle extends Widget_Base {
 								if ( null !== $_limited_excerpt ) {
 									echo wp_kses_post( $_limited_excerpt );
 								} else {
-									the_excerpt();
+									echo wp_kses_post( get_the_excerpt() );
 								}
 								?>
 							</div>

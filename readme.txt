@@ -277,6 +277,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.4.3 [14th July 2026] =
 
 * Fixed: Output escaping issues in the mercury, mount, omatic and pacific widgets
+* Fixed: Output escaping issues in multiple widgets
 
 = 4.4.2 [29th June 2026] =
 
