@@ -2,6 +2,10 @@
 
 namespace PrimeSlider;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Biggopties class
  */
@@ -244,7 +248,7 @@ class Biggopties {
 		}
 		
 		?>
-		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . $background_style . '"' : ''; ?>>
+		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . esc_attr( $background_style ) . '"' : ''; ?>>
 			
 			
 			<?php $title = (isset($biggopti->title) && !empty($biggopti->title)) ? $biggopti->title : ''; ?>

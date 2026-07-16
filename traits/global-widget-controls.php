@@ -2292,8 +2292,7 @@ trait Global_Widget_Controls {
 			'<%1$s class="%2$s" data-reveal="%3$s">%4$s</%1$s>',
 			esc_attr( Utils::get_valid_html_tag( $settings['sub_title_html_tag'] ) ),
 			esc_attr( $class ), esc_attr( $data_reveal ),
-			wp_kses_post( $slide['sub_title'] ),
-			prime_slider_allow_tags( 'title' )
+			wp_kses( $slide['sub_title'], prime_slider_allow_tags( 'title' ) )
 		);
 	}
 

@@ -2,6 +2,10 @@
 use PrimeSlider\Prime_Slider_Loader;
 use Elementor\Plugin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * You can easily add white label branding for for extended license or multi site license.
  * Don't try for regular license otherwise your license will be invalid.
@@ -572,14 +576,16 @@ if (!function_exists('ps_license_validation')) {
 		if ( ! empty( $custom_css ) ) {
 			echo "\n<!-- Prime Slider Custom Header CSS -->\n";
 			echo '<style type="text/css">' . "\n";
-			echo $custom_css . "\n";
+			// Strip any HTML tags to prevent breaking out of the <style> block; the value is raw CSS saved by an administrator (manage_options + nonce).
+			echo wp_strip_all_tags( $custom_css ) . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw CSS is intentionally not escaped; tags are stripped and saving is restricted to admins.
 			echo '</style>' . "\n";
 		}
 
 		if ( ! empty( $custom_js ) ) {
 			echo "\n<!-- Prime Slider Custom Header JS -->\n";
 			echo '<script type="text/javascript">' . "\n";
-			echo $custom_js . "\n";
+			// Raw JavaScript saved by an administrator (manage_options + nonce); it cannot be escaped without breaking valid script.
+			echo $custom_js . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw admin-authored JS output; saving is restricted to admins.
 			echo '</script>' . "\n";
 		}
 	}
@@ -597,14 +603,16 @@ if ( ! function_exists( 'ps_inject_footer_custom_code' ) ) {
 		if ( ! empty( $custom_css_2 ) ) {
 			echo "\n<!-- Prime Slider Custom Footer CSS -->\n";
 			echo '<style type="text/css">' . "\n";
-			echo $custom_css_2 . "\n";
+			// Strip any HTML tags to prevent breaking out of the <style> block; the value is raw CSS saved by an administrator (manage_options + nonce).
+			echo wp_strip_all_tags( $custom_css_2 ) . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw CSS is intentionally not escaped; tags are stripped and saving is restricted to admins.
 			echo '</style>' . "\n";
 		}
 
 		if ( ! empty( $custom_js_2 ) ) {
 			echo "\n<!-- Prime Slider Custom Footer JS -->\n";
 			echo '<script type="text/javascript">' . "\n";
-			echo $custom_js_2 . "\n";
+			// Raw JavaScript saved by an administrator (manage_options + nonce); it cannot be escaped without breaking valid script.
+			echo $custom_js_2 . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw admin-authored JS output; saving is restricted to admins.
 			echo '</script>' . "\n";
 		}
 	}

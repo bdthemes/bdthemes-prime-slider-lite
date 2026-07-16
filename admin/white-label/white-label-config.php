@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! defined( 'BDTPS_CORE_TITLE' ) ) {
     $white_label_title = get_option( 'ps_white_label_title' );
 	define( 'BDTPS_CORE_TITLE', $white_label_title );

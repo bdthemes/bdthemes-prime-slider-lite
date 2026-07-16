@@ -2,6 +2,10 @@
 
 namespace PrimeSlider\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if (!class_exists('PrimeSlider_Rollback_Version')):
 
 	class PrimeSlider_Rollback_Version {

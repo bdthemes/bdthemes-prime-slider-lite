@@ -123,19 +123,23 @@ if (!class_exists('BdThemes_Duplicator')) :
                 /**
                  * duplicate all post meta just in two SQL queries
                  */
-                $bdt_post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$bdt_post_id");
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query is required to bulk-copy post meta during an admin-initiated duplication; the result is transient and must not be cached.
+                $bdt_post_meta_infos = $wpdb->get_results( $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d", $post_id ) );
 
                 if (is_array($bdt_post_meta_infos)) {
-                    $bdt_sql_query     = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
-                    $bdt_sql_query_sel = [];
+                    $bdt_sql_query_sel    = [];
+                    $bdt_sql_query_values = [];
 
                     foreach ($bdt_post_meta_infos as $bdt_meta_info) {
-                        $bdt_meta_value      = wp_slash($bdt_meta_info->meta_value);
-                        $bdt_sql_query_sel[] = "( $bdt_new_post_id, '{$bdt_meta_info->meta_key}', '{$bdt_meta_value}' )";
+                        $bdt_sql_query_sel[]    = '( %d, %s, %s )';
+                        $bdt_sql_query_values[] = $bdt_new_post_id;
+                        $bdt_sql_query_values[] = $bdt_meta_info->meta_key;
+                        $bdt_sql_query_values[] = $bdt_meta_info->meta_value;
                     }
 
-                    $bdt_sql_query .= implode(', ', $bdt_sql_query_sel) . ';';
-                    $wpdb->query($bdt_sql_query);
+                    $bdt_sql_query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES " . implode(', ', $bdt_sql_query_sel) . ';';
+                    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- The query string only contains the internal $wpdb->postmeta table name and %d/%s placeholders; all values are bound through $wpdb->prepare(). The direct write is required to copy meta during duplication and is not cacheable.
+                    $wpdb->query( $wpdb->prepare( $bdt_sql_query, $bdt_sql_query_values ) );
 
                     /**
                      * fix template type issues
@@ -161,7 +165,7 @@ if (!class_exists('BdThemes_Duplicator')) :
                 $current_post_type = get_post_type($post_id);
 
                 if (is_array($bdt_names) && in_array($current_post_type, $bdt_names)) {
-                    wp_redirect(admin_url('edit.php?post_type=' . $current_post_type));
+                    wp_safe_redirect(admin_url('edit.php?post_type=' . $current_post_type));
                 }
 
                 exit;

@@ -148,12 +148,12 @@ class Remote_Data_Handler {
      */
     public static function ajax_get_plugins() {
         if (!current_user_can('manage_options')) {
-            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
+            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
         }
 
         // Verify nonce for security
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
+            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
         }
 
         // Get cached data

@@ -223,7 +223,7 @@ class PrimeSlider_Others_Plugin_Manager {
                     type: 'POST',
                     data: {
                         action: 'ps_get_plugins',
-                        nonce: '<?php echo wp_create_nonce("ps_get_plugins_nonce"); ?>'
+                        nonce: '<?php echo esc_attr( wp_create_nonce("ps_get_plugins_nonce") ); ?>'
                     },
                     success: function(response) {
                         if (response.success && response.data) {
@@ -346,12 +346,12 @@ class PrimeSlider_Others_Plugin_Manager {
                                 '<?php esc_html_e("Active", "bdthemes-prime-slider"); ?>' +
                                 '</span>';
                         } else if (plugin.status === 'installed') {
-                            var activateUrl = '<?php echo admin_url("plugins.php?action=activate&plugin="); ?>' + plugin.plugin_file + '&_wpnonce=' + plugin.activate_nonce;
+                            var activateUrl = '<?php echo esc_url( admin_url("plugins.php?action=activate&plugin=") ); ?>' + plugin.plugin_file + '&_wpnonce=' + plugin.activate_nonce;
                             html += '<a class="bdt-button bdt-welcome-button" href="' + activateUrl + '">' +
                                 '<?php esc_html_e("Activate", "bdthemes-prime-slider"); ?>' +
                                 '</a>';
                         } else {
-                            html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + pluginSlug + '" data-nonce="<?php echo wp_create_nonce('ps_install_plugin_nonce'); ?>">' +
+                            html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + pluginSlug + '" data-nonce="<?php echo esc_attr( wp_create_nonce('ps_install_plugin_nonce') ); ?>">' +
                                 '<?php esc_html_e("Install", "bdthemes-prime-slider"); ?>' +
                                 '</button>';
                         }
@@ -384,7 +384,7 @@ class PrimeSlider_Others_Plugin_Manager {
                     
                     // Perform AJAX request
                     $.ajax({
-                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        url: '<?php echo esc_url( admin_url('admin-ajax.php') ); ?>',
                         type: 'POST',
                         data: {
                             action: 'ps_install_plugin',
@@ -489,7 +489,7 @@ class PrimeSlider_Others_Plugin_Manager {
     public function ajax_get_plugins() {
         // Verify nonce
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(__('Security check failed.', 'bdthemes-prime-slider'));
+            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
         }
 
         // Get cached data (includes all plugins; Prime Slider is skipped only when printing)

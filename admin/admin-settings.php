@@ -4,6 +4,11 @@ use PrimeSlider\Utils;
 use PrimeSlider\Admin\ModuleService;
 use Elementor\Modules\Usage\Module;
 use Elementor\Tracker;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Prime Slider Admin Settings Class
  */
@@ -454,7 +459,7 @@ class PrimeSlider_Admin_Settings {
 			'<h1>🔒 Prime Slider White Label Access</h1>' .
 			'<p><strong>Access Denied:</strong> ' . esc_html( $message ) . '</p>' .
 			'<p>If you need assistance, please contact support with your license information.</p>' .
-			'<p><a href="' . admin_url() . '" class="button button-primary">← Return to Dashboard</a></p>',
+			'<p><a href="' . esc_url( admin_url() ) . '" class="button button-primary">← Return to Dashboard</a></p>',
 			'Access Denied',
 			[ 'response' => 403 ]
 		);
@@ -805,7 +810,7 @@ class PrimeSlider_Admin_Settings {
 	// Redirect to Prime Slider Pro pricing page
 	public function ps_redirect_to_get_pro() {
         if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_get_pro') {
-            wp_redirect('https://primeslider.pro/pricing/');
+            wp_redirect('https://primeslider.pro/pricing/'); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Intentional redirect to the external Prime Slider pricing page; wp_safe_redirect() would block this off-site host.
             exit;
         }
     }
@@ -813,7 +818,7 @@ class PrimeSlider_Admin_Settings {
 	// Redirect to renew link
 	public function bdt_redirect_to_renew_link() {
 		if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_license_renew') {
-			wp_redirect('https://account.bdthemes.com/');
+			wp_redirect('https://account.bdthemes.com/'); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Intentional redirect to the external BdThemes account page; wp_safe_redirect() would block this off-site host.
 			exit;
 		}
 	}
@@ -997,7 +1002,7 @@ class PrimeSlider_Admin_Settings {
 					<p class="ps-dashboard-welcome-desc">
 						<?php esc_html_e('Empower your web creation with powerful widgets, advanced extensions, ready templates and more.', 'bdthemes-prime-slider'); ?>
 					</p>
-					<a href="<?php echo admin_url('?ps_setup_wizard=show'); ?>"
+					<a href="<?php echo esc_url( admin_url('?ps_setup_wizard=show') ); ?>"
 						class="bdt-button bdt-welcome-button bdt-margin-small-top"
 						target="_blank"><?php esc_html_e('Setup Prime Slider', 'bdthemes-prime-slider'); ?></a>
 
@@ -1031,7 +1036,7 @@ class PrimeSlider_Admin_Settings {
 
 				<div class="ps-dashboard-item ps-dashboard-template-quick-access bdt-card bdt-card-body">
 					<div class="ps-dashboard-template-section">
-						<img src="<?php echo BDTPS_CORE_ADMIN_URL . 'assets/images/template.jpg'; ?>"
+						<img src="<?php echo esc_url( BDTPS_CORE_ADMIN_URL . 'assets/images/template.jpg' ); ?>"
 							alt="Prime Slider Dashboard Template">
 						<h1 class="ps-feature-title ">
 							<?php esc_html_e('Faster Web Creation with Sleek and Ready-to-Use Templates!', 'bdthemes-prime-slider'); ?>
@@ -1044,7 +1049,7 @@ class PrimeSlider_Admin_Settings {
 					</div>
 
 					<div class="ps-dashboard-quick-access bdt-margin-medium-top">
-						<img src="<?php echo BDTPS_CORE_ADMIN_URL . 'assets/images/support.jpg'; ?>"
+						<img src="<?php echo esc_url( BDTPS_CORE_ADMIN_URL . 'assets/images/support.jpg' ); ?>"
 							alt="Prime Slider Dashboard Template">
 						<h1 class="ps-feature-title">
 							<?php esc_html_e('Getting Started with Quick Access', 'bdthemes-prime-slider'); ?>
@@ -1381,7 +1386,7 @@ class PrimeSlider_Admin_Settings {
 								$alt_text = !empty($white_label_title) ? $white_label_title . ' Logo' : 'Custom Logo';
 								echo '<img src="' . esc_url($white_label_logo) . '" alt="' . esc_attr($alt_text) . '" style="max-height: 40px;">';
 							} else {
-								echo '<img src="' . BDTPS_CORE_URL . 'assets/images/logo-with-text.svg" alt="Prime Slider Logo">';
+								echo '<img src="' . esc_url( BDTPS_CORE_URL . 'assets/images/logo-with-text.svg' ) . '" alt="Prime Slider Logo">';
 							}
 							?>
 						</div>
@@ -1915,8 +1920,8 @@ class PrimeSlider_Admin_Settings {
 				//Check if ps_admin_ajax is available
 				if (typeof ps_admin_ajax === 'undefined') {
 					window.ps_admin_ajax = {
-						ajax_url: '<?php echo admin_url('admin-ajax.php'); ?>',
-						white_label_nonce: '<?php echo wp_create_nonce('ps_white_label_nonce'); ?>'
+						ajax_url: '<?php echo esc_url( admin_url('admin-ajax.php') ); ?>',
+						white_label_nonce: '<?php echo esc_attr( wp_create_nonce('ps_white_label_nonce') ); ?>'
 					};
 				}				
 				
@@ -2328,7 +2333,7 @@ class PrimeSlider_Admin_Settings {
 								setTimeout(function() {
 									if (response.data.bdtps_hide) {
 										// Redirect to admin dashboard if BDTPS_CORE_HIDE is enabled
-										window.location.href = '<?php echo admin_url('index.php'); ?>';
+										window.location.href = '<?php echo esc_url( admin_url('index.php') ); ?>';
 									} else {
 										// Reload current page if BDTPS_CORE_HIDE is not enabled
 										window.location.reload();
@@ -2784,7 +2789,7 @@ class PrimeSlider_Admin_Settings {
 				
 				// Perform AJAX request
 				jQuery.ajax({
-					url: '<?php echo admin_url('admin-ajax.php'); ?>',
+					url: '<?php echo esc_url( admin_url('admin-ajax.php') ); ?>',
 					type: 'POST',
 					data: {
 						action: 'ps_install_plugin',
@@ -4083,7 +4088,7 @@ class PrimeSlider_Admin_Settings {
 						echo '<optgroup label="' . esc_attr__('Pages', 'bdthemes-prime-slider') . '">';
 						foreach ($pages as $page) {
 							$selected = in_array($page->ID, $excluded_pages) ? 'selected' : '';
-							echo '<option value="' . esc_attr($page->ID) . '" ' . $selected . '>' . esc_html($page->post_title) . '</option>';
+							echo '<option value="' . esc_attr($page->ID) . '" ' . esc_attr($selected) . '>' . esc_html($page->post_title) . '</option>';
 						}
 						echo '</optgroup>';
 					}
@@ -4094,7 +4099,7 @@ class PrimeSlider_Admin_Settings {
 						foreach ($posts as $post) {
 							$selected = in_array($post->ID, $excluded_pages) ? 'selected' : '';
 							$post_date = date('M j, Y', strtotime($post->post_date));
-							echo '<option value="' . esc_attr($post->ID) . '" ' . $selected . '>' . esc_html($post->post_title) . ' (' . $post_date . ')</option>';
+							echo '<option value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '>' . esc_html($post->post_title) . ' (' . esc_html($post_date) . ')</option>';
 						}
 						echo '</optgroup>';
 					}

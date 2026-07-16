@@ -236,7 +236,7 @@ if (!$has_cached_data) {
                         <span class="active-installs">
                             <?php esc_html_e('Active Installs: ', 'bdthemes-prime-slider'); 
                             if (isset($plugin['active_installs_count']) && $plugin['active_installs_count'] > 0) {
-                                echo ' <span class="installs-count">' . number_format_i18n((int) $plugin['active_installs_count']) . '+' . '</span>';
+                                echo ' <span class="installs-count">' . esc_html( number_format_i18n((int) $plugin['active_installs_count']) ) . '+' . '</span>';
                             } else {
                                 echo '<span class="installs-count">' . esc_html__('Fewer than 10', 'bdthemes-prime-slider') . '</span>';
                             }
