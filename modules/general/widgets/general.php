@@ -2604,7 +2604,7 @@ class General extends Widget_Base {
 
 				$tooltip = '';
                 if ( 'yes' === $settings['social_icon_tooltip'] ) {
-					$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title']));
+					$tooltip_text = wp_kses_post(wp_strip_all_tags( $link['social_link_title']));
 					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . '; pos: ' . esc_attr( $position );
 				}
 

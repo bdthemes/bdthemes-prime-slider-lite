@@ -64,7 +64,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
                         'numberposts'      => 3,
                         'orderby'          => 'date',
                         'order'            => 'DESC',
-                        'suppress_filters' => true,
+                        'suppress_filters' => false,
                     ];
 
                     $wp_query = new \WP_Query($args, $defaults);

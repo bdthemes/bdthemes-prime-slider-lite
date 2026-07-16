@@ -3710,7 +3710,7 @@ class PrimeSlider_Admin_Settings {
 					<span class="label1"><?php esc_html_e('Uploads folder writable:', 'bdthemes-prime-slider'); ?></span>
 
 					<?php
-					if (!is_writable($upload_path)) {
+					if (!wp_is_writable($upload_path)) {
 						echo wp_kses_post($no_icon);
 					} else {
 						echo wp_kses_post($yes_icon);
@@ -4098,7 +4098,7 @@ class PrimeSlider_Admin_Settings {
 						echo '<optgroup label="' . esc_attr__('Recent Posts', 'bdthemes-prime-slider') . '">';
 						foreach ($posts as $post) {
 							$selected = in_array($post->ID, $excluded_pages) ? 'selected' : '';
-							$post_date = date('M j, Y', strtotime($post->post_date));
+							$post_date = date_i18n('M j, Y', strtotime($post->post_date));
 							echo '<option value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '>' . esc_html($post->post_title) . ' (' . esc_html($post_date) . ')</option>';
 						}
 						echo '</optgroup>';

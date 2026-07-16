@@ -131,7 +131,7 @@ class Multiscroll extends Widget_Base {
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
-					'url' => BDTPS_CORE_ASSETS_URL . 'images/gems-' . rand(1, 3) . '.png',
+					'url' => BDTPS_CORE_ASSETS_URL . 'images/gems-' . wp_rand(1, 3) . '.png',
 				],
 			]
 		);

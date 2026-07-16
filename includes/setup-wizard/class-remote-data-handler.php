@@ -483,7 +483,7 @@ class Remote_Data_Handler {
         }
         
         // Get file extension
-        $path_info = pathinfo(parse_url($url, PHP_URL_PATH));
+        $path_info = pathinfo(wp_parse_url($url, PHP_URL_PATH));
         $extension = strtolower($path_info['extension'] ?? '');
         
         return in_array($extension, $valid_extensions);
