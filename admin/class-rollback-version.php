@@ -254,7 +254,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 			$this->empty_directory($this->backup_dir);
 
 			// Test if we can write to the backup directory
-			if (!is_writable($this->backup_dir)) {
+			if (!wp_is_writable($this->backup_dir)) {
 				return false;
 			}
 
@@ -265,7 +265,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 			}
 
 			// Create ZIP backup
-			$zip_filename = 'bdthemes-prime-slider-v' . $current_version . '-' . date('Y-m-d-H-i-s') . '.zip';
+			$zip_filename = 'bdthemes-prime-slider-v' . $current_version . '-' . gmdate('Y-m-d-H-i-s') . '.zip';
 			$zip_file_path = $this->backup_dir . $zip_filename;
 			
 			// Check if ZipArchive is available
@@ -323,9 +323,9 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 		        $file_path = $dir . DIRECTORY_SEPARATOR . $file;
 		        if (is_dir($file_path)) {
 		            $this->empty_directory($file_path);
-		            rmdir($file_path);
+		            rmdir($file_path); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Recursively removing the plugin backup directory; no single-call WP wrapper exists and this runs only in the admin-triggered rollback flow.
 		        } else {
-		            unlink($file_path);
+		            wp_delete_file($file_path);
 		        }
 		    }
 		}
@@ -679,7 +679,7 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 						);
 					}
 					// Remove the empty subdirectory
-					rmdir($extracted_plugin_dir);
+					rmdir($extracted_plugin_dir); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Removing an emptied extraction subdirectory during the admin-triggered rollback; no single-call WP wrapper exists.
 				}
 				
 			} else {
@@ -775,11 +775,11 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 				if (is_dir($path)) {
 					$this->remove_directory($path);
 				} else {
-					unlink($path);
+					wp_delete_file($path);
 				}
 			}
-			
-			rmdir($dir);
+
+			rmdir($dir); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Recursively removing a temporary extraction directory; no single-call WP wrapper exists and this runs only in the admin-triggered rollback flow.
 		}
 
 		/**
@@ -824,14 +824,14 @@ if (!class_exists('PrimeSlider_Rollback_Version')):
 					}
 					
 					// Remove empty source directory
-					rmdir($source_path);
+					rmdir($source_path); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- Removing an emptied source directory after moving its contents during the admin-triggered rollback; no single-call WP wrapper exists.
 				} else {
 					if (!is_readable($source_path)) {
 						closedir($dir);
 						return new WP_Error('file_not_readable', 'Source file not readable: ' . $source_path);
 					}
 					
-					if (!rename($source_path, $dest_path)) {
+					if (!rename($source_path, $dest_path)) { // phpcs:ignore WordPress.WP.AlternativeFunctions.rename_rename -- Moving an individual extracted file into place during the admin-triggered rollback; rename() is atomic on the same filesystem.
 						closedir($dir);
 						return new WP_Error('file_move_failed', 'Failed to move file: ' . $file . ' from ' . $source_path . ' to ' . $dest_path);
 					}

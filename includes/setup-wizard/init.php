@@ -437,14 +437,14 @@ use Elementor\TemplateLibrary\Source_Local;
 
         // Initialize Elementor's Template Importer
         if (!class_exists('\Elementor\TemplateLibrary\Source_Local')) {
-            unlink($temp_file);
+            wp_delete_file($temp_file);
             wp_send_json_error(['message' => esc_html__('Elementor is not installed or activated!', 'bdthemes-prime-slider')]);
             wp_die();
         }
 
         $manager = new Source_Local();
         $templateData = $manager->import_template('elementor_template', $temp_file);
-        unlink($temp_file); // Delete temp file after import
+        wp_delete_file($temp_file); // Delete temp file after import
 
         if (is_wp_error($templateData) || !is_array($templateData) || empty($templateData[0]['template_id'])) {
             wp_send_json_error(['message' => esc_html__('Failed to import template!', 'bdthemes-prime-slider')]);

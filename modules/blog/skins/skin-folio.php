@@ -54,7 +54,7 @@ class Skin_Folio extends Elementor_Skin_Base {
 				$tooltip = '';
 				if ( 'yes' === $settings['social_icon_tooltip'] ) {
 
-					$tooltip_text = wp_kses_post(strip_tags( $link['social_link_title'])); // Escape for safe attribute usage
+					$tooltip_text = wp_kses_post(wp_strip_all_tags( $link['social_link_title'])); // Escape for safe attribute usage
 					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
 
 				}
