@@ -1,17 +1,17 @@
-=== Prime Slider Addons for Elementor ===
-Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf, shaikatazim, shamim496
+=== Prime Slider Addons for Elementor - Widgets, Templates & Elementor Addons ===
+Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 7.0.1
+Tested up to: 7.0.2
 Requires PHP: 7.4.0
-Stable tag: 4.4.3
+Stable tag: 4.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.1.4
+Elementor tested up to: 4.1.5
 
-Create responsive sliders using Elementor for hero sections, posts, logos, images, products, testimonials, and more.
+Create responsive Elementor sliders for hero sections, posts, products, and more with powerful Elementor addons and ready-to-use Elementor templates.
 
 == Description ==
 
@@ -273,6 +273,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.4.4 [19th July 2026] =
+
+* Updated: Security improved
 
 = 4.4.3 [14th July 2026] =
 
