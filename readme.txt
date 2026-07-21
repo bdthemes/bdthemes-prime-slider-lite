@@ -274,6 +274,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.X [XXth July 2026] =
+
+* Fixed: Button text control now only shows when show btton is enabled in the blog widget
+* Added: Inactive Dot Color control added in the blog widget
+* Added: Tooltip text and background color controls in the blog widget
+
 = 4.4.4 [19th July 2026] =
 
 * Updated: Security improved

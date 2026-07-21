@@ -168,6 +168,7 @@ class Blog extends Widget_Base {
                 'default'     => esc_html__('Read More', 'bdthemes-prime-slider'),
                 'label_block' => false,
                 'condition'   => [
+                    'show_button_text' => 'yes',
                     '_skin!' => ['zinest'],
                 ],
             ]
@@ -1195,6 +1196,35 @@ class Blog extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'social_tooltip_text_color',
+            [
+                'label'     => esc_html__('Tooltip Text Color', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    'body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip, body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip .bdt-tooltip-inner' => 'color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'social_icon_tooltip' => 'yes',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'social_tooltip_background_color',
+            [
+                'label'     => esc_html__('Tooltip Background Color', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    'body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip' => 'background-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'social_icon_tooltip' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -1959,6 +1989,34 @@ class Blog extends Widget_Base {
                 ],
                 'condition'  => [
                     'show_navigation_arrows' => ['yes'],
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'dots_heading',
+            [
+                'label'     => esc_html__('DOTS', 'bdthemes-prime-slider'),
+                'type'      => Controls_Manager::HEADING,
+                'condition' => [
+                    'show_navigation_dots' => ['yes'],
+                    '_skin'                => ['', 'coral'],
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'inactive_dot_color',
+            [
+                'label'     => esc_html__('Inactive Dot Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-dotnav li:not(.bdt-active) a:before' => 'background-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'show_navigation_dots' => ['yes'],
+                    '_skin'                => ['', 'coral'],
                 ],
             ]
         );
