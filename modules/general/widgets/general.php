@@ -598,9 +598,6 @@ class General extends Widget_Base {
 				'dynamic'     => [ 'active' => true ],
 				'default'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
 				'placeholder' => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
-				'condition'   => [ 
-					'_skin!' => [ 'meteor' ],
-				]
 			]
 		);
 
@@ -1917,6 +1914,8 @@ class General extends Widget_Base {
 			]
 		);
 
+		$this->register_social_tooltip_style_controls( '.bdt-prime-slider-social-icon', [ '_skin!' => [ 'slide' ] ] );
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -2604,8 +2603,9 @@ class General extends Widget_Base {
 
 				$tooltip = '';
                 if ( 'yes' === $settings['social_icon_tooltip'] ) {
-					$tooltip_text = wp_kses_post(wp_strip_all_tags( $link['social_link_title']));
-					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . '; pos: ' . esc_attr( $position );
+					$social_link_title = isset( $link['social_link_title'] ) ? (string) $link['social_link_title'] : '';
+					$tooltip_text      = wp_kses_post( wp_strip_all_tags( $social_link_title ) );
+					$tooltip           = 'title: ' . htmlspecialchars( $tooltip_text, ENT_QUOTES ) . '; pos: ' . esc_attr( $position );
 				}
 
                 if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
@@ -2627,6 +2627,10 @@ class General extends Widget_Base {
 
 		$this->add_render_attribute( 'content-wrapper', 'class', 'bdt-scroll-down-content-wrapper' );
 		$this->add_render_attribute( 'text', 'class', 'bdt-scroll-down-text' );
+
+		$scroll_button_text = ! empty( $settings['scroll_button_text'] )
+			? $settings['scroll_button_text']
+			: esc_html__( 'Scroll Down', 'bdthemes-prime-slider' );
 
 		?>
 		<span bdt-scrollspy="cls: bdt-animation-slide-right; repeat: true" <?php $this->print_render_attribute_string( 'content-wrapper' ); ?>>
@@ -2658,7 +2662,7 @@ class General extends Widget_Base {
 				</svg>
 
 			</span>
-			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo wp_kses( $settings['scroll_button_text'], prime_slider_allow_tags( 'title' ) ); ?></span>
+			<span <?php $this->print_render_attribute_string( 'text' ); ?>><?php echo wp_kses( $scroll_button_text, prime_slider_allow_tags( 'title' ) ); ?></span>
 		</span>
 		<?php
 	}

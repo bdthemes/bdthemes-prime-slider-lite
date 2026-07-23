@@ -1773,6 +1773,8 @@ class Isolate extends Widget_Base {
             ]
         );
 
+        $this->register_social_tooltip_style_controls('.bdt-prime-slider-social-icon', ['_skin' => ['locate', 'slice']]);
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(

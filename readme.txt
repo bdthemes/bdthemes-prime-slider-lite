@@ -279,6 +279,9 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Fixed: Button text control now only shows when show btton is enabled in the blog widget
 * Added: Inactive Dot Color control added in the blog widget
 * Added: Tooltip text and background color controls in the blog widget
+* Fixed: Title style tab now only shows when show title is enabled in the flogia widget
+* Added: Tooltip text and background color controls in the general and isolate widgets
+* Fixed: PHP deprecation issue on the meteor skin in the general widget
 
 = 4.4.4 [19th July 2026] =
 

@@ -38,7 +38,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
         $image_src = wp_get_attachment_image_src($image['image']['id'], 'thumbnail');
 
         if ($image_src) : ?>
-        <img src="<?php echo esc_url($image_src[0]); ?>" alt="<?php echo esc_html($image['title']); ?>" bdt-cover>
+        <img src="<?php echo esc_url($image_src[0]); ?>" alt="<?php echo esc_attr( $image['title'] ?? '' ); ?>" bdt-cover>
         <?php endif;
 
         return 0;
