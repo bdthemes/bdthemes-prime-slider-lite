@@ -423,6 +423,9 @@ class Flogia extends Widget_Base {
             'tab_slider_title',
             [
                 'label' => __('Title', 'bdthemes-prime-slider'),
+                'condition' => [
+                    'show_title' => ['yes'],
+                ],
             ]
         );
 
@@ -434,9 +437,9 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a' => 'color: {{VALUE}};',
                 ],
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
             ]
         );
 
@@ -448,9 +451,9 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a:hover, {{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a:hover span' => 'color: {{VALUE}};',
                 ],
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
             ]
         );
 
@@ -471,9 +474,9 @@ class Flogia extends Widget_Base {
                 'name' => 'title_typography',
                 'label' => esc_html__('Typography', 'bdthemes-prime-slider'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag',
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
             ]
         );
 
@@ -482,9 +485,9 @@ class Flogia extends Widget_Base {
             [
                 'name' => 'title_text_shadow',
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag a',
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
             ]
         );
 
@@ -498,9 +501,9 @@ class Flogia extends Widget_Base {
                         'label' => esc_html__('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
                     ],
                 ],
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
                 'classes'   => BDTPS_CORE_IS_PC
             ]
         );
@@ -519,9 +522,9 @@ class Flogia extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-title-tag' => 'padding-bottom: {{SIZE}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'show_title' => ['yes'],
-                ],
+                // 'condition' => [
+                //     'show_title' => ['yes'],
+                // ],
             ]
         );
 

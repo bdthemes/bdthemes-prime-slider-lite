@@ -638,6 +638,50 @@ trait Global_Widget_Controls {
 	}
 
 	/**
+	 * Social tooltip style controls.
+	 *
+	 * @param string $social_icon_selector Social icon wrapper selector relative to {{WRAPPER}}.
+	 * @param array  $conditions         Additional control conditions.
+	 */
+	protected function register_social_tooltip_style_controls( $social_icon_selector = '.bdt-prime-slider-social-icon', $conditions = [] ) {
+		$control_conditions = array_merge(
+			[
+				'social_icon_tooltip' => 'yes',
+				'show_social_icon'    => 'yes',
+			],
+			$conditions
+		);
+
+		$this->add_control(
+			'social_tooltip_text_color',
+			[
+				'label'     => esc_html__( 'Text Color', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'body:has({{WRAPPER}} ' . $social_icon_selector . ' a:hover) .bdt-tooltip, body:has({{WRAPPER}} ' . $social_icon_selector . ' a:hover) .bdt-tooltip .bdt-tooltip-inner' => 'color: {{VALUE}};',
+				],
+				'condition' => $control_conditions,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'           => 'social_tooltip_background',
+				'types'          => [ 'classic', 'gradient' ],
+				'fields_options' => [
+					'background' => [
+						'label' => esc_html__( 'Background Type', 'bdthemes-prime-slider' ) . BDTPS_CORE_NC,
+					],
+				],
+				'condition'      => $control_conditions,
+				'selector'       => 'body:has({{WRAPPER}} ' . $social_icon_selector . ' a:hover) .bdt-tooltip',
+			]
+		);
+	}
+
+	/**
 	 * Social Link style controls
 	 */
 	protected function register_social_links_controls_style() {
@@ -775,6 +819,8 @@ trait Global_Widget_Controls {
 				'type'  => Controls_Manager::SWITCHER,
 			]
 		);
+
+		$this->register_social_tooltip_style_controls( '.bdt-social-icon' );
 
 		$this->end_controls_tab();
 
@@ -2454,8 +2500,9 @@ trait Global_Widget_Controls {
 				$tooltip = '';
 				if ( 'yes' === $settings['social_icon_tooltip'] ) {
 
-					$tooltip_text = wp_kses_post(wp_strip_all_tags( $link['social_link_title'])); // Escape for safe attribute usage
-					$tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . ';'; // Build the tooltip attribute safely
+					$social_link_title = isset( $link['social_link_title'] ) ? (string) $link['social_link_title'] : '';
+					$tooltip_text      = wp_kses_post( wp_strip_all_tags( $social_link_title ) );
+					$tooltip           = 'title: ' . htmlspecialchars( $tooltip_text, ENT_QUOTES ) . ';';
 
 				}
 

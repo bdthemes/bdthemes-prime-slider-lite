@@ -1196,34 +1196,7 @@ class Blog extends Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'social_tooltip_text_color',
-            [
-                'label'     => esc_html__('Tooltip Text Color', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    'body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip, body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip .bdt-tooltip-inner' => 'color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'social_icon_tooltip' => 'yes',
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'social_tooltip_background_color',
-            [
-                'label'     => esc_html__('Tooltip Background Color', 'bdthemes-prime-slider'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    'body:has({{WRAPPER}} .bdt-social-icon a:hover) .bdt-tooltip' => 'background-color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'social_icon_tooltip' => 'yes',
-                ],
-            ]
-        );
+        $this->register_social_tooltip_style_controls('.bdt-social-icon');
 
         $this->end_controls_tab();
 
@@ -2012,7 +1985,8 @@ class Blog extends Widget_Base {
                 'label'     => esc_html__('Inactive Dot Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-dotnav li:not(.bdt-active) a:before' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-dotnav li:not(.bdt-active) a:before'  => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-dotnav li:not(.bdt-active) a:before' => 'background-color: {{VALUE}}',
                 ],
                 'condition' => [
                     'show_navigation_dots' => ['yes'],

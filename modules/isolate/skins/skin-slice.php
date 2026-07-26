@@ -124,9 +124,10 @@ class Skin_Slice extends Elementor_Skin_Base {
 
                     $tooltip = '';
                     if ( 'yes' === $settings['social_icon_tooltip'] ) {
-                        $tooltip_text = wp_kses_post(wp_strip_all_tags( $link['social_link_title']));
-					    $tooltip = 'title: ' . htmlspecialchars($tooltip_text, ENT_QUOTES) . '; pos: ' . esc_attr( $position );
-                    }        
+                        $social_link_title = isset( $link['social_link_title'] ) ? (string) $link['social_link_title'] : '';
+                        $tooltip_text      = wp_kses_post( wp_strip_all_tags( $social_link_title ) );
+                        $tooltip = 'title: ' . htmlspecialchars( $tooltip_text, ENT_QUOTES ) . '; pos: ' . esc_attr( $position );
+                    }
 
                     if ( isset($link['social_icon_link']['url']) && ! empty($link['social_icon_link']['url']) ) {
                         $this->parent->add_link_attributes($link_key, $link['social_icon_link']);
