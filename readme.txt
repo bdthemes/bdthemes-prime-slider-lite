@@ -9,7 +9,7 @@ Stable tag: 4.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.1.5
+Elementor tested up to: 4.2.0
 
 Create responsive Elementor sliders for hero sections, posts, products, and more with powerful Elementor addons and ready-to-use Elementor templates.
 
@@ -274,17 +274,14 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.4.X [XXth July 2026] =
+= 4.4.4 [26th July 2026] =
 
-* Fixed: Button text control now only shows when show btton is enabled in the blog widget
 * Added: Inactive Dot Color control added in the blog widget
 * Added: Tooltip text and background color controls in the blog widget
-* Fixed: Title style tab now only shows when show title is enabled in the flogia widget
 * Added: Tooltip text and background color controls in the general and isolate widgets
+* Fixed: Title style tab now only shows when show title is enabled in the flogia widget
+* Fixed: Button text control now only shows when show btton is enabled in the blog widget
 * Fixed: PHP deprecation issue on the meteor skin in the general widget
-
-= 4.4.4 [19th July 2026] =
-
 * Updated: Security improved
 
 = 4.4.3 [14th July 2026] =
