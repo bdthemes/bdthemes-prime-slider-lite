@@ -156,7 +156,7 @@ class dragon extends Widget_Base {
 						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-3.svg']
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 

@@ -305,7 +305,7 @@ class Multiscroll extends Widget_Base {
 						'right_background_color' => '#8a0c85',
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 

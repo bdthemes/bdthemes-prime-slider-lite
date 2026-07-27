@@ -272,7 +272,7 @@ class Isolate extends Widget_Base {
                         'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.png'],
                     ],
                 ],
-                'title_field' => '{{{ title }}}',
+                'title_field' => '{{ title }}',
             ]
         );
 
@@ -587,7 +587,7 @@ class Isolate extends Widget_Base {
                         'social_link_title' => __('Instagram', 'bdthemes-prime-slider'),
                     ],
                 ],
-                'title_field' => '{{{ social_link_title }}}',
+                'title_field' => '{{ social_link_title }}',
             ]
         );
 

@@ -135,7 +135,7 @@ class Tango extends Widget_Base {
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 

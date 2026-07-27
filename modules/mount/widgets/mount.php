@@ -128,7 +128,7 @@ class Mount extends Widget_Base {
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/img-3.svg']
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 
@@ -280,7 +280,7 @@ class Mount extends Widget_Base {
 						'social_link_title' => __('Ig', 'bdthemes-prime-slider'),
 					],
 				],
-				'title_field' => '{{{ social_link_title }}}',
+				'title_field' => '{{ social_link_title }}',
 			]
 		);
 

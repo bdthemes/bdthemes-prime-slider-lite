@@ -120,7 +120,7 @@ class Sniper extends Widget_Base {
 						'image' 	=> ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.png']
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 
