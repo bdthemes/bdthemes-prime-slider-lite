@@ -241,7 +241,7 @@ class Woolamp extends Widget_Base {
 					['button' => 'linkedin'],
 					['button' => 'twitter'],
 				],
-				'title_field' => '{{{ button }}}',
+				'title_field' => '{{ button }}',
 			]
 		);
 

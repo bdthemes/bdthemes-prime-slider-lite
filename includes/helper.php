@@ -309,7 +309,9 @@ function prime_slider_get_category( $taxonomy = 'category' ) {
 		foreach ( $post_categories as $category ) {
 			// Ensure $category is an object, not an array
 			if ( is_object( $category ) && isset( $category->slug, $category->name ) ) {
-				$post_options[ $category->slug ] = $category->name;
+				// Elementor prints select option labels through an unescaped Underscore
+				// tag, so term names must be escaped before they reach the editor.
+				$post_options[ $category->slug ] = esc_html( $category->name );
 			}
 		}
 	}

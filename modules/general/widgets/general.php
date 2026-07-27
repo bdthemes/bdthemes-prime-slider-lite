@@ -247,7 +247,7 @@ class General extends Widget_Base {
 						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider' ),
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 
@@ -541,7 +541,7 @@ class General extends Widget_Base {
 						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
                     ],
                 ],
-                'title_field' => '{{{ social_link_title }}}',
+                'title_field' => '{{ social_link_title }}',
             ]
         );
 

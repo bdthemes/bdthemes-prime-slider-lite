@@ -630,7 +630,7 @@ trait Global_Widget_Controls {
 						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
 					],
 				],
-				'title_field' => '{{{ social_link_title }}}',
+				'title_field' => '{{ social_link_title }}',
 			]
 		);
 
@@ -2125,7 +2125,7 @@ trait Global_Widget_Controls {
 						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
 					],
 				],
-				'title_field' => '{{{ social_link_title }}}',
+				'title_field' => '{{ social_link_title }}',
 			]
 		);
 

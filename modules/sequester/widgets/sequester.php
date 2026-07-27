@@ -159,7 +159,7 @@ class Sequester extends Widget_Base {
 						'image' => ['url' => BDTPS_CORE_ASSETS_URL . 'images/svg-img/item-03.svg']
 					],
 				],
-				'title_field' => '{{{ title }}}',
+				'title_field' => '{{ title }}',
 			]
 		);
 
