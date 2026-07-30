@@ -35,7 +35,7 @@ Available Slider Types:
 Prime Slider makes it simple to create sliders that adapt beautifully to any device or layout. Each widget is easy to customize and optimized for performance to help you deliver engaging user experiences without code.
 
 
-**[Free Demo](https://primeslider.pro/demo/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/all-knowledge-base-of-prime-slider/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
+**[Free Demo](https://primeslider.pro/demo/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/knowledge-base/prime-slider/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
 
 = Featured on WPTuts: =
 
