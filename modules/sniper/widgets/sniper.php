@@ -763,7 +763,7 @@ class Sniper extends Widget_Base {
 
 							<?php if ($slide['sub_title'] && ('yes' == $settings['show_sub_title'])) : ?>
 								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?> class="bdt-sub-title">
-									<span><?php echo esc_html( $slide['sub_title'] ); ?></span>
+									<span><?php echo wp_kses_post( $slide['sub_title'] ); ?></span>
 								</<?php echo esc_attr(Utils::get_valid_html_tag($settings['sub_title_html_tag'])); ?>>
 							<?php endif; ?>
 
