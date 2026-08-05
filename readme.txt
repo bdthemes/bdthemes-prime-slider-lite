@@ -5,11 +5,11 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 7.0.2
 Requires PHP: 7.4.0
-Stable tag: 4.4.4
+Stable tag: 4.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.2.0
+Elementor tested up to: 4.2.1
 
 Create responsive Elementor sliders for hero sections, posts, products, and more with powerful Elementor addons and ready-to-use Elementor templates.
 
@@ -273,6 +273,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.4.5 [5th August 2026] =
+
+* Fixed: Sniper widget sub-title now escapes issue fixed
 
 = 4.4.4 [26th July 2026] =
 
