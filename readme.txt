@@ -276,7 +276,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 = 4.4.6 [8th August 2026] =
 
-* Fixed: Critical security issue where data returned by the promotions API could be injected as script into the WordPress admin area
+* Fixed: Security issue where data returned by the promotions API could be injected as script into the WordPress admin area
 * Fixed: Promotion links and images are now restricted to http(s) and mailto addresses
 * Updated: Security improved
 
