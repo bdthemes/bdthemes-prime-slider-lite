@@ -274,6 +274,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.6 [8th August 2026] =
+
+* Fixed: Security issue where data returned by the promotions API could be injected as script into the WordPress admin area
+* Fixed: Promotion links and images are now restricted to http(s) and mailto addresses
+* Updated: Security improved
+
 = 4.4.5 [5th August 2026] =
 
 * Fixed: Sniper widget sub-title now escapes issue fixed

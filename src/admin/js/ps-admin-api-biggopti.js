@@ -193,6 +193,26 @@ jQuery(document).ready(function ($) {
         return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    /**
+     * Display ids are used as DOM ids and inside attribute selectors, so they are
+     * restricted to an id-safe charset rather than escaped. Anything outside it is
+     * dropped: the API is untrusted input, not a template source.
+     */
+    function safeBiggoptiDisplayId(raw) {
+        var clean = ('' + (raw == null ? '' : raw)).replace(/[^A-Za-z0-9_-]/g, '');
+        return clean || 'default';
+    }
+
+    /**
+     * Only http(s) and mailto URLs may reach an href/src. Mirrors the scheme check
+     * already applied to links inside sanitized rich content.
+     */
+    function safeBiggoptiUrl(raw) {
+        var clean = ('' + (raw || '')).replace(/[\u0000-\u001f\u007f]/g, '').trim();
+        if (/^https?:\/\//i.test(clean) || /^mailto:/i.test(clean)) return clean;
+        return '';
+    }
+
     function sanitizeBiggoptiInlineStyle(style) {
         if (!style || typeof style !== 'string') return '';
         var parts = style.split(';');
@@ -297,22 +317,23 @@ jQuery(document).ready(function ($) {
     function renderBiggoptiHTML(item) {
         if (!isItemVisibleForCurrentSector(item)) return '';
         var esc = function (s) { return escPlain(s); };
-        var bg = (item.background_color || '') + (item.image ? ' background-image:url(' + esc(item.image) + ')' : '');
-        var wrapperClass = 'bdt-biggopti-wrapper' + (item.image ? ' has-background-image' : '');
+        var imageUrl = safeBiggoptiUrl(item.image);
+        var bg = (item.background_color || '') + (imageUrl ? ' background-image:url(' + esc(imageUrl) + ')' : '');
+        var wrapperClass = 'bdt-biggopti-wrapper' + (imageUrl ? ' has-background-image' : '');
         var title = esc(item.title || '');
         var content = sanitizeBiggoptiRichHtml(item.content || '');
-        var logoUrl = item.logo || '';
-        var link = item.link || '';
+        var logoUrl = safeBiggoptiUrl(item.logo);
+        var link = safeBiggoptiUrl(item.link);
         var btnText = item.button_text || 'Read More';
         var showCountdown = item.show_countdown && item.end_date;
         var endDate = item.end_date || '';
         var tz = item.timezone || 'UTC';
-        var displayId = item.display_id || item.id || 'default';
+        var displayId = safeBiggoptiDisplayId(item.display_id || item.id || 'default');
         var biggoptiId = 'bdt-admin-biggopti-api-biggopti-' + displayId;
         var countdown_content = item.countdown_content || '';
 
         var countdownHtml = showCountdown ? '<div class="bdt-biggopti-countdown" data-end-date="' + esc(endDate) + '" data-timezone="' + esc(tz) + '"><div class="countdown-timer">Loading...</div></div>' : '<div class="bdt-biggopti-countdown"><div class="countdown-content">' + esc(countdown_content) + '</div></div>';
-        var btnHtml = link ? '<div class="bdt-biggopti-btn"><a href="' + esc(link) + '" target="_blank"><div class="nm-biggopti-btn">' + esc(btnText) + ' <span class="dashicons dashicons-arrow-right-alt"></span></div></a></div>' : '';
+        var btnHtml = link ? '<div class="bdt-biggopti-btn"><a href="' + esc(link) + '" target="_blank" rel="noopener noreferrer"><div class="nm-biggopti-btn">' + esc(btnText) + ' <span class="dashicons dashicons-arrow-right-alt"></span></div></a></div>' : '';
         var logoHtml = logoUrl ? '<div class="bdt-biggopti-logo-wrapper"><img width="100" src="' + esc(logoUrl) + '" alt="Logo"></div>' : '';
 
         var inner = '<div class="' + wrapperClass + '"' + (bg ? ' style="' + esc(bg) + '"' : '') + '>' +
@@ -329,7 +350,7 @@ jQuery(document).ready(function ($) {
 
         var endTs = endDate ? Math.max((new Date(endDate.replace(' ', 'T') + (tz === 'UTC' ? 'Z' : ''))).getTime() - Date.now(), 0) : 604800;
         var classes = 'prime-slider-biggopti biggopti biggopti-info is-dismissible';
-        var attrs = 'id="' + biggoptiId + '"';
+        var attrs = 'id="' + esc(biggoptiId) + '"';
         attrs += ' data-display-id="' + esc(displayId) + '" data-dismissible-meta="transient" data-dismissible-time="' + endTs + '"';
         var dismissBtn = '<button type="button" class="bdt-admin-api-biggopti-dismiss dashicons dashicons-dismiss"><span class="screen-reader-text">Dismiss this biggopti.</span></button>';
         return '<div class="' + classes + '" ' + attrs + '>' + inner + dismissBtn + '</div>';
@@ -344,9 +365,9 @@ jQuery(document).ready(function ($) {
                 .replace(/"/g, '&quot;');
         };
 
-        var imageUrl = item.feed_image || '';
-        var link = item.link || '#';
-        var displayId = item.display_id || item.id || 'default';
+        var imageUrl = safeBiggoptiUrl(item.feed_image);
+        var link = safeBiggoptiUrl(item.link) || '#';
+        var displayId = safeBiggoptiDisplayId(item.display_id || item.id || 'default');
         var feedId = 'bdt-admin-api-feed-' + displayId;
 
         if (!imageUrl) return '';
@@ -443,7 +464,7 @@ jQuery(document).ready(function ($) {
         var seen = {};
         for (var i = 0; i < list.length; i++) {
             if (!isPrimeSliderPromoItemValid(list[i])) continue;
-            var did = list[i].display_id || list[i].id || 'default-' + i;
+            var did = safeBiggoptiDisplayId(list[i].display_id || list[i].id || 'default-' + i);
             if (seen[did]) continue;
             seen[did] = true;
             validForDashboard.push(list[i]);
@@ -457,7 +478,7 @@ jQuery(document).ready(function ($) {
 
         var html = '';
         for (var j = 0; j < valid.length; j++) {
-            var displayId = valid[j].display_id || valid[j].id || 'default-' + j;
+            var displayId = safeBiggoptiDisplayId(valid[j].display_id || valid[j].id || 'default-' + j);
             var classPattern = 'bdt-admin-biggopti-api-biggopti-' + displayId;
             if ($('[id="' + classPattern + '"]').length) continue;
             html += renderBiggoptiHTML(valid[j]);
@@ -491,7 +512,7 @@ jQuery(document).ready(function ($) {
         var html = '';
 
         for (var i = 0; i < list.length; i++) {
-            var did = list[i].display_id || list[i].id || 'default-' + i;
+            var did = safeBiggoptiDisplayId(list[i].display_id || list[i].id || 'default-' + i);
             if ($('#bdt-admin-api-feed-' + did).length) continue;
 
             html += renderFeedHTML(list[i]);
@@ -528,7 +549,8 @@ jQuery(document).ready(function ($) {
         var adminSubmenu = document.querySelector('#toplevel_page_prime_slider_options .wp-submenu');
         if (!adminSubmenu || adminSubmenu.querySelector('.bdt-promo-menu-item')) return;
         var p = promo || FALLBACK;
-        var href = (p.link || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        var href = safeBiggoptiUrl(p.link).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        if (!href) return;
         var text = (p.sub_title || FALLBACK.sub_title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var html = '<li class="bdt-promo-menu-item"><a href="' + href + '" target="_blank" style="color: #FE506C; font-weight: 600;" rel="noopener noreferrer">' + text + '</a></li>';
         adminSubmenu.insertAdjacentHTML('beforeend', html);
