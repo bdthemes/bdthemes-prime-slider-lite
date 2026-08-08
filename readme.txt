@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik,
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
-Tested up to: 7.0.2
+Tested up to: 7.0.3
 Requires PHP: 7.4.0
-Stable tag: 4.4.5
+Stable tag: 4.4.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
