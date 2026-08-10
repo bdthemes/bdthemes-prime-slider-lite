@@ -58,7 +58,6 @@ module.exports = function (grunt) {
 
 						'admin/assets/css/ps-admin.css': 'src/less/admin.less',
 						'admin/assets/css/ps-admin-biggopti.css': 'src/less/admin-biggopti.less',
-						'admin/assets/css/ps-admin-api-biggopti.css': 'src/less/admin-api-biggopti.less',
 					},
 					// all widgets files
 					{
@@ -88,7 +87,6 @@ module.exports = function (grunt) {
 						'assets/js/prime-slider-site.min.js': ['src/js/prime-slider-site.js'],
 						'admin/assets/js/ps-admin.min.js': ['src/admin/js/ps-admin.js'],
 						'admin/assets/js/ps-biggopti.js': ['src/admin/js/ps-biggopti.js'],
-						'admin/assets/js/ps-admin-api-biggopti.js': ['src/admin/js/ps-admin-api-biggopti.js'],
 						'assets/js/ps-animation-helper.min.js': ['src/js/ps-animation-helper.js'],
 					},
 					{
