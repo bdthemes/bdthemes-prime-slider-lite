@@ -43,7 +43,6 @@ class Admin {
 
 	function biggopti_styles(){
 		wp_enqueue_style('ps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
-		wp_enqueue_style('bdt-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-api-biggopti.css', [], BDTPS_CORE_VER);
 		wp_enqueue_style('bdt-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed.css', [], BDTPS_CORE_VER);
 	}
 
@@ -209,7 +208,6 @@ class Admin {
 		if ( is_admin() ) { // for Admin Dashboard Only
 
 			wp_enqueue_script( 'ps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
-			wp_enqueue_script( 'ps-admin-api-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin-api-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 
 			$dismissals = get_option('bdt_biggopti_dismissals', []);
 			$dismissed_display_ids = [];
@@ -237,7 +235,6 @@ class Admin {
 			];
 			
 			wp_localize_script('ps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config);
-			wp_localize_script('ps-admin-api-biggopti', 'PrimeSliderAdminApiBiggoptiConfig', $script_config);
 		}
 	}
 }

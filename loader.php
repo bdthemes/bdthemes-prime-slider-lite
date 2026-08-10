@@ -445,7 +445,6 @@ class Prime_Slider_Loader {
 	public function init() {
 		if ( is_admin() && ps_is_dashboard_enabled() ) {
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin-biggopti.php';
-			require_once BDTPS_CORE_ADMIN_PATH . 'admin-api-biggopti.php';
 			require_once BDTPS_CORE_ADMIN_PATH . 'admin.php';
 			new Admin();
 		}
