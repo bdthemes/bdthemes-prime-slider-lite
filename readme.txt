@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 7.0.3
 Requires PHP: 7.4.0
-Stable tag: 4.4.7
+Stable tag: 4.4.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -274,7 +274,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.4.X [XXth August 2026] =
+= 4.4.8 [11th August 2026] =
 
 * Fixed: Slider accessibility tree now uses the standard carousel pattern resolving PageSpeed/Lighthouse accessibility.
 * Added: Accessible names for slider navigation arrows and pagination dots
