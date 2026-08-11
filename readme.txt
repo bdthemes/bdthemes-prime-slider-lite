@@ -274,6 +274,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.4.X [XXth August 2026] =
+
+* Fixed: Slider accessibility tree now uses the standard carousel pattern resolving PageSpeed/Lighthouse accessibility.
+* Added: Accessible names for slider navigation arrows and pagination dots
+
 = 4.4.7 [10th August 2026] =
 
 * Updated: Admin API Biggopti removed

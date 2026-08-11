@@ -198,6 +198,10 @@ class Prime_Slider_Loader {
 			wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}
 
+		if ( ! wp_script_is( 'prime-slider-a11y', 'registered' ) ) {
+			wp_register_script( 'prime-slider-a11y', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-a11y' . $suffix . '.js', [ 'bdt-uikit' ], BDTPS_CORE_VER, true );
+		}
+
 		//TODO more attractive animation
 		//Thirdparty widgets
 		if ( prime_slider_is_widget_enabled( 'multiscroll' ) ) {
@@ -318,6 +322,10 @@ class Prime_Slider_Loader {
 			wp_register_script( 'prime-slider-site', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-site' . $suffix . '.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}
 
+		if ( ! wp_script_is( 'prime-slider-a11y', 'registered' ) ) {
+			wp_register_script( 'prime-slider-a11y', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-a11y' . $suffix . '.js', [ 'bdt-uikit' ], BDTPS_CORE_VER, true );
+		}
+
 		if ( ! wp_style_is( 'bdt-uikit', 'enqueued' ) ) {
 			wp_enqueue_style( 'bdt-uikit' );
 		}
@@ -329,6 +337,7 @@ class Prime_Slider_Loader {
 		}
 
 		wp_enqueue_script( 'prime-slider-site' );
+		wp_enqueue_script( 'prime-slider-a11y' );
 	}
 
 	/**

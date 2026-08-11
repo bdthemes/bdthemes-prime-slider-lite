@@ -85,6 +85,7 @@ module.exports = function (grunt) {
 						'assets/js/prime-slider-admin.min.js': ['src/js/prime-slider-admin.js'],
 						'assets/js/prime-slider-editor.min.js': ['src/js/prime-slider-editor.js'],
 						'assets/js/prime-slider-site.min.js': ['src/js/prime-slider-site.js'],
+						'assets/js/prime-slider-a11y.min.js': ['src/js/prime-slider-a11y.js'],
 						'admin/assets/js/ps-admin.min.js': ['src/admin/js/ps-admin.js'],
 						'admin/assets/js/ps-biggopti.js': ['src/admin/js/ps-biggopti.js'],
 						'assets/js/ps-animation-helper.min.js': ['src/js/ps-animation-helper.js'],
