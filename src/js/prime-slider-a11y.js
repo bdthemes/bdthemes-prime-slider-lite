@@ -8,8 +8,10 @@
  *      Flogia, General, Isolate, Mount, Sequester, WooCommerce, WooLamp (Lite)
  *      and Custom, Fluent, WooStand (Pro). UIkit drives its dot navigation with
  *      the WAI-ARIA Tabs pattern (role="tablist"/"tab"/"tabpanel"), which fails
- *      the carousel accessibility check. We rewrite it to role="group" +
- *      aria-roledescription="slide" with plain button controls.
+ *      the carousel accessibility check. Because the slides are <ul>/<li> markup
+ *      (tags we must not change), we keep the native list semantics and add
+ *      aria-roledescription="slide", drop the presentational role UIkit puts on the
+ *      list, and turn the dot controls into plain buttons.
  *
  *   2. Swiper — used by Mercury, Pacific, Fiestar, Rubix, Tango, Vertex, etc.
  *      (Lite) and Avatar, Cloud, Expo, Panorama, Super Flow, … (Pro). These init
@@ -29,6 +31,7 @@
     var UIKIT_SEL   = '[bdt-slideshow], [data-bdt-slideshow]';
     // Swiper containers, restricted to Prime Slider widgets (data-widget_type^="prime-slider-").
     var SWIPER_SEL  = '[data-widget_type^="prime-slider-"] .swiper, [data-widget_type^="prime-slider-"].swiper';
+    var ITEMS_SEL   = '.bdt-slideshow-items';
     var SLIDE_SEL   = '.bdt-slideshow-item';
     var NAV_SEL     = '.bdt-slideshow-nav';
     var WATCH_ATTRS = ['role', 'aria-roledescription', 'aria-labelledby', 'aria-controls', 'aria-selected'];
@@ -56,12 +59,26 @@
         }
     }
 
-    // --- UIkit slideshow: Tabs pattern -> carousel pattern -------------------
+    // --- UIkit slideshow: Tabs pattern -> valid list-based carousel ----------
+    // The slides are <li> inside <ul class="bdt-slideshow-items">, so the tags are
+    // fixed. UIkit stamps role="tabpanel"/"group" on each <li> (invalid on an <li>)
+    // and role="presentation" on the <ul> (which also carries aria-live, so it can't
+    // be consistently ignored) — both fail the agentic-browsing accessibility-tree
+    // audit. Rather than change tags, we keep the native list semantics (<ul> list of
+    // <li> listitems) and only add aria-roledescription="slide" so each item is still
+    // announced as a slide.
     function normalizeUikit(root) {
-        // Slides: role="tabpanel" -> role="group" + aria-roledescription="slide".
+        // Items container: drop UIkit's role="presentation" so the <ul> stays a
+        // consistently exposed list (no presentation vs. aria-live conflict).
+        Array.prototype.forEach.call(root.querySelectorAll(ITEMS_SEL), function (list) {
+            removeAttr(list, 'role');
+        });
+
+        // Slides: strip the tab/tabpanel/group role UIkit stamps (none are valid on
+        // an <li>), leaving the native listitem role, and describe each as a slide.
         var slides = root.querySelectorAll(SLIDE_SEL);
         Array.prototype.forEach.call(slides, function (slide, index) {
-            setAttr(slide, 'role', 'group');
+            removeAttr(slide, 'role');
             setAttr(slide, 'aria-roledescription', 'slide');
             removeAttr(slide, 'aria-labelledby');
             labelIfEmpty(slide, (index + 1) + ' of ' + slides.length);
