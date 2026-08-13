@@ -44,27 +44,27 @@ class WPML_PrimeSlider_Isolate extends WPML_Module_With_Items {
     protected function get_title( $field ) {
         switch ( $field ) {
             case 'title':
-                return esc_html__( 'Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Title', 'bdthemes-prime-slider-lite' );
             case 'sub_title':
-                return esc_html__( 'Sub Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Sub Title', 'bdthemes-prime-slider-lite' );
             case 'excerpt':
-                return esc_html__( 'Excerpt', 'bdthemes-prime-slider' );
+                return esc_html__( 'Excerpt', 'bdthemes-prime-slider-lite' );
             case 'slide_button_text':
-                return esc_html__( 'Read More', 'bdthemes-prime-slider' );
+                return esc_html__( 'Read More', 'bdthemes-prime-slider-lite' );
             case 'button_link':
-                return esc_html__( 'Button Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Button Link', 'bdthemes-prime-slider-lite' );
             case 'title_link':
-                return esc_html__( 'Title Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Title Link', 'bdthemes-prime-slider-lite' );
             case 'image_link_video':
-                return esc_html__( 'Video Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Video Link', 'bdthemes-prime-slider-lite' );
             case 'lightbox_link':
-                return esc_html__( 'YouTube Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'YouTube Link', 'bdthemes-prime-slider-lite' );
             case 'image_link_vimeo':
-                return esc_html__( 'Vimeo Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Vimeo Link', 'bdthemes-prime-slider-lite' );
             case 'image_link_google_map':
-                return esc_html__( 'Google Map Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Google Map Link', 'bdthemes-prime-slider-lite' );
             case 'image_link_website':
-                return esc_html__( 'Website Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Website Link', 'bdthemes-prime-slider-lite' );
             default:
                 return '';
         }
@@ -126,9 +126,9 @@ class WPML_PrimeSlider_Isolate_Social_Link extends WPML_Module_With_Items {
     protected function get_title( $field ) {
         switch ( $field ) {
             case 'social_link_title':
-                return esc_html__( 'Social Link Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Social Link Title', 'bdthemes-prime-slider-lite' );
             case 'social_icon_link':
-                return esc_html__( 'Social Icon Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Social Icon Link', 'bdthemes-prime-slider-lite' );
             default:
                 return '';
         }

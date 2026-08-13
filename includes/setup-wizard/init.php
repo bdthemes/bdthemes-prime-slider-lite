@@ -56,14 +56,14 @@ class Setup_Wizard {
 		add_action( 'admin_init', array( $this, 'maybe_display_setup_wizard' ) );
 		add_action( 'admin_init', array( $this, 'check_manual_wizard_request' ) );
 
-		if ( function_exists( 'add_filter' ) ) {
-			add_filter( 'auto_update_translation', '__return_false' );
-		}
+		// NOTE: WordPress manages plugin/translation updates. Do not add filters
+		// that interfere with the built-in update pipeline (wp.org Guideline).
 	}
 
 	// Check for manual wizard requests
 	public function check_manual_wizard_request() {
-		$is_setup_wizard_request = isset($_GET['ps_setup_wizard']) && $_GET['ps_setup_wizard'] === 'show';
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check of a GET flag to decide whether to render the setup wizard screen, no form data processed.
+		$is_setup_wizard_request = isset($_GET['ps_setup_wizard']) && 'show' === sanitize_text_field(wp_unslash($_GET['ps_setup_wizard']));
 		
 		if ( $is_setup_wizard_request ) {
 			// Use the same approach as first activation - completely override the page
@@ -194,8 +194,8 @@ class Setup_Wizard {
 	public function admin_menu() {
 		add_submenu_page(
 			'prime_slider_options',
-			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider' ),
-			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider' ),
+			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider-lite' ),
+			esc_html__( 'Setup Wizard', 'bdthemes-prime-slider-lite' ),
 			'manage_options',
 			'prime-slider-setup-wizard',
 			array( $this, 'display_page' )
@@ -220,7 +220,7 @@ class Setup_Wizard {
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
 		wp_enqueue_style('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.17.0');
-		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.17.0');
+		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.17.0', true);
 
 		wp_register_script( 'ps-setup-wizard', plugins_url( 'assets/js/setup-wizard.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
 		
@@ -254,7 +254,7 @@ class Setup_Wizard {
 	public function install_plugins() {
 		check_ajax_referer( 'setup_wizard_nonce', 'nonce' );
 
-		$plugin_slugs = isset( $_POST['plugins'] ) ? $_POST['plugins'] : array();
+		$plugin_slugs = isset( $_POST['plugins'] ) ? map_deep( wp_unslash( $_POST['plugins'] ), 'sanitize_text_field' ) : array();
 
 		if ( empty( $plugin_slugs ) || ! is_array( $plugin_slugs ) ) {
 			wp_send_json_error( array( 'message' => 'Invalid plugins array' ) );
@@ -408,7 +408,7 @@ use Elementor\TemplateLibrary\Source_Local;
 		check_ajax_referer( 'setup_wizard_nonce', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+			wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider-lite' ) ) );
 			wp_die();
 		}
 
@@ -420,7 +420,7 @@ use Elementor\TemplateLibrary\Source_Local;
         ));
 
         if (is_wp_error($response)) {
-            wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
@@ -428,7 +428,7 @@ use Elementor\TemplateLibrary\Source_Local;
         $sourceData2 = json_decode($sourceData, true);
 
         if (!$sourceData2 || !is_array($sourceData2)) {
-            wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
@@ -438,7 +438,7 @@ use Elementor\TemplateLibrary\Source_Local;
         // Initialize Elementor's Template Importer
         if (!class_exists('\Elementor\TemplateLibrary\Source_Local')) {
             wp_delete_file($temp_file);
-            wp_send_json_error(['message' => esc_html__('Elementor is not installed or activated!', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Elementor is not installed or activated!', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
@@ -447,18 +447,18 @@ use Elementor\TemplateLibrary\Source_Local;
         wp_delete_file($temp_file); // Delete temp file after import
 
         if (is_wp_error($templateData) || !is_array($templateData) || empty($templateData[0]['template_id'])) {
-            wp_send_json_error(['message' => esc_html__('Failed to import template!', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Failed to import template!', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
         $template_id = $templateData[0]['template_id'];
         $metaData = get_post_meta($template_id);
 
-        $page_title = isset($_POST['title']) ? sanitize_text_field($_POST['title']) : esc_html__("No Title", 'bdthemes-prime-slider');
+        $page_title = isset($_POST['title']) ? sanitize_text_field(wp_unslash($_POST['title'])) : esc_html__("No Title", 'bdthemes-prime-slider-lite');
 
         // Validate Elementor Data
         if (!isset($metaData['_elementor_data'][0])) {
-            wp_send_json_error(['message' => esc_html__('Elementor data not found in template.', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Elementor data not found in template.', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
@@ -473,7 +473,7 @@ use Elementor\TemplateLibrary\Source_Local;
         ]);
 
         if (is_wp_error($new_post_id)) {
-            wp_send_json_error(['message' => esc_html__('Failed to create page!', 'bdthemes-prime-slider')]);
+            wp_send_json_error(['message' => esc_html__('Failed to create page!', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
@@ -493,7 +493,7 @@ use Elementor\TemplateLibrary\Source_Local;
 //        update_post_meta($new_post_id, '_wp_page_template', !empty($pageTemplate) ? $pageTemplate : 'elementor_header_footer');
 
         wp_send_json_success([
-            'message'   => esc_html__('The template was imported successfully.', 'bdthemes-prime-slider'),
+            'message'   => esc_html__('The template was imported successfully.', 'bdthemes-prime-slider-lite'),
             'ids'       => $new_post_id,
             'edit_link' => admin_url('post.php?post=' . $new_post_id . '&action=elementor'),
         ]);
@@ -505,14 +505,14 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
 
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider-lite' ) ) );
         wp_die();
     }
 
     $file_url = isset($_POST['import_url']) ? esc_url_raw(wp_unslash($_POST['import_url'])) : '';
 
     if (!filter_var($file_url, FILTER_VALIDATE_URL) || 0 !== strpos($file_url, 'http')) {
-        wp_send_json_error(['message' => esc_html__('Invalid import URL', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Invalid import URL', 'bdthemes-prime-slider-lite')]);
     }
 
     $remote_zip_request = wp_safe_remote_get($file_url, array(
@@ -521,19 +521,19 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
     ));
 
     if (is_wp_error($remote_zip_request)) {
-        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
     }
 
 
     if (200 !== $remote_zip_request['response']['code']) {
-        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
     }
 
     $kit_zip_path = Plugin::$instance->uploads_manager->create_temp_file($remote_zip_request['body'], 'kit.zip');
 
     $app = Plugin::$instance->app;
     if (!$app) {
-        wp_send_json_error(['message' => esc_html__('Elementor app not available', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Elementor app not available', 'bdthemes-prime-slider-lite')]);
     }
 
     $import_export_module = $app->get_component('import-export');
@@ -554,7 +554,7 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
         if (count($missingPlugins)) {
             wp_send_json_error([
                 'plugins' => $missingPlugins,
-                'message' => esc_html__('Missing plugins', 'bdthemes-prime-slider'),
+                'message' => esc_html__('Missing plugins', 'bdthemes-prime-slider-lite'),
             ]);
         }
 
@@ -592,7 +592,7 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
 
         wp_send_json_success($import);
     } catch (\Throwable $e) {
-        wp_send_json_error(['message' => esc_html__('Import failed: ', 'bdthemes-prime-slider') . esc_html($e->getMessage())]);
+        wp_send_json_error(['message' => esc_html__('Import failed: ', 'bdthemes-prime-slider-lite') . esc_html($e->getMessage())]);
     }
 });
 
@@ -600,7 +600,7 @@ add_action('wp_ajax_import_ps_elementor_bundle_runner_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
 
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider' ) ) );
+        wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'bdthemes-prime-slider-lite' ) ) );
         wp_die();
     }
 
@@ -608,20 +608,22 @@ add_action('wp_ajax_import_ps_elementor_bundle_runner_template', function () {
     $sessionId = isset($_POST['sessionId']) ? sanitize_text_field(wp_unslash($_POST['sessionId'])) : '';
 
     if (!$runner || !$sessionId) {
-        wp_send_json_error(['message' => esc_html__('Required Param Is Missing.', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Required Param Is Missing.', 'bdthemes-prime-slider-lite')]);
     }
 
     $app = Plugin::$instance->app;
     if (!$app) {
-        wp_send_json_error(['message' => esc_html__('Elementor app not available.', 'bdthemes-prime-slider')]);
+        wp_send_json_error(['message' => esc_html__('Elementor app not available.', 'bdthemes-prime-slider-lite')]);
     }
 
     try {
+        // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged, WordPress.PHP.IniSet.max_execution_time_Disallowed -- raise the time limit only for this admin-triggered template import, which can take longer than the default.
         @ini_set('max_execution_time', 60 * 5);
 
         $import_export_module = $app->get_component('import-export');
         $import = $import_export_module->import_kit_by_runner($sessionId, $runner);
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- hooking into Elementor's own action, not a plugin-defined hook.
         do_action('elementor/import-export/import-kit/runner/after-run', $import);
         wp_send_json_success($import);
     } catch (\Throwable $throwable) {

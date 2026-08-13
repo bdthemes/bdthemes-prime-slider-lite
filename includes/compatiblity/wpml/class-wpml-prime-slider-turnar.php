@@ -33,13 +33,13 @@ class WPML_PrimeSlider_Turnar extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'turnar_title':
-                return esc_html__('Title', 'bdthemes-prime-slider');
+                return esc_html__('Title', 'bdthemes-prime-slider-lite');
 
             case 'turnar_description':
-                return esc_html__('Description', 'bdthemes-prime-slider');
+                return esc_html__('Description', 'bdthemes-prime-slider-lite');
 
             case 'turnar_url':
-                return esc_html__('Button Link', 'bdthemes-prime-slider');
+                return esc_html__('Button Link', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

@@ -32,7 +32,7 @@ class Pacific extends Widget_Base {
 	}
 
 	public function get_title() {
-		return BDTPS . esc_html__( 'Pacific', 'bdthemes-prime-slider' );
+		return BDTPS . esc_html__( 'Pacific', 'bdthemes-prime-slider-lite' );
 	}
 
 	public function get_icon() {
@@ -77,14 +77,14 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[ 
-				'label' => esc_html__( 'Layout', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Layout', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'layout_style',
 			[ 
-				'label'   => __( 'Style', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => __( 'Style', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 1,
 				'options' => [ 
@@ -98,7 +98,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[ 
-				'label'          => __( 'Columns', 'bdthemes-prime-slider' ),
+				'label'          => __( 'Columns', 'bdthemes-prime-slider-lite' ),
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 3,
 				'tablet_default' => 2,
@@ -117,7 +117,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'item_gap',
 			[ 
-				'label'          => __( 'Item Gap', 'bdthemes-prime-slider' ),
+				'label'          => __( 'Item Gap', 'bdthemes-prime-slider-lite' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => [ 
 					'size' => 5,
@@ -140,7 +140,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'item_height',
 			[ 
-				'label'     => esc_html__( 'Item Height', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Item Height', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -157,19 +157,19 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'content_alignment',
 			[ 
-				'label'     => esc_html__( 'Alignment', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Alignment', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [ 
 					'left'   => [ 
-						'title' => esc_html__( 'Left', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Left', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [ 
-						'title' => esc_html__( 'Center', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Center', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-center',
 					],
 					'right'  => [ 
-						'title' => esc_html__( 'Right', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Right', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-right',
 					],
 				],
@@ -190,7 +190,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_post_query_builder',
 			[ 
-				'label' => __( 'Query', 'bdthemes-prime-slider' ),
+				'label' => __( 'Query', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -202,7 +202,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[ 
-				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -214,7 +214,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_show_title',
 			[ 
-				'label'     => __( 'Modal Show Title', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Modal Show Title', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before'
@@ -249,7 +249,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'show_read_more',
 			[ 
-				'label'     => __( 'Show Read More', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Show Read More', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before'
@@ -259,9 +259,9 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'read_more_text',
 			[ 
-				'label'       => esc_html__( 'Read More Text', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Read More Text', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
+				'default'     => esc_html__( 'Read More', 'bdthemes-prime-slider-lite' ),
 				'label_block' => false,
 				'dynamic'     => [ 'active' => true ],
 				'condition'   => [ 
@@ -273,7 +273,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'show_navigation',
 			[ 
-				'label'     => __( 'Show Navigation', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Show Navigation', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
@@ -292,17 +292,17 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'previous_text_tab',
 			[
-				'label' => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Previous Text', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'previous_text',
 			[
-				'label'   => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Prev', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => [ 'active' => true ],
-				'default' => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+				'default' => esc_html__( 'Prev', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -311,17 +311,17 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'next_text_tab',
 			[
-				'label' => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Next Text', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'next_text',
 			[
-				'label'   => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Next', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => [ 'active' => true ],
-				'default' => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+				'default' => esc_html__( 'Next', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -331,7 +331,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'show_pagination',
 			[ 
-				'label'   => __( 'Show Pagination', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => __( 'Show Pagination', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before',
@@ -345,7 +345,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_carousel_settings',
 			[ 
-				'label' => __( 'Carousel Settings', 'bdthemes-prime-slider' ),
+				'label' => __( 'Carousel Settings', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -358,7 +358,7 @@ class Pacific extends Widget_Base {
 			'slides_to_scroll',
 			[ 
 				'type'           => Controls_Manager::SELECT,
-				'label'          => esc_html__( 'Slides to Scroll', 'bdthemes-prime-slider' ),
+				'label'          => esc_html__( 'Slides to Scroll', 'bdthemes-prime-slider-lite' ),
 				'default'        => 1,
 				'tablet_default' => 1,
 				'mobile_default' => 1,
@@ -376,8 +376,8 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'centered_slides',
 			[ 
-				'label'       => __( 'Center Slide', 'bdthemes-prime-slider' ),
-				'description' => __( 'Use even items from Layout > Columns settings for better preview.', 'bdthemes-prime-slider' ),
+				'label'       => __( 'Center Slide', 'bdthemes-prime-slider-lite' ),
+				'description' => __( 'Use even items from Layout > Columns settings for better preview.', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes'
 			]
@@ -411,7 +411,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_layout',
 			[ 
-				'label' => __( 'Items', 'bdthemes-prime-slider' ),
+				'label' => __( 'Items', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -419,7 +419,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'item_overlay',
 			[ 
-				'label'     => esc_html__( 'Overlay', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-item .bdt-image-wrap:before' => 'background: {{VALUE}};',
@@ -430,7 +430,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'item_overlay_active',
 			[ 
-				'label'     => esc_html__( 'Overlay Active', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Overlay Active', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-item.swiper-slide-active .bdt-image-wrap:before' => 'background: {{VALUE}};',
@@ -442,7 +442,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'item_border_radius',
 			[ 
-				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -454,7 +454,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[ 
-				'label'      => __( 'Content Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Content Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -468,7 +468,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_title',
 			[ 
-				'label'     => esc_html__( 'Title', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Title', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [ 
 					'show_title' => 'yes',
@@ -479,7 +479,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-title a' => 'color: {{VALUE}};',
@@ -490,7 +490,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'title_hover_color',
 			[ 
-				'label'     => esc_html__( 'Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-title a:hover' => 'color: {{VALUE}};',
@@ -502,7 +502,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'title_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-title',
 			]
 		);
@@ -510,7 +510,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'title_bottom_spacing',
 			[ 
-				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -522,7 +522,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[ 
 				'name'     => 'title_text_shadow',
-				'label'    => __( 'Text Shadow', 'bdthemes-prime-slider' ),
+				'label'    => __( 'Text Shadow', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-title a',
 			]
 		);
@@ -532,7 +532,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_meta',
 			[ 
-				'label'      => esc_html__( 'Meta', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Meta', 'bdthemes-prime-slider-lite' ),
 				'tab'        => Controls_Manager::TAB_STYLE,
 				'conditions' => [ 
 					'relation' => 'or',
@@ -553,7 +553,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'meta_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-meta-box, {{WRAPPER}} .bdt-pacific-slider .bdt-meta-box .bdt-author-wrap a' => 'color: {{VALUE}};',
@@ -564,7 +564,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'meta_hover_color',
 			[ 
-				'label'     => esc_html__( 'Author Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Author Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-meta-box .bdt-author-wrap  a:hover' => 'color: {{VALUE}};',
@@ -575,7 +575,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'meta_space_between',
 			[ 
-				'label'     => esc_html__( 'Space Between', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Space Between', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -592,7 +592,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'meta_bottom_spacing',
 			[ 
-				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-meta-box' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -604,7 +604,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'meta_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-meta-box',
 			]
 		);
@@ -614,7 +614,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_category',
 			[ 
-				'label'     => esc_html__( 'Category', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Category', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [ 
 					'show_category' => 'yes'
@@ -625,7 +625,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'category_spacing',
 			[ 
-				'label'     => esc_html__( 'spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-category' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -638,14 +638,14 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_category_normal',
 			[ 
-				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'category_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-category a' => 'color: {{VALUE}};',
@@ -672,7 +672,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'category_border_radius',
 			[ 
-				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -684,7 +684,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'category_padding',
 			[ 
-				'label'      => esc_html__( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -696,7 +696,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'category_space_between',
 			[ 
-				'label'     => esc_html__( 'Space Between', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Space Between', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -722,7 +722,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'category_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-category a',
 			]
 		);
@@ -732,14 +732,14 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_category_hover',
 			[ 
-				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'category_hover_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-category a:hover' => 'color: {{VALUE}};',
@@ -758,7 +758,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'category_hover_border_color',
 			[ 
-				'label'     => esc_html__( 'Border Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'category_border_border!' => '',
@@ -779,7 +779,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_read_more',
 			[ 
-				'label' => __( 'Read More', 'bdthemes-prime-slider' ),
+				'label' => __( 'Read More', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_read_more' => 'yes'
@@ -792,14 +792,14 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'tabs_nav_read_more_normal',
 			[ 
-				'label' => __( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => __( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'read_more_color',
 			[ 
-				'label'     => __( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Text Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-item .bdt-button' => 'color: {{VALUE}}',
@@ -811,7 +811,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'read_more_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-item .bdt-button',
 			]
 		);
@@ -821,14 +821,14 @@ class Pacific extends Widget_Base {
 		$this->start_controls_tab(
 			'tabs_read_more_hover',
 			[ 
-				'label' => __( 'Hover', 'bdthemes-prime-slider' ),
+				'label' => __( 'Hover', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'read_more_hover_color',
 			[ 
-				'label'     => __( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Text Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-item .bdt-button:hover'     => 'color: {{VALUE}}',
@@ -847,7 +847,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_navigation',
 			[ 
-				'label' => __( 'Navigation', 'bdthemes-prime-slider' ),
+				'label' => __( 'Navigation', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_navigation' => 'yes'
@@ -858,7 +858,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'navigation_color',
 			[ 
-				'label'     => __( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Text Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-navigation-wrap' => 'color: {{VALUE}}',
@@ -869,7 +869,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'navigation_hover_color',
 			[ 
-				'label'     => __( 'Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .bdt-navigation-wrap:hover' => 'color: {{VALUE}}',
@@ -881,7 +881,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -894,7 +894,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'navigation_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .bdt-navigation-wrap',
 			]
 		);
@@ -905,7 +905,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_pagination',
 			[ 
-				'label' => __( 'Pagination', 'bdthemes-prime-slider' ),
+				'label' => __( 'Pagination', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -913,7 +913,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'pagination_color',
 			[ 
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet'        => 'color: {{VALUE}}',
@@ -925,7 +925,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'pagination_hover_color',
 			[ 
-				'label'     => __( 'Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover'        => 'color: {{VALUE}}',
@@ -937,7 +937,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'pagination_active_color',
 			[ 
-				'label'     => __( 'Active Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Active Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet-active'                                 => 'color: {{VALUE}}',
@@ -949,7 +949,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -962,7 +962,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'pafination_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-pacific-slider .swiper-pagination-bullet',
 			]
 		);
@@ -974,7 +974,7 @@ class Pacific extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_modal',
 			[ 
-				'label' => esc_html__( 'Modal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Modal', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -982,7 +982,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_heading',
 			[ 
-				'label' => __( 'MODAL', 'bdthemes-prime-slider' ),
+				'label' => __( 'MODAL', 'bdthemes-prime-slider-lite' ),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
@@ -990,7 +990,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_cross_color',
 			[ 
-				'label'     => esc_html__( 'Cross Icon Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Cross Icon Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-modal-close-full' => 'color: {{VALUE}};',
@@ -1001,7 +1001,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_cross_color_hover',
 			[ 
-				'label'     => esc_html__( 'Cross Icon Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Cross Icon Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-modal-close-full:hover' => 'color: {{VALUE}};',
@@ -1013,7 +1013,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[ 
 				'name'     => 'item_background',
-				'label'    => esc_html__( 'Modal Background', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Modal Background', 'bdthemes-prime-slider-lite' ),
 				'selector' => '.bdt-pacific-{{ID}}.bdt-modal-dialog',
 			]
 		);
@@ -1021,7 +1021,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_title_heading',
 			[ 
-				'label' => __( 'TITLE', 'bdthemes-prime-slider' ),
+				'label' => __( 'TITLE', 'bdthemes-prime-slider-lite' ),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
@@ -1029,7 +1029,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_title_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-title a' => 'color: {{VALUE}};',
@@ -1040,7 +1040,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_title_hover_color',
 			[ 
-				'label'     => esc_html__( 'Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-title a:hover' => 'color: {{VALUE}};',
@@ -1052,7 +1052,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'modal_title_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-title',
 			]
 		);
@@ -1060,7 +1060,7 @@ class Pacific extends Widget_Base {
 		$this->add_responsive_control(
 			'modal_title_bottom_spacing',
 			[ 
-				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -1072,7 +1072,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[ 
 				'name'     => 'modal_title_text_shadow',
-				'label'    => __( 'Text Shadow', 'bdthemes-prime-slider' ),
+				'label'    => __( 'Text Shadow', 'bdthemes-prime-slider-lite' ),
 				'selector' => '.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-title a',
 			]
 		);
@@ -1080,7 +1080,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'text_heading',
 			[ 
-				'label'     => __( 'TEXT', 'bdthemes-prime-slider' ),
+				'label'     => __( 'TEXT', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1089,7 +1089,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'text_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-text' => 'color: {{VALUE}};',
@@ -1101,7 +1101,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'text_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-text',
 			]
 		);
@@ -1109,7 +1109,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_image_heading',
 			[ 
-				'label'     => __( 'IMAGE', 'bdthemes-prime-slider' ),
+				'label'     => __( 'IMAGE', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1119,7 +1119,7 @@ class Pacific extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[ 
 				'name'     => 'modal_image_border',
-				'label'    => __( 'Border', 'bdthemes-prime-slider' ),
+				'label'    => __( 'Border', 'bdthemes-prime-slider-lite' ),
 				'selector' => '.bdt-pacific-{{ID}}.bdt-modal-dialog .bdt-background-cover',
 			]
 		);
@@ -1127,7 +1127,7 @@ class Pacific extends Widget_Base {
 		$this->add_control(
 			'modal_image_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors'  => [ 
@@ -1399,7 +1399,7 @@ class Pacific extends Widget_Base {
 				'class' => 'swiper-pacific swiper bdt-slider-style-' . esc_attr($settings['layout_style']),
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ) ),
+				'aria-label' => esc_attr( $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider-lite' ) ),
 				'dir' => $direction,
 			],
 		]);

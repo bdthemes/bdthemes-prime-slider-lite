@@ -27,7 +27,7 @@ class Pro_Widget_Map {
                             'icon'       => 'bdt-widget-icon ps-wi-' . $widget['name'] . ' bdt-pro-unlock-icon',
                             'action_button' => [
                                 'classes'   => ['elementor-button', 'elementor-button-success'],
-                                'text'      => esc_html__('See it in Action', 'bdthemes-prime-slider'),
+                                'text'      => esc_html__('See it in Action', 'bdthemes-prime-slider-lite'),
                                 'url'       => esc_url($widget['demo_url'])
                             ]
                         ];

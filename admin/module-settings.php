@@ -23,7 +23,7 @@ class ModuleService {
 				
 				[ 
 					'name'         => 'astoria',
-					'label'        => esc_html__( 'Astoria', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Astoria', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -34,7 +34,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'avatar',
-					'label'        => esc_html__( 'Avatar', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Avatar', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -45,7 +45,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'blog',
-					'label'        => esc_html__( 'Blog', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Blog', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -56,7 +56,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'cards-stack',
-					'label'        => esc_html__( 'Cards Stack', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Cards Stack', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -66,7 +66,7 @@ class ModuleService {
         ], 
         [
 					'name'         => 'cloud',
-					'label'        => esc_html__( 'Cloud', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Cloud', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -77,7 +77,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'coddle',
-					'label'        => esc_html__( 'Coddle', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Coddle', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -88,7 +88,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'crossroad',
-					'label'        => esc_html__( 'Crossroad', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Crossroad', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -99,7 +99,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'custom',
-					'label'        => esc_html__( 'Custom Slider', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Custom Slider', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'pro',
@@ -110,7 +110,7 @@ class ModuleService {
 
 				//     [
 				//         'name'         => 'diagonal',
-				//         'label'        => esc_html__( 'Diagonal', 'bdthemes-prime-slider' ),
+				//         'label'        => esc_html__( 'Diagonal', 'bdthemes-prime-slider-lite' ),
 				//         'type'         => 'checkbox',
 				//         'default'      => "off",
 				//         'widget_type'  => 'pro',
@@ -122,7 +122,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'dragon',
-					'label'        => esc_html__( 'Dragon', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Dragon', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -133,7 +133,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'elysium',
-					'label'        => esc_html__( 'Elysium', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Elysium', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -144,7 +144,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'escape',
-					'label'        => esc_html__( 'Escape', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Escape', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -155,7 +155,7 @@ class ModuleService {
 
 				[
 					'name'         => 'expo',
-					'label'        => esc_html__( 'Expo', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Expo', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -166,7 +166,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'fiestar',
-					'label'        => esc_html__( 'Fiestar', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Fiestar', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -177,7 +177,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'flexure',
-					'label'        => esc_html__( 'Flexure', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Flexure', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -188,7 +188,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'flogia',
-					'label'        => esc_html__( 'Flogia', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Flogia', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -199,7 +199,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'fluent',
-					'label'        => esc_html__( 'Fluent', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Fluent', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'pro',
@@ -210,7 +210,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'fortune',
-					'label'        => esc_html__( 'Fortune', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Fortune', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -221,7 +221,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'general',
-					'label'        => esc_html__( 'General', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'General', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -232,7 +232,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'isolate',
-					'label'        => esc_html__( 'Isolate', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Isolate', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -243,7 +243,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'knily',
-					'label'        => esc_html__( 'Knily', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Knily', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -254,7 +254,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'marble',
-					'label'        => esc_html__( 'Marble', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Marble', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -265,7 +265,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'material',
-					'label'        => esc_html__( 'Material', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Material', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -276,7 +276,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'mercury',
-					'label'        => esc_html__( 'Mercury', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Mercury', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -287,7 +287,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'monster',
-					'label'        => esc_html__( 'Monster', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Monster', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -298,7 +298,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'mount',
-					'label'        => esc_html__( 'Mount', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Mount', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -309,7 +309,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'multiscroll',
-					'label'        => esc_html__( 'Multiscroll', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Multiscroll', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "on",
 					'widget_type'  => 'free',
@@ -320,7 +320,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'omatic',
-					'label'        => esc_html__( 'Omatic', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Omatic', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -331,7 +331,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'pandora',
-					'label'        => esc_html__( 'Pandora', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Pandora', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -342,7 +342,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'pacific',
-					'label'        => esc_html__( 'Pacific', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Pacific', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -353,7 +353,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'pagepiling',
-					'label'        => esc_html__( 'Pagepiling', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Pagepiling', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -364,7 +364,7 @@ class ModuleService {
 
 				[
 					'name'         => 'panorama',
-					'label'        => esc_html__( 'Panorama', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Panorama', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -375,7 +375,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'paranoia',
-					'label'        => esc_html__( 'Paranoia', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Paranoia', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -386,7 +386,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'pieces',
-					'label'        => esc_html__( 'Pieces', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Pieces', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -397,7 +397,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'prism',
-					'label'        => esc_html__( 'Prism', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Prism', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -408,7 +408,7 @@ class ModuleService {
 
 				// [
 				//     'name'         => 'paramount',
-				//     'label'        => esc_html__( 'Paramount', 'bdthemes-prime-slider' ),
+				//     'label'        => esc_html__( 'Paramount', 'bdthemes-prime-slider-lite' ),
 				//     'type'         => 'checkbox',
 				//     'default'      => "off",
 				//     'widget_type'  => 'pro',
@@ -419,7 +419,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'remote-arrows',
-					'label'        => esc_html__( 'Remote Arrows', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Remote Arrows', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -430,7 +430,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'remote-fraction',
-					'label'        => esc_html__( 'Remote Fraction', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Remote Fraction', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -441,7 +441,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'remote-pagination',
-					'label'        => esc_html__( 'Remote Pagination', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Remote Pagination', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -452,7 +452,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'remote-thumbs',
-					'label'        => esc_html__( 'Remote Thumbs', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Remote Thumbs', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -463,7 +463,7 @@ class ModuleService {
 
 				//     [
 				//         'name'         => 'landscape',
-				//         'label'        => esc_html__( 'Landscape', 'bdthemes-prime-slider' ),
+				//         'label'        => esc_html__( 'Landscape', 'bdthemes-prime-slider-lite' ),
 				//         'type'         => 'checkbox',
 				//         'default'      => "off",
 				//         'widget_type'  => 'pro',
@@ -475,7 +475,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'reveal',
-					'label'        => esc_html__( 'Reveal', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Reveal', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -486,7 +486,7 @@ class ModuleService {
 
 				[
 					'name'         => 'ring',
-					'label'        => esc_html__( 'Ring', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Ring', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -497,7 +497,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'rubix',
-					'label'        => esc_html__( 'Rubix', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Rubix', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -508,7 +508,7 @@ class ModuleService {
 
 				// [
 				//     'name'         => 'radar',
-				//     'label'        => esc_html__( 'Radar', 'bdthemes-prime-slider' ),
+				//     'label'        => esc_html__( 'Radar', 'bdthemes-prime-slider-lite' ),
 				//     'type'         => 'checkbox',
 				//     'default'      => "off",
 				//     'widget_type'  => 'pro',
@@ -519,7 +519,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'sequester',
-					'label'        => esc_html__( 'Sequester', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Sequester', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -530,7 +530,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'sniper',
-					'label'        => esc_html__( 'Sniper', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Sniper', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -541,7 +541,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'storker',
-					'label'        => esc_html__( 'Storker', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Storker', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -552,7 +552,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'super-flow',
-					'label'        => esc_html__( 'Super Flow', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Super Flow', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -563,7 +563,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'tango',
-					'label'        => esc_html__( 'Tango', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Tango', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -574,7 +574,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'titanic',
-					'label'        => esc_html__( 'Titanic', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Titanic', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -585,7 +585,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'turnar',
-					'label'        => esc_html__( 'Turnar', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Turnar', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -595,7 +595,7 @@ class ModuleService {
 				],
 				[ 
 					'name'         => 'motion',
-					'label'        => esc_html__( 'Motion', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Motion', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -606,7 +606,7 @@ class ModuleService {
 
 				// [
 				//     'name'         => 'twinkle',
-				//     'label'        => esc_html__( 'Twinkle', 'bdthemes-prime-slider' ),
+				//     'label'        => esc_html__( 'Twinkle', 'bdthemes-prime-slider-lite' ),
 				//     'type'         => 'checkbox',
 				//     'default'      => "off",
 				//     'widget_type'  => 'free',
@@ -617,7 +617,7 @@ class ModuleService {
 
 				[ 
 					'name'         => 'vertex',
-					'label'        => esc_html__( 'Vertex', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Vertex', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'free',
@@ -627,7 +627,7 @@ class ModuleService {
 				],
 				[ 
 					'name'         => 'woohotspot',
-					'label'        => esc_html__( 'Woo HotSpot', 'bdthemes-prime-slider' ),
+					'label'        => esc_html__( 'Woo HotSpot', 'bdthemes-prime-slider-lite' ),
 					'type'         => 'checkbox',
 					'default'      => "off",
 					'widget_type'  => 'pro',
@@ -639,7 +639,7 @@ class ModuleService {
 			'prime_slider_elementor_extend' => [
 				[
 					'name'        	=> 'adaptive-bg',
-					'label'       	=> esc_html__('Adaptive Background', 'bdthemes-prime-slider'),
+					'label'       	=> esc_html__('Adaptive Background', 'bdthemes-prime-slider-lite'),
 					'type'        	=> 'checkbox',
 					'default'     	=> 'off',
 					'widget_type' 	=> 'pro',
@@ -652,7 +652,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'event-calendar',
-			'label'        => esc_html__( 'Event Calendar', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'Event Calendar', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "off",
 			'plugin_name'  => 'the-events-calendar',
@@ -665,7 +665,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'woocommerce',
-			'label'        => esc_html__( 'WooCommerce', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'WooCommerce', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "on",
 			'widget_type'  => 'free',
@@ -678,7 +678,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'woocircle',
-			'label'        => esc_html__( 'WooCircle', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'WooCircle', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "off",
 			'widget_type'  => 'free',
@@ -691,7 +691,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'wooexpand',
-			'label'        => esc_html__( 'WooExpand', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'WooExpand', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "on",
 			'widget_type'  => 'pro',
@@ -704,7 +704,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'woolamp',
-			'label'        => esc_html__( 'WooLamp', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'WooLamp', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "on",
 			'widget_type'  => 'free',
@@ -717,7 +717,7 @@ class ModuleService {
 
 		$settings_fields['prime_slider_third_party_widget'][] = [ 
 			'name'         => 'woostand',
-			'label'        => esc_html__( 'WooStand', 'bdthemes-prime-slider' ),
+			'label'        => esc_html__( 'WooStand', 'bdthemes-prime-slider-lite' ),
 			'type'         => 'checkbox',
 			'default'      => "on",
 			'widget_type'  => 'pro',
@@ -732,15 +732,15 @@ class ModuleService {
 
 			[ 
 				'name'         => 'live_copy_group_start',
-				'label'        => esc_html__( 'Live Copy or Paste', 'bdthemes-prime-slider' ),
-				'desc'         => __( 'Live copy is a copy feature that allow you to copy and paste content from one domain to another. For example you can copy demo content directly from our demo website.', 'bdthemes-prime-slider' ),
+				'label'        => esc_html__( 'Live Copy or Paste', 'bdthemes-prime-slider-lite' ),
+				'desc'         => __( 'Live copy is a copy feature that allow you to copy and paste content from one domain to another. For example you can copy demo content directly from our demo website.', 'bdthemes-prime-slider-lite' ),
 				'type'         => 'start_group',
 				'content_type' => 'new',
 			],
 
 			[ 
 				'name'        => 'live-copy',
-				'label'       => esc_html__( 'Live Copy/Paste', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Live Copy/Paste', 'bdthemes-prime-slider-lite' ),
 				'type'        => 'checkbox',
 				'default'     => 'off',
 				'widget_type' => 'free',
@@ -756,15 +756,15 @@ class ModuleService {
 
 			[ 
 				'name'         => 'duplicator_group_start',
-				'label'        => esc_html__( 'Duplicator', 'bdthemes-prime-slider' ),
-				'desc'         => __( 'Just hit the button below to enable the duplicator. It can duplicate anything like posts,pages and elementor templates. A masterclass duplication with just one click.', 'bdthemes-prime-slider' ),
+				'label'        => esc_html__( 'Duplicator', 'bdthemes-prime-slider-lite' ),
+				'desc'         => __( 'Just hit the button below to enable the duplicator. It can duplicate anything like posts,pages and elementor templates. A masterclass duplication with just one click.', 'bdthemes-prime-slider-lite' ),
 				'type'         => 'start_group',
 				'content_type' => 'new',
 			],
 
 			[ 
 				'name'        => 'duplicator',
-				'label'       => esc_html__( 'Duplicator', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Duplicator', 'bdthemes-prime-slider-lite' ),
 				'type'        => 'checkbox',
 				'default'     => 'off',
 				'widget_type' => 'free',
@@ -779,15 +779,15 @@ class ModuleService {
 
 			[ 
 				'name'         => 'reveal_effects_group_start',
-				'label'        => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider' ),
-				'desc'         => __( 'Just hit the button below to enable the Reveal Effects on any slider inside Prime Slider', 'bdthemes-prime-slider' ),
+				'label'        => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ),
+				'desc'         => __( 'Just hit the button below to enable the Reveal Effects on any slider inside Prime Slider', 'bdthemes-prime-slider-lite' ),
 				'type'         => 'start_group',
 				'content_type' => 'new',
 			],
 
 			[ 
 				'name'        => 'reveal-effects',
-				'label'       => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ),
 				'type'        => 'checkbox',
 				'default'     => 'off',
 				'widget_type' => 'pro',

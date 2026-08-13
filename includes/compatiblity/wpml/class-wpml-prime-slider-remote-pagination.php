@@ -31,7 +31,7 @@ class WPML_PrimeSlider_Remote_Pagination extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'pagination_number':
-                return esc_html__('Bullet Number', 'bdthemes-prime-slider');
+                return esc_html__('Bullet Number', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

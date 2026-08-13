@@ -27,17 +27,17 @@ class WPML_PrimeSlider_WooHotspot extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'text':
-                return esc_html__('Text', 'bdthemes-prime-slider');
+                return esc_html__('Text', 'bdthemes-prime-slider-lite');
             case 'product_title':
-                return esc_html__('Product Title', 'bdthemes-prime-slider');
+                return esc_html__('Product Title', 'bdthemes-prime-slider-lite');
             case 'product_text':
-                return esc_html__('Product Text', 'bdthemes-prime-slider');
+                return esc_html__('Product Text', 'bdthemes-prime-slider-lite');
             case 'product_price':
-                return esc_html__('Product Price', 'bdthemes-prime-slider');
+                return esc_html__('Product Price', 'bdthemes-prime-slider-lite');
             case 'product_link_text':
-                return esc_html__('Product Button', 'bdthemes-prime-slider');
+                return esc_html__('Product Button', 'bdthemes-prime-slider-lite');
             case 'product_link':
-                return esc_html__('Product Link', 'bdthemes-prime-slider');
+                return esc_html__('Product Link', 'bdthemes-prime-slider-lite');
             default:
                 return '';
         }
@@ -83,17 +83,17 @@ class WPML_PrimeSlider_WooHotspot_Two extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'two_text':
-                return esc_html__('Text', 'bdthemes-prime-slider');
+                return esc_html__('Text', 'bdthemes-prime-slider-lite');
             case 'two_product_title':
-                return esc_html__('Product Title', 'bdthemes-prime-slider');
+                return esc_html__('Product Title', 'bdthemes-prime-slider-lite');
             case 'two_product_text':
-                return esc_html__('Product Text', 'bdthemes-prime-slider');
+                return esc_html__('Product Text', 'bdthemes-prime-slider-lite');
             case 'two_product_price':
-                return esc_html__('Product Price', 'bdthemes-prime-slider');
+                return esc_html__('Product Price', 'bdthemes-prime-slider-lite');
             case 'two_product_link_text':
-                return esc_html__('Product Button', 'bdthemes-prime-slider');
+                return esc_html__('Product Button', 'bdthemes-prime-slider-lite');
             case 'two_product_link':
-                return esc_html__('Product Link', 'bdthemes-prime-slider');
+                return esc_html__('Product Link', 'bdthemes-prime-slider-lite');
             default:
                 return '';
         }
@@ -139,17 +139,17 @@ class WPML_PrimeSlider_WooHotspot_Three extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'three_text':
-                return esc_html__('Text', 'bdthemes-prime-slider');
+                return esc_html__('Text', 'bdthemes-prime-slider-lite');
             case 'three_product_title':
-                return esc_html__('Product Title', 'bdthemes-prime-slider');
+                return esc_html__('Product Title', 'bdthemes-prime-slider-lite');
             case 'three_product_text':
-                return esc_html__('Product Text', 'bdthemes-prime-slider');
+                return esc_html__('Product Text', 'bdthemes-prime-slider-lite');
             case 'three_product_price':
-                return esc_html__('Product Price', 'bdthemes-prime-slider');
+                return esc_html__('Product Price', 'bdthemes-prime-slider-lite');
             case 'three_product_link_text':
-                return esc_html__('Product Button', 'bdthemes-prime-slider');
+                return esc_html__('Product Button', 'bdthemes-prime-slider-lite');
             case 'three_product_link':
-                return esc_html__('Product Link', 'bdthemes-prime-slider');
+                return esc_html__('Product Link', 'bdthemes-prime-slider-lite');
             default:
                 return '';
         }

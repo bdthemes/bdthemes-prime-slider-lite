@@ -18,7 +18,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
     }
 
     public function get_title() {
-        return esc_html__('Zinest', 'bdthemes-prime-slider');
+        return esc_html__('Zinest', 'bdthemes-prime-slider-lite');
     }
 
     public function render_navigation_arrows() {

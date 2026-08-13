@@ -39,17 +39,17 @@ class WPML_PrimeSlider_Sequester extends WPML_Module_With_Items {
     protected function get_title( $field ) {
         switch ( $field ) {
             case 'title':
-                return esc_html__( 'Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Title', 'bdthemes-prime-slider-lite' );
             case 'sub_title':
-                return esc_html__( 'Sub Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Sub Title', 'bdthemes-prime-slider-lite' );
             case 'slide_button_text':
-                return esc_html__( 'Button Text', 'bdthemes-prime-slider' );
+                return esc_html__( 'Button Text', 'bdthemes-prime-slider-lite' );
             case 'button_link':
-                return esc_html__( 'Button Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Button Link', 'bdthemes-prime-slider-lite' );
             case 'title_link':
-                return esc_html__( 'Title Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Title Link', 'bdthemes-prime-slider-lite' );
             case 'excerpt':
-                return esc_html__( 'Description', 'bdthemes-prime-slider' );
+                return esc_html__( 'Description', 'bdthemes-prime-slider-lite' );
             default:
                 return '';
         }
@@ -105,9 +105,9 @@ class WPML_PrimeSlider_Sequester_Social_Link extends WPML_Module_With_Items {
     protected function get_title( $field ) {
         switch ( $field ) {
             case 'social_link_title':
-                return esc_html__( 'Social Link Title', 'bdthemes-prime-slider' );
+                return esc_html__( 'Social Link Title', 'bdthemes-prime-slider-lite' );
             case 'social_icon_link':
-                return esc_html__( 'Social Icon Link', 'bdthemes-prime-slider' );
+                return esc_html__( 'Social Icon Link', 'bdthemes-prime-slider-lite' );
             default:
                 return '';
         }

@@ -28,7 +28,7 @@ class Elysium extends Widget_Base {
 	}
 
 	public function get_title() {
-		return BDTPS . esc_html__( 'Elysium', 'bdthemes-prime-slider' );
+		return BDTPS . esc_html__( 'Elysium', 'bdthemes-prime-slider-lite' );
 	}
 
 	public function get_icon() {
@@ -77,7 +77,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_sliders',
 			[
-				'label' => esc_html__('Sliders', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Sliders', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
@@ -88,7 +88,7 @@ class Elysium extends Widget_Base {
         $repeater->start_controls_tab(
             'tab_slider_content',
             [
-                'label' => __('Content', 'bdthemes-prime-slider'),
+                'label' => __('Content', 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -107,7 +107,7 @@ class Elysium extends Widget_Base {
         $repeater->start_controls_tab(
             'tab_slider_optional',
             [
-                'label' => __('Optional', 'bdthemes-prime-slider'),
+                'label' => __('Optional', 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -127,28 +127,28 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'slides',
 			[
-				'label'   => esc_html__('Items', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Items', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'title'     => esc_html__('Item One', 'bdthemes-prime-slider'),
-						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item One', 'bdthemes-prime-slider-lite'),
+						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider-lite'),
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-1.svg']
 					],
 					[
-						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider'),
-						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Two', 'bdthemes-prime-slider-lite'),
+						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider-lite'),
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-4.svg']
 					],
 					[
-						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider'),
-						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Three', 'bdthemes-prime-slider-lite'),
+						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider-lite'),
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-5.svg']
 					],
 					[
-						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider'),
-						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider'),
+						'title'     => esc_html__('Item Four', 'bdthemes-prime-slider-lite'),
+						'text'     => esc_html__('Prime Slider Addons for elementor!', 'bdthemes-prime-slider-lite'),
 						'image'     => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gallery/item-6.svg']
 					],
 				],
@@ -161,14 +161,14 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[
-				'label' => esc_html__('Additional Options', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Additional Options', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
 		$this->add_responsive_control(
 			'slider_slider_height',
 			[
-				'label' => esc_html__('Slider Height', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Slider Height', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'size_units' => ['px', 'vh'],
 				'range' => [
@@ -190,7 +190,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'slider_image_height',
 			[
-				'label' => esc_html__('Image Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label' => esc_html__('Image Height', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -228,19 +228,19 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
             'content_alignment',
             [
-                'label'   => esc_html__( 'Alignment', 'bdthemes-prime-slider' ),
+                'label'   => esc_html__( 'Alignment', 'bdthemes-prime-slider-lite' ),
                 'type'    => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__( 'Left', 'bdthemes-prime-slider' ),
+                        'title' => esc_html__( 'Left', 'bdthemes-prime-slider-lite' ),
                         'icon'  => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__( 'Center', 'bdthemes-prime-slider' ),
+                        'title' => esc_html__( 'Center', 'bdthemes-prime-slider-lite' ),
                         'icon'  => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__( 'Right', 'bdthemes-prime-slider' ),
+                        'title' => esc_html__( 'Right', 'bdthemes-prime-slider-lite' ),
                         'icon'  => 'eicon-text-align-right',
                     ],
                 ],
@@ -261,7 +261,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_carousel_settings',
 			[
-				'label' => __( 'Slider Settings', 'bdthemes-prime-slider' ),
+				'label' => __( 'Slider Settings', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -288,7 +288,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'slides_per_view',
 			[
-				'label'      => esc_html__( 'Slides per view', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Slides per view', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [
@@ -312,7 +312,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'space_between',
 			[
-				'label'      => esc_html__( 'Space between', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Space between', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [
@@ -337,7 +337,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_settings',
 			[
-				'label' 	=> __( 'Navigation', 'bdthemes-prime-slider' ),
+				'label' 	=> __( 'Navigation', 'bdthemes-prime-slider-lite' ),
 				'tab'   	=> Controls_Manager::TAB_CONTENT,
 				'condition' => [
 					'show_navigation_arrows' => 'yes',
@@ -348,20 +348,20 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'navigation_previous_text',
 			[
-				'label'       => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Previous Text', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => [ 'active' => true ],
-				'default'     => esc_html__( 'Prev', 'bdthemes-prime-slider' ),
+				'default'     => esc_html__( 'Prev', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'navigation_next_text',
 			[
-				'label'        => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+				'label'        => esc_html__( 'Next Text', 'bdthemes-prime-slider-lite' ),
 				'type'         => Controls_Manager::TEXT,
 				'dynamic'      => [ 'active' => true ],
-				'default'      => esc_html__( 'Next', 'bdthemes-prime-slider' ),
+				'default'      => esc_html__( 'Next', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -378,7 +378,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_layout',
 			[
-				'label'     => __( 'Sliders', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Sliders', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -394,7 +394,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label'      => __( 'Content Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Content Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -408,7 +408,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label' => esc_html__( 'Slide image', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Slide image', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -417,13 +417,14 @@ class Elysium extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name'           => 'overlay_background',
-				'label'          => esc_html__( 'Overlay', 'bdthemes-prime-slider' ),
+				'label'          => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ),
 				'types'          => [ 'classic', 'gradient' ],
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 				'exclude'        => [ 'image' ],
 				'selector'       => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-image-wrap::before',
 				'fields_options' => [
 					'background' => [
-						'label' => esc_html__( 'Overlay color', 'bdthemes-prime-slider' ),
+						'label' => esc_html__( 'Overlay color', 'bdthemes-prime-slider-lite' ),
 					],
 				],
 			]
@@ -432,7 +433,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'inactive_slide_blur',
 			[
-				'label'       => esc_html__( 'Inactive image blur', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'       => esc_html__( 'Inactive image blur', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'        => Controls_Manager::SLIDER,
 				'size_units'  => [ 'px' ],
 				'range'       => [
@@ -452,7 +453,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'inactive_slide_brightness',
 			[
-				'label'       => esc_html__( 'Inactive image brightness', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'       => esc_html__( 'Inactive image brightness', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'        => Controls_Manager::SLIDER,
 				'size_units'  => [ '%' ],
 				'range'       => [
@@ -471,7 +472,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'inactive_slide_scale',
 			[
-				'label'      => esc_html__( 'Inactive image scale', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Inactive image scale', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [
@@ -500,7 +501,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'image_border_radius',
 			[
-				'label'      => __( 'Border radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -513,7 +514,7 @@ class Elysium extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'image_box_shadow',
-				'label'    => esc_html__( 'Shadow', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Shadow', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap',
 			]
 		);
@@ -522,7 +523,7 @@ class Elysium extends Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name'     => 'custom_css_filters',
-				'label'    => esc_html__( 'Active slide image CSS filters', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Active slide image CSS filters', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-image-wrap .bdt-img',
 				'separator' => 'before',
 			]
@@ -533,7 +534,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_title',
 			[
-				'label'     => __( 'Title', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Title', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_title' => 'yes',
@@ -544,7 +545,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-title-wrap .bdt-title, 
@@ -556,7 +557,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'title_hover_color',
 			[
-				'label'     => __( 'Hover Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Hover Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-title-wrap .bdt-title:hover, {{WRAPPER}} .bdt-prime-slider-elysium .bdt-item.swiper-slide-active .bdt-title-wrap .bdt-title a:hover' => 'color: {{VALUE}};',
@@ -567,7 +568,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -579,7 +580,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'title_margin',
 			[
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -600,7 +601,7 @@ class Elysium extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name' => 'title_text_stroke',
-				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
+				'label'    => esc_html__('Text Stroke', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-title-wrap .bdt-title',
             ]
         );
@@ -609,7 +610,7 @@ class Elysium extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'title_text_shadow',
-				'label' => __( 'Text Shadow', 'bdthemes-prime-slider'),
+				'label' => __( 'Text Shadow', 'bdthemes-prime-slider-lite'),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-title-wrap .bdt-title',
 			]
 		);
@@ -617,7 +618,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_reveal_enable',
 			[
-				'label'        => esc_html__( 'Reveal effect', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'        => esc_html__( 'Reveal effect', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'off',
@@ -629,7 +630,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_reveal_stagger',
 			[
-				'label'     => esc_html__( 'Title stagger (ms)', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Title stagger (ms)', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 30,
 				'min'       => 0,
@@ -643,7 +644,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_reveal_text_delay',
 			[
-				'label'     => esc_html__( 'Description delay (ms)', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Description delay (ms)', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 280,
 				'min'       => 0,
@@ -657,7 +658,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_reveal_translate_y',
 			[
-				'label'     => esc_html__( 'Translate Y (px)', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Translate Y (px)', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 10,
 				'min'       => 0,
@@ -671,7 +672,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_reveal_blur',
 			[
-				'label'     => esc_html__( 'Blur (px)', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Blur (px)', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 6,
 				'min'       => 0,
@@ -687,7 +688,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_text',
 			[
-				'label'     => __( 'Text', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Text', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_text' => 'yes',
@@ -698,7 +699,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'text_color',
 			[
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-text' => 'color: {{VALUE}};',
@@ -719,7 +720,7 @@ class Elysium extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'label' => __( 'Text Shadow', 'bdthemes-prime-slider'),
+				'label' => __( 'Text Shadow', 'bdthemes-prime-slider-lite'),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider-elysium .bdt-text',
 			]
 		);
@@ -729,7 +730,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_navigation',
 			[
-				'label'     => __('Navigation', 'bdthemes-prime-slider'),
+				'label'     => __('Navigation', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_navigation_arrows' => 'yes',
@@ -740,7 +741,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagi_nav_margin',
 			[
-				'label'      => __( 'Spacing', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -752,7 +753,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'navigation_color',
 			[
-				'label'     => __('Color', 'bdthemes-prime-slider'),
+				'label'     => __('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link, 
@@ -764,7 +765,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'navigation_hover_color',
 			[
-				'label'     => __('Hover Color', 'bdthemes-prime-slider'),
+				'label'     => __('Hover Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-navigation-btn .bdt-link:hover, 
@@ -786,7 +787,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_pagination',
 			[
-				'label'     => __('Pagination', 'bdthemes-prime-slider'),
+				'label'     => __('Pagination', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_navigation_dots' => 'yes',
@@ -797,7 +798,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_margin',
 			[
-				'label'      => __( 'Spacing', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -813,14 +814,14 @@ class Elysium extends Widget_Base {
 		$this->start_controls_tab(
 			'pagination_normal_tab',
 			[
-				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'pagination_color',
 			[
-				'label'     => __('Color', 'bdthemes-prime-slider'),
+				'label'     => __('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'background: {{VALUE}}',
@@ -831,7 +832,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_width',
 			[
-				'label' => esc_html__('Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label' => esc_html__('Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}};',
@@ -846,7 +847,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_height',
 			[
-				'label' => esc_html__('Height', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label' => esc_html__('Height', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}};',
@@ -866,7 +867,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -880,7 +881,7 @@ class Elysium extends Widget_Base {
 		$this->start_controls_tab(
 			'pagination_active_tab',
 			[
-				'label' => esc_html__( 'Active', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Active', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -888,7 +889,7 @@ class Elysium extends Widget_Base {
 		$this->add_control(
 			'pagination_active_color',
 			[
-				'label'     => __('Color', 'bdthemes-prime-slider'),
+				'label'     => __('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background: {{VALUE}}',
@@ -899,7 +900,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_width_active',
 			[
-				'label' => esc_html__('Width', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Width', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
@@ -910,7 +911,7 @@ class Elysium extends Widget_Base {
 		$this->add_responsive_control(
 			'pagination_height_active',
 			[
-				'label' => esc_html__('Height', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Height', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-elysium .bdt-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'height: {{SIZE}}{{UNIT}};',
@@ -1044,7 +1045,7 @@ class Elysium extends Widget_Base {
 				'class' => 'bdt-slider-continer',
 				'role' => 'region',
 				'aria-roledescription' => 'carousel',
-				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider' ),
+				'aria-label' => $this->get_title() . ' ' . esc_html__( 'Slider', 'bdthemes-prime-slider-lite' ),
 				'dir' => $direction,
 			],
 		]);
@@ -1071,7 +1072,7 @@ class Elysium extends Widget_Base {
 								<?php
 								echo ! empty( $settings['navigation_next_text'] )
 									? esc_html( $settings['navigation_next_text'] )
-									: esc_html__( 'Next', 'bdthemes-prime-slider' );
+									: esc_html__( 'Next', 'bdthemes-prime-slider-lite' );
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">
@@ -1088,7 +1089,7 @@ class Elysium extends Widget_Base {
 								<?php
 								echo ! empty( $settings['navigation_previous_text'] )
 									? esc_html( $settings['navigation_previous_text'] )
-									: esc_html__( 'Prev', 'bdthemes-prime-slider' );
+									: esc_html__( 'Prev', 'bdthemes-prime-slider-lite' );
 								?>
 							</span>
 							<svg class="bdt-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32">

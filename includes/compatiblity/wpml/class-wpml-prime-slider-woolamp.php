@@ -35,9 +35,9 @@ class WPML_PrimeSlider_WooLamp extends WPML_Module_With_Items {
     protected function get_title( $field ) {
         switch ( $field ) {
             case 'text':
-                return esc_html__( 'Custom Label', 'bdthemes-prime-slider' );
+                return esc_html__( 'Custom Label', 'bdthemes-prime-slider-lite' );
             case 'button':
-                return esc_html__( 'Social Media', 'bdthemes-prime-slider' );
+                return esc_html__( 'Social Media', 'bdthemes-prime-slider-lite' );
             default:
                 return '';
         }

@@ -12,6 +12,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 // Settings Filters
 if (!function_exists('ps_is_dashboard_enabled')) {
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
     function ps_is_dashboard_enabled() {
         return apply_filters('PrimeSlider/settings/dashboard', true);
     }

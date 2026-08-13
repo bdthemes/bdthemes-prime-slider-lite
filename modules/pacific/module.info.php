@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 return [
-	'title'              => esc_html__( 'Pacific', 'bdthemes-prime-slider' ),
+	'title'              => esc_html__( 'Pacific', 'bdthemes-prime-slider-lite' ),
 	'required'           => true,
 	'default_activation' => false,
 	'has_style'          => true,

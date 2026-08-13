@@ -36,7 +36,7 @@ class Blog extends Widget_Base {
     }
 
     public function get_title() {
-        return BDTPS . esc_html__('Blog', 'bdthemes-prime-slider');
+        return BDTPS . esc_html__('Blog', 'bdthemes-prime-slider-lite');
     }
 
     public function get_icon() {
@@ -91,7 +91,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_content_layout',
             [
-                'label' => esc_html__('Layout', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Layout', 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -103,7 +103,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'content_max_width',
             [
-                'label'     => esc_html__('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Content Max Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range'     => [
@@ -148,7 +148,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_button_text',
             [
-                'label'     => esc_html__('Show Button', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Show Button', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -161,11 +161,11 @@ class Blog extends Widget_Base {
         $this->add_control(
             'button_text',
             [
-                'label'       => esc_html__('Button Text', 'bdthemes-prime-slider'),
+                'label'       => esc_html__('Button Text', 'bdthemes-prime-slider-lite'),
                 'type'        => Controls_Manager::TEXT,
                 'dynamic'     => [ 'active' => true ],
-                'placeholder' => esc_html__('Read More', 'bdthemes-prime-slider'),
-                'default'     => esc_html__('Read More', 'bdthemes-prime-slider'),
+                'placeholder' => esc_html__('Read More', 'bdthemes-prime-slider-lite'),
+                'default'     => esc_html__('Read More', 'bdthemes-prime-slider-lite'),
                 'label_block' => false,
                 'condition'   => [
                     'show_button_text' => 'yes',
@@ -182,7 +182,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_scroll_button',
             [
-                'label'     => esc_html__('Show Scroll Button', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Show Scroll Button', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -194,7 +194,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_category',
             [
-                'label'   => esc_html__('Show Category', 'bdthemes-prime-slider'),
+                'label'   => esc_html__('Show Category', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
@@ -210,7 +210,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_meta',
             [
-                'label'   => esc_html__('Show Meta', 'bdthemes-prime-slider'),
+                'label'   => esc_html__('Show Meta', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
@@ -219,7 +219,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_author',
             [
-                'label'   => esc_html__('Show Author', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Author', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
@@ -233,7 +233,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_admin_info',
             [
-                'label'     => esc_html__('Show Author', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Show Author', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -247,7 +247,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_date',
             [
-                'label'   => esc_html__('Show Date', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Date', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
@@ -260,7 +260,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_comments',
             [
-                'label'   => esc_html__('Show Comments', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Comments', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
@@ -280,7 +280,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_navigation_arrows',
             [
-                'label'     => esc_html__('Show Arrows', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Show Arrows', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -292,7 +292,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_navigation_dots',
             [
-                'label'     => esc_html__('Show Dots', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Show Dots', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -304,19 +304,19 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'content_alignment',
             [
-                'label'     => esc_html__('Alignment', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Alignment', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::CHOOSE,
                 'options'   => [
                     'left'   => [
-                        'title' => esc_html__('Left', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Left', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Center', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-center',
                     ],
                     'right'  => [
-                        'title' => esc_html__('Right', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Right', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-right',
                     ],
                 ],
@@ -332,19 +332,19 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'ps_meta_alignment',
             [
-                'label'     => esc_html__('Meta Alignment', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Meta Alignment', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::CHOOSE,
                 'options'   => [
                     'left'     => [
-                        'title' => esc_html__('Left', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Left', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-left',
                     ],
                     'center'   => [
-                        'title' => esc_html__('Center', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Center', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-center',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Right', 'bdthemes-prime-slider'),
+                        'title' => esc_html__('Right', 'bdthemes-prime-slider-lite'),
                         'icon'  => 'eicon-h-align-right',
                     ],
                 ],
@@ -363,7 +363,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_post_query_builder',
             [
-                'label' => __('Query', 'bdthemes-prime-slider'),
+                'label' => __('Query', 'bdthemes-prime-slider-lite'),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -383,7 +383,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_featured_post_settings',
             [
-                'label'     => esc_html__('Featured Post', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Featured Post', 'bdthemes-prime-slider-lite'),
                 'condition' => [
                     '_skin' => 'zinest',
                 ],
@@ -392,7 +392,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_featured_post',
             [
-                'label'     => esc_html__('Show Featured Post', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Show Featured Post', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
             ]
@@ -400,7 +400,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_query_heading',
             [
-                'label'     => __('Featured Item', 'bdthemes-prime-slider'),
+                'label'     => __('Featured Item', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -411,7 +411,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_item_posts_selected_ids',
             [
-                'label'       => __('Select Posts', 'bdthemes-prime-slider'),
+                'label'       => __('Select Posts', 'bdthemes-prime-slider-lite'),
                 'type'        => Dynamic_Select::TYPE,
                 'multiple'    => true,
                 'label_block' => true,
@@ -430,7 +430,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_content_scroll_button',
             [
-                'label'     => esc_html__('Scroll Down', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Scroll Down', 'bdthemes-prime-slider-lite'),
                 'condition' => [
                     'show_scroll_button' => ['yes'],
                     '_skin!'             => ['zinest', 'folio'],
@@ -441,7 +441,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'duration',
             [
-                'label'      => esc_html__('Duration', 'bdthemes-prime-slider'),
+                'label'      => esc_html__('Duration', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => [
@@ -457,7 +457,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'offset',
             [
-                'label' => esc_html__('Offset', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label' => esc_html__('Offset', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -473,21 +473,21 @@ class Blog extends Widget_Base {
         $this->add_control(
             'scroll_button_text',
             [
-                'label'       => esc_html__('Button Text', 'bdthemes-prime-slider'),
+                'label'       => esc_html__('Button Text', 'bdthemes-prime-slider-lite'),
                 'type'        => Controls_Manager::TEXT,
                 'dynamic'     => ['active' => true],
-                'default'     => esc_html__('Scroll Down', 'bdthemes-prime-slider'),
-                'placeholder' => esc_html__('Scroll Down', 'bdthemes-prime-slider'),
+                'default'     => esc_html__('Scroll Down', 'bdthemes-prime-slider-lite'),
+                'placeholder' => esc_html__('Scroll Down', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'section_id',
             [
-                'label'       => esc_html__('Section ID', 'bdthemes-prime-slider'),
+                'label'       => esc_html__('Section ID', 'bdthemes-prime-slider-lite'),
                 'type'        => Controls_Manager::TEXT,
                 'default'     => 'my-header',
-                'description' => esc_html__("By clicking this scroll button, to which section in your page you want to go? Just write that's section ID here such 'my-header'. N.B: No need to add '#'.", 'bdthemes-prime-slider'),
+                'description' => esc_html__("By clicking this scroll button, to which section in your page you want to go? Just write that's section ID here such 'my-header'. N.B: No need to add '#'.", 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -496,7 +496,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_animation',
             [
-                'label' => esc_html__('Slider Settings', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Slider Settings', 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -518,7 +518,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_advanced_animation',
             [
-                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'tab'       => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -526,7 +526,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'animation_status',
             [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider'),
+                'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -537,12 +537,12 @@ class Blog extends Widget_Base {
             $this->add_control(
                 'animation_of',
                 [
-                    'label'       => __('Animation Of', 'bdthemes-prime-slider'),
+                    'label'       => __('Animation Of', 'bdthemes-prime-slider-lite'),
                     'type'        => Controls_Manager::SELECT2,
                     'multiple' => true,
                     'options'  => [
-                        '.bdt-title-tag'            => __('Title', 'bdthemes-prime-slider'),
-                        '.bdt-blog-text' => __('Text', 'bdthemes-prime-slider'),
+                        '.bdt-title-tag'            => __('Title', 'bdthemes-prime-slider-lite'),
+                        '.bdt-blog-text' => __('Text', 'bdthemes-prime-slider-lite'),
                     ],
                     'default'  => ['.bdt-title-tag'],
                     'condition' => [
@@ -570,7 +570,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_sliders',
             [
-                'label' => esc_html__('Sliders', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Sliders', 'bdthemes-prime-slider-lite'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -578,13 +578,13 @@ class Blog extends Widget_Base {
         $this->add_control(
             'overlay',
             [
-                'label'     => esc_html__('Overlay', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Overlay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::SELECT,
                 'default'   => 'background',
                 'options'   => [
-                    'none'       => esc_html__('None', 'bdthemes-prime-slider'),
-                    'background' => esc_html__('Background', 'bdthemes-prime-slider'),
-                    'blend'      => esc_html__('Blend', 'bdthemes-prime-slider'),
+                    'none'       => esc_html__('None', 'bdthemes-prime-slider-lite'),
+                    'background' => esc_html__('Background', 'bdthemes-prime-slider-lite'),
+                    'blend'      => esc_html__('Blend', 'bdthemes-prime-slider-lite'),
                 ],
                 'classes'   => BDTPS_CORE_IS_PC
             ]
@@ -593,7 +593,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'overlay_color',
             [
-                'label'     => esc_html__('Overlay Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Overlay Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'condition' => [
                     'overlay' => ['background', 'blend'],
@@ -608,7 +608,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'blend_type',
             [
-                'label'     => esc_html__('Blend Type', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Blend Type', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SELECT,
                 'default'   => 'multiply',
                 'options'   => prime_slider_blend_options(),
@@ -621,7 +621,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'content_margin',
             [
-                'label'      => esc_html__('Content Margin', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'      => esc_html__('Content Margin', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -638,7 +638,7 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'slider_title_style',
             [
-                'label'     => __('Title', 'bdthemes-prime-slider'),
+                'label'     => __('Title', 'bdthemes-prime-slider-lite'),
                 'condition' => [
                     'show_title' => ['yes'],
                 ],
@@ -648,7 +648,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag a' => 'color: {{VALUE}};',
@@ -662,7 +662,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'first_word_title_color',
             [
-                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('First Word Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag a span' => 'color: {{VALUE}};',
@@ -674,7 +674,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'      => 'title_typography',
-                'label'     => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
                 'condition' => [
                     'show_title' => ['yes'],
@@ -686,7 +686,7 @@ class Blog extends Widget_Base {
             Group_Control_Text_Stroke::get_type(),
             [
                 'name'      => 'title_text_stroke',
-                'label'     => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Text Stroke', 'bdthemes-prime-slider-lite'),
                 'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag a',
                 'condition' => [
                     'show_title' => ['yes'],
@@ -697,7 +697,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'title_width',
             [
-                'label'     => esc_html__('Title Width', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Title Width', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -718,7 +718,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'prime_slider_title_spacing',
             [
-                'label'     => esc_html__('Title Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Title Spacing', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -738,7 +738,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'title_style_color',
             [
-                'label'     => esc_html__('Separetor Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Separetor Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-prime-slider-desc .bdt-main-title:before, {{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-prime-slider-desc .bdt-main-title:after' => 'background: {{VALUE}};',
@@ -756,7 +756,7 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'slider_style_excerpt',
             [
-                'label'     => esc_html__('Excerpt', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Excerpt', 'bdthemes-prime-slider-lite'),
                 'condition' => [
                     'show_excerpt' => ['yes'],
                     '_skin!'       => 'zinest',
@@ -767,7 +767,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'excerpt_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-blog-text' => 'color: {{VALUE}};',
@@ -782,7 +782,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'excerpt_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-blog-text',
                 'condition' => [
                     '_skin!' => 'zinest',
@@ -793,7 +793,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'excerpt_width',
             [
-                'label'          => __('Container Width', 'bdthemes-prime-slider'),
+                'label'          => __('Container Width', 'bdthemes-prime-slider-lite'),
                 'type'           => Controls_Manager::SLIDER,
                 'default'        => [
                     'unit' => 'px',
@@ -824,7 +824,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'prime_slider_excerpt_spacing',
             [
-                'label'     => esc_html__('Excerpt Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Excerpt Spacing', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -847,7 +847,7 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'slider_button_style',
             [
-                'label'     => __('Button', 'bdthemes-prime-slider'),
+                'label'     => __('Button', 'bdthemes-prime-slider-lite'),
                 'condition' => [
                     'show_button_text' => 'yes',
                     '_skin!' => 'zinest',
@@ -858,7 +858,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slider_button_style_normal',
             [
-                'label'     => esc_html__('Normal', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Normal', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -870,7 +870,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_text_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn'       => 'color: {{VALUE}};',
@@ -886,7 +886,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_background_color',
             [
-                'label'     => __('Background Color', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label'     => __('Background Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn' => 'background-color: {{VALUE}};',
@@ -912,7 +912,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'slide_button_border_radius',
             [
-                'label'      => __('Border Radius', 'bdthemes-prime-slider'),
+                'label'      => __('Border Radius', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -927,7 +927,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'slide_button_text_padding',
             [
-                'label'      => __('Padding', 'bdthemes-prime-slider'),
+                'label'      => __('Padding', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -942,7 +942,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'slide_button_text_margin',
             [
-                'label'      => __('Margin', 'bdthemes-prime-slider'),
+                'label'      => __('Margin', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -979,7 +979,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slider_button_style_hover',
             [
-                'label'     => esc_html__('Hover', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Hover', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -991,7 +991,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_hover_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn:hover'       => 'color: {{VALUE}};',
@@ -1007,7 +1007,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_background_hover_color',
             [
-                'label'     => __('Background Color', 'bdthemes-prime-slider'),
+                'label'     => __('Background Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn:before' => 'background-color: {{VALUE}};',
@@ -1021,7 +1021,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_hover_border_color',
             [
-                'label'     => __('Border Color', 'bdthemes-prime-slider'),
+                'label'     => __('Border Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'condition' => [
                     'slide_button_border_border!' => '',
@@ -1042,7 +1042,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_social_icon',
             [
-                'label'     => esc_html__('Social Link', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Social Link', 'bdthemes-prime-slider-lite'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_social_icon' => 'yes',
@@ -1056,14 +1056,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_social_icon_normal',
             [
-                'label' => esc_html__('Normal', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Normal', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'social_icon_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon i'   => 'color: {{VALUE}};',
@@ -1096,7 +1096,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'social_icon_radius',
             [
-                'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
+                'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -1108,7 +1108,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'social_icon_padding',
             [
-                'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
+                'label'      => esc_html__('Padding', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -1128,7 +1128,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'social_icon_size',
             [
-                'label'     => __('Icon Size', 'bdthemes-prime-slider'),
+                'label'     => __('Icon Size', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -1145,7 +1145,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'social_icon_spacing',
             [
-                'label'     => esc_html__('Space Between', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Space Between', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -1164,7 +1164,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_social_icon_text_color',
             [
-                'label'     => esc_html__('Text Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Text Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon h3' => 'color: {{VALUE}};',
@@ -1190,7 +1190,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'social_icon_tooltip',
             [
-                'label'   => esc_html__('Show Tooltip', 'bdthemes-prime-slider'),
+                'label'   => esc_html__('Show Tooltip', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
@@ -1203,14 +1203,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_social_icon_hover',
             [
-                'label' => esc_html__('Hover', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Hover', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'social_icon_hover_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-social-icon a:hover i'   => 'color: {{VALUE}};',
@@ -1231,7 +1231,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'icon_hover_border_color',
             [
-                'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'condition' => [
                     'social_icon_border_border!' => '',
@@ -1251,7 +1251,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_scroll_button',
             [
-                'label'     => esc_html__('Scroll Down', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Scroll Down', 'bdthemes-prime-slider-lite'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_scroll_button' => ['yes'],
@@ -1265,14 +1265,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_scroll_button_normal',
             [
-                'label' => esc_html__('Normal', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Normal', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'scroll_button_text_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span'       => 'color: {{VALUE}};',
@@ -1286,14 +1286,14 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'scroll_button_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span',
             ]
         );
         $this->add_responsive_control(
             'scroll_button_space_between',
             [
-                'label'      => esc_html__('Space Between', 'bdthemes-prime-slider'),
+                'label'      => esc_html__('Space Between', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em'],
                 'selectors'  => [
@@ -1307,14 +1307,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_scroll_button_hover',
             [
-                'label' => esc_html__('Hover', 'bdthemes-prime-slider'),
+                'label' => esc_html__('Hover', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'scroll_button_hover_color',
             [
-                'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down:hover span'       => 'color: {{VALUE}};',
@@ -1331,7 +1331,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_category',
             [
-                'label'     => esc_html__('Category', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Category', 'bdthemes-prime-slider-lite'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_category' => 'yes',
@@ -1345,14 +1345,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'category_style_normal',
             [
-                'label' => __('Normal', 'bdthemes-prime-slider'),
+                'label' => __('Normal', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'category_icon_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a' => 'color: {{VALUE}}',
@@ -1363,7 +1363,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'category_icon_background_color',
             [
-                'label'     => __('Background', 'bdthemes-prime-slider'),
+                'label'     => __('Background', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a' => 'background: {{VALUE}}',
@@ -1382,7 +1382,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'category_border_radius',
             [
-                'label'      => __('Border Radius', 'bdthemes-prime-slider'),
+                'label'      => __('Border Radius', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -1394,7 +1394,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'category_padding',
             [
-                'label'      => __('Padding', 'bdthemes-prime-slider'),
+                'label'      => __('Padding', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
@@ -1407,7 +1407,7 @@ class Blog extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name'     => 'category_box_shadow',
-                'label'    => esc_html__('Box Shadow', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Box Shadow', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a',
             ]
         );
@@ -1416,7 +1416,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'category_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a',
             ]
         );
@@ -1426,14 +1426,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'category_style_hover',
             [
-                'label' => __('Hover', 'bdthemes-prime-slider'),
+                'label' => __('Hover', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'category_hover_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a:hover' => 'color: {{VALUE}};',
@@ -1444,7 +1444,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'category_background_hover_color',
             [
-                'label'     => __('Background', 'bdthemes-prime-slider'),
+                'label'     => __('Background', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-category a:hover' => 'background-color: {{VALUE}};',
@@ -1455,7 +1455,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'category_hover_border_color',
             [
-                'label'     => __('Border Color', 'bdthemes-prime-slider'),
+                'label'     => __('Border Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'condition' => [
                     'category_border_border!' => '',
@@ -1475,7 +1475,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_meta',
             [
-                'label'     => esc_html__('Meta', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Meta', 'bdthemes-prime-slider-lite'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_meta' => 'yes',
@@ -1486,7 +1486,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_width',
             [
-                'label'     => esc_html__('Container Width', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Container Width', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
@@ -1506,7 +1506,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'meta_content_heading',
             [
-                'label'     => __('Meta Content', 'bdthemes-prime-slider'),
+                'label'     => __('Meta Content', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
             ]
         );
@@ -1514,9 +1514,10 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SWITCHER,
-                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
+                /* translators: 1: opening link tag, 2: closing link tag */
+                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1$s look here %2$s', 'bdthemes-prime-slider-lite'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
                 'classes'   => BDTPS_CORE_IS_PC,
                 'condition' => [
                     '_skin' => 'folio',
@@ -1527,7 +1528,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_glassmorphism_blur_level',
             [
-                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
+                'label'       => __('Blur Level', 'bdthemes-prime-slider-lite'),
                 'type'        => Controls_Manager::SLIDER,
                 'range'       => [
                     'px' => [
@@ -1564,14 +1565,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'meta_style_icon',
             [
-                'label' => __('Icon', 'bdthemes-prime-slider'),
+                'label' => __('Icon', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'meta_icon_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon svg' => 'color: {{VALUE}}',
@@ -1584,7 +1585,7 @@ class Blog extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name'     => 'meta_icon_background',
-                'label'    => __('Background', 'bdthemes-prime-slider'),
+                'label'    => __('Background', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-post-slider-author',
             ]
         );
@@ -1600,7 +1601,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_icon_border_radius',
             [
-                'label'      => __('Border Radius', 'bdthemes-prime-slider'),
+                'label'      => __('Border Radius', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -1620,7 +1621,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_icon_size',
             [
-                'label'     => esc_html__('Size', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Size', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
@@ -1632,7 +1633,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_icon_spacing',
             [
-                'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Icon Spacing', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
@@ -1643,7 +1644,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_item_gap',
             [
-                'label'     => esc_html__('Item Gap', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Item Gap', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-wrap' => 'gap: {{SIZE}}{{UNIT}};',
@@ -1657,7 +1658,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'meta_wrap_spacing',
             [
-                'label'     => esc_html__('Wrapper Spacing', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Wrapper Spacing', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-ps-meta-content' => 'padding: 0 {{SIZE}}{{UNIT}};',
@@ -1674,14 +1675,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'meta_style_text',
             [
-                'label' => __('Text', 'bdthemes-prime-slider'),
+                'label' => __('Text', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'meta_text_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-text *' => 'color: {{VALUE}}',
@@ -1692,7 +1693,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'admin_meta_title_color',
             [
-                'label'     => __('Admin Text Color', 'bdthemes-prime-slider'),
+                'label'     => __('Admin Text Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-prime-slider-meta *' => 'color: {{VALUE}}',
@@ -1707,7 +1708,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'meta_text_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-ps-meta .bdt-meta-text *, {{WRAPPER}} .bdt-prime-slider-skin-folio .bdt-prime-slider-meta *',
             ]
         );
@@ -1719,7 +1720,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_featured_post',
             [
-                'label'     => esc_html__('Featured Post (Thumbs)', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Featured Post (Thumbs)', 'bdthemes-prime-slider-lite'),
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_featured_post' => 'yes',
@@ -1733,16 +1734,17 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'featured_post_normal',
             [
-                'label' => __('Normal', 'bdthemes-prime-slider'),
+                'label' => __('Normal', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
                 'type'  => Controls_Manager::SWITCHER,
-                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1s look here %2s', 'bdthemes-prime-slider'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
+                /* translators: 1: opening link tag, 2: closing link tag */
+                'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1$s look here %2$s', 'bdthemes-prime-slider-lite'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
                 'classes'   => BDTPS_CORE_IS_PC
             ]
         );
@@ -1750,7 +1752,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'glassmorphism_blur_level',
             [
-                'label'       => __('Blur Level', 'bdthemes-prime-slider'),
+                'label'       => __('Blur Level', 'bdthemes-prime-slider-lite'),
                 'type'        => Controls_Manager::SLIDER,
                 'range'       => [
                     'px' => [
@@ -1782,7 +1784,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_title_heading',
             [
-                'label'     => __('Title', 'bdthemes-prime-slider'),
+                'label'     => __('Title', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -1791,7 +1793,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_title_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured .bdt-ps-content .bdt-ps-title a' => 'color: {{VALUE}}',
@@ -1803,7 +1805,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'featured_post_title_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured .bdt-ps-content .bdt-ps-title a',
             ]
         );
@@ -1811,7 +1813,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'featured_post_title_spacing',
             [
-                'label'     => esc_html__('Spacing', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('Spacing', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured .bdt-ps-content .bdt-ps-title' => 'padding-bottom: {{SIZE}}{{UNIT}};',
@@ -1822,7 +1824,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_text_heading',
             [
-                'label'     => __('Text', 'bdthemes-prime-slider'),
+                'label'     => __('Text', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -1831,7 +1833,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_text_color',
             [
-                'label'     => __('Color', 'bdthemes-prime-slider'),
+                'label'     => __('Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured .bdt-ps-content .bdt-ps-desc *' => 'color: {{VALUE}}',
@@ -1843,7 +1845,7 @@ class Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'     => 'featured_post_text_typography',
-                'label'    => esc_html__('Typography', 'bdthemes-prime-slider'),
+                'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
                 'selector' => '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured .bdt-ps-content .bdt-ps-desc *',
             ]
         );
@@ -1853,7 +1855,7 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'featured_post_hover',
             [
-                'label' => __('Hover', 'bdthemes-prime-slider'),
+                'label' => __('Hover', 'bdthemes-prime-slider-lite'),
             ]
         );
 
@@ -1868,7 +1870,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_title__hover_color',
             [
-                'label'     => __('Title Color', 'bdthemes-prime-slider'),
+                'label'     => __('Title Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured:hover .bdt-ps-content .bdt-ps-title a' => 'color: {{VALUE}}',
@@ -1879,7 +1881,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'featured_post_text_hover_color',
             [
-                'label'     => __('Text Color', 'bdthemes-prime-slider'),
+                'label'     => __('Text Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-zinest .bdt-ps-featured:hover .bdt-ps-content .bdt-ps-desc *' => 'color: {{VALUE}}',
@@ -1896,7 +1898,7 @@ class Blog extends Widget_Base {
         $this->start_controls_section(
             'section_style_navigation',
             [
-                'label'      => __('Navigation', 'bdthemes-prime-slider'),
+                'label'      => __('Navigation', 'bdthemes-prime-slider-lite'),
                 'tab'        => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     '_skin!' => ['folio'],
@@ -1909,14 +1911,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_navigation_arrows_style',
             [
-                'label' => __('Normal', 'bdthemes-prime-slider'),
+                'label' => __('Normal', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'arrows_color',
             [
-                'label'     => __('Arrows Color', 'bdthemes-prime-slider'),
+                'label'     => __('Arrows Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg'       => 'color: {{VALUE}}',
@@ -1931,7 +1933,7 @@ class Blog extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name'      => 'arrows_background',
-                'label'     => __('Background', 'bdthemes-prime-slider'),
+                'label'     => __('Background', 'bdthemes-prime-slider-lite'),
                 'types'     => ['classic', 'gradient'],
                 'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous',
                 'condition' => [
@@ -1954,7 +1956,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
             'arrows_border_radius',
             [
-                'label'      => __('Border Radius', 'bdthemes-prime-slider'),
+                'label'      => __('Border Radius', 'bdthemes-prime-slider-lite'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -1969,7 +1971,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'dots_heading',
             [
-                'label'     => esc_html__('DOTS', 'bdthemes-prime-slider'),
+                'label'     => esc_html__('DOTS', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::HEADING,
                 'condition' => [
                     'show_navigation_dots' => ['yes'],
@@ -1982,7 +1984,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'inactive_dot_color',
             [
-                'label'     => esc_html__('Inactive Dot Color', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+                'label'     => esc_html__('Inactive Dot Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-dotnav li:not(.bdt-active) a:before'  => 'background-color: {{VALUE}}',
@@ -1998,7 +2000,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'active_dot_color',
             [
-                'label'     => __('Active Dot Color', 'bdthemes-prime-slider'),
+                'label'     => __('Active Dot Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-dotnav li.bdt-active a'        => 'border-color: {{VALUE}}',
@@ -2016,7 +2018,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'dot_number_color',
             [
-                'label'     => __('Dot Number Color', 'bdthemes-prime-slider'),
+                'label'     => __('Dot Number Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-ps-dotnav span, {{WRAPPER}} .bdt-prime-slider-skin-coral .bdt-ps-dotnav li a' => 'color: {{VALUE}}',
@@ -2032,7 +2034,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'active_dot_number_color',
             [
-                'label'     => __('Active Number Color', 'bdthemes-prime-slider'),
+                'label'     => __('Active Number Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-counter:after' => 'color: {{VALUE}}',
@@ -2047,7 +2049,7 @@ class Blog extends Widget_Base {
         $this->add_responsive_control(
 			'dots_x_offset',
 			[
-				'label' => esc_html__('Dots Horizontal Offset', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Dots Horizontal Offset', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-slideshow-nav' => 'right: {{SIZE}}{{UNIT}};',
@@ -2065,14 +2067,14 @@ class Blog extends Widget_Base {
         $this->start_controls_tab(
             'tab_navigation_arrows_hover_style',
             [
-                'label' => __('Hover', 'bdthemes-prime-slider'),
+                'label' => __('Hover', 'bdthemes-prime-slider-lite'),
             ]
         );
 
         $this->add_control(
             'arrows_hover_color',
             [
-                'label'     => __('Arrows Color', 'bdthemes-prime-slider'),
+                'label'     => __('Arrows Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover svg' => 'color: {{VALUE}}',
@@ -2087,7 +2089,7 @@ class Blog extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name'      => 'arrows_hover_background',
-                'label'     => __('Background', 'bdthemes-prime-slider'),
+                'label'     => __('Background', 'bdthemes-prime-slider-lite'),
                 'types'     => ['classic', 'gradient'],
                 'selector'  => '
                     {{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-slidenav::before,
@@ -2102,7 +2104,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'arrows_hover_border_color',
             [
-                'label'     => __('Border Color', 'bdthemes-prime-slider'),
+                'label'     => __('Border Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'condition' => [
                     'arrows_border_border!'  => '',
@@ -2357,7 +2359,7 @@ class Blog extends Widget_Base {
                             </div>
                             <div class="bdt-meta-text">
                                 <span class="bdt-author bdt-text-capitalize">
-                                    <strong><?php esc_html_e('Written by', 'bdthemes-prime-slider'); ?></strong>
+                                    <strong><?php esc_html_e('Written by', 'bdthemes-prime-slider-lite'); ?></strong>
                                     <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_attr(get_the_author()); ?></a>
                                 </span>
                             </div>
@@ -2373,7 +2375,7 @@ class Blog extends Widget_Base {
                             </div>
                             <div class="bdt-meta-text">
                                 <span>
-                                    <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider'); ?></strong>
+                                    <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider-lite'); ?></strong>
                                     <?php echo get_the_date(); ?>
                                 </span>
                             </div>
@@ -2389,7 +2391,7 @@ class Blog extends Widget_Base {
                             </div>
                             <div class="bdt-meta-text">
                                 <span>
-                                    <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider'); ?></strong>
+                                    <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider-lite'); ?></strong>
                                     <?php echo esc_attr(get_comments_number()); ?>
                                 </span>
                             </div>

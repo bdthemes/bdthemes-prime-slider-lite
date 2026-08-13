@@ -44,25 +44,25 @@ class WPML_PrimeSlider_Crossroad extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'title':
-                return esc_html__('Title', 'bdthemes-prime-slider');
+                return esc_html__('Title', 'bdthemes-prime-slider-lite');
 
             case 'meta_text':
-                return esc_html__('Meta Text', 'bdthemes-prime-slider');
+                return esc_html__('Meta Text', 'bdthemes-prime-slider-lite');
 
             case 'modal_title':
-                return esc_html__('Modal Title', 'bdthemes-prime-slider');
+                return esc_html__('Modal Title', 'bdthemes-prime-slider-lite');
 
             case 'modal_meta_text':
-                return esc_html__('Modal Meta Text', 'bdthemes-prime-slider');
+                return esc_html__('Modal Meta Text', 'bdthemes-prime-slider-lite');
 
             case 'excerpt':
-                return esc_html__('Excerpt', 'bdthemes-prime-slider');
+                return esc_html__('Excerpt', 'bdthemes-prime-slider-lite');
 
             case 'slide_button_text':
-                return esc_html__('Button Text', 'bdthemes-prime-slider');
+                return esc_html__('Button Text', 'bdthemes-prime-slider-lite');
 
             case 'button_link':
-                return esc_html__('Button Link', 'bdthemes-prime-slider');
+                return esc_html__('Button Link', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

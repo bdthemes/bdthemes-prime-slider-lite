@@ -8,12 +8,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'rc_dynamic_init' ) ) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
 	function rc_dynamic_init( $params ) {
 
 		if ( is_admin() ) :
 
 			$menu_slug    = isset( $params['menu']['slug'] ) ? $params['menu']['slug'] : false;
-			$current_page = isset( $_GET['page'] ) ? $_GET['page'] : false;
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check of the current admin page slug for display routing, no form data processed.
+			$current_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : false;
 
 			/**
 			 * Attach SDK to current page

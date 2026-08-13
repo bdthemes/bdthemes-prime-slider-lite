@@ -2,10 +2,10 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
-Requires at least: 5.0.0
-Tested up to: 7.0.3
-Requires PHP: 7.4.0
-Stable tag: 4.4.10
+Requires at least: 5.0
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 4.4.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -223,6 +223,18 @@ Please use the suggest page to message us about the features we should add to ou
 Needs assistance to use these plugins? 
 Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widget Tutorials to learn about how to use them efficiently.
 
+== External services ==
+
+This plugin connects to the following external services. In each case only the data described is sent, and only under the stated conditions.
+
+1. **BdThemes Product Feed** (`https://dashboard.bdthemes.io`) — used to show BdThemes news, updates and product promotions inside the plugin's WordPress dashboard widget. When an administrator opens the WordPress dashboard, the plugin requests the news feed from this endpoint. No personal data is sent; the request carries only the product category. Provided by BdThemes — see the [Terms of Service](https://bdthemes.com/terms-conditions/) and [Privacy Policy](https://bdthemes.com/privacy-policy/).
+
+2. **BdThemes Blog Feed** (`https://bdthemes.com/feed`) — used to display recent BdThemes blog posts in the same dashboard widget. Fetched when an administrator opens the WordPress dashboard. No personal data is sent. Provided by BdThemes — [Terms of Service](https://bdthemes.com/terms-conditions/), [Privacy Policy](https://bdthemes.com/privacy-policy/).
+
+3. **WordPress.org Plugins API** (`https://api.wordpress.org`) — used to look up and install the free companion plugins offered on the plugin's setup/others screen. A plugin slug is sent when an administrator chooses to view or install a suggested plugin. This is the official WordPress.org service — [Terms](https://wordpress.org/about/terms/), [Privacy](https://wordpress.org/about/privacy/).
+
+4. **Vimeo oEmbed** (`https://vimeo.com/api/oembed.json`) — used by video slider widgets to fetch the dimensions/thumbnail of a Vimeo video the site owner has embedded. The public Vimeo URL entered by the site owner is sent to Vimeo when such a slide is rendered. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
+
 == Checkout our other Plugins 👑 ==
 
 Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
@@ -273,6 +285,17 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.4.11 [13th August 2026] =
+
+* Compliance: Corrected "Requires at least" and "Tested up to" to major WordPress versions
+* Compliance: Text domain now matches the plugin slug (bdthemes-prime-slider-lite) across all strings
+* Compliance: Documented external services in the readme
+* Compliance: Removed the custom CSS/JS code-injection feature
+* Compliance: Removed the White Label feature from the free build (available in the Pro version)
+* Compliance: Removed the version rollback feature
+* Compliance: Removed a filter that interfered with WordPress translation updates
+* Security: Sanitized nonce and request inputs; hardened settings sanitization
 
 = 4.4.10 [13th August 2026] =
 

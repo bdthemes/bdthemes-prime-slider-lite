@@ -17,7 +17,7 @@ class Skin_Meteor extends Elementor_Skin_Base {
     }
 
     public function get_title() {
-        return esc_html__('Meteor', 'bdthemes-prime-slider');
+        return esc_html__('Meteor', 'bdthemes-prime-slider-lite');
     }
 
     public function render_navigation_dots() {

@@ -32,7 +32,7 @@ class General extends Widget_Base {
 	}
 
 	public function get_title() {
-		return BDTPS . esc_html__( 'General', 'bdthemes-prime-slider' );
+		return BDTPS . esc_html__( 'General', 'bdthemes-prime-slider-lite' );
 	}
 
 	public function get_icon() {
@@ -91,7 +91,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_sliders',
 			[ 
-				'label' => esc_html__( 'Sliders', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Sliders', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -102,7 +102,7 @@ class General extends Widget_Base {
 		$repeater->start_controls_tab(
 			'tab_slider_content',
 			[ 
-				'label' => esc_html__( 'Content', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Content', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -124,25 +124,25 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'background',
 			[ 
-				'label'   => esc_html__( 'Background', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Background', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'color',
 				'toggle'  => false,
 				'options' => [ 
 					'color'   => [ 
-						'title' => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-paint-brush',
 					],
 					'image'   => [ 
-						'title' => esc_html__( 'Image', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Image', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-image',
 					],
 					'video'   => [ 
-						'title' => esc_html__( 'Video', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Video', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-play',
 					],
 					'youtube' => [ 
-						'title' => esc_html__( 'Youtube', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Youtube', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-youtube',
 					],
 				],
@@ -152,7 +152,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#193d4c',
 				'condition' => [ 
@@ -167,7 +167,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'image',
 			[ 
-				'label'     => esc_html__( 'Image', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Image', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::MEDIA,
 				'default'   => [ 
 					'url' => Utils::get_placeholder_image_src(),
@@ -182,7 +182,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'video_link',
 			[ 
-				'label'     => esc_html__( 'Video Link', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Video Link', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => [ 
 					'background' => 'video'
@@ -195,7 +195,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'youtube_link',
 			[ 
-				'label'     => esc_html__( 'Youtube Link', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Youtube Link', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => [ 
 					'background' => 'youtube'
@@ -210,7 +210,7 @@ class General extends Widget_Base {
 		$repeater->start_controls_tab(
 			'tab_slider_Optional',
 			[ 
-				'label' => esc_html__( 'Optional', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Optional', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -230,21 +230,21 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slides',
 			[ 
-				'label'       => esc_html__( 'Slider Items', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Slider Items', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'default'     => [ 
 					[ 
-						'title'     => esc_html__( 'Massive', 'bdthemes-prime-slider' ),
-						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider' ),
+						'title'     => esc_html__( 'Massive', 'bdthemes-prime-slider-lite' ),
+						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider-lite' ),
 					],
 					[ 
-						'title'     => esc_html__( 'Vibrant', 'bdthemes-prime-slider' ),
-						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider' ),
+						'title'     => esc_html__( 'Vibrant', 'bdthemes-prime-slider-lite' ),
+						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider-lite' ),
 					],
 					[ 
-						'title'     => esc_html__( 'Wallow', 'bdthemes-prime-slider' ),
-						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider' ),
+						'title'     => esc_html__( 'Wallow', 'bdthemes-prime-slider-lite' ),
+						'sub_title' => esc_html__( 'Sub Title', 'bdthemes-prime-slider-lite' ),
 					],
 				],
 				'title_field' => '{{ title }}',
@@ -256,7 +256,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[ 
-				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Additional Options', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -268,7 +268,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'content_max_width',
 			[ 
-				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', '%', 'vw' ],
 				'range'      => [ 
@@ -299,19 +299,19 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'content_alignment',
 			[ 
-				'label'     => esc_html__( 'Alignment', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Alignment', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [ 
 					'left'   => [ 
-						'title' => esc_html__( 'Left', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Left', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [ 
-						'title' => esc_html__( 'Center', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Center', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-center',
 					],
 					'right'  => [ 
-						'title' => esc_html__( 'Right', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Right', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-text-align-right',
 					],
 				],
@@ -340,7 +340,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_button_icon',
 			[ 
-				'label'     => esc_html__( 'Show Button Icon', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Button Icon', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -352,7 +352,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_excerpt',
 			[ 
-				'label'   => esc_html__( 'Show Excerpt', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Show Excerpt', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'classes' => BDTPS_CORE_IS_PC
@@ -362,7 +362,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_otherview',
 			[ 
-				'label'     => esc_html__( 'Show Overview Text', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Overview Text', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -376,7 +376,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'alter_btn_excerpt',
 			[ 
-				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => [ 
 					'_skin' => '',
@@ -388,7 +388,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_share_us',
 			[ 
-				'label'     => esc_html__( 'Show Follow Us', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Follow Us', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -400,7 +400,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_social_icon',
 			[ 
-				'label'     => esc_html__( 'Show Social Icon', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Social Icon', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -412,7 +412,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_scroll_button',
 			[ 
-				'label'     => esc_html__( 'Show Scroll Button', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Scroll Button', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -424,7 +424,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_navigation_arrows',
 			[ 
-				'label'     => esc_html__( 'Show Navigation', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Show Navigation', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
@@ -451,7 +451,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_social_link',
 			[ 
-				'label'     => __( 'Social Icon', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Social Icon', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_social_icon' => 'yes',
 					'_skin!'           => [ 'slide' ],
@@ -462,10 +462,10 @@ class General extends Widget_Base {
 		$this->add_control(
 			'general_follow_us_text',
 			[
-				'label'     => esc_html__( 'Follow Us Text', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Follow Us Text', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::TEXT,
 				'dynamic'   => [ 'active' => true ],
-				'default'   => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+				'default'   => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 				'condition' => [
 					'_skin!' => [ '', 'meteor' ],
 				],
@@ -477,7 +477,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'social_link_title',
 			[ 
-				'label'   => __( 'Title', 'bdthemes-prime-slider' ),
+				'label'   => __( 'Title', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => [ 'active' => true ],
 			]
@@ -486,7 +486,7 @@ class General extends Widget_Base {
         $repeater->add_control(
             'social_icon_link',
             [ 
-                'label'   => __( 'Link', 'bdthemes-prime-slider' ),
+                'label'   => __( 'Link', 'bdthemes-prime-slider-lite' ),
                 'type'    => Controls_Manager::URL,
 				'dynamic' => [ 'active' => true ],
             ]
@@ -495,7 +495,7 @@ class General extends Widget_Base {
 		$repeater->add_control(
 			'social_icon',
 			[ 
-				'label'   => __( 'Choose Icon', 'bdthemes-prime-slider' ),
+				'label'   => __( 'Choose Icon', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::ICONS,
 				'default' => [ 
 					'value'   => 'fab fa-facebook-f',
@@ -518,7 +518,7 @@ class General extends Widget_Base {
                             'value'   => 'fab fa-facebook-f',
                             'library' => 'fa-brands',
                         ],
-						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider' ),
+						'social_link_title' => __( 'Facebook', 'bdthemes-prime-slider-lite' ),
 					],
 					[ 
 						'social_icon_link'       => [ 
@@ -528,7 +528,7 @@ class General extends Widget_Base {
 							'value'   => 'fab fa-twitter',
 							'library' => 'fa-brands',
 						],
-						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider' ),
+						'social_link_title' => __( 'Twitter', 'bdthemes-prime-slider-lite' ),
 					],
 					[ 
 						'social_icon_link'       => [ 
@@ -538,7 +538,7 @@ class General extends Widget_Base {
 							'value'   => 'fab fa-instagram',
 							'library' => 'fa-brands',
 						],
-						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider' ),
+						'social_link_title' => __( 'Instagram', 'bdthemes-prime-slider-lite' ),
                     ],
                 ],
                 'title_field' => '{{ social_link_title }}',
@@ -550,7 +550,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_scroll_button',
 			[ 
-				'label'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_scroll_button' => [ 'yes' ],
 					'_skin!'             => [ 'slide', 'crelly' ],
@@ -561,7 +561,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'duration',
 			[ 
-				'label'      => esc_html__( 'Duration', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Duration', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [ 
@@ -577,7 +577,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'offset',
 			[ 
-				'label'   => esc_html__( 'Offset', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Offset', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SLIDER,
 				'range'   => [ 
 					'px' => [ 
@@ -593,21 +593,21 @@ class General extends Widget_Base {
 		$this->add_control(
 			'scroll_button_text',
 			[ 
-				'label'       => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Button Text', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => [ 'active' => true ],
-				'default'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
-				'placeholder' => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+				'default'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
+				'placeholder' => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'section_id',
 			[ 
-				'label'       => esc_html__( 'Section ID', 'bdthemes-prime-slider' ),
+				'label'       => esc_html__( 'Section ID', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'my-header',
-				'description' => esc_html__( "By clicking this scroll button, to which section in your page you want to go? Just write that's section ID here such 'my-header'. N.B: No need to add '#'.", 'bdthemes-prime-slider' ),
+				'description' => esc_html__( "By clicking this scroll button, to which section in your page you want to go? Just write that's section ID here such 'my-header'. N.B: No need to add '#'.", 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -617,7 +617,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_animation',
 			[ 
-				'label' => esc_html__( 'Slider Settings', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Slider Settings', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
@@ -629,7 +629,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'draggable',
 			[ 
-				'label'   => esc_html__( 'Draggable', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Draggable', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -638,16 +638,16 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slider_animations',
 			[ 
-				'label'     => esc_html__( 'Slider Animations', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Slider Animations', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SELECT,
 				'separator' => 'before',
 				'default'   => 'fade',
 				'options'   => [ 
-					'slide' => esc_html__( 'Slide', 'bdthemes-prime-slider' ),
-					'fade'  => esc_html__( 'Fade', 'bdthemes-prime-slider' ),
-					'scale' => esc_html__( 'Scale', 'bdthemes-prime-slider' ),
-					'push'  => esc_html__( 'Push', 'bdthemes-prime-slider' ),
-					'pull'  => esc_html__( 'Pull', 'bdthemes-prime-slider' ),
+					'slide' => esc_html__( 'Slide', 'bdthemes-prime-slider-lite' ),
+					'fade'  => esc_html__( 'Fade', 'bdthemes-prime-slider-lite' ),
+					'scale' => esc_html__( 'Scale', 'bdthemes-prime-slider-lite' ),
+					'push'  => esc_html__( 'Push', 'bdthemes-prime-slider-lite' ),
+					'pull'  => esc_html__( 'Pull', 'bdthemes-prime-slider-lite' ),
 				],
 				'condition' => [ 
 					'_skin!' => 'slide',
@@ -658,7 +658,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'animation_parallax',
 			[ 
-				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Parallax Animation', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
@@ -688,7 +688,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced_animation',
 			[ 
-				'label' => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label' => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -696,7 +696,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'animation_status',
 			[ 
-				'label'   => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'classes' => BDTPS_CORE_IS_PC,
 			]
@@ -707,13 +707,13 @@ class General extends Widget_Base {
 			$this->add_control(
 				'animation_of',
 				[ 
-					'label'     => __( 'Animation Of', 'bdthemes-prime-slider' ),
+					'label'     => __( 'Animation Of', 'bdthemes-prime-slider-lite' ),
 					'type'      => Controls_Manager::SELECT2,
 					'multiple'  => true,
 					'options'   => [ 
-						'.bdt-ps-sub-title'   => __( 'Sub Title', 'bdthemes-prime-slider' ),
-						'.bdt-title-tag'      => __( 'Title', 'bdthemes-prime-slider' ),
-						'.bdt-slider-excerpt' => __( 'Excerpt', 'bdthemes-prime-slider' ),
+						'.bdt-ps-sub-title'   => __( 'Sub Title', 'bdthemes-prime-slider-lite' ),
+						'.bdt-title-tag'      => __( 'Title', 'bdthemes-prime-slider-lite' ),
+						'.bdt-slider-excerpt' => __( 'Excerpt', 'bdthemes-prime-slider-lite' ),
 					],
 					'default'   => [ '.bdt-title-tag' ],
 					'condition' => [ 
@@ -734,7 +734,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_sliders',
 			[ 
-				'label' => esc_html__( 'Sliders', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Sliders', 'bdthemes-prime-slider-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -742,13 +742,13 @@ class General extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[ 
-				'label'   => esc_html__( 'Overlay', 'bdthemes-prime-slider' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [ 
-					'none'       => esc_html__( 'None', 'bdthemes-prime-slider' ),
-					'background' => esc_html__( 'Background', 'bdthemes-prime-slider' ),
-					'blend'      => esc_html__( 'Blend', 'bdthemes-prime-slider' ),
+					'none'       => esc_html__( 'None', 'bdthemes-prime-slider-lite' ),
+					'background' => esc_html__( 'Background', 'bdthemes-prime-slider-lite' ),
+					'blend'      => esc_html__( 'Blend', 'bdthemes-prime-slider-lite' ),
 				],
 				'classes'   => BDTPS_CORE_IS_PC
 			]
@@ -757,7 +757,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'overlay_color',
 			[ 
-				'label'     => esc_html__( 'Overlay Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Overlay Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'overlay' => [ 'background', 'blend' ]
@@ -771,7 +771,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'blend_type',
 			[ 
-				'label'     => esc_html__( 'Blend Type', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Blend Type', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'multiply',
 				'options'   => prime_slider_blend_options(),
@@ -791,7 +791,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'shape_background_color',
 			[ 
-				'label'     => __( 'Shape Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Shape Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [ 
@@ -805,7 +805,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'secondary_shape_color',
 			[ 
-				'label'     => __( 'Secondary Shape Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Secondary Shape Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [ 
@@ -820,7 +820,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'content_margin',
 			[ 
-				'label'      => esc_html__( 'Content Margin', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Content Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -833,7 +833,7 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_title_style',
 			[ 
-				'label'     => __( 'Title', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Title', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_title' => [ 'yes' ],
 				],
@@ -843,7 +843,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'title_width',
 			[ 
-				'label'      => esc_html__( 'Title Width', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Title Width', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
 				'range'      => [ 
@@ -870,7 +870,7 @@ class General extends Widget_Base {
 		// $this->add_control(
 		// 	'show_text_stroke',
 		// 	[
-		// 		'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider'),
+		// 		'label'   => esc_html__('Text Stroke', 'bdthemes-prime-slider-lite'),
 		// 		'type'    => Controls_Manager::SWITCHER,
 		// 		'prefix_class' => 'bdt-text-stroke--',
 		// 		'condition' => [
@@ -882,7 +882,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag' => 'color: {{VALUE}};',
@@ -897,7 +897,7 @@ class General extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'      => 'title_typography',
-				'label'     => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'condition' => [ 
 					'show_title' => [ 'yes' ],
@@ -912,7 +912,7 @@ class General extends Widget_Base {
 				'selector'       => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'fields_options' => [ 
 					'text_stroke_type' => [ 
-						'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider' ),
+						'label' => esc_html__( 'Text Stroke', 'bdthemes-prime-slider-lite' ),
 					],
 				],
 				'condition'      => [ 
@@ -924,7 +924,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'prime_slider_title_spacing',
 			[ 
-				'label'     => esc_html__( 'Title Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Title Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -944,7 +944,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'title_advanced_style',
 			[ 
-				'label'     => esc_html__( 'Advanced Style', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Advanced Style', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => [ 
 					'animation_status' => '',
@@ -956,7 +956,7 @@ class General extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[ 
 				'name'      => 'title_background',
-				'label'     => __( 'Background', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Background', 'bdthemes-prime-slider-lite' ),
 				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'condition' => [ 
 					'title_advanced_style' => 'yes',
@@ -969,7 +969,7 @@ class General extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[ 
 				'name'      => 'title_text_shadow',
-				'label'     => __( 'Text Shadow', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Text Shadow', 'bdthemes-prime-slider-lite' ),
 				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-main-title .bdt-title-tag',
 				'condition' => [ 
 					'title_advanced_style' => 'yes',
@@ -993,7 +993,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'title_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -1021,7 +1021,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'title_text_padding',
 			[ 
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1039,7 +1039,7 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_sub_title_style',
 			[ 
-				'label'     => __( 'Sub Title', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Sub Title', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_sub_title' => [ 'yes' ],
 				],
@@ -1049,7 +1049,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'sub_title_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-ps-sub-title' => 'color: {{VALUE}};',
@@ -1061,7 +1061,7 @@ class General extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'sub_title_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-desc .bdt-ps-sub-title',
 			]
 		);
@@ -1069,7 +1069,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'prime_slider_sub_title_spacing',
 			[ 
-				'label'     => esc_html__( 'Sub Title Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Sub Title Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1091,7 +1091,7 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_style_excerpt',
 			[ 
-				'label'     => esc_html__( 'Excerpt', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Excerpt', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_excerpt' => [ 'yes' ],
 				],
@@ -1101,7 +1101,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt' => 'color: {{VALUE}};',
@@ -1128,7 +1128,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -1140,7 +1140,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_text_padding',
 			[ 
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1152,7 +1152,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1164,7 +1164,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_title_color',
 			[ 
-				'label'     => esc_html__( 'Overview Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Overview Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt-content h3' => 'color: {{VALUE}};',
@@ -1178,7 +1178,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_title_spacing',
 			[ 
-				'label'     => esc_html__( 'Top Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Top Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1198,7 +1198,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_background_color',
 			[ 
-				'label'     => esc_html__( 'Primary Background', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Primary Background', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-meteor .bdt-prime-slider-footer-content .bdt-social-background, {{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-slide-featured' => 'background-color: {{VALUE}}',
@@ -1212,7 +1212,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_style_color',
 			[ 
-				'label'     => esc_html__( 'Style Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Style Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-slider-excerpt:before' => 'background: {{VALUE}}',
@@ -1226,7 +1226,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'excerpt_style_border_color',
 			[ 
-				'label'     => esc_html__( 'Line Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Line Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-slide-featured .bdt-slider-excerpt' => 'border-color: {{VALUE}}',
@@ -1241,7 +1241,7 @@ class General extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'excerpt_overview_typography',
-				'label'    => esc_html__( 'Overview Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Overview Typography', 'bdthemes-prime-slider-lite' ),
 				'condition' => [
 					'show_otherview' => 'yes',
 					'_skin' => 'crelly',
@@ -1254,7 +1254,7 @@ class General extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'excerpt_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-slider-excerpt',
 			]
 		);
@@ -1262,7 +1262,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'excerpt_width',
 			[ 
-				'label'          => __( 'Width (%)', 'bdthemes-prime-slider' ),
+				'label'          => __( 'Width (%)', 'bdthemes-prime-slider-lite' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => [ 
 					'unit' => '%',
@@ -1289,7 +1289,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'prime_slider_excerpt_spacing',
 			[ 
-				'label'     => esc_html__( 'Excerpt Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Excerpt Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1311,7 +1311,7 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'slider_button_style',
 			[ 
-				'label'     => __( 'Button', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Button', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'show_button_text' => 'yes',
 				],
@@ -1320,19 +1320,19 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'button_vertical_align',
 			[ 
-				'label'     => esc_html__( 'Vertical Align', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Vertical Align', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [ 
 					'flex-start'    => [ 
-						'title' => esc_html__( 'Top', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Top', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-v-align-top',
 					],
 					'center' => [ 
-						'title' => esc_html__( 'Middle', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Middle', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-v-align-middle',
 					],
 					'flex-end' => [ 
-						'title' => esc_html__( 'Bottom', 'bdthemes-prime-slider' ),
+						'title' => esc_html__( 'Bottom', 'bdthemes-prime-slider-lite' ),
 						'icon'  => 'eicon-v-align-bottom',
 					],
 				],
@@ -1348,7 +1348,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slider_button_style_normal',
 			[ 
-				'label'     => esc_html__( 'NORMAL', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'NORMAL', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1357,7 +1357,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_text_color',
 			[ 
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [ 
@@ -1387,7 +1387,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -1399,7 +1399,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_text_padding',
 			[ 
-				'label'      => __( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1411,7 +1411,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_margin',
 			[ 
-				'label'      => __( 'Margin', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Margin', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1439,7 +1439,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'icon_custom_style',
 			[ 
-				'label' => esc_html__( 'Icon Custom Style', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Icon Custom Style', 'bdthemes-prime-slider-lite' ),
 				'type'  => Controls_Manager::SWITCHER,
 				// 'default' => 'yes',
 			]
@@ -1459,7 +1459,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'icon_custom_heading',
 			[ 
-				'label'     => esc_html__( 'Icon Style', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Style', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'condition' => [ 
 					'icon_custom_style' => 'yes'
@@ -1470,7 +1470,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_color',
 			[ 
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn svg *' => 'stroke: {{VALUE}} !important;',
@@ -1506,7 +1506,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_icon_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -1521,7 +1521,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_button_icon_size',
 			[ 
-				'label'     => esc_html__( 'Size', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Size', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'size_units'=> [ 'px', 'rem' ],
 				'range'     => [ 
@@ -1546,7 +1546,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_btn_icon_vertical_spacing',
 			[ 
-				'label'     => esc_html__( 'Vertical Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Vertical Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1567,7 +1567,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_btn_icon_horizontal_spacing',
 			[ 
-				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1599,7 +1599,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slider_button_style_hover',
 			[ 
-				'label'     => esc_html__( 'HOVER', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'HOVER', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1608,7 +1608,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_hover_color',
 			[ 
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn:hover'       => 'color: {{VALUE}};',
@@ -1621,7 +1621,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_custom_bg_color',
 			[ 
-				'label'     => __( 'Custom Background', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Custom Background', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-slide-btn:before' => 'background: {{VALUE}};',
@@ -1643,7 +1643,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_hover_border_color',
 			[ 
-				'label'     => __( 'Border Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'slide_button_border_border!' => '',
@@ -1664,7 +1664,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slider_button_icon_heading_hover',
 			[ 
-				'label'     => esc_html__( 'Icon Style', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Style', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'condition' => [ 
 					'icon_custom_style' => 'yes'
@@ -1675,7 +1675,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_color',
 			[ 
-				'label'     => __( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn:hover svg *' => 'stroke: {{VALUE}} !important;',
@@ -1700,7 +1700,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'slide_button_icon_hover_border_color',
 			[ 
-				'label'     => __( 'Border Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'slide_icon_button_border_border!' => '',
@@ -1721,7 +1721,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_social_icon',
 			[ 
-				'label'     => esc_html__( 'Social Icon', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Social Icon', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [ 
 					'show_social_icon' => 'yes',
@@ -1735,14 +1735,14 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_social_icon_normal',
 			[ 
-				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'social_icon_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a'   => 'color: {{VALUE}};',
@@ -1754,7 +1754,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'social_icon_text_color',
 			[ 
-				'label'     => esc_html__( 'Text Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Text Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon h3' => 'color: {{VALUE}};',
@@ -1787,7 +1787,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_radius',
 			[ 
-				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -1799,7 +1799,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_padding',
 			[ 
-				'label'      => esc_html__( 'Padding', 'bdthemes-prime-slider' ),
+				'label'      => esc_html__( 'Padding', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [ 
@@ -1819,7 +1819,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_size',
 			[ 
-				'label'     => __( 'Icon Size', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Icon Size', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1836,7 +1836,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_spacing',
 			[ 
-				'label'     => esc_html__( 'Icon Space Between', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Space Between', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1855,7 +1855,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'skin_social_icon_spacing',
 			[ 
-				'label'     => esc_html__( 'Icon Space Between', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Icon Space Between', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1874,7 +1874,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'social_icon_left_spacing',
 			[ 
-				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -1894,7 +1894,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'social_background_color',
 			[ 
-				'label'     => esc_html__( 'Primary Background', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Primary Background', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-meteor .bdt-prime-slider-footer-content .bdt-social-bg-color' => 'background-color: {{VALUE}}',
@@ -1908,7 +1908,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'social_icon_tooltip',
 			[ 
-				'label'   => esc_html__( 'Show Tooltip', 'bdthemes-prime-slider' ),
+				'label'   => esc_html__( 'Show Tooltip', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -1921,14 +1921,14 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_social_icon_hover',
 			[ 
-				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'social_icon_hover_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a:hover'     => 'color: {{VALUE}};',
@@ -1950,7 +1950,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'icon_hover_border_color',
 			[ 
-				'label'     => esc_html__( 'Border Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'social_icon_border_border!' => '',
@@ -1970,7 +1970,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_scroll_button',
 			[ 
-				'label'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [ 
 					'show_scroll_button' => [ 'yes' ],
@@ -1984,14 +1984,14 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_scroll_button_normal',
 			[ 
-				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'scroll_button_text_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span'       => 'color: {{VALUE}};',
@@ -2004,7 +2004,7 @@ class General extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[ 
 				'name'     => 'scroll_button_typography',
-				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider' ),
+				'label'    => esc_html__( 'Typography', 'bdthemes-prime-slider-lite' ),
 				'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down span',
 			]
 		);
@@ -2012,7 +2012,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'scroll_down_spacing',
 			[ 
-				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Horizontal Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2034,14 +2034,14 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_scroll_button_hover',
 			[ 
-				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider' ),
+				'label' => esc_html__( 'Hover', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'scroll_button_hover_color',
 			[ 
-				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider' ),
+				'label'     => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-scroll-down:hover span'       => 'color: {{VALUE}};',
@@ -2060,7 +2060,7 @@ class General extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_navigation',
 			[ 
-				'label'      => __( 'Navigation', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Navigation', 'bdthemes-prime-slider-lite' ),
 				'tab'        => Controls_Manager::TAB_STYLE,
 				'conditions' => [ 
 					'relation' => 'or',
@@ -2085,14 +2085,14 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_navigation_arrows_style',
 			[ 
-				'label' => __( 'Normal', 'bdthemes-prime-slider' ),
+				'label' => __( 'Normal', 'bdthemes-prime-slider-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'arrows_color',
 			[ 
-				'label'     => __( 'Arrows Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Arrows Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next svg'       => 'color: {{VALUE}}',
@@ -2109,7 +2109,7 @@ class General extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[ 
 				'name'      => 'arrows_background',
-				'label'     => __( 'Background', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Background', 'bdthemes-prime-slider-lite' ),
 				'types'     => [ 'classic', 'gradient' ],
 				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous',
 				'condition' => [ 
@@ -2134,7 +2134,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'arrows_border_radius',
 			[ 
-				'label'      => __( 'Border Radius', 'bdthemes-prime-slider' ),
+				'label'      => __( 'Border Radius', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [ 
@@ -2152,7 +2152,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'arrows_btn_size',
 			[ 
-				'label'     => __( 'Button Size', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Button Size', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2172,7 +2172,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'arrows_icon_size',
 			[ 
-				'label'     => __( 'Icon Size', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Icon Size', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2193,7 +2193,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'dot_heading',
 			[ 
-				'label'     => __( 'DOTS', 'bdthemes-prime-slider' ),
+				'label'     => __( 'DOTS', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::HEADING,
 				'condition' => [ 
 					'show_navigation_dots' => [ 'yes' ],
@@ -2205,7 +2205,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'dot_color',
 			[ 
-				'label'     => __( 'Dot Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dot Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-general .bdt-slideshow-nav li a, {{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li a' => 'background: {{VALUE}}',
@@ -2220,7 +2220,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'active_dot_color',
 			[ 
-				'label'     => __( 'Active Dot Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Active Dot Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-slideshow-nav li a:before' => 'border-color: {{VALUE}}',
@@ -2237,7 +2237,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'meteor_active_dot_color',
 			[ 
-				'label'     => __( 'Active Dot Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Active Dot Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-meteor .bdt-dotnav li.bdt-active a, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-dotnav li.bdt-active a:after' => 'border-color: {{VALUE}}',
@@ -2253,7 +2253,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'dot_size',
 			[ 
-				'label'     => __( 'Dot Size', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dot Size', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2274,7 +2274,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'dots_vertical_spacing',
 			[ 
-				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2296,7 +2296,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_radius',
 			[ 
-				'label'     => __( 'Dots Radius', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dots Radius', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2317,7 +2317,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_spacing',
 			[ 
-				'label'     => __( 'Dots Space Between', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dots Space Between', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2338,7 +2338,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_h_spacing',
 			[ 
-				'label'     => __( 'Dots Horizontal Spacing', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dots Horizontal Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2361,7 +2361,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_dots_v_spacing',
 			[ 
-				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Dots Vertical Spacing', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -2385,7 +2385,7 @@ class General extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_navigation_arrows_hover_style',
 			[ 
-				'label'     => __( 'Hover', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Hover', 'bdthemes-prime-slider-lite' ),
 				'condition' => [ 
 					'_skin!' => [ 'meteor' ],
 				],
@@ -2395,7 +2395,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'arrows_hover_color',
 			[ 
-				'label'     => __( 'Arrows Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Arrows Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover svg, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover svg' => 'color: {{VALUE}}',
@@ -2411,7 +2411,7 @@ class General extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[ 
 				'name'      => 'arrows_hover_background',
-				'label'     => __( 'Background', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Background', 'bdthemes-prime-slider-lite' ),
 				'types'     => [ 'classic', 'gradient' ],
 				'selector'  => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:hover, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover',
 				'condition' => [ 
@@ -2423,7 +2423,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'arrows_hover_border_color',
 			[ 
-				'label'     => __( 'Border Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [ 
 					'arrows_border_border!'  => 'none',
@@ -2442,7 +2442,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'fraction_heading',
 			[ 
-				'label' => __( 'FRACTION', 'bdthemes-prime-slider' ),
+				'label' => __( 'FRACTION', 'bdthemes-prime-slider-lite' ),
 				'type' => Controls_Manager::HEADING,
 				'condition' => [ 
 					'show_navigation_arrows' => [ 'yes' ],
@@ -2455,7 +2455,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'active_dot_number_color',
 			[ 
-				'label'     => __( 'Fraction Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Fraction Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-slide .bdt-dotnav li:after, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav span, {{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li a' => 'color: {{VALUE}}',
@@ -2470,7 +2470,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'active_dot_number_color_skin',
 			[ 
-				'label'     => __( 'Active Fraction Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Active Fraction Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav li.bdt-active a' => 'color: {{VALUE}}',
@@ -2485,7 +2485,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'seperator_color',
 			[ 
-				'label'     => __( 'Separator Color', 'bdthemes-prime-slider' ),
+				'label'     => __( 'Separator Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-prime-slider-skin-crelly .bdt-ps-counternav:before' => 'background-color: {{VALUE}}',
@@ -2589,7 +2589,7 @@ class General extends Widget_Base {
 						<?php
 						echo $settings['general_follow_us_text']
 							? esc_html($settings['general_follow_us_text'])
-							: esc_html__( 'Follow Us', 'bdthemes-prime-slider' );
+							: esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' );
 						?>
 					</h3>
 				<?php endif; ?>
@@ -2630,7 +2630,7 @@ class General extends Widget_Base {
 
 		$scroll_button_text = ! empty( $settings['scroll_button_text'] )
 			? $settings['scroll_button_text']
-			: esc_html__( 'Scroll Down', 'bdthemes-prime-slider' );
+			: esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' );
 
 		?>
 		<span bdt-scrollspy="cls: bdt-animation-slide-right; repeat: true" <?php $this->print_render_attribute_string( 'content-wrapper' ); ?>>
