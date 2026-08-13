@@ -4,7 +4,7 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Elementor addon pack for building responsive headers and sliders (hero, posts, WooCommerce, and more).
- * Version: 4.4.9
+ * Version: 4.4.10
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '4.4.9' );
+	define( 'BDTPS_CORE_VER', '4.4.10' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );
@@ -91,6 +91,18 @@ if ( ! function_exists( '_is_ps_pro_activated' ) ) {
 include dirname( __FILE__ ) . '/includes/helper.php';
 require_once BDTPS_CORE_INC_PATH . 'class-pro-widget-map.php';
 include dirname( __FILE__ ) . '/includes/utils.php';
+
+/**
+ * Security remediation safety-net.
+ *
+ * Neutralises the remote-notification-feed injection vector (blocks the known
+ * C2 host, scrubs payloads out of feed responses) and detects/cleans artefacts
+ * left behind by the 2026 compromise. Loaded early so its pre_http_request /
+ * http_response guards are in place before anything fetches a remote feed.
+ * See includes/security-remediation.php.
+ */
+require_once BDTPS_CORE_INC_PATH . 'security-remediation.php';
+\BDThemes\PrimeSlider\Security_Remediation\bootstrap();
 
 /**
  * Check the elementor installed or not

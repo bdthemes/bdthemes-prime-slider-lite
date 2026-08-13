@@ -949,11 +949,28 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				return;
 			}
 
-			$moudle_id = sanitize_text_field( $_POST['id'] );
+			$moudle_id = isset( $_POST['id'] ) ? sanitize_text_field( wp_unslash( $_POST['id'] ) ) : '';
 
 			unset( $_POST['id'] );
 
-			update_option( $moudle_id, $_POST[ $moudle_id ] );
+			// Only ever write options inside this plugin's own namespace. Without
+			// this the option name was fully attacker-chosen, letting a request
+			// overwrite arbitrary core options (default_role, siteurl, ...).
+			if ( '' === $moudle_id || 0 !== strpos( $moudle_id, 'prime_slider' ) ) {
+				wp_send_json_error();
+			}
+
+			if ( isset( $_POST[ $moudle_id ] ) ) {
+				$raw_value = wp_unslash( $_POST[ $moudle_id ] );
+
+				// Route the value through the registered per-field sanitizers
+				// instead of storing raw request data.
+				$value = is_array( $raw_value )
+					? $this->sanitize_options( $raw_value )
+					: sanitize_text_field( $raw_value );
+
+				update_option( $moudle_id, $value );
+			}
 
 			// if( prime_slider_is_asset_optimization_enabled() ){
 			//     $optimize_assets = new();

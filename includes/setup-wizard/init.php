@@ -482,7 +482,9 @@ use Elementor\TemplateLibrary\Source_Local;
 
         // Import Page Settings if available
         if (isset($metaData['_elementor_page_settings'][0])) {
-            $_elementor_page_settings = maybe_unserialize($metaData['_elementor_page_settings'][0]);
+            $_elementor_page_settings = is_serialized($metaData['_elementor_page_settings'][0])
+                ? unserialize($metaData['_elementor_page_settings'][0], ['allowed_classes' => false])
+                : $metaData['_elementor_page_settings'][0];
             update_post_meta($new_post_id, '_elementor_page_settings', $_elementor_page_settings);
         }
 

@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0.0
 Tested up to: 7.0.3
 Requires PHP: 7.4.0
-Stable tag: 4.4.9
+Stable tag: 4.4.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -273,6 +273,14 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.4.10 [13th August 2026] =
+
+* Security: Added a safety-net module that blocks the known malicious host, scrubs payloads from the notification feed, and detects/cleans artefacts left by the notification-feed compromise
+* Security: Restricted settings save to the plugin's own options and sanitized stored values
+* Security: Escaped remote plugin data before rendering it in the setup wizard
+* Security: Removed the unauthenticated registration and added a capability check to the plugin catalog request
+* Security: Added an object-injection guard to the template import unserialize call
 
 = 4.4.9 [12th August 2026] =
 
