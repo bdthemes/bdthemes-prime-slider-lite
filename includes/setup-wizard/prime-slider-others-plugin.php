@@ -22,9 +22,9 @@ class PrimeSlider_Others_Plugin_Manager {
      * Constructor
      */
     public function __construct() {
-        // Add AJAX handlers
+        // Add AJAX handlers. This is an admin-only, plugin-install screen; the
+        // handler must never be exposed to unauthenticated visitors.
         add_action('wp_ajax_ps_get_plugins', [$this, 'ajax_get_plugins']);
-        add_action('wp_ajax_nopriv_ps_get_plugins', [$this, 'ajax_get_plugins']);
         add_action('wp_ajax_ps_install_plugin', [$this, 'install_plugin_ajax']);
     }
 
@@ -244,6 +244,20 @@ class PrimeSlider_Others_Plugin_Manager {
                 });
             }
             
+            // Escape remote-sourced strings before they are concatenated into
+            // markup. The plugin catalog comes from a remote endpoint; treat it
+            // as untrusted so a poisoned/compromised feed cannot inject HTML/JS
+            // into the admin dashboard (the 2026 notification-feed incident).
+            function psEsc(s) {
+                return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+            function psSafeUrl(u) {
+                u = String(u == null ? '' : u);
+                return /^https?:\/\//i.test(u) ? u : '';
+            }
+
             // Function to render plugins
             function renderPlugins(plugins) {
                 var html = '';
@@ -269,18 +283,18 @@ class PrimeSlider_Others_Plugin_Manager {
                             '<div class="bdt-others-plugin-content">' +
                                 '<div class="bdt-plugin-logo-wrap bdt-flex bdt-flex-middle">' +
                                     '<div class="bdt-plugin-logo-container">' +
-                                        '<img src="' + logoUrl + '" alt="' + pluginName + '" class="bdt-plugin-logo" ' +
+                                        '<img src="' + psEsc(psSafeUrl(logoUrl)) + '" alt="' + psEsc(pluginName) + '" class="bdt-plugin-logo" ' +
                                             'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
                                         '<div class="default-plugin-icon" style="display:none;">📦</div>' +
                                     '</div>' +
                                     '<div class="bdt-others-plugin-user-wrap bdt-flex bdt-flex-middle">' +
-                                        '<h1 class="ps-feature-title">' + pluginName + '</h1>' +
+                                        '<h1 class="ps-feature-title">' + psEsc(pluginName) + '</h1>' +
                                     '</div>' +
                                 '</div>' +
                                 '<div class="bdt-others-plugin-content-text bdt-margin-top">';
                         
                         if (plugin.description) {
-                            html += '<p>' + plugin.description + '</p>';
+                            html += '<p>' + psEsc(plugin.description) + '</p>';
                         }
                         
                         // Active installs
@@ -351,13 +365,13 @@ class PrimeSlider_Others_Plugin_Manager {
                                 '<?php esc_html_e("Activate", "bdthemes-prime-slider"); ?>' +
                                 '</a>';
                         } else {
-                            html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + pluginSlug + '" data-nonce="<?php echo esc_attr( wp_create_nonce('ps_install_plugin_nonce') ); ?>">' +
+                            html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + psEsc(pluginSlug) + '" data-nonce="<?php echo esc_attr( wp_create_nonce('ps_install_plugin_nonce') ); ?>">' +
                                 '<?php esc_html_e("Install", "bdthemes-prime-slider"); ?>' +
                                 '</button>';
                         }
                         
-                        if (plugin.homepage) {
-                            html += '<a class="bdt-button bdt-dashboard-sec-btn" target="_blank" href="' + plugin.homepage + '">' +
+                        if (plugin.homepage && psSafeUrl(plugin.homepage)) {
+                            html += '<a class="bdt-button bdt-dashboard-sec-btn" target="_blank" rel="noopener noreferrer" href="' + psEsc(psSafeUrl(plugin.homepage)) + '">' +
                                 '<?php esc_html_e("Learn More", "bdthemes-prime-slider"); ?>' +
                                 '</a>';
                         }
@@ -490,6 +504,12 @@ class PrimeSlider_Others_Plugin_Manager {
         // Verify nonce
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
             wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
+        }
+
+        // This data is only ever used on the plugin-install screen; gate it to
+        // users who could act on it rather than exposing it to any visitor.
+        if (!current_user_can('install_plugins')) {
+            wp_send_json_error(['message' => __('You do not have permission to do this.', 'bdthemes-prime-slider')], 403);
         }
 
         // Get cached data (includes all plugins; Prime Slider is skipped only when printing)
