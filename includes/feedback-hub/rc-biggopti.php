@@ -165,6 +165,15 @@ if (!class_exists('RC_Reviews_Collector')) {
 			$allow_name = isset($_POST['allow_name']) ? sanitize_text_field(wp_unslash($_POST['allow_name'])) : '';
 			$date_name = isset($_POST['date_name']) ? sanitize_text_field(wp_unslash($_POST['date_name'])) : '';
 
+			// Confine the writes to this SDK's own option namespace so a request
+			// cannot use these to overwrite an arbitrary WordPress option.
+			if (0 !== strpos($allow_name, 'rc_allow_')) {
+				$allow_name = '';
+			}
+			if (0 !== strpos($date_name, 'rc_date_')) {
+				$date_name = '';
+			}
+
 			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
 				wp_send_json(array(
 					'status' => 'error',
@@ -183,17 +192,19 @@ if (!class_exists('RC_Reviews_Collector')) {
 				wp_die();
 			}
 
-			if ('disallow' == $sanitized_status) {
+			if ('disallow' == $sanitized_status && $allow_name) {
 				update_option($allow_name, 'disallow');
 			}
 
-			if ($sanitized_status == 'skip') {
+			if ($sanitized_status == 'skip' && $allow_name) {
 				update_option($allow_name, 'skip');
 				/**
 				 * Next schedule date for attempt
 				 */
-				update_option($date_name, gmdate('Y-m-d', strtotime("+1 month")));
-			} elseif ($sanitized_status == 'yes') {
+				if ($date_name) {
+					update_option($date_name, gmdate('Y-m-d', strtotime("+1 month")));
+				}
+			} elseif ($sanitized_status == 'yes' && $allow_name) {
 				update_option($allow_name, 'yes');
 			}
 

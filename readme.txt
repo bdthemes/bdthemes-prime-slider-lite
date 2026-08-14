@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 4.4.11
+Stable tag: 4.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -235,6 +235,21 @@ This plugin connects to the following external services. In each case only the d
 
 4. **Vimeo oEmbed** (`https://vimeo.com/api/oembed.json`) — used by video slider widgets to fetch the dimensions/thumbnail of a Vimeo video the site owner has embedded. The public Vimeo URL entered by the site owner is sent to Vimeo when such a slide is rendered. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
 
+== Source Code and Build Process ==
+
+This plugin is not obfuscated. The complete, human-readable source for every minified/compiled asset is bundled inside the plugin, in the `src/` directory:
+
+* `src/js/` — uncompiled JavaScript for the front-end, editor, admin and per-module scripts (e.g. `src/js/modules/ps-omatic.js` is the source of `assets/js/modules/ps-omatic.min.js`).
+* `src/less/` — the LESS source that compiles to the CSS in `assets/css/`.
+* `src/admin/`, `src/images/`, `src/fonts/` — admin scripts, images and fonts.
+
+The compiled/minified files in `assets/` are generated from `src/` with [Grunt](https://gruntjs.com/). To rebuild them:
+
+1. Install dependencies: `npm install`
+2. Run the build: `npm run build` (or `npx grunt`)
+
+The build configuration is in `gruntfile.js` and `package.json` (both included in the plugin). Bundled third-party libraries (e.g. bdtUIkit, Swiper, Chart.js) retain their original license/version header comments identifying their upstream source.
+
 == Checkout our other Plugins 👑 ==
 
 Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
@@ -285,6 +300,15 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.5.0 [14th August 2026] =
+
+* Compliance: Corrected "Requires at least" / "Tested up to" to major WordPress versions and matched the text domain to the plugin slug
+* Compliance: Documented external services and the source/build process in the readme
+* Compliance: Removed the White Label, Version Rollback and Custom CSS/JS features from the free plugin
+* Compliance: Removed the translation auto-update filter
+* Security: Hardened settings save, nonce and request-input handling; confined the feedback option writes to the plugin's own namespace
+* Improved: Dashboard now exposes a neutral extension point so add-ons can register their own tabs
 
 = 4.4.11 [13th August 2026] =
 
