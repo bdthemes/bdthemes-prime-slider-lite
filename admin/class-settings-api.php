@@ -876,6 +876,16 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="%4$s"></i>%3$s</a></li>', $tab['id'], $count++, $tab['title'], $icon);
 			}
 
+			// Extension tabs registered by add-ons (e.g. Prime Slider Pro). The core
+			// plugin only provides the extension point; it ships no tabs of its own.
+			foreach ($this->get_extra_dashboard_tabs() as $tab) {
+				if (empty($tab['id']) || empty($tab['title'])) {
+					continue;
+				}
+				$icon = isset($tab['icon']) ? $tab['icon'] : 'dashicons dashicons-screenoptions';
+				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="%4$s"></i>%3$s</a></li>', $tab['id'], $count++, esc_html($tab['title']), esc_attr($icon));
+			}
+
 			// License section
 			$license_wl_status = PrimeSlider_Admin_Settings::license_wl_status();
 
@@ -950,6 +960,20 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			}
 			
 			return $all_sections;
+		}
+
+		/**
+		 * Extra dashboard tabs contributed by add-on plugins.
+		 *
+		 * Neutral extension point: the core plugin renders whatever tabs an add-on
+		 * registers here and ships none of its own. Each item is an array
+		 * [ 'id' => string, 'title' => string, 'icon' => string, 'callback' =>
+		 * callable ] where the callback echoes the tab body.
+		 *
+		 * @return array
+		 */
+		public function get_extra_dashboard_tabs() {
+			return (array) apply_filters( 'prime_slider_dashboard_extra_tabs', array() );
 		}
 
 		function prime_slider_settings_save() {

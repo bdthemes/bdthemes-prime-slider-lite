@@ -987,6 +987,22 @@ class PrimeSlider_Admin_Settings {
                             </div>
                         <?php endif; ?>
 
+                        <?php
+                        // Render tab bodies for any add-on-registered dashboard tabs.
+                        // The core plugin provides only this extension point; the tab
+                        // ids/order match the nav items built in show_navigation().
+                        foreach ($this->settings_api->get_extra_dashboard_tabs() as $ps_extra_tab) {
+                            if (empty($ps_extra_tab['id'])) {
+                                continue;
+                            }
+                            echo '<div id="' . esc_attr($ps_extra_tab['id']) . '_page" class="ps-option-page group">';
+                            if (isset($ps_extra_tab['callback']) && is_callable($ps_extra_tab['callback'])) {
+                                call_user_func($ps_extra_tab['callback']);
+                            }
+                            echo '</div>';
+                        }
+                        ?>
+
                         <div id="prime_slider_license_settings_page" class="ps-option-page group">
 
                             <?php

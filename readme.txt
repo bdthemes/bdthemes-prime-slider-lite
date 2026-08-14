@@ -1,4 +1,4 @@
-=== Prime Slider Addons for Elementor - Widgets, Templates & Elementor Addons ===
+=== Prime Slider ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
