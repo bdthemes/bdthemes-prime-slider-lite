@@ -15,16 +15,6 @@ if (!defined('ABSPATH')) {
 require_once __DIR__ . '/../class-plugin-integration-helper.php';
 require_once __DIR__ . '/../class-remote-data-handler.php';
 
-if (!defined('PRIME_SLIDER_WPORG_ASSET_BASE')) {
-    define('PRIME_SLIDER_WPORG_ASSET_BASE', 'https://ps.w.org');
-}
-
-if (!function_exists('get_plugin_asset_base_url_ps')) {
-    function get_plugin_asset_base_url_ps() {
-        return apply_filters('prime_slider_wporg_asset_base_url', PRIME_SLIDER_WPORG_ASSET_BASE);
-    }
-}
-
 // Helper function for time formatting
 if (!function_exists('format_last_updated_ps')) {
     function format_last_updated_ps($date_string) {
@@ -82,39 +72,6 @@ if (!function_exists('get_integration_i18n_ps')) {
             'ratingsLabel'          => __( 'ratings', 'bdthemes-prime-slider-lite' ),
             'lastUpdatedLabel'      => __( 'Last Updated:', 'bdthemes-prime-slider-lite' ),
         );
-    }
-}
-
-// Helper function for fallback URLs
-if (!function_exists('get_plugin_fallback_urls_ps')) {
-    function get_plugin_fallback_urls_ps($plugin_slug) {
-        // Handle different plugin slug formats
-        if (strpos($plugin_slug, '/') !== false) {
-            // If it's a file path like 'plugin-name/plugin-name.php', extract directory
-            $plugin_slug_clean = dirname($plugin_slug);
-        } else {
-            // If it's just the plugin directory name, use it directly
-            $plugin_slug_clean = $plugin_slug;
-        }
-        
-        // Custom icon URLs for specific plugins that might not be on WordPress.org
-        $base_url = untrailingslashit(get_plugin_asset_base_url_ps());
-        $custom_icons = [
-            'ar-viewer' => [
-                "{$base_url}/ar-viewer/assets/icon-256x256.gif",
-                "{$base_url}/ar-viewer/assets/icon-128x128.gif",
-            ],
-        ];
-        
-        // Return custom icons if available, otherwise use default WordPress.org URLs
-        if (isset($custom_icons[$plugin_slug_clean])) {
-            return $custom_icons[$plugin_slug_clean];
-        }
-        
-        return [
-            "{$base_url}/{$plugin_slug_clean}/assets/icon-256x256.png",  // Large PNG
-            "{$base_url}/{$plugin_slug_clean}/assets/icon-128x128.png",  // Medium PNG
-        ];
     }
 }
 
@@ -196,19 +153,14 @@ if (!$has_cached_data) {
                                 <?php 
                                 $logo_url = $plugin['logo'] ?? '';
                                 $plugin_name = $plugin['name'] ?? '';
-                                $plugin_slug = $plugin['slug'] ?? '';
-                                
+
                                 if (!empty($logo_url) && filter_var($logo_url, FILTER_VALIDATE_URL)) {
                                     // Show the original logo from API
                                     echo '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($plugin_name) . '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">';
                                     echo '<div class="default-plugin-icon" style="display:none;">📦</div>';
                                 } else {
-                                    // Generate fallback URLs for WordPress.org
-                                    $actual_slug = (strpos($plugin_slug, '/') !== false) ? dirname($plugin_slug) : $plugin_slug;
-                                    $fallback_urls = get_plugin_fallback_urls_ps($actual_slug);
-                                    
-                                    echo '<img src="' . esc_url($fallback_urls[0]) . '" alt="' . esc_attr($plugin_name) . '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">';
-                                    echo '<div class="default-plugin-icon" style="display:none;">📦</div>';
+                                    // No icon in the API response, show the local placeholder.
+                                    echo '<div class="default-plugin-icon" style="display:flex;">📦</div>';
                                 }
                                 ?>
                             </span>
@@ -362,7 +314,6 @@ $ps_integration_i18n = get_integration_i18n_ps();
 $ps_integration_config = array(
     'ajaxAction' => 'ps_get_plugins',
     'nonce' => wp_create_nonce('ps_get_plugins_nonce'),
-    'wporgAssetBase' => get_plugin_asset_base_url_ps(),
     'selfPluginSlugs' => $self_plugin_slugs,
 );
 ?>
@@ -469,10 +420,8 @@ jQuery(document).ready(function($) {
             return `<img src="${plugin.logo}" alt="${plugin.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="default-plugin-icon" style="display:none;">📦</div>`;
         } else {
-            const slug = plugin.slug.includes('/') ? plugin.slug.split('/')[0] : plugin.slug;
-            const wporgAssetBase = String(psIntegrationConfig.wporgAssetBase || 'https://ps.w.org').replace(/\/$/, '');
-            return `<img src="${wporgAssetBase}/${slug}/assets/icon-256x256.png" alt="${plugin.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="default-plugin-icon" style="display:none;">📦</div>`;
+            // No icon in the API response, show the local placeholder.
+            return `<div class="default-plugin-icon" style="display:flex;">📦</div>`;
         }
     }
     

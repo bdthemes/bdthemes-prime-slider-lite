@@ -16,6 +16,11 @@ class Plugin_Integration_Helper {
     /**
      * Get predefined plugin configurations
      *
+     * The fallback data is only used when the WordPress.org plugins API is
+     * unreachable. Logos are intentionally left empty: icon URLs come from the
+     * API response at runtime, and the UI falls back to a locally rendered
+     * placeholder icon. Hardcoding remote asset URLs is not allowed.
+     *
      * @return array Plugin configurations
      */
     public static function get_predefined_plugins() {
@@ -25,7 +30,7 @@ class Plugin_Integration_Helper {
                 'fallback' => [
                     'name' => 'Element Pack',
                     'description' => 'Create eye-catching website quickly and easily with 355+ modern Elementor slider widgets.',
-                    'logo' => 'https://ps.w.org/bdthemes-element-pack-lite/assets/icon-256x256.gif',
+                    'logo' => '',
                     'rating' => 4.7,
                     'num_ratings' => 500,
                     'active_installs' => '100,000+'
@@ -36,7 +41,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'Prime Slider',
             //         'description' => 'Create eye-catching sliders for your website quickly and easily with 55+ modern Elementor slider widgets.',
-            //         'logo' => 'https://ps.w.org/bdthemes-prime-slider-lite/assets/icon-256x256.png',
+            //         'logo' => '',
             //         'rating' => 4.7,
             //         'num_ratings' => 500,
             //         'active_installs' => '100,000+'
@@ -47,7 +52,7 @@ class Plugin_Integration_Helper {
                 'fallback' => [
                     'name' => 'Ultimate Post Kit',
                     'description' => 'Design beautiful post layouts with simple, ready-made blocks.',
-                    'logo' => 'https://ps.w.org/ultimate-post-kit/assets/icon-256x256.png',
+                    'logo' => '',
                     'rating' => 4.8,
                     'num_ratings' => 1000,
                     'active_installs' => '50,000+'
@@ -58,7 +63,7 @@ class Plugin_Integration_Helper {
                 'fallback' => [
                     'name' => 'Live Copy Paste',
                     'description' => 'Copy and paste website elements between WordPress sites instantly.',
-                    'logo' => 'https://ps.w.org/live-copy-paste/assets/icon-256x256.png',
+                    'logo' => '',
                     'rating' => 4.9,
                     'num_ratings' => 200,
                     'active_installs' => '10,000+'
@@ -69,7 +74,7 @@ class Plugin_Integration_Helper {
                 'fallback' => [
                     'name' => 'Ultimate Store Kit',
                     'description' => 'Improve your online store with tools to display products better.',
-                    'logo' => 'https://ps.w.org/ultimate-store-kit/assets/icon-256x256.png',
+                    'logo' => '',
                     'rating' => 4.6,
                     'num_ratings' => 300,
                     'active_installs' => '20,000+'
@@ -80,7 +85,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'Pixel Gallery',
             //         'description' => 'Show off your photos in a stylish, responsive gallery.',
-            //         'logo' => 'https://ps.w.org/pixel-gallery/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 4.5,
             //         'num_ratings' => 150,
             //         'active_installs' => '5,000+'
@@ -91,7 +96,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'ZoloBlocks',
             //         'description' => 'Build amazing WordPress pages with helpful and flexible Gutenberg blocks.',
-            //         'logo' => 'https://ps.w.org/zoloblocks/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 4.3,
             //         'num_ratings' => 100,
             //         'active_installs' => '3,000+'
@@ -102,7 +107,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'Spin Wheel',
             //         'description' => 'Add a fun, interactive spin wheel to offer instant coupons, boost engagement, and grow your email list.',
-            //         'logo' => 'https://ps.w.org/spin-wheel/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 4.2,
             //         'num_ratings' => 50,
             //         'active_installs' => '1,000+'
@@ -113,7 +118,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'Instant Image Generator',
             //         'description' => 'Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI).',
-            //         'logo' => 'https://ps.w.org/ai-image/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 4.0,
             //         'num_ratings' => 25,
             //         'active_installs' => '500+'
@@ -124,7 +129,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'Dark Reader',
             //         'description' => 'Add beautiful dark mode to your WordPress site with customizable settings.',
-            //         'logo' => 'https://ps.w.org/dark-reader/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 4.1,
             //         'num_ratings' => 30,
             //         'active_installs' => '800+'
@@ -135,7 +140,7 @@ class Plugin_Integration_Helper {
             //     'fallback' => [
             //         'name' => 'AR Viewer',
             //         'description' => 'Augmented Reality Viewer – 3D Model Viewer.',
-            //         'logo' => 'https://ps.w.org/ar-viewer/assets/icon-256x256.gif',
+            //         'logo' => '',
             //         'rating' => 3.9,
             //         'num_ratings' => 15,
             //         'active_installs' => '200+'

@@ -93,40 +93,6 @@ class PrimeSlider_Others_Plugin_Manager {
             }
         }
 
-        // Helper function for fallback URLs
-        if (!function_exists('get_plugin_fallback_urls_ps')) {
-            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-            function get_plugin_fallback_urls_ps($plugin_slug) {
-                // Handle different plugin slug formats
-                if (strpos($plugin_slug, '/') !== false) {
-                    // If it's a file path like 'plugin-name/plugin-name.php', extract directory
-                    $plugin_slug_clean = dirname($plugin_slug);
-                } else {
-                    // If it's just the plugin directory name, use it directly
-                    $plugin_slug_clean = $plugin_slug;
-                }
-                
-                // Custom icon URLs for specific plugins that might not be on WordPress.org
-                $custom_icons = [
-                    'ar-viewer' => [
-                        'https://ps.w.org/ar-viewer/assets/icon-256x256.gif',
-                        'https://ps.w.org/ar-viewer/assets/icon-128x128.gif',
-                    ],
-                ];
-                
-                // Return custom icons if available, otherwise use default WordPress.org URLs
-                if (isset($custom_icons[$plugin_slug_clean])) {
-                    return $custom_icons[$plugin_slug_clean];
-                }
-                
-                return [
-                    "https://ps.w.org/{$plugin_slug_clean}/assets/icon-256x256.png",  // Then PNG
-                    "https://ps.w.org/{$plugin_slug_clean}/assets/icon-128x128.png",  // Medium PNG
-                    "https://ps.w.org/{$plugin_slug_clean}/assets/icon-256x256.gif",  // Try GIF first
-                    "https://ps.w.org/{$plugin_slug_clean}/assets/icon-128x128.gif",  // Medium GIF
-                ];
-            }
-        }
         ?>
         
         <div class="ps-dashboard-panel"
@@ -279,20 +245,21 @@ class PrimeSlider_Others_Plugin_Manager {
                         var logoUrl = plugin.logo || '';
                         var pluginName = plugin.name || '';
                         var pluginSlug = plugin.slug || '';
-                        
-                        // Generate fallback logo URL if needed
-                        if (!logoUrl) {
-                            var actualSlug = pluginSlug.replace('.php', '').split('/')[0];
-                            logoUrl = 'https://ps.w.org/' + actualSlug + '/assets/icon-256x256.png';
-                        }
-                        
+
+                        // The logo URL comes from the WordPress.org plugins API response. When it
+                        // is missing we show the local placeholder icon rather than guessing a
+                        // remote asset URL.
+                        var logoMarkup = logoUrl
+                            ? '<img src="' + psEsc(psSafeUrl(logoUrl)) + '" alt="' + psEsc(pluginName) + '" class="bdt-plugin-logo" ' +
+                                  'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+                              '<div class="default-plugin-icon" style="display:none;">📦</div>'
+                            : '<div class="default-plugin-icon" style="display:flex;">📦</div>';
+
                         html += '<div class="bdt-card bdt-card-body bdt-flex bdt-flex-middle bdt-flex-between">' +
                             '<div class="bdt-others-plugin-content">' +
                                 '<div class="bdt-plugin-logo-wrap bdt-flex bdt-flex-middle">' +
                                     '<div class="bdt-plugin-logo-container">' +
-                                        '<img src="' + psEsc(psSafeUrl(logoUrl)) + '" alt="' + psEsc(pluginName) + '" class="bdt-plugin-logo" ' +
-                                            'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
-                                        '<div class="default-plugin-icon" style="display:none;">📦</div>' +
+                                        logoMarkup +
                                     '</div>' +
                                     '<div class="bdt-others-plugin-user-wrap bdt-flex bdt-flex-middle">' +
                                         '<h1 class="ps-feature-title">' + psEsc(pluginName) + '</h1>' +
