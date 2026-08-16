@@ -890,7 +890,14 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$license_wl_status = PrimeSlider_Admin_Settings::license_wl_status();
 
 			if (!defined('BDTPS_LO') || false == $license_wl_status) {
-				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="dashicons dashicons-admin-network"></i>%3$s</a></li>', 'prime_slider_license_settings', $count, esc_html__('License', 'bdthemes-prime-slider-lite'));
+				// On the free version this tab shows the "Get Pro" page, not a license form,
+				// so label it accordingly.
+				$is_pro_activated = function_exists('_is_ps_pro_activated') ? _is_ps_pro_activated() : false;
+				$license_tab_title = (true === $is_pro_activated)
+					? esc_html__('License', 'bdthemes-prime-slider-lite')
+					: esc_html__('Get Pro', 'bdthemes-prime-slider-lite');
+
+				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="dashicons dashicons-admin-network"></i>%3$s</a></li>', 'prime_slider_license_settings', $count, $license_tab_title);
 			}
 
 			$html .= '</ul>';
@@ -1068,9 +1075,9 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 												<div>
 													<ul
 														class="bdt-subnav bdt-subnav-pill ps-widget-filter bdt-widget-type-content bdt-flex-inline">
-														<li class="ps-widget-all bdt-active" bdt-filter-control="*"><a
+														<li class="ps-widget-all" bdt-filter-control="*"><a
 																href="#"><?php esc_html_e('All', 'bdthemes-prime-slider-lite'); ?></a></li>
-														<li class="ps-widget-free"
+														<li class="ps-widget-free bdt-active"
 															bdt-filter-control="filter: [data-widget-type='free']; group: data-content-type">
 															<a href="#"><?php esc_html_e('Free', 'bdthemes-prime-slider-lite'); ?></a>
 														</li>
