@@ -172,7 +172,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				}
 				echo '<div class="ps-options" role="presentation" ' . esc_attr( $data_settings ) . '>';
 
-				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4"'.esc_html__('>Ops! Your Searched widget not found! Do you have any idea? If yes, ', 'bdthemes-prime-slider').'<a href="https://feedback.PrimeSlider.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">'.esc_html__('Submit here', 'bdthemes-prime-slider').'</a></p>';
+				echo '<p class="ps-no-result bdt-text-center bdt-width-1-1 bdt-margin-small-top bdt-h4"'.esc_html__('>Ops! Your Searched widget not found! Do you have any idea? If yes, ', 'bdthemes-prime-slider-lite').'<a href="https://feedback.PrimeSlider.pro/b/3v2gg80n/feature-requests/idea/new" target="_blank">'.esc_html__('Submit here', 'bdthemes-prime-slider-lite').'</a></p>';
 
 				$this->do_settings_fields( $page, $section['id'] );
 
@@ -227,7 +227,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				$data_type = ' data-widget-type="' . esc_attr( $field['args']['widget_type'] ) . '" data-content-type="' . esc_attr( $field['args']['content_type'] ) . esc_attr( $widget_used_status ) . '" data-widget-name="' . strtolower( $field['args']['name'] ) . '"';
 
 				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== _is_ps_pro_activated() ) {
-					$data_type .= ' bdt-tooltip="'.esc_html__('Pro widget only works with Pro version.', 'bdthemes-prime-slider').'"';
+					$data_type .= ' bdt-tooltip="'.esc_html__('Pro widget only works with Pro version.', 'bdthemes-prime-slider-lite').'"';
 				}
 
 				echo "<div class='ps-option-item ".esc_attr($class.$widget_used_status)."' ".wp_kses_post($data_type).">";
@@ -307,7 +307,14 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 			// creates our settings in the options table
 			foreach ( $this->settings_sections as $section ) {
-				register_setting( $section['id'], $section['id'], array( $this, 'sanitize_options' ) );
+				register_setting(
+					$section['id'],
+					$section['id'],
+					array(
+						'type'              => 'array',
+						'sanitize_callback' => array( $this, 'sanitize_options' ),
+					)
+				);
 			}
 		}
 
@@ -342,7 +349,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 			$html .= '<div class="ps-option-item-inner">';
 			if ( $args['video_url'] ) {
-				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider-lite') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider-lite') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
 			}
 			$html .= sprintf( '<label for="bdt_ps_%1$s[%2$s]">', $args['section'], $args['id'] );
 			$html .= '<span scope="row" class="ps-option-label">' . $args['name'] . '</span>';
@@ -445,7 +452,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				}
 			}
 
-			$widget_using_status = '</span> <br><span class="ps-widget-count-text">'.esc_html__('Total Used', 'bdthemes-prime-slider').'  - ' . esc_html( $used_widgets_count ) . ' </span>';
+			$widget_using_status = '</span> <br><span class="ps-widget-count-text">'.esc_html__('Total Used', 'bdthemes-prime-slider-lite').'  - ' . esc_html( $used_widgets_count ) . ' </span>';
 
 			// remove counts
 			if ( isset( $args['id'] ) && $args['id'] == 'not' ) {
@@ -468,7 +475,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 			$html .= '<div class="ps-option-links">';
 			if ($args['demo_url']) {
-				$html .= '<a href=' . $args['demo_url'] . ' target="_blank" class="ps-option-demo" title="' . esc_html__('View ' . $args['name'] . ' Widget Demo', 'bdthemes-prime-slider') . '">' . esc_html__('Demo', 'bdthemes-prime-slider') . '<i class="bdt-wi-preview" aria-hidden="true"></i></a>';
+				$html .= '<a href=' . esc_url($args['demo_url']) . ' target="_blank" class="ps-option-demo" title="' . esc_attr(sprintf(/* translators: %s: widget name */ __('View %s Widget Demo', 'bdthemes-prime-slider-lite'), $args['name'])) . '">' . esc_html__('Demo', 'bdthemes-prime-slider-lite') . '<i class="bdt-wi-preview" aria-hidden="true"></i></a>';
 			}
 			if ($args['video_url']) {
 				$html .= '<a href=' . $args['video_url'] . ' target="_blank" class="ps-option-video" title="View ' . $args['name'] . ' Video Tutorial">Video<i class="bdt-wi-tutorial" aria-hidden="true"></i></a>';
@@ -489,14 +496,14 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 					}
 					if ( ! is_plugin_active( $plugin_path ) ) {
 						$active_link = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin_path . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin_path );
-						$html .= '<a href="' . $active_link . '" class="prime-slider-3pp-active" bdt-tooltip="'.esc_html__('Activate the plugin first then you can activate this widget.', 'bdthemes-prime-slider').'"><span class="dashicons dashicons-admin-plugins"></span></a>';
+						$html .= '<a href="' . $active_link . '" class="prime-slider-3pp-active" bdt-tooltip="'.esc_html__('Activate the plugin first then you can activate this widget.', 'bdthemes-prime-slider-lite').'"><span class="dashicons dashicons-admin-plugins"></span></a>';
 					}
 				} else {
 					if ( $paid ) {
-						$html .= '<a href="' . $paid . '" class="prime-slider-3pp-download" bdt-tooltip="'.esc_html__('Download and install plugin first then you can activate this widget.', 'bdthemes-prime-slider').'"><span class="dashicons dashicons-download"></span></a>';
+						$html .= '<a href="' . $paid . '" class="prime-slider-3pp-download" bdt-tooltip="'.esc_html__('Download and install plugin first then you can activate this widget.', 'bdthemes-prime-slider-lite').'"><span class="dashicons dashicons-download"></span></a>';
 					} else {
 						$install_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $plugin_name ), 'install-plugin_' . $plugin_name );
-						$html .= '<a href="' . $install_link . '" class="prime-slider-3pp-install" bdt-tooltip="'.esc_html__('Install the plugin first then you can activate this widget.', 'bdthemes-prime-slider').'"><span class="dashicons dashicons-download"></span></a>';
+						$html .= '<a href="' . $install_link . '" class="prime-slider-3pp-install" bdt-tooltip="'.esc_html__('Install the plugin first then you can activate this widget.', 'bdthemes-prime-slider-lite').'"><span class="dashicons dashicons-download"></span></a>';
 					}
 				}
 
@@ -644,7 +651,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 			$id    = $args['section'] . '[' . $args['id'] . ']';
-			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : esc_html__( 'Choose File', 'bdthemes-prime-slider' );
+			$label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : esc_html__( 'Choose File', 'bdthemes-prime-slider-lite' );
 
 			$html = sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
 			$html .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
@@ -708,7 +715,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$html .= '</label>';
 
 			if ( $args['video_url'] ) {
-				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
+				$html .= '<a href="' . $args['video_url'] . '" target="_blank" class="ps-option-video" bdt-tooltip="' . esc_html__('View', 'bdthemes-prime-slider-lite') . ' ' . $args['name'] . ' ' . esc_html__('Video Tutorial', 'bdthemes-prime-slider-lite') . '"><i class="ps-wi-tutorial" aria-hidden="true"></i></a>';
 			}
 
 			$html .= $this->get_field_description( $args );
@@ -772,14 +779,33 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			foreach ( $options as $option_slug => $option_value ) {
 				$sanitize_callback = $this->get_sanitize_callback( $option_slug );
 
-				// If callback is set, call it
+				// If a field-specific callback is set, use it.
 				if ( $sanitize_callback ) {
 					$options[ $option_slug ] = call_user_func( $sanitize_callback, $option_value );
 					continue;
 				}
+
+				// Otherwise never store the value raw — apply a safe default so no
+				// submitted field escapes sanitization (wp.org register_setting rule).
+				$options[ $option_slug ] = $this->sanitize_default( $option_value );
 			}
 
 			return $options;
+		}
+
+		/**
+		 * Default sanitizer for settings values without a field-specific callback.
+		 * Recurses into arrays and reduces scalars to safe text.
+		 *
+		 * @param mixed $value Raw value.
+		 * @return mixed
+		 */
+		private function sanitize_default( $value ) {
+			if ( is_array( $value ) ) {
+				return array_map( array( $this, 'sanitize_default' ), $value );
+			}
+
+			return is_scalar( $value ) ? sanitize_text_field( (string) $value ) : '';
 		}
 
 		/**
@@ -838,7 +864,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			$html .= '<ul class="bdt-tab bdt-flex-column" bdt-tab="animation: bdt-animation-slide-bottom-small;connect: .bdt-tab-container;">';
 
 			// Dashboard - always first
-			$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="0"><i class="dashicons dashicons-admin-home"></i>%2$s</a></li>', 'prime_slider_welcome', esc_html__('Dashboard', 'bdthemes-prime-slider'));
+			$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="0"><i class="dashicons dashicons-admin-home"></i>%2$s</a></li>', 'prime_slider_welcome', esc_html__('Dashboard', 'bdthemes-prime-slider-lite'));
 
 			$count = 1;
 
@@ -850,11 +876,28 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="%4$s"></i>%3$s</a></li>', $tab['id'], $count++, $tab['title'], $icon);
 			}
 
+			// Extension tabs registered by add-ons (e.g. Prime Slider Pro). The core
+			// plugin only provides the extension point; it ships no tabs of its own.
+			foreach ($this->get_extra_dashboard_tabs() as $tab) {
+				if (empty($tab['id']) || empty($tab['title'])) {
+					continue;
+				}
+				$icon = isset($tab['icon']) ? $tab['icon'] : 'dashicons dashicons-screenoptions';
+				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="%4$s"></i>%3$s</a></li>', $tab['id'], $count++, esc_html($tab['title']), esc_attr($icon));
+			}
+
 			// License section
 			$license_wl_status = PrimeSlider_Admin_Settings::license_wl_status();
 
 			if (!defined('BDTPS_LO') || false == $license_wl_status) {
-				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="dashicons dashicons-admin-network"></i>%3$s</a></li>', 'prime_slider_license_settings', $count, esc_html__('License', 'bdthemes-prime-slider'));
+				// On the free version this tab shows the "Get Pro" page, not a license form,
+				// so label it accordingly.
+				$is_pro_activated = function_exists('_is_ps_pro_activated') ? _is_ps_pro_activated() : false;
+				$license_tab_title = (true === $is_pro_activated)
+					? esc_html__('License', 'bdthemes-prime-slider-lite')
+					: esc_html__('Get Pro', 'bdthemes-prime-slider-lite');
+
+				$html .= sprintf('<li><a href="#%1$s" class="bdt-tab-item" id="bdt-%1$s" data-tab-index="%2$s"><i class="dashicons dashicons-admin-network"></i>%3$s</a></li>', 'prime_slider_license_settings', $count, $license_tab_title);
 			}
 
 			$html .= '</ul>';
@@ -893,35 +936,22 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			// Add manually created content sections that don't have settings forms
 			$content_only_sections = [
 				[
-					'id' => 'prime_slider_extra_options',
-					'title' => esc_html__('Extra Options', 'bdthemes-prime-slider'),
-					'icon' => 'dashicons dashicons-smiley',
-				],
-				[
 					'id' => 'prime_slider_analytics_system_req',
-					'title' => esc_html__('System Status', 'bdthemes-prime-slider'),
+					'title' => esc_html__('System Status', 'bdthemes-prime-slider-lite'),
 					'icon' => 'dashicons dashicons-chart-bar',
 				],
 				[
 					'id' => 'prime_slider_other_plugins',
-					'title' => esc_html__('Other Plugins', 'bdthemes-prime-slider'),
+					'title' => esc_html__('Other Plugins', 'bdthemes-prime-slider-lite'),
 					'icon' => 'dashicons dashicons-admin-plugins',
 				],
 				// [
 				// 	'id' => 'prime_slider_affiliate',
-				// 	'title' => esc_html__('Get Up to 60%', 'bdthemes-prime-slider'),
+				// 	'title' => esc_html__('Get Up to 60%', 'bdthemes-prime-slider-lite'),
 				// 	'icon' => 'dashicons dashicons-money-alt',
 				// ],
 			];
 
-			if (true == _is_ps_pro_activated()) {
-				$content_only_sections[] = [
-					'id' => 'prime_slider_rollback_version',
-					'title' => esc_html__('Rollback Version', 'bdthemes-prime-slider'),
-					'icon' => 'dashicons dashicons-update',
-				];
-			}
-			
 			// Check if each content section exists in settings sections, if not add it
 			foreach ($content_only_sections as $content_section) {
 				$exists = false;
@@ -937,6 +967,20 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			}
 			
 			return $all_sections;
+		}
+
+		/**
+		 * Extra dashboard tabs contributed by add-on plugins.
+		 *
+		 * Neutral extension point: the core plugin renders whatever tabs an add-on
+		 * registers here and ships none of its own. Each item is an array
+		 * [ 'id' => string, 'title' => string, 'icon' => string, 'callback' =>
+		 * callable ] where the callback echoes the tab body.
+		 *
+		 * @return array
+		 */
+		public function get_extra_dashboard_tabs() {
+			return (array) apply_filters( 'prime_slider_dashboard_extra_tabs', array() );
 		}
 
 		function prime_slider_settings_save() {
@@ -961,6 +1005,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			}
 
 			if ( isset( $_POST[ $moudle_id ] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized just below via sanitize_options()/sanitize_default().
 				$raw_value = wp_unslash( $_POST[ $moudle_id ] );
 
 				// Route the value through the registered per-field sanitizers
@@ -1030,15 +1075,15 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 												<div>
 													<ul
 														class="bdt-subnav bdt-subnav-pill ps-widget-filter bdt-widget-type-content bdt-flex-inline">
-														<li class="ps-widget-all bdt-active" bdt-filter-control="*"><a
-																href="#"><?php esc_html_e('All', 'bdthemes-prime-slider'); ?></a></li>
-														<li class="ps-widget-free"
+														<li class="ps-widget-all" bdt-filter-control="*"><a
+																href="#"><?php esc_html_e('All', 'bdthemes-prime-slider-lite'); ?></a></li>
+														<li class="ps-widget-free bdt-active"
 															bdt-filter-control="filter: [data-widget-type='free']; group: data-content-type">
-															<a href="#"><?php esc_html_e('Free', 'bdthemes-prime-slider'); ?></a>
+															<a href="#"><?php esc_html_e('Free', 'bdthemes-prime-slider-lite'); ?></a>
 														</li>
 														<li class="ps-widget-pro"
 															bdt-filter-control="filter: [data-widget-type='pro']; group: data-content-type">
-															<a href="#"><?php esc_html_e('Pro', 'bdthemes-prime-slider'); ?></a>
+															<a href="#"><?php esc_html_e('Pro', 'bdthemes-prime-slider-lite'); ?></a>
 														</li>
 
 													</ul>
@@ -1054,14 +1099,14 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 																class="bdt-subnav bdt-subnav-pill ps-widget-filter ps-used-unused-widgets bdt-flex-inline ">
 																<li class="ps-widget--"
 																	bdt-filter-control="filter: [data-content-type*='ps-used']; group: data-content-type">
-																	<a href="#"><?php esc_html_e('Used', 'bdthemes-prime-slider'); ?>
+																	<a href="#"><?php esc_html_e('Used', 'bdthemes-prime-slider-lite'); ?>
 																		<span class="bdt-badge ps-used-widget"></span>
 																	</a>
 																</li>
 																<li class="ps-widget--"
 																	bdt-filter-control="filter: [data-content-type*='ps-unused']; group: data-content-type">
 																	<a href="#"
-																		bdt-tooltip="<?php esc_html_e('Don\'t need unused widget? Click on the Deactivate All button.', 'bdthemes-prime-slider'); ?>"><?php esc_html_e('Unused', 'bdthemes-prime-slider'); ?>
+																		bdt-tooltip="<?php esc_html_e('Don\'t need unused widget? Click on the Deactivate All button.', 'bdthemes-prime-slider-lite'); ?>"><?php esc_html_e('Unused', 'bdthemes-prime-slider-lite'); ?>
 																		<span class="bdt-badge ps-unused-widget bdt-danger"></span>
 																	</a>
 																</li>
@@ -1079,7 +1124,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 											<div class="bdt-widget-search">
 												<input data-id="ps-options-parent-<?php echo esc_attr($i); ?>" onkeyup="filterSearch(this);"
 													bdt-filter-control="" class="bdt-search-input bdt-flex-middle" type="search"
-													placeholder="<?php esc_html_e('Search widget...', 'bdthemes-prime-slider'); ?>"
+													placeholder="<?php esc_html_e('Search widget...', 'bdthemes-prime-slider-lite'); ?>"
 													autofocus>
 											</div>
 
@@ -1087,12 +1132,12 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 												<ul class="bdt-subnav bdt-subnav-pill ps-widget-onoff">
 													<li>
 														<a href="#" class="ps-active-all-widget">
-															<?php esc_html_e('Activate All', 'bdthemes-prime-slider'); ?>
+															<?php esc_html_e('Activate All', 'bdthemes-prime-slider-lite'); ?>
 														</a>
 													</li>
 													<li>
 														<a href="#" class="ps-deactive-all-widget">
-															<?php esc_html_e('Deactivate All', 'bdthemes-prime-slider'); ?>
+															<?php esc_html_e('Deactivate All', 'bdthemes-prime-slider-lite'); ?>
 														</a>
 													</li>
 												</ul>
@@ -1104,32 +1149,32 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 										<div class="ps-content-type-filter bdt-margin-top">
 											<div class="bdt-flex bdt-flex-wrap bdt-flex-middle bdt-visible@l">
 												<div class="ps-filter-by-text bdt-visible@xl">
-													<?php esc_html_e('Filter By: ', 'bdthemes-prime-slider'); ?>
+													<?php esc_html_e('Filter By: ', 'bdthemes-prime-slider-lite'); ?>
 												</div>
 												<ul class="bdt-nav xbdt-subnav-pill xbdt-dropdown-nav ps-widget-filter ps-widget-content-type bdt-flex bdt-flex-wrap ">
 													<li class="ps-widget-new" bdt-filter-control="filter: [data-content-type*='new']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('New', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('New', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-static" bdt-filter-control="filter: [data-content-type*='static']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('Static', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('Static', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
                                                     <li class="ps-widget-custom" bdt-filter-control="filter: [data-content-type*='custom']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('Custom', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('Custom', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-carousel" bdt-filter-control="filter: [data-content-type*='carousel']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('Carousel', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('Carousel', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-post" bdt-filter-control="filter: [data-content-type*='post']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('Post', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('Post', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-ecommerce" bdt-filter-control="filter: [data-content-type*='ecommerce']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('eCommerce', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('eCommerce', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-swiper" bdt-filter-control="filter: [data-content-type*='swiper']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('swiper', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('swiper', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 													<li class="ps-widget-others" bdt-filter-control="filter: [data-content-type*='others']; group: data-widget-type">
-                                                        <a href="#"><?php esc_html_e('Others', 'bdthemes-prime-slider'); ?></a>
+                                                        <a href="#"><?php esc_html_e('Others', 'bdthemes-prime-slider-lite'); ?></a>
                                                     </li>
 												</ul>
 											</div>

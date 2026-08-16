@@ -16,7 +16,7 @@ class Skin_Folio extends Elementor_Skin_Base {
   }
 
   public function get_title() {
-    return esc_html__('Folio', 'bdthemes-prime-slider');
+    return esc_html__('Folio', 'bdthemes-prime-slider-lite');
   }
 
   /**
@@ -40,7 +40,7 @@ class Skin_Folio extends Elementor_Skin_Base {
           <?php
           echo ! empty( $settings['follow_us_text'] )
             ? esc_html( $settings['follow_us_text'] )
-            : esc_html__( 'Follow Us', 'bdthemes-prime-slider' );
+            : esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' );
           ?>
         </h3>
 			<?php endif; ?>
@@ -109,7 +109,7 @@ class Skin_Folio extends Elementor_Skin_Base {
             </div>
             <div class="bdt-meta-author">
               <span class="bdt-author bdt-text-capitalize">
-                <strong><?php esc_html_e('Written by&nbsp;', 'bdthemes-prime-slider'); ?></strong><br>
+                <strong><?php esc_html_e('Written by&nbsp;', 'bdthemes-prime-slider-lite'); ?></strong><br>
                 <?php echo esc_attr(get_the_author()); ?> </span>
             </div>
           </div>
@@ -125,7 +125,7 @@ class Skin_Folio extends Elementor_Skin_Base {
               </div>
               <div class="bdt-meta-text">
                 <span>
-                  <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider'); ?></strong><br> <?php echo get_the_date(); ?>
+                  <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider-lite'); ?></strong><br> <?php echo get_the_date(); ?>
                 </span>
               </div>
             </div>
@@ -142,7 +142,7 @@ class Skin_Folio extends Elementor_Skin_Base {
               </div>
               <div class="bdt-meta-text">
                 <span>
-                  <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider'); ?></strong><br>
+                  <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider-lite'); ?></strong><br>
                   <?php echo esc_attr(get_comments_number()); ?>
                 </span>
               </div>

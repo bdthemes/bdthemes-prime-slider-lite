@@ -16,7 +16,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_source',
 			[
-				'label'     => __('Source', 'bdthemes-prime-slider'),
+				'label'     => __('Source', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->getGroupControlQueryPostTypes(),
 				'default'   => 'post',
@@ -26,7 +26,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_limit',
 			[
-				'label'     => esc_html__('Limit', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Limit', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 5,
 
@@ -36,7 +36,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_selected_ids',
 			[
-				'label'       => __('Search & Select', 'bdthemes-prime-slider'),
+				'label'       => __('Search & Select', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
@@ -61,7 +61,7 @@ trait Group_Control_Query {
 		$this->start_controls_tab(
 			'tab_posts_include',
 			[
-				'label'     => __('Include', 'bdthemes-prime-slider'),
+				'label'     => __('Include', 'bdthemes-prime-slider-lite'),
 				'condition' => [
 					'posts_source!'                => ['manual_selection', 'current_query'],
 				]
@@ -71,13 +71,13 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_include_by',
 			[
-				'label'       => __('Include By', 'bdthemes-prime-slider'),
+				'label'       => __('Include By', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'label_block' => true,
 				'options'     => [
-					'authors' => __('Authors', 'bdthemes-prime-slider'),
-					'terms'   => __('Terms', 'bdthemes-prime-slider'),
+					'authors' => __('Authors', 'bdthemes-prime-slider-lite'),
+					'terms'   => __('Terms', 'bdthemes-prime-slider-lite'),
 				],
 				'condition'   => [
 					'posts_source!' => ['manual_selection', 'current_query'],
@@ -88,7 +88,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_include_author_ids',
 			[
-				'label'       => __('Authors', 'bdthemes-prime-slider'),
+				'label'       => __('Authors', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
@@ -105,12 +105,12 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_include_term_ids',
 			[
-				'label'       => __('Terms', 'bdthemes-prime-slider'),
-				'description' => __('Terms are items in a taxonomy. The available taxonomies are: Categories, Tags, Formats and custom taxonomies.', 'bdthemes-prime-slider'),
+				'label'       => __('Terms', 'bdthemes-prime-slider-lite'),
+				'description' => __('Terms are items in a taxonomy. The available taxonomies are: Categories, Tags, Formats and custom taxonomies.', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
-				'placeholder' => __('Type and select terms', 'bdthemes-prime-slider'),
+				'placeholder' => __('Type and select terms', 'bdthemes-prime-slider-lite'),
 				'query_args'  => [
 					'query'        => 'terms',
 					'widget_props' => [
@@ -129,7 +129,7 @@ trait Group_Control_Query {
 		$this->start_controls_tab(
 			'tab_posts_exclude',
 			[
-				'label'     => __('Exclude', 'bdthemes-prime-slider'),
+				'label'     => __('Exclude', 'bdthemes-prime-slider-lite'),
 				'condition' => [
 					'posts_source!' => ['manual_selection', 'current_query'],
 				]
@@ -139,15 +139,15 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_by',
 			[
-				'label'       => __('Exclude By', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label'       => __('Exclude By', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'label_block' => true,
 				'options'     => [
-					'authors'          => __('Authors', 'bdthemes-prime-slider'),
-					'current_post'     => __('Current Post', 'bdthemes-prime-slider'),
-					'manual_selection' => __('Manual Selection', 'bdthemes-prime-slider'),
-					'terms'            => __('Terms', 'bdthemes-prime-slider'),
+					'authors'          => __('Authors', 'bdthemes-prime-slider-lite'),
+					'current_post'     => __('Current Post', 'bdthemes-prime-slider-lite'),
+					'manual_selection' => __('Manual Selection', 'bdthemes-prime-slider-lite'),
+					'terms'            => __('Terms', 'bdthemes-prime-slider-lite'),
 				],
 				'condition'   => [
 					'posts_source!' => ['manual_selection', 'current_query'],
@@ -159,7 +159,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_ids',
 			[
-				'label'       => __('Search & Select', 'bdthemes-prime-slider'),
+				'label'       => __('Search & Select', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
@@ -179,7 +179,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_author_ids',
 			[
-				'label'       => __('Authors', 'bdthemes-prime-slider'),
+				'label'       => __('Authors', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
@@ -196,12 +196,12 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_term_ids',
 			[
-				'label'       => __('Terms', 'bdthemes-prime-slider'),
-				'description' => __('Terms are items in a taxonomy. The available taxonomies are: Categories, Tags, Formats and custom taxonomies.', 'bdthemes-prime-slider'),
+				'label'       => __('Terms', 'bdthemes-prime-slider-lite'),
+				'description' => __('Terms are items in a taxonomy. The available taxonomies are: Categories, Tags, Formats and custom taxonomies.', 'bdthemes-prime-slider-lite'),
 				'type'        => Dynamic_Select::TYPE,
 				'multiple'    => true,
 				'label_block' => true,
-				'placeholder' => __('Type and select terms', 'bdthemes-prime-slider'),
+				'placeholder' => __('Type and select terms', 'bdthemes-prime-slider-lite'),
 				'query_args'  => [
 					'query'        => 'terms',
 					'widget_props' => [
@@ -230,13 +230,13 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_show_product_type',
 			[
-				'label'   => esc_html__('Show Product', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Product', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'all',
 				'options' => [
-					'all'      => esc_html__('All Products', 'bdthemes-prime-slider'),
-					'onsale'   => esc_html__('On Sale', 'bdthemes-prime-slider'),
-					'featured' => esc_html__('Featured', 'bdthemes-prime-slider'),
+					'all'      => esc_html__('All Products', 'bdthemes-prime-slider-lite'),
+					'onsale'   => esc_html__('On Sale', 'bdthemes-prime-slider-lite'),
+					'featured' => esc_html__('Featured', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'posts_source'                => 'product',
@@ -246,17 +246,17 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_select_date',
 			[
-				'label'     => __('Date', 'bdthemes-prime-slider'),
+				'label'     => __('Date', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'anytime',
 				'options'   => [
-					'anytime' => __('All', 'bdthemes-prime-slider'),
-					'today'   => __('Past Day', 'bdthemes-prime-slider'),
-					'week'    => __('Past Week', 'bdthemes-prime-slider'),
-					'month'   => __('Past Month', 'bdthemes-prime-slider'),
-					'quarter' => __('Past Quarter', 'bdthemes-prime-slider'),
-					'year'    => __('Past Year', 'bdthemes-prime-slider'),
-					'exact'   => __('Custom', 'bdthemes-prime-slider'),
+					'anytime' => __('All', 'bdthemes-prime-slider-lite'),
+					'today'   => __('Past Day', 'bdthemes-prime-slider-lite'),
+					'week'    => __('Past Week', 'bdthemes-prime-slider-lite'),
+					'month'   => __('Past Month', 'bdthemes-prime-slider-lite'),
+					'quarter' => __('Past Quarter', 'bdthemes-prime-slider-lite'),
+					'year'    => __('Past Year', 'bdthemes-prime-slider-lite'),
+					'exact'   => __('Custom', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'posts_source!'                => 'current_query',
@@ -267,9 +267,9 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_date_before',
 			[
-				'label'       => __('Before', 'bdthemes-prime-slider'),
+				'label'       => __('Before', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::DATE_TIME,
-				'description' => __('Setting a ‘Before’ date will show all the posts published until the chosen date (inclusive).', 'bdthemes-prime-slider'),
+				'description' => __('Setting a ‘Before’ date will show all the posts published until the chosen date (inclusive).', 'bdthemes-prime-slider-lite'),
 				'condition'   => [
 					'posts_select_date' => 'exact',
 					'posts_source!'     => 'current_query',
@@ -280,9 +280,9 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_date_after',
 			[
-				'label'       => __('After', 'bdthemes-prime-slider'),
+				'label'       => __('After', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::DATE_TIME,
-				'description' => __('Setting an ‘After’ date will show all the posts published since the chosen date (inclusive).', 'bdthemes-prime-slider'),
+				'description' => __('Setting an ‘After’ date will show all the posts published since the chosen date (inclusive).', 'bdthemes-prime-slider-lite'),
 				'condition'   => [
 					'posts_select_date' => 'exact',
 					'posts_source!'     => 'current_query',
@@ -293,17 +293,17 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_orderby',
 			[
-				'label'     => __('Order By', 'bdthemes-prime-slider'),
+				'label'     => __('Order By', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'date',
 				'options'   => [
-					'title'         => __('Title', 'bdthemes-prime-slider'),
-					'ID'            => __('ID', 'bdthemes-prime-slider'),
-					'date'          => __('Date', 'bdthemes-prime-slider'),
-					'author'        => __('Author', 'bdthemes-prime-slider'),
-					'comment_count' => __('Comment Count', 'bdthemes-prime-slider'),
-					'menu_order'    => __('Menu Order', 'bdthemes-prime-slider'),
-					'rand'          => __('Random', 'bdthemes-prime-slider'),
+					'title'         => __('Title', 'bdthemes-prime-slider-lite'),
+					'ID'            => __('ID', 'bdthemes-prime-slider-lite'),
+					'date'          => __('Date', 'bdthemes-prime-slider-lite'),
+					'author'        => __('Author', 'bdthemes-prime-slider-lite'),
+					'comment_count' => __('Comment Count', 'bdthemes-prime-slider-lite'),
+					'menu_order'    => __('Menu Order', 'bdthemes-prime-slider-lite'),
+					'rand'          => __('Random', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'posts_source!'                => ['current_query', 'product'],
@@ -313,19 +313,19 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_orderby',
 			[
-				'label'     => __('Order By', 'bdthemes-prime-slider'),
+				'label'     => __('Order By', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'date',
 				'options'   => [
-					'title'         => __('Title', 'bdthemes-prime-slider'),
-					'ID'            => __('ID', 'bdthemes-prime-slider'),
-					'date'          => __('Date', 'bdthemes-prime-slider'),
-					'author'        => __('Author', 'bdthemes-prime-slider'),
-					'comment_count' => __('Comment Count', 'bdthemes-prime-slider'),
-					'menu_order'    => __('Menu Order', 'bdthemes-prime-slider'),
-					'rand'          => __('Random', 'bdthemes-prime-slider'),
-					'price'          => __('Price', 'bdthemes-prime-slider'),
-					'sales'          => __('Sales', 'bdthemes-prime-slider'),
+					'title'         => __('Title', 'bdthemes-prime-slider-lite'),
+					'ID'            => __('ID', 'bdthemes-prime-slider-lite'),
+					'date'          => __('Date', 'bdthemes-prime-slider-lite'),
+					'author'        => __('Author', 'bdthemes-prime-slider-lite'),
+					'comment_count' => __('Comment Count', 'bdthemes-prime-slider-lite'),
+					'menu_order'    => __('Menu Order', 'bdthemes-prime-slider-lite'),
+					'rand'          => __('Random', 'bdthemes-prime-slider-lite'),
+					'price'          => __('Price', 'bdthemes-prime-slider-lite'),
+					'sales'          => __('Sales', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'posts_source'                => 'product',
@@ -336,12 +336,12 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_order',
 			[
-				'label'     => __('Order', 'bdthemes-prime-slider'),
+				'label'     => __('Order', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'desc',
 				'options'   => [
-					'asc'  => __('ASC', 'bdthemes-prime-slider'),
-					'desc' => __('DESC', 'bdthemes-prime-slider'),
+					'asc'  => __('ASC', 'bdthemes-prime-slider-lite'),
+					'desc' => __('DESC', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'posts_source!'                => 'current_query',
@@ -351,7 +351,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_hide_free',
 			[
-				'label'   => esc_html__('Hide Free Product', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Hide Free Product', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'condition' => [
 					'posts_source' => 'product',
@@ -361,7 +361,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'product_hide_out_stock',
 			[
-				'label'   => esc_html__('Hide Out of Stock', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Hide Out of Stock', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'condition' => [
 					'posts_source' => 'product',
@@ -371,7 +371,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_ignore_sticky_posts',
 			[
-				'label'        => __('Ignore Sticky Posts', 'bdthemes-prime-slider'),
+				'label'        => __('Ignore Sticky Posts', 'bdthemes-prime-slider-lite'),
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -384,8 +384,8 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_only_with_featured_image',
 			[
-				'label'        => __('Only Featured Image Post', 'bdthemes-prime-slider'),
-				'description'  => __('Enable to display posts only when featured image is present.', 'bdthemes-prime-slider'),
+				'label'        => __('Only Featured Image Post', 'bdthemes-prime-slider-lite'),
+				'description'  => __('Enable to display posts only when featured image is present.', 'bdthemes-prime-slider-lite'),
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'condition'    => [
@@ -397,8 +397,8 @@ trait Group_Control_Query {
 		$this->add_control(
 			'query_id',
 			[
-				'label'       => __('Query ID', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
-				'description' => __('Give your Query a custom unique id to allow server side filtering', 'bdthemes-prime-slider'),
+				'label'       => __('Query ID', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'description' => __('Give your Query a custom unique id to allow server side filtering', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::TEXT,
 				'separator'   => 'before',
 				'classes'   => BDTPS_CORE_IS_PC
@@ -421,6 +421,7 @@ trait Group_Control_Query {
 		 * Set Feature Images
 		 */
 		if ($this->get_settings_for_display('posts_only_with_featured_image') === 'yes') {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 			$args['meta_key'] = '_thumbnail_id';
 		}
 
@@ -531,10 +532,12 @@ trait Group_Control_Query {
 			}
 			switch ($settings['product_orderby']) {
 				case 'price':
+					// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 					$args['meta_key'] = '_price'; // WPCS: slow query ok.
 					$args['orderby']  = 'meta_value_num';
 					break;
 				case 'sales':
+					// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 					$args['meta_key'] = 'total_sales'; // WPCS: slow query ok.
 					$args['orderby']  = 'meta_value_num';
 					break;
@@ -553,6 +556,7 @@ trait Group_Control_Query {
 			$args['ignore_sticky_posts'] = true;
 
 			if (in_array('current_post', $exclude_by)) {
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 				$args['post__not_in'] = [get_the_ID()];
 			}
 		}
@@ -596,6 +600,7 @@ trait Group_Control_Query {
 			}
 
 			if (in_array('current_post', $exclude_by)) {
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 				$args['post__not_in'] = [get_the_ID()];
 			}
 
@@ -620,6 +625,7 @@ trait Group_Control_Query {
 
 			if (in_array('manual_selection', $exclude_by)) {
 				$exclude_ids          = $settings['posts_exclude_ids'];
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 				$args['post__not_in'] = array_merge($current_post, wp_parse_id_list($exclude_ids));
 			}
 			/**
@@ -692,6 +698,7 @@ trait Group_Control_Query {
 			}
 
 			if (!empty($terms_query)) {
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 				$args['tax_query']             = $terms_query;
 				$args['tax_query']['relation'] = 'AND';
 			}
@@ -725,6 +732,7 @@ trait Group_Control_Query {
 	 */
 	private function getGroupControlQueryParamBy($by = 'exclude') {
 		$mapBy = [
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Elementor widget query built from user-configured controls; caching/query shape is expected.
 			'exclude' => 'posts_exclude_by',
 			'include' => 'posts_include_by',
 		];
@@ -774,9 +782,9 @@ trait Group_Control_Query {
 		$post_types = array_diff_key($post_types, $ignorePostTypes);
 
 		$extra_types = [
-			'manual_selection'   => __('Manual Selection', 'bdthemes-prime-slider'),
-			'current_query'      => __('Current Query', 'bdthemes-prime-slider'),
-			'_related_post_type' => __('Related', 'bdthemes-prime-slider'),
+			'manual_selection'   => __('Manual Selection', 'bdthemes-prime-slider-lite'),
+			'current_query'      => __('Current Query', 'bdthemes-prime-slider-lite'),
+			'_related_post_type' => __('Related', 'bdthemes-prime-slider-lite'),
 		];
 
 		$post_types = array_merge($post_types, $extra_types);

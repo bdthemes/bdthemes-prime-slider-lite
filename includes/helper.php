@@ -6,11 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/**
- * You can easily add white label branding for for extended license or multi site license.
- * Don't try for regular license otherwise your license will be invalid.
- * return white label
- */
 define( 'BDTPS_CORE_PNAME', basename( dirname( BDTPS_CORE__FILE__ ) ) );
 define( 'BDTPS_CORE_PBNAME', plugin_basename( BDTPS_CORE__FILE__ ) );
 define( 'BDTPS_CORE_PATH', plugin_dir_path( BDTPS_CORE__FILE__ ) );
@@ -350,9 +345,9 @@ function prime_slider_et_options() {
 	$types     = [];
 
 	if ( empty( $templates ) ) {
-		$template_options = [ '0' => __( 'Template Not Found!', 'bdthemes-prime-slider' ) ];
+		$template_options = [ '0' => __( 'Template Not Found!', 'bdthemes-prime-slider-lite' ) ];
 	} else {
-		$template_options = [ '0' => __( 'Select Template', 'bdthemes-prime-slider' ) ];
+		$template_options = [ '0' => __( 'Select Template', 'bdthemes-prime-slider-lite' ) ];
 
 		foreach ( $templates as $template ) {
 			$template_options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
@@ -368,7 +363,7 @@ function prime_slider_template_edit_link( $template_id ) {
 
 		$final_url = add_query_arg( [ 'elementor' => '' ], get_permalink( $template_id ) );
 
-		$output = sprintf( '<a class="bdt-elementor-template-edit-link" href="%s" title="%s" target="_blank"><i class="eicon-edit"></i></a>', esc_url( $final_url ), esc_html__( 'Edit Template', 'bdthemes-prime-slider' ) );
+		$output = sprintf( '<a class="bdt-elementor-template-edit-link" href="%s" title="%s" target="_blank"><i class="eicon-edit"></i></a>', esc_url( $final_url ), esc_html__( 'Edit Template', 'bdthemes-prime-slider-lite' ) );
 
 		return $output;
 	}
@@ -377,22 +372,22 @@ function prime_slider_template_edit_link( $template_id ) {
 // BDT Transition
 function prime_slider_transition_options() {
 	$transition_options = [ 
-		''                    => esc_html__( 'None', 'bdthemes-prime-slider' ),
-		'fade'                => esc_html__( 'Fade', 'bdthemes-prime-slider' ),
-		'scale-up'            => esc_html__( 'Scale Up', 'bdthemes-prime-slider' ),
-		'scale-down'          => esc_html__( 'Scale Down', 'bdthemes-prime-slider' ),
-		'slide-top'           => esc_html__( 'Slide Top', 'bdthemes-prime-slider' ),
-		'slide-bottom'        => esc_html__( 'Slide Bottom', 'bdthemes-prime-slider' ),
-		'slide-left'          => esc_html__( 'Slide Left', 'bdthemes-prime-slider' ),
-		'slide-right'         => esc_html__( 'Slide Right', 'bdthemes-prime-slider' ),
-		'slide-top-small'     => esc_html__( 'Slide Top Small', 'bdthemes-prime-slider' ),
-		'slide-bottom-small'  => esc_html__( 'Slide Bottom Small', 'bdthemes-prime-slider' ),
-		'slide-left-small'    => esc_html__( 'Slide Left Small', 'bdthemes-prime-slider' ),
-		'slide-right-small'   => esc_html__( 'Slide Right Small', 'bdthemes-prime-slider' ),
-		'slide-top-medium'    => esc_html__( 'Slide Top Medium', 'bdthemes-prime-slider' ),
-		'slide-bottom-medium' => esc_html__( 'Slide Bottom Medium', 'bdthemes-prime-slider' ),
-		'slide-left-medium'   => esc_html__( 'Slide Left Medium', 'bdthemes-prime-slider' ),
-		'slide-right-medium'  => esc_html__( 'Slide Right Medium', 'bdthemes-prime-slider' ),
+		''                    => esc_html__( 'None', 'bdthemes-prime-slider-lite' ),
+		'fade'                => esc_html__( 'Fade', 'bdthemes-prime-slider-lite' ),
+		'scale-up'            => esc_html__( 'Scale Up', 'bdthemes-prime-slider-lite' ),
+		'scale-down'          => esc_html__( 'Scale Down', 'bdthemes-prime-slider-lite' ),
+		'slide-top'           => esc_html__( 'Slide Top', 'bdthemes-prime-slider-lite' ),
+		'slide-bottom'        => esc_html__( 'Slide Bottom', 'bdthemes-prime-slider-lite' ),
+		'slide-left'          => esc_html__( 'Slide Left', 'bdthemes-prime-slider-lite' ),
+		'slide-right'         => esc_html__( 'Slide Right', 'bdthemes-prime-slider-lite' ),
+		'slide-top-small'     => esc_html__( 'Slide Top Small', 'bdthemes-prime-slider-lite' ),
+		'slide-bottom-small'  => esc_html__( 'Slide Bottom Small', 'bdthemes-prime-slider-lite' ),
+		'slide-left-small'    => esc_html__( 'Slide Left Small', 'bdthemes-prime-slider-lite' ),
+		'slide-right-small'   => esc_html__( 'Slide Right Small', 'bdthemes-prime-slider-lite' ),
+		'slide-top-medium'    => esc_html__( 'Slide Top Medium', 'bdthemes-prime-slider-lite' ),
+		'slide-bottom-medium' => esc_html__( 'Slide Bottom Medium', 'bdthemes-prime-slider-lite' ),
+		'slide-left-medium'   => esc_html__( 'Slide Left Medium', 'bdthemes-prime-slider-lite' ),
+		'slide-right-medium'  => esc_html__( 'Slide Right Medium', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $transition_options;
@@ -401,21 +396,21 @@ function prime_slider_transition_options() {
 // BDT Blend Type
 function prime_slider_blend_options() {
 	$blend_options = [ 
-		'multiply'    => esc_html__( 'Multiply', 'bdthemes-prime-slider' ),
-		'screen'      => esc_html__( 'Screen', 'bdthemes-prime-slider' ),
-		'overlay'     => esc_html__( 'Overlay', 'bdthemes-prime-slider' ),
-		'darken'      => esc_html__( 'Darken', 'bdthemes-prime-slider' ),
-		'lighten'     => esc_html__( 'Lighten', 'bdthemes-prime-slider' ),
-		'color-dodge' => esc_html__( 'Color-Dodge', 'bdthemes-prime-slider' ),
-		'color-burn'  => esc_html__( 'Color-Burn', 'bdthemes-prime-slider' ),
-		'hard-light'  => esc_html__( 'Hard-Light', 'bdthemes-prime-slider' ),
-		'soft-light'  => esc_html__( 'Soft-Light', 'bdthemes-prime-slider' ),
-		'difference'  => esc_html__( 'Difference', 'bdthemes-prime-slider' ),
-		'exclusion'   => esc_html__( 'Exclusion', 'bdthemes-prime-slider' ),
-		'hue'         => esc_html__( 'Hue', 'bdthemes-prime-slider' ),
-		'saturation'  => esc_html__( 'Saturation', 'bdthemes-prime-slider' ),
-		'color'       => esc_html__( 'Color', 'bdthemes-prime-slider' ),
-		'luminosity'  => esc_html__( 'Luminosity', 'bdthemes-prime-slider' ),
+		'multiply'    => esc_html__( 'Multiply', 'bdthemes-prime-slider-lite' ),
+		'screen'      => esc_html__( 'Screen', 'bdthemes-prime-slider-lite' ),
+		'overlay'     => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ),
+		'darken'      => esc_html__( 'Darken', 'bdthemes-prime-slider-lite' ),
+		'lighten'     => esc_html__( 'Lighten', 'bdthemes-prime-slider-lite' ),
+		'color-dodge' => esc_html__( 'Color-Dodge', 'bdthemes-prime-slider-lite' ),
+		'color-burn'  => esc_html__( 'Color-Burn', 'bdthemes-prime-slider-lite' ),
+		'hard-light'  => esc_html__( 'Hard-Light', 'bdthemes-prime-slider-lite' ),
+		'soft-light'  => esc_html__( 'Soft-Light', 'bdthemes-prime-slider-lite' ),
+		'difference'  => esc_html__( 'Difference', 'bdthemes-prime-slider-lite' ),
+		'exclusion'   => esc_html__( 'Exclusion', 'bdthemes-prime-slider-lite' ),
+		'hue'         => esc_html__( 'Hue', 'bdthemes-prime-slider-lite' ),
+		'saturation'  => esc_html__( 'Saturation', 'bdthemes-prime-slider-lite' ),
+		'color'       => esc_html__( 'Color', 'bdthemes-prime-slider-lite' ),
+		'luminosity'  => esc_html__( 'Luminosity', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $blend_options;
@@ -424,16 +419,16 @@ function prime_slider_blend_options() {
 // BDT Position
 function prime_slider_position() {
 	$position_options = [ 
-		''              => esc_html__( 'Default', 'bdthemes-prime-slider' ),
-		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider' ),
-		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider' ),
-		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider' ),
-		'center'        => esc_html__( 'Center', 'bdthemes-prime-slider' ),
-		'center-left'   => esc_html__( 'Center Left', 'bdthemes-prime-slider' ),
-		'center-right'  => esc_html__( 'Center Right', 'bdthemes-prime-slider' ),
-		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider' ),
-		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider' ),
-		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider' ),
+		''              => esc_html__( 'Default', 'bdthemes-prime-slider-lite' ),
+		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider-lite' ),
+		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider-lite' ),
+		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider-lite' ),
+		'center'        => esc_html__( 'Center', 'bdthemes-prime-slider-lite' ),
+		'center-left'   => esc_html__( 'Center Left', 'bdthemes-prime-slider-lite' ),
+		'center-right'  => esc_html__( 'Center Right', 'bdthemes-prime-slider-lite' ),
+		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider-lite' ),
+		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider-lite' ),
+		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $position_options;
@@ -442,14 +437,14 @@ function prime_slider_position() {
 // BDT Thumbnavs Position
 function prime_slider_thumbnavs_position() {
 	$position_options = [ 
-		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider' ),
-		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider' ),
-		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider' ),
-		'center-left'   => esc_html__( 'Center Left', 'bdthemes-prime-slider' ),
-		'center-right'  => esc_html__( 'Center Right', 'bdthemes-prime-slider' ),
-		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider' ),
-		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider' ),
-		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider' ),
+		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider-lite' ),
+		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider-lite' ),
+		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider-lite' ),
+		'center-left'   => esc_html__( 'Center Left', 'bdthemes-prime-slider-lite' ),
+		'center-right'  => esc_html__( 'Center Right', 'bdthemes-prime-slider-lite' ),
+		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider-lite' ),
+		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider-lite' ),
+		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $position_options;
@@ -457,13 +452,13 @@ function prime_slider_thumbnavs_position() {
 
 function prime_slider_navigation_position() {
 	$position_options = [ 
-		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider' ),
-		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider' ),
-		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider' ),
-		'center'        => esc_html__( 'Center', 'bdthemes-prime-slider' ),
-		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider' ),
-		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider' ),
-		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider' ),
+		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider-lite' ),
+		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider-lite' ),
+		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider-lite' ),
+		'center'        => esc_html__( 'Center', 'bdthemes-prime-slider-lite' ),
+		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider-lite' ),
+		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider-lite' ),
+		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $position_options;
@@ -472,12 +467,12 @@ function prime_slider_navigation_position() {
 
 function prime_slider_pagination_position() {
 	$position_options = [ 
-		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider' ),
-		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider' ),
-		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider' ),
-		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider' ),
-		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider' ),
-		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider' ),
+		'top-left'      => esc_html__( 'Top Left', 'bdthemes-prime-slider-lite' ),
+		'top-center'    => esc_html__( 'Top Center', 'bdthemes-prime-slider-lite' ),
+		'top-right'     => esc_html__( 'Top Right', 'bdthemes-prime-slider-lite' ),
+		'bottom-left'   => esc_html__( 'Bottom Left', 'bdthemes-prime-slider-lite' ),
+		'bottom-center' => esc_html__( 'Bottom Center', 'bdthemes-prime-slider-lite' ),
+		'bottom-right'  => esc_html__( 'Bottom Right', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $position_options;
@@ -486,15 +481,15 @@ function prime_slider_pagination_position() {
 // Title Tags
 function prime_slider_title_tags() {
 	$title_tags = [ 
-		'h1'   => esc_html__( 'H1', 'bdthemes-prime-slider' ),
-		'h2'   => esc_html__( 'H2', 'bdthemes-prime-slider' ),
-		'h3'   => esc_html__( 'H3', 'bdthemes-prime-slider' ),
-		'h4'   => esc_html__( 'H4', 'bdthemes-prime-slider' ),
-		'h5'   => esc_html__( 'H5', 'bdthemes-prime-slider' ),
-		'h6'   => esc_html__( 'H6', 'bdthemes-prime-slider' ),
-		'div'  => esc_html__( 'div', 'bdthemes-prime-slider' ),
-		'span' => esc_html__( 'span', 'bdthemes-prime-slider' ),
-		'p'    => esc_html__( 'p', 'bdthemes-prime-slider' ),
+		'h1'   => esc_html__( 'H1', 'bdthemes-prime-slider-lite' ),
+		'h2'   => esc_html__( 'H2', 'bdthemes-prime-slider-lite' ),
+		'h3'   => esc_html__( 'H3', 'bdthemes-prime-slider-lite' ),
+		'h4'   => esc_html__( 'H4', 'bdthemes-prime-slider-lite' ),
+		'h5'   => esc_html__( 'H5', 'bdthemes-prime-slider-lite' ),
+		'h6'   => esc_html__( 'H6', 'bdthemes-prime-slider-lite' ),
+		'div'  => esc_html__( 'div', 'bdthemes-prime-slider-lite' ),
+		'span' => esc_html__( 'span', 'bdthemes-prime-slider-lite' ),
+		'p'    => esc_html__( 'p', 'bdthemes-prime-slider-lite' ),
 	];
 
 	return $title_tags;
@@ -517,7 +512,7 @@ function prime_slider_time_diff( $from, $to = '' ) {
 }
 
 function prime_slider_post_time_diff( $format = '' ) {
-	$displayAgo = esc_html__( 'ago', 'bdthemes-prime-slider' );
+	$displayAgo = esc_html__( 'ago', 'bdthemes-prime-slider-lite' );
 
 	if ( $format == 'short' ) {
 		$output = prime_slider_time_diff( strtotime( get_the_date() ), current_time( 'timestamp' ) );
@@ -549,6 +544,7 @@ function prime_slider_custom_excerpt( $limit = 25, $strip_shortcode = false, $tr
  * License Validation
  */
 if (!function_exists('ps_license_validation')) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
 	function ps_license_validation() {
 
 		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
@@ -565,62 +561,8 @@ if (!function_exists('ps_license_validation')) {
 	}
 }
 
-// Start: Custom CSS/JS Frontend Injection Functions
- if ( ! function_exists( 'ps_inject_header_custom_code' ) ) {
-	function ps_inject_header_custom_code() {
-		if ( ps_is_page_excluded() ) {
-			return;
-		}
-
-		$custom_css = get_option( 'ps_custom_css', '' );
-		$custom_js = get_option( 'ps_custom_js', '' );
-
-		if ( ! empty( $custom_css ) ) {
-			echo "\n<!-- Prime Slider Custom Header CSS -->\n";
-			echo '<style type="text/css">' . "\n";
-			// Strip any HTML tags to prevent breaking out of the <style> block; the value is raw CSS saved by an administrator (manage_options + nonce).
-			echo wp_strip_all_tags( $custom_css ) . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw CSS is intentionally not escaped; tags are stripped and saving is restricted to admins.
-			echo '</style>' . "\n";
-		}
-
-		if ( ! empty( $custom_js ) ) {
-			echo "\n<!-- Prime Slider Custom Header JS -->\n";
-			echo '<script type="text/javascript">' . "\n";
-			// Raw JavaScript saved by an administrator (manage_options + nonce); it cannot be escaped without breaking valid script.
-			echo $custom_js . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw admin-authored JS output; saving is restricted to admins.
-			echo '</script>' . "\n";
-		}
-	}
-}
-
-if ( ! function_exists( 'ps_inject_footer_custom_code' ) ) {
-	function ps_inject_footer_custom_code() {
-		if ( ps_is_page_excluded() ) {
-			return;
-		}
-
-		$custom_css_2 = get_option( 'ps_custom_css_2', '' );
-		$custom_js_2 = get_option( 'ps_custom_js_2', '' );
-
-		if ( ! empty( $custom_css_2 ) ) {
-			echo "\n<!-- Prime Slider Custom Footer CSS -->\n";
-			echo '<style type="text/css">' . "\n";
-			// Strip any HTML tags to prevent breaking out of the <style> block; the value is raw CSS saved by an administrator (manage_options + nonce).
-			echo wp_strip_all_tags( $custom_css_2 ) . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw CSS is intentionally not escaped; tags are stripped and saving is restricted to admins.
-			echo '</style>' . "\n";
-		}
-
-		if ( ! empty( $custom_js_2 ) ) {
-			echo "\n<!-- Prime Slider Custom Footer JS -->\n";
-			echo '<script type="text/javascript">' . "\n";
-			// Raw JavaScript saved by an administrator (manage_options + nonce); it cannot be escaped without breaking valid script.
-			echo $custom_js_2 . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw admin-authored JS output; saving is restricted to admins.
-			echo '</script>' . "\n";
-		}
-	}
-}
-
 if ( ! function_exists( 'ps_is_page_excluded' ) ) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
 	function ps_is_page_excluded() {
 		$excluded_pages = get_option( 'ps_excluded_pages', array() );
 		

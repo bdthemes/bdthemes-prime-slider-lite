@@ -16,7 +16,7 @@ class Skin_Slice extends Elementor_Skin_Base {
     }
 
     public function get_title() {
-        return esc_html__('Slice', 'bdthemes-prime-slider');
+        return esc_html__('Slice', 'bdthemes-prime-slider-lite');
     }
 
     public function render_navigation_arrows() {

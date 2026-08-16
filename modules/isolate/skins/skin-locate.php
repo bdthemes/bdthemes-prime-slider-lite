@@ -15,7 +15,7 @@ class Skin_Locate extends Elementor_Skin_Base {
     }
 
     public function get_title() {
-        return esc_html__('Locate', 'bdthemes-prime-slider');
+        return esc_html__('Locate', 'bdthemes-prime-slider-lite');
     }
 
 
@@ -34,7 +34,7 @@ class Skin_Locate extends Elementor_Skin_Base {
 			<div <?php $this->parent->print_render_attribute_string('social-icon'); ?>>
 
 				<?php if ($label) : ?>
-					<h3><?php esc_html_e('Follow Us', 'bdthemes-prime-slider'); ?></h3>
+					<h3><?php esc_html_e('Follow Us', 'bdthemes-prime-slider-lite'); ?></h3>
 				<?php endif; ?>
 
                 <?php
@@ -76,10 +76,10 @@ class Skin_Locate extends Elementor_Skin_Base {
                         <div class="bdt-flex" <?php echo esc_attr($is_rtl); ?>>
                             <a class="bdt-prime-slider-previous" href="#" bdt-slideshow-item="previous">
                                 <i class="ps-wi-arrow-left-5"></i>
-                                <span class="bdt-slider-nav-text"><?php esc_html_e( 'Prev', 'bdthemes-prime-slider' ) ?></span>
+                                <span class="bdt-slider-nav-text"><?php esc_html_e( 'Prev', 'bdthemes-prime-slider-lite' ) ?></span>
                             </a>
                             <a class="bdt-prime-slider-next" href="#" bdt-slideshow-item="next">
-                                <span class="bdt-slider-nav-text"><?php esc_html_e( 'Next', 'bdthemes-prime-slider' ) ?></span>
+                                <span class="bdt-slider-nav-text"><?php esc_html_e( 'Next', 'bdthemes-prime-slider-lite' ) ?></span>
                                 <i class="ps-wi-arrow-right-5"></i>
                             </a>
                         </div>

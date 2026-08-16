@@ -33,13 +33,13 @@ class WPML_PrimeSlider_Motion extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'list_title':
-                return esc_html__('Title', 'bdthemes-prime-slider');
+                return esc_html__('Title', 'bdthemes-prime-slider-lite');
 
             case 'list_content':
-                return esc_html__('Description', 'bdthemes-prime-slider');
+                return esc_html__('Description', 'bdthemes-prime-slider-lite');
 
             case 'button_link':
-                return esc_html__('Button Link', 'bdthemes-prime-slider');
+                return esc_html__('Button Link', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

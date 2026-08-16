@@ -18,7 +18,7 @@ class Skin_Coral extends Elementor_Skin_Base
 
     public function get_title()
     {
-        return esc_html__('Coral', 'bdthemes-prime-slider');
+        return esc_html__('Coral', 'bdthemes-prime-slider-lite');
     }
 
 

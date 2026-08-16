@@ -35,7 +35,7 @@ if (!class_exists('BdThemes_Duplicator')) :
             /**
              * Nonce verification
              */
-            if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce($_GET['duplicate_nonce'], basename(__FILE__))) {
+            if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['duplicate_nonce'])), basename(__FILE__))) {
                 return;
             }
 
@@ -87,7 +87,8 @@ if (!class_exists('BdThemes_Duplicator')) :
                  */
                 $bdt_args = [
                     'post_status'    => 'draft',
-                    'post_title'     => sprintf(__('%1$s - [Duplicated]', 'bdthemes-prime-slider'), $bdt_post->post_title),
+                    /* translators: %1$s: original post title */
+                    'post_title'     => sprintf(__('%1$s - [Duplicated]', 'bdthemes-prime-slider-lite'), $bdt_post->post_title),
                     'post_type'      => $bdt_post->post_type,
                     'post_name'      => $bdt_post->post_name,
                     'post_content'   => $bdt_post->post_content,
@@ -179,11 +180,11 @@ if (!class_exists('BdThemes_Duplicator')) :
 
             if (current_user_can('manage_options') || current_user_can('edit_others_posts')) {
                 if ($post->post_type == 'post') {
-                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this post" rel="permalink">' . esc_html_x("Duplicate Post", "Admin String", "bdthemes-prime-slider") . '</a>';
+                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this post" rel="permalink">' . esc_html_x("Duplicate Post", "Admin String", "bdthemes-prime-slider-lite") . '</a>';
                 } elseif ($post->post_type == 'page') {
-                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this page" rel="permalink">' . esc_html_x("Duplicate Page", "Admin String", "bdthemes-prime-slider") . '</a>';
+                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this page" rel="permalink">' . esc_html_x("Duplicate Page", "Admin String", "bdthemes-prime-slider-lite") . '</a>';
                 } elseif ($post->post_type == 'elementor_library') {
-                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this template" rel="permalink">' . esc_html_x("Duplicate Template", "Admin String", "bdthemes-prime-slider") . '</a>';
+                    $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this template" rel="permalink">' . esc_html_x("Duplicate Template", "Admin String", "bdthemes-prime-slider-lite") . '</a>';
                 }
             }
             return $actions;

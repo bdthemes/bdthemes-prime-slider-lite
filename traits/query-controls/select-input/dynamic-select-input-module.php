@@ -86,6 +86,7 @@ class Dynamic_Select_Input_Module
 	 */
 	protected function getPostType()
 	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified in getSelectInputData().
 		$post_type = isset($_POST['post_type']) ? sanitize_key(wp_unslash($_POST['post_type'])) : '';
 
 		if ('' === $post_type) {
@@ -115,6 +116,7 @@ class Dynamic_Select_Input_Module
 	 */
 	protected function getSearchQuery()
 	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified in getSelectInputData().
 		return isset($_POST['search_text']) ? sanitize_text_field(wp_unslash($_POST['search_text'])) : '';
 	}
 
@@ -123,12 +125,14 @@ class Dynamic_Select_Input_Module
 	 */
 	protected function getselecedIds()
 	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified in getSelectInputData().
 		if (!isset($_POST['ids'])) {
 			return [];
 		}
 
 		// Every consumer feeds this into post__in / include, so force a flat list of
 		// positive integers instead of trusting the raw request shape.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified in getSelectInputData().
 		return wp_parse_id_list(wp_unslash($_POST['ids']));
 	}
 

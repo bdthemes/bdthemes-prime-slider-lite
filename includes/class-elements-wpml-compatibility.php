@@ -96,7 +96,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'scroll_button_text',
-					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -141,27 +141,27 @@ class PrimeSlider_WPML {
 			'fields'     => [
 				[
 					'field'       => 'label_days',
-					'type'        => esc_html__( 'Days', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Days', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'label_hours',
-					'type'        => esc_html__( 'Hours', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Hours', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'label_minutes',
-					'type'        => esc_html__( 'Minutes', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Minutes', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'label_seconds',
-					'type'        => esc_html__( 'Seconds', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Seconds', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				'button_link' => [
 					'field'       => 'url',
-					'type'        => esc_html__( 'Button Link', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Button Link', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINK',
 				],
 			],
@@ -186,7 +186,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'scroll_button_text',
-					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -208,7 +208,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'button_text',
-					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -233,7 +233,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'info_button_text',
-					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -247,7 +247,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'follow_us_text',
-					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -284,12 +284,12 @@ class PrimeSlider_WPML {
 			'fields'     => [
 				[
 					'field'       => 'next_text',
-					'type'        => esc_html__( 'Next Text', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Next Text', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'prev_text',
-					'type'        => esc_html__( 'Previous Text', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Previous Text', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -311,12 +311,12 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'head_static_content_title',
-					'type'        => esc_html__( 'Header Title', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Header Title', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'head_static_content_text',
-					'type'        => esc_html__( 'Header Description', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Header Description', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'VISUAL',
 				],
 			],
@@ -338,7 +338,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'turnar_button_text',
-					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Button Text', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -364,17 +364,17 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'button_text',
-					'type'        => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Read More', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'scroll_button_text',
-					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'follow_us_text',
-					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				]
 			]
@@ -399,12 +399,12 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'navigation_previous_text',
-					'type'        => esc_html__( 'Previous Slide', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Previous Slide', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'navigation_next_text',
-					'type'        => esc_html__( 'Next Slide', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Next Slide', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -421,12 +421,12 @@ class PrimeSlider_WPML {
 			'fields' => [
 				[
 					'field'       => 'general_follow_us_text',
-					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 				[
 					'field'       => 'scroll_button_text',
-					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -443,7 +443,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field' 	  => 'scroll_button_text',
-					'type'  	  => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'  	  => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -460,7 +460,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'follow_us_text',
-					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],
@@ -489,7 +489,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'read_more_text',
-					'type'        => esc_html__( 'Read More', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Read More', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			]
@@ -506,7 +506,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'social_main_title',
-					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Follow Us', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				]
 			],
@@ -547,7 +547,7 @@ class PrimeSlider_WPML {
 			'fields'            => [
 				[
 					'field'       => 'scroll_button_text',
-					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider' ),
+					'type'        => esc_html__( 'Scroll Down', 'bdthemes-prime-slider-lite' ),
 					'editor_type' => 'LINE',
 				],
 			],

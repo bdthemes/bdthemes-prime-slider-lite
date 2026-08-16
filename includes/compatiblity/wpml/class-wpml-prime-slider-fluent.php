@@ -39,10 +39,10 @@ class WPML_PrimeSlider_Fluent extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'social_link_title':
-                return esc_html__('Social Link Title', 'bdthemes-prime-slider');
+                return esc_html__('Social Link Title', 'bdthemes-prime-slider-lite');
 
             case 'social_icon_link':
-                return esc_html__('Social Icon Link', 'bdthemes-prime-slider');
+                return esc_html__('Social Icon Link', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

@@ -33,13 +33,13 @@ class WPML_PrimeSlider_Prism extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'title':
-                return esc_html__('Title', 'bdthemes-prime-slider');
+                return esc_html__('Title', 'bdthemes-prime-slider-lite');
 
             case 'text':
-                return esc_html__('Text', 'bdthemes-prime-slider');
+                return esc_html__('Text', 'bdthemes-prime-slider-lite');
 
             case 'title_link':
-                return esc_html__('Title Link', 'bdthemes-prime-slider');
+                return esc_html__('Title Link', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

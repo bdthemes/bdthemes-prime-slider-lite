@@ -160,10 +160,19 @@ if (!class_exists('RC_Reviews_Collector')) {
 		 * Ajax callback
 		 */
 		public function rc_sdk_insights() {
-			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field($_POST['button_val']) : '';
-			$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
-			$allow_name = isset($_POST['allow_name']) ? sanitize_text_field($_POST['allow_name']) : '';
-			$date_name = isset($_POST['date_name']) ? sanitize_text_field($_POST['date_name']) : '';
+			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field(wp_unslash($_POST['button_val'])) : '';
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+			$allow_name = isset($_POST['allow_name']) ? sanitize_text_field(wp_unslash($_POST['allow_name'])) : '';
+			$date_name = isset($_POST['date_name']) ? sanitize_text_field(wp_unslash($_POST['date_name'])) : '';
+
+			// Confine the writes to this SDK's own option namespace so a request
+			// cannot use these to overwrite an arbitrary WordPress option.
+			if (0 !== strpos($allow_name, 'rc_allow_')) {
+				$allow_name = '';
+			}
+			if (0 !== strpos($date_name, 'rc_date_')) {
+				$date_name = '';
+			}
 
 			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
 				wp_send_json(array(
@@ -183,17 +192,19 @@ if (!class_exists('RC_Reviews_Collector')) {
 				wp_die();
 			}
 
-			if ('disallow' == $sanitized_status) {
+			if ('disallow' == $sanitized_status && $allow_name) {
 				update_option($allow_name, 'disallow');
 			}
 
-			if ($sanitized_status == 'skip') {
+			if ($sanitized_status == 'skip' && $allow_name) {
 				update_option($allow_name, 'skip');
 				/**
 				 * Next schedule date for attempt
 				 */
-				update_option($date_name, gmdate('Y-m-d', strtotime("+1 month")));
-			} elseif ($sanitized_status == 'yes') {
+				if ($date_name) {
+					update_option($date_name, gmdate('Y-m-d', strtotime("+1 month")));
+				}
+			} elseif ($sanitized_status == 'yes' && $allow_name) {
 				update_option($allow_name, 'yes');
 			}
 
@@ -269,8 +280,8 @@ if (!class_exists('RC_Reviews_Collector')) {
 		 * @return void
 		 */
 		public function rc_sdk_dismiss_biggopti() {
-			$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
-			$rc_name = isset($_POST['rc_name']) ? sanitize_text_field($_POST['rc_name']) : '';
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+			$rc_name = isset($_POST['rc_name']) ? sanitize_text_field(wp_unslash($_POST['rc_name'])) : '';
 
 			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
 				wp_send_json(array(
@@ -306,6 +317,7 @@ if (!class_exists('RC_Reviews_Collector')) {
  * Main Insights Function
  */
 if (!function_exists('rc_sdk_automate')) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
 	function rc_sdk_automate($params) {
 		if (class_exists('RC_Reviews_Collector')) {
 			// RC_Reviews_Collector::get_instance( $params );

@@ -39,10 +39,10 @@ class WPML_PrimeSlider_Knily extends WPML_Module_With_Items {
     protected function get_title($field) {
         switch ($field) {
             case 'button':
-                return esc_html__('Social Title', 'bdthemes-prime-slider');
+                return esc_html__('Social Title', 'bdthemes-prime-slider-lite');
 
             case 'text':
-                return esc_html__('Custom Label', 'bdthemes-prime-slider');
+                return esc_html__('Custom Label', 'bdthemes-prime-slider-lite');
 
             default:
                 return '';

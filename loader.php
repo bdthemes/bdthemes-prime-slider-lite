@@ -63,7 +63,7 @@ class Prime_Slider_Loader {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'bdthemes-prime-slider' ), '1.6.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'bdthemes-prime-slider-lite' ), '1.6.0' );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Prime_Slider_Loader {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'bdthemes-prime-slider' ), '1.6.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'bdthemes-prime-slider-lite' ), '1.6.0' );
 	}
 
 	/**
@@ -232,7 +232,7 @@ class Prime_Slider_Loader {
 			wp_register_script( 'mThumbnailScroller', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.mThumbnailScroller.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}
 
-		wp_register_script( 'bdt-parallax', BDTPS_CORE_ASSETS_URL . 'vendor/js/parallax.min.js', [ 'jquery' ], null, true );
+		wp_register_script( 'bdt-parallax', BDTPS_CORE_ASSETS_URL . 'vendor/js/parallax.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 
 		if ( prime_slider_is_widget_enabled( 'blog' )
 			|| prime_slider_is_widget_enabled( 'dragon' )
@@ -409,7 +409,7 @@ class Prime_Slider_Loader {
 		wp_enqueue_style( 'prime-slider-editor' );
 		wp_add_inline_style(
 			'prime-slider-editor',
-			'#elementor-panel{--ps-pro-control-message:' . wp_json_encode( __( 'This is a pro control, available with Prime Slider Pro version.', 'bdthemes-prime-slider' ) ) . ';}'
+			'#elementor-panel{--ps-pro-control-message:' . wp_json_encode( __( 'This is a pro control, available with Prime Slider Pro version.', 'bdthemes-prime-slider-lite' ) ) . ';}'
 		);
 		wp_enqueue_style( 'prime-slider-font' );
 	}

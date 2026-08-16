@@ -27,7 +27,7 @@ class Multiscroll extends Widget_Base {
 	}
 
 	public function get_title() {
-		return BDTPS . esc_html__('Multiscroll', 'bdthemes-prime-slider');
+		return BDTPS . esc_html__('Multiscroll', 'bdthemes-prime-slider-lite');
 	}
 
 	public function get_icon() {
@@ -66,7 +66,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_content_layout',
 			[
-				'label' => esc_html__('Multiscroll Layout', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Multiscroll Layout', 'bdthemes-prime-slider-lite'),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -91,9 +91,9 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'description',
 			[
-				'label'       => esc_html__('Description', 'bdthemes-prime-slider'),
+				'label'       => esc_html__('Description', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::TEXTAREA,
-				'default'     => esc_html__('Lorem ipsum dolor sit amet.', 'bdthemes-prime-slider'),
+				'default'     => esc_html__('Lorem ipsum dolor sit amet.', 'bdthemes-prime-slider-lite'),
 				'label_block' => true,
 				'dynamic'     => ['active' => true],
 			]
@@ -102,9 +102,9 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'slide_button',
 			[
-				'label'       => esc_html__('Button Text', 'bdthemes-prime-slider'),
+				'label'       => esc_html__('Button Text', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__('View Details', 'bdthemes-prime-slider'),
+				'default'     => esc_html__('View Details', 'bdthemes-prime-slider-lite'),
 				'label_block' => true,
 				'dynamic'     => ['active' => true],
 			]
@@ -113,7 +113,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'button_link',
 			[
-				'label'         => esc_html__('Button Link', 'bdthemes-prime-slider'),
+				'label'         => esc_html__('Button Link', 'bdthemes-prime-slider-lite'),
 				'type'          => Controls_Manager::URL,
 				'default'       => ['url' => '#'],
 				'show_external' => false,
@@ -127,7 +127,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'slide_image',
 			[
-				'label'   => esc_html__('Image', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Image', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
@@ -139,16 +139,16 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background',
 			[
-				'label'   => esc_html__('Left Background', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Left Background', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'color',
 				'options' => [
 					'color' => [
-						'title' => esc_html__('Color', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-paint-brush',
 					],
 					'image' => [
-						'title' => esc_html__('Image', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Image', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-image',
 					],
 				],
@@ -158,7 +158,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'left_background' => 'color'
@@ -172,7 +172,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'left_background_image',
 			[
-				'label'   => esc_html__('Image', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Image', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
@@ -187,16 +187,16 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background',
 			[
-				'label'   => esc_html__('Right Background', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Right Background', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'color',
 				'options' => [
 					'color' => [
-						'title' => esc_html__('Color', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-paint-brush',
 					],
 					'image' => [
-						'title' => esc_html__('Image', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Image', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-image',
 					],
 				],
@@ -206,7 +206,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'right_background' => 'color'
@@ -220,7 +220,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'right_background_image',
 			[
-				'label'   => esc_html__('Image', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Image', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => ['active' => true],
 				'default' => [
@@ -235,7 +235,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'custom_style_popover',
 			[
-				'label'        => esc_html__('Custom Style', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label'        => esc_html__('Custom Style', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
 				'render_type'  => 'ui',
 				'return_value' => 'yes',
@@ -247,7 +247,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_title_color',
 			[
-				'label'     => __('Title Color', 'bdthemes-prime-slider'),
+				'label'     => __('Title Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'color: {{VALUE}}; -webkit-text-stroke-color: {{VALUE}};',
@@ -258,7 +258,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_sub_title_color',
 			[
-				'label'     => __('Sub Title Color', 'bdthemes-prime-slider'),
+				'label'     => __('Sub Title Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-subtitle' => 'color: {{VALUE}};',
@@ -269,7 +269,7 @@ class Multiscroll extends Widget_Base {
 		$repeater->add_control(
 			'repeater_description_color',
 			[
-				'label'     => __('Text Color', 'bdthemes-prime-slider'),
+				'label'     => __('Text Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider {{CURRENT_ITEM}}.ms-section .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-description' => 'color: {{VALUE}};',
@@ -282,24 +282,24 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'slides',
 			[
-				'label'   => esc_html__('Item', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Item', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
+						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider-lite'),
 						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-1.png'],
 						'left_background_color'  => '#ad218d',
 						'right_background_color' => '#bb1f98',
 					],
 					[
-						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
+						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider-lite'),
 						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-2.png'],
 						'left_background_color'  => '#4287ec',
 						'right_background_color' => '#498cef',
 					],
 					[
-						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider'),
+						'title'                  => esc_html__('MultiScroll', 'bdthemes-prime-slider-lite'),
 						'slide_image'            => ['url' => BDTPS_CORE_ASSETS_URL . 'images/gems-3.png'],
 						'left_background_color'  => '#82007d',
 						'right_background_color' => '#8a0c85',
@@ -317,20 +317,20 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'content_position',
 			[
-				'label'   => __('Content Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label'   => __('Content Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'center',
 				'options'   => [
 					'text-left'   => [
-						'title' => esc_html__('Text Left and Image Right', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Text Left and Image Right', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-h-align-left',
 					],
 					'center' => [
-						'title' => esc_html__('All Content Center', 'bdthemes-prime-slider'),
+						'title' => esc_html__('All Content Center', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-h-align-center',
 					],
 					'text-right'  => [
-						'title' => esc_html__('Image Left and Text Right', 'bdthemes-prime-slider'),
+						'title' => esc_html__('Image Left and Text Right', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-h-align-right',
 					],
 				],
@@ -342,7 +342,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'content_max_width',
 			[
-				'label' => __('Content Max Width', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label' => __('Content Max Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -361,23 +361,23 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_text_align',
 			[
-				'label'   => __('Alignment', 'bdthemes-prime-slider'),
+				'label'   => __('Alignment', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'bdthemes-prime-slider'),
+						'title' => __('Left', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'bdthemes-prime-slider'),
+						'title' => __('Center', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'bdthemes-prime-slider'),
+						'title' => __('Right', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __('Justified', 'bdthemes-prime-slider'),
+						'title' => __('Justified', 'bdthemes-prime-slider-lite'),
 						'icon'  => 'eicon-text-align-justify',
 					],
 				],
@@ -390,7 +390,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_image',
 			[
-				'label'   => esc_html__('Show Image', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Image', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -399,7 +399,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_subtitle',
 			[
-				'label'   => esc_html__('Show Sub Title', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Sub Title', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);
@@ -412,7 +412,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_description',
 			[
-				'label'   => esc_html__('Show Text', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Text', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before',
@@ -422,7 +422,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_button',
 			[
-				'label'   => esc_html__('Show Button', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Button', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -431,12 +431,12 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'button_position',
 			[
-				'label'   => __('Button Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label'   => __('Button Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
-					'right'      => __('Right', 'bdthemes-prime-slider'),
-					'left'       => __('Left', 'bdthemes-prime-slider'),
+					'right'      => __('Right', 'bdthemes-prime-slider-lite'),
+					'left'       => __('Left', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'show_button' => 'yes'
@@ -448,7 +448,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'button_vertical_offset',
 			[
-				'label' => esc_html__('Button Vertical Offset', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Button Vertical Offset', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -468,7 +468,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'show_shadow_title',
 			[
-				'label'   => esc_html__('Show Shadow Title', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Show Shadow Title', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -479,7 +479,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_additional_settings',
 			[
-				'label' => esc_html__('Additional Settings', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Additional Settings', 'bdthemes-prime-slider-lite'),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -487,7 +487,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'scrollingSpeed',
 			[
-				'label'   => esc_html__('Scrolling Speed', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Scrolling Speed', 'bdthemes-prime-slider-lite'),
 				'type' => Controls_Manager::SLIDER,
 				'default' 		 => [
 					'size' 			=> 700,
@@ -505,7 +505,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navigation',
 			[
-				'label'   => esc_html__('Navigation', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Navigation', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -514,12 +514,12 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navigationPosition',
 			[
-				'label'   => __('Navigation Position', 'bdthemes-prime-slider') . BDTPS_CORE_PC,
+				'label'   => __('Navigation Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
-					'right'      => __('Right', 'bdthemes-prime-slider'),
-					'left'       => __('Left', 'bdthemes-prime-slider'),
+					'right'      => __('Right', 'bdthemes-prime-slider-lite'),
+					'left'       => __('Left', 'bdthemes-prime-slider-lite'),
 				],
 				'condition' => [
 					'navigation' => 'yes'
@@ -531,7 +531,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'loopBottom',
 			[
-				'label'   => esc_html__('Loop Bottom', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Loop Bottom', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -540,7 +540,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'loopTop',
 			[
-				'label'   => esc_html__('Loop Top', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Loop Top', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -549,7 +549,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'css3',
 			[
-				'label'   => esc_html__('Easing Effect', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Easing Effect', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 			]
 		);
@@ -557,8 +557,8 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__('Autoplay', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
-				'description'   => esc_html__('Make sure you enabled Loop Bottom.', 'bdthemes-prime-slider'),
+				'label'   => esc_html__('Autoplay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
+				'description'   => esc_html__('Make sure you enabled Loop Bottom.', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
 			]
@@ -567,7 +567,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'autoplay_speed',
 			[
-				'label'     => esc_html__('Autoplay Speed', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Autoplay Speed', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 5000,
 				'condition' => [
@@ -580,7 +580,7 @@ class Multiscroll extends Widget_Base {
 			'autoplay_notes',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => __('Note: Right now the Autoplay only works on Preview Mode/FrontEnd. So don\'t feel confusion about Editor mode.', 'bdthemes-prime-slider'),
+				'raw' => __('Note: Right now the Autoplay only works on Preview Mode/FrontEnd. So don\'t feel confusion about Editor mode.', 'bdthemes-prime-slider-lite'),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 
 			]
@@ -593,7 +593,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_slider',
 			[
-				'label' => esc_html__('Multiscroll Content', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Multiscroll Content', 'bdthemes-prime-slider-lite'),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -601,7 +601,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'item_background',
 			[
-				'label'     => esc_html__('Background', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Background', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content' => 'background-color: {{VALUE}};'
@@ -612,7 +612,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'item_shadow_title',
 			[
-				'label'     => esc_html__('Shadow Title Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Shadow Title Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .ms-section.shadow-title.bdt-ms-section-right:before, {{WRAPPER}} .bdt-mltiscroll-slider .ms-section.shadow-title.bdt-ms-section-left:before' => 'color: {{VALUE}};'
@@ -631,7 +631,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'item_border_radius',
 			[
-				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider-lite'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -643,7 +643,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'item_content_padding',
 			[
-				'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Padding', 'bdthemes-prime-slider-lite'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -657,7 +657,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_title',
 			[
-				'label'     => esc_html__('Title', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Title', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_title' => ['yes'],
@@ -668,7 +668,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'color: {{VALUE}};',
@@ -679,7 +679,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'title_spacing',
 			[
-				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title' => 'padding-bottom: {{SIZE}}{{UNIT}}',
@@ -691,7 +691,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'label' => __('Text Shadow', 'plugin-domain') . BDTPS_CORE_NC,
+				'label' => __('Text Shadow', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title',
 			]
 		);
@@ -700,7 +700,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Text_Stroke::get_type(),
 			[
 				'name'     => 'title_text_stroke',
-				'label'    => __('Text Stroke', 'bdthemes-prime-slider') . BDTPS_CORE_NC,
+				'label'    => __('Text Stroke', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'selector' => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-title',
 			]
 		);
@@ -718,7 +718,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_sub_title',
 			[
-				'label'     => esc_html__('Subtitle', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Subtitle', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_subtitle' => ['yes'],
@@ -729,7 +729,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'sub_title_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-subtitle' => 'color: {{VALUE}};',
@@ -740,7 +740,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'sub_title_spacing',
 			[
-				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}}',
@@ -761,7 +761,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_description',
 			[
-				'label'     => esc_html__('Text', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Text', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_description' => ['yes'],
@@ -772,7 +772,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'description_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-description' => 'color: {{VALUE}};',
@@ -783,7 +783,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'description_spacing',
 			[
-				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Spacing', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content .bdt-mltiscroll-slider-description' => 'padding-bottom: {{SIZE}}{{UNIT}}',
@@ -804,7 +804,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_button',
 			[
-				'label'     => esc_html__('Button', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Button', 'bdthemes-prime-slider-lite'),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'show_button' => 'yes',
@@ -817,14 +817,14 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
-				'label' => esc_html__('Normal', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Normal', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
 		$this->add_control(
 			'button_text_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-button a' => 'color: {{VALUE}};',
@@ -844,7 +844,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'button_border',
-				'label'       => esc_html__('Border', 'bdthemes-prime-slider'),
+				'label'       => esc_html__('Border', 'bdthemes-prime-slider-lite'),
 				'selector'    => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-button a',
 			]
 		);
@@ -852,7 +852,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'button_border_radius',
 			[
-				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider-lite'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -867,7 +867,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'border_radius_advanced_show',
 			[
-				'label' => __('Advanced Radius', 'bdthemes-prime-slider'),
+				'label' => __('Advanced Radius', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SWITCHER,
 			]
 		);
@@ -875,8 +875,9 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'border_radius_advanced',
 			[
-				'label'       => esc_html__('Radius', 'bdthemes-prime-slider'),
-				'description' => sprintf(__('For example: %1s or Go %2s this link %3s and copy and paste the radius value.', 'bdthemes-prime-slider'), '<b>30% 70% 82% 18% / 46% 62% 38% 54%</b>', '<a href="https://9elements.github.io/fancy-border-radius/" target="_blank">', '</a>'),
+				'label'       => esc_html__('Radius', 'bdthemes-prime-slider-lite'),
+				/* translators: 1: example value, 2: opening link tag, 3: closing link tag */
+					'description' => sprintf(__('For example: %1$s or Go %2$s this link %3$s and copy and paste the radius value.', 'bdthemes-prime-slider-lite'), '<b>30% 70% 82% 18% / 46% 62% 38% 54%</b>', '<a href="https://9elements.github.io/fancy-border-radius/" target="_blank">', '</a>'),
 				'type'        => Controls_Manager::TEXT,
 				'size_units'  => ['px', '%'],
 				'default'     => '30% 70% 82% 18% / 46% 62% 38% 54%',
@@ -892,7 +893,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'button_padding',
 			[
-				'label'      => esc_html__('Padding', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Padding', 'bdthemes-prime-slider-lite'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors'  => [
@@ -913,7 +914,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'      => 'button_typography',
-				'label'     => esc_html__('Typography', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
 				'selector'  => '{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-button a',
 			]
 		);
@@ -923,14 +924,14 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			[
-				'label' => esc_html__('Hover', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Hover', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
 		$this->add_control(
 			'button_hover_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-button a:hover'  => 'color: {{VALUE}};',
@@ -950,7 +951,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'button_hover_border_color',
 			[
-				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'button_border_border!' => '',
@@ -964,7 +965,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'button_hover_border_line_color',
 			[
-				'label'     => esc_html__('Line Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Line Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-button a:before' => 'background: {{VALUE}};',
@@ -989,7 +990,7 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_Navigation',
 			[
-				'label' => esc_html__('Navigation', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Navigation', 'bdthemes-prime-slider-lite'),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'navigation' => 'yes'
@@ -1002,14 +1003,14 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_navigation_normal',
 			[
-				'label' => esc_html__('Normal', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Normal', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
 		$this->add_control(
 			'navigation_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider #multiscroll-nav li span' => 'background: {{VALUE}};'
@@ -1021,7 +1022,7 @@ class Multiscroll extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'navigation_border',
-				'label'       => esc_html__('Border', 'bdthemes-prime-slider'),
+				'label'       => esc_html__('Border', 'bdthemes-prime-slider-lite'),
 				'selector'    => '{{WRAPPER}} .bdt-mltiscroll-slider #multiscroll-nav span',
 			]
 		);
@@ -1029,7 +1030,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navi_border_color',
 			[
-				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider #multiscroll-nav span' => 'border-color: {{VALUE}};'
@@ -1040,7 +1041,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_border_radius',
 			[
-				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider'),
+				'label'      => esc_html__('Border Radius', 'bdthemes-prime-slider-lite'),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors'  => [
@@ -1052,7 +1053,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_width',
 			[
-				'label' => __('Width (px)', 'bdthemes-prime-slider'),
+				'label' => __('Width (px)', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1069,7 +1070,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_height',
 			[
-				'label' => __('Height (px)', 'bdthemes-prime-slider'),
+				'label' => __('Height (px)', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1086,7 +1087,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_horizontal_offset_right',
 			[
-				'label'   => __('Horizontal Offset', 'bdthemes-prime-slider'),
+				'label'   => __('Horizontal Offset', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1106,7 +1107,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_horizontal_offset_left',
 			[
-				'label'   => __('Horizontal Offset', 'bdthemes-prime-slider'),
+				'label'   => __('Horizontal Offset', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1126,7 +1127,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_spacing',
 			[
-				'label' => __('Spacing', 'bdthemes-prime-slider'),
+				'label' => __('Spacing', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1145,14 +1146,14 @@ class Multiscroll extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_navigation_active',
 			[
-				'label' => esc_html__('Active', 'bdthemes-prime-slider'),
+				'label' => esc_html__('Active', 'bdthemes-prime-slider-lite'),
 			]
 		);
 
 		$this->add_control(
 			'navigation_hover_color',
 			[
-				'label'     => esc_html__('Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider #multiscroll-nav li a.active span' => 'background: {{VALUE}};'
@@ -1163,7 +1164,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navigation_hover_border_color',
 			[
-				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider'),
+				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
 					'navigation_border_border!' => '',

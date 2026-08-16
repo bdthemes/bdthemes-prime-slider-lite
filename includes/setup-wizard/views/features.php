@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- template partial included within a method; these variables are method-scoped, not global.
+
 
 $widget_map     = \PrimeSlider\Includes\Setup_Wizard::get_widget_map();
 $active_modules = get_option( 'prime_slider_active_modules', array() );
@@ -28,24 +30,24 @@ $active_modules = get_option( 'prime_slider_active_modules', array() );
 		<div class="bdt-features-list">
 			<div class="widget-filter bdt-flex bdt-flex-wrap bdt-flex-between bdt-flex-middle">
 				<div class="category-dropdown">
-					<label for="category-select"><?php esc_html_e('Filter by:', 'bdthemes-prime-slider'); ?></label>
+					<label for="category-select"><?php esc_html_e('Filter by:', 'bdthemes-prime-slider-lite'); ?></label>
 					<select id="category-select">
-						<option value="all"><?php esc_html_e('All', 'bdthemes-prime-slider'); ?></option>
-						<option value="new"><?php esc_html_e('New', 'bdthemes-prime-slider'); ?></option>
-						<option value="static"><?php esc_html_e('Static', 'bdthemes-prime-slider'); ?></option>
-						<option value="custom"><?php esc_html_e('Custom', 'bdthemes-prime-slider'); ?></option>
-						<option value="carousel"><?php esc_html_e('Carousel', 'bdthemes-prime-slider'); ?></option>
-						<option value="post"><?php esc_html_e('Post', 'bdthemes-prime-slider'); ?></option>
-						<option value="ecommerce"><?php esc_html_e('eCommerce', 'bdthemes-prime-slider'); ?></option>
-						<option value="swiper"><?php esc_html_e('Swiper', 'bdthemes-prime-slider'); ?></option>
-						<option value="others"><?php esc_html_e('Others', 'bdthemes-prime-slider'); ?></option>
+						<option value="all"><?php esc_html_e('All', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="new"><?php esc_html_e('New', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="static"><?php esc_html_e('Static', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="custom"><?php esc_html_e('Custom', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="carousel"><?php esc_html_e('Carousel', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="post"><?php esc_html_e('Post', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="ecommerce"><?php esc_html_e('eCommerce', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="swiper"><?php esc_html_e('Swiper', 'bdthemes-prime-slider-lite'); ?></option>
+						<option value="others"><?php esc_html_e('Others', 'bdthemes-prime-slider-lite'); ?></option>
 					</select>
 				</div>
 				<div class="input-btn-wrap bdt-flex bdt-flex-wrap bdt-flex-between">
-					<input type="text" placeholder="<?php esc_attr_e('Search widgets...', 'bdthemes-prime-slider'); ?>" class="widget-search" value="">
+					<input type="text" placeholder="<?php esc_attr_e('Search widgets...', 'bdthemes-prime-slider-lite'); ?>" class="widget-search" value="">
 					<div class="bulk-action-buttons bdt-flex">
-						<button class="bulk-action activate"><?php esc_html_e('Activate All', 'bdthemes-prime-slider'); ?></button>
-						<button class="bulk-action deactivate"><?php esc_html_e('Deactivate All', 'bdthemes-prime-slider'); ?></button>
+						<button class="bulk-action activate"><?php esc_html_e('Activate All', 'bdthemes-prime-slider-lite'); ?></button>
+						<button class="bulk-action deactivate"><?php esc_html_e('Deactivate All', 'bdthemes-prime-slider-lite'); ?></button>
 					</div>
 				</div>
 			</div>
@@ -80,16 +82,16 @@ $active_modules = get_option( 'prime_slider_active_modules', array() );
 		
 		<div class="wizard-navigation bdt-margin-top">
 			<button class="bdt-button bdt-button-primary" type="submit" id="save-and-continue">
-				<?php esc_html_e('Save and Continue', 'bdthemes-prime-slider'); ?>
+				<?php esc_html_e('Save and Continue', 'bdthemes-prime-slider-lite'); ?>
 			</button>
-			<div class="bdt-close-button bdt-margin-left bdt-wizard-next" data-step="integration"><?php esc_html_e('Skip', 'bdthemes-prime-slider'); ?></div>
+			<div class="bdt-close-button bdt-margin-left bdt-wizard-next" data-step="integration"><?php esc_html_e('Skip', 'bdthemes-prime-slider-lite'); ?></div>
 		</div>
 	</form>
 
 	<div class="bdt-wizard-navigation">
 		<button class="bdt-button bdt-button-secondary bdt-wizard-prev" data-step="welcome">
 			<span><i class="dashicons dashicons-arrow-left-alt"></i></span>
-			<?php esc_html_e( 'Previous Step', 'bdthemes-prime-slider' ); ?>
+			<?php esc_html_e( 'Previous Step', 'bdthemes-prime-slider-lite' ); ?>
 		</button>
 	</div>
 </div>

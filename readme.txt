@@ -1,11 +1,11 @@
-=== Prime Slider Addons for Elementor - Widgets, Templates & Elementor Addons ===
+=== Prime Slider ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
-Requires at least: 5.0.0
-Tested up to: 7.0.3
-Requires PHP: 7.4.0
-Stable tag: 4.4.11
+Requires at least: 5.0
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 4.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -223,42 +223,32 @@ Please use the suggest page to message us about the features we should add to ou
 Needs assistance to use these plugins? 
 Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widget Tutorials to learn about how to use them efficiently.
 
-== Checkout our other Plugins 👑 ==
+== External services ==
 
-Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
+This plugin connects to the following external services. In each case only the data described is sent, and only under the stated conditions.
 
-* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Build responsive websites from scratch with an all-rounder package of 300+ widgets and 2700+ ready-to-use assets for Elementor.
+1. **BdThemes Product Feed** (`https://dashboard.bdthemes.io`) — used to show BdThemes news, updates and product promotions inside the plugin's WordPress dashboard widget. When an administrator opens the WordPress dashboard, the plugin requests the news feed from this endpoint. No personal data is sent; the request carries only the product category. Provided by BdThemes — see the [Terms of Service](https://bdthemes.com/terms-conditions/) and [Privacy Policy](https://bdthemes.com/privacy-policy/).
 
-* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - The revolutionary slider builder addon for Elementor with a next-gen superb interface and 50+ unique slider designs.
+2. **BdThemes Blog Feed** (`https://bdthemes.com/feed`) — used to display recent BdThemes blog posts in the same dashboard widget. Fetched when an administrator opens the WordPress dashboard. No personal data is sent. Provided by BdThemes — [Terms of Service](https://bdthemes.com/terms-conditions/), [Privacy Policy](https://bdthemes.com/privacy-policy/).
 
-* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building a quality blogging website with fine-tuned post layouts, carousels, sliders and lists.
+3. **WordPress.org Plugins API** (`https://api.wordpress.org`) — used to look up and install the free companion plugins offered on the plugin's setup/others screen. A plugin slug is sent when an administrator chooses to view or install a suggested plugin. This is the official WordPress.org service — [Terms](https://wordpress.org/about/terms/), [Privacy](https://wordpress.org/about/privacy/).
 
-* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommerce addon for answering all your online store design problems in one package for WooCommerce and EDD.
+4. **Vimeo oEmbed** (`https://vimeo.com/api/oembed.json`) — used by video slider widgets to fetch the dimensions/thumbnail of a Vimeo video the site owner has embedded. The public Vimeo URL entered by the site owner is sent to Vimeo when such a slide is rendered. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
 
-* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - The first Elementor-based WordPress gallery addon offering 60+ flexible and customizable gallery builder widgets.
+== Source Code and Build Process ==
 
-* **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering a greater web design experience.
+This plugin is not obfuscated. The complete, human-readable source for every minified/compiled asset is bundled inside the plugin, in the `src/` directory:
 
-* **[Augmented Reality Viewer](https://wordpress.org/plugins/ar-viewer/)** - Bring your products to life with immersive 3D and AR experiences directly inside your WordPress website.
+* `src/js/` — uncompiled JavaScript for the front-end, editor, admin and per-module scripts (e.g. `src/js/modules/ps-omatic.js` is the source of `assets/js/modules/ps-omatic.min.js`).
+* `src/less/` — the LESS source that compiles to the CSS in `assets/css/`.
+* `src/admin/`, `src/images/`, `src/fonts/` — admin scripts, images and fonts.
 
-* **[Dark Reader](https://wordpress.org/plugins/dark-reader/)** - Instantly transform your website into a sleek, eye-friendly dark mode experience with smooth and elegant styling.
+The compiled/minified files in `assets/` are generated from `src/` with [Grunt](https://gruntjs.com/). To rebuild them:
 
-* **[Instant Image Generator](https://wordpress.org/plugins/ai-image/)** - Generate AI-powered images or import visuals instantly from popular platforms like Unsplash, Openverse, Pixabay, Pexels and Giphy — all from one place.
+1. Install dependencies: `npm install`
+2. Run the build: `npm run build` (or `npx grunt`)
 
-* **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - Seamlessly copy and paste sections, widgets and entire pages across domains with zero hassle.
-
-* **[One Accessibility](https://wordpress.org/plugins/website-accessibility/)** - Make your website inclusive and accessible to everyone with essential accessibility enhancements and compliance-ready tools.
-
-* **[QR Code Generator & Scanner](https://wordpress.org/plugins/zolo-qr-code/)** - Create and manage dynamic QR codes directly from your WordPress dashboard for smarter engagement and tracking.
-
-* **[Smart Admin Assistant](https://wordpress.org/plugins/smart-admin-assistant/)** - Enhance your WordPress dashboard with productivity-focused tools and smart site management features.
-
-* **[Spin Wheel](https://wordpress.org/plugins/spin-wheel/)** - Engage visitors with an interactive spinning wheel that offers discounts, coupons and promotional rewards.
-
-* **[Swift Checkout for WooCommerce](https://wordpress.org/plugins/swift-checkout/)** - Simplify the WooCommerce checkout process to improve user experience and boost conversion rates.
-
-Visit [BdThemes](https://bdthemes.com/) to learn about our services, Elementor page builder-based products, informative blogs and documentation.
-
+The build configuration is in `gruntfile.js` and `package.json` (both included in the plugin). Bundled third-party libraries (e.g. bdtUIkit, Swiper, Chart.js) retain their original license/version header comments identifying their upstream source.
 
 == Installation ==
 
@@ -273,6 +263,26 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.5.0 [14th August 2026] =
+
+* Compliance: Corrected "Requires at least" / "Tested up to" to major WordPress versions and matched the text domain to the plugin slug
+* Compliance: Documented external services and the source/build process in the readme
+* Compliance: Removed the White Label, Version Rollback and Custom CSS/JS features from the free plugin
+* Compliance: Removed the translation auto-update filter
+* Security: Hardened settings save, nonce and request-input handling; confined the feedback option writes to the plugin's own namespace
+* Improved: Dashboard now exposes a neutral extension point so add-ons can register their own tabs
+
+= 4.4.11 [13th August 2026] =
+
+* Compliance: Corrected "Requires at least" and "Tested up to" to major WordPress versions
+* Compliance: Text domain now matches the plugin slug (bdthemes-prime-slider-lite) across all strings
+* Compliance: Documented external services in the readme
+* Compliance: Removed the custom CSS/JS code-injection feature
+* Compliance: Removed the White Label feature from the free build (available in the Pro version)
+* Compliance: Removed the version rollback feature
+* Compliance: Removed a filter that interfered with WordPress translation updates
+* Security: Sanitized nonce and request inputs; hardened settings sanitization
 
 = 4.4.10 [13th August 2026] =
 
@@ -348,298 +358,6 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 * Added: Panorama widget added (pro)
 * Updated: System improved
-
-= 4.2.2 [10th May 2026] =
-
-* Added: Slide per view and Space between controls added in the elysium widget
-* Added: Image blur, brightness, scale controls added in the elysium widget
-* Added: Title and Text reveal effect controls added in the elysium widget
-
-= 4.2.1 [28th April 2026] =
-
-* Fixed: Corrected text domain and hard-coded issues
-* Fixed: Admin dashboard 3rd party widgets section save settings issue fixed
-* Fixed: Hard-coded translate issue fixed
-
-= 4.2.0 [27th April 2026] =
-
-* Added: Expo widget added
-* Added: Cloud widget added
-* Added: Super Flow widget added
-* Added: Cards Stack widget added
-* Added: Excerpt text word limit controls added in the woocircle widget
-* Added: Space between control for providing spacing between navigation in the pagepiling widget
-* Added: Excerpt text limit controls, along with a strip shortcode option, to the woolamp widget
-* Fixed: “Thumbs Hide On” responsive control now correctly hides thumbnail navigation on selected devices
-* Fixed: Title link color inheritance issue fixed in the dragon widget
-* Fixed: Corrected fraction pagination and progress indicator misalignment and count inconsistencies in the sniper widget
-* Fixed: Return "javascript:void(0)" issue fixed in the rubix widget
-* Fixed: Navigation arrows and read more icons visibility issues in some browsers in the pacific widget
-* Updated: Synced social block (title and links) transitions with slide content in the pagepiling widget
-* Updated: Renamed the spacing control to horizontal and vertical offset for improved clarity in the pagepiling widget
-
-= 4.1.13 [9th April 2026] =
-
-* Added: Title text and excerpt text limit controls in the woocommerce widget
-* Fixed: dot navigation style issue and cleaned up related conditions — dragon widget
-* Fixed: advanced style and navigation style visibility issue — mount widget
-* Fixed: arrow navigation style issue and cleaned up related conditions — omatic widget
-* Improved: excerpt width control range updated to 1–100% for excerpt paragraph styling — general widget
-* Updated: added GL_OES_standard_derivatives shader #ifdef compatibility for improved WebGL support — Swiper GL
-
-= 4.1.12 [2nd April 2026] =
-
-* Added: Arrows spacing control option to the mount widget
-* Updated: Made compatible with Elementor version 4.0.0
-
-= 4.1.11 [29th March 2026] =
-
-* Fixed: Query controls Include/Exclude By Terms dropdown now hides taxonomy terms with no posts (only terms that have at least one post are shown)
-* Fixed: Stored XSS in Mount and General widget ( Thanks to Jitlada )
-
-= 4.1.10 [8th March 2026] =
-
-* Updated: Product feed updated
-
-= 4.1.9 [1st March 2026] =
-
-* Fixed: Separator showing issue fixed in the mercury and pacific widgets
-* Fixed: Hard coded issue fixed in the pacific widget
-* Fixed: Read More style tab condition fixed in the pacific widget
-
-= 4.1.8 [26th February 2026] =
-
-* Updated: System improved
-
-= 4.1.7 [24th February 2026] =
-
-* Fixed: Navigation and Pagination style section visibility in elysium widget
-
-= 4.1.6 [9th February 2026] =
-
-* Updated: System improved
-
-= 4.1.5 [2nd February 2026] =
-
-* Updated: System improved
-
-= 4.1.4 [27th January 2026] =
-
-* Updated: System improved
-
-= 4.1.3 [12th January 2026] =
-
-* Fixed: Css conflict issue fixed ( Thanks to Pixelwars )
-* Updated: Plugin cache manager optimized by removing unused admin interface components
-
-= 4.1.2 [30th December 2025] =
-
-* Fixed: Translation issue fixed in rubix widget ( Thanks to itapress )
-
-= 4.1.1 [22nd December 2025] =
-
-* Added: New control to change the hard-coded “Follow Us” text in the general and mount widgets
-* Added: New control to change the hard-coded “Previous Slide and Next Slide” text in the elysium widget
-* Added: New control to change the hard-coded “Follow Us” text in the blog widget for folio skin
-* Added: WPML compatibility added
-
-= 4.1.0 [14th December 2025] =
-
-* Added: WPML compatibility added
-* Fixed: Security issue fixed
-
-= 4.0.10 [11th December 2025] =
-
-* Fixed: Security issue fixed
-
-= 4.0.9 [2nd December 2025] =
-
-* Updated: Made compatible with WordPress version 6.9
-* Updated: Added aria-label attribute to links for better accessibility
-
-= 4.0.8 [26th November 2025] =
-
-* Added: Added aria-label attribute to links for better accessibility
-
-= 4.0.7 [20th November 2025] =
-
-* Fixed: Notice duplicate issue fixed
-
-= 4.0.6 [18th November 2025] =
-
-* Fixed: Rollback Security checking issue fixed
-* Fixed: Read More style tab condition fixed in rubix widget
-
-= 4.0.5 [13th November 2025] =
-
-* Updated: Notice design improved
-
-= 4.0.4 [12th November 2025] =
-
-* Fixed: API Banner duplicate issue fixed
-
-= 4.0.3 [9th November 2025] =
-
-* Added: Title hover color control added in mount widget
-* Fixed: Title color issue fixed in mount widget
-* Fixed: scrolling speed control issue fixed in pagepiling widget 
-* Fixed: Title color issue fixed in pagepiling widget 
-
-= 4.0.2 [3rd November 2025] =
-
-* Fixed: Translate issue fixed (Thanks to itapress)
-
-= 4.0.1 [29th October 2025] =
-
-* Fixed: White label logo size issue fixed 
-* Fixed: Translate issue fixed
-
-= 4.0.0 [28th October 2025] =
-
-* Added: Turnar widget added
-* Added: Motion widget added
-* Added: White Label feature added
-* Added: Custom CSS & JS feature added
-* Added: Setup wizard / onboarding feature added
-* Added: Rollback version feature added in admin dashboard
-* Added: Improved web accessibility for navigation arrows across multiple widgets
-* Fixed: Title show/hide issue fixed in pieces widget
-* Updated: Security Improved
-* Updated: Admin dashboard updated
-
-= 3.18.7 [6th October 2025] =
-
-* Fixed: Default layout issue fixed in woocommerce widget
-* Fixed: Rendering and js warning issues fixed in woocircle widget
-* Fixed: Content overflow issue fixed in elysium widget
-
-= 3.18.6 [16th September 2025] =
-
-* Fixed: Text domain translation issue fixed ( Thanks to itapress )
-
-= 3.18.5 [8th September 2025] =
-
-* Fixed: Fixed an issue where the license activation notice was displayed twice
-* Fixed: DCI Notice removed for security reason
-
-= 3.18.4 [28th August 2025] =
-
-* Updated: Admin API Notice optimized
-* Fixed: Deprication error fixed
-
-= 3.18.3 [21st August 2025] =
-
-* Updated: Admin API Notice system updated
-
-= 3.18.2 [20th August 2025] =
-
-* Updated: System improved
-
-= 3.18.1 [19th August 2025] =
-
-* Fixed: Admin notice loading issue fixed
-
-= 3.18.0 [19th August 2025] =
-
-* Added: Admin Store API Notice added
-* Added: Excerpt Style control added in General Slider widget ( Thanks to Rebeka Primožič )
-
-= 3.17.17 [21st July 2025] =
-
-* Updated: Made compatible with wordpress version 6.8.2
-* Updated: Security improved
-
-= 3.17.16 [7th July 2025] =
-
-* Fixed: Price spacing issue fixed in WooCircle widget
-
-= 3.17.15 [26th June 2025] =
-
-* Fixed: Blog zinest skin featured post controls updated
-* Updated: Horizontal and Vertical Offset Control Positions Updated in the Flogia Widget
-
-= 3.17.14 [15th June 2025] =
-
-* Fixed: Blog widget social link spacing issue fixed
-* Fixed: Thumbs arrows issue fixed in storker widget
-
-= 3.17.13 [28th May 2025] =
-
-* Added: Fraction color, active fraction color & separator color option added in crelly skin
-* Added: Overview typography option added in crelly skin
-* Added: Vertical spacing option added in crelly skin
-* Fixed: Isolate widget skins kenburn animation issue fixed
-* Fixed: Fixed button icon spacing controls for vertical and horizontal
-* Fixed: JS error fixed in Dashboard Settings
-
-= 3.17.12 [12th May 2025] =
-
-* Fixed: Resolved jQuery Migrate warning ( Thanks to BackuPs )
-
-= 3.17.11 [4th May 2025] =
-
-* Fixed: Thumbs slide issue fixed in rubix widget
-* Fixed: DCI Notice transition issue fixed
-* Updated: Only one plugin RC notice will show at a time 
-
-= 3.17.10 [24th April 2025] =
-
-* Fixed: Dashboard widget usage warning error fixed
-* Fixed: Translation issue fixed (Thanks to itapress)
-
-= 3.17.9 [21th April 2025] =
-
-* Added: WordPress Version 6.8 compatibility added
-* Fixed: Translation issue fixed
-* Updated: Only one plugin DCI notice will show at a time
-* Updated: System improved
-
-= 3.17.8 [6th April 2025] =
-
-* Added: Title text stroke & arrows icon size option added in vertex widget
-* Updated: Height control replaced with image size controls in vertex widget
-* Updated: Navigation arrows icon typography deprecated in vertex widget
-
-= 3.17.7 [16th March 2025] =
-
-* Fixed: Plugin action links condition fixed
-
-= 3.17.6 [26th February 2025] =
-
-* Fixed: Security issue fixed
-
-= 3.17.5 [20th February 2025] =
-
-* Fixed: Skin zinest thumbs issue fixed in blog widget
-* Updated: Advanced animation js optimized
-
-= 3.17.4 [19th February 2025] =
-
-* Fixed: Swiper slider cls issue fixed
-* Fixed: Content inline issue fixed in isolate widget
-
-= 3.17.3 [12th February 2025] =
-
-* Fixed: Dashboard notice dismiss icon conflict issue fixed ( Thanks to pixelwars )
-* Added: [Showcase Page](https://primeslider.pro/demo/) added - View all widgets here.
-
-= 3.17.2 [5th February 2025] =
-
-* Updated: Dashboard widgets searching system improved
-
-= 3.17.1 [28th January 2025] =
-
-* Added: aria-roledescription=carousel added to slider widget wrapper
-* Fixed: Advanced animation error fixed
-
-= 3.17.0 [22th January 2025] =
-
-* Added: Lightbox play button position, size & spacing option added in isolate widget
-* Added: Element offset, size & max width controls added in woocommerce widget
-* Fixed: Navigation, category, add to cart & social link background issue fixed in woocommerce widget
-* Fixed: Item showing issue fixed in fiestar widget
-* Fixed: Skin folio meta dynamic issue fixed in blog widget
-* Fixed: Modal image issue fixed in woocircle widget
 
 Details [changelog here](https://feedback.bdthemes.com/announcements?category=category_7wo5zoxl)
 

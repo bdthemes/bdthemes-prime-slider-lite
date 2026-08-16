@@ -56,14 +56,20 @@ class Remote_Data_Handler {
             return false;
         }
 
-        // Check if this is an AJAX request for our plugins
+        // Check if this is an AJAX request for our plugins. Read-only routing
+        // check (which action/page is being requested) — no form data is
+        // processed here, so nonce verification does not apply; the actual
+        // ps_get_plugins handler verifies its own nonce + capability.
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- see comment above.
         if (wp_doing_ajax() && isset($_REQUEST['action'])) {
-            $action = sanitize_text_field($_REQUEST['action']);
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only routing check.
+            $action = sanitize_text_field(wp_unslash($_REQUEST['action']));
             if (in_array($action, ['ps_get_plugins'])) {
                 return true;
             }
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check of the current admin page slug.
         $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
         return $page === 'prime_slider_options';
     }
@@ -148,12 +154,12 @@ class Remote_Data_Handler {
      */
     public static function ajax_get_plugins() {
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
+            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider-lite'));
         }
 
         // Verify nonce for security
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider'));
+            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider-lite'));
         }
 
         // Get cached data
@@ -172,7 +178,7 @@ class Remote_Data_Handler {
                 wp_send_json_success([
                     'plugins' => [],
                     'loading' => true,
-                    'message' => __('Loading plugin data...', 'bdthemes-prime-slider')
+                    'message' => __('Loading plugin data...', 'bdthemes-prime-slider-lite')
                 ]);
             }
         }
@@ -225,7 +231,7 @@ class Remote_Data_Handler {
         wp_send_json_success([
             'plugins' => $formatted_plugins,
             'loading' => false,
-            'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider')
+            'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider-lite')
         ]);
     }
 
@@ -297,33 +303,38 @@ class Remote_Data_Handler {
      */
     private static function format_last_updated($date_string) {
         if (empty($date_string)) {
-            return __('Unknown', 'bdthemes-prime-slider');
+            return __('Unknown', 'bdthemes-prime-slider-lite');
         }
         
         $date = strtotime($date_string);
         if (!$date) {
-            return __('Unknown', 'bdthemes-prime-slider');
+            return __('Unknown', 'bdthemes-prime-slider-lite');
         }
         
         $diff = current_time('timestamp') - $date;
         
         if ($diff < 60) {
-            return __('Just now', 'bdthemes-prime-slider');
+            return __('Just now', 'bdthemes-prime-slider-lite');
         } elseif ($diff < 3600) {
             $minutes = floor($diff / 60);
-            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider'), $minutes);
+            /* translators: %d: number of minutes */
+            return sprintf(_n('%d minute ago', '%d minutes ago', $minutes, 'bdthemes-prime-slider-lite'), $minutes);
         } elseif ($diff < 86400) {
             $hours = floor($diff / 3600);
-            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider'), $hours);
+            /* translators: %d: number of hours */
+            return sprintf(_n('%d hour ago', '%d hours ago', $hours, 'bdthemes-prime-slider-lite'), $hours);
         } elseif ($diff < 2592000) { // 30 days
             $days = floor($diff / 86400);
-            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider'), $days);
+            /* translators: %d: number of days */
+            return sprintf(_n('%d day ago', '%d days ago', $days, 'bdthemes-prime-slider-lite'), $days);
         } elseif ($diff < 31536000) { // 1 year
             $months = floor($diff / 2592000);
-            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider'), $months);
+            /* translators: %d: number of months */
+            return sprintf(_n('%d month ago', '%d months ago', $months, 'bdthemes-prime-slider-lite'), $months);
         } else {
             $years = floor($diff / 31536000);
-            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider'), $years);
+            /* translators: %d: number of years */
+            return sprintf(_n('%d year ago', '%d years ago', $years, 'bdthemes-prime-slider-lite'), $years);
         }
     }
 
