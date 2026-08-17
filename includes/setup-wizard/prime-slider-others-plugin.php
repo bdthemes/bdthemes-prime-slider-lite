@@ -236,7 +236,7 @@ class PrimeSlider_Others_Plugin_Manager {
                 var html = '';
                 
                 if (plugins.length === 0) {
-                    html = '<div class="bdt-text-center bdt-padding-large"><p><?php esc_html_e('No plugins available.', 'bdthemes-prime-slider-lite'); ?></p></div>';
+                    html = '<div class="bdt-text-center bdt-padding-large"><p><?php echo esc_js(__('No plugins available.', 'bdthemes-prime-slider-lite')); ?></p></div>';
                 } else {
                     plugins.forEach(function(plugin) {
                         // Skip own plugin (Prime Slider) when printing only; data still includes it for other plugins
@@ -272,12 +272,13 @@ class PrimeSlider_Others_Plugin_Manager {
                         }
                         
                         // Active installs
+                        var installsCount = Number(plugin.active_installs_count) || 0;
                         html += '<span class="active-installs bdt-margin-small-top">' +
-                            '<?php esc_html_e("Active Installs: ", "bdthemes-prime-slider-lite"); ?> ';
-                        if (plugin.active_installs_count > 0) {
-                            html += '<span class="installs-count">' + plugin.active_installs_count.toLocaleString() + '+</span>';
+                            '<?php echo esc_js(__('Active Installs: ', 'bdthemes-prime-slider-lite')); ?> ';
+                        if (installsCount > 0) {
+                            html += '<span class="installs-count">' + psEsc(installsCount.toLocaleString()) + '+</span>';
                         } else {
-                            html += '<span class="installs-count">Fewer than 10</span>';
+                            html += '<span class="installs-count"><?php echo esc_js(__('Fewer than 10', 'bdthemes-prime-slider-lite')); ?></span>';
                         }
                         html += '</span>';
                         
@@ -285,27 +286,30 @@ class PrimeSlider_Others_Plugin_Manager {
                         html += '<div class="bdt-others-plugin-rating bdt-margin-small-top bdt-flex bdt-flex-middle">' +
                             '<span class="bdt-others-plugin-rating-stars">';
                         
-                        var rating = parseFloat(plugin.rating) || 0;
+                        // Clamp to 0-5 so malformed data cannot emit a runaway number of stars.
+                        var rating = Math.min(5, Math.max(0, parseFloat(plugin.rating) || 0));
                         var fullStars = Math.floor(rating);
                         var hasHalfStar = (rating - fullStars) >= 0.5;
                         var emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-                        
-                        for (var i = 0; i < fullStars; i++) {
+                        var i;
+
+                        for (i = 0; i < fullStars; i++) {
                             html += '<i class="dashicons dashicons-star-filled"></i>';
                         }
                         if (hasHalfStar) {
                             html += '<i class="dashicons dashicons-star-half"></i>';
                         }
-                        for (var i = 0; i < emptyStars; i++) {
+                        for (i = 0; i < emptyStars; i++) {
                             html += '<i class="dashicons dashicons-star-empty"></i>';
                         }
-                        
+
                         html += '</span>' +
                             '<span class="bdt-others-plugin-rating-text bdt-margin-small-left">' +
-                                rating + ' <?php esc_html_e("out of 5 stars.", "bdthemes-prime-slider-lite"); ?>';
-                        
-                        if (plugin.num_ratings > 0) {
-                            html += '<span class="rating-count">(' + plugin.num_ratings.toLocaleString() + ' <?php esc_html_e("ratings", "bdthemes-prime-slider-lite"); ?>)</span>';
+                                rating + ' <?php echo esc_js(__('out of 5 stars.', 'bdthemes-prime-slider-lite')); ?>';
+
+                        var numRatings = Number(plugin.num_ratings) || 0;
+                        if (numRatings > 0) {
+                            html += '<span class="rating-count">(' + psEsc(numRatings.toLocaleString()) + ' <?php echo esc_js(__('ratings', 'bdthemes-prime-slider-lite')); ?>)</span>';
                         }
                         
                         html += '</span></div>';
@@ -313,14 +317,14 @@ class PrimeSlider_Others_Plugin_Manager {
                         // Downloads
                         if (plugin.downloaded_formatted) {
                             html += '<div class="bdt-others-plugin-downloads bdt-margin-small-top">' +
-                                '<span><?php esc_html_e("Downloads: ", "bdthemes-prime-slider-lite"); ?>' + plugin.downloaded_formatted + '</span>' +
+                                '<span><?php echo esc_js(__('Downloads: ', 'bdthemes-prime-slider-lite')); ?>' + psEsc(plugin.downloaded_formatted) + '</span>' +
                                 '</div>';
                         }
-                        
+
                         // Last updated
                         if (plugin.last_updated_formatted) {
                             html += '<div class="bdt-others-plugin-updated bdt-margin-small-top">' +
-                                '<span><?php esc_html_e("Last Updated: ", "bdthemes-prime-slider-lite"); ?>' + plugin.last_updated_formatted + '</span>' +
+                                '<span><?php echo esc_js(__('Last Updated: ', 'bdthemes-prime-slider-lite')); ?>' + psEsc(plugin.last_updated_formatted) + '</span>' +
                                 '</div>';
                         }
                         
@@ -331,22 +335,26 @@ class PrimeSlider_Others_Plugin_Manager {
                         if (plugin.status === 'active') {
                             html += '<span class="bdt-button bdt-button-success bdt-disabled">' +
                                 '<span class="dashicons dashicons-yes"></span> ' +
-                                '<?php esc_html_e("Active", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php echo esc_js(__('Active', 'bdthemes-prime-slider-lite')); ?>' +
                                 '</span>';
                         } else if (plugin.status === 'installed') {
-                            var activateUrl = '<?php echo esc_url( admin_url("plugins.php?action=activate&plugin=") ); ?>' + plugin.plugin_file + '&_wpnonce=' + plugin.activate_nonce;
-                            html += '<a class="bdt-button bdt-welcome-button" href="' + activateUrl + '">' +
-                                '<?php esc_html_e("Activate", "bdthemes-prime-slider-lite"); ?>' +
+                            // URL-encode the query values: plugin_file contains slashes and
+                            // both parts land inside an href attribute.
+                            var activateUrl = '<?php echo esc_url( admin_url('plugins.php?action=activate&plugin=') ); ?>' +
+                                encodeURIComponent(plugin.plugin_file || '') +
+                                '&_wpnonce=' + encodeURIComponent(plugin.activate_nonce || '');
+                            html += '<a class="bdt-button bdt-welcome-button" href="' + psEsc(activateUrl) + '">' +
+                                '<?php echo esc_js(__('Activate', 'bdthemes-prime-slider-lite')); ?>' +
                                 '</a>';
                         } else {
-                            html += '<button class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + psEsc(pluginSlug) + '" data-nonce="<?php echo esc_attr( wp_create_nonce('ps_install_plugin_nonce') ); ?>">' +
-                                '<?php esc_html_e("Install", "bdthemes-prime-slider-lite"); ?>' +
+                            html += '<button type="button" class="bdt-button bdt-welcome-button ps-install-plugin" data-plugin-slug="' + psEsc(pluginSlug) + '" data-nonce="<?php echo esc_attr( wp_create_nonce('ps_install_plugin_nonce') ); ?>">' +
+                                '<?php echo esc_js(__('Install', 'bdthemes-prime-slider-lite')); ?>' +
                                 '</button>';
                         }
-                        
+
                         if (plugin.homepage && psSafeUrl(plugin.homepage)) {
                             html += '<a class="bdt-button bdt-dashboard-sec-btn" target="_blank" rel="noopener noreferrer" href="' + psEsc(psSafeUrl(plugin.homepage)) + '">' +
-                                '<?php esc_html_e("Learn More", "bdthemes-prime-slider-lite"); ?>' +
+                                '<?php echo esc_js(__('Learn More', 'bdthemes-prime-slider-lite')); ?>' +
                                 '</a>';
                         }
                         
@@ -355,9 +363,12 @@ class PrimeSlider_Others_Plugin_Manager {
                 }
                 
                 $list.html(html);
-                
-                // Handle plugin action buttons
-                $('.ps-install-plugin').on('click', function(e) {
+
+                // Handle plugin action buttons. Delegated from the list and
+                // namespaced+unbound first: renderPlugins() runs again on every
+                // retry, and a plain global bind stacked one handler per render,
+                // firing duplicate install requests for a single click.
+                $list.off('click.psInstall').on('click.psInstall', '.ps-install-plugin', function(e) {
                     e.preventDefault();
                     
                     var $button = $(this);
@@ -447,7 +458,7 @@ class PrimeSlider_Others_Plugin_Manager {
                                 '<div class="ps-loading-dot"></div>' +
                             '</div>' +
                         '</div>' +
-                        '<p class="bdt-margin-small-top bdt-text-muted"><?php esc_html_e("Loading plugin data...", "bdthemes-prime-slider-lite"); ?></p>' +
+                        '<p class="bdt-margin-small-top bdt-text-muted"><?php echo esc_js(__('Loading plugin data...', 'bdthemes-prime-slider-lite')); ?></p>' +
                     '</div>'
                 );
                 $list.show();
@@ -472,12 +483,62 @@ class PrimeSlider_Others_Plugin_Manager {
     }
 
     /**
+     * Decode display text coming from the WordPress.org plugins API.
+     *
+     * The API returns strings that are already HTML-encoded, e.g.
+     * "Element Pack Lite &#8211; Addons for Elementor". The renderer escapes
+     * again before injecting into the DOM, which turns the leading "&" into
+     * "&amp;" and prints the entity literally instead of an en dash. Decoding
+     * here means exactly one round of escaping happens, at output.
+     *
+     * @param mixed $text Raw value from the API.
+     * @return string Plain text, still to be escaped at output.
+     */
+    private function decode_api_text($text) {
+        if (!is_string($text) || '' === $text) {
+            return '';
+        }
+
+        return html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+
+    /**
+     * Normalise cached plugin data for display.
+     *
+     * Applied on the response rather than when caching, so already-cached
+     * entries are corrected without waiting for the transient to expire.
+     *
+     * @param mixed $plugins Cached plugin list.
+     * @return array
+     */
+    private function prepare_plugins_for_display($plugins) {
+        if (!is_array($plugins)) {
+            return [];
+        }
+
+        foreach ($plugins as $index => $plugin) {
+            if (!is_array($plugin)) {
+                continue;
+            }
+
+            foreach (['name', 'description'] as $key) {
+                if (isset($plugin[$key])) {
+                    $plugins[$index][$key] = $this->decode_api_text($plugin[$key]);
+                }
+            }
+        }
+
+        return $plugins;
+    }
+
+    /**
      * AJAX handler for getting plugins data
      */
     public function ajax_get_plugins() {
-        // Verify nonce
+        // Verify nonce. Respond with JSON -- the caller parses the response as
+        // JSON, so wp_die() here would surface as a generic "unable to load".
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider-lite'));
+            wp_send_json_error(['message' => __('Security check failed.', 'bdthemes-prime-slider-lite')], 403);
         }
 
         // This data is only ever used on the plugin-install screen; gate it to
@@ -504,7 +565,7 @@ class PrimeSlider_Others_Plugin_Manager {
 
         // Send response
         wp_send_json_success([
-            'plugins' => $plugins_data,
+            'plugins' => $this->prepare_plugins_for_display($plugins_data),
             'loading' => false,
             'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider-lite')
         ]);

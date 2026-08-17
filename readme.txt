@@ -264,6 +264,17 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.5.X [XXth August 2026] =
+
+* Fixed: Used and Unused counts were missing on the 3rd Party Widgets tab, leaving both status indicators as identical filled circles
+* Fixed: Plugin names and descriptions on the Other Plugins tab displayed raw HTML entity codes instead of dashes and ampersands
+* Fixed: A bundled template with an unexpected file type could stop the rest of the setup wizard's final step from rendering
+* Fixed: Setup wizard's final step no longer triggers PHP warnings when the bundled template data is missing or malformed
+* Fixed: Duplicate install requests were sent when the Other Plugins list reloaded
+* Security: Escaped the remaining remote plugin values before rendering them on the Other Plugins tab
+* Improved: External links in the setup wizard and Other Plugins tab now open with rel="noopener noreferrer"
+* Updated: Video Tutorials link in the setup wizard now points to the Prime Slider playlist
+
 = 4.5.0 [14th August 2026] =
 
 * Compliance: Corrected "Requires at least" / "Tested up to" to major WordPress versions and matched the text domain to the plugin slug
