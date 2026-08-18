@@ -32,7 +32,17 @@ if ( ! defined( 'BDTPS_CORE_SLUG' ) ) {
 	define( 'BDTPS_CORE_SLUG', 'prime-slider' );
 } // set your own alias
 if ( ! defined( 'BDTPS_CORE_TITLE' ) ) {
-	define( 'BDTPS_CORE_TITLE', 'Prime Slider' );
+	// White label title. WordPress loads this plugin before the Pro plugin
+	// ('bdthemes-prime-slider-lite/' sorts before 'bdthemes-prime-slider/'),
+	// so Pro's white-label-config.php can never win this define(). The option
+	// is therefore read here instead of relying on Pro to get in first.
+	$bdtps_core_wl_title = get_option( 'ps_white_label_enabled' )
+		? trim( (string) get_option( 'ps_white_label_title', '' ) )
+		: '';
+
+	define( 'BDTPS_CORE_TITLE', '' !== $bdtps_core_wl_title ? $bdtps_core_wl_title : 'Prime Slider' );
+
+	unset( $bdtps_core_wl_title );
 } // set your own alias
 if ( true === _is_ps_pro_activated() ) {
 
