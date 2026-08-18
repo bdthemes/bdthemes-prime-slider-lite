@@ -57,57 +57,7 @@ class Admin_Feeds {
 	 * Display RSS Feeds Content
 	 */
 	public function display_rss_feeds_content() {
-		$feeds = $this->get_remote_feeds_data();
-		if ( is_array( $feeds ) ) {
-			foreach ( $feeds as $feed ) {
-				?>
-				<div class="activity-block">
-					<a href="<?php echo esc_url( $feed->demo_link ); ?>" target="_blank" style="margin-bottom:10px; display: inline-block;">
-						<img src="<?php echo esc_url( $feed->image ); ?>" style="width:100%;min-height:240px;">
-					</a>
-					<p>
-						<?php echo wp_kses_post( wp_trim_words( wp_strip_all_tags( $feed->content ), 50 ) ); ?>
-						<a href="<?php echo esc_url( $feed->demo_link ); ?>" target="_blank">
-							<?php esc_html_e( 'Learn more...', 'bdthemes-prime-slider-lite' ); ?>
-						</a>
-					</p>
-				</div>
-				<?php
-			}
-		}
 		echo wp_kses_post( $this->get_rss_posts_data() );
-	}
-
-	/**
-	 * Get Remote Feeds Data
-	 *
-	 * @return array|mixed
-	 */
-	private function get_remote_feeds_data() {
-		$transient_key = $this->settings['transient_key'];
-		$cached_data   = get_transient( $transient_key );
-
-		if ( ! empty( $cached_data ) ) {
-			return json_decode( $cached_data );
-		}
-
-		$response = wp_remote_get( $this->settings['remote_feed_link'],
-			array(
-				'timeout' => 30,
-				'headers' => array(
-					'Accept' => 'application/json',
-				),
-			)
-		);
-
-		if ( is_wp_error( $response ) ) {
-			return [];
-		}
-
-		$response_body = wp_remote_retrieve_body( $response );
-		set_transient( $transient_key, $response_body, 6 * HOUR_IN_SECONDS );
-
-		return json_decode( $response_body );
 	}
 
 	/**
@@ -219,7 +169,6 @@ $settings = array(
 	'feed_title'       => 'BdThemes News & Updates',
 	'transient_key'    => 'bdthemes_product_feeds',
 	'feed_link'        => 'https://bdthemes.com/feed',
-	'remote_feed_link' => 'https://dashboard.bdthemes.io/wp-json/bdthemes/v1/product-feed/?product_category=prime-slider',
 	'text_domain'      => 'bdthemes-prime-slider',
 	'footer_links'     => [ 
 		[ 

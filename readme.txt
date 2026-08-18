@@ -274,6 +274,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Security: Escaped the remaining remote plugin values before rendering them on the Other Plugins tab
 * Improved: External links in the setup wizard and Other Plugins tab now open with rel="noopener noreferrer"
 * Updated: Video Tutorials link in the setup wizard now points to the Prime Slider playlist
+* Removed: Deprecated BdThemes product-feed remote endpoint (returned an empty response) and its unused fetch code
 
 = 4.5.0 [14th August 2026] =
 
