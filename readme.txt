@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
-Requires at least: 5.0
+Requires at least: 6.8
 Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 4.5.0
