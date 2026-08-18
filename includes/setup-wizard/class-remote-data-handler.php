@@ -153,13 +153,15 @@ class Remote_Data_Handler {
      * AJAX handler for getting plugins data
      */
     public static function ajax_get_plugins() {
+        // Respond with JSON on failure -- the caller parses the response as JSON,
+        // so wp_die() here surfaced only as a generic "unable to load" message.
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider-lite'));
+            wp_send_json_error(['message' => __('You do not have permission to do this.', 'bdthemes-prime-slider-lite')], 403);
         }
 
         // Verify nonce for security
         if (!check_ajax_referer('ps_get_plugins_nonce', 'nonce', false)) {
-            wp_die(esc_html__('Security check failed.', 'bdthemes-prime-slider-lite'));
+            wp_send_json_error(['message' => __('Security check failed.', 'bdthemes-prime-slider-lite')], 403);
         }
 
         // Get cached data
@@ -205,9 +207,9 @@ class Remote_Data_Handler {
             }
             
             $formatted_plugins[] = [
-                'name' => $data['name'] ?? '',
+                'name' => self::decode_api_text($data['name'] ?? ''),
                 'slug' => $data['slug'] ?? '',
-                'description' => $data['description'] ?? '',
+                'description' => self::decode_api_text($data['description'] ?? ''),
                 'logo' => $data['logo'] ?? '',
                 'rating' => $data['rating'] ?? 0,
                 'rating_percentage' => $data['rating_percentage'] ?? 0,
@@ -233,6 +235,30 @@ class Remote_Data_Handler {
             'loading' => false,
             'message' => __('Plugin data loaded successfully.', 'bdthemes-prime-slider-lite')
         ]);
+    }
+
+    /**
+     * Decode display text coming from the WordPress.org plugins API.
+     *
+     * The API returns strings that are already HTML-encoded, e.g.
+     * "Element Pack Lite &#8211; Addons for Elementor". The renderer escapes
+     * again before injecting into the DOM, which turns the leading "&" into
+     * "&amp;" and prints the entity literally instead of an en dash. Decoding
+     * here means exactly one round of escaping happens, at output.
+     *
+     * Applied when building the response rather than when caching, so
+     * already-cached entries are corrected without waiting for the transient
+     * to expire.
+     *
+     * @param mixed $text Raw value from the API.
+     * @return string Plain text, still to be escaped at output.
+     */
+    private static function decode_api_text($text) {
+        if (!is_string($text) || '' === $text) {
+            return '';
+        }
+
+        return html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
     /**

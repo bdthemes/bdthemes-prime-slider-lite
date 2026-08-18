@@ -42,13 +42,16 @@ jQuery(document).ready(function ($) {
 
 
         // modules
-        var moduleUsedWidget = jQuery('#prime_slider_active_modules_page').find('.ps-used-widget');
-        var moduleUsedWidgetCount = jQuery('#prime_slider_active_modules_page').find('.ps-options .ps-used').length;
+        // Fill the Used / Unused badge counts on every widget page that renders
+        // them (Core Widgets, 3rd Party Widgets, ...). Scoping this to the core
+        // modules page left the other pages' badges empty, so they rendered as
+        // bare filled circles with no number to tell the two states apart.
+        jQuery('.ps-option-page').each(function () {
+            var $page = jQuery(this);
 
-        moduleUsedWidget.text(moduleUsedWidgetCount);
-        var moduleUnusedWidget = jQuery('#prime_slider_active_modules_page').find('.ps-unused-widget');
-        var moduleUnusedWidgetCount = jQuery('#prime_slider_active_modules_page').find('.ps-options .ps-unused').length;
-        moduleUnusedWidget.text(moduleUnusedWidgetCount);
+            $page.find('.ps-used-widget').text($page.find('.ps-options .ps-used').length);
+            $page.find('.ps-unused-widget').text($page.find('.ps-options .ps-unused').length);
+        });
 
         // total widgets
 
