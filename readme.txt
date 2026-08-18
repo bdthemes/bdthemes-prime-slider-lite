@@ -5,7 +5,7 @@ Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 6.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 4.5.0
+Stable tag: 4.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -264,7 +264,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.5.X [XXth August 2026] =
+= 4.5.1 [18th August 2026] =
 
 * Fixed: Used and Unused counts were missing on the 3rd Party Widgets tab, leaving both status indicators as identical filled circles
 * Fixed: Plugin names and descriptions on the Other Plugins tab displayed raw HTML entity codes instead of dashes and ampersands
