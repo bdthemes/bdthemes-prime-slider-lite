@@ -110,7 +110,7 @@ class Skin_Folio extends Elementor_Skin_Base {
             <div class="bdt-meta-author">
               <span class="bdt-author bdt-text-capitalize">
                 <strong><?php esc_html_e('Written by&nbsp;', 'bdthemes-prime-slider-lite'); ?></strong><br>
-                <?php echo esc_attr(get_the_author()); ?> </span>
+                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_html(get_the_author()); ?></a> </span>
             </div>
           </div>
         <?php endif; ?>
