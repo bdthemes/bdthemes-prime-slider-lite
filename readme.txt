@@ -264,6 +264,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.5.X [XXth August 2026] =
+
+* Fixed: Author name in the blog widget's folio skin was plain text instead of a link to the author archive
+
 = 4.5.1 [18th August 2026] =
 
 * Fixed: Used and Unused counts were missing on the 3rd Party Widgets tab, leaving both status indicators as identical filled circles
