@@ -417,12 +417,13 @@ class Flogia extends Widget_Base {
             ]
         );
 
-        $this->start_controls_tabs('tabs_slider_style');
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            'tab_slider_title',
+        $this->start_controls_section(
+            'section_style_title',
             [
-                'label' => __('Title', 'bdthemes-prime-slider-lite'),
+                'label'     => __('Title', 'bdthemes-prime-slider-lite'),
+                'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_title' => ['yes'],
                 ],
@@ -550,12 +551,13 @@ class Flogia extends Widget_Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            'slider_style_excerpt',
+        $this->start_controls_section(
+            'section_style_text',
             [
-                'label' => esc_html__('Text', 'bdthemes-prime-slider-lite'),
+                'label'     => esc_html__('Text', 'bdthemes-prime-slider-lite'),
+                'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_excerpt' => ['yes'],
                 ],
@@ -629,12 +631,13 @@ class Flogia extends Widget_Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            'tab_slider_category',
+        $this->start_controls_section(
+            'section_style_category',
             [
-                'label' => __('Category', 'bdthemes-prime-slider-lite'),
+                'label'     => __('Category', 'bdthemes-prime-slider-lite'),
+                'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_category' => 'yes',
                 ],
@@ -792,12 +795,13 @@ class Flogia extends Widget_Base {
             ]
         );
 
-        $this->end_controls_tab();
+        $this->end_controls_section();
 
-        $this->start_controls_tab(
-            'tab_slider_meta',
+        $this->start_controls_section(
+            'section_style_author',
             [
-                'label' => __('Author', 'bdthemes-prime-slider-lite'),
+                'label'     => __('Author', 'bdthemes-prime-slider-lite'),
+                'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_admin_info' => 'yes',
                 ],
@@ -872,10 +876,6 @@ class Flogia extends Widget_Base {
                 ],
             ]
         );
-
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
 
         $this->end_controls_section();
 
@@ -1530,15 +1530,18 @@ class Flogia extends Widget_Base {
                     </div>
                 <?php endif;?>
 
-                <?php if ('yes' == $settings['show_title']): ?>
+                <?php if ('yes' == $settings['show_title'] || 'yes' == $settings['show_excerpt']): ?>
                     <div class="bdt-main-title">
-                        <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
+                        <?php if ('yes' == $settings['show_title']): ?>
+                            <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" <?php echo wp_kses_post($parallax_title); ?> data-reveal="reveal-active">
 
-                            <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
-                                <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
-                            </a>
+                                <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
+                                    <?php echo wp_kses_post(prime_slider_first_word(get_the_title())); ?>
+                                </a>
 
-                        </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
+                            </<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?>>
+                        <?php endif;?>
+
 
                         <?php $this->render_excerpt();?>
 
@@ -1600,9 +1603,9 @@ class Flogia extends Widget_Base {
                     <?php endif;?>
 
                     <?php if ('none' !== $settings['overlay']):
-                $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : '';?>
-	                        <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
-	                    <?php endif;?>
+                        $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : '';?>
+                        <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
+                    <?php endif;?>
 
                     <?php $this->render_item_content($post);?>
 

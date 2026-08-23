@@ -267,6 +267,8 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 = 4.5.X [XXth August 2026] =
 
 * Fixed: Author name in the blog widget's folio skin was plain text instead of a link to the author archive
+* Fixed: Flogia widget's Show Title control also hid the post text when it was turned off
+* Improved: Flogia widget's slider style controls are now split into separate Title, Text, Category and Author sections instead of a single tabbed group
 
 = 4.5.1 [18th August 2026] =
 
