@@ -153,10 +153,12 @@ class Skin_Locate extends Elementor_Skin_Base {
             }
         }
 
+        $title_link_key = 'title-link-' . $slide_content['_id'];
+
         if ($slide_content['title']) {
-            $this->parent->add_link_attributes('title-link', $slide_content['title_link'], true);
+            $this->parent->add_link_attributes($title_link_key, $slide_content['title_link'], true);
         }
-        
+
 
         ?>
             <div class="bdt-slideshow-content-wrapper">
@@ -177,7 +179,7 @@ class Skin_Locate extends Elementor_Skin_Base {
                                     <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> 
                                     class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                         <?php if ('' !== $slide_content['title_link']['url']) : ?>
-                                            <a <?php $this->parent->print_render_attribute_string('title-link');?>>
+                                            <a <?php $this->parent->print_render_attribute_string($title_link_key);?>>
                                             <?php endif; ?>
                                             <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                             <?php if ('' !== $slide_content['title_link']['url']) : ?>

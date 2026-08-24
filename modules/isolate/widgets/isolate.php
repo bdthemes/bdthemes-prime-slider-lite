@@ -1965,13 +1965,11 @@ class Isolate extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'condition' => [
                     'scroll_button_border_border!' => '',
+                    '_skin!' => 'slice',
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-social-icon a:hover' => 'border-color: {{VALUE}};',
                     '{{WRAPPER}} .bdt-prime-slider-skin-locate .bdt-scroll-down-wrapper:hover .bdt-scroll-icon' => 'border-color: {{VALUE}};',
-                ],
-                'condition' => [
-                    '_skin!' => 'slice',
                 ],
             ]
         );
@@ -2228,8 +2226,6 @@ class Isolate extends Widget_Base {
                 'selector' => '{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-next:before, {{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:before',
                 'condition' => [
                     'show_navigation_arrows' => ['yes'],
-                ],
-                'condition' => [
                     '_skin!' => 'locate',
                 ],
             ]
@@ -2245,8 +2241,6 @@ class Isolate extends Widget_Base {
 				{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-previous:hover',
                 'condition' => [
                     'show_navigation_arrows' => ['yes'],
-                ],
-                'condition' => [
                     '_skin' => 'locate',
                 ],
             ]
@@ -2609,16 +2603,18 @@ class Isolate extends Widget_Base {
             return;
         }
 
-        $this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
+        $slider_button_key = 'slider-button-' . $content['_id'];
+
+        $this->add_render_attribute($slider_button_key, 'class', 'bdt-slide-btn', true);
         if ($content['slide_button_text']) {
-            $this->add_link_attributes('slider-button', $content['button_link'], true);
+            $this->add_link_attributes($slider_button_key, $content['button_link'], true);
         }
-        
+
         ?>
 
 			<?php if ($content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url'])): ?>
 
-				<a <?php $this->print_render_attribute_string('slider-button');?>>
+				<a <?php $this->print_render_attribute_string($slider_button_key);?>>
 
 					<?php
 
@@ -2731,10 +2727,12 @@ class Isolate extends Widget_Base {
             }
         }
 
+        $title_link_key = 'title-link-' . $slide_content['_id'];
+
         if ($slide_content['title']) {
-            $this->add_link_attributes('title-link', $slide_content['title_link'], true);
+            $this->add_link_attributes($title_link_key, $slide_content['title_link'], true);
         }
-        
+
 
         ?>
         <div class="bdt-slideshow-content-wrapper">
@@ -2754,7 +2752,7 @@ class Isolate extends Widget_Base {
                             <div class="bdt-main-title">
                                 <<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag" data-reveal="reveal-active" <?php echo wp_kses_post($parallax_title); ?>>
                                     <?php if ('' !== $slide_content['title_link']['url']): ?>
-                                        <a <?php $this->print_render_attribute_string('title-link');?>>
+                                        <a <?php $this->print_render_attribute_string($title_link_key);?>>
                                         <?php endif;?>
                                         <?php echo wp_kses_post(prime_slider_first_word($slide_content['title'])); ?>
                                         <?php if ('' !== $slide_content['title_link']['url']): ?>
