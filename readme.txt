@@ -271,6 +271,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Fixed: Isolate widget's Slice skin sub title was shown or hidden by the Show Title control instead of its own Show Sub Title control
 * Fixed: Isolate widget's Sub Title HTML Tag control had no effect in the Slice skin, and changing it in the Locate skin broke the sub title's styling
 * Fixed: Isolate widget's Wrapper, Navigation and Scroll Down style controls could appear or stay hidden regardless of their related switcher due to a duplicated condition
+* Fixed: Rubix icon hover border color control linked to a non-existent border control
+* Fixed: Sniper fraction pagination heading and typography controls linked to show title instead of show pagination
+* Fixed: Woocircle open/close button hover border color controls linked to incorrect border conditions
+* Fixed: WooCommerce category hover border color control always visible regardless of category border setting
 * Improved: Flogia widget's slider style controls are now split into separate Title, Text, Category and Author sections instead of a single tabbed group
 
 = 4.5.1 [18th August 2026] =

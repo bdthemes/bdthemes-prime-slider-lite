@@ -1166,7 +1166,6 @@ class Omatic extends Widget_Base {
 							],
 							"creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
 							"fadeEffect"     => ['crossFade' => true],
-							"lazy"           => true,
 							"parallax"       => true,
 							"mousewheel"     => ($settings["mousewheel"] === "yes") ? true : false,
 							"watchSlidesProgress" => true,
@@ -1241,9 +1240,10 @@ class Omatic extends Widget_Base {
 			<div thumbsSlider="" class="bdt-omatic-thumbs-slide">
                 <div class="swiper-wrapper">
 
-				<?php foreach ($settings['slides'] as $slide) : 
+				<?php foreach ($settings['slides'] as $slide) :
+					$title_link_key = 'title-link-' . $slide['_id'];
 					if($slide['title']) {
-						$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+						$this->add_link_attributes( $title_link_key, $slide['title_link'], true );
 					}
 					?>
 					<div class="swiper-slide bdt-omatic-item">
@@ -1253,7 +1253,7 @@ class Omatic extends Widget_Base {
 						<div class="bdt-title-wrap">
 							<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 								<?php if ('' !== $slide['title_link']['url']) : ?>
-									<a <?php $this->print_render_attribute_string('title-link'); ?>>
+									<a <?php $this->print_render_attribute_string($title_link_key); ?>>
 									<?php endif; ?>
 									<?php echo wp_kses( prime_slider_first_word( $slide['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 									<?php if ('' !== $slide['title_link']['url']) : ?>

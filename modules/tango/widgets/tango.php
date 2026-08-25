@@ -1009,7 +1009,7 @@ class Tango extends Widget_Base {
 		$viewport_md     = !empty($elementor_vp_md) ? $elementor_vp_md - 1 : 768;
 
 		if ( 'yes' == $settings['match_height'] ) {
-			$this->add_render_attribute( 'prime-slider-tango', 'bdt-height-match', 'target: > div > div > div > .bdt-slider-item' );
+			$this->add_render_attribute( 'prime-slider-tango', 'bdt-height-match', 'target: > div > div > div > .bdt-item' );
 		}
 
 		$this->add_render_attribute(
@@ -1166,12 +1166,13 @@ class Tango extends Widget_Base {
 	public function render_slides_loop() {
         $settings = $this->get_settings_for_display();
 
-        foreach ($settings['slides'] as $slide) : 
-		
+        foreach ($settings['slides'] as $slide) :
+			$title_link_key = 'title-link-' . $slide['_id'];
+
 			if( ! empty($slide['title_link']['url']) && $slide['title']){
-				$this->add_link_attributes('title-link', $slide['title_link'], true);
+				$this->add_link_attributes($title_link_key, $slide['title_link'], true);
 			}
-		
+
 			?>
 
             <div class="swiper-slide bdt-item">
@@ -1189,7 +1190,7 @@ class Tango extends Widget_Base {
 					<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 						<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title" data-reveal="reveal-active">
 							<?php if ('' !== $slide['title_link']['url']) : ?>
-								<a <?php $this->print_render_attribute_string('title-link'); ?>>
+								<a <?php $this->print_render_attribute_string($title_link_key); ?>>
 								<?php endif; ?>
 								<?php echo wp_kses( prime_slider_first_word( $slide['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 								<?php if ('' !== $slide['title_link']['url']) : ?>
@@ -1199,7 +1200,7 @@ class Tango extends Widget_Base {
 					<?php endif; ?>
 				</div>
 				<?php if ($settings['item_wrapper_link'] == 'yes' and '' !== $slide['title_link']['url']) : ?>
-					<a class="bdt-tango-item-wrap-link" <?php $this->print_render_attribute_string('title-link'); ?>></a>
+					<a class="bdt-tango-item-wrap-link" <?php $this->print_render_attribute_string($title_link_key); ?>></a>
 				<?php endif; ?>
 			</div>
 

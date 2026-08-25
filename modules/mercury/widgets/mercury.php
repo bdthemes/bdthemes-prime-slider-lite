@@ -1044,23 +1044,6 @@ class Mercury extends Widget_Base {
         <?php
     }
 
-    public function render_button() {
-        $settings   = $this->get_settings_for_display();
-        if ( ! $this->get_settings( 'show_button' ) ) {
-            return;
-        }
-        ?>
-        <div class="bdt-mercury-play-and-button-wrap">
-            <div class="bdt-mercury-button-wrap" data-swiper-parallax-y ="-50" data-swiper-parallax-duration="700">
-                <a href="<?php echo esc_url(get_permalink()); ?>">
-                    <span><?php echo esc_html( $settings['button_text'] ); ?></span>
-                    <i class="ps-wi-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-        <?php
-    }
-
     protected function render_header() {
         $settings   = $this->get_settings_for_display();
         $id         = 'bdt-prime-slider-' . $this->get_id();
@@ -1090,7 +1073,6 @@ class Mercury extends Widget_Base {
                             ],
                             "creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
                             "fadeEffect"     => ['crossFade' => true],
-                            "lazy"           => true,
                             "parallax"       => true,
                             "watchSlidesProgress" => true,
                             "slidesPerGroupAuto" => false,

@@ -526,7 +526,7 @@ class Woocircle extends Widget_Base {
 				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'condition' => [
-					'close_button_border_border!' => '',
+					'open_button_border_border!' => '',
 				],
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--open:focus, {{WRAPPER}} .bdt-elastic-action--open:hover' => 'border-color: {{VALUE}};',
@@ -946,9 +946,9 @@ class Woocircle extends Widget_Base {
 			[
 				'label'     => esc_html__('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
-				// 'condition' => [
-				// 	'close_button_border_border!' => '',
-				// ],
+				'condition' => [
+					'close_button_border_border!' => '',
+				],
 				'selectors' => [
 					'{{WRAPPER}} .bdt-elastic-action--close:hover' => 'border-color: {{VALUE}};',
 				],

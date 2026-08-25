@@ -1181,18 +1181,20 @@ class Pagepiling extends Widget_Base {
 	public function render_button($content) {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute('slider-button', 'class', 'bdt-slide-btn', true);
+		$slider_button_key = 'slider-button-' . $content['_id'];
+
+		$this->add_render_attribute($slider_button_key, 'class', 'bdt-slide-btn', true);
 
 		if ($content['slide_button_text']) {
-			$this->add_link_attributes('slider-button', $content['button_link'], true);
-			$this->add_render_attribute( 'slider-button', 'aria-label', esc_attr( $content['slide_button_text'] . ' Button' ), true );
+			$this->add_link_attributes($slider_button_key, $content['button_link'], true);
+			$this->add_render_attribute( $slider_button_key, 'aria-label', esc_attr( $content['slide_button_text'] . ' Button' ), true );
 		}
-		
+
 		?>
 
 		<?php if ( $content['slide_button_text'] && ('yes' == $settings['show_button_text']) && ! empty($content['button_link']['url']) ) : ?>
 
-			<a <?php $this->print_render_attribute_string('slider-button'); ?>>
+			<a <?php $this->print_render_attribute_string($slider_button_key); ?>>
 
 				<span class="bdt-button-circle" aria-hidden="true">
 					<span class="icon arrow"></span>
@@ -1216,16 +1218,18 @@ class Pagepiling extends Widget_Base {
 		}
 
 		// remove global lightbox
-		$this->add_render_attribute( 'lightbox-content', 'data-elementor-open-lightbox', 'no', true );
-		$this->add_link_attributes( 'lightbox-content', $slide['lightbox_link'], true );
-		
+		$lightbox_content_key = 'lightbox-content-' . $slide['_id'];
+
+		$this->add_render_attribute( $lightbox_content_key, 'data-elementor-open-lightbox', 'no', true );
+		$this->add_link_attributes( $lightbox_content_key, $slide['lightbox_link'], true );
+
 		$this->add_render_attribute( 'lightbox', 'class', 'bdt-slide-play-button', true );
 		$this->add_render_attribute( 'lightbox', 'bdt-lightbox', 'video-autoplay: true;', true );
-		
-        ?>     
-		<div <?php $this->print_render_attribute_string( 'lightbox' ); ?>>			
 
-			<a <?php $this->print_render_attribute_string( 'lightbox-content' ); ?>>
+        ?>
+		<div <?php $this->print_render_attribute_string( 'lightbox' ); ?>>
+
+			<a <?php $this->print_render_attribute_string( $lightbox_content_key ); ?>>
 				<svg aria-hidden="true" class="" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>
 			</a>
 
@@ -1236,10 +1240,12 @@ class Pagepiling extends Widget_Base {
 	public function render_item_content($slide_content) {
         $settings = $this->get_settings_for_display();
 
+        $title_link_key = 'title-link-' . $slide_content['_id'];
+
         if ($slide_content['title']) {
-        	$this->add_link_attributes( 'title-link', $slide_content['title_link'], true );
+        	$this->add_link_attributes( $title_link_key, $slide_content['title_link'], true );
         }
-		
+
 
 		?>
 		<div class="bdt-prime-slider-content">
@@ -1259,7 +1265,7 @@ class Pagepiling extends Widget_Base {
 				<div class="bdt-main-title">
 					<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title-tag"  data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0">
 						<?php if ('' !== $slide_content['title_link']['url']) : ?>
-							<a <?php $this->print_render_attribute_string('title-link'); ?>>
+							<a <?php $this->print_render_attribute_string($title_link_key); ?>>
 							<?php endif; ?>
 							<?php echo wp_kses( prime_slider_first_word( $slide_content['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 							<?php if ('' !== $slide_content['title_link']['url']) : ?>

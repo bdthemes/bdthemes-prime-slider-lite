@@ -576,9 +576,12 @@ class Sniper extends Widget_Base {
 		$this->add_control(
 			'Fraction_pag_heading',
 			[
-				'label' => esc_html__( 'Fraction Pagination', 'bdthemes-prime-slider-lite' ),
-				'type' => Controls_Manager::HEADING,
+				'label' 	=> esc_html__( 'Fraction Pagination', 'bdthemes-prime-slider-lite' ),
+				'type' 		=> Controls_Manager::HEADING,
 				'separator' => 'before',
+				'condition' => [
+					'show_navigation_dots' => ['yes'],
+				],
 			]
 		);
 		
@@ -615,11 +618,11 @@ class Sniper extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name'     => 'pagination_typography',
-				'label'    => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
-				'selector' => '{{WRAPPER}} .bdt-sniper-slider .bdt-pagination-wrap .bdt-pagination',
+				'name'      => 'pagination_typography',
+				'label'     => esc_html__('Typography', 'bdthemes-prime-slider-lite'),
+				'selector'  => '{{WRAPPER}} .bdt-sniper-slider .bdt-pagination-wrap .bdt-pagination',
 				'condition' => [
-					'show_title' => ['yes'],
+					'show_navigation_dots' => ['yes'],
 				],
 			]
 		);
@@ -681,7 +684,6 @@ class Sniper extends Widget_Base {
 							],
 							"creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
 							"fadeEffect"     => ['crossFade' => true],
-							"lazy"           => true,
 							"parallax"       => true,
 							"watchSlidesProgress" => true,
 							"slidesPerGroupAuto" => false,
@@ -753,11 +755,12 @@ class Sniper extends Widget_Base {
 			<div thumbsSlider="" class="bdt-thumbs-slider">
                 <div class="swiper-wrapper">
 
-				<?php foreach ($settings['slides'] as $slide) : 
+				<?php foreach ($settings['slides'] as $slide) :
+					$title_link_key = 'title-link-' . $slide['_id'];
 					if ($slide['title'] && ! empty($slide['title_link']['url'])) {
-						$this->add_link_attributes( 'title-link', $slide['title_link'], true );
+						$this->add_link_attributes( $title_link_key, $slide['title_link'], true );
 					}
-					
+
 					?>
 					<div class="swiper-slide bdt-item">
                         <div class="bdt-content">
@@ -771,7 +774,7 @@ class Sniper extends Widget_Base {
 							<?php if ($slide['title'] && ('yes' == $settings['show_title'])) : ?>
 								<<?php echo esc_attr(Utils::get_valid_html_tag($settings['title_html_tag'])); ?> class="bdt-title">
 									<?php if ('' !== $slide['title_link']['url']) : ?>
-										<a <?php $this->print_render_attribute_string('title-link'); ?>>
+										<a <?php $this->print_render_attribute_string($title_link_key); ?>>
 										<?php endif; ?>
 										<?php echo wp_kses( prime_slider_first_word( $slide['title'] ), [ 'span' => [ 'class' => [] ] ] ); ?>
 										<?php if ('' !== $slide['title_link']['url']) : ?>
