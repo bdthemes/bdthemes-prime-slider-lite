@@ -1008,11 +1008,11 @@ class Rubix extends Widget_Base {
 
 		$this->add_control(
 			'read_icon_hover_border_color',
-			[ 
+			[
 				'label'     => esc_html__( 'Border Color', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::COLOR,
-				'condition' => [ 
-					'arrows_border_border!' => '',
+				'condition' => [
+					'icon_border_border!' => '',
 				],
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-read-more a:hover i' => 'border-color: {{VALUE}};',
@@ -1431,25 +1431,6 @@ class Rubix extends Widget_Base {
 				<i class="ps-wi-user-circle-o" aria-hidden="true"></i>
 				<?php echo esc_html( get_the_author() ); ?>
 			</a>
-		</div>
-		<?php
-	}
-
-	public function render_button() {
-		$settings = $this->get_settings_for_display();
-		if ( ! $this->get_settings( 'show_button' ) ) {
-			return;
-		}
-		?>
-		<div class="bdt-rubix-play-and-button-wrap">
-			<div class="bdt-rubix-button-wrap" data-swiper-parallax-y="-50" data-swiper-parallax-duration="700">
-				<a href="<?php echo esc_url( get_permalink() ); ?>">
-					<span>
-						<?php echo esc_html( $settings['button_text'] ); ?>
-					</span>
-					<i class="ps-wi-arrow-right"></i>
-				</a>
-			</div>
 		</div>
 		<?php
 	}

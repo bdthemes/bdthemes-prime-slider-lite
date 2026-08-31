@@ -556,6 +556,9 @@ class Woocommerce extends Widget_Base {
 			[
 				'label'     => __('Border Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
+				'condition' => [
+					'category_border_border!' => '',
+				],
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider .bdt-ps-content .bdt-ps-category a:hover' => 'border-color: {{VALUE}};',
 				],

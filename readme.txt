@@ -281,6 +281,13 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Improved: Replaced a direct filesystem write during template import with Elementor's own uploads manager, and switched a raw json_encode() to wp_json_encode()
 * Fixed: Author name in the blog widget's folio skin was plain text instead of a link to the author archive
 * Fixed: Flogia widget's Show Title control also hid the post text when it was turned off
+* Fixed: Isolate widget's Slice skin sub title was shown or hidden by the Show Title control instead of its own Show Sub Title control
+* Fixed: Isolate widget's Sub Title HTML Tag control had no effect in the Slice skin, and changing it in the Locate skin broke the sub title's styling
+* Fixed: Isolate widget's Wrapper, Navigation and Scroll Down style controls could appear or stay hidden regardless of their related switcher due to a duplicated condition
+* Fixed: Rubix icon hover border color control linked to a non-existent border control
+* Fixed: Sniper fraction pagination heading and typography controls linked to show title instead of show pagination
+* Fixed: Woocircle open/close button hover border color controls linked to incorrect border conditions
+* Fixed: WooCommerce category hover border color control always visible regardless of category border setting
 * Improved: Flogia widget's slider style controls are now split into separate Title, Text, Category and Author sections instead of a single tabbed group
 
 = 4.5.1 [18th August 2026] =
