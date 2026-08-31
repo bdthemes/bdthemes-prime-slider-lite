@@ -47,15 +47,15 @@
 				}
 
 				var params = {
-					action: ps_dynamic_select.action,
-					security: ps_dynamic_select.nonce,
+					action: bdtps_dynamic_select.action,
+					security: bdtps_dynamic_select.nonce,
 					ids: ids,
 				};
 
 				var data = $.extend({}, params, self.getQueryData());
 
 				$.ajax({
-					url: ajaxurl,
+					url: bdtps_dynamic_select.ajax_url || ajaxurl,
 					type: 'POST',
 					data: data,
 					before: self.addControlSpinner(),
@@ -83,14 +83,14 @@
 					placeholder: self.model.get('placeholder') ? self.model.get('placeholder') : 'Type & Search',
 					allowClear: true,
 					ajax: {
-						url: ajaxurl,
+						url: bdtps_dynamic_select.ajax_url || ajaxurl,
 						dataType: 'json',
 						method: 'post',
 						delay: 300,
 						data: function (data) {
 							var params = {
-								action: ps_dynamic_select.action,
-								security: ps_dynamic_select.nonce,
+								action: bdtps_dynamic_select.action,
+								security: bdtps_dynamic_select.nonce,
 								search_text: data.term,
 							};
 							return $.extend({}, params, self.getQueryData());
@@ -126,6 +126,8 @@
 				this.$el.remove();
 			},
 		});
-		elementor.addControlView('ps-dynamic-select', widget);
+		// Register under the control type the server reported, so the two can
+		// never drift apart.
+		elementor.addControlView(bdtps_dynamic_select.control_type, widget);
 	});
 })(jQuery);

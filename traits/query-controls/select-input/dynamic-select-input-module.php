@@ -50,7 +50,7 @@ class Dynamic_Select_Input_Module
 		$nonce = isset($_POST['security']) ? sanitize_text_field(wp_unslash($_POST['security'])) : '';
 
 		try {
-			if (!wp_verify_nonce($nonce, 'ps_dynamic_select')) {
+			if (!wp_verify_nonce($nonce, 'bdtps_dynamic_select')) {
 				throw new Exception('Invalid request');
 			}
 

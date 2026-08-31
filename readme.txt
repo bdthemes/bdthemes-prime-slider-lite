@@ -276,6 +276,8 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 * Fixed: Admin notice dismissals are stored under this plugin's own transient and user-meta prefix instead of a key taken straight from the request
 * Fixed: The setup wizard no longer loads WordPress upgrader files on front-end requests, and only imports the templates bundled with this plugin
 * Improved: Every global function, class, hook, AJAX action, nonce, option, transient and script/style handle this plugin registers now carries the plugin's own prefix. The five public helper functions kept deprecated aliases so existing integrations keep working
+* Fixed: The Terms and Authors fields in a widget's Query section were empty and unusable. The editor registered the
+  search control under a different name than the one the server declared, so no options ever loaded
 * Fixed: A loop variable on the setup wizard's integration screen shadowed a WordPress global
 * Fixed: Removed unused licence key and e-mail accessors and the Pro renewal redirect from the free plugin; the free plugin no longer reads any licence data
 * Improved: Replaced a direct filesystem write during template import with Elementor's own uploads manager, and switched a raw json_encode() to wp_json_encode()

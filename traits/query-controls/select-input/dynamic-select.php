@@ -110,9 +110,12 @@ class Dynamic_Select extends Base_Data_Control
 
 		wp_localize_script(
 			'bdtps-dynamic-select',
-			'ps_dynamic_select',
+			'bdtps_dynamic_select',
 			[
-				'nonce' => wp_create_nonce('ps_dynamic_select'),
+				// The editor registers its control view under this exact name, so it
+				// is passed through rather than repeated as a literal in the script.
+				'control_type' => self::TYPE,
+				'nonce' => wp_create_nonce('bdtps_dynamic_select'),
 				'action' => 'prime_slider_dynamic_select_input_data',
 				'ajax_url' => admin_url('admin-ajax.php')
 			]
