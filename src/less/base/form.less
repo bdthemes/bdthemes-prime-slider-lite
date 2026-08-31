@@ -37,8 +37,10 @@
 
 @form-height:                                   @global-control-height;
 @form-line-height:                              @form-height;
+
 @form-padding-horizontal:                       10px;
-@form-padding-vertical:                         round(@form-padding-horizontal * 0.6);
+@form-multi-line-padding-horizontal:            @form-padding-horizontal;
+@form-multi-line-padding-vertical:              round(@form-multi-line-padding-horizontal * 0.6);
 
 @form-background:                               @global-muted-background;
 @form-color:                                    @global-color;
@@ -50,18 +52,6 @@
 @form-disabled-color:                           @global-muted-color;
 
 @form-placeholder-color:                        @global-muted-color;
-
-@form-small-height:                             @global-control-small-height;
-@form-small-padding-horizontal:                 8px;
-@form-small-padding-vertical:                   round(@form-small-padding-horizontal * 0.6);
-@form-small-line-height:                        @form-small-height;
-@form-small-font-size:                          @global-small-font-size;
-
-@form-large-height:                             @global-control-large-height;
-@form-large-padding-horizontal:                 12px;
-@form-large-padding-vertical:                   round(@form-large-padding-horizontal * 0.6);
-@form-large-line-height:                        @form-large-height;
-@form-large-font-size:                          @global-medium-font-size;
 
 @form-danger-color:                             @global-danger-background;
 @form-success-color:                            @global-success-background;
@@ -92,6 +82,22 @@
 
 @form-radio-disabled-background:                @global-muted-background;
 @form-radio-disabled-icon-color:                @global-muted-color;
+
+@form-small-font-size:                          @global-small-font-size;
+@form-small-height:                             @global-control-small-height;
+@form-small-padding-horizontal:                 8px;
+@form-small-multi-line-padding-horizontal:      @form-small-padding-horizontal;
+@form-small-multi-line-padding-vertical:        round(@form-small-multi-line-padding-horizontal * 0.6);
+@form-small-line-height:                        @form-small-height;
+@form-small-radio-size:                         14px;
+
+@form-large-font-size:                          @global-medium-font-size;
+@form-large-height:                             @global-control-large-height;
+@form-large-padding-horizontal:                 12px;
+@form-large-multi-line-padding-horizontal:      @form-large-padding-horizontal;
+@form-large-multi-line-padding-vertical:        round(@form-large-multi-line-padding-horizontal * 0.6);
+@form-large-line-height:                        @form-large-height;
+@form-large-radio-size:                         22px;
 
 @form-legend-font-size:                         @global-large-font-size;
 @form-legend-line-height:                       1.4;
@@ -182,13 +188,25 @@
 .bdt-input[type="search"]::-webkit-search-cancel-button,
 .bdt-input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
 
-
 /*
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
 .bdt-input[type="number"]::-webkit-inner-spin-button,
 .bdt-input[type="number"]::-webkit-outer-spin-button { height: auto; }
+
+/*
+ * Correct vertical alignment in Safari.
+ */
+
+.bdt-input[type="date"]::-webkit-datetime-edit,
+.bdt-input[type="time"]::-webkit-datetime-edit,
+.bdt-input[type="datetime-local"]::-webkit-datetime-edit {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+}
 
 /*
  * Removes placeholder transparency in Firefox.
@@ -256,23 +274,32 @@
 
 /*
  * Single-line
- * 1. Allow any element to look like an `input` or `select` element
- * 2. Make sure line-height is not larger than height
- *    Also needed to center the text vertically
  */
 
 .bdt-input,
 .bdt-select:not([multiple]):not([size]) {
     height: @form-height;
     vertical-align: middle;
-    /* 1 */
-    display: inline-block;
     .hook-form-single-line();
 }
 
-/* 2 */
-.bdt-input:not(input),
-.bdt-select:not(select) { line-height: @form-line-height; }
+/*
+ * 1. Allow any element to look like an `input` or `select` element
+ * 2. Make sure line-height is not larger than height. Also needed to center the text vertically
+ * 3. Prevent text from wrapping onto multiple lines, and truncate with an ellipsis
+ */
+
+.bdt-input:where(:not(input)),
+.bdt-select:where(:not(select)) {
+    /* 1 */
+    display: inline-block;
+    /* 2 */
+    line-height: @form-line-height;
+    /* 3 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /*
  * Multi-line
@@ -281,8 +308,7 @@
 .bdt-select[multiple],
 .bdt-select[size],
 .bdt-textarea {
-    padding-top: @form-padding-vertical;
-    padding-bottom: @form-padding-vertical;
+    padding: @form-multi-line-padding-vertical @form-multi-line-padding-horizontal;
     vertical-align: top;
     .hook-form-multi-line();
 }
@@ -316,50 +342,6 @@
 .bdt-input::placeholder { color: @form-placeholder-color; }
 
 .bdt-textarea::placeholder { color: @form-placeholder-color; }
-
-
-/* Style modifier (`bdt-input`, `bdt-select` and `bdt-textarea`)
- ========================================================================== */
-
-/*
- * Small
- */
-
-.bdt-form-small { font-size: @form-small-font-size; }
-
-/* Single-line */
-.bdt-form-small:not(textarea):not([multiple]):not([size]) {
-    height: @form-small-height;
-    padding-left: @form-small-padding-horizontal;
-    padding-right: @form-small-padding-horizontal;
-}
-
-/* Multi-line */
-textarea.bdt-form-small,
-[multiple].bdt-form-small,
-[size].bdt-form-small { padding: @form-small-padding-vertical @form-small-padding-horizontal; }
-
-.bdt-form-small:not(select):not(input):not(textarea) { line-height: @form-small-line-height; }
-
-/*
- * Large
- */
-
-.bdt-form-large { font-size: @form-large-font-size; }
-
-/* Single-line */
-.bdt-form-large:not(textarea):not([multiple]):not([size]) {
-    height: @form-large-height;
-    padding-left: @form-large-padding-horizontal;
-    padding-right: @form-large-padding-horizontal;
-}
-
-/* Multi-line */
-textarea.bdt-form-large,
-[multiple].bdt-form-large,
-[size].bdt-form-large { padding: @form-large-padding-vertical @form-large-padding-horizontal; }
-
-.bdt-form-large:not(select):not(input):not(textarea) { line-height: @form-large-line-height; }
 
 
 /* Style modifier (`bdt-input`, `bdt-select` and `bdt-textarea`)
@@ -477,7 +459,7 @@ select.bdt-form-width-xsmall { width: (@form-width-xsmall + 25px); }
  * 3. Vertical alignment
  * 4. Remove default style
  * 5. Fix black background on iOS
- * 6. Center icons
+ * 6. Cover icons
  */
 
 .bdt-radio,
@@ -497,8 +479,7 @@ select.bdt-form-width-xsmall { width: (@form-width-xsmall + 25px); }
     /* 5 */
     background-color: @form-radio-background;
     /* 6 */
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-size: cover;
     .hook-form-radio();
 }
 
@@ -554,6 +535,60 @@ select.bdt-form-width-xsmall { width: (@form-width-xsmall + 25px); }
 .bdt-checkbox:disabled:indeterminate { .svg-fill(@internal-form-checkbox-indeterminate-image, "#000", @form-radio-disabled-icon-color); }
 
 
+/* Style modifier (`bdt-input`, `bdt-select`, `bdt-textarea`, `bdt-radio`, `bdt-checkbox`)
+ ========================================================================== */
+
+/*
+ * Small
+ */
+
+.bdt-form-small:is(.bdt-input, .bdt-search-input, .bdt-select, .bdt-textarea) { font-size: @form-small-font-size; }
+
+/* Single-line */
+.bdt-form-small:is(.bdt-input, .bdt-search-input, .bdt-select:not([multiple]):not([size])) {
+    height: @form-small-height;
+    padding-left: @form-small-padding-horizontal;
+    padding-right: @form-small-padding-horizontal;
+}
+
+/* Multi-line */
+.bdt-form-small:is(.bdt-select[multiple], .bdt-select[size], .bdt-textarea) { padding: @form-small-multi-line-padding-vertical @form-small-multi-line-padding-horizontal; }
+
+/* Any element */
+.bdt-form-small:not(select):not(input):not(textarea):not([type="radio"]):not([type="checkbox"]) { line-height: @form-small-line-height; }
+
+/* Radio + Checkbox */
+.bdt-form-small:is(.bdt-radio, .bdt-checkbox) {
+    height: @form-small-radio-size;
+    width: @form-small-radio-size;
+}
+
+/*
+ * Large
+ */
+
+.bdt-form-large:is(.bdt-input, .bdt-search-input, .bdt-select, .bdt-textarea) { font-size: @form-large-font-size; }
+
+/* Single-line */
+.bdt-form-large:is(.bdt-input, .bdt-search-input, .bdt-select:not([multiple]):not([size])) {
+    height: @form-large-height;
+    padding-left: @form-large-padding-horizontal;
+    padding-right: @form-large-padding-horizontal;
+}
+
+/* Multi-line */
+.bdt-form-large:is(.bdt-select[multiple], .bdt-select[size], .bdt-textarea) { padding: @form-large-multi-line-padding-vertical @form-large-multi-line-padding-horizontal; }
+
+/* Any element */
+.bdt-form-large:not(select):not(input):not(textarea):not([type="radio"]):not([type="checkbox"]) { line-height: @form-large-line-height; }
+
+/* Radio + Checkbox */
+.bdt-form-large:is(.bdt-radio, .bdt-checkbox) {
+    height: @form-large-radio-size;
+    width: @form-large-radio-size;
+}
+
+
 /* Legend
  ========================================================================== */
 
@@ -604,7 +639,7 @@ select.bdt-form-width-xsmall { width: (@form-width-xsmall + 25px); }
  * 1. Position and resize the form control to always cover its container
  * 2. Required for Firefox for positioning to the left
  * 3. Required for Webkit to make `height` work
- * 4. Hide controle and show cursor
+ * 4. Hide controls and show cursor
  * 5. Needed for the cursor
  * 6. Clip height caused by 5. Needed for Webkit only
  */

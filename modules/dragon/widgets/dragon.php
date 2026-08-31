@@ -39,24 +39,12 @@ class dragon extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['ps-dragon'];
+		return ['bdtps-dragon'];
 	}
 
 	public function get_script_depends() {
-		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-		if ('on' === $reveal_effects) {
-			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper'];
-			} else {
-				return [];
-			}
-		} else {
-			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'ps-animation-helper'];
-			} else {
-				return [];
-			}
-		}
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [] );
 	}
 
 	public function get_custom_help_url() {
@@ -71,7 +59,6 @@ class dragon extends Widget_Base {
 	}
 
 	protected function register_controls() {
-		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 
 		$this->start_controls_section(
 			'section_content_sliders',
@@ -207,11 +194,10 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'show_blur_effect',
 			[
-				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => esc_html__('Show Blur Effect', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'prefix_class' => 'bdt-ps-blur-effect--',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -245,58 +231,10 @@ class dragon extends Widget_Base {
 		$this->end_controls_section();
 
 		/**
-         * Advanced Animation
-         */
-        $this->start_controls_section(
-            'section_advanced_animation',
-            [
-                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
-                'tab'       => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'animation_status',
-            [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite'),
-                'type'    => Controls_Manager::SWITCHER,
-                'classes'   => BDTPS_CORE_IS_PC
-            ]
-        );
-
-		if ( true === _is_ps_pro_activated() ) {
-
-			$this->add_control(
-				'animation_of',
-				[
-					'label'	   => __('Animation Of', 'bdthemes-prime-slider-lite'),
-					'type' 	   => Controls_Manager::SELECT2,
-					'multiple' => true,
-					'options'  => [
-						'.bdt-sub-title-inner' => __('Sub Title', 'bdthemes-prime-slider-lite'),
-						'.bdt-title-tag' => __('Title', 'bdthemes-prime-slider-lite'),
-						'.bdt-slider-excerpt' => __('Excerpt', 'bdthemes-prime-slider-lite'),
-					],
-					'default'  => ['.bdt-title-tag'],
-					'condition' => [
-						'animation_status' => 'yes'
-					]
-				]
-			);
-
-			/**
-			 * Advanced Animation
-			 */
-			$this->register_advanced_animation_controls();
-		}
-
-		$this->end_controls_section();
-		/**
-		 * Reveal Effects
+		 * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+		 * controls here. This plugin registers none of its own.
 		 */
-		if ('on' === $reveal_effects) {
-			$this->register_reveal_effects();
-		}
+		$this->register_addon_controls();
 
 		//Style Start
 		$this->start_controls_section(
@@ -310,7 +248,7 @@ class dragon extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[
-				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [
@@ -319,7 +257,6 @@ class dragon extends Widget_Base {
 					'blend'      => esc_html__('Blend', 'bdthemes-prime-slider-lite'),
 				],
 				'separator' => 'before',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -889,12 +826,11 @@ class dragon extends Widget_Base {
 		$this->add_responsive_control(
 			'navigation_line_width',
 			[
-				'label'     => __('Line Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'     => __('Line Width', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-prime-slider-dragon .bdt-dotnav li.bdt-active:before' => 'width: {{SIZE}}px',
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -909,13 +845,9 @@ class dragon extends Widget_Base {
 		/**
          * Advanced Animation
          */
-		$this->adv_anim('slideshow');
+		$this->add_addon_render_attributes('slideshow');
 		$this->add_render_attribute('slideshow', 'id', 'bdt-' . $this->get_id());
 
-		/**
-		 * Reveal Effects
-		 */
-		$this->reveal_effects_attr('slideshow');
 
 		/**
          * Slideshow Settings
@@ -1027,19 +959,16 @@ class dragon extends Widget_Base {
 		$parallax_title         = 'x: 200,-200; opacity: 1,1,0';
 		$parallax_text          = 'x: 300,-300; opacity: 1,1,0';
 
-		if ( true === _is_ps_pro_activated() ) {
-			if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
+		if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+			if (in_array(".bdt-sub-title-inner", $settings['animation_of'])) {
+				$parallax_sub_title = '';
+			}
 
-				if (in_array(".bdt-sub-title-inner", $settings['animation_of'])) {
-					$parallax_sub_title = '';
-				}
-
-				if (in_array(".bdt-title-tag", $settings['animation_of'])) {
-					$parallax_title = '';
-				}
-				if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
-					$parallax_text = '';
-				}
+			if (in_array(".bdt-title-tag", $settings['animation_of'])) {
+				$parallax_title = '';
+			}
+			if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
+				$parallax_text = '';
 			}
 		}
 

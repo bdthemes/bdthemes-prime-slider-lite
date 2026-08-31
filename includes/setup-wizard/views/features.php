@@ -59,7 +59,7 @@ $active_modules = get_option( 'prime_slider_active_modules', array() );
 						$is_checked = isset( $active_modules[ $widget['name'] ] ) && 'on' === $active_modules[ $widget['name'] ] ? 'checked' : '';
 
 						$pro_class = '';
-						if (!empty($widget['widget_type']) && 'pro' == $widget['widget_type'] && true !== _is_ps_pro_activated()) {
+						if (!empty($widget['widget_type']) && 'pro' == $widget['widget_type'] && true !== bdtps_is_pro_activated()) {
 							$pro_class = ' ps-setup-wizard-pro-widget';
 						}
 						?>

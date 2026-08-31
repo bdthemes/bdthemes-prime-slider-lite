@@ -83,6 +83,11 @@
 
 .bdt-slideshow-items > :not(.bdt-active) { display: none; }
 
+/*
+ * Reset animations on hidden slides so the Ken Burns effect restarts in Safari.
+ */
+.bdt-slideshow-items > :not(.bdt-active) [class*="bdt-animation-"] { animation-name: none; }
+
 
 // Hooks
 // ========================================================================

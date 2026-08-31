@@ -43,21 +43,13 @@ class Tango extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['swiper', 'prime-slider-font', 'ps-tango'];
+		return ['swiper', 'prime-slider-font', 'bdtps-tango'];
 	}
 
 	public function get_script_depends() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-        if ('on' === $reveal_effects) {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['swiper', 'anime', 'revealFx', 'ps-tango'];
-            } else {
-                return ['swiper', 'ps-tango'];
-            }
-        } else {
-            return ['swiper', 'ps-tango'];
-        }
-    }
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [ 'swiper', 'bdtps-tango' ] );
+	}
 
 	public function get_custom_help_url() {
 		return 'https://youtu.be/OdXH9cSgdz4';
@@ -71,7 +63,6 @@ class Tango extends Widget_Base {
 	}
 
 	protected function register_controls() {
-		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 
 		$this->start_controls_section(
 			'section_content_sliders',
@@ -151,7 +142,7 @@ class Tango extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[
-				'label'          => __( 'Columns', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'          => __( 'Columns', 'bdthemes-prime-slider-lite' ),
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 3,
 				'tablet_default' => 3,
@@ -164,7 +155,6 @@ class Tango extends Widget_Base {
 					5 => '5',
 					6 => '6',
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -265,14 +255,13 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'hide_on_mobile',
 			[
-				'label'   => esc_html__('Pagination Hide on Mobile', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => esc_html__('Pagination Hide on Mobile', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
 					'show_navigation_dots' => 'yes'
 				],
 				'prefix_class' => 'bdt-pagination-hide-',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -304,20 +293,18 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'item_up_down',
 			[
-				'label'   => esc_html__('Item Up Down', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'   => esc_html__('Item Up Down', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-item-up-down-',
 				'render_type'  => 'template',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_control(
 			'item_wrapper_link',
 			[
-				'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label'   => esc_html__('Item Wrapper Link', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'type'    => Controls_Manager::SWITCHER,
-				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -338,7 +325,7 @@ class Tango extends Widget_Base {
 		$this->add_control(
 			'skin',
 			[
-				'label'   => esc_html__( 'Layout', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Layout', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'carousel',
 				'options' => [
@@ -347,7 +334,6 @@ class Tango extends Widget_Base {
 				],
 				'prefix_class' => 'bdt-carousel-style-',
 				'render_type'  => 'template',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -515,11 +501,10 @@ class Tango extends Widget_Base {
 		$this->end_controls_section();
 
 		/**
-         * Reveal Effects
-         */
-        if ('on' === $reveal_effects) {
-            $this->register_reveal_effects();
-        }
+		 * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+		 * controls here. This plugin registers none of its own.
+		 */
+		$this->register_addon_controls();
 
 		//style
 		$this->start_controls_section(
@@ -1001,7 +986,7 @@ class Tango extends Widget_Base {
 		/**
 		 * Reveal Effects
 		 */
-		$this->reveal_effects_attr('prime-slider-tango');
+		$this->add_addon_render_attributes('prime-slider-tango');
 
 		$elementor_vp_lg = get_option( 'elementor_viewport_lg' );
 		$elementor_vp_md = get_option( 'elementor_viewport_md' );

@@ -48,24 +48,12 @@ class General extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'ps-general' ];
+		return [ 'bdtps-general' ];
 	}
 
 	public function get_script_depends() {
-		$reveal_effects = prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
-		if ( 'on' === $reveal_effects ) {
-			if ( true === _is_ps_pro_activated() ) {
-				return [ 'gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper' ];
-			} else {
-				return [];
-			}
-		} else {
-			if ( true === _is_ps_pro_activated() ) {
-				return [ 'gsap', 'split-text', 'ps-animation-helper' ];
-			} else {
-				return [];
-			}
-		}
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [] );
 	}
 
 	public function get_custom_help_url() {
@@ -86,7 +74,6 @@ class General extends Widget_Base {
 	}
 
 	protected function register_controls() {
-		$reveal_effects = prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
 
 		$this->start_controls_section(
 			'section_content_sliders',
@@ -268,7 +255,7 @@ class General extends Widget_Base {
 		$this->add_responsive_control(
 			'content_max_width',
 			[ 
-				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'      => esc_html__( 'Content Max Width', 'bdthemes-prime-slider-lite' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', '%', 'vw' ],
 				'range'      => [ 
@@ -292,7 +279,6 @@ class General extends Widget_Base {
 				'selectors'  => [ 
 					'{{WRAPPER}} .bdt-prime-slider .bdt-prime-slider-wrapper' => 'max-width: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -352,10 +338,9 @@ class General extends Widget_Base {
 		$this->add_control(
 			'show_excerpt',
 			[ 
-				'label'   => esc_html__( 'Show Excerpt', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Show Excerpt', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -376,12 +361,11 @@ class General extends Widget_Base {
 		$this->add_control(
 			'alter_btn_excerpt',
 			[ 
-				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Alter Button and Excerpt', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => [ 
 					'_skin' => '',
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -577,7 +561,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'offset',
 			[ 
-				'label'   => esc_html__( 'Offset', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Offset', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SLIDER,
 				'range'   => [ 
 					'px' => [ 
@@ -586,7 +570,6 @@ class General extends Widget_Base {
 						'step' => 10,
 					],
 				],
-				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -675,60 +658,12 @@ class General extends Widget_Base {
 
 		$this->end_controls_section();
 
-		/**
-		 * Reveal Effects
-		 */
-		if ( 'on' === $reveal_effects ) {
-			$this->register_reveal_effects();
-		}
 
 		/**
-		 * Advanced Animation
+		 * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+		 * controls here. This plugin registers none of its own.
 		 */
-		$this->start_controls_section(
-			'section_advanced_animation',
-			[ 
-				'label' => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		$this->add_control(
-			'animation_status',
-			[ 
-				'label'   => esc_html__( 'Advanced Animation', 'bdthemes-prime-slider-lite' ),
-				'type'    => Controls_Manager::SWITCHER,
-				'classes' => BDTPS_CORE_IS_PC,
-			]
-		);
-
-		if ( true === _is_ps_pro_activated() ) {
-
-			$this->add_control(
-				'animation_of',
-				[ 
-					'label'     => __( 'Animation Of', 'bdthemes-prime-slider-lite' ),
-					'type'      => Controls_Manager::SELECT2,
-					'multiple'  => true,
-					'options'   => [ 
-						'.bdt-ps-sub-title'   => __( 'Sub Title', 'bdthemes-prime-slider-lite' ),
-						'.bdt-title-tag'      => __( 'Title', 'bdthemes-prime-slider-lite' ),
-						'.bdt-slider-excerpt' => __( 'Excerpt', 'bdthemes-prime-slider-lite' ),
-					],
-					'default'   => [ '.bdt-title-tag' ],
-					'condition' => [ 
-						'animation_status' => 'yes'
-					]
-				]
-			);
-
-			/**
-			 * Advanced Animation
-			 */
-			$this->register_advanced_animation_controls();
-		}
-
-		$this->end_controls_section();
+		$this->register_addon_controls();
 
 		//Style
 		$this->start_controls_section(
@@ -742,7 +677,7 @@ class General extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[ 
-				'label'   => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Overlay', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [ 
@@ -750,7 +685,6 @@ class General extends Widget_Base {
 					'background' => esc_html__( 'Background', 'bdthemes-prime-slider-lite' ),
 					'blend'      => esc_html__( 'Blend', 'bdthemes-prime-slider-lite' ),
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -2510,7 +2444,7 @@ class General extends Widget_Base {
 		/**
 		 * Reveal Effects
 		 */
-		$this->reveal_effects_attr( 'slideshow' );
+		$this->add_addon_render_attributes( 'slideshow' );
 
 		//Viewport Height
 		$ratio = ( ! empty( $settings['slider_size_ratio']['width'] ) && ! empty( $settings['slider_size_ratio']['height'] ) ) ? $settings['slider_size_ratio']['width'] . ":" . $settings['slider_size_ratio']['height'] : '16:9';
@@ -2542,7 +2476,6 @@ class General extends Widget_Base {
 		);
 
 		//function call
-		$this->adv_anim( 'slideshow' );
 		$this->add_render_attribute( 'slideshow', 'id', 'bdt-' . $this->get_id() );
 
 
@@ -2837,18 +2770,15 @@ class General extends Widget_Base {
 			$parallax_button        = 'data-bdt-slideshow-parallax="x: 150,0,-30; opacity: 1,1,0"';
 		}
 
-		if ( true === _is_ps_pro_activated() ) {
-			if ( $settings['animation_status'] == 'yes' && ! empty( $settings['animation_of'] ) ) {
-
-				if ( in_array( ".bdt-ps-sub-title", $settings['animation_of'] ) ) {
-					$parallax_sub_title = '';
-				}
-				if ( in_array( ".bdt-title-tag", $settings['animation_of'] ) ) {
-					$parallax_title = '';
-				}
-				if ( in_array( ".bdt-slider-excerpt", $settings['animation_of'] ) ) {
-					$parallax_excerpt = '';
-				}
+		if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+			if ( in_array( ".bdt-ps-sub-title", $settings['animation_of'] ) ) {
+				$parallax_sub_title = '';
+			}
+			if ( in_array( ".bdt-title-tag", $settings['animation_of'] ) ) {
+				$parallax_title = '';
+			}
+			if ( in_array( ".bdt-slider-excerpt", $settings['animation_of'] ) ) {
+				$parallax_excerpt = '';
 			}
 		}
 

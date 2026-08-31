@@ -46,20 +46,12 @@ class Rubix extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'swiper', 'ps-rubix', 'prime-slider-font' ];
+		return [ 'swiper', 'bdtps-rubix', 'prime-slider-font' ];
 	}
 
 	public function get_script_depends() {
-		$reveal_effects = prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
-		if ( 'on' === $reveal_effects ) {
-			if ( true === _is_ps_pro_activated() ) {
-				return [ 'swiper', 'anime', 'revealFx', 'ps-rubix' ];
-			} else {
-				return [ 'swiper', 'ps-rubix' ];
-			}
-		} else {
-			return [ 'swiper', 'ps-rubix' ];
-		}
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [ 'swiper', 'bdtps-rubix' ] );
 	}
 
 	public function get_custom_help_url() {
@@ -71,7 +63,6 @@ class Rubix extends Widget_Base {
     }
 
 	protected function register_controls() {
-		$reveal_effects = prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
 		$this->start_controls_section(
 			'section_content_layout',
 			[ 
@@ -82,7 +73,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[ 
-				'label'          => esc_html__( 'Columns', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'          => esc_html__( 'Columns', 'bdthemes-prime-slider-lite' ),
 				'type'           => Controls_Manager::SELECT,
 				'default'        => 2,
 				'tablet_default' => 1,
@@ -92,7 +83,6 @@ class Rubix extends Widget_Base {
 					2 => esc_html__( '2' , 'bdthemes-prime-slider-lite' ),
 					3 => esc_html__( '3' , 'bdthemes-prime-slider-lite' ),
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -147,7 +137,7 @@ class Rubix extends Widget_Base {
 		$this->add_control(
 			'thumbs_position',
 			[ 
-				'label'   => esc_html__( 'Thumbs Position', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Thumbs Position', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'bdt-slide-style-1',
 				'toggle'  => false,
@@ -161,17 +151,15 @@ class Rubix extends Widget_Base {
 						'icon'  => 'eicon-v-align-bottom',
 					],
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_control(
 			'content_reverse',
 			[ 
-				'label'        => esc_html__( 'Content Reverse', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'        => esc_html__( 'Content Reverse', 'bdthemes-prime-slider-lite' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'prefix_class' => 'bdt-ps-reverese--',
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -342,11 +330,10 @@ class Rubix extends Widget_Base {
 		$this->end_controls_section();
 
 		/**
-		 * Reveal Effects
+		 * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+		 * controls here. This plugin registers none of its own.
 		 */
-		if ( 'on' === $reveal_effects ) {
-			$this->register_reveal_effects();
-		}
+		$this->register_addon_controls();
 
 		//style
 		$this->start_controls_section(
@@ -400,7 +387,7 @@ class Rubix extends Widget_Base {
 		$this->add_responsive_control(
 			'line_height',
 			[ 
-				'label'     => esc_html__( 'Height', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Height', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [ 
 					'px' => [ 
@@ -411,7 +398,6 @@ class Rubix extends Widget_Base {
 				'selectors' => [ 
 					'{{WRAPPER}} .bdt-rubix-slider .bdt-main-slider .bdt-item .bdt-slider-progress' => 'height: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1477,7 +1463,7 @@ class Rubix extends Widget_Base {
 		/**
 		 * Reveal Effects
 		 */
-		$this->reveal_effects_attr( 'prime-slider-rubix' );
+		$this->add_addon_render_attributes( 'prime-slider-rubix' );
 
 		$this->add_render_attribute( 'prime-slider-rubix', 'id', $id );
 		$this->add_render_attribute( 'prime-slider-rubix', 'class', [ 'bdt-rubix-slider', 'elementor-swiper', esc_attr( $settings['thumbs_position'] ) ] );

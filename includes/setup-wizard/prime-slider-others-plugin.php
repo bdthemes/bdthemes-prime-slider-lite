@@ -24,8 +24,8 @@ class PrimeSlider_Others_Plugin_Manager {
     public function __construct() {
         // Add AJAX handlers. This is an admin-only, plugin-install screen; the
         // handler must never be exposed to unauthenticated visitors.
-        add_action('wp_ajax_ps_get_plugins', [$this, 'ajax_get_plugins']);
-        add_action('wp_ajax_ps_install_plugin', [$this, 'install_plugin_ajax']);
+        add_action('wp_ajax_bdtps_get_plugins', [$this, 'ajax_get_plugins']);
+        add_action('wp_ajax_bdtps_install_plugin', [$this, 'install_plugin_ajax']);
     }
 
     /**
@@ -53,9 +53,8 @@ class PrimeSlider_Others_Plugin_Manager {
         );
 
         // Helper function for time formatting
-        if (!function_exists('format_last_updated_ps')) {
-            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-            function format_last_updated_ps($date_string) {
+        if (!function_exists('bdtps_format_last_updated')) {
+            function bdtps_format_last_updated($date_string) {
                 if (empty($date_string)) {
                     return __('Unknown', 'bdthemes-prime-slider-lite');
                 }
@@ -195,7 +194,7 @@ class PrimeSlider_Others_Plugin_Manager {
                     url: ajaxurl,
                     type: 'POST',
                     data: {
-                        action: 'ps_get_plugins',
+                        action: 'bdtps_get_plugins',
                         nonce: '<?php echo esc_attr( wp_create_nonce("ps_get_plugins_nonce") ); ?>'
                     },
                     success: function(response) {
@@ -386,7 +385,7 @@ class PrimeSlider_Others_Plugin_Manager {
                         url: '<?php echo esc_url( admin_url('admin-ajax.php') ); ?>',
                         type: 'POST',
                         data: {
-                            action: 'ps_install_plugin',
+                            action: 'bdtps_install_plugin',
                             plugin_slug: pluginSlug,
                             nonce: nonce
                         },

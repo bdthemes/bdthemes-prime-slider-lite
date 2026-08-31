@@ -36,7 +36,7 @@
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'rc_sdk_insights',
+                action: 'bdtps_reviews_insights',
                 button_val: this.value,
                 nonce: nonce,
                 rc_name: rc_name,
@@ -89,7 +89,7 @@
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'rc_sdk_dismiss_biggopti',
+                action: 'bdtps_reviews_dismiss',
                 nonce: nonce,
                 rc_name: rc_name,
             },

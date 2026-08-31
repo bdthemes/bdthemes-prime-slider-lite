@@ -47,24 +47,12 @@ class Isolate extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'prime-slider-font', 'ps-isolate'];
+        return ['elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'prime-slider-font', 'bdtps-isolate'];
     }
 
     public function get_script_depends() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-        if ('on' === $reveal_effects) {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper'];
-            } else {
-                return [];
-            }
-        } else {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'ps-animation-helper'];
-            } else {
-                return [];
-            }
-        }
+    	// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+    	return $this->addon_script_depends( [] );
     }
 
     public function get_custom_help_url() {
@@ -84,7 +72,6 @@ class Isolate extends Widget_Base {
 	}
 
 	protected function register_controls() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_sliders',
             [
@@ -389,7 +376,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'content_position',
             [
-                'label' => esc_html__('Content Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Content Position', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::CHOOSE,
                 'description' => esc_html__('This option will work only for desktop view.', 'bdthemes-prime-slider-lite'),
                 'options' => [
@@ -408,14 +395,13 @@ class Isolate extends Widget_Base {
                     '_skin!' => ['locate', 'slice'],
                 ],
                 'separator' => 'before',
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'content_column_position',
             [
-                'label' => esc_html__('Column Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Column Position', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::CHOOSE,
                 'description' => esc_html__('This option will work only for mobile view.', 'bdthemes-prime-slider-lite'),
                 'options' => [
@@ -433,7 +419,6 @@ class Isolate extends Widget_Base {
                 'condition' => [
                     '_skin!' => ['locate', 'slice'],
                 ],
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -445,7 +430,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'image_offset_toggle',
             [
-                'label' => __('Image Match Height', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => __('Image Match Height', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
                 'label_off' => __('None', 'bdthemes-prime-slider-lite'),
                 'label_on' => __('Custom', 'bdthemes-prime-slider-lite'),
@@ -453,7 +438,6 @@ class Isolate extends Widget_Base {
                 'condition' => [
                     '_skin' => '',
                 ],
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -623,7 +607,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'offset',
             [
-                'label' => esc_html__('Offset', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Offset', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -632,7 +616,6 @@ class Isolate extends Widget_Base {
                         'step' => 10,
                     ],
                 ],
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -688,57 +671,12 @@ class Isolate extends Widget_Base {
 
         $this->end_controls_section();
 
+
         /**
-         * Reveal Effects
+         * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+         * controls here. This plugin registers none of its own.
          */
-        if ('on' === $reveal_effects) {
-            $this->register_reveal_effects();
-        }
-
-        $this->start_controls_section(
-            'section_advanced_animation',
-            [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
-                'tab' => Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'animation_status',
-            [
-                'label' => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite'),
-                'type' => Controls_Manager::SWITCHER,
-                'classes' => BDTPS_CORE_IS_PC,
-            ]
-        );
-
-        if ( true === _is_ps_pro_activated() ) {
-
-            $this->add_control(
-                'animation_of',
-                [
-                    'label' => __('Animation Of', 'bdthemes-prime-slider-lite'),
-                    'type' => Controls_Manager::SELECT2,
-                    'multiple' => true,
-                    'options' => [
-                        '.bdt-ps-sub-title' => __('Sub Title', 'bdthemes-prime-slider-lite'),
-                        '.bdt-title-tag' => __('Title', 'bdthemes-prime-slider-lite'),
-                        '.bdt-slider-excerpt' => __('Excerpt', 'bdthemes-prime-slider-lite'),
-                    ],
-                    'default' => ['.bdt-title-tag'],
-                    'condition' => [
-                        'animation_status' => 'yes',
-                    ],
-                ]
-            );
-
-            /**
-			 * Advanced Animation
-			 */
-			$this->register_advanced_animation_controls();
-        }
-
-        $this->end_controls_section();
+        $this->register_addon_controls();
 
         //Style Start
         $this->start_controls_section(
@@ -752,7 +690,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'overlay',
             [
-                'label' => esc_html__('Overlay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Overlay', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'none',
                 'options' => [
@@ -763,7 +701,6 @@ class Isolate extends Widget_Base {
                 'condition' => [
                     '_skin!' => ['locate'],
                 ],
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -883,7 +820,7 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'slide_fill_color',
             [
-                'label' => esc_html__('Slide Fill Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Slide Fill Color', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slideshow-item.bdt-active .bdt-slide-overlay:before' => 'background-color: {{VALUE}};',
@@ -891,7 +828,6 @@ class Isolate extends Widget_Base {
                 'condition' => [
                     '_skin!' => ['slice'],
                 ],
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
         $this->end_controls_section();
@@ -985,9 +921,8 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'first_word_style',
             [
-                'label' => esc_html__('First Word Style', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('First Word Style', 'bdthemes-prime-slider-lite'),
                 'type' => Controls_Manager::SWITCHER,
-                'classes' => BDTPS_CORE_IS_PC
             ]
         );
         $this->add_control(
@@ -2127,12 +2062,11 @@ class Isolate extends Widget_Base {
         $this->add_control(
             'arrows_offset_toggle',
 			[
-				'label' => __('Offset', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+				'label' => __('Offset', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label_off' => __('None', 'bdthemes-prime-slider-lite'),
 				'label_on' => __('Custom', 'bdthemes-prime-slider-lite'),
 				'return_value' => 'yes',
-				'classes'      => BDTPS_CORE_IS_PC
 			]
         );
 
@@ -2417,7 +2351,7 @@ class Isolate extends Widget_Base {
         $this->add_responsive_control(
             'dots_position',
             [
-                'label' => __('Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC . BDTPS_CORE_PC,
+                'label' => __('Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_NC,
                 'type' => Controls_Manager::CHOOSE,
                 'default' => 'right',
                 'toggle' => false,
@@ -2443,7 +2377,6 @@ class Isolate extends Widget_Base {
                     'show_navigation_dots' => ['yes'],
                     '_skin' => '',
                 ],
-                'classes'      => BDTPS_CORE_IS_PC
             ]
         );
         $this->end_controls_section();
@@ -2463,10 +2396,9 @@ class Isolate extends Widget_Base {
         /**
          * Reveal Effects
          */
-        $this->reveal_effects_attr('slideshow');
+        $this->add_addon_render_attributes('slideshow');
 
         
-        $this->adv_anim('slideshow');
 
         $this->add_render_attribute('slideshow', 'id', 'bdt-' . $this->get_id());
 
@@ -2716,19 +2648,16 @@ class Isolate extends Widget_Base {
             $parallax_button = 'data-bdt-slideshow-parallax="y: 150,0,-100; opacity: 1,1,0"';
         }
 
-        if ( true === _is_ps_pro_activated() ) {
-            if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
-
-                if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
-                    $parallax_sub_title = '';
-                }
-                if (in_array(".bdt-title-tag", $settings['animation_of'])) {
-                    $parallax_title = '';
-                }
-                if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
-                    $parallax_excerpt = '';
-                }
-            }
+        if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+        	if (in_array(".bdt-ps-sub-title", $settings['animation_of'])) {
+        	    $parallax_sub_title = '';
+        	}
+        	if (in_array(".bdt-title-tag", $settings['animation_of'])) {
+        	    $parallax_title = '';
+        	}
+        	if (in_array(".bdt-slider-excerpt", $settings['animation_of'])) {
+        	    $parallax_excerpt = '';
+        	}
         }
 
         if ($slide_content['title']) {

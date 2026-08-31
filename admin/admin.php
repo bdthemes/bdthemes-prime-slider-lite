@@ -43,7 +43,7 @@ class Admin {
 	}
 
 	function biggopti_styles(){
-		wp_enqueue_style('ps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
+		wp_enqueue_style('bdtps-admin-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin-biggopti.css', [], BDTPS_CORE_VER);
 		wp_enqueue_style('bdt-product-feed', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-product-feed.css', [], BDTPS_CORE_VER);
 	}
 
@@ -75,9 +75,9 @@ class Admin {
 		wp_enqueue_style( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.15.3' );
 		wp_enqueue_style( 'prime-slider-font', BDTPS_CORE_ASSETS_URL . 'css/prime-slider-font' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 
-		// wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
+		// wp_enqueue_style( 'bdtps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin' . $direction_suffix . '.css', [], BDTPS_CORE_VER );
 
-		wp_enqueue_style( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin.css', [], BDTPS_CORE_VER );
+		wp_enqueue_style( 'bdtps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin.css', [], BDTPS_CORE_VER );
 
 		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.15.3', true );
 	}
@@ -184,8 +184,8 @@ class Admin {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jquery-form' );
 
-			wp_enqueue_script( 'chart', BDTPS_CORE_ADMIN_URL . 'assets/js/chart.min.js', [ 'jquery' ], '3.9.3', true );
-			wp_enqueue_script( 'ps-admin', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin' . $suffix . '.js', [ 'jquery', 'chart' ], BDTPS_CORE_VER, true );
+			wp_enqueue_script( 'bdtps-chart', BDTPS_CORE_ADMIN_URL . 'assets/js/chart.min.js', [ 'jquery' ], '4.5.1', true );
+			wp_enqueue_script( 'bdtps-admin', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-admin' . $suffix . '.js', [ 'jquery', 'bdtps-chart' ], BDTPS_CORE_VER, true );
 		}
 	}
 
@@ -198,17 +198,22 @@ class Admin {
 		$suffix = '.min';
 		if ( is_admin() ) { // for Admin Dashboard Only
 
-			wp_enqueue_script( 'ps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+			wp_enqueue_script( 'bdtps-biggopti', BDTPS_CORE_ADMIN_URL . 'assets/js/ps-biggopti.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 
 			$dismissals = get_option('bdt_biggopti_dismissals', []);
 			$dismissed_display_ids = [];
+			// Keys written since the dismissal store was namespaced carry the
+			// plugin prefix; older ones do not, so strip whichever is present.
+			$namespace = class_exists( __NAMESPACE__ . '\\Biggopties' ) ? Biggopties::DISMISSAL_KEY_PREFIX : 'bdtps_biggopti_';
 			$prefix = 'bdt-admin-biggopti-api-biggopti-';
 			foreach (array_keys($dismissals) as $key) {
-				if (strpos($key, $prefix) === 0) {
-					$dismissed_display_ids[] = substr($key, strlen($prefix));
-				} else {
-					$dismissed_display_ids[] = $key;
+				if (strpos($key, $namespace) === 0) {
+					$key = substr($key, strlen($namespace));
 				}
+				if (strpos($key, $prefix) === 0) {
+					$key = substr($key, strlen($prefix));
+				}
+				$dismissed_display_ids[] = $key;
 			}
 
 			$current_sector = '';
@@ -220,13 +225,13 @@ class Admin {
 			$script_config = [
 				'ajaxurl'				=> admin_url('admin-ajax.php'),
 				'nonce'					=> wp_create_nonce('prime-slider'),
-				'isPro'             	=> function_exists('_is_ps_pro_activated') && _is_ps_pro_activated(),
+				'isPro'             	=> function_exists('bdtps_is_pro_activated') && bdtps_is_pro_activated(),
 				'assetsUrl'         	=> defined('BDTPS_CORE_ASSETS_URL') ? BDTPS_CORE_ASSETS_URL : '',
 				'dismissedDisplayIds'	=> $dismissed_display_ids,
 				'currentSector'      	=> $current_sector,
 			];
 			
-			wp_localize_script('ps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config);
+			wp_localize_script('bdtps-biggopti', 'PrimeSliderBiggoptiConfig', $script_config);
 		}
 	}
 }

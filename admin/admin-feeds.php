@@ -75,7 +75,8 @@ class Admin_Feeds {
 			 */
 			$rss_items = json_decode( $cached_data, true );
 		} else {
-			include_once ABSPATH . WPINC . '/feed.php';
+			// Core's feed API, loaded here and used on the very next line.
+			require_once ABSPATH . WPINC . '/feed.php';
 
 			$rss = fetch_feed( $this->settings['feed_link'] );
 
@@ -98,7 +99,7 @@ class Admin_Feeds {
 				];
 			}, $rss_items );
 
-			set_transient( $transient_key, json_encode( $simplified_rss_items ), 6 * HOUR_IN_SECONDS );
+			set_transient( $transient_key, wp_json_encode( $simplified_rss_items ), 6 * HOUR_IN_SECONDS );
 			$rss_items = $simplified_rss_items;
 		}
 
@@ -164,12 +165,11 @@ class Admin_Feeds {
 	}
 }
 
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- local settings array for this admin feed file.
-$settings = array(
+$bdtps_admin_feed_settings = array(
 	'feed_title'       => 'BdThemes News & Updates',
 	'transient_key'    => 'bdthemes_product_feeds',
 	'feed_link'        => 'https://bdthemes.com/feed',
-	'text_domain'      => 'bdthemes-prime-slider',
+	'text_domain'      => 'bdthemes-prime-slider-lite',
 	'footer_links'     => [ 
 		[ 
 			'url'   => 'https://bdthemes.com/blog/',
@@ -190,5 +190,5 @@ $settings = array(
 	],
 );
 
-new Admin_Feeds( $settings );
+new Admin_Feeds( $bdtps_admin_feed_settings );
 

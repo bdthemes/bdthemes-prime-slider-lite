@@ -13,18 +13,6 @@
             $settings = $omatic.data('settings');
         
         //swiper effects start
-		if ($settings.effect === 'shutters') {
-			$settings.modules = [EffectShutters];
-		}
-		if ($settings.effect === 'slicer') {
-			$settings.modules = [EffectSlicer];
-		}
-		if ($settings.effect === 'tinder') {
-			$settings.modules = [EffectTinder];
-		}
-		if ($settings.effect === 'gl') {
-			$settings.modules = [SwiperGL];
-		}
 		if ($settings.effect === 'creative') {
 			if ($settings.creativeEffect === 'creative-1') {
 				$settings.creativeEffect = {

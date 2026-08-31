@@ -44,7 +44,7 @@ class Skin_Slide extends Elementor_Skin_Base {
         /**
 		 * Reveal Effects
 		 */
-		$this->parent->reveal_effects_attr('slideshow');
+		$this->parent->add_addon_render_attributes('slideshow');
 
 		//Viewport Height
 		$ratio = (!empty($settings['slider_size_ratio']['width']) && !empty($settings['slider_size_ratio']['height'])) ? $settings['slider_size_ratio']['width'] . ":" . $settings['slider_size_ratio']['height'] : '16:9';
@@ -89,7 +89,6 @@ class Skin_Slide extends Elementor_Skin_Base {
 			]
 		);
 
-        $this->parent->adv_anim('slideshow');
         $this->parent->add_render_attribute('slideshow', 'id', 'bdt-' . $this->parent->get_id());
 
 		?>
@@ -147,23 +146,19 @@ class Skin_Slide extends Elementor_Skin_Base {
         $parallax_sub_title     = 'data-bdt-slideshow-parallax="x: 100,0,-20; opacity: 1,1,0"';
         $parallax_excerpt   = 'data-bdt-slideshow-parallax="y: 50,0,-10; opacity: 1,1,0"';
         
-        if ( true === _is_ps_pro_activated() ) {
-            if($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])){
-
-                if( in_array( ".bdt-ps-sub-title" ,$settings['animation_of'] ) )
-                {
-                    $parallax_sub_title ='';
-                }
-                if( in_array( ".bdt-title-tag" ,$settings['animation_of'] ) )
-                {
-                    $parallax_title ='';
-                }
-                if( in_array( ".bdt-slider-excerpt" ,$settings['animation_of'] ) )
-                {
-                    $parallax_excerpt ='';
-                }
-
-            }
+        if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+        	if( in_array( ".bdt-ps-sub-title" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_sub_title ='';
+        	}
+        	if( in_array( ".bdt-title-tag" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_title ='';
+        	}
+        	if( in_array( ".bdt-slider-excerpt" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_excerpt ='';
+        	}
         }
 
         ?>

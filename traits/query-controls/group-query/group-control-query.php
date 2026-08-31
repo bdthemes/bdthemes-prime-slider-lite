@@ -139,7 +139,7 @@ trait Group_Control_Query {
 		$this->add_control(
 			'posts_exclude_by',
 			[
-				'label'       => __('Exclude By', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'       => __('Exclude By', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'label_block' => true,
@@ -152,7 +152,6 @@ trait Group_Control_Query {
 				'condition'   => [
 					'posts_source!' => ['manual_selection', 'current_query'],
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -397,11 +396,10 @@ trait Group_Control_Query {
 		$this->add_control(
 			'query_id',
 			[
-				'label'       => __('Query ID', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'       => __('Query ID', 'bdthemes-prime-slider-lite'),
 				'description' => __('Give your Query a custom unique id to allow server side filtering', 'bdthemes-prime-slider-lite'),
 				'type'        => Controls_Manager::TEXT,
 				'separator'   => 'before',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 	}

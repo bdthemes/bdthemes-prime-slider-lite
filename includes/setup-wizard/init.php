@@ -11,21 +11,13 @@ require_once __DIR__ . '/class-remote-data-handler.php';
 
 use PrimeSlider\Admin\ModuleService;
 use Elementor\Plugin;
-/**
- * Overwrite the feedback method in the WP_Upgrader_Skin
- * to suppress the normal feedback.
+
+/*
+ * Quiet_Upgrader_Skin extends a wp-admin core class, so it is loaded lazily
+ * from install_plugins() instead of here. Requiring core's upgrader at file
+ * scope would pull wp-admin/includes/class-wp-upgrader.php into every
+ * front-end request as well.
  */
-
-require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
-class Quiet_Upgrader_Skin extends \WP_Upgrader_Skin {
-	/*
-	 * Suppress normal upgrader feedback / output
-	 */
-	public function feedback( $string, ...$args ) {
-		/* no output */
-	}
-}
 
 
 class Setup_Wizard {
@@ -50,7 +42,7 @@ class Setup_Wizard {
 
 	// Initialize hooks
 	private function init_hooks() {
-		add_action( 'wp_ajax_setup_wizard_install_plugins', array( $this, 'install_plugins' ) );
+		add_action( 'wp_ajax_bdtps_setup_wizard_install_plugins', array( $this, 'install_plugins' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'activate_default_widgets' ) );
 		add_action( 'admin_init', array( $this, 'maybe_display_setup_wizard' ) );
@@ -222,15 +214,15 @@ class Setup_Wizard {
 		wp_enqueue_style('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.17.0');
 		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.17.0', true);
 
-		wp_register_script( 'ps-setup-wizard', plugins_url( 'assets/js/setup-wizard.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+		wp_register_script( 'bdtps-setup-wizard', plugins_url( 'assets/js/setup-wizard.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
 		
-		wp_register_style( 'ps-setup-wizard', plugins_url( 'assets/css/setup-wizard.css', __FILE__ ), array(), '1.0.0' );
+		wp_register_style( 'bdtps-setup-wizard', plugins_url( 'assets/css/setup-wizard.css', __FILE__ ), array(), '1.0.0' );
 
-		wp_enqueue_script( 'ps-setup-wizard' );
-		wp_enqueue_style( 'ps-setup-wizard' );
+		wp_enqueue_script( 'bdtps-setup-wizard' );
+		wp_enqueue_style( 'bdtps-setup-wizard' );
 
 		wp_localize_script(
-			'ps-setup-wizard',
+			'bdtps-setup-wizard',
 			'BDT_SetupWizard',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -264,10 +256,13 @@ class Setup_Wizard {
 			wp_send_json_error( array( 'message' => 'Unauthorized' ) );
 		}
 
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader-skin.php';
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		// Core admin files are loaded here, inside the request handler, and each
+		// is used immediately below. class-wp-upgrader.php also loads the
+		// WP_Upgrader_Skin classes, so they are not required separately.
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		require_once __DIR__ . '/class-quiet-upgrader-skin.php';
 
 		// Replace new \Plugin_Installer_Skin with new Quiet_Upgrader_Skin when output needs to be suppressed.
 		$skin = new Quiet_Upgrader_Skin();
@@ -404,7 +399,44 @@ Setup_Wizard::get_instance();
 
 use Elementor\TemplateLibrary\Source_Local;
 
-	add_action('wp_ajax_import_elementor_template', function () {
+/**
+ * Resolve a submitted template URL to a real file inside this plugin's own
+ * bundled setup-wizard assets.
+ *
+ * The setup wizard only ever offers templates that ship with the plugin, so a
+ * submitted URL that points anywhere else is rejected rather than fetched.
+ *
+ * @param string $url URL submitted with the import request.
+ * @return string Absolute path to the bundled file, or '' when the URL is not one of ours.
+ */
+function bdtps_resolve_bundled_template( $url ) {
+
+	$base_url  = BDTPS_CORE_URL . 'includes/setup-wizard/assets/';
+	$base_path = BDTPS_CORE_INC_PATH . 'setup-wizard/assets/';
+
+	if ( '' === $url || 0 !== strpos( $url, $base_url ) ) {
+		return '';
+	}
+
+	$relative = substr( $url, strlen( $base_url ) );
+	$relative = strtok( $relative, '?#' );
+	$relative = rawurldecode( (string) $relative );
+
+	if ( '' === $relative || false !== strpos( $relative, '..' ) ) {
+		return '';
+	}
+
+	$root = realpath( $base_path );
+	$file = realpath( $base_path . $relative );
+
+	if ( false === $root || false === $file || 0 !== strpos( $file, $root ) || ! is_file( $file ) ) {
+		return '';
+	}
+
+	return $file;
+}
+
+	add_action('wp_ajax_bdtps_import_elementor_template', function () {
 		check_ajax_referer( 'setup_wizard_nonce', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -414,17 +446,18 @@ use Elementor\TemplateLibrary\Source_Local;
 
 		$json_url = isset( $_POST['import_url'] ) ? esc_url_raw( wp_unslash( $_POST['import_url'] ) ) : '';
 
-        $response = wp_safe_remote_get($json_url, array(
-            'timeout'   => 60,
-            'sslverify' => false
-        ));
+        // Only the templates bundled with this plugin can be imported, so the
+        // file is read from disk instead of fetched over HTTP from an
+        // arbitrary, request-supplied URL.
+        $json_file = bdtps_resolve_bundled_template($json_url);
 
-        if (is_wp_error($response)) {
-            wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
+        if ('' === $json_file) {
+            wp_send_json_error(['message' => esc_html__('Invalid import URL', 'bdthemes-prime-slider-lite')]);
             wp_die();
         }
 
-        $sourceData = wp_remote_retrieve_body($response);
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- reading a template file that ships inside this plugin, resolved and path-checked above.
+        $sourceData = file_get_contents($json_file);
         $sourceData2 = json_decode($sourceData, true);
 
         if (!$sourceData2 || !is_array($sourceData2)) {
@@ -432,8 +465,14 @@ use Elementor\TemplateLibrary\Source_Local;
             wp_die();
         }
 
-        $temp_file = wp_upload_dir()['path'] . '/elementor_import_' . time() . '.json';
-        file_put_contents($temp_file, $sourceData);
+        // Elementor's uploads manager owns the temp file, so no direct
+        // filesystem call is needed here.
+        $temp_file = Plugin::$instance->uploads_manager->create_temp_file($sourceData, 'elementor_import.json');
+
+        if (is_wp_error($temp_file)) {
+            wp_send_json_error(['message' => esc_html__('Could not create a temporary file for the import.', 'bdthemes-prime-slider-lite')]);
+            wp_die();
+        }
 
         // Initialize Elementor's Template Importer
         if (!class_exists('\Elementor\TemplateLibrary\Source_Local')) {
@@ -482,7 +521,12 @@ use Elementor\TemplateLibrary\Source_Local;
 
         // Import Page Settings if available
         if (isset($metaData['_elementor_page_settings'][0])) {
+            // Object injection is not possible here: allowed_classes is false, so
+            // any object in the payload is discarded rather than instantiated.
+            // The payload itself comes from a template file bundled with this
+            // plugin, resolved by bdtps_resolve_bundled_template().
             $_elementor_page_settings = is_serialized($metaData['_elementor_page_settings'][0])
+                // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- hardened with allowed_classes => false; input is a template bundled with this plugin.
                 ? unserialize($metaData['_elementor_page_settings'][0], ['allowed_classes' => false])
                 : $metaData['_elementor_page_settings'][0];
             update_post_meta($new_post_id, '_elementor_page_settings', $_elementor_page_settings);
@@ -501,7 +545,7 @@ use Elementor\TemplateLibrary\Source_Local;
 );
 
 
-add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
+add_action('wp_ajax_bdtps_import_elementor_bundle_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
 
     if ( ! current_user_can( 'manage_options' ) ) {
@@ -511,25 +555,23 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
 
     $file_url = isset($_POST['import_url']) ? esc_url_raw(wp_unslash($_POST['import_url'])) : '';
 
-    if (!filter_var($file_url, FILTER_VALIDATE_URL) || 0 !== strpos($file_url, 'http')) {
+    // Only the template bundles shipped inside this plugin can be imported, so
+    // the archive is read from disk rather than fetched from a request-supplied
+    // URL.
+    $zip_file = bdtps_resolve_bundled_template($file_url);
+
+    if ('' === $zip_file) {
         wp_send_json_error(['message' => esc_html__('Invalid import URL', 'bdthemes-prime-slider-lite')]);
     }
 
-    $remote_zip_request = wp_safe_remote_get($file_url, array(
-        'timeout'   => 60,
-        'sslverify' => false,
-    ));
+    // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- reading a template bundle that ships inside this plugin, resolved and path-checked above.
+    $zip_contents = file_get_contents($zip_file);
 
-    if (is_wp_error($remote_zip_request)) {
-        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
+    if (false === $zip_contents) {
+        wp_send_json_error(['message' => esc_html__('Failed to read the bundled template.', 'bdthemes-prime-slider-lite')]);
     }
 
-
-    if (200 !== $remote_zip_request['response']['code']) {
-        wp_send_json_error(['message' => esc_html__('Failed to fetch template from URL.', 'bdthemes-prime-slider-lite')]);
-    }
-
-    $kit_zip_path = Plugin::$instance->uploads_manager->create_temp_file($remote_zip_request['body'], 'kit.zip');
+    $kit_zip_path = Plugin::$instance->uploads_manager->create_temp_file($zip_contents, 'kit.zip');
 
     $app = Plugin::$instance->app;
     if (!$app) {
@@ -596,7 +638,7 @@ add_action('wp_ajax_import_ps_elementor_bundle_template', function () {
     }
 });
 
-add_action('wp_ajax_import_ps_elementor_bundle_runner_template', function () {
+add_action('wp_ajax_bdtps_import_elementor_bundle_runner_template', function () {
     check_ajax_referer('setup_wizard_nonce', 'nonce');
 
     if ( ! current_user_can( 'manage_options' ) ) {
@@ -617,9 +659,9 @@ add_action('wp_ajax_import_ps_elementor_bundle_runner_template', function () {
     }
 
     try {
-        // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged, WordPress.PHP.IniSet.max_execution_time_Disallowed -- raise the time limit only for this admin-triggered template import, which can take longer than the default.
-        @ini_set('max_execution_time', 60 * 5);
-
+        // No execution-limit override here on purpose: Elementor runs one import
+        // runner per request, so each request stays short. Hosts that need a
+        // longer limit set it at the server level.
         $import_export_module = $app->get_component('import-export');
         $import = $import_export_module->import_kit_by_runner($sessionId, $runner);
 

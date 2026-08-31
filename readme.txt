@@ -3,13 +3,13 @@ Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik,
 Donate link: https://bdthemes.com/
 Tags: hero slider, content slider, elementor addon, image slider, video slider
 Requires at least: 6.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.5.1
+Stable tag: 4.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.2.2
+Elementor tested up to: 4.2.3
 
 Create responsive Elementor sliders for hero sections, posts, products, and more with powerful Elementor addons and ready-to-use Elementor templates.
 
@@ -227,13 +227,15 @@ Feel free to [Contact us](https://bdthemes.com/support/) 💌 or check our widge
 
 This plugin connects to the following external services. In each case only the data described is sent, and only under the stated conditions.
 
-1. **BdThemes Product Feed** (`https://dashboard.bdthemes.io`) — used to show BdThemes news, updates and product promotions inside the plugin's WordPress dashboard widget. When an administrator opens the WordPress dashboard, the plugin requests the news feed from this endpoint. No personal data is sent; the request carries only the product category. Provided by BdThemes — see the [Terms of Service](https://bdthemes.com/terms-conditions/) and [Privacy Policy](https://bdthemes.com/privacy-policy/).
+1. **BdThemes Blog Feed** (`https://bdthemes.com/feed`) — used to display recent BdThemes blog posts and product news in the plugin's WordPress dashboard widget. The feed is fetched over RSS when an administrator opens the WordPress dashboard, and the result is cached in a transient. No personal data and no site data are sent; the request carries no parameters. Provided by BdThemes — [Terms of Use](https://bdthemes.com/terms-of-use/), [Privacy Policy](https://bdthemes.com/privacy-policy/).
 
-2. **BdThemes Blog Feed** (`https://bdthemes.com/feed`) — used to display recent BdThemes blog posts in the same dashboard widget. Fetched when an administrator opens the WordPress dashboard. No personal data is sent. Provided by BdThemes — [Terms of Service](https://bdthemes.com/terms-conditions/), [Privacy Policy](https://bdthemes.com/privacy-policy/).
+2. **WordPress.org Plugins API** (`https://api.wordpress.org/plugins/info/1.2/`) — used to look up the free companion plugins offered on the plugin's setup wizard and "Other Plugins" screen, and to download them when an administrator chooses to install one. Only the plugin slug being looked up is sent; no personal data and no site data are sent. This is the official WordPress.org service — [Terms](https://wordpress.org/about/terms/), [Privacy](https://wordpress.org/about/privacy/).
 
-3. **WordPress.org Plugins API** (`https://api.wordpress.org`) — used to look up and install the free companion plugins offered on the plugin's setup/others screen. A plugin slug is sent when an administrator chooses to view or install a suggested plugin. This is the official WordPress.org service — [Terms](https://wordpress.org/about/terms/), [Privacy](https://wordpress.org/about/privacy/).
+3. **Vimeo** (`https://vimeo.com`) — used only by the Isolate widget's lightbox when the site owner has entered a Vimeo video URL for a slide. The visitor's browser loads the Vimeo player for that public video URL when the lightbox is opened; the plugin's PHP makes no request to Vimeo. The visitor's IP address and browser data therefore reach Vimeo at that point, as with any embedded video. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
 
-4. **Vimeo oEmbed** (`https://vimeo.com/api/oembed.json`) — used by video slider widgets to fetch the dimensions/thumbnail of a Vimeo video the site owner has embedded. The public Vimeo URL entered by the site owner is sent to Vimeo when such a slide is rendered. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
+No data is sent to any external service unless one of the situations above occurs. The plugin does not phone home, does not collect analytics or telemetry, and does not check for updates outside of WordPress.org.
+
+Other bdthemes.com, primeslider.pro, store.bdthemes.com, account.bdthemes.com and feedback.bdthemes.com addresses that appear in the plugin's admin screens are ordinary links to documentation, support and product pages. Nothing is sent to them unless an administrator clicks the link and opens the page themselves.
 
 == Source Code and Build Process ==
 
@@ -264,8 +266,19 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.5.X [XXth August 2026] =
+= 4.5.2 [31st August 2026] =
 
+* Improved: Every slider control in this plugin is now fully usable. 116 controls across the free widgets (Show Excerpt, Content Max Width, Offset, Overlay, Swiper Effect, Query ID and others) were previously greyed out with a "PRO" badge and are now available to everyone
+* Changed: Advanced Animation and Reveal Effects moved to Prime Slider Pro, which supplies the GSAP, SplitText, anime.js and RevealFx engines they need. Prime Slider Pro 4.5.2 or later adds them back to these widgets
+* Changed: The Shutters, GL, Slicer and Tinder swiper effects moved to Prime Slider Pro along with the third-party libraries that power them
+* Updated: bdtUIkit 3.21.7 to 3.25.21 and Chart.js 3.9.1 to 4.5.1
+* Fixed: Corrected the Terms of Use link in the readme, which pointed at a page that no longer exists
+* Fixed: Admin notice dismissals are stored under this plugin's own transient and user-meta prefix instead of a key taken straight from the request
+* Fixed: The setup wizard no longer loads WordPress upgrader files on front-end requests, and only imports the templates bundled with this plugin
+* Improved: Every global function, class, hook, AJAX action, nonce, option, transient and script/style handle this plugin registers now carries the plugin's own prefix. The five public helper functions kept deprecated aliases so existing integrations keep working
+* Fixed: A loop variable on the setup wizard's integration screen shadowed a WordPress global
+* Fixed: Removed unused licence key and e-mail accessors and the Pro renewal redirect from the free plugin; the free plugin no longer reads any licence data
+* Improved: Replaced a direct filesystem write during template import with Elementor's own uploads manager, and switched a raw json_encode() to wp_json_encode()
 * Fixed: Author name in the blog widget's folio skin was plain text instead of a link to the author archive
 * Fixed: Flogia widget's Show Title control also hid the post text when it was turned off
 * Improved: Flogia widget's slider style controls are now split into separate Title, Text, Category and Author sections instead of a single tabbed group

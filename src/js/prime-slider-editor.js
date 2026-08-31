@@ -49,8 +49,10 @@
 			);
 		});
 
+		// Widgets from the separate Prime Slider Pro plugin are advertised here
+		// only while that plugin is not active.
 		if (
-			PrimeSliderConfigEditor.pro_license_activated ||
+			PrimeSliderConfigEditor.pro_installed ||
 			PrimeSliderConfigEditor.promotional_widgets <= 0
 		)
 			return panel;

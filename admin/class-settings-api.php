@@ -200,7 +200,11 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 					$class .= ' ps-widget-' . esc_attr( $field['args']['widget_type'] );
 				}
 
-				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== ps_license_validation() ) {
+				// Widgets marked "pro" are provided by the separate Prime Slider Pro
+				// plugin and their code is not part of this plugin. They are listed
+				// here as an advert and marked as unavailable while that plugin is
+				// not active. No licence state is consulted.
+				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== bdtps_is_pro_activated() ) {
 					$class .= ' ps-pro-inactive';
 				}
 
@@ -226,8 +230,8 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 				$data_type = ' data-widget-type="' . esc_attr( $field['args']['widget_type'] ) . '" data-content-type="' . esc_attr( $field['args']['content_type'] ) . esc_attr( $widget_used_status ) . '" data-widget-name="' . strtolower( $field['args']['name'] ) . '"';
 
-				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== _is_ps_pro_activated() ) {
-					$data_type .= ' bdt-tooltip="'.esc_html__('Pro widget only works with Pro version.', 'bdthemes-prime-slider-lite').'"';
+				if ( ! empty( $field['args']['widget_type'] ) && 'pro' == $field['args']['widget_type'] && true !== bdtps_is_pro_activated() ) {
+					$data_type .= ' bdt-tooltip="'.esc_html__('This widget is provided by the separate Prime Slider Pro plugin.', 'bdthemes-prime-slider-lite').'"';
 				}
 
 				echo "<div class='ps-option-item ".esc_attr($class.$widget_used_status)."' ".wp_kses_post($data_type).">";
@@ -892,7 +896,7 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 			if (!defined('BDTPS_LO') || false == $license_wl_status) {
 				// On the free version this tab shows the "Get Pro" page, not a license form,
 				// so label it accordingly.
-				$is_pro_activated = function_exists('_is_ps_pro_activated') ? _is_ps_pro_activated() : false;
+				$is_pro_activated = function_exists('bdtps_is_pro_activated') ? bdtps_is_pro_activated() : false;
 				$license_tab_title = (true === $is_pro_activated)
 					? esc_html__('License', 'bdthemes-prime-slider-lite')
 					: esc_html__('Get Pro', 'bdthemes-prime-slider-lite');
@@ -1198,11 +1202,11 @@ if ( ! class_exists( 'PrimeSlider_Settings_API' ) ) :
 
 							wp_nonce_field('prime-slider-settings-save-nonce');
 
-							do_action('wsa_form_top_' . $form['id'], $form);
+							do_action('prime_slider_form_top_' . $form['id'], $form);
 
 							$this->do_settings_sections($form['id']);
 
-							do_action('wsa_form_bottom_' . $form['id'], $form);
+							do_action('prime_slider_form_bottom_' . $form['id'], $form);
 
 							?>
 
