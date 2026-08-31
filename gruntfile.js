@@ -88,6 +88,7 @@ module.exports = function (grunt) {
 						'assets/js/prime-slider-a11y.min.js': ['src/js/prime-slider-a11y.js'],
 						'admin/assets/js/ps-admin.min.js': ['src/admin/js/ps-admin.js'],
 						'admin/assets/js/ps-biggopti.js': ['src/admin/js/ps-biggopti.js'],
+						'traits/query-controls/assets/js/ps-dynamic-select.min.js': ['traits/query-controls/assets/js/ps-dynamic-select.js'],
 					},
 					{
 						expand: true,
