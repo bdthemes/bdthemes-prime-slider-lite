@@ -52,24 +52,12 @@ class Blog extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['ps-blog', 'elementor-icons-fa-solid', 'elementor-icons-fa-brands'];
+        return ['bdtps-blog', 'elementor-icons-fa-solid', 'elementor-icons-fa-brands'];
     }
 
     public function get_script_depends() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-        if ('on' === $reveal_effects) {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper'];
-            } else {
-                return [];
-            }
-        } else {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['gsap', 'split-text', 'ps-animation-helper'];
-            } else {
-                return [];
-            }
-        }
+    	// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+    	return $this->addon_script_depends( [] );
     }
 
     public function get_custom_help_url() {
@@ -87,7 +75,6 @@ class Blog extends Widget_Base {
     }
 
 	protected function register_controls() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_layout',
             [
@@ -219,54 +206,50 @@ class Blog extends Widget_Base {
         $this->add_control(
             'show_author',
             [
-                'label'   => esc_html__('Show Author', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Author', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
                     '_skin!' => 'folio',
                     'show_meta' => 'yes'
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'show_admin_info',
             [
-                'label'     => esc_html__('Show Author', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Show Author', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
                     '_skin' => 'folio',
                     'show_meta' => 'yes'
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'show_date',
             [
-                'label'   => esc_html__('Show Date', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Date', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
                     'show_meta' => 'yes'
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'show_comments',
             [
-                'label'   => esc_html__('Show Comments', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'   => esc_html__('Show Comments', 'bdthemes-prime-slider-lite'),
                 'type'    => Controls_Manager::SWITCHER,
                 'default' => 'yes',
                 'condition' => [
                     'show_meta' => 'yes'
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -457,7 +440,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'offset',
             [
-                'label' => esc_html__('Offset', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Offset', 'bdthemes-prime-slider-lite'),
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -466,7 +449,6 @@ class Blog extends Widget_Base {
                         'step' => 10,
                     ],
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -513,58 +495,11 @@ class Blog extends Widget_Base {
         $this->end_controls_section();
 
         /**
-         * Advanced Animation
+         * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+         * controls here. This plugin registers none of its own.
          */
-        $this->start_controls_section(
-            'section_advanced_animation',
-            [
-                'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
-                'tab'       => Controls_Manager::TAB_CONTENT,
-            ]
-        );
+        $this->register_addon_controls();
 
-        $this->add_control(
-            'animation_status',
-            [
-                'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite'),
-                'type'    => Controls_Manager::SWITCHER,
-                'classes'   => BDTPS_CORE_IS_PC
-            ]
-        );
-
-        if ( true === _is_ps_pro_activated() ) {
-
-            $this->add_control(
-                'animation_of',
-                [
-                    'label'       => __('Animation Of', 'bdthemes-prime-slider-lite'),
-                    'type'        => Controls_Manager::SELECT2,
-                    'multiple' => true,
-                    'options'  => [
-                        '.bdt-title-tag'            => __('Title', 'bdthemes-prime-slider-lite'),
-                        '.bdt-blog-text' => __('Text', 'bdthemes-prime-slider-lite'),
-                    ],
-                    'default'  => ['.bdt-title-tag'],
-                    'condition' => [
-                        'animation_status' => 'yes'
-                    ]
-                ]
-            );
-
-            /**
-             * Advanced Animation
-             */
-            $this->register_advanced_animation_controls();
-        }
-
-        $this->end_controls_section();
-
-        /**
-         * Reveal Effects
-         */
-        if ('on' === $reveal_effects) {
-            $this->register_reveal_effects();
-        }
 
         //Style Start
         $this->start_controls_section(
@@ -578,7 +513,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'overlay',
             [
-                'label'     => esc_html__('Overlay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Overlay', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SELECT,
                 'default'   => 'background',
                 'options'   => [
@@ -586,7 +521,6 @@ class Blog extends Widget_Base {
                     'background' => esc_html__('Background', 'bdthemes-prime-slider-lite'),
                     'blend'      => esc_html__('Blend', 'bdthemes-prime-slider-lite'),
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -601,7 +535,6 @@ class Blog extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-slideshow .bdt-overlay-default' => 'background-color: {{VALUE}};',
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -886,7 +819,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'slide_button_background_color',
             [
-                'label'     => __('Background Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'     => __('Background Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider .bdt-slide-btn' => 'background-color: {{VALUE}};',
@@ -894,7 +827,6 @@ class Blog extends Widget_Base {
                 'condition' => [
                     '_skin!' => 'zinest',
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -1514,11 +1446,10 @@ class Blog extends Widget_Base {
         $this->add_control(
             'folio_glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite'),
                 'type'  => Controls_Manager::SWITCHER,
                 /* translators: 1: opening link tag, 2: closing link tag */
                 'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1$s look here %2$s', 'bdthemes-prime-slider-lite'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
-                'classes'   => BDTPS_CORE_IS_PC,
                 'condition' => [
                     '_skin' => 'folio',
                 ],
@@ -1741,11 +1672,10 @@ class Blog extends Widget_Base {
         $this->add_control(
             'glassmorphism_effect',
             [
-                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Glassmorphism', 'bdthemes-prime-slider-lite'),
                 'type'  => Controls_Manager::SWITCHER,
                 /* translators: 1: opening link tag, 2: closing link tag */
                 'description' => sprintf(__('This feature will not work in the Firefox browser untill you enable browser compatibility so please %1$s look here %2$s', 'bdthemes-prime-slider-lite'), '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility" target="_blank">', '</a>'),
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -2143,17 +2073,13 @@ class Blog extends Widget_Base {
         /**
          * Advanced Animation
          */
-        $this->adv_anim('slideshow');
+        $this->add_addon_render_attributes('slideshow');
 
         $this->add_render_attribute('slideshow', 'id', 'bdt-' . $this->get_id());
 
 
         $this->add_render_attribute('prime-slider', 'class', 'bdt-prime-slider-skin-' . $skin_name);
 
-        /**
-         * Reveal Effects
-         */
-        $this->reveal_effects_attr('slideshow');
 
         /**
          * Slideshow Settings
@@ -2410,16 +2336,13 @@ class Blog extends Widget_Base {
         $parallax_title         = 'data-bdt-slideshow-parallax="y: 50,0,-50; opacity: 1,1,0"';
         $parallax_text           = 'data-bdt-slideshow-parallax="y: 50,0,-10; opacity: 1,1,0"';
 
-        if ( true === _is_ps_pro_activated() ) {
-            if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
-
-                if (in_array(".bdt-title-tag", $settings['animation_of'])) {
-                    $parallax_title = '';
-                }
-                if (in_array(".bdt-blog-text", $settings['animation_of'])) {
-                    $parallax_text = '';
-                }
-            }
+        if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+        	if (in_array(".bdt-title-tag", $settings['animation_of'])) {
+        	    $parallax_title = '';
+        	}
+        	if (in_array(".bdt-blog-text", $settings['animation_of'])) {
+        	    $parallax_text = '';
+        	}
         }
 
         ?>

@@ -283,115 +283,6 @@ trait Global_Widget_Controls {
 	}
 
 	/**
-	 * Reveal Effects controls
-	 */
-	protected function register_reveal_effects() {
-		$this->start_controls_section(
-			'section_reveal_effects',
-			[ 
-				'label' => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		$this->add_control(
-			'reveal_effects_enable',
-			[ 
-				'label'        => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'prefix_class' => 'reveal-effects-active-',
-				'classes'      => BDTPS_CORE_IS_PC,
-				'render_type'  => 'template',
-			]
-		);
-
-		$this->add_control(
-			'reveal_effects_color',
-			[ 
-				'label'     => __( 'Background', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::COLOR,
-				'condition' => [ 
-					'reveal_effects_enable' => 'yes'
-				]
-			]
-		);
-		$this->add_control(
-			'reveal_effects_direction',
-			[ 
-				'label'     => __( 'Direction', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'lr',
-				'options'   => [ 
-					'lr' => __( 'Left to Right', 'bdthemes-prime-slider-lite' ),
-					'rl' => __( 'Right to Left', 'bdthemes-prime-slider-lite' ),
-					'c'  => __( 'Center', 'bdthemes-prime-slider-lite' ),
-					'tb' => __( 'Top to Bottom', 'bdthemes-prime-slider-lite' ),
-					'bt' => __( 'Bottom to top', 'bdthemes-prime-slider-lite' )
-				],
-				'condition' => [ 
-					'reveal_effects_enable' => 'yes'
-				]
-			]
-		);
-		$this->add_control(
-			'reveal_effects_easing',
-			[ 
-				'label'     => __( 'Easing', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'easeOutQuint',
-				'options'   => [ 
-					'easeOutQuad'     => esc_html__( 'Ease Out Quad', 'bdthemes-prime-slider-lite' ),
-					'easeOutCubic'    => esc_html__( 'Ease Out Cubic', 'bdthemes-prime-slider-lite' ),
-					'easeOutQuart'    => esc_html__( 'Ease Out Quart', 'bdthemes-prime-slider-lite' ),
-					'easeOutQuint'    => esc_html__( 'Ease Out Quint', 'bdthemes-prime-slider-lite' ),
-					'easeOutSine'     => esc_html__( 'Ease Out Sine', 'bdthemes-prime-slider-lite' ),
-					'easeOutExpo'     => esc_html__( 'Ease Out Expo', 'bdthemes-prime-slider-lite' ),
-					'easeOutCirc'     => esc_html__( 'Ease Out Circ', 'bdthemes-prime-slider-lite' ),
-					'easeOutBack'     => esc_html__( 'Ease Out Back', 'bdthemes-prime-slider-lite' ),
-					'easeOutBounce'   => esc_html__( 'Ease Out Bounce', 'bdthemes-prime-slider-lite' ),
-					'easeOutInQuad'   => esc_html__( 'Ease Out In Quad', 'bdthemes-prime-slider-lite' ),
-					'easeOutInCubic'  => esc_html__( 'Ease Out In Cubic', 'bdthemes-prime-slider-lite' ),
-					'easeOutInQuart'  => esc_html__( 'Ease Out In Quart', 'bdthemes-prime-slider-lite' ),
-					'easeOutInQuint'  => esc_html__( 'Ease Out In Quint', 'bdthemes-prime-slider-lite' ),
-					'easeOutInSine'   => esc_html__( 'Ease Out In Sine', 'bdthemes-prime-slider-lite' ),
-					'easeOutInExpo'   => esc_html__( 'Ease Out In Expo', 'bdthemes-prime-slider-lite' ),
-					'easeOutInCirc'   => esc_html__( 'Ease Out In Circ', 'bdthemes-prime-slider-lite' ),
-					'easeOutInBack'   => esc_html__( 'Ease Out In Back', 'bdthemes-prime-slider-lite' ),
-					'easeOutInBounce' => esc_html__( 'Ease Out In Bounce', 'bdthemes-prime-slider-lite' ),
-				],
-				'condition' => [ 
-					'reveal_effects_enable' => 'yes'
-				]
-			]
-		);
-		$this->add_control(
-			'reveal_effects_speed',
-			[ 
-				'label'      => __( 'Speed', 'bdthemes-prime-slider-lite' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range'      => [ 
-					'px' => [ 
-						'min'  => 0,
-						'max'  => 5000,
-						'step' => 1,
-					],
-
-				],
-				'default'    => [ 
-					'unit' => 'px',
-					'size' => 1000,
-				],
-				'condition'  => [ 
-					'reveal_effects_enable' => 'yes'
-				]
-			]
-		);
-
-		$this->end_controls_section();
-	}
-
-	/**
 	 * Background Settings
 	 */
 	protected function register_background_settings( $class_name ) {
@@ -399,12 +290,11 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'background_image_toggle',
 			[ 
-				'label'        => __( 'Background Image Settings', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'        => __( 'Background Image Settings', 'bdthemes-prime-slider-lite' ),
 				'type'         => Controls_Manager::POPOVER_TOGGLE,
 				'label_off'    => __( 'None', 'bdthemes-prime-slider-lite' ),
 				'label_on'     => __( 'Custom', 'bdthemes-prime-slider-lite' ),
 				'return_value' => 'yes',
-				'classes'      => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -977,7 +867,7 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'kenburns_reverse',
 			[ 
-				'label'     => esc_html__( 'Kenburn Reverse', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Kenburn Reverse', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => [ 
 					'kenburns_animation' => 'yes',
@@ -987,161 +877,13 @@ trait Global_Widget_Controls {
 	}
 
 	/**
-	 * Advanced Animation Controls
-	 */
-	protected function register_advanced_animation_controls() {
-
-		$this->add_control(
-			'animation_on',
-			[ 
-				'label'     => __( 'Animation On', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'words',
-				'options'   => [ 
-					'chars' => 'Chars',
-					'words' => 'Words',
-					'lines' => 'Lines',
-				],
-				'condition' => [ 
-					'animation_status' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'animation_options',
-			[ 
-				'label'        => __( 'Animation Options', 'bdthemes-prime-slider-lite' ),
-				'type'         => Controls_Manager::POPOVER_TOGGLE,
-				'label_off'    => __( 'Default', 'bdthemes-prime-slider-lite' ),
-				'label_on'     => __( 'Custom', 'bdthemes-prime-slider-lite' ),
-				'return_value' => 'yes',
-				'default'      => 'yes',
-				'condition'    => [ 
-					'animation_status' => 'yes'
-				]
-			]
-		);
-
-		$this->start_popover();
-
-		$this->add_control(
-			'anim_perspective',
-			[ 
-				'label'       => esc_html__( 'Perspective', 'bdthemes-prime-slider-lite' ),
-				'type'        => Controls_Manager::SLIDER,
-				'placeholder' => '400',
-				'range'       => [ 
-					'px' => [ 
-						'min' => 50,
-						'max' => 400,
-					],
-				],
-				'condition'   => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'anim_duration',
-			[ 
-				'label'     => esc_html__( 'Transition Duration', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [ 
-					'px' => [ 
-						'min'  => 0.1,
-						'step' => 0.1,
-						'max'  => 1,
-					],
-				],
-				'condition' => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'anim_scale',
-			[ 
-				'label'     => esc_html__( 'Scale', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [ 
-					'px' => [ 
-						'min' => 1,
-						'max' => 10,
-					],
-				],
-				'condition' => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'anim_rotationY',
-			[ 
-				'label'     => esc_html__( 'rotationY', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [ 
-					'px' => [ 
-						'min' => -360,
-						'max' => 360,
-					],
-				],
-				'condition' => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'anim_rotationX',
-			[ 
-				'label'     => esc_html__( 'rotationX', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [ 
-					'px' => [ 
-						'min' => -360,
-						'max' => 360,
-					],
-				],
-				'condition' => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->add_control(
-			'anim_transform_origin',
-			[ 
-				'label'     => esc_html__( 'Transform Origin', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::TEXT,
-				'default'   => '0% 50% -50',
-				'condition' => [ 
-					'animation_status'  => 'yes',
-					'animation_options' => 'yes'
-				]
-			]
-		);
-
-		$this->end_popover();
-
-	}
-
-	/**
 	 * Swiper Effects controls
 	 */
 	protected function register_swiper_effects_controls() {
 		$this->add_control(
 			'swiper_effect',
 			[ 
-				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'slide',
 				'options' => [ 
@@ -1150,49 +892,10 @@ trait Global_Widget_Controls {
 					'cube'      => esc_html__( 'Cube', 'bdthemes-prime-slider-lite' ),
 					'coverflow' => esc_html__( 'Coverflow', 'bdthemes-prime-slider-lite' ),
 					'flip'      => esc_html__( 'Flip', 'bdthemes-prime-slider-lite' ),
-					'shutters'  => esc_html__( 'Shutters', 'bdthemes-prime-slider-lite' ),
-					'slicer'    => esc_html__( 'Slicer', 'bdthemes-prime-slider-lite' ),
-					'tinder'    => esc_html__( 'Tinder', 'bdthemes-prime-slider-lite' ),
-					'gl'        => esc_html__( 'GL', 'bdthemes-prime-slider-lite' ),
 					'creative'  => esc_html__( 'Creative', 'bdthemes-prime-slider-lite' ),
 				],
-				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
-		//gl_shader control
-		$this->add_control(
-			'gl_shader',
-			[ 
-				'label'     => esc_html__( 'GL Shader', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'random',
-				'options'   => [ 
-					'random'         => esc_html__( 'random', 'bdthemes-prime-slider-lite' ),
-					'dots'           => esc_html__( 'dots', 'bdthemes-prime-slider-lite' ),
-					'flyeye'         => esc_html__( 'flyeye', 'bdthemes-prime-slider-lite' ),
-					'morph-x'        => esc_html__( 'morph-x', 'bdthemes-prime-slider-lite' ),
-					'morph-y'        => esc_html__( 'morph-y', 'bdthemes-prime-slider-lite' ),
-					'page-curl'      => esc_html__( 'page-curl', 'bdthemes-prime-slider-lite' ),
-					'peel-x'         => esc_html__( 'peel-x', 'bdthemes-prime-slider-lite' ),
-					'peel-y'         => esc_html__( 'peel-y', 'bdthemes-prime-slider-lite' ),
-					'polygons-fall'  => esc_html__( 'polygons-fall', 'bdthemes-prime-slider-lite' ),
-					'polygons-morph' => esc_html__( 'polygons-morph', 'bdthemes-prime-slider-lite' ),
-					'polygons-wind'  => esc_html__( 'polygons-wind', 'bdthemes-prime-slider-lite' ),
-					'pixelize'       => esc_html__( 'pixelize', 'bdthemes-prime-slider-lite' ),
-					'ripple'         => esc_html__( 'ripple', 'bdthemes-prime-slider-lite' ),
-					'shutters'       => esc_html__( 'shutters', 'bdthemes-prime-slider-lite' ),
-					'slices'         => esc_html__( 'slices', 'bdthemes-prime-slider-lite' ),
-					'squares'        => esc_html__( 'squares', 'bdthemes-prime-slider-lite' ),
-					'stretch'        => esc_html__( 'stretch', 'bdthemes-prime-slider-lite' ),
-					'wave-x'         => esc_html__( 'wave-x', 'bdthemes-prime-slider-lite' ),
-					'wind'           => esc_html__( 'wind', 'bdthemes-prime-slider-lite' ),
-				],
-				'condition' => [ 
-					'swiper_effect' => 'gl',
-				],
-			]
-		);
-
 		//creative effect control
 		$this->add_control(
 			'creative_effect',
@@ -1267,9 +970,8 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'enable_height',
 			[ 
-				'label'   => esc_html__( 'Enable Responsive Height', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Enable Responsive Height', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
-				'classes' => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1468,11 +1170,10 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'show_text',
 			[ 
-				'label'     => esc_html__( 'Show Text', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Show Text', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 	}
@@ -1546,14 +1247,13 @@ trait Global_Widget_Controls {
 		$this->add_control(
 			'excerpt_length',
 			[ 
-				'label'       => __( 'Text Limit', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'       => __( 'Text Limit', 'bdthemes-prime-slider-lite' ),
 				'description' => esc_html__( 'It\'s just work for main content, but not working with excerpt. If you set 0 so you will get full main content.', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 30,
 				'condition'   => [ 
 					'show_excerpt' => 'yes',
 				],
-				'classes'     => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -2048,19 +1748,6 @@ trait Global_Widget_Controls {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
-					'swiper_effect!' => [ 'slicer', 'tinder' ]
-				],
-			]
-		);
-
-		$this->add_control(
-			'rewind',
-			[ 
-				'label'     => __( 'Rewind', 'bdthemes-prime-slider-lite' ),
-				'type'      => Controls_Manager::SWITCHER,
-				'default'   => 'yes',
-				'condition' => [ 
-					'swiper_effect' => [ 'slicer', 'tinder' ]
 				],
 			]
 		);
@@ -2187,89 +1874,6 @@ trait Global_Widget_Controls {
 	/**
 	 * Render part start from here
 	 */
-	/**
-	 * Reveal Effect
-	 */
-	public function reveal_effects_attr( $attribute_name ) {
-		$settings = $this->get_settings_for_display();
-
-		$reveal_effects = prime_slider_option( 'reveal-effects', 'prime_slider_other_settings', 'off' );
-
-		//Reveal Effect
-		if ( ( 'on' === $reveal_effects ) && ( 'yes' === $settings['reveal_effects_enable'] ) ) {
-			$this->add_render_attribute( 'prime-slider', 'class', 'reveal-active-' . $this->get_id() );
-			$this->add_render_attribute( $attribute_name, 'data-reveal-enable', $settings['reveal_effects_enable'] );
-			$this->add_render_attribute(
-				[ 
-					$attribute_name => [ 
-						'data-reveal-settings' => [ 
-							wp_json_encode( [ 
-								"bgColors"  => $settings["reveal_effects_color"] ? $settings["reveal_effects_color"] : "#333",
-								"direction" => $settings['reveal_effects_direction'] ? $settings['reveal_effects_direction'] : 'lr',
-								"duration"  => $settings['reveal_effects_speed']['size'] ? $settings['reveal_effects_speed']['size'] : 1000,
-								"easing"    => $settings['reveal_effects_easing']
-							] )
-						],
-					]
-				]
-			);
-		}
-	}
-
-
-	/**
-	 * Advanced Animation
-	 */
-	public function adv_anim( $attribute_name ) {
-		$settings = $this->get_settings_for_display();
-
-		$animation_of = ( isset( $settings['animation_of'] ) ) ? implode( ", ", $settings['animation_of'] ) : '.bdt-image-expand-sub-title';
-
-		$animation_of = ( strlen( $animation_of ) ) > 0 ? $animation_of : '.bdt-image-expand-sub-title';
-
-		if ( true === _is_ps_pro_activated() ) {
-			$animation_status = ( $settings['animation_status'] == 'yes' ? 'yes' : 'no' );
-		} else {
-			$animation_status = 'no';
-		}
-
-		if ( $animation_status == 'yes' ) {
-			$this->add_render_attribute(
-				[ 
-					$attribute_name => [ 
-						'data-settings' => [ 
-							wp_json_encode( [ 
-								'id'                    => '#bdt-' . $this->get_id(),
-								'animation_status'      => $animation_status,
-								'animation_of'          => $animation_of,
-								'animation_on'          => $settings['animation_on'],
-								'anim_perspective'      => ( $settings['anim_perspective']['size'] ) ? $settings['anim_perspective']['size'] : 400,
-								'anim_duration'         => ( $settings['anim_duration']['size'] ) ? $settings['anim_duration']['size'] : 0.1,
-								'anim_scale'            => ( $settings['anim_scale']['size'] ) ? $settings['anim_scale']['size'] : 0,
-								'anim_rotation_y'       => ( $settings['anim_rotationY']['size'] ) ? $settings['anim_rotationY']['size'] : 80,
-								'anim_rotation_x'       => ( $settings['anim_rotationX']['size'] ) ? $settings['anim_rotationX']['size'] : 180,
-								'anim_transform_origin' => ( $settings['anim_transform_origin'] ) ? $settings['anim_transform_origin'] : '0% 50% -50',
-							] )
-						]
-					]
-				]
-			);
-		} else {
-			$this->add_render_attribute(
-				[ 
-					$attribute_name => [ 
-						'data-settings' => [ 
-							wp_json_encode( [ 
-								'id'               => '#bdt-' . $this->get_id(),
-								'animation_status' => $animation_status,
-							] )
-						]
-					]
-				]
-			);
-		}
-	}
-
 	/**
 	 * Slideshow Settings
 	 */
@@ -2446,23 +2050,20 @@ trait Global_Widget_Controls {
 	public function rendar_image( $slide, $reveal ) {
 		$settings = $this->get_settings_for_display();
 
-		$gl       = $settings['swiper_effect'] == 'gl' ? ' swiper-gl-image' : '';
-		$shutters = $settings['swiper_effect'] == 'shutters' ? ' swiper-shutters-image' : '';
-		$slicer   = $settings['swiper_effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 		?>
 
 						<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>
 							<?php
 							$thumb_url = Group_Control_Image_Size::get_attachment_image_src( $slide['image']['id'], 'thumbnail_size', $settings );
 							if ( ! $thumb_url ) {
-								printf( '<img src="%1$s" alt="%2$s" class="bdt-img %3$s">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ), esc_attr( $gl . $shutters . $slicer ) );
+								printf( '<img src="%1$s" alt="%2$s" class="bdt-img">', esc_url( $slide['image']['url'] ), esc_html( $slide['title'] ) );
 							} else {
 								print ( wp_get_attachment_image(
 									$slide['image']['id'],
 									$settings['thumbnail_size_size'],
 									false,
 									[ 
-										'class' => 'bdt-img' . $gl . $shutters . $slicer,
+										'class' => 'bdt-img',
 										'alt'   => esc_html( $slide['title'] )
 									]
 								) );
@@ -2598,4 +2199,44 @@ trait Global_Widget_Controls {
 		}
 		return $terms;
 	}
+
+	/**
+	 * Extension point for add-on plugins.
+	 *
+	 * Fired while a widget registers its content controls, so an add-on (for
+	 * example Prime Slider Pro) can register additional controls at this point.
+	 * This plugin registers none of its own here.
+	 *
+	 * @return void
+	 */
+	protected function register_addon_controls() {
+		do_action( 'prime_slider/widget/register_controls', $this );
+	}
+
+	/**
+	 * Extension point for add-on plugins.
+	 *
+	 * Lets an add-on add render attributes to $attribute_name before the widget
+	 * is rendered. This plugin adds none of its own here.
+	 *
+	 * @param string $attribute_name Render attribute key to extend.
+	 * @return void
+	 */
+	public function add_addon_render_attributes( $attribute_name ) {
+		do_action( 'prime_slider/widget/render_attributes', $this, $attribute_name );
+	}
+
+	/**
+	 * Extension point for add-on plugins.
+	 *
+	 * Lets an add-on append its own script handles to a widget's dependencies.
+	 * This plugin appends none of its own here.
+	 *
+	 * @param array $depends Script handles this widget needs.
+	 * @return array
+	 */
+	protected function addon_script_depends( array $depends ) {
+		return (array) apply_filters( 'prime_slider/widget/script_depends', $depends, $this );
+	}
+
 }

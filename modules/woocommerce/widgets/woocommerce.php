@@ -42,24 +42,12 @@ class Woocommerce extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['ps-woocommerce'];
+		return ['bdtps-woocommerce'];
 	}
 
 	public function get_script_depends() {
-		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-		if ('on' === $reveal_effects) {
-			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'anime', 'revealFx', 'ps-animation-helper'];
-			} else {
-				return [];
-			}
-		} else {
-			if ( true === _is_ps_pro_activated() ) {
-				return ['gsap', 'split-text', 'ps-animation-helper'];
-			} else {
-				return [];
-			}
-		}
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [] );
 	}
 
 	public function get_custom_help_url() {
@@ -71,7 +59,6 @@ class Woocommerce extends Widget_Base {
     }
 
 	protected function register_controls() {
-		$reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
 		$this->start_controls_section(
 			'section_content_layout',
 			[
@@ -127,11 +114,10 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'title_word_limit',
 			[
-				'label'       => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'       => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::NUMBER,
 				'min'         => 0,
 				'separator'   => 'before',
-				'classes'     => BDTPS_CORE_IS_PC,
 				'condition'   => [
 					'show_title' => 'yes',
 				],
@@ -141,10 +127,9 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'excerpt_word_limit',
 			[
-				'label'         => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'         => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider-lite' ),
 				'type'          => Controls_Manager::NUMBER,
 				'min'           => 0,
-				'classes'       => BDTPS_CORE_IS_PC,
 				'condition'     => [
 					'show_excerpt' => 'yes',
 				],
@@ -267,58 +252,11 @@ class Woocommerce extends Widget_Base {
 		$this->end_controls_section();
 
 		/**
-         * Advanced Animation
-         */
-		$this->start_controls_section(
-			'section_advanced_animation',
-			[
-				'label'     => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
-				'tab'       => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		$this->add_control(
-			'animation_status',
-			[
-				'label'   => esc_html__('Advanced Animation', 'bdthemes-prime-slider-lite'),
-				'type'    => Controls_Manager::SWITCHER,
-				'classes'   => BDTPS_CORE_IS_PC,
-			]
-		);
-
-		if ( true === _is_ps_pro_activated() ) {
-
-			$this->add_control(
-				'animation_of',
-				[
-					'label'	   => __('Animation Of', 'bdthemes-prime-slider-lite'),
-					'type' 	   => Controls_Manager::SELECT2,
-					'multiple' => true,
-					'options'  => [
-						'.bdt-ps-title' => __('Title', 'bdthemes-prime-slider-lite'),
-						'.bdt-ps-text' => __('Excerpt', 'bdthemes-prime-slider-lite'),
-					],
-					'default'  => ['.bdt-ps-title'],
-					'condition' => [
-						'animation_status' => 'yes'
-					]
-				]
-			);
-
-			/**
-             * Advanced Animation
-             */
-            $this->register_advanced_animation_controls();
-		}
-
-		$this->end_controls_section();
-
-		/**
-		 * Reveal Effects
+		 * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+		 * controls here. This plugin registers none of its own.
 		 */
-		if ('on' === $reveal_effects) {
-			$this->register_reveal_effects();
-		}
+		$this->register_addon_controls();
+
 
 		//Style Start
 		$this->start_controls_section(
@@ -332,7 +270,7 @@ class Woocommerce extends Widget_Base {
 		$this->add_control(
 			'overlay',
 			[
-				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => esc_html__('Overlay', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'background',
 				'options' => [
@@ -340,7 +278,6 @@ class Woocommerce extends Widget_Base {
 					'background' => esc_html__('Background', 'bdthemes-prime-slider-lite'),
 					'blend'      => esc_html__('Blend', 'bdthemes-prime-slider-lite'),
 				],
-				'classes'   => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1647,13 +1584,9 @@ class Woocommerce extends Widget_Base {
 		/**
          * Advanced Animation
          */
-		$this->adv_anim('slideshow');
+		$this->add_addon_render_attributes('slideshow');
 		$this->add_render_attribute('slideshow', 'id', 'bdt-' . $this->get_id());
 
-		/**
-		 * Reveal Effects
-		 */
-		$this->reveal_effects_attr('slideshow');
 
 		/**
          * Slideshow Settings
@@ -1823,10 +1756,6 @@ class Woocommerce extends Widget_Base {
 	}
 
 	protected function get_wc_pro_word_limit( $settings, $control ) {
-		if ( true !== _is_ps_pro_activated() ) {
-			return 0;
-		}
-
 		return absint( $settings[ $control ] ?? 0 );
 	}
 
@@ -1857,15 +1786,12 @@ class Woocommerce extends Widget_Base {
 		$parallax_title         = 'data-bdt-slideshow-parallax="y: 70,0,-100; opacity: 1,1,0"';
 		$parallax_text           = 'data-bdt-slideshow-parallax="y: 90,0,-90; opacity: 1,1,0"';
 
-		if ( true === _is_ps_pro_activated() ) {
-			if ($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])) {
-
-				if (in_array(".bdt-ps-title", $settings['animation_of'])) {
-					$parallax_title = '';
-				}
-				if (in_array(".bdt-ps-text", $settings['animation_of'])) {
-					$parallax_text = '';
-				}
+		if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+			if (in_array(".bdt-ps-title", $settings['animation_of'])) {
+				$parallax_title = '';
+			}
+			if (in_array(".bdt-ps-text", $settings['animation_of'])) {
+				$parallax_text = '';
 			}
 		}
 

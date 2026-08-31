@@ -43,11 +43,11 @@ class Multiscroll extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['ps-multiscroll'];
+		return ['bdtps-multiscroll'];
 	}
 
 	public function get_script_depends() {
-		return ['jquery-multiscroll', 'easings', 'ps-multiscroll'];
+		return ['bdtps-multiscroll', 'bdtps-easings', 'bdtps-multiscroll'];
 	}
 
 	public function get_custom_help_url() {
@@ -317,7 +317,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'content_position',
 			[
-				'label'   => __('Content Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => __('Content Position', 'bdthemes-prime-slider-lite'),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'center',
 				'options'   => [
@@ -335,14 +335,13 @@ class Multiscroll extends Widget_Base {
 					],
 				],
 				'toggle' => false,
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_responsive_control(
 			'content_max_width',
 			[
-				'label' => __('Content Max Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label' => __('Content Max Width', 'bdthemes-prime-slider-lite'),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -354,7 +353,6 @@ class Multiscroll extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-mltiscroll-slider .bdt-mltiscroll-slider-content' => 'max-width: {{SIZE}}{{UNIT}};'
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -431,7 +429,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'button_position',
 			[
-				'label'   => __('Button Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => __('Button Position', 'bdthemes-prime-slider-lite'),
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
@@ -441,7 +439,6 @@ class Multiscroll extends Widget_Base {
 				'condition' => [
 					'show_button' => 'yes'
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 		
@@ -514,7 +511,7 @@ class Multiscroll extends Widget_Base {
 		$this->add_control(
 			'navigationPosition',
 			[
-				'label'   => __('Navigation Position', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'   => __('Navigation Position', 'bdthemes-prime-slider-lite'),
 				'type' 	  => Controls_Manager::SELECT,
 				'default' => 'right',
 				'options' => [
@@ -524,7 +521,6 @@ class Multiscroll extends Widget_Base {
 				'condition' => [
 					'navigation' => 'yes'
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 

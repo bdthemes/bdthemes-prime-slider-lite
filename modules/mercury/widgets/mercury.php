@@ -46,20 +46,12 @@ class Mercury extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['swiper', 'ps-mercury', 'prime-slider-font'];
+        return ['swiper', 'bdtps-mercury', 'prime-slider-font'];
     }
 
     public function get_script_depends() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-        if ('on' === $reveal_effects) {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'anime', 'revealFx', 'ps-mercury'];
-            } else {
-                return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
-            }
-        } else {
-            return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-mercury'];
-        }
+    	// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+    	return $this->addon_script_depends( [ 'swiper', 'bdtps-mercury' ] );
     }
 
     public function get_custom_help_url() {
@@ -71,7 +63,6 @@ class Mercury extends Widget_Base {
     }
 
 	protected function register_controls() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_layout',
             [
@@ -104,7 +95,7 @@ class Mercury extends Widget_Base {
         $this->add_responsive_control(
             'content_max_width',
             [
-                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Content Max Width', 'bdthemes-prime-slider-lite'),
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -115,18 +106,16 @@ class Mercury extends Widget_Base {
                 'selectors'   => [
                     '{{WRAPPER}} .bdt-mercury-content-slider .bdt-content' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
-                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
         $this->add_control(
             'content_reverse',
             [
-                'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+                'label'   => esc_html__( 'Content Reverse', 'bdthemes-prime-slider-lite' ),
                 'type'    => Controls_Manager::SWITCHER,
                 'prefix_class' => 'bdt-reverse--',
                 'render_type' => 'template',
-                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -242,7 +231,6 @@ class Mercury extends Widget_Base {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
-					'effect!' => [ 'slicer', 'tinder' ]
 				],
 			]
 		);
@@ -254,7 +242,6 @@ class Mercury extends Widget_Base {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => [ 
-					'effect' => [ 'slicer', 'tinder' ]
 				],
 			]
 		);
@@ -275,7 +262,7 @@ class Mercury extends Widget_Base {
         $this->add_control(
             'effect',
             [
-                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+                'label'   => esc_html__( 'Swiper Effect', 'bdthemes-prime-slider-lite' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'slide',
                 'options' => [
@@ -284,45 +271,7 @@ class Mercury extends Widget_Base {
                     'cube'  => esc_html__( 'Cube', 'bdthemes-prime-slider-lite' ),
                     'coverflow' => esc_html__( 'Coverflow', 'bdthemes-prime-slider-lite' ),
                     'flip'  => esc_html__( 'Flip', 'bdthemes-prime-slider-lite' ),
-                    'shutters' => esc_html__( 'Shutters', 'bdthemes-prime-slider-lite' ),
-                    'slicer' => esc_html__( 'Slicer', 'bdthemes-prime-slider-lite' ),
-                    'tinder' => esc_html__( 'Tinder', 'bdthemes-prime-slider-lite' ),
-                    'gl'    => esc_html__( 'GL', 'bdthemes-prime-slider-lite' ),
                     'creative' => esc_html__( 'Creative', 'bdthemes-prime-slider-lite' ),
-                ],
-                'classes' => BDTPS_CORE_IS_PC
-            ]
-        );
-        //gl_shader control
-        $this->add_control(
-            'gl_shader',
-            [
-                'label'   => esc_html__( 'GL Shader', 'bdthemes-prime-slider-lite' ),
-                'type'    => Controls_Manager::SELECT,
-                'default' => 'random',
-                'options' => [
-                    'random' => esc_html__( 'random', 'bdthemes-prime-slider-lite'),
-                    'dots' => esc_html__( 'dots', 'bdthemes-prime-slider-lite'),
-                    'flyeye' => esc_html__( 'flyeye', 'bdthemes-prime-slider-lite'),
-                    'morph-x' => esc_html__( 'morph-x', 'bdthemes-prime-slider-lite'),
-                    'morph-y' => esc_html__( 'morph-y', 'bdthemes-prime-slider-lite'),
-                    'page-curl' => esc_html__( 'page-curl', 'bdthemes-prime-slider-lite'),
-                    'peel-x' => esc_html__( 'peel-x', 'bdthemes-prime-slider-lite'),
-                    'peel-y' => esc_html__( 'peel-y', 'bdthemes-prime-slider-lite'),
-                    'polygons-fall' => esc_html__( 'polygons-fall', 'bdthemes-prime-slider-lite'),
-                    'polygons-morph' => esc_html__( 'polygons-morph', 'bdthemes-prime-slider-lite'),
-                    'polygons-wind' => esc_html__( 'polygons-wind', 'bdthemes-prime-slider-lite'),
-                    'pixelize' => esc_html__( 'pixelize', 'bdthemes-prime-slider-lite'),
-                    'ripple' => esc_html__( 'ripple', 'bdthemes-prime-slider-lite'),
-                    'shutters' => esc_html__( 'shutters', 'bdthemes-prime-slider-lite'),
-                    'slices' => esc_html__( 'slices', 'bdthemes-prime-slider-lite'),
-                    'squares' => esc_html__( 'squares', 'bdthemes-prime-slider-lite'),
-                    'stretch' => esc_html__( 'stretch', 'bdthemes-prime-slider-lite'),
-                    'wave-x' => esc_html__( 'wave-x', 'bdthemes-prime-slider-lite'),
-                    'wind' => esc_html__( 'wind', 'bdthemes-prime-slider-lite'),
-                ],
-                'condition' => [
-                    'effect' => 'gl',
                 ],
             ]
         );
@@ -360,11 +309,10 @@ class Mercury extends Widget_Base {
         $this->end_controls_section();
 
         /**
-         * Reveal Effects
+         * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+         * controls here. This plugin registers none of its own.
          */
-        if ('on' === $reveal_effects) {
-            $this->register_reveal_effects();
-        }
+        $this->register_addon_controls();
 
         //style
         $this->start_controls_section(
@@ -861,13 +809,12 @@ class Mercury extends Widget_Base {
         $this->add_responsive_control(
             'arrows_horizontal_offset',
             [
-                'label'     => esc_html__( 'Horizontal Offset', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+                'label'     => esc_html__( 'Horizontal Offset', 'bdthemes-prime-slider-lite' ),
                 'type'      => Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-next' => 'right: {{SIZE}}px;',
                     '{{WRAPPER}} .bdt-mercury-image-slider .bdt-navigation-wrap .bdt-button-prev' => 'left: {{SIZE}}px;',
                 ],
-                'classes'    => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -1070,7 +1017,7 @@ class Mercury extends Widget_Base {
         /**
          * Reveal Effects
          */
-        $this->reveal_effects_attr('prime-slider-mercury');
+        $this->add_addon_render_attributes('prime-slider-mercury');
 
         $this->add_render_attribute( 'prime-slider-mercury', 'id', $id );
         $this->add_render_attribute( 'prime-slider-mercury', 'class', [ 'bdt-mercury-slider', 'elementor-swiper' ] );
@@ -1086,7 +1033,6 @@ class Mercury extends Widget_Base {
                             "speed"          => $settings["speed"]["size"],
                             "effect"        => isset($settings["effect"]) ? $settings["effect"] : 'slide',
                             "gl"             => [
-                                'shader' => isset($settings["gl_shader"]) ? $settings["gl_shader"] : 'random',
                             ],
                             "creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
                             "fadeEffect"     => ['crossFade' => true],
@@ -1195,19 +1141,16 @@ class Mercury extends Widget_Base {
         $placeholder_image_src = Utils::get_placeholder_image_src();
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
 
-        $gl = $settings['effect'] == 'gl' ? ' swiper-gl-image' : '';
-        $shutters = $settings['effect'] == 'shutters' ? ' swiper-shutters-image' : '';
-        $slicer = $settings['effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 
         if (!$image_src) {
-            printf('<img src="%1$s" alt="%2$s" class="bdt-img %3$s swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()), esc_attr($gl.$shutters.$slicer));
+            printf('<img src="%1$s" alt="%2$s" class="bdt-img swiper-lazy">', esc_url($placeholder_image_src), esc_html(get_the_title()));
         } else {
             print(wp_get_attachment_image(
                 get_post_thumbnail_id(),
                 $size,
                 false,
                 [
-                    'class' => 'bdt-img swiper-lazy' . esc_attr($gl.$shutters.$slicer),
+                    'class' => 'bdt-img swiper-lazy',
                     'alt' => esc_html(get_the_title())
                 ]
             ));

@@ -85,23 +85,19 @@ class Skin_Crelly extends Elementor_Skin_Base {
         $parallax_title     = 'data-bdt-slideshow-parallax="x: 500,0,-100; opacity: 1,1,0"';
         $parallax_excerpt   = 'data-bdt-slideshow-parallax="y: 200,0,-100; opacity: 1,1,0"';
 
-        if ( true === _is_ps_pro_activated() ) {
-            if($settings['animation_status'] == 'yes' && !empty($settings['animation_of'])){
-
-                if( in_array( ".bdt-ps-sub-title" ,$settings['animation_of'] ) )
-                {
-                    $parallax_sub_title ='';
-                }
-                if( in_array( ".bdt-title-tag" ,$settings['animation_of'] ) )
-                {
-                    $parallax_title ='';
-                }
-                if( in_array( ".bdt-slider-excerpt" ,$settings['animation_of'] ) )
-                {
-                    $parallax_excerpt ='';
-                }
-
-            }
+        if ( ! empty( $settings['animation_status'] ) && 'yes' === $settings['animation_status'] && ! empty( $settings['animation_of'] ) ) {
+        	if( in_array( ".bdt-ps-sub-title" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_sub_title ='';
+        	}
+        	if( in_array( ".bdt-title-tag" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_title ='';
+        	}
+        	if( in_array( ".bdt-slider-excerpt" ,$settings['animation_of'] ) )
+        	{
+        	    $parallax_excerpt ='';
+        	}
         }
         
         ?>

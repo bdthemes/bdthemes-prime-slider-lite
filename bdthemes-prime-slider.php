@@ -4,7 +4,9 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Elementor addon pack for building responsive headers and sliders (hero, posts, WooCommerce, and more).
- * Version: 4.5.1
+ * Version: 4.5.2
+ * Requires at least: 6.8
+ * Requires PHP: 7.4
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: bdthemes-prime-slider-lite
@@ -12,7 +14,7 @@
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Elementor requires at least: 4.0.0
- * Elementor tested up to: 4.2.2
+ * Elementor tested up to: 4.2.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,10 +24,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '4.5.1' );
+	define( 'BDTPS_CORE_VER', '4.5.2' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );
+}
+
+/**
+ * Oldest Prime Slider Pro release that works with this version.
+ *
+ * 4.5.2 moved the Advanced Animation and Reveal Effects code out of this plugin
+ * and into Prime Slider Pro, so an older Pro release would look for helpers that
+ * no longer live here.
+ */
+if ( ! defined( 'BDTPS_CORE_PRO_REQUIRED_VERSION' ) ) {
+	define( 'BDTPS_CORE_PRO_REQUIRED_VERSION', '4.5.2' );
 }
 
 
@@ -38,10 +51,9 @@ if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 // Translations for plugins hosted on WordPress.org are loaded automatically
 // since WP 4.6, so no manual load_plugin_textdomain() call is needed.
 
-if ( ! function_exists( '_is_pro_pro_installed' ) ) {
+if ( ! function_exists( 'bdtps_is_pro_installed' ) ) {
 
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function _is_pro_pro_installed() {
+	function bdtps_is_pro_installed() {
 
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -54,10 +66,9 @@ if ( ! function_exists( '_is_pro_pro_installed' ) ) {
 	}
 }
 
-if ( ! function_exists( '_is_ps_pro_activated' ) ) {
+if ( ! function_exists( 'bdtps_is_pro_activated' ) ) {
 
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function _is_ps_pro_activated() {
+	function bdtps_is_pro_activated() {
 
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -81,9 +92,8 @@ include dirname( __FILE__ ) . '/includes/utils.php';
 /**
  * Check the elementor installed or not
  */
-if ( ! function_exists( '_is_elementor_installed' ) ) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function _is_elementor_installed() {
+if ( ! function_exists( 'bdtps_is_elementor_installed' ) ) {
+	function bdtps_is_elementor_installed() {
 		$file_path         = 'elementor/elementor.php';
 		$installed_plugins = get_plugins();
 		return isset( $installed_plugins[ $file_path ] );
@@ -114,6 +124,32 @@ function prime_slider_load_plugin() {
 }
 
 add_action( 'plugins_loaded', 'prime_slider_load_plugin' );
+
+/**
+ * Warn when an out-of-date Prime Slider Pro is active.
+ *
+ * @return void
+ */
+function prime_slider_pro_outdated_notice() {
+	if ( ! defined( 'BDTPS_PRO_VER' ) || ! current_user_can( 'update_plugins' ) ) {
+		return;
+	}
+
+	if ( version_compare( BDTPS_PRO_VER, BDTPS_CORE_PRO_REQUIRED_VERSION, '>=' ) ) {
+		return;
+	}
+
+	printf(
+		'<div class="notice notice-error"><p>%s</p></div>',
+		sprintf(
+			/* translators: 1: installed Prime Slider Pro version, 2: required Prime Slider Pro version. */
+			esc_html__( 'Prime Slider Pro %1$s is too old for this version of Prime Slider. Please update Prime Slider Pro to %2$s or later, otherwise some slider controls will not work.', 'bdthemes-prime-slider-lite' ),
+			esc_html( BDTPS_PRO_VER ),
+			esc_html( BDTPS_CORE_PRO_REQUIRED_VERSION )
+		)
+	);
+}
+add_action( 'admin_notices', 'prime_slider_pro_outdated_notice' );
 /**
  * Check Elementor installed and activated correctly
  */
@@ -124,7 +160,7 @@ function prime_slider_fail_load() {
 	}
 	$plugin = 'elementor/elementor.php';
 
-	if ( _is_elementor_installed() ) {
+	if ( bdtps_is_elementor_installed() ) {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -147,13 +183,12 @@ function prime_slider_fail_load() {
  * Review Automation Integration
  */
 
-if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function rc_ps_lite_plugin() {
+if ( ! function_exists( 'bdtps_reviews_collector_bootstrap' ) ) {
+	function bdtps_reviews_collector_bootstrap() {
 
 		require_once BDTPS_CORE_INC_PATH . 'feedback-hub/start.php';
 
-		rc_dynamic_init( array(
+		bdtps_reviews_collector_init( array(
 			'sdk_version'  => '1.0.0',
 			'plugin_name'  => 'Prime Slider',
 			'plugin_icon'  => BDTPS_CORE_ASSETS_URL . 'images/logo.png',
@@ -167,6 +202,6 @@ if ( ! function_exists( 'rc_ps_lite_plugin' ) ) {
 		) );
 
 	}
-	add_action( 'admin_init', 'rc_ps_lite_plugin' );
+	add_action( 'admin_init', 'bdtps_reviews_collector_bootstrap' );
 }
 

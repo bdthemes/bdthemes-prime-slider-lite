@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 class Dynamic_Select extends Base_Data_Control
 {
 
-	const TYPE = 'ps-dynamic-select';
+	const TYPE = 'bdtps-dynamic-select';
 
 	/**
 	 * Get control type.
@@ -106,10 +106,10 @@ class Dynamic_Select extends Base_Data_Control
 	 */
 	public function enqueue()
 	{
-		wp_enqueue_script('ps-dynamic-select', BDTPS_CORE_URL . 'traits/query-controls/assets/js/ps-dynamic-select.min.js', array('jquery'), BDTPS_CORE_VER, true);
+		wp_enqueue_script('bdtps-dynamic-select', BDTPS_CORE_URL . 'traits/query-controls/assets/js/ps-dynamic-select.min.js', array('jquery'), BDTPS_CORE_VER, true);
 
 		wp_localize_script(
-			'ps-dynamic-select',
+			'bdtps-dynamic-select',
 			'ps_dynamic_select',
 			[
 				'nonce' => wp_create_nonce('ps_dynamic_select'),

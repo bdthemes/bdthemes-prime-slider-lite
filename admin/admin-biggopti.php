@@ -11,9 +11,38 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Biggopties {
 
+	/**
+	 * Prefix for every dismissal key this class writes.
+	 *
+	 * Dismissal ids arrive from an admin AJAX request, so they are never used
+	 * as a storage key directly: they are sanitized and namespaced through
+	 * dismissal_key() so a request can only ever write inside this plugin's
+	 * own transient / user-meta namespace.
+	 */
+	const DISMISSAL_KEY_PREFIX = 'bdtps_biggopti_';
+
 	private static $biggopties = [];
 
 	private static $instance;
+
+	/**
+	 * Build the namespaced storage key for a biggopti dismissal.
+	 *
+	 * @param string $id Raw biggopti id.
+	 * @return string Prefixed key, or '' when the id is unusable.
+	 */
+	public static function dismissal_key( $id ) {
+		// Keep the id readable (case included) so it still round-trips with the
+		// markup, but allow only characters that are safe in a storage key.
+		$id = preg_replace( '/[^A-Za-z0-9_\-]/', '', (string) $id );
+
+		if ( '' === $id ) {
+			return '';
+		}
+
+		// Transient keys are limited to 172 characters.
+		return substr( self::DISMISSAL_KEY_PREFIX . $id, 0, 172 );
+	}
 
 	public static function get_instance() {
 		if (!isset(self::$instance)) {
@@ -28,7 +57,7 @@ class Biggopties {
 		add_action('wp_ajax_prime_slider_biggopties', [$this, 'dismiss']);
 
 		// AJAX endpoint to fetch API biggopties on demand (after page load)
-		add_action('wp_ajax_ps_fetch_api_biggopties', [$this, 'ajax_fetch_api_biggopties']);
+		add_action('wp_ajax_bdtps_fetch_api_biggopties', [$this, 'ajax_fetch_api_biggopties']);
 	}
 
 	/**
@@ -37,8 +66,13 @@ class Biggopties {
 	 * @return array|mixed
 	 */
 	private function get_api_biggopties_data() {
-		// API endpoint for biggopties - you can change this to your actual endpoint
+		// API endpoint for biggopties. Empty means the remote source is not in
+		// use, in which case no external request is made at all.
 		$api_url = '';
+
+		if ('' === $api_url) {
+			return [];
+		}
 
 		$response = wp_remote_get($api_url, [
 			'timeout' => 30,
@@ -123,29 +157,16 @@ class Biggopties {
 	}
 
 	/**
-	 * Check if current user has extended license
+	 * Should promotional notices be suppressed?
 	 *
-	 * @return bool True if user has extended license, false otherwise.
+	 * Neutral extension point. Nothing in this plugin suppresses them; an
+	 * add-on can, for example to stop advertising to customers who already
+	 * bought the thing being advertised.
+	 *
+	 * @return bool
 	 */
-	private function has_extended_license() {
-		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
-			return false;
-		}
-		
-		$license_info = \PrimeSliderPro\Base\Prime_Slider_Base::get_register_info();
-		
-		if (empty($license_info) || empty($license_info->license_title)) {
-			return false;
-		}
-		
-		$license_title = strtolower($license_info->license_title);
-		
-		// Check if license title contains 'extended'
-		if (strpos($license_title, 'extended') !== false) {
-			return true;
-		}
-		
-		return false;
+	private function suppress_promotions() {
+		return (bool) apply_filters( 'prime_slider/promotions/suppress', false );
 	}
 
 	/**
@@ -157,7 +178,7 @@ class Biggopties {
 	private function is_biggopti_compatible_with_plugin($biggopti) {
 		// Get current plugin info
 		$current_plugin_slug = $this->get_current_plugin_slug();
-		$is_pro_active = function_exists('_is_ps_pro_activated') ? _is_ps_pro_activated() : false;
+		$is_pro_active = function_exists('bdtps_is_pro_activated') ? bdtps_is_pro_activated() : false;
 		$is_lite_active = $current_plugin_slug === 'bdthemes-prime-slider-lite';
 		$is_pro_plugin = $current_plugin_slug === 'bdthemes-prime-slider';
 		
@@ -326,8 +347,8 @@ class Biggopties {
 			wp_send_json_error([ 'message' => 'forbidden' ]);
 		}
 
-		// Skip biggopti execution for extended license holders
-		if ($this->has_extended_license()) {
+		// An add-on may ask for promotional notices to be left out entirely.
+		if ($this->suppress_promotions()) {
 			wp_send_json_success([ 'html' => '' ]);
 		}
 
@@ -405,19 +426,25 @@ class Biggopties {
 		/**
 		 * Valid inputs?
 		 */
-		if (!empty($id)) {
+		$key = self::dismissal_key($id);
+
+		if ('' !== $key) {
+			// Never trust the request-supplied lifetime either: clamp it to a
+			// sane range so a dismissal cannot be stored effectively forever.
+			$time = min(max($time, MINUTE_IN_SECONDS), YEAR_IN_SECONDS);
+
 			// Handle regular biggopti
 			if ('user' === $meta) {
-				update_user_meta(get_current_user_id(), $id, true);
+				update_user_meta(get_current_user_id(), $key, true);
 			} else {
 				// Store in transient for backward compatibility
-				set_transient($id, true, $time);
-				
+				set_transient($key, true, $time);
+
 				// Also store in options table for persistence
 				$dismissals_option = get_option('bdt_biggopti_dismissals', []);
-				$dismissals_option[$id] = [
+				$dismissals_option[$key] = [
 					'dismissed_at' => time(),
-					'expires_at' => time() + intval($time),
+					'expires_at' => time() + $time,
 				];
 				update_option('bdt_biggopti_dismissals', $dismissals_option, false);
 			}
@@ -478,24 +505,37 @@ class Biggopties {
 			$biggopti['classes'] = implode(' ', $classes);
 
 			// User meta.
+			$biggopti_key = self::dismissal_key($biggopti_id);
 			$biggopti['data'] .= ' dismissible-meta=' . esc_attr($biggopti['dismissible-meta']) . ' ';
 			if ('user' === $biggopti['dismissible-meta']) {
-				$expired = get_user_meta(get_current_user_id(), $biggopti_id, true);
+				$expired = get_user_meta(get_current_user_id(), $biggopti_key, true);
+
+				// Dismissals stored before the keys were namespaced.
+				if (empty($expired)) {
+					$expired = get_user_meta(get_current_user_id(), $biggopti_id, true);
+				}
 			} elseif ('transient' === $biggopti['dismissible-meta']) {
 				// Check transient first
-				$expired = get_transient($biggopti_id);
-				
+				$expired = get_transient($biggopti_key);
+
+				// Dismissals stored before the keys were namespaced.
+				if (false === $expired || empty($expired)) {
+					$expired = get_transient($biggopti_id);
+				}
+
 				// If transient not found, check options table for persistent dismissal
 				if (false === $expired || empty($expired)) {
 					$dismissals_option = get_option('bdt_biggopti_dismissals', []);
-					if (isset($dismissals_option[$biggopti_id])) {
-						$dismissal = $dismissals_option[$biggopti_id];
+					$stored_key        = isset($dismissals_option[$biggopti_key]) ? $biggopti_key : $biggopti_id;
+
+					if (isset($dismissals_option[$stored_key])) {
+						$dismissal = $dismissals_option[$stored_key];
 						// Check if dismissal is still valid (not expired)
 						if (isset($dismissal['expires_at']) && time() < $dismissal['expires_at']) {
 							$expired = true;
 						} else {
 							// Clean up expired dismissal from options
-							unset($dismissals_option[$biggopti_id]);
+							unset($dismissals_option[$stored_key]);
 							update_option('bdt_biggopti_dismissals', $dismissals_option, false);
 						}
 					}

@@ -6,6 +6,8 @@
 // Sub-objects:     `bdt-accordion-title`
 //                  `bdt-accordion-content`
 //
+// Modifiers:       `bdt-accordion-default`
+//
 // States:          `bdt-open`
 //
 // ========================================================================
@@ -14,14 +16,15 @@
 // Variables
 // ========================================================================
 
-@accordion-item-margin-top:                    @global-margin;
+@accordion-default-item-margin-top:             @global-margin;
 
-@accordion-title-font-size:                    @global-medium-font-size;
-@accordion-title-line-height:                  1.4;
-@accordion-title-color:                        @global-emphasis-color;
-@accordion-title-hover-color:                  @global-color;
+@accordion-default-title-gap:                   15px;
+@accordion-default-title-font-size:             @global-medium-font-size;
+@accordion-default-title-line-height:           1.4;
+@accordion-default-title-color:                 @global-emphasis-color;
+@accordion-default-title-hover-color:           @global-color;
 
-@accordion-content-margin-top:                 @global-margin;
+@accordion-default-content-margin-top:          @global-margin;
 
 
 /* ========================================================================
@@ -34,49 +37,88 @@
     .hook-accordion();
 }
 
+.bdt-accordion-title { display: block; }
 
-/* Item
- ========================================================================== */
-
-.bdt-accordion > :nth-child(n+2) {
-    margin-top: @accordion-item-margin-top;
-    .hook-accordion-item();
-}
-
-
-/* Title
- ========================================================================== */
-
-.bdt-accordion-title {
-    display: block;
-    font-size: @accordion-title-font-size;
-    line-height: @accordion-title-line-height;
-    color: @accordion-title-color;
-    .hook-accordion-title();
-}
-
-/* Hover */
-.bdt-accordion-title:hover {
-    color: @accordion-title-hover-color;
-    text-decoration: none;
-    .hook-accordion-title-hover();
-}
-
-
-/* Content
- ========================================================================== */
-
-.bdt-accordion-content {
-    display: flow-root;
-    margin-top: @accordion-content-margin-top;
-    .hook-accordion-content();
-}
+.bdt-accordion-content { display: flow-root; }
 
 /*
  * Remove margin from the last-child
  */
 
- .bdt-accordion-content > :last-child { margin-bottom: 0; }
+.bdt-accordion-content > :last-child { margin-bottom: 0; }
+
+
+/* Default modifier
+ ========================================================================== */
+
+/*
+ * Item
+ */
+
+.bdt-accordion-default > * {
+    .hook-accordion-default-item();
+}
+
+.bdt-accordion-default > :nth-child(n+2) { margin-top: @accordion-default-item-margin-top; }
+
+/* Active */
+.bdt-accordion-default > .bdt-open {
+    .hook-accordion-default-item-active();
+}
+
+/*
+ * Title
+ */
+
+/*
+* 1. Center content vertically, e.g. an icon
+* 2. Imitate white space gap when using flexbox
+* 3. Reset link
+ */
+
+.bdt-accordion-default .bdt-accordion-title {
+    /* 1 */
+    display: flex;
+    align-items: center;
+    /* 2 */
+    column-gap: @accordion-default-title-gap;
+    /* 3 */
+    font-size: @accordion-default-title-font-size;
+    line-height: @accordion-default-title-line-height;
+    color: @accordion-default-title-color;
+    .hook-accordion-default-title();
+}
+
+/* Hover */
+.bdt-accordion-default .bdt-accordion-title:hover {
+    color: @accordion-default-title-hover-color;
+    text-decoration: none;
+    .hook-accordion-default-title-hover();
+}
+
+/* Active */
+.bdt-accordion-default > .bdt-open .bdt-accordion-title {
+    .hook-accordion-default-title-active();
+}
+
+/*
+ * Icon
+ */
+
+.bdt-accordion-default .bdt-accordion-icon {
+    flex: none;
+    margin-left: auto;
+    .hook-accordion-default-icon();
+}
+
+/*
+ * Content
+ */
+
+.bdt-accordion-default .bdt-accordion-content {
+    margin-top: @accordion-default-content-margin-top;
+    .hook-accordion-default-content();
+}
 
 
 // Hooks
@@ -85,37 +127,60 @@
 .hook-accordion-misc();
 
 .hook-accordion() {}
-.hook-accordion-item() {}
-.hook-accordion-title() {}
-.hook-accordion-title-hover() {}
-.hook-accordion-content() {}
+.hook-accordion-default-item() {}
+.hook-accordion-default-item-active() {}
+.hook-accordion-default-title() {}
+.hook-accordion-default-title-hover() {}
+.hook-accordion-default-title-active() {}
+.hook-accordion-default-icon() {}
+.hook-accordion-default-content() {}
 .hook-accordion-misc() {}
 
 
 // Inverse
 // ========================================================================
 
-@inverse-accordion-title-color:             @inverse-global-emphasis-color;
-@inverse-accordion-title-hover-color:       @inverse-global-color;
+@inverse-accordion-default-title-color:             @inverse-global-emphasis-color;
+@inverse-accordion-default-title-hover-color:       @inverse-global-color;
 
 .hook-inverse() {
 
-    .bdt-accordion > :nth-child(n+2) {
-        .hook-inverse-accordion-item();
+    .bdt-accordion-default > * {
+        .hook-inverse-accordion-default-item();
     }
 
-    .bdt-accordion-title {
-        color: @inverse-accordion-title-color;
-        .hook-inverse-accordion-title();
+    .bdt-accordion-default > .bdt-open {
+        .hook-inverse-accordion-default-item-active();
     }
 
-    .bdt-accordion-title:hover {
-        color: @inverse-accordion-title-hover-color;
-        .hook-inverse-accordion-title-hover();
+    .bdt-accordion-default .bdt-accordion-title {
+        color: @inverse-accordion-default-title-color;
+        .hook-inverse-accordion-default-title();
+    }
+
+    .bdt-accordion-default .bdt-accordion-title:hover {
+        color: @inverse-accordion-default-title-hover-color;
+        .hook-inverse-accordion-default-title-hover();
+    }
+
+    .bdt-accordion-default .bdt-accordion-title:active {
+        .hook-inverse-accordion-default-title-active();
+    }
+
+    .bdt-accordion-default .bdt-accordion-icon {
+        .hook-inverse-accordion-default-icon();
+    }
+
+    .bdt-accordion-default .bdt-accordion-content {
+        .hook-inverse-accordion-default-content();
     }
 
 }
 
-.hook-inverse-accordion-item() {}
-.hook-inverse-accordion-title() {}
-.hook-inverse-accordion-title-hover() {}
+.hook-inverse-accordion-default-item() {}
+.hook-inverse-accordion-default-item-active() {}
+.hook-inverse-accordion-default-title() {}
+.hook-inverse-accordion-default-title-hover() {}
+.hook-inverse-accordion-default-title-active() {}
+.hook-inverse-accordion-default-icon() {}
+.hook-inverse-accordion-default-content() {}

@@ -118,7 +118,7 @@ class Utils {
 		// WP memory limit.
 		$wp_memory_limit = self::readable_num(WP_MEMORY_LIMIT);
 		if ( function_exists( 'memory_get_usage' ) ) {
-			$wp_memory_limit = max( $wp_memory_limit, self::readable_num( @ini_get( 'memory_limit' ) ) );
+			$wp_memory_limit = max( $wp_memory_limit, self::readable_num( ini_get( 'memory_limit' ) ) );
 		}
 
 

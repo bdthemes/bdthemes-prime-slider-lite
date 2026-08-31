@@ -4,14 +4,22 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (!class_exists('RC_Reviews_Collector')) {
-	class RC_Reviews_Collector {
+if (!class_exists('Bdtps_Reviews_Collector')) {
+	class Bdtps_Reviews_Collector {
 
 		public $version = '1.0.0';
+
+		/**
+		 * Prefix for every option / transient key this SDK writes.
+		 */
+		const KEY_PREFIX = 'bdtps_rc_';
 
 		public $rc_name;
 		public $rc_allow_name;
 		public $rc_date_name;
+		public $legacy_rc_name;
+		public $legacy_allow_name;
+		public $legacy_date_name;
 		public $rc_count_name;
 		public $nonce;
 		public $params;
@@ -42,15 +50,22 @@ if (!class_exists('RC_Reviews_Collector')) {
 			$this->review_url = isset($params['review_url']) ? $params['review_url'] : false;
 
 			// add_action( 'admin_enqueue_scripts', array( $this, 'rc_enqueue_scripts' ) );
-			add_action('wp_ajax_rc_sdk_insights', array($this, 'rc_sdk_insights'));
-			add_action('wp_ajax_rc_sdk_dismiss_biggopti', array($this, 'rc_sdk_dismiss_biggopti'));
+			add_action('wp_ajax_bdtps_reviews_insights', array($this, 'rc_sdk_insights'));
+			add_action('wp_ajax_bdtps_reviews_dismiss', array($this, 'rc_sdk_dismiss_biggopti'));
 
 			$security_key = md5($params['plugin_name']);
-			$this->rc_name = 'rc_' . str_replace('-', '_', sanitize_title($params['plugin_name']) . '_' . $security_key);
-			$this->rc_allow_name = 'rc_allow_' . $this->rc_name;
-			$this->rc_date_name = 'rc_date_' . $this->rc_name;
-			$rc_count_name = 'rc_attempt_count_' . $this->rc_name;
-			$rc_status_db = get_option($this->rc_allow_name, false);
+			$base = str_replace('-', '_', sanitize_title($params['plugin_name']) . '_' . $security_key);
+
+			// Storage keys carry this plugin's own prefix. The pre-4.5.2 keys are
+			// kept so a visitor who already answered is not asked again.
+			$this->rc_name             = self::KEY_PREFIX . $base;
+			$this->legacy_rc_name      = 'rc_' . $base;
+			$this->rc_allow_name       = self::KEY_PREFIX . 'allow_' . $base;
+			$this->legacy_allow_name   = 'rc_allow_rc_' . $base;
+			$this->rc_date_name        = self::KEY_PREFIX . 'date_' . $base;
+			$this->legacy_date_name    = 'rc_date_rc_' . $base;
+			$rc_count_name             = self::KEY_PREFIX . 'attempt_count_' . $base;
+			$rc_status_db = get_option($this->rc_allow_name, get_option($this->legacy_allow_name, false));
 
 			$this->nonce = wp_create_nonce($this->rc_allow_name);
 
@@ -58,13 +73,12 @@ if (!class_exists('RC_Reviews_Collector')) {
 			 * Show Biggopti after 3 days
 			 * Now 5 minutes
 			 */
-			$installed = get_option($this->rc_date_name . '_installed', false);
+			$installed = get_option($this->rc_date_name . '_installed', get_option($this->legacy_date_name . '_installed', false));
 
 			if (!$installed) {
-				update_option($this->rc_date_name . '_installed', time());
+				$installed = time();
+				update_option($this->rc_date_name . '_installed', $installed);
 			}
-
-			$installed = get_option($this->rc_date_name . '_installed', false);
 
 			// if ( $installed && ( time() - $installed ) < 1 * MINUTE_IN_SECONDS ) {
 			if ($installed && (time() - $installed) < 3 * DAY_IN_SECONDS) {
@@ -123,7 +137,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 		public function display_biggopti() {
 			add_action('admin_enqueue_scripts', array($this, 'rc_enqueue_scripts'));
 
-			if (!get_transient('dismissed_biggopti_' . $this->rc_name)) {
+			if (!get_transient(self::KEY_PREFIX . 'dismissed_' . $this->rc_name) && !get_transient('dismissed_biggopti_' . $this->legacy_rc_name)) {
 				add_action('admin_notices', array($this, 'display_global_biggopti'));
 			}
 		}
@@ -135,7 +149,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 		 */
 		public function check_date() {
 			$current_date = strtotime(gmdate('Y-m-d'));
-			$rc_status_date = strtotime(get_option($this->rc_date_name, false));
+			$rc_status_date = strtotime(get_option($this->rc_date_name, get_option($this->legacy_date_name, false)));
 
 			if (!$rc_status_date) {
 				return true;
@@ -154,6 +168,8 @@ if (!class_exists('RC_Reviews_Collector')) {
 		public function reset_settings() {
 			delete_option($this->rc_allow_name);
 			delete_option($this->rc_date_name);
+			delete_option($this->legacy_allow_name);
+			delete_option($this->legacy_date_name);
 		}
 
 		/**
@@ -167,14 +183,14 @@ if (!class_exists('RC_Reviews_Collector')) {
 
 			// Confine the writes to this SDK's own option namespace so a request
 			// cannot use these to overwrite an arbitrary WordPress option.
-			if (0 !== strpos($allow_name, 'rc_allow_')) {
+			if (0 !== strpos($allow_name, self::KEY_PREFIX . 'allow_')) {
 				$allow_name = '';
 			}
-			if (0 !== strpos($date_name, 'rc_date_')) {
+			if (0 !== strpos($date_name, self::KEY_PREFIX . 'date_')) {
 				$date_name = '';
 			}
 
-			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
+			if (!wp_verify_nonce($nonce, self::KEY_PREFIX . 'sdk')) {
 				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
@@ -223,12 +239,12 @@ if (!class_exists('RC_Reviews_Collector')) {
 		 * @since 1.0.0
 		 */
 		public function rc_enqueue_scripts() {
-			wp_enqueue_style('rc-sdk', plugins_url('assets/rc.css', __FILE__), array(), '1.0.0');
-			wp_enqueue_script('rc-sdk', plugins_url('assets/rc.js', __FILE__), array('jquery'), '1.0.0', true);
+			wp_enqueue_style('bdtps-reviews-sdk', plugins_url('assets/rc.css', __FILE__), array(), '1.0.0');
+			wp_enqueue_script('bdtps-reviews-sdk', plugins_url('assets/rc.js', __FILE__), array('jquery'), '1.0.0', true);
 
 			// Add inline style to hide all but the first biggopti on page load
 			$inline_css = '.rc-global-biggopti { display: none; }';
-			wp_add_inline_style( 'rc-sdk', $inline_css );
+			wp_add_inline_style( 'bdtps-reviews-sdk', $inline_css );
 		}
 
 		/**
@@ -256,15 +272,15 @@ if (!class_exists('RC_Reviews_Collector')) {
 						</h3>
 						<?php printf(wp_kses_post($plugin_msg)); ?>
 						<input type="hidden" name="rc_name" value="<?php echo esc_html($this->rc_name); ?>">
-						<input type="hidden" name="nonce" value="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>">
+						<input type="hidden" name="nonce" value="<?php echo esc_html(wp_create_nonce(self::KEY_PREFIX . 'sdk')); ?>">
 						<div class="bdt-biggopti-rc-buttons">
-							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="yes" class="rc-button-allow">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce(self::KEY_PREFIX . 'sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="yes" class="rc-button-allow">
 								<span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span> Give us your Review
 							</button>
-							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="skip" class="rc-button-skip">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce(self::KEY_PREFIX . 'sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="skip" class="rc-button-skip">
 								I'll skip for now
 							</button>
-							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce('rc_sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="disallow" class="rc-button-disallow rc-button-danger">
+							<button data-rc_name="<?php echo esc_html($this->rc_name); ?>" data-date_name="<?php echo esc_html($this->rc_date_name); ?>" data-allow_name="<?php echo esc_html($this->rc_allow_name); ?>" data-nonce="<?php echo esc_html(wp_create_nonce(self::KEY_PREFIX . 'sdk')); ?>" data-review_url="<?php echo esc_html($this->review_url); ?>" name="rc_allow_status" value="disallow" class="rc-button-disallow rc-button-danger">
 								Hide and Don't show again
 							</button>
 						</div>
@@ -283,7 +299,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 			$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 			$rc_name = isset($_POST['rc_name']) ? sanitize_text_field(wp_unslash($_POST['rc_name'])) : '';
 
-			if (!wp_verify_nonce($nonce, 'rc_sdk')) {
+			if (!wp_verify_nonce($nonce, self::KEY_PREFIX . 'sdk')) {
 				wp_send_json(array(
 					'status' => 'error',
 					'title' => 'Error',
@@ -301,7 +317,7 @@ if (!class_exists('RC_Reviews_Collector')) {
 				wp_die();
 			}
 
-			set_transient('dismissed_biggopti_' . $rc_name, true, 30 * DAY_IN_SECONDS);
+			set_transient(self::KEY_PREFIX . 'dismissed_' . $rc_name, true, 30 * DAY_IN_SECONDS);
 
 			wp_send_json(array(
 				'status' => 'success',
@@ -316,12 +332,10 @@ if (!class_exists('RC_Reviews_Collector')) {
 /**
  * Main Insights Function
  */
-if (!function_exists('rc_sdk_automate')) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function rc_sdk_automate($params) {
-		if (class_exists('RC_Reviews_Collector')) {
-			// RC_Reviews_Collector::get_instance( $params );
-			new RC_Reviews_Collector($params);
+if (!function_exists('bdtps_reviews_collector_automate')) {
+	function bdtps_reviews_collector_automate($params) {
+		if (class_exists('Bdtps_Reviews_Collector')) {
+			new Bdtps_Reviews_Collector($params);
 		}
 	}
 }

@@ -77,7 +77,7 @@
 
 .bdt-transition-toggle:hover .bdt-transition-fade,
 .bdt-transition-toggle:focus .bdt-transition-fade,
-.bdt-transition-toggle .bdt-transition-fade:focus-within,
+.bdt-transition-toggle:focus-within .bdt-transition-fade,
 .bdt-transition-active.bdt-active .bdt-transition-fade { opacity: 1; }
 
 /*
@@ -100,7 +100,7 @@
 /* Show */
 .bdt-transition-toggle:hover .bdt-transition-scale-up,
 .bdt-transition-toggle:focus .bdt-transition-scale-up,
-.bdt-transition-toggle .bdt-transition-scale-up:focus-within,
+.bdt-transition-toggle:focus-within .bdt-transition-scale-up,
 .bdt-transition-active.bdt-active .bdt-transition-scale-up {
     --bdt-scale-x: @transition-scale;
     --bdt-scale-y: @transition-scale;
@@ -109,7 +109,7 @@
 
 .bdt-transition-toggle:hover .bdt-transition-scale-down,
 .bdt-transition-toggle:focus .bdt-transition-scale-down,
-.bdt-transition-toggle .bdt-transition-scale-down:focus-within,
+.bdt-transition-toggle:focus-within .bdt-transition-scale-down,
 .bdt-transition-active.bdt-active .bdt-transition-scale-down {
     --bdt-scale-x: 1;
     --bdt-scale-y: 1;
@@ -138,7 +138,7 @@
 /* Show */
 .bdt-transition-toggle:hover [class*="bdt-transition-slide"],
 .bdt-transition-toggle:focus [class*="bdt-transition-slide"],
-.bdt-transition-toggle [class*="bdt-transition-slide"]:focus-within,
+.bdt-transition-toggle:focus-within [class*="bdt-transition-slide"],
 .bdt-transition-active.bdt-active [class*="bdt-transition-slide"] {
     --bdt-translate-x: 0;
     --bdt-translate-y: 0;

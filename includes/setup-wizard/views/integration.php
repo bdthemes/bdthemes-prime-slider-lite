@@ -16,8 +16,8 @@ require_once __DIR__ . '/../class-plugin-integration-helper.php';
 require_once __DIR__ . '/../class-remote-data-handler.php';
 
 // Helper function for time formatting
-if (!function_exists('format_last_updated_ps')) {
-    function format_last_updated_ps($date_string) {
+if (!function_exists('bdtps_format_last_updated')) {
+    function bdtps_format_last_updated($date_string) {
         if (empty($date_string)) {
             return __('Unknown', 'bdthemes-prime-slider-lite');
         }
@@ -130,16 +130,16 @@ if (!$has_cached_data) {
             <?php if ($has_cached_data): ?>
                 <?php
                 $predefined = \PrimeSlider\SetupWizard\Plugin_Integration_Helper::get_predefined_plugins();
-                foreach ($ps_plugins as $slug_key => $plugin) :
+                foreach ($ps_plugins as $slug_key => $ps_plugin) :
                     // Skip own plugin (Prime Slider)
                     if (in_array($slug_key, $self_plugin_slugs, true)) {
                         continue;
                     }
                     // Use enhanced status if available, otherwise fall back to old method
-                    $plugin_status = $plugin['status'] ?? 'unknown';
+                    $plugin_status = $ps_plugin['status'] ?? 'unknown';
                     if ($plugin_status === 'unknown') {
                         // Fallback to old method for compatibility
-                        $is_active = is_plugin_active($plugin['slug']);
+                        $is_active = is_plugin_active($ps_plugin['slug']);
                     } else {
                         // Use enhanced status
                         $is_active = ($plugin_status === 'active');
@@ -147,12 +147,12 @@ if (!$has_cached_data) {
                     $plugin_recommended = !empty($predefined[ $slug_key ]['recommended']);
                     $is_recommended = $plugin_recommended && !$is_active;
                 ?>
-                    <label class="plugin-item" data-slug="<?php echo esc_attr($plugin['slug']); ?>">
+                    <label class="plugin-item" data-slug="<?php echo esc_attr($ps_plugin['slug']); ?>">
                         <span class="bdt-flex bdt-flex-middle bdt-flex-between bdt-margin-small-bottom">
                             <span class="bdt-plugin-logo">
                                 <?php 
-                                $logo_url = $plugin['logo'] ?? '';
-                                $plugin_name = $plugin['name'] ?? '';
+                                $logo_url = $ps_plugin['logo'] ?? '';
+                                $plugin_name = $ps_plugin['name'] ?? '';
 
                                 if (!empty($logo_url) && filter_var($logo_url, FILTER_VALIDATE_URL)) {
                                     // Show the original logo from API
@@ -178,7 +178,7 @@ if (!$has_cached_data) {
                              if (!$is_active) : ?>
                                  <label class="switch">
                                      <input type="checkbox" class="plugin-slider-checkbox" <?php echo $plugin_recommended ? 'checked' : ''; ?>
-                                            name="plugins[]<?php echo isset($plugin['slug']) ? wp_kses_post($plugin['slug']) : ''; ?>">
+                                            name="plugins[]<?php echo isset($ps_plugin['slug']) ? wp_kses_post($ps_plugin['slug']) : ''; ?>">
                                      <span class="slider round"></span>
                                  </label>
                              <?php
@@ -188,29 +188,29 @@ if (!$has_cached_data) {
                         </span>
                         <div class="bdt-flex bdt-flex-middle">
                                 <span class="bdt-plugin-name">
-                                    <?php echo wp_kses_post($plugin['name']); ?>
+                                    <?php echo wp_kses_post($ps_plugin['name']); ?>
                                 </span>
                             </div>
                             
                         <span class="active-installs">
                             <?php esc_html_e('Active Installs: ', 'bdthemes-prime-slider-lite'); 
-                            if (isset($plugin['active_installs_count']) && $plugin['active_installs_count'] > 0) {
-                                echo ' <span class="installs-count">' . esc_html( number_format_i18n((int) $plugin['active_installs_count']) ) . '+' . '</span>';
+                            if (isset($ps_plugin['active_installs_count']) && $ps_plugin['active_installs_count'] > 0) {
+                                echo ' <span class="installs-count">' . esc_html( number_format_i18n((int) $ps_plugin['active_installs_count']) ) . '+' . '</span>';
                             } else {
                                 echo '<span class="installs-count">' . esc_html__('Fewer than 10', 'bdthemes-prime-slider-lite') . '</span>';
                             }
                             ?>
                         </span>
 
-                        <?php if (isset($plugin['downloaded_formatted']) && !empty($plugin['downloaded_formatted'])): ?>
-                        <span class="downloads"><?php esc_html_e('Downloads: ', 'bdthemes-prime-slider-lite'); echo wp_kses_post($plugin['downloaded_formatted']); ?></span>
+                        <?php if (isset($ps_plugin['downloaded_formatted']) && !empty($ps_plugin['downloaded_formatted'])): ?>
+                        <span class="downloads"><?php esc_html_e('Downloads: ', 'bdthemes-prime-slider-lite'); echo wp_kses_post($ps_plugin['downloaded_formatted']); ?></span>
                         <?php endif; ?>
                         
                         <div class="rating-section">
                             <?php /* translators: %s: plugin rating value out of 5 */ ?>
-                            <div class="wporg-ratings" title="<?php echo esc_attr(sprintf(__('%s out of 5 stars', 'bdthemes-prime-slider-lite'), (string) ($plugin['rating'] ?? '0'))); ?>" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
+                            <div class="wporg-ratings" title="<?php echo esc_attr(sprintf(__('%s out of 5 stars', 'bdthemes-prime-slider-lite'), (string) ($ps_plugin['rating'] ?? '0'))); ?>" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
                                 <?php 
-                                $rating = floatval($plugin['rating'] ?? 0);
+                                $rating = floatval($ps_plugin['rating'] ?? 0);
                                 $full_stars = floor($rating);
                                 $has_half_star = ($rating - $full_stars) >= 0.5;
                                 $empty_stars = 5 - $full_stars - ($has_half_star ? 1 : 0);
@@ -232,19 +232,19 @@ if (!$has_cached_data) {
                                 ?>
                             </div>
                             <span class="rating-text">
-                                <?php echo esc_html($plugin['rating'] ?? '0'); ?> <?php esc_html_e('out of 5 stars.', 'bdthemes-prime-slider-lite'); ?>
-                                <?php if (isset($plugin['num_ratings']) && $plugin['num_ratings'] > 0): ?>
-                                    <span class="rating-count">(<?php echo esc_html(number_format_i18n((int) $plugin['num_ratings'])); ?> <?php esc_html_e('ratings', 'bdthemes-prime-slider-lite'); ?>)</span>
+                                <?php echo esc_html($ps_plugin['rating'] ?? '0'); ?> <?php esc_html_e('out of 5 stars.', 'bdthemes-prime-slider-lite'); ?>
+                                <?php if (isset($ps_plugin['num_ratings']) && $ps_plugin['num_ratings'] > 0): ?>
+                                    <span class="rating-count">(<?php echo esc_html(number_format_i18n((int) $ps_plugin['num_ratings'])); ?> <?php esc_html_e('ratings', 'bdthemes-prime-slider-lite'); ?>)</span>
                                 <?php endif; ?>
                             </span>
                         </div>
                         
                         <?php 
                         // Use the enhanced last_updated_formatted if available, otherwise fall back to formatting
-                        if (isset($plugin['last_updated_formatted']) && !empty($plugin['last_updated_formatted'])): ?>
-                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html($plugin['last_updated_formatted']); ?></span>
-                        <?php elseif (isset($plugin['last_updated']) && !empty($plugin['last_updated'])): ?>
-                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html(format_last_updated_ps($plugin['last_updated'])); ?></span>
+                        if (isset($ps_plugin['last_updated_formatted']) && !empty($ps_plugin['last_updated_formatted'])): ?>
+                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html($ps_plugin['last_updated_formatted']); ?></span>
+                        <?php elseif (isset($ps_plugin['last_updated']) && !empty($ps_plugin['last_updated'])): ?>
+                        <span class="last-updated"><?php esc_html_e('Last Updated: ', 'bdthemes-prime-slider-lite'); echo esc_html(bdtps_format_last_updated($ps_plugin['last_updated'])); ?></span>
                         <?php endif; ?>
 
                     </label>
@@ -312,7 +312,7 @@ if (!$has_cached_data) {
 <?php
 $ps_integration_i18n = get_integration_i18n_ps();
 $ps_integration_config = array(
-    'ajaxAction' => 'ps_get_plugins',
+    'ajaxAction' => 'bdtps_get_plugins',
     'nonce' => wp_create_nonce('ps_get_plugins_nonce'),
     'selfPluginSlugs' => $self_plugin_slugs,
 );

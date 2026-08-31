@@ -39,10 +39,11 @@ class Sniper extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['swiper', 'ps-sniper'];
+		return ['swiper', 'bdtps-sniper'];
 	}
 	public function get_script_depends() {
-		return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-sniper'];
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [ 'swiper', 'bdtps-sniper' ] );
 	}
 
 	public function get_custom_help_url() {
@@ -375,7 +376,7 @@ class Sniper extends Widget_Base {
 		$this->add_control(
 			'title_active_color',
 			[
-				'label'     => esc_html__('Active Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'     => esc_html__('Active Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title, {{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title a' => 'color: {{VALUE}};',
@@ -383,7 +384,6 @@ class Sniper extends Widget_Base {
 				'condition' => [
 					'show_title' => ['yes'],
 				],
-				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -404,7 +404,7 @@ class Sniper extends Widget_Base {
 		$this->add_control(
             'first_word_title_active_color',
             [
-                'label'     => esc_html__('First Word Active Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'     => esc_html__('First Word Active Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-sniper-slider .swiper-slide-active .bdt-title .frist-word' => 'color: {{VALUE}};',
@@ -412,7 +412,6 @@ class Sniper extends Widget_Base {
                 'condition' => [
 					'show_title' => ['yes'],
 				],
-				'classes'   => BDTPS_CORE_IS_PC,
             ]
         );
 
@@ -511,19 +510,17 @@ class Sniper extends Widget_Base {
 				'condition' => [
 					'show_sub_title' => ['yes'],
 				],
-				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
 		$this->add_control(
 			'grid_line_color',
 			[
-				'label'     => esc_html__('Grid Line Color', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label'     => esc_html__('Grid Line Color', 'bdthemes-prime-slider-lite'),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .bdt-sniper-slider .bdt-grid-line span' => 'border-color: {{VALUE}};',
 				],
-				'classes'   => BDTPS_CORE_IS_PC,
 			]
 		);
 
@@ -677,7 +674,6 @@ class Sniper extends Widget_Base {
 							"speed"          => $settings["speed"]["size"],
 							"effect"        => isset($settings["swiper_effect"]) ? $settings["swiper_effect"] : 'slide',
 							"gl"             => [
-								'shader' => isset($settings["gl_shader"]) ? $settings["gl_shader"] : 'random',
 							],
 							"creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
 							"fadeEffect"     => ['crossFade' => true],

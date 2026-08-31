@@ -44,17 +44,17 @@ if ( ! defined( 'BDTPS_CORE_TITLE' ) ) {
 
 	unset( $bdtps_core_wl_title );
 } // set your own alias
-if ( true === _is_ps_pro_activated() ) {
-
-	if ( ! defined( 'BDTPS_CORE_PC' ) ) {
-		define( 'BDTPS_CORE_PC', '' );
-	}
+/*
+ * Every control this plugin registers is fully usable. These two constants used
+ * to add a "PRO" badge and a `bdt-ps-disabled-control` class that greyed out
+ * working controls unless the separate Pro plugin was active; they are now
+ * always empty and are kept only so add-ons referencing them keep working.
+ */
+if ( ! defined( 'BDTPS_CORE_PC' ) ) {
+	define( 'BDTPS_CORE_PC', '' );
+}
+if ( ! defined( 'BDTPS_CORE_IS_PC' ) ) {
 	define( 'BDTPS_CORE_IS_PC', '' );
-} else {
-	if ( ! defined( 'BDTPS_CORE_PC' ) ) {
-		define( 'BDTPS_CORE_PC', '<span class="bdt-ps-pro-control"></span>' );
-	}
-	define( 'BDTPS_CORE_IS_PC', 'bdt-ps-disabled-control' );
 }
 
 
@@ -550,30 +550,8 @@ function prime_slider_custom_excerpt( $limit = 25, $strip_shortcode = false, $tr
 	return wpautop( $output );
 }
 
-/**
- * License Validation
- */
-if (!function_exists('ps_license_validation')) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function ps_license_validation() {
-
-		if (!class_exists('PrimeSliderPro\Base\Prime_Slider_Base')) {
-			return false;
-		}
-
-		$license_key = get_option(\PrimeSliderPro\Base\Prime_Slider_Base::get_lic_key_param('prime_slider_license_key'));
-
-		if (isset($license_key) && !empty($license_key)) {
-			return true;
-		}
-
-		return false;
-	}
-}
-
-if ( ! function_exists( 'ps_is_page_excluded' ) ) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function ps_is_page_excluded() {
+if ( ! function_exists( 'bdtps_is_page_excluded' ) ) {
+	function bdtps_is_page_excluded() {
 		$excluded_pages = get_option( 'ps_excluded_pages', array() );
 		
 		if ( empty( $excluded_pages ) || ! is_array( $excluded_pages ) ) {

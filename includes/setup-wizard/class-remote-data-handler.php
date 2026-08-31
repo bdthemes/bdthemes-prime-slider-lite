@@ -36,7 +36,7 @@ class Remote_Data_Handler {
     public static function init() {
         add_action('init', [__CLASS__, 'schedule_cron']);
         add_action(self::CRON_HOOK, [__CLASS__, 'cron_fetch_plugins']);
-        add_action('wp_ajax_ps_get_plugins', [__CLASS__, 'ajax_get_plugins']);
+        add_action('wp_ajax_bdtps_get_plugins', [__CLASS__, 'ajax_get_plugins']);
     }
 
     /**
@@ -59,12 +59,12 @@ class Remote_Data_Handler {
         // Check if this is an AJAX request for our plugins. Read-only routing
         // check (which action/page is being requested) — no form data is
         // processed here, so nonce verification does not apply; the actual
-        // ps_get_plugins handler verifies its own nonce + capability.
+        // The bdtps_get_plugins handler verifies its own nonce + capability.
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- see comment above.
         if (wp_doing_ajax() && isset($_REQUEST['action'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only routing check.
             $action = sanitize_text_field(wp_unslash($_REQUEST['action']));
-            if (in_array($action, ['ps_get_plugins'])) {
+            if (in_array($action, ['bdtps_get_plugins'])) {
                 return true;
             }
         }
@@ -606,8 +606,8 @@ if (!function_exists('ps_get_remote_plugins')) {
     }
 }
 
-if (!function_exists('ps_schedule_remote_fetch')) {
-    function ps_schedule_remote_fetch() {
+if (!function_exists('bdtps_schedule_remote_fetch')) {
+    function bdtps_schedule_remote_fetch() {
         return \PrimeSlider\SetupWizard\Remote_Data_Handler::schedule_remote_fetch();
     }
 }

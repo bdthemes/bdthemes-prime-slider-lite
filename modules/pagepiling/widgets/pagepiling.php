@@ -41,11 +41,11 @@ class Pagepiling extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'ps-pagepiling' ];
+		return [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'bdtps-pagepiling' ];
 	}
 
 	public function get_script_depends() {
-		return [ 'jquery-pagepiling', 'ps-pagepiling' ];
+		return [ 'bdtps-pagepiling', 'bdtps-pagepiling' ];
 	}
 
 	public function get_custom_help_url() {
@@ -370,14 +370,13 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
             'navigation_position',
             [
-                'label'   => __( 'Navigation Position', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+                'label'   => __( 'Navigation Position', 'bdthemes-prime-slider-lite' ),
                 'type' 	  => Controls_Manager::SELECT,
 				'default' => 'left',
                 'options' => [
                     'left'       => __( 'Left', 'bdthemes-prime-slider-lite' ),
                     'bottom'     => __( 'Bottom', 'bdthemes-prime-slider-lite' ),
 				],
-				'classes'    => BDTPS_CORE_IS_PC
             ]
 		);
 
@@ -402,10 +401,9 @@ class Pagepiling extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label'   => esc_html__( 'Autoplay', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'   => esc_html__( 'Autoplay', 'bdthemes-prime-slider-lite' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'render_type' => 'template',
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
@@ -1061,7 +1059,7 @@ class Pagepiling extends Widget_Base {
 		$this->add_responsive_control(
 			'slide_navigation_width',
 			[
-				'label' => esc_html__('Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label' => esc_html__('Width', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1071,14 +1069,13 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'width: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_responsive_control(
 			'slide_navigation_height',
 			[
-				'label' => esc_html__('Height', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label' => esc_html__('Height', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1088,14 +1085,13 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'height: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 
 		$this->add_responsive_control(
 			'slide_navigation_space_between',
 			[
-				'label' => esc_html__('Space Between', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+				'label' => esc_html__('Space Between', 'bdthemes-prime-slider-lite'),
 				'type'  => Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -1107,7 +1103,6 @@ class Pagepiling extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .bdt-pagepiling-slider #pp-nav li a, {{WRAPPER}} .bdt-pagepiling-slider .pp-slidesNav li a' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
 				],
-				'classes'    => BDTPS_CORE_IS_PC
 			]
 		);
 

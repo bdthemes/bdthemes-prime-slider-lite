@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 if ( ! function_exists( 'is_plugin_active' ) ) {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
 }
 
 class ModuleService {
@@ -775,31 +775,17 @@ class ModuleService {
 			[ 
 				'name' => 'duplicator_group_end',
 				'type' => 'end_group',
-			],
-
-			[ 
-				'name'         => 'reveal_effects_group_start',
-				'label'        => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ),
-				'desc'         => __( 'Just hit the button below to enable the Reveal Effects on any slider inside Prime Slider', 'bdthemes-prime-slider-lite' ),
-				'type'         => 'start_group',
-				'content_type' => 'new',
-			],
-
-			[ 
-				'name'        => 'reveal-effects',
-				'label'       => esc_html__( 'Reveal Effects', 'bdthemes-prime-slider-lite' ),
-				'type'        => 'checkbox',
-				'default'     => 'off',
-				'widget_type' => 'pro',
-				'demo_url'    => 'https://primeslider.pro/demo/reveal-effects/reveal-effects-demo-1/',
-				'video_url'   => '',
-			],
-
-			[ 
-				'name' => 'reveal_effects_group_end',
-				'type' => 'end_group',
 			]
 		];
+
+		/**
+		 * Extension point: add-on plugins can contribute their own entries to
+		 * the "Other Settings" tab. This plugin contributes none of its own.
+		 */
+		$settings_fields['prime_slider_other_settings'] = (array) apply_filters(
+			'prime_slider/settings/other_settings_fields',
+			$settings_fields['prime_slider_other_settings']
+		);
 
 		$settings                    = [];
 		$settings['settings_fields'] = $settings_fields;

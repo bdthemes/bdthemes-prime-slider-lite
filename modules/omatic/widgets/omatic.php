@@ -42,10 +42,11 @@ class Omatic extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['swiper', 'prime-slider-font', 'ps-omatic'];
+		return ['swiper', 'prime-slider-font', 'bdtps-omatic'];
 	}
 	public function get_script_depends() {
-		return ['swiper', 'shutters', 'gl', 'slicer', 'tinder', 'ps-omatic'];
+		// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+		return $this->addon_script_depends( [ 'swiper', 'bdtps-omatic' ] );
 	}
 
 	public function get_custom_help_url() {
@@ -1162,7 +1163,6 @@ class Omatic extends Widget_Base {
 							"speed"          => $settings["speed"]["size"],
 							"effect"        => isset($settings["swiper_effect"]) ? $settings["swiper_effect"] : 'cube',
 							"gl"             => [
-								'shader' => isset($settings["gl_shader"]) ? $settings["gl_shader"] : 'random',
 							],
 							"creativeEffect" => isset($settings["creative_effect"]) ? $settings["creative_effect"] : false,
 							"fadeEffect"     => ['crossFade' => true],
@@ -1336,9 +1336,6 @@ class Omatic extends Widget_Base {
 	public function rendar_item_image($item, $alt = '') {
 		$settings = $this->get_settings_for_display();
 
-		$gl = $settings['swiper_effect'] == 'gl' ? ' swiper-gl-image' : '';
-		$shutters = $settings['swiper_effect'] == 'shutters' ? ' swiper-shutters-image' : '';
-		$slicer = $settings['swiper_effect'] == 'slicer' ? ' swiper-slicer-image' : '';
 
 		$image_src = Group_Control_Image_Size::get_attachment_image_src($item['image']['id'], 'thumbnail_size', $settings);
 
@@ -1354,7 +1351,7 @@ class Omatic extends Widget_Base {
 
 		<div class="bdt-slide-img-wrap">
 			<div class="bdt-img-wrap">
-				<img class="bdt-img<?php echo esc_attr( $gl . $shutters . $slicer ); ?>" src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr($alt); ?>">
+				<img class="bdt-img" src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr($alt); ?>">
 			</div>
 		</div>
 

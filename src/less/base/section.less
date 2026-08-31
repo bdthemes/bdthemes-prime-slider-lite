@@ -92,6 +92,9 @@
     padding-bottom: @section-xsmall-padding-vertical;
 }
 
+.bdt-section-xsmall-top { padding-top: @section-xsmall-padding-vertical; }
+.bdt-section-xsmall-bottom { padding-bottom: @section-xsmall-padding-vertical; }
+
 /*
  * Small
  */
@@ -99,6 +102,24 @@
 .bdt-section-small {
     padding-top: @section-small-padding-vertical;
     padding-bottom: @section-small-padding-vertical;
+}
+
+.bdt-section-small-top { padding-top: @section-small-padding-vertical; }
+.bdt-section-small-bottom { padding-bottom: @section-small-padding-vertical; }
+
+/*
+ * Medium
+ */
+
+.bdt-section-medium-top { padding-top: @section-padding-vertical; }
+.bdt-section-medium-bottom { padding-bottom: @section-padding-vertical; }
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-medium) {
+
+    .bdt-section-medium-top { padding-top: @section-padding-vertical-m; }
+    .bdt-section-medium-bottom { padding-bottom: @section-padding-vertical-m; }
+
 }
 
 /*
@@ -110,6 +131,9 @@
     padding-bottom: @section-large-padding-vertical;
 }
 
+.bdt-section-large-top { padding-top: @section-large-padding-vertical; }
+.bdt-section-large-bottom { padding-bottom: @section-large-padding-vertical; }
+
 /* Tablet landscape and bigger */
 @media (min-width: @breakpoint-medium) {
 
@@ -117,6 +141,9 @@
         padding-top: @section-large-padding-vertical-m;
         padding-bottom: @section-large-padding-vertical-m;
     }
+
+    .bdt-section-large-top { padding-top: @section-large-padding-vertical-m; }
+    .bdt-section-large-bottom { padding-bottom: @section-large-padding-vertical-m; }
 
 }
 
@@ -129,6 +156,9 @@
     padding-bottom: @section-xlarge-padding-vertical;
 }
 
+.bdt-section-xlarge-top { padding-top: @section-xlarge-padding-vertical; }
+.bdt-section-xlarge-bottom { padding-bottom: @section-xlarge-padding-vertical; }
+
 /* Tablet landscape and bigger */
 @media (min-width: @breakpoint-medium) {
 
@@ -136,6 +166,9 @@
         padding-top: @section-xlarge-padding-vertical-m;
         padding-bottom: @section-xlarge-padding-vertical-m;
     }
+
+    .bdt-section-xlarge-top { padding-top: @section-xlarge-padding-vertical-m; }
+    .bdt-section-xlarge-bottom { padding-bottom: @section-xlarge-padding-vertical-m; }
 
 }
 

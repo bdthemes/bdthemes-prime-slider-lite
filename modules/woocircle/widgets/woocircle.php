@@ -44,11 +44,11 @@ class Woocircle extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return ['ps-woocircle', 'prime-slider-font'];
+		return ['bdtps-woocircle', 'prime-slider-font'];
 	}
 
 	public function get_script_depends() {
-		return ['classie', 'dynamics', 'ps-woocircle'];
+		return ['bdtps-classie', 'bdtps-dynamics', 'bdtps-woocircle'];
 	}
 
 	public function get_custom_help_url() {
@@ -122,11 +122,10 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'title_word_limit',
 			[
-				'label'     => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Title Word Limit', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'min'       => 0,
 				'separator' => 'before',
-				'classes'   => BDTPS_CORE_IS_PC,
 				'condition' => [
 					'show_title' => 'yes',
 				],
@@ -136,10 +135,9 @@ class Woocircle extends Widget_Base {
 		$this->add_control(
 			'excerpt_word_limit',
 			[
-				'label'     => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider-lite' ) . BDTPS_CORE_PC,
+				'label'     => esc_html__( 'Text Word Limit', 'bdthemes-prime-slider-lite' ),
 				'type'      => Controls_Manager::NUMBER,
 				'min'       => 0,
-				'classes'   => BDTPS_CORE_IS_PC,
 				'condition' => [
 					'show_excerpt' => 'yes',
 				],
@@ -1287,10 +1285,6 @@ class Woocircle extends Widget_Base {
 	}
 
 	protected function get_wc_pro_word_limit( $settings, $control ) {
-		if ( true !== _is_ps_pro_activated() ) {
-			return 0;
-		}
-
 		return absint( $settings[ $control ] ?? 0 );
 	}
 

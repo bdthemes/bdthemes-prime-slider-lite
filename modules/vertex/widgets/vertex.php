@@ -47,20 +47,12 @@ class Vertex extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return ['swiper', 'ps-vertex', 'prime-slider-font'];
+        return ['swiper', 'bdtps-vertex', 'prime-slider-font'];
     }
 
     public function get_script_depends() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
-        if ('on' === $reveal_effects) {
-            if ( true === _is_ps_pro_activated() ) {
-                return ['swiper', 'anime', 'revealFx', 'ps-vertex'];
-            } else {
-                return ['swiper', 'ps-vertex'];
-            }
-        } else {
-            return ['swiper', 'ps-vertex'];
-        }
+    	// Add-ons (e.g. Prime Slider Pro) append their own handles via this filter.
+    	return $this->addon_script_depends( [ 'swiper', 'bdtps-vertex' ] );
     }
 
     public function get_custom_help_url() {
@@ -72,7 +64,6 @@ class Vertex extends Widget_Base {
     }
 
 	protected function register_controls() {
-        $reveal_effects = prime_slider_option('reveal-effects', 'prime_slider_other_settings', 'off');
         $this->start_controls_section(
             'section_content_layout',
             [
@@ -83,7 +74,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label'          => __('Columns', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'          => __('Columns', 'bdthemes-prime-slider-lite'),
                 'type'           => Controls_Manager::SELECT,
                 'default'        => 3,
                 'tablet_default' => 3,
@@ -93,7 +84,6 @@ class Vertex extends Widget_Base {
                     3 => '3',
                     5 => '5',
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -156,7 +146,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'vertical_spacing',
             [
-                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label' => esc_html__('Vertical Spacing', 'bdthemes-prime-slider-lite'),
                 'type'  => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -167,7 +157,6 @@ class Vertex extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .bdt-vertex-slider .swiper-vertex' => 'padding: {{SIZE}}{{UNIT}} 0;',
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -290,11 +279,10 @@ class Vertex extends Widget_Base {
         $this->end_controls_section();
 
         /**
-         * Reveal Effects
+         * Extension point: add-ons (e.g. Prime Slider Pro) register their own
+         * controls here. This plugin registers none of its own.
          */
-        if ('on' === $reveal_effects) {
-            $this->register_reveal_effects();
-        }
+        $this->register_addon_controls();
 
         //style
         $this->start_controls_section(
@@ -345,7 +333,7 @@ class Vertex extends Widget_Base {
         $this->add_responsive_control(
             'border_width_type',
             [
-                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider-lite') . BDTPS_CORE_PC,
+                'label'     => esc_html__('Border Line Width', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -357,7 +345,6 @@ class Vertex extends Widget_Base {
                     '{{WRAPPER}} .bdt-vertex-slider .swiper-vertex::before' => 'height: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .bdt-vertex-slider .bdt-img-wrap .bdt-img' => 'border-width: {{SIZE}}{{UNIT}};',
                 ],
-                'classes'   => BDTPS_CORE_IS_PC
             ]
         );
 
@@ -795,7 +782,7 @@ class Vertex extends Widget_Base {
         /**
 		 * Reveal Effects
 		 */
-		$this->reveal_effects_attr('prime-slider-vertex');
+		$this->add_addon_render_attributes('prime-slider-vertex');
 
         $elementor_vp_lg = get_option('elementor_viewport_lg');
         $elementor_vp_md = get_option('elementor_viewport_md');

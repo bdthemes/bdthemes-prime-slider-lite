@@ -7,9 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'rc_dynamic_init' ) ) {
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- established function name relied on by the Pro plugin / feedback SDK; renaming would break integration.
-	function rc_dynamic_init( $params ) {
+if ( ! function_exists( 'bdtps_reviews_collector_init' ) ) {
+	function bdtps_reviews_collector_init( $params ) {
 
 		if ( is_admin() ) :
 
@@ -27,8 +26,8 @@ if ( ! function_exists( 'rc_dynamic_init' ) ) {
 			 * Include SDK
 			 */
 			require_once dirname( __FILE__ ) . '/rc-biggopti.php';
-			if ( function_exists( 'rc_sdk_automate' ) ) {
-				rc_sdk_automate( $params );
+			if ( function_exists( 'bdtps_reviews_collector_automate' ) ) {
+				bdtps_reviews_collector_automate( $params );
 			}
 
 		endif;

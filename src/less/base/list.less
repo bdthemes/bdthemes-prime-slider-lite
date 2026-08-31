@@ -83,68 +83,45 @@
 
 
 /* Marker modifiers
- * Moving `::marker` inside `::before` to style it differently
- * To style the `::marker` is currently only supported in Firefox and Safari
  ========================================================================== */
 
-.bdt-list-disc > *,
-.bdt-list-circle > *,
-.bdt-list-square > *,
-.bdt-list-decimal > *,
-.bdt-list-hyphen > * { padding-left: @list-padding-left; }
+.bdt-list-disc,
+.bdt-list-circle,
+.bdt-list-square,
+.bdt-list-decimal,
+.bdt-list-hyphen { padding-left: @list-padding-left; }
 
-/*
- * Type modifiers
- */
-
-.bdt-list-decimal { counter-reset: decimal; }
-.bdt-list-decimal > * { counter-increment: decimal; }
-
-.bdt-list-disc > ::before,
-.bdt-list-circle > ::before,
-.bdt-list-square > ::before,
-.bdt-list-decimal > ::before,
-.bdt-list-hyphen > ::before {
-    content: "";
-    position: relative;
-    left: -@list-padding-left;
-    width: @list-padding-left;
-    height: @list-marker-height;
-    margin-bottom: -@list-marker-height;
-    display: list-item;
-    list-style-position: inside;
-    text-align: right;
-}
-
-.bdt-list-disc > ::before { list-style-type: disc; }
-.bdt-list-circle > ::before { list-style-type: circle; }
-.bdt-list-square > ::before { list-style-type: square; }
-.bdt-list-decimal > ::before { content: counter(decimal, decimal) '\200A.\00A0'; }
-.bdt-list-hyphen > ::before { content: '–\00A0\00A0'; }
+.bdt-list-disc { list-style-type: disc; }
+.bdt-list-circle { list-style-type: circle; }
+.bdt-list-square { list-style-type: square; }
+.bdt-list-decimal { list-style-type: decimal; }
+.bdt-list-hyphen { list-style-type: '–  '; }
 
 /*
  * Color modifiers
  */
 
-.bdt-list-muted > ::before { color: @list-muted-color !important; }
-.bdt-list-emphasis > ::before { color: @list-emphasis-color !important; }
-.bdt-list-primary > ::before { color: @list-primary-color !important; }
-.bdt-list-secondary > ::before { color: @list-secondary-color !important; }
+.bdt-list-muted > ::marker { color: @list-muted-color !important; }
+.bdt-list-emphasis > ::marker { color: @list-emphasis-color !important; }
+.bdt-list-primary > ::marker { color: @list-primary-color !important; }
+.bdt-list-secondary > ::marker { color: @list-secondary-color !important; }
 
 
 /* Image bullet modifier
  ========================================================================== */
 
-.bdt-list-bullet > * { padding-left: @list-padding-left; }
+.bdt-list-bullet > * {
+    position: relative;
+    padding-left: @list-padding-left;
+}
 
 .bdt-list-bullet > ::before {
     content: "";
-    display: list-item;
-    position: relative;
-    left: -@list-padding-left;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: @list-padding-left;
-    height: @list-marker-height;
-    margin-bottom: -@list-marker-height;
+    height: @global-line-height * 1em;
     .svg-fill(@internal-list-bullet-image, "#000", @list-bullet-icon-color);
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -242,10 +219,10 @@
 
 .hook-inverse() {
 
-    .bdt-list-muted > ::before { color: @inverse-list-muted-color !important; }
-    .bdt-list-emphasis > ::before { color: @inverse-list-emphasis-color !important; }
-    .bdt-list-primary > ::before { color: @inverse-list-primary-color !important; }
-    .bdt-list-secondary > ::before { color: @inverse-list-secondary-color !important; }
+    .bdt-list-muted > ::marker { color: @inverse-list-muted-color !important; }
+    .bdt-list-emphasis > ::marker { color: @inverse-list-emphasis-color !important; }
+    .bdt-list-primary > ::marker { color: @inverse-list-primary-color !important; }
+    .bdt-list-secondary > ::marker { color: @inverse-list-secondary-color !important; }
 
     .bdt-list-bullet > ::before {
         .svg-fill(@internal-list-bullet-image, "#000", @inverse-list-bullet-icon-color);

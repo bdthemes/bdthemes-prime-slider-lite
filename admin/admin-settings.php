@@ -59,7 +59,7 @@ class PrimeSlider_Admin_Settings {
 		}
 
 		// Plugin installation (admin only)
-		add_action('wp_ajax_ps_install_plugin', [$this, 'install_plugin_ajax']);
+		add_action('wp_ajax_bdtps_install_plugin', [$this, 'install_plugin_ajax']);
 	}
 
 
@@ -353,9 +353,6 @@ class PrimeSlider_Admin_Settings {
 		//initialize settings
 		$this->settings_api->admin_init();
 		$this->ps_redirect_to_get_pro();
-		if (true === _is_ps_pro_activated()) {
-			$this->bdt_redirect_to_renew_link();
-		}
 	}
 
 	/**
@@ -373,15 +370,6 @@ class PrimeSlider_Admin_Settings {
             exit;
         }
     }
-
-	// Redirect to renew link
-	public function bdt_redirect_to_renew_link() {
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check for display/routing, no form data processed.
-		if (isset($_GET['page']) && $_GET['page'] === self::PAGE_ID . '_license_renew') {
-			wp_redirect('https://account.bdthemes.com/'); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Intentional redirect to the external BdThemes account page; wp_safe_redirect() would block this off-site host.
-			exit;
-		}
-	}
 
 	public function admin_menu() {
 		add_menu_page(
@@ -689,7 +677,7 @@ class PrimeSlider_Admin_Settings {
 							<h1 class="bdt-text-bold"><?php echo esc_html__('WHY GO WITH PRO?', 'bdthemes-prime-slider-lite'); ?></h1>
 							<h2><?php echo esc_html__('Just Compare With ', 'bdthemes-prime-slider-lite'); ?>Prime Slider<?php echo esc_html__(' Free Vs Pro', 'bdthemes-prime-slider-lite'); ?></h2>
 						</div>
-						<?php if (true !== _is_ps_pro_activated()) : ?>
+						<?php if (true !== bdtps_is_pro_activated()) : ?>
 							<div class="ps-purchase-button">
 								<a href="https://primeslider.pro/pricing/" target="_blank"><?php echo esc_html__('Purchase Now', 'bdthemes-prime-slider-lite'); ?></a>
 							</div>
@@ -872,7 +860,7 @@ class PrimeSlider_Admin_Settings {
 								</li>
 							</ul>
 
-							<?php if (true !== _is_ps_pro_activated()) : ?>
+							<?php if (true !== bdtps_is_pro_activated()) : ?>
 								<div class="ps-purchase-button bdt-margin-medium-top">
 									<a href="https://primeslider.pro/pricing/" target="_blank"><?php echo esc_html__('Purchase Now', 'bdthemes-prime-slider-lite'); ?></a>
 								</div>
@@ -981,7 +969,7 @@ class PrimeSlider_Admin_Settings {
 						</div> -->
 
 
-                        <?php if (_is_ps_pro_activated() !== true) : ?>
+                        <?php if (bdtps_is_pro_activated() !== true) : ?>
                             <div id="prime_slider_get_pro" class="ps-option-page group">
                                 <?php $this->prime_slider_get_pro(); ?>
                             </div>
@@ -1006,9 +994,8 @@ class PrimeSlider_Admin_Settings {
                         <div id="prime_slider_license_settings_page" class="ps-option-page group">
 
                             <?php
-                            if (_is_ps_pro_activated() == true) {
-                                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- established hook name.
-                                apply_filters('ps_license_page', '');
+                            if (bdtps_is_pro_activated() == true) {
+                                apply_filters('prime_slider/license_page', '');
                             }
 
                             ?>
@@ -1600,7 +1587,7 @@ class PrimeSlider_Admin_Settings {
 					url: '<?php echo esc_url( admin_url('admin-ajax.php') ); ?>',
 					type: 'POST',
 					data: {
-						action: 'ps_install_plugin',
+						action: 'bdtps_install_plugin',
 						plugin_slug: pluginSlug,
 						nonce: nonce
 					},
@@ -1715,6 +1702,14 @@ class PrimeSlider_Admin_Settings {
 	}
 
 
+	/**
+	 * Whether an add-on has supplied a white-label title.
+	 *
+	 * This only decides whether BdThemes branding is shown in the dashboard. It
+	 * does not enable, disable or limit any feature of this plugin.
+	 *
+	 * @return bool
+	 */
     public static function license_wl_status() {
 		$status = get_option('prime_slider_license_title_status');
 		
@@ -2232,28 +2227,6 @@ class PrimeSlider_Admin_Settings {
 	}
 
 
-	/**
-	 * Get License Key
-	 *
-	 * @access public
-	 * @return string
-	 */
-
-	public static function get_license_key() {
-		$license_key = get_option('prime_slider_license_key');
-		return trim($license_key);
-	}
-
-	/**
-	 * Get License Email
-	 *
-	 * @access public
-	 * @return string
-	 */
-
-	 public static function get_license_email() {
-		return trim(get_option('prime_slider_license_email', get_bloginfo('admin_email')));
-	}
 }
 
 new PrimeSlider_Admin_Settings();
