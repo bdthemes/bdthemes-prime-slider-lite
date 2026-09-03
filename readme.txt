@@ -1,23 +1,23 @@
-=== Prime Slider ===
+=== Prime Slider - Hero Slider, Carousel, WooCommerce & Post Slider Elementor Addons ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf, shaikatazim, shamim496
 Donate link: https://bdthemes.com/
-Tags: hero slider, content slider, elementor addon, image slider, video slider
+Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce slider
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.5.2
+Stable tag: 4.5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.2.3
+Elementor tested up to: 4.2.4
 
-Create responsive Elementor sliders for hero sections, posts, products, and more with powerful Elementor addons and ready-to-use Elementor templates.
+Create responsive Elementor sliders for hero sections, posts, products and more with powerful Elementor addons and ready-to-use Elementor templates.
 
 == Description ==
 
-Prime Slider is an Elementor addon that lets you build and customize a slider for any purpose. You can design a Hero Slider for your homepage, a Post Slider to feature recent articles, an Ecommerce Slider to highlight products, or a Content Slider to organize information in a clean, dynamic layout. Everything works smoothly inside Elementor’s drag-and-drop editor.
+Prime Slider is an Elementor addon that lets you build and customize a slider for any purpose. You can design a hero slider for your homepage, a post slider to feature recent articles, an ecommerce slider to highlight products, or a Content Slider to organize information in a clean, dynamic layout. Everything works smoothly inside Elementor’s drag-and-drop editor.
 
-The plugin includes 30+ free widgets, 8 skins, 3 essential features, and 75+ ready-made sliders that help you create visually appealing and fully responsive designs.
+The plugin includes 57+ widgets, 8 skins, 3 essential features, a slider extension and 120+ ready-made sliders that help you create visually appealing and fully responsive designs.
 
 
 Available Slider Types:
@@ -29,10 +29,10 @@ Available Slider Types:
 ✅ Carousel Slider
 ✅ Post Slider
 ✅ Video Slider
-✅ WooCommerce Product Slider
+✅ WooCommerce Product Slider or E-commerce Slider
 ✅ Testimonial Slider and more
 
-Prime Slider makes it simple to create sliders that adapt beautifully to any device or layout. Each widget is easy to customize and optimized for performance to help you deliver engaging user experiences without code.
+Prime Slider makes it simple to create Elementor sliders that adapt beautifully to any device or layout. Each widget is easy to customize and optimized for performance to help you deliver engaging user experiences without code.
 
 
 **[Free Demo](https://primeslider.pro/demo/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Prime Slider Pro](https://primeslider.pro/pricing/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)** | **[Documentation](https://bdthemes.com/knowledge-base/prime-slider/?utm_source=WordPress_repo&utm_medium=PrimeSlider&utm_campaign=ORG_Content)**
@@ -43,15 +43,15 @@ https://youtu.be/KwDq6wiS6go
 
 ## Prime Slider - An Elementor addon to Add and Design Sliders Effortlessly
 
-There are some key things our plugin has covered to give you a boost in your website slider creation.
+There are some key things our plugin covers to boost your website slider creation.
 
-* **Design and Usability:** You can use distinct design elements, including buttons, titles, arrows and more.
+* **Design and Usability:** You can use distinct design elements, including buttons, titles, arrows and more with advanced Elementor Addon based sliders.
 
-* **Customization Options:** You can choose or select various slide layouts, colors and fonts, slider animations, and the appearance and placement of navigation elements.
+* **Customization Options:** You can choose or select various slide layouts, colors and fonts, slider animations and the appearance and placement of navigation elements.
 
 * **Effortless Workflow:** You can arrange slides and place content utilizing visual editors.
 
-* **Boosts user engagement:** Encourage users to click, explore, and stay longer.
+* **Boosts user engagement:** Encourage users to click, explore and stay longer.
 
 * **Showcases prioritized content:** Feature important content, including Promotions, Sales, etc.
 
@@ -64,17 +64,17 @@ There are some key things our plugin has covered to give you a boost in your web
 
 * **Interactive elements:** Enable you to engage with slides through clickable elements, including interactive videos.
 
-* **Responsive Design:** Layouts adapt for phones, tablets, and desktops.
+* **Responsive Design:** Layouts adapt for phones, tablets and desktops.
 
 * **Autoplay with pause functionality:** Allows you to set automatic slide transitions with the option to pause on hover. 
 
-* **Multimedia Support:** This includes images, videos, text, and more.
+* **Multimedia Support:** This includes image sliders, video sliders, text sliders and more. 
 
 * **User Interaction:** Allows easy-to-use navigation controls for users to browse through slides manually.
 
-* **Performance Optimization:** Lightweight, fast-loading, and caching-friendly for efficiency.
+* **Performance Optimization:** Lightweight, fast-loading and caching-friendly for efficiency.
 
-* **Integration and Compatibility:** Works seamlessly with Elementor plugins and WordPress themes.
+* **Integration and Compatibility:** The Elementor addons of the slider plugin work seamlessly with Elementor plugins and WordPress themes.
 
 * **Support and Documentation:** Provides guides and tutorials to help you set up and customize the slider.
 
@@ -128,7 +128,7 @@ There are some key things our plugin has covered to give you a boost in your web
 == Widgets for WooCommerce 🔥 ==
 
 * [WooCommerce](https://primeslider.pro/demo/woocommerce/) - Display your products in a slider with detailed information, including price and add-to-cart options.
-* [Woocircle](https://primeslider.pro/demo/woocircle/) - Showcase products in circular layouts for a fresh and unique visual appeal.
+* [Woocircle](https://primeslider.pro/demo/woocircle/) - With this specialized WooCommerce slider, showcase products in circular layouts for a fresh and unique visual appeal.
 * [Woolamp](https://primeslider.pro/demo/woolamp/) - A minimalistic WooCommerce slider designed to enhance the customer shopping experience with smooth navigation.
 
 == Handy Features 🔥 ==
@@ -266,6 +266,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.5.3 [3rd September 2026] =
+
+* Updated: System improved
+
 = 4.5.2 [31st August 2026] =
 
 * Improved: Every slider control in this plugin is now fully usable. 116 controls across the free widgets (Show Excerpt, Content Max Width, Offset, Overlay, Swiper Effect, Query ID and others) were previously greyed out with a "PRO" badge and are now available to everyone
@@ -326,7 +330,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 = 4.4.10 [13th August 2026] =
 
-* Security: Added a safety-net module that blocks the known malicious host, scrubs payloads from the notification feed, and detects/cleans artefacts left by the notification-feed compromise
+* Security: Added a safety-net module that blocks the known malicious host, scrubs payloads from the notification feed and detects/cleans artefacts left by the notification-feed compromise
 * Security: Restricted settings save to the plugin's own options and sanitized stored values
 * Security: Escaped remote plugin data before rendering it in the setup wizard
 * Security: Removed the unauthenticated registration and added a capability check to the plugin catalog request
@@ -448,6 +452,25 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 ### Is Prime Slider compatible with managed WordPress hosting? 
 
 - Prime Slider has been tested on popular managed WordPress hosting environments, including [Kinsta](https://kinsta.com/).
+
+### Does Prime Slider work with the free version of Elementor?
+
+- Yes! Prime Slider works seamlessly with both Elementor Free and Elementor Pro. You do not need an Elementor Pro license to use our free widgets.
+
+### Will Prime Slider slow down my website?
+
+- No. Prime Slider uses an on-demand asset loading system. Only the CSS and JavaScript files for the specific widgets placed on a page are loaded. You can also disable unused widgets inside the Prime Slider admin dashboard.
+
+### Can I create sliders from custom post types (CPT) and WooCommerce?
+
+- Yes. Prime Slider includes dedicated widgets for WooCommerce products as well as standard WordPress posts and custom taxonomies.
+
+### Are the sliders touch-friendly on mobile devices?
+- Yes. All Prime Slider widgets feature native touch-swipe navigation, keyboard controls, and customizable responsive breakpoints for desktop, tablet, and mobile devices.
+
+### Can I copy and paste pre-made demo sliders to my site?
+
+- Yes! With our Live Copy / Paste feature, you can browse any slider from our [Demo Library](https://primeslider.pro/demo/) and paste the entire section directly into your Elementor editor.
 
 
 == Screenshots ==
