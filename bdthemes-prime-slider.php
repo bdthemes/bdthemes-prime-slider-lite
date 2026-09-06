@@ -4,7 +4,7 @@
  * Plugin Name: Prime Slider
  * Plugin URI: https://primeslider.pro/
  * Description: Elementor addon pack for building responsive headers and sliders (hero, posts, WooCommerce, and more).
- * Version: 4.5.3
+ * Version: 4.5.4
  * Requires at least: 6.8
  * Requires PHP: 7.4
  * Author: BdThemes
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Some pre define value for easy use
 
 if ( ! defined( 'BDTPS_CORE_VER' ) ) {
-	define( 'BDTPS_CORE_VER', '4.5.3' );
+	define( 'BDTPS_CORE_VER', '4.5.4' );
 }
 if ( ! defined( 'BDTPS_CORE__FILE__' ) ) {
 	define( 'BDTPS_CORE__FILE__', __FILE__ );

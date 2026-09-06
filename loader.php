@@ -205,11 +205,11 @@ class Prime_Slider_Loader {
 		//TODO more attractive animation
 		//Thirdparty widgets
 		if ( prime_slider_is_widget_enabled( 'multiscroll' ) ) {
-			wp_register_script( 'bdtps-multiscroll', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.multiscroll.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'bdtps-multiscroll-lib', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.multiscroll.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 			wp_register_script( 'bdtps-easings', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.easings.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}
 		if ( prime_slider_is_widget_enabled( 'pagepiling' ) ) {
-			wp_register_script( 'bdtps-pagepiling', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.pagepiling.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
+			wp_register_script( 'bdtps-pagepiling-lib', BDTPS_CORE_ASSETS_URL . 'vendor/js/jquery.pagepiling.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );
 		}
 		if ( prime_slider_is_widget_enabled( 'knily' ) or prime_slider_is_third_party_enabled( 'woolamp' ) ) {
 			wp_register_script( 'bdt-goodshare', BDTPS_CORE_ASSETS_URL . 'vendor/js/goodshare.min.js', [ 'jquery' ], BDTPS_CORE_VER, true );

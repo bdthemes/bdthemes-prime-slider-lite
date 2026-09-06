@@ -10,6 +10,11 @@
             return;
         }
 
+        if (typeof $.fn.pagepiling !== 'function') {
+            console.warn('Prime Slider: pagePiling.js is not loaded, skipping Pagepiling widget.');
+            return;
+        }
+
         var $social = $scope.find('.bdt-prime-slider-social-icon');
         var socialFxEnabled = false;
         var triggerSocialTransition = function () {

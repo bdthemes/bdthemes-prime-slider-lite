@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.5.3
+Stable tag: 4.5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -265,6 +265,12 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.5.4 [6th September 2026] =
+
+* Fixed: Pagepiling widget did not work on the front end ("pagepiling is not a function" in the console)
+* Fixed: Multiscroll widget did not work on the front end
+* Improved: Both widgets now log a warning instead of throwing an error when their library is missing
 
 = 4.5.3 [3rd September 2026] =
 

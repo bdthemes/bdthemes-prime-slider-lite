@@ -45,7 +45,7 @@ class Pagepiling extends Widget_Base {
 	}
 
 	public function get_script_depends() {
-		return [ 'bdtps-pagepiling', 'bdtps-pagepiling' ];
+		return [ 'bdtps-pagepiling-lib', 'bdtps-pagepiling' ];
 	}
 
 	public function get_custom_help_url() {
