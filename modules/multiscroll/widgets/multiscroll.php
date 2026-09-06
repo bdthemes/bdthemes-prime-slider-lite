@@ -47,7 +47,7 @@ class Multiscroll extends Widget_Base {
 	}
 
 	public function get_script_depends() {
-		return ['bdtps-multiscroll', 'bdtps-easings', 'bdtps-multiscroll'];
+		return ['bdtps-multiscroll-lib', 'bdtps-easings', 'bdtps-multiscroll'];
 	}
 
 	public function get_custom_help_url() {

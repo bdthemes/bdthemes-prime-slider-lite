@@ -10,6 +10,12 @@
         if (!$multiscroll.length) {
             return;
         }
+
+        if (typeof $.fn.multiscroll !== 'function') {
+            console.warn('Prime Slider: multiscroll.js is not loaded, skipping Multiscroll widget.');
+            return;
+        }
+
         var $settings = $multiscroll.data('settings');
 
         if ($settings.autoplay === true && !editMode) {
