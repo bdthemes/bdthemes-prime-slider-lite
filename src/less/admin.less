@@ -1222,14 +1222,123 @@
 	}
 
 	.ps-dashboard-panel {
+		// Other Plugins cards.
+		//
+		// Deliberately mirrors the setup wizard's integration cards so both
+		// screens read as one design. Every value below is copied from
+		// includes/setup-wizard/assets/css/setup-wizard.css (.plugin-item and
+		// friends); the wizard's CSS custom properties are not in scope on the
+		// dashboard, so their resolved values are inlined here.
+		//
+		// Rules are nested under .bdt-card on purpose: the generic
+		// `.ps-dashboard-panel .bdt-card` block further down this file would
+		// otherwise win on source order at equal specificity.
 		.ps-dashboard-others-plugin {
-			display: flex;
-			flex-direction: column;
-			gap: @ps-dashboard-gap-size;
+
+			// The cards live one level in, inside #ps-plugins-list, so the grid
+			// belongs there -- on the container itself it would have a single
+			// child and lay out one column.
+			.ps-plugins-list {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 20px;
+
+				@media (min-width: 768px) {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				@media (min-width: 1200px) {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
 
 			.bdt-card {
+				display: flex;
 				flex-direction: column;
-				gap: 20px;
+				align-items: flex-start;
+				gap: 8px;
+				background: #ffffff;
+				border: 1px solid #e8f0f3;
+				border-radius: 10px;
+				padding: 25px 20px;
+				transition: all 0.3s ease;
+
+				&:hover {
+					border-color: #6c5ce7;
+					box-shadow: 0 10px 20px rgba(108, 92, 231, 0.1);
+					transform: translateY(-3px);
+				}
+
+				.bdt-others-plugin-content {
+					gap: 8px;
+
+					// The wizard stacks the logo above the plugin name; the markup
+					// here puts them in one row, so flip the axis in CSS rather than
+					// rewriting the renderer's markup.
+					.bdt-plugin-logo-wrap {
+						flex-direction: column;
+						align-items: flex-start;
+						gap: 12px;
+					}
+
+					img {
+						inline-size: 48px;
+						block-size: 48px;
+						border-radius: 4px;
+					}
+
+					.ps-feature-title {
+						font-size: 16px;
+						font-weight: 600;
+						line-height: 1.35;
+						color: #2d3436;
+					}
+
+					span.active-installs {
+						font-size: 13px;
+						font-weight: 500;
+						color: #636e72;
+
+						.installs-count {
+							font-size: 12px;
+							font-weight: 400;
+							color: #636e72;
+						}
+					}
+
+					.bdt-others-plugin-downloads {
+						font-size: 13px;
+						font-weight: 500;
+						color: #00b894;
+					}
+
+					.bdt-others-plugin-updated {
+						font-size: 13px;
+						font-style: italic;
+						color: #636e72;
+					}
+
+					.bdt-others-plugin-rating {
+						.bdt-others-plugin-rating-stars i {
+							font-size: 16px;
+						}
+
+						.bdt-others-plugin-rating-text,
+						.rating-count {
+							font-size: 13px;
+							color: #636e72;
+						}
+					}
+				}
+
+				// Buttons sit at the card foot; margin-block-start:auto keeps them
+				// aligned across a row when descriptions differ in length.
+				.bdt-others-plugins-link {
+					min-inline-size: 0;
+					flex: none;
+					margin-block-start: auto;
+					padding-block-start: 5px;
+				}
 			}
 		}
 
@@ -3423,15 +3532,8 @@ body.rtl .prime-slider-dashboard.wrap .ps-option-page .ps-option-item[data-conte
 
 	.prime-slider-dashboard.wrap .ps-dashboard-panel {
 
-		.ps-dashboard-others-plugin {
-			.bdt-card {
-				flex-direction: row;
-
-				.bdt-others-plugins-link {
-					justify-content: end;
-				}
-			}
-		}
+		// The Other Plugins cards are a 3-up grid of column cards at every
+		// breakpoint now, so the old wide-screen row override is gone.
 	}
 }
 

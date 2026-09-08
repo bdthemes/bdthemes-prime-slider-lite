@@ -265,11 +265,7 @@ class PrimeSlider_Others_Plugin_Manager {
                                     '</div>' +
                                 '</div>' +
                                 '<div class="bdt-others-plugin-content-text bdt-margin-top">';
-                        
-                        if (plugin.description) {
-                            html += '<p>' + psEsc(plugin.description) + '</p>';
-                        }
-                        
+
                         // Active installs
                         var installsCount = Number(plugin.active_installs_count) || 0;
                         html += '<span class="active-installs bdt-margin-small-top">' +
@@ -337,9 +333,16 @@ class PrimeSlider_Others_Plugin_Manager {
                                 '<?php echo esc_js(__('Active', 'bdthemes-prime-slider-lite')); ?>' +
                                 '</span>';
                         } else if (plugin.status === 'installed') {
+                            // esc_url_raw(), not esc_url(): this lands inside a JavaScript
+                            // string, not HTML. esc_url() would encode the & as &#038;, and
+                            // since psEsc() escapes it again on output the browser ends up
+                            // treating the # as a fragment -- plugins.php then receives no
+                            // `plugin` and no `_wpnonce`, and WordPress reports "The link you
+                            // followed has expired." psEsc() below does the HTML escaping.
+                            //
                             // URL-encode the query values: plugin_file contains slashes and
                             // both parts land inside an href attribute.
-                            var activateUrl = '<?php echo esc_url( admin_url('plugins.php?action=activate&plugin=') ); ?>' +
+                            var activateUrl = '<?php echo esc_url_raw( admin_url('plugins.php?action=activate&plugin=') ); ?>' +
                                 encodeURIComponent(plugin.plugin_file || '') +
                                 '&_wpnonce=' + encodeURIComponent(plugin.activate_nonce || '');
                             html += '<a class="bdt-button bdt-welcome-button" href="' + psEsc(activateUrl) + '">' +
