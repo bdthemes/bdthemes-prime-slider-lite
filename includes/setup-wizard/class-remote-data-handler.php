@@ -23,7 +23,9 @@ class Remote_Data_Handler {
     /**
      * Transient key for remote plugins data
      */
-    const CACHE_KEY = 'bdt_remote_plugins_data';
+    // Bumped when the shape of the cached payload changes, so existing installs
+    // rebuild instead of serving a week-old entry (v2: bundled brand logos).
+    const CACHE_KEY = 'bdt_remote_plugins_data_v2';
 
     /**
      * Cron hook name for background fetch
@@ -459,7 +461,7 @@ class Remote_Data_Handler {
         return [
             'name' => $raw_data['name'] ?? '',
             'slug' => $raw_data['slug'] ?? '',
-            'logo' => $icon_url,
+            'logo' => self::get_local_plugin_logo($raw_data['slug'] ?? '') ?: $icon_url,
             'description' => $raw_data['short_description'] ?? '',
             'active_installs' => $active_installs,
             'active_installs_count' => $active_installs_count,
@@ -476,6 +478,46 @@ class Remote_Data_Handler {
             'requires_php' => $raw_data['requires_php'] ?? '',
             'fetched_at' => current_time('timestamp')
         ];
+    }
+
+    /**
+     * Resolve a plugin slug to the brand logo bundled with this plugin.
+     *
+     * These ship in assets/images/others-plugin-logo/ and are preferred over the
+     * wordpress.org icon so the cards show the real BdThemes artwork instead of
+     * the generic placeholder. Most slugs map straight to <slug>.png; $aliases
+     * covers the few whose wordpress.org slug differs from the filename.
+     *
+     * @param string $slug wordpress.org plugin slug.
+     * @return string Logo URL, or '' when nothing is bundled for that slug.
+     */
+    private static function get_local_plugin_logo($slug) {
+        if (!is_string($slug) || '' === $slug) {
+            return '';
+        }
+
+        $aliases = [
+            'bdthemes-element-pack-lite' => 'element-pack',
+            'bdthemes-element-pack'      => 'element-pack',
+            'bdthemes-prime-slider-lite' => 'prime-slider',
+            'bdthemes-prime-slider'      => 'prime-slider',
+            'website-accessibility'      => 'one-accessibility',
+        ];
+
+        $file = isset($aliases[$slug]) ? $aliases[$slug] : $slug;
+
+        // Never let a slug escape the logo folder: only a plain lowercase name.
+        if (!preg_match('/^[a-z0-9-]+$/', $file)) {
+            return '';
+        }
+
+        $relative = 'images/others-plugin-logo/' . $file . '.png';
+
+        if (!is_file(BDTPS_CORE_PATH . 'assets/' . $relative)) {
+            return '';
+        }
+
+        return BDTPS_CORE_ASSETS_URL . $relative;
     }
 
     /**

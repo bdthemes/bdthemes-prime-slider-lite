@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.5.4
+Stable tag: 4.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -265,6 +265,17 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.6.0 [10th September 2026] =
+
+* Fixed: The System Status charts on the dashboard never appeared, and the browser console reported "Cannot use import statement outside a module" and "Chart is not defined". The bundled Chart.js was the module build, which cannot run as an ordinary script
+* Fixed: Every template on the setup wizard's last step failed with "Invalid Import URL". The template files were missing from the plugin, and the release build excluded them as well
+* Fixed: The Activate button on the dashboard's Other Plugins tab led to "The link you followed has expired". The link's separators were HTML-encoded inside a script, so WordPress never received the plugin name or the security token
+* Added: The Other Plugins tab and the setup wizard's integration step now show each plugin's own logo instead of a generic placeholder icon
+* Changed: The Other Plugins tab lays its cards out in three columns and uses the same card design as the setup wizard's integration step
+* Changed: Removed the plugin description from the Other Plugins cards
+* Improved: The client IP helper no longer trusts forwarding headers supplied by the caller. Sites behind a reverse proxy or CDN can opt back in with the new prime_slider_trusted_proxies filter
+* Changed: Removed the unused uglify build dependency, clearing every critical advisory reported against the development toolchain
 
 = 4.5.4 [6th September 2026] =
 

@@ -27,7 +27,6 @@
 		"terser": "^5.21.0"
 	},
 	"dependencies": {
-		"uglify": "^0.1.5",
 		"uikit": "^3.25.21"
 	}
 }

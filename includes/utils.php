@@ -27,28 +27,57 @@ class Utils {
 		'span',
 	];
 
+	/**
+	 * Client IP address.
+	 *
+	 * REMOTE_ADDR is the only address the web server itself establishes. Every
+	 * HTTP_CLIENT_IP / HTTP_X_FORWARDED_* header is supplied by the caller and
+	 * can say anything, so checking that one parses as an IP does not make it
+	 * trustworthy. Sites behind a reverse proxy or CDN opt in to the forwarded
+	 * value through the 'prime_slider_trusted_proxies' filter.
+	 *
+	 * @return string
+	 */
 	public static function get_client_ip() {
-		$server_ip_keys = [
-			'HTTP_CLIENT_IP',
-			'HTTP_X_FORWARDED_FOR',
-			'HTTP_X_FORWARDED',
-			'HTTP_X_CLUSTER_CLIENT_IP',
-			'HTTP_FORWARDED_FOR',
-			'HTTP_FORWARDED',
-			'REMOTE_ADDR',
-		];
+		$remote_addr = isset( $_SERVER['REMOTE_ADDR'] )
+			? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+			: '';
 
-		foreach ( $server_ip_keys as $key ) {
-			if ( isset( $_SERVER[ $key ] ) ) {
-				$ip = sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) );
-				if ( filter_var( $ip, FILTER_VALIDATE_IP ) ) {
-					return $ip;
-				}
+		if ( ! filter_var( $remote_addr, FILTER_VALIDATE_IP ) ) {
+			// Fallback local ip.
+			return '127.0.0.1';
+		}
+
+		/**
+		 * Proxy addresses that are allowed to set X-Forwarded-For.
+		 *
+		 * Empty by default, which means the forwarded headers are ignored.
+		 *
+		 * @param string[] $trusted_proxies Proxy IP addresses.
+		 */
+		$trusted_proxies = (array) apply_filters( 'prime_slider_trusted_proxies', [] );
+
+		if ( ! in_array( $remote_addr, $trusted_proxies, true ) ) {
+			return $remote_addr;
+		}
+
+		// The request really did come from a trusted proxy, so the client is the
+		// rightmost entry in X-Forwarded-For -- the one that proxy appended.
+		// Anything further left was supplied by the caller and may be forged.
+		$forwarded = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] )
+			? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+			: '';
+
+		if ( '' !== $forwarded ) {
+			$hops = array_map( 'trim', explode( ',', $forwarded ) );
+			$last = end( $hops );
+
+			if ( filter_var( $last, FILTER_VALIDATE_IP ) ) {
+				return $last;
 			}
 		}
 
-		// Fallback local ip.
-		return '127.0.0.1';
+		return $remote_addr;
 	}
 
 	public static function get_site_domain() {

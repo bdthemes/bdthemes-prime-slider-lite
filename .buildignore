@@ -13,7 +13,7 @@ gruntfile.js
 node_modules
 ./node_modules
 .git
-*zip
+/*.zip
 less
 .cursorrules
 .DS_Store
