@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.5.4
+Stable tag: 4.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -266,7 +266,7 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 4.5.5 [8th September 2026] =
+= 4.6.0 [10th September 2026] =
 
 * Fixed: The System Status charts on the dashboard never appeared, and the browser console reported "Cannot use import statement outside a module" and "Chart is not defined". The bundled Chart.js was the module build, which cannot run as an ordinary script
 * Fixed: Every template on the setup wizard's last step failed with "Invalid Import URL". The template files were missing from the plugin, and the release build excluded them as well
