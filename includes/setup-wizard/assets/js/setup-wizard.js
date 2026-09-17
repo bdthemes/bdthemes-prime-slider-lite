@@ -125,6 +125,7 @@
                 this.saveSettingsSubmit();
                 this.installPlugins();
                 this.onChangedPluginSliderCheckbox();
+                this.subscribeSubmit();
                 
                 const featureItems = document.querySelectorAll('.bdt-feature-item');
                 featureItems.forEach(item => {
@@ -326,6 +327,38 @@
                     setTimeout(() => {
                         widgetItem.classList.remove('item-highlight');
                     }, 600);
+                });
+            },
+
+            /**
+             * The newsletter opt-in sits in the welcome step and has no submit
+             * button of its own: the choice is sent when the user moves on with
+             * "Get Started".
+             *
+             * Fire and forget — the step change is never delayed and shows no
+             * status. The box is unticked by default and gates the subscription
+             * server side; an unticked box sends nothing to the newsletter list.
+             */
+            subscribeSubmit: function () {
+                $(document).on('click', '.bdt-wizard-step[data-step="welcome"] .bdt-wizard-next', function () {
+                    const $email = $('#bdt-subscribe-email');
+
+                    if (!$email.length) {
+                        return;
+                    }
+
+                    $.ajax({
+                        url: BDT_SetupWizard.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'bdtps_setup_wizard_subscribe',
+                            nonce: BDT_SetupWizard.nonce,
+                            email: ($email.val() || '').trim(),
+                            consent: $('#bdt-subscribe-consent').is(':checked') ? 'yes' : 'no'
+                        }
+                    });
+
+                    // No preventDefault: the step change proceeds immediately.
                 });
             },
 

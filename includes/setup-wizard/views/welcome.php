@@ -17,9 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
             <img src="<?php echo esc_url( BDTPS_CORE_ASSETS_URL . 'images/logo.png' ); ?>" alt="Prime Slider Logo" class="bdt-logo">
         </div>
         <h2><?php esc_html_e( 'Welcome to Prime Slider', 'bdthemes-prime-slider-lite' ); ?></h2>
-        <p><?php esc_html_e( 'Thank you for choosing Prime Slider, a leading addon that provides a total web design solution for you. This quick setup wizard will help you configure the basic settings and get you started.', 'bdthemes-prime-slider-lite' ); ?></p>
     </div>
-    
+
+    <div class="bdt-welcome-scroll">
     <div class="bdt-welcome-features">
         <div class="bdt-features-grid">
             <div class="bdt-feature-item">
@@ -43,7 +43,31 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <h3><?php esc_html_e( 'Fast & Optimized', 'bdthemes-prime-slider-lite' ); ?></h3>
                 <p><?php esc_html_e( 'Built with performance in mind for lightning-fast websites', 'bdthemes-prime-slider-lite' ); ?></p>
             </div>
+            <div class="bdt-feature-item">
+                <div class="bdt-feature-icon">
+                    <span class="dashicons dashicons-smartphone"></span>
+                </div>
+                <h3><?php esc_html_e( 'Fully Responsive', 'bdthemes-prime-slider-lite' ); ?></h3>
+                <p><?php esc_html_e( 'Slides adapt beautifully to phones, tablets and desktops', 'bdthemes-prime-slider-lite' ); ?></p>
+            </div>
+            <div class="bdt-feature-item">
+                <div class="bdt-feature-icon">
+                    <span class="dashicons dashicons-cart"></span>
+                </div>
+                <h3><?php esc_html_e( 'WooCommerce Ready', 'bdthemes-prime-slider-lite' ); ?></h3>
+                <p><?php esc_html_e( 'Showcase products in eye-catching WooCommerce sliders', 'bdthemes-prime-slider-lite' ); ?></p>
+            </div>
+            <div class="bdt-feature-item">
+                <div class="bdt-feature-icon">
+                    <span class="dashicons dashicons-sos"></span>
+                </div>
+                <h3><?php esc_html_e( 'Dedicated Support', 'bdthemes-prime-slider-lite' ); ?></h3>
+                <p><?php esc_html_e( 'Regular updates and expert help whenever you need a hand', 'bdthemes-prime-slider-lite' ); ?></p>
+            </div>
         </div>
+    </div>
+
+    <?php require plugin_dir_path( BDTPS_CORE__FILE__ ) . 'includes/setup-wizard/views/subscribe.php'; ?>
     </div>
 
     <div class="bdt-wizard-navigation">
