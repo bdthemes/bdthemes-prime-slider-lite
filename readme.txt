@@ -233,6 +233,8 @@ This plugin connects to the following external services. In each case only the d
 
 3. **Vimeo** (`https://vimeo.com`) — used only by the Isolate widget's lightbox when the site owner has entered a Vimeo video URL for a slide. The visitor's browser loads the Vimeo player for that public video URL when the lightbox is opened; the plugin's PHP makes no request to Vimeo. The visitor's IP address and browser data therefore reach Vimeo at that point, as with any embedded video. Provided by Vimeo — [Terms of Service](https://vimeo.com/terms), [Privacy Policy](https://vimeo.com/privacy).
 
+4. **BdThemes newsletter** (`https://marketing.sigmative.com`) — used only if an administrator opts in to the BdThemes newsletter on the setup wizard's welcome screen. The opt-in checkbox is unticked by default. If it is ticked when the administrator clicks "Get Started", the email address entered there, together with the first and last name from that administrator's WordPress profile, is sent to subscribe them to the newsletter. Nothing is sent when the box is left unticked. Provided by BdThemes — [Terms of Use](https://bdthemes.com/terms-of-use/), [Privacy Policy](https://bdthemes.com/privacy-policy/).
+
 No data is sent to any external service unless one of the situations above occurs. The plugin does not phone home, does not collect analytics or telemetry, and does not check for updates outside of WordPress.org.
 
 Other bdthemes.com, primeslider.pro, store.bdthemes.com, account.bdthemes.com and feedback.bdthemes.com addresses that appear in the plugin's admin screens are ordinary links to documentation, support and product pages. Nothing is sent to them unless an administrator clicks the link and opens the page themselves.

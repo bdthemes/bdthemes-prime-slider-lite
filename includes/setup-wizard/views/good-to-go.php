@@ -30,6 +30,7 @@ if ( ! is_array( $templates ) ) {
 ?>
 <div class="bdt-wizard-step bdt-text-center" data-step="finish">
 
+    <div class="bdt-goodtogo-scroll">
     <div class="bdt-templates-section">
 		<div class="bdt-success-icon">
             <i class="dashicons dashicons-yes-alt"></i>
@@ -106,7 +107,8 @@ if ( ! is_array( $templates ) ) {
             </a>
         </div>
     </div>
-    
+    </div>
+
 	<div class="bdt-flex bdt-flex-between bdt-flex-wrap">
 		<div class="bdt-wizard-navigation">
 			<button class="bdt-button bdt-button-secondary bdt-wizard-prev" data-step="integration">
