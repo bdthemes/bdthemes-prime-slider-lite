@@ -5,11 +5,11 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.6.0
+Stable tag: 4.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.2.4
+Elementor tested up to: 4.3.0
 
 Create responsive Elementor sliders for hero sections, posts, products and more with powerful Elementor addons and ready-to-use Elementor templates.
 
@@ -267,6 +267,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.6.1 [23rd September 2026] =
+
+* Updated: System improved
 
 = 4.6.0 [10th September 2026] =
 
