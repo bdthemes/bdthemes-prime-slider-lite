@@ -108,7 +108,39 @@ class Dynamic_Select_Input_Module
 	 */
 	protected function getAllPublicPostTypes()
 	{
-		return array_values(get_post_types(['public' => true]));
+		// Media and saved templates can't be shown by these widgets, so they are not offered.
+		return array_values(array_diff(get_post_types(['public' => true]), ['attachment', 'elementor_library']));
+	}
+
+	/**
+	 * Build the select options for a post query, leaving out posts the current
+	 * user may not read (for example other authors' drafts for a Contributor),
+	 * so neither their titles nor a content search can reveal them.
+	 *
+	 * @param WP_Query $query
+	 *
+	 * @return array
+	 */
+	protected function getPostResults(WP_Query $query)
+	{
+		$results = [];
+
+		foreach ($query->posts as $post) {
+			if (!current_user_can('read_post', $post->ID)) {
+				continue;
+			}
+
+			$post_type_obj = get_post_type_object($post->post_type);
+			$text          = ($post_type_obj && $post_type_obj->hierarchical) ? $this->get_post_name_with_parents($post) : $post->post_title;
+
+			// Sent as plain text: the control escapes it when it is displayed.
+			$results[] = [
+				'id'   => $post->ID,
+				'text' => html_entity_decode(wp_strip_all_tags($text), ENT_QUOTES, get_bloginfo('charset')),
+			];
+		}
+
+		return $results;
 	}
 
 	/**
@@ -187,23 +219,9 @@ class Dynamic_Select_Input_Module
 			$args['s'] = $searchText;
 		}
 
-		$query = new WP_Query($args);
-		$results = [];
-		foreach ($query->posts as $post) {
-			$post_type_obj = get_post_type_object($post->post_type);
-			if (!empty($data['include_type'])) {
-				$text = $post_type_obj->labels->name . ': ' . $post->post_title;
-			} else {
-				$text = ($post_type_obj->hierarchical) ? $this->get_post_name_with_parents($post) : $post->post_title;
-			}
+		$args['ignore_sticky_posts'] = true;
 
-			$results[] = [
-				'id' => $post->ID,
-				'text' => esc_html($text),
-			];
-		}
-
-		return $results;
+		return $this->getPostResults(new WP_Query($args));
 	}
 
 	public function getOnlyPosts()
@@ -227,23 +245,9 @@ class Dynamic_Select_Input_Module
 			$args['s'] = $searchText;
 		}
 
-		$query = new WP_Query($args);
-		$results = [];
-		foreach ($query->posts as $post) {
-			$post_type_obj = get_post_type_object($post->post_type);
-			if (!empty($data['include_type'])) {
-				$text = $post_type_obj->labels->name . ': ' . $post->post_title;
-			} else {
-				$text = ($post_type_obj->hierarchical) ? $this->get_post_name_with_parents($post) : $post->post_title;
-			}
+		$args['ignore_sticky_posts'] = true;
 
-			$results[] = [
-				'id' => $post->ID,
-				'text' => esc_html($text),
-			];
-		}
-
-		return $results;
+		return $this->getPostResults(new WP_Query($args));
 	}
 
 	private function get_post_name_with_parents($post, $max = 3)
@@ -330,7 +334,7 @@ class Dynamic_Select_Input_Module
 
 			$data[] = [
 				'id' => $term->term_taxonomy_id,
-				'text' => esc_html($label),
+				'text' => html_entity_decode(wp_strip_all_tags($label), ENT_QUOTES, get_bloginfo('charset')),
 			];
 		}
 
@@ -352,6 +356,15 @@ class Dynamic_Select_Input_Module
 			'orderby' => 'display_name',
 		];
 
+		// Match the REST API: without list_users only people who have published
+		// something are listed, and the search never looks at e-mail addresses
+		// or URLs, so it can't be used to discover them.
+		$can_list_users = current_user_can('list_users');
+
+		if (!$can_list_users) {
+			$args['has_published_posts'] = true;
+		}
+
 		if (!empty($include)) {
 			$args['include'] = $include;
 		}
@@ -359,6 +372,10 @@ class Dynamic_Select_Input_Module
 		if ($search_text) {
 			$args['number'] = 20;
 			$args['search'] = "*$search_text*";
+
+			if (!$can_list_users) {
+				$args['search_columns'] = ['user_login', 'user_nicename', 'display_name'];
+			}
 		}
 
 		$users = get_users($args);
@@ -372,7 +389,7 @@ class Dynamic_Select_Input_Module
 		foreach ($users as $user) {
 			$data[] = [
 				'id' => $user->ID,
-				'text' => esc_html($user->display_name),
+				'text' => html_entity_decode(wp_strip_all_tags($user->display_name), ENT_QUOTES, get_bloginfo('charset')),
 			];
 		}
 
@@ -393,7 +410,7 @@ class Dynamic_Select_Input_Module
 		foreach ($all_roles as $key => $role) {
 			$roles[] = [
 				'id' => $key,
-				'text' => esc_html($role['name']),
+				'text' => translate_user_role($role['name']),
 			];
 		}
 

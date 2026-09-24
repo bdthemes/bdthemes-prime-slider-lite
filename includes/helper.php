@@ -539,12 +539,16 @@ function prime_slider_custom_excerpt( $limit = 25, $strip_shortcode = false, $tr
 
 	$output = get_the_content();
 
-	if ( $limit ) {
-		$output = wp_trim_words( $output, $limit, $trail );
-	}
-
+	// Strip before trimming: a cut inside a shortcode would leave a broken
+	// fragment such as "[gallery" that strip_shortcodes() no longer matches.
 	if ( $strip_shortcode ) {
 		$output = strip_shortcodes( $output );
+	}
+
+	$limit = absint( $limit );
+
+	if ( $limit ) {
+		$output = wp_trim_words( $output, $limit, $trail );
 	}
 
 	return wpautop( $output );
