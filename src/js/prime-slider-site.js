@@ -34,7 +34,21 @@
 
         $($scrollButton).on('click', function (event) {
             event.preventDefault();
-            bdtUIkit.scroll($scrollButton, $settings).scrollTo($($selector));
+
+            // The target comes from a free-text setting: ignore a selector that
+            // is invalid or matches nothing instead of throwing on every click.
+            var $target;
+            try {
+                $target = $selector ? $(document).find($selector) : $();
+            } catch (e) {
+                $target = $();
+            }
+
+            if (!$target.length) {
+                return;
+            }
+
+            bdtUIkit.scroll($scrollButton, $settings).scrollTo($target);
         });
 
     };

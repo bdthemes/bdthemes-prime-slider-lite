@@ -49,32 +49,15 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
         <?php $this->parent->render_social_link($position = 'left', $label = false, $class = []); ?>
 
-        <?php if ('yes' == $settings['show_featured_post']) : ?>
+        <?php
+        $featured_query = ('yes' === $settings['show_featured_post']) ? $this->parent->query_featured_posts() : null;
+
+        if ($featured_query && $featured_query->have_posts()) : ?>
             <div class="bdt-ps-blog-container bdt-ps-blog-featured bdt-position-bottom bdt-flex bdt-flex-middle reveal-muted">
                 <div class="bdt-child-width-1-3 bdt-grid bdt-grid-medium bdt-flex bdt-flex-middle" bdt-grid>
                     <?php
-
-                    $selected_ids      = $this->parent->get_settings_for_display('featured_item_posts_selected_ids');
-                    $selected_ids      = wp_parse_id_list($selected_ids);
-                    $args['post_type'] = 'any';
-                    if (!empty($selected_ids)) {
-                        $args['post__in'] = $selected_ids;
-                    }
-                    $defaults = [
-                        'numberposts'      => 3,
-                        'orderby'          => 'date',
-                        'order'            => 'DESC',
-                        'suppress_filters' => false,
-                    ];
-
-                    $wp_query = new \WP_Query($args, $defaults);
-
-                    if (!$wp_query->found_posts) {
-                        return;
-                    }
-
-                    while ($wp_query->have_posts()) {
-                        $wp_query->the_post();
+                    while ($featured_query->have_posts()) {
+                        $featured_query->the_post();
                     ?>
                         <div>
                             <div class="bdt-ps-featured bdt-position-relative bdt-grid-small bdt-flex bdt-flex-middle">
@@ -115,18 +98,12 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
     public function rendar_item_image() {
 
-        $placeholder_image_src = Utils::get_placeholder_image_src();
         $image_src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-
-        if (isset($image_src[0])) {
-            $image_src = $image_src[0];
-        } else {
-            $image_src = $placeholder_image_src;
-        }
+        $image_src = isset($image_src[0]) ? $image_src[0] : Utils::get_placeholder_image_src();
 
     ?>
 
-        <img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+        <img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr(wp_strip_all_tags(get_the_title())); ?>">
 
     <?php
     }
@@ -194,23 +171,11 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
         $wp_query = $this->parent->query_posts();
 
-        if (!$wp_query->found_posts) {
-            return;
-        }
-
         while ($wp_query->have_posts()) {
             $wp_query->the_post();
 
-            $placeholder_image_src = Utils::get_placeholder_image_src();
-            $image_src = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
-
-            if ($image_src) {
-                $image_final_src = $image_src;
-            } elseif ($placeholder_image_src) {
-                $image_final_src = $placeholder_image_src;
-            } else {
-                return;
-            }
+            $image_src       = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
+            $image_final_src = $image_src ? $image_src : Utils::get_placeholder_image_src();
 
         ?>
 
@@ -226,10 +191,7 @@ class Skin_Zinest extends Elementor_Skin_Base {
                     </div>
                 <?php endif; ?>
 
-                <?php if ('none' !== $settings['overlay']) :
-                    $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
-                    <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
-                <?php endif; ?>
+                <?php $this->parent->render_overlay(); ?>
 
                 <?php $this->render_item_content($post); ?>
 
@@ -246,6 +208,11 @@ class Skin_Zinest extends Elementor_Skin_Base {
 
     public function render() {
         $skin_name = 'zinest';
+
+        if ( ! $this->parent->query_posts( true )->have_posts() ) {
+            $this->parent->render_no_posts_notice();
+            return;
+        }
 
         $this->parent->render_header($skin_name);
 

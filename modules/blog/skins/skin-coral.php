@@ -38,38 +38,29 @@ class Skin_Coral extends Elementor_Skin_Base
         <div class="bdt-ps-thumbnav reveal-muted">
 
             <?php
-            $total_slide = 1;
-
-            $wp_query = $this->parent->query_posts();
-
-            if (!$wp_query->found_posts) {
-                return;
-            }
-
-            while ($wp_query->have_posts()) {
-                $wp_query->the_post();
-
-                $total_slide++;
-            }
-
-            wp_reset_postdata();
-
+            $wp_query    = $this->parent->query_posts();
+            $total_slide = $wp_query->post_count;
             $slide_index = 1;
 
-            $wp_query = $this->parent->query_posts();
-
-            if (!$wp_query->found_posts) {
-                return;
-            }
-
             while ($wp_query->have_posts()) {
                 $wp_query->the_post();
+
+                // Each preview shows the slide after the active one, so it is
+                // marked active together with the slide before it, and a click
+                // moves on to the slide it shows.
+                $active_with = ($slide_index - 2 + $total_slide) % $total_slide;
 
             ?>
 
-                <li class="bdt-slide-counter" bdt-slideshow-item="<?php echo esc_attr(($slide_index - 2) == -1 ? ($total_slide - 2) : $slide_index - 2) ?>"
+                <li class="bdt-slide-counter" bdt-slideshow-item="<?php echo esc_attr($active_with); ?>"
                     data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
-                    <?php $this->rendar_item_image(); ?>
+                    <a href="#" bdt-slideshow-item="next" aria-label="<?php echo esc_attr(sprintf(
+                        /* translators: %s: post title */
+                        __('Next slide: %s', 'bdthemes-prime-slider-lite'),
+                        wp_strip_all_tags(get_the_title())
+                    )); ?>">
+                        <?php $this->rendar_item_image(); ?>
+                    </a>
                     <?php $slide_index++; ?>
                 </li>
 
@@ -99,17 +90,13 @@ class Skin_Coral extends Elementor_Skin_Base
             <?php $slide_index = 1;
             $wp_query          = $this->parent->query_posts();
 
-            if (!$wp_query->found_posts) {
-                return;
-            }
-
             while ($wp_query->have_posts()) {
                 $wp_query->the_post();
 
             ?>
 
                 <li bdt-slideshow-item="<?php echo esc_attr($slide_index - 1); ?>" data-label="<?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?>">
-                    <a href="#"><?php echo esc_attr(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
+                    <a href="#"><?php echo esc_html(str_pad($slide_index, 2, '0', STR_PAD_LEFT)); ?></a>
 
                     <?php $slide_index++; ?>
 
@@ -119,7 +106,7 @@ class Skin_Coral extends Elementor_Skin_Base
             }
             wp_reset_postdata();
             ?>
-            <span><?php echo esc_attr(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
+            <span><?php echo esc_html(str_pad($slide_index - 1, 2, '0', STR_PAD_LEFT)); ?></span>
 
         </ul>
     <?php
@@ -149,29 +136,11 @@ class Skin_Coral extends Elementor_Skin_Base
     {
         $settings = $this->parent->get_settings_for_display();
 
-        $this->parent->add_render_attribute('bdt-scroll-down', 'class', ['bdt-scroll-down reveal-muted']);
-
-
-        if ('' == $settings['show_scroll_button']) {
+        if ('yes' !== $settings['show_scroll_button']) {
             return;
         }
 
-        $this->parent->add_render_attribute(
-            [
-                'bdt-scroll-down' => [
-                    'data-settings' => [
-                        wp_json_encode(array_filter([
-                            'duration' => ('' != $settings['duration']['size']) ? $settings['duration']['size'] : '',
-                            'offset'   => ('' != $settings['offset']['size']) ? $settings['offset']['size'] : '',
-                        ]))
-                    ]
-                ]
-            ]
-        );
-
-        $this->parent->add_render_attribute('bdt-scroll-down', 'data-selector', '#' . esc_attr($settings['section_id']));
-
-        $this->parent->add_render_attribute('bdt-scroll-wrapper', 'class', 'bdt-scroll-down-wrapper');
+        $this->parent->add_scroll_button_render_attributes();
 
     ?>
         <div <?php $this->parent->print_render_attribute_string('bdt-scroll-wrapper'); ?>>
@@ -205,16 +174,8 @@ class Skin_Coral extends Elementor_Skin_Base
     {
         $settings = $this->parent->get_settings_for_display();
 
-        $placeholder_image_src = Utils::get_placeholder_image_src();
-        $image_src = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
-
-        if ($image_src) {
-            $image_final_src = $image_src;
-        } elseif ($placeholder_image_src) {
-            $image_final_src = $placeholder_image_src;
-        } else {
-            return;
-        }
+        $image_src       = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
+        $image_final_src = $image_src ? $image_src : Utils::get_placeholder_image_src();
 
     ?>
 
@@ -295,10 +256,6 @@ class Skin_Coral extends Elementor_Skin_Base
 
         $wp_query = $this->parent->query_posts();
 
-        if (!$wp_query->found_posts) {
-            return;
-        }
-
         while ($wp_query->have_posts()) {
             $wp_query->the_post();
 
@@ -316,10 +273,7 @@ class Skin_Coral extends Elementor_Skin_Base
                     </div>
                 <?php endif; ?>
 
-                <?php if ('none' !== $settings['overlay']) :
-                    $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
-                    <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
-                <?php endif; ?>
+                <?php $this->parent->render_overlay(); ?>
 
                 <?php $this->render_item_content($post); ?>
 
@@ -337,6 +291,11 @@ class Skin_Coral extends Elementor_Skin_Base
     public function render()
     {
         $skin_name = 'coral';
+
+        if ( ! $this->parent->query_posts( true )->have_posts() ) {
+            $this->parent->render_no_posts_notice();
+            return;
+        }
 
         $this->parent->render_header($skin_name);
 

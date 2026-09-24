@@ -344,6 +344,8 @@
 				top: 49%;
 				right: 48px;
 				transform: translateY(-50%);
+				// Decorative number drawn over the preview; let clicks reach it.
+				pointer-events: none;
 			}
 
 			.bdt-ps-slide-img {
@@ -359,8 +361,15 @@
 			}
 		}
 
+		// All previews sit on top of each other; hidden ones must not catch
+		// the clicks meant for the visible one.
 		li:not(.bdt-active) {
 			opacity: 0;
+			pointer-events: none;
+		}
+
+		a {
+			cursor: pointer;
 		}
 	}
 
@@ -388,6 +397,7 @@
 
 		li:not(.bdt-active) {
 			opacity: 0;
+			pointer-events: none;
 		}
 
 		span {

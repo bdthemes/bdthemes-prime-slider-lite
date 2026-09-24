@@ -53,7 +53,7 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 
 					$strings[] = new WPML_PB_String(
 						$item[ $field ],
-						$this->get_string_name( $node_id, $item[ $field ], $field, $element['widgetType'], $item['_id'] ),
+						$this->get_string_name( $node_id, $item[ $field ], $field, $element['widgetType'], isset( $item['_id'] ) ? $item['_id'] : '' ),
 						$this->get_title( $field ),
 						$this->get_editor_type( $field )
 					);
@@ -66,7 +66,7 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 
 						$strings[] = new WPML_PB_String(
 							$item[ $key ][ $inner_field ],
-							$this->get_string_name( $node_id, $item[ $key ][ $inner_field ], $key . '_' . $inner_field, $element['widgetType'], $item['_id'] ),
+							$this->get_string_name( $node_id, $item[ $key ][ $inner_field ], $key . '_' . $inner_field, $element['widgetType'], isset( $item['_id'] ) ? $item['_id'] : '' ),
 							$this->get_title( $key ),
 							$this->get_editor_type( $key )
 						);
@@ -198,6 +198,11 @@ abstract class WPML_Module_With_Items implements IWPML_Page_Builders_Module {
 			return $items;
 		}
 
-		return $element[WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD][$this->get_items_field()];
+		// A widget saved with its default items has no value stored for the field.
+		$items = isset( $element[ WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD ][ $items_field ] )
+			? $element[ WPML_Elementor_Translatable_Nodes::SETTINGS_FIELD ][ $items_field ]
+			: [];
+
+		return is_array( $items ) ? $items : [];
 	}
 }

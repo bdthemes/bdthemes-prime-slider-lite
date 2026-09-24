@@ -268,6 +268,29 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 4.6.X [XXth September 2026] =
+
+* Fixed: Blog widget's Coral skin broke the layout of the rest of the page when the query returned no posts
+* Fixed: Clicking the next-slide thumbnail in the blog widget's Coral skin did nothing
+* Fixed: Blog widget's Zinest skin showed ten items in its featured strip, including pages and products, instead of three posts. Selected featured posts now also keep the order they were picked in
+* Fixed: Blog widget showed no categories when the query source was Manual Selection, Current Query or Related
+* Fixed: Blog widget's Background Image Settings had no effect while the Kenburns Animation was turned on
+* Fixed: Blog widget's Default skin showed an empty image for posts without a featured image
+* Fixed: Dynamic tags in Social Link items were ignored by the blog widget's Default, Coral and Zinest skins
+* Fixed: The Scroll Down button did nothing when the Section ID was entered with a leading "#"
+* Fixed: Clearing the Autoplay Interval made the slider change slides non-stop
+* Fixed: A Text Limit that cut through a shortcode left part of the shortcode in the post text
+* Fixed: A widget's Query ID filter also ran for every other query on the page instead of only the widget's own query
+* Fixed: The Current Post option under Exclude By did not work when Ignore Sticky Posts was turned off
+* Fixed: Titles containing characters such as "&" or quotes were shown as HTML entities in the query search fields
+* Fixed: Saving a page with the blog widget logged PHP warnings when WPML was active
+* Fixed: The blog widget's Size Ratio control had no visible label, and the Separator Color label was misspelled
+* Fixed: The query search fields showed Contributors the titles of other authors' drafts, and let users without the List Users capability search people by e-mail address or list users who have never published anything
+* Changed: Blog widget no longer shows different posts on the second and later pages of a paginated archive
+* Changed: Blog widget shows a notice in the editor when its query finds no posts, and nothing on the live site
+* Improved: Blog widget's Coral skin runs its post query once per render instead of four times
+* Improved: The blend type, Section ID and Text Limit settings only accept valid values
+
 = 4.6.1 [23rd September 2026] =
 
 * Updated: System improved
