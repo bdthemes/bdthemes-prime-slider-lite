@@ -125,7 +125,7 @@ class Skin_Folio extends Elementor_Skin_Base {
               </div>
               <div class="bdt-meta-text">
                 <span>
-                  <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider-lite'); ?></strong><br> <?php echo get_the_date(); ?>
+                  <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider-lite'); ?></strong><br> <?php echo esc_html(get_the_date()); ?>
                 </span>
               </div>
             </div>
@@ -143,7 +143,7 @@ class Skin_Folio extends Elementor_Skin_Base {
               <div class="bdt-meta-text">
                 <span>
                   <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider-lite'); ?></strong><br>
-                  <?php echo esc_attr(get_comments_number()); ?>
+                  <?php echo esc_html(get_comments_number()); ?>
                 </span>
               </div>
             </div>
@@ -157,16 +157,8 @@ class Skin_Folio extends Elementor_Skin_Base {
   public function rendar_item_image() {
     $settings = $this->parent->get_settings_for_display();
 
-    $placeholder_image_src = Utils::get_placeholder_image_src();
-    $image_src = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
-
-    if ($image_src) {
-      $image_final_src = $image_src;
-    } elseif ($placeholder_image_src) {
-      $image_final_src = $placeholder_image_src;
-    } else {
-      return;
-    }
+    $image_src       = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
+    $image_final_src = $image_src ? $image_src : Utils::get_placeholder_image_src();
 
   ?>
 
@@ -243,10 +235,6 @@ class Skin_Folio extends Elementor_Skin_Base {
 
     $wp_query = $this->parent->query_posts();
 
-    if (!$wp_query->found_posts) {
-      return;
-    }
-
     while ($wp_query->have_posts()) {
       $wp_query->the_post();
 
@@ -264,10 +252,7 @@ class Skin_Folio extends Elementor_Skin_Base {
           </div>
         <?php endif; ?>
 
-        <?php if ('none' !== $settings['overlay']) :
-          $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
-          <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
-        <?php endif; ?>
+        <?php $this->parent->render_overlay(); ?>
 
         <?php $this->render_item_content($post); ?>
 
@@ -286,6 +271,11 @@ class Skin_Folio extends Elementor_Skin_Base {
 
   public function render() {
     $skin_name = 'folio';
+
+    if ( ! $this->parent->query_posts( true )->have_posts() ) {
+      $this->parent->render_no_posts_notice();
+      return;
+    }
 
     $this->parent->render_header($skin_name);
 

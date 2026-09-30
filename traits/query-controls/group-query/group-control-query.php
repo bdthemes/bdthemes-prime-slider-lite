@@ -552,11 +552,6 @@ trait Group_Control_Query {
 			&& $this->get_settings_for_display('posts_ignore_sticky_posts') === 'yes'
 		) {
 			$args['ignore_sticky_posts'] = true;
-
-			if (in_array('current_post', $exclude_by)) {
-				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Elementor widget query built from user-configured controls; caching/query shape is expected.
-				$args['post__not_in'] = [get_the_ID()];
-			}
 		}
 
 
@@ -617,14 +612,18 @@ trait Group_Control_Query {
 			$exclude_by   = $this->getGroupControlQueryParamBy('exclude');
 			$current_post = [];
 
+			// Only a singular view has a "current post"; on archives get_the_ID()
+			// would be whichever post the main loop happens to be on.
 			if (in_array('current_post', $exclude_by) && is_singular()) {
 				$current_post = [get_the_ID()];
 			}
 
-			if (in_array('manual_selection', $exclude_by)) {
-				$exclude_ids          = $settings['posts_exclude_ids'];
+			$exclude_ids = in_array('manual_selection', $exclude_by) ? wp_parse_id_list($settings['posts_exclude_ids']) : [];
+			$exclude_ids = array_filter(array_merge($current_post, $exclude_ids));
+
+			if (!empty($exclude_ids)) {
 				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in -- Elementor widget query built from user-configured controls; caching/query shape is expected.
-				$args['post__not_in'] = array_merge($current_post, wp_parse_id_list($exclude_ids));
+				$args['post__not_in'] = array_values(array_unique($exclude_ids));
 			}
 			/**
 			 * Set Authors
@@ -818,9 +817,12 @@ trait Group_Control_Query {
 
 
 	public function pre_get_posts_query_filter($wp_query) {
-		if ($this) {
-			$query_id = $this->get_settings_for_display('query_id');
-			do_action("prime_slider/query/{$query_id}", $wp_query, $this);
-		}
+		// Meant for this widget's own query, which is the next one to run after
+		// the arguments are built, so the hook removes itself instead of
+		// firing for every later query on the page.
+		remove_action('pre_get_posts', [$this, 'pre_get_posts_query_filter']);
+
+		$query_id = $this->get_settings_for_display('query_id');
+		do_action("prime_slider/query/{$query_id}", $wp_query, $this);
 	}
 }

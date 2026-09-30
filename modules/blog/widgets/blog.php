@@ -31,6 +31,13 @@ class Blog extends Widget_Base {
     use Group_Control_Query;
     use Global_Widget_Controls;
 
+    /**
+     * Posts query shared by every part of a single render.
+     *
+     * @var WP_Query|null
+     */
+    private $blog_query = null;
+
     public function get_name() {
         return 'prime-slider-blog';
     }
@@ -119,8 +126,8 @@ class Blog extends Widget_Base {
 		 */
 		$this->register_thumbnail_size_controls();
 
-        //Global background settings Controls
-        $this->register_background_settings('.bdt-prime-slider .bdt-slideshow-item>.bdt-ps-slide-img');
+        // Descendant (not child) selector so the settings still apply when Ken Burns wraps the image.
+        $this->register_background_settings('.bdt-prime-slider .bdt-slideshow-item .bdt-ps-slide-img');
 
         /**
 		 * Show Title Controls
@@ -395,9 +402,16 @@ class Blog extends Widget_Base {
             'featured_item_posts_selected_ids',
             [
                 'label'       => __('Select Posts', 'bdthemes-prime-slider-lite'),
+                'description' => esc_html__('Up to three posts are shown, in the order selected. Leave empty to show the three latest posts.', 'bdthemes-prime-slider-lite'),
                 'type'        => Dynamic_Select::TYPE,
                 'multiple'    => true,
                 'label_block' => true,
+                'query_args'  => [
+                    'query'        => 'posts',
+                    'widget_props' => [
+                        'post_type' => 'posts_source',
+                    ],
+                ],
                 'condition' => [
                     'show_featured_post' => 'yes'
                 ]
@@ -671,7 +685,7 @@ class Blog extends Widget_Base {
         $this->add_control(
             'title_style_color',
             [
-                'label'     => esc_html__('Separetor Color', 'bdthemes-prime-slider-lite'),
+                'label'     => esc_html__('Separator Color', 'bdthemes-prime-slider-lite'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-prime-slider-desc .bdt-main-title:before, {{WRAPPER}} .bdt-prime-slider-skin-blog .bdt-prime-slider-desc .bdt-main-title:after' => 'background: {{VALUE}};',
@@ -2052,19 +2066,142 @@ class Blog extends Widget_Base {
     }
 
     /**
-	 * Query posts
+	 * Query posts.
+	 *
+	 * The result is kept for the rest of the render, so skins that walk the
+	 * posts several times (slides, thumbnails, counters) run a single query.
+	 * The slider has no pagination, so the page number of the surrounding
+	 * archive is deliberately not applied.
+	 *
+	 * @param bool $refresh Run the query again instead of reusing the last one.
+	 * @return WP_Query
 	 */
-	public function query_posts() {
-        $settings = $this->get_settings();
-        $args = [];
-        if ($settings['posts_limit']) {
-            $args['posts_per_page'] = $settings['posts_limit'];
-            $args['paged']          = max(1, get_query_var('paged'), get_query_var('page'));
+	public function query_posts( $refresh = false ) {
+        if ( null !== $this->blog_query && ! $refresh ) {
+            $this->blog_query->rewind_posts();
+            return $this->blog_query;
         }
-        $default = $this->getGroupControlQueryArgs();
-        $args = array_merge($default, $args);
-        $query = new WP_Query($args);
-        return $query;
+
+        $args  = $this->getGroupControlQueryArgs();
+        $limit = (int) $this->get_settings_for_display('posts_limit');
+
+        if ( 0 !== $limit ) {
+            $args['posts_per_page'] = $limit;
+        }
+
+        $this->blog_query = new WP_Query($args);
+
+        return $this->blog_query;
+    }
+
+    /**
+     * Posts for the Zinest skin's featured strip: the selected posts in the
+     * order they were picked, or the latest posts of the slider's source.
+     *
+     * @return WP_Query
+     */
+    public function query_featured_posts() {
+        $max_posts    = 3;
+        $selected_ids = array_slice( wp_parse_id_list( $this->get_settings_for_display('featured_item_posts_selected_ids') ), 0, $max_posts );
+
+        $args = [
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'no_found_rows'       => true,
+        ];
+
+        if ( ! empty( $selected_ids ) ) {
+            $args['post_type']      = array_values( array_diff( get_post_types( [ 'public' => true ] ), [ 'attachment' ] ) );
+            $args['post__in']       = $selected_ids;
+            $args['orderby']        = 'post__in';
+            $args['posts_per_page'] = count( $selected_ids );
+        } else {
+            $source                 = $this->get_settings_for_display('posts_source');
+            $args['post_type']      = ( $source && post_type_exists( $source ) ) ? $source : 'post';
+            $args['posts_per_page'] = $max_posts;
+        }
+
+        return new WP_Query( $args );
+    }
+
+    /**
+     * Shown in the editor when the query returns nothing, so the widget can
+     * still be found and edited. Nothing is printed on the live site.
+     */
+    public function render_no_posts_notice() {
+        $elementor = \Elementor\Plugin::$instance;
+
+        if ( ! $elementor->editor->is_edit_mode() && ! $elementor->preview->is_preview_mode() ) {
+            return;
+        }
+
+        ?>
+        <div class="bdt-alert bdt-alert-warning">
+            <?php esc_html_e('No posts found for the current query. Adjust the Query settings to show posts here.', 'bdthemes-prime-slider-lite'); ?>
+        </div>
+        <?php
+    }
+
+    /**
+     * Slide overlay. The blend class is only added for a known blend mode.
+     */
+    public function render_overlay() {
+        $settings = $this->get_settings_for_display();
+
+        if ( 'none' === $settings['overlay'] ) {
+            return;
+        }
+
+        $blend_type = '';
+        if ( 'blend' === $settings['overlay'] && array_key_exists( (string) $settings['blend_type'], prime_slider_blend_options() ) ) {
+            $blend_type = ' bdt-blend-' . $settings['blend_type'];
+        }
+
+        ?>
+        <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
+        <?php
+    }
+
+    /**
+     * Scroll target from the "Section ID" setting, as a CSS ID selector.
+     *
+     * A leading "#" is dropped (the field asks for the ID without it) and
+     * anything that is not valid in an element ID is removed, so the front-end
+     * script always receives a usable selector.
+     *
+     * @return string Empty when no usable ID is set.
+     */
+    public function get_scroll_target_selector() {
+        $section_id = ltrim( trim( (string) $this->get_settings_for_display('section_id') ), '#' );
+        $section_id = preg_replace( '/[^A-Za-z0-9_-]/', '', $section_id );
+
+        return '' !== $section_id ? '#' . $section_id : '';
+    }
+
+    /**
+     * Render attributes shared by every skin's scroll-down button.
+     */
+    public function add_scroll_button_render_attributes() {
+        $settings = $this->get_settings_for_display();
+
+        $this->add_render_attribute('bdt-scroll-down', 'class', ['bdt-scroll-down reveal-muted']);
+        $this->add_render_attribute(
+            'bdt-scroll-down',
+            'data-settings',
+            wp_json_encode((object) array_filter([
+                'duration' => ! empty($settings['duration']['size']) ? absint($settings['duration']['size']) : '',
+                'offset'   => isset($settings['offset']['size']) && '' !== $settings['offset']['size'] ? intval($settings['offset']['size']) : '',
+            ], function ($value) {
+                return '' !== $value;
+            }))
+        );
+
+        $selector = $this->get_scroll_target_selector();
+        if ( '' !== $selector ) {
+            $this->add_render_attribute('bdt-scroll-down', 'data-selector', $selector);
+        }
+
+        $this->add_render_attribute('bdt-scroll-wrapper', 'class', 'bdt-scroll-down-wrapper');
     }
 
     public function render_header($skin_name = 'blog') {
@@ -2174,28 +2311,11 @@ class Blog extends Widget_Base {
     public function render_scroll_button() {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute('bdt-scroll-down', 'class', ['bdt-scroll-down reveal-muted']);
-
-        if ('' == $settings['show_scroll_button']) {
+        if ('yes' !== $settings['show_scroll_button']) {
             return;
         }
 
-        $this->add_render_attribute(
-            [
-                'bdt-scroll-down' => [
-                    'data-settings' => [
-                        wp_json_encode(array_filter([
-                            'duration' => ('' != $settings['duration']['size']) ? $settings['duration']['size'] : '',
-                            'offset'   => ('' != $settings['offset']['size']) ? $settings['offset']['size'] : '',
-                        ])),
-                    ],
-                ],
-            ]
-        );
-
-        $this->add_render_attribute('bdt-scroll-down', 'data-selector', '#' . esc_attr($settings['section_id']));
-
-        $this->add_render_attribute('bdt-scroll-wrapper', 'class', 'bdt-scroll-down-wrapper');
+        $this->add_scroll_button_render_attributes();
 
         ?>
         <div <?php $this->print_render_attribute_string('bdt-scroll-wrapper'); ?>>
@@ -2251,7 +2371,7 @@ class Blog extends Widget_Base {
                 if (has_excerpt()) {
                     the_excerpt();
                 } else {
-                    echo wp_kses_post(prime_slider_custom_excerpt($this->get_settings_for_display('excerpt_length'), $strip_shortcode));
+                    echo wp_kses_post(prime_slider_custom_excerpt(absint($this->get_settings_for_display('excerpt_length')), $strip_shortcode));
                 }
             ?>
         </div>
@@ -2264,10 +2384,15 @@ class Blog extends Widget_Base {
         }
 
         $post_id = get_the_ID();
+        $terms   = $this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher( $post_id ) );
+
+        if ( ! $terms ) {
+            return;
+        }
 
         ?>
         <div class="bdt-ps-category" data-reveal="reveal-active">
-        <?php echo wp_kses_post($this->ps_get_taxonomy_list( $post_id, $this->ps_taxonomy_switcher() )); ?>
+        <?php echo wp_kses_post($terms); ?>
         </div>
         <?php
     }
@@ -2286,7 +2411,7 @@ class Blog extends Widget_Base {
                             <div class="bdt-meta-text">
                                 <span class="bdt-author bdt-text-capitalize">
                                     <strong><?php esc_html_e('Written by', 'bdthemes-prime-slider-lite'); ?></strong>
-                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_attr(get_the_author()); ?></a>
+                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo esc_html(get_the_author()); ?></a>
                                 </span>
                             </div>
                         </div>
@@ -2302,7 +2427,7 @@ class Blog extends Widget_Base {
                             <div class="bdt-meta-text">
                                 <span>
                                     <strong><?php esc_html_e('Published on', 'bdthemes-prime-slider-lite'); ?></strong>
-                                    <?php echo get_the_date(); ?>
+                                    <?php echo esc_html(get_the_date()); ?>
                                 </span>
                             </div>
                         </div>
@@ -2318,7 +2443,7 @@ class Blog extends Widget_Base {
                             <div class="bdt-meta-text">
                                 <span>
                                     <strong><?php esc_html_e('Comments By', 'bdthemes-prime-slider-lite'); ?></strong>
-                                    <?php echo esc_attr(get_comments_number()); ?>
+                                    <?php echo esc_html(get_comments_number()); ?>
                                 </span>
                             </div>
                         </div>
@@ -2424,23 +2549,11 @@ class Blog extends Widget_Base {
 
         $wp_query = $this->query_posts();
 
-        if (!$wp_query->found_posts) {
-            return;
-        }
-
         while ($wp_query->have_posts()) {
             $wp_query->the_post();
 
-            $placeholder_image_src = Utils::get_placeholder_image_src();
-            $image_src = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
-
-            if ($image_src) {
-                $image_final_src = $image_src;
-            } elseif ($placeholder_image_src) {
-                $image_final_src = $placeholder_image_src;
-            } else {
-                return;
-            }
+            $image_src       = Group_Control_Image_Size::get_attachment_image_src(get_post_thumbnail_id(), 'thumbnail_size', $settings);
+            $image_final_src = $image_src ? $image_src : Utils::get_placeholder_image_src();
 
         ?>
 
@@ -2456,7 +2569,7 @@ class Blog extends Widget_Base {
                     <?php
                         endif; ?>
 
-                    <div class="bdt-ps-blog-main-img bdt-ps-slide-img" style="background-image: url('<?php echo esc_url($image_src); ?>')">
+                    <div class="bdt-ps-blog-main-img bdt-ps-slide-img" style="background-image: url('<?php echo esc_url($image_final_src); ?>')">
 
                     </div>
 
@@ -2464,9 +2577,7 @@ class Blog extends Widget_Base {
                     </div>
                 <?php endif; ?>
 
-                <?php if ('none' !== $settings['overlay']) : $blend_type = ('blend' == $settings['overlay']) ? ' bdt-blend-' . $settings['blend_type'] : ''; ?>
-                    <div class="bdt-overlay-default bdt-position-cover<?php echo esc_attr($blend_type); ?>"></div>
-                <?php endif; ?>
+                <?php $this->render_overlay(); ?>
 
                 <?php $this->render_item_content($post, $slide_index); ?>
 
@@ -2484,6 +2595,10 @@ class Blog extends Widget_Base {
 
 
     public function render() {
+        if ( ! $this->query_posts( true )->have_posts() ) {
+            $this->render_no_posts_notice();
+            return;
+        }
 
         $this->render_header();
 

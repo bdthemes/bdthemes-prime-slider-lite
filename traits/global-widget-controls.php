@@ -942,6 +942,7 @@ trait Global_Widget_Controls {
 			[ 
 				'label'       => esc_html__( 'Size Ratio', 'bdthemes-prime-slider-lite' ),
 				'type'        => Controls_Manager::IMAGE_DIMENSIONS,
+				'show_label'  => true,
 				'description' => esc_html__('Slider ratio to width and height, such as 16:9', 'bdthemes-prime-slider-lite'),
 				'separator'   => 'before',
 				'condition'   => [ 
@@ -1903,6 +1904,10 @@ trait Global_Widget_Controls {
 		// 	);
 		// }
 
+		// An empty or zero interval would make the slider change slides non-stop.
+		$autoplay_interval = isset( $settings['autoplay_interval'] ) ? absint( $settings['autoplay_interval'] ) : 0;
+		$autoplay_interval = $autoplay_interval > 0 ? $autoplay_interval : 7000;
+
 		$this->add_render_attribute(
 			[ 
 				'slideshow' => [ 
@@ -1912,7 +1917,7 @@ trait Global_Widget_Controls {
 							'ratio'             => $ratio,
 							'min-height'        => ( ! empty( $settings['slider_min_height']['size'] ) && $ratio !== false ) ? $settings['slider_min_height']['size'] : ( $ratio !== false ? $min_height : false ),
 							'autoplay'          => ( $settings['autoplay'] ) ? true : false,
-							'autoplay-interval' => $settings['autoplay_interval'],
+							'autoplay-interval' => $autoplay_interval,
 							'pause-on-hover'    => ( 'yes' === $settings['pause_on_hover'] ) ? true : false,
 							'velocity'          => ( $settings['velocity']['size'] ) ? $settings['velocity']['size'] : 1,
 							'finite'            => ( $settings['finite'] ) ? false : true,
@@ -2077,7 +2082,8 @@ trait Global_Widget_Controls {
 	 * Social Icons Here
 	 */
 	public function render_social_link( $position = 'right', $label = false, $class = [] ) {
-		$settings = $this->get_active_settings();
+		// get_settings_for_display() also resolves dynamic tags in the link titles and URLs.
+		$settings = $this->get_settings_for_display();
 
 		if ( '' == $settings['show_social_icon'] ) {
 			return;
@@ -2163,9 +2169,24 @@ trait Global_Widget_Controls {
 		}
 	}
 
-	protected function ps_taxonomy_switcher() {
+	/**
+	 * Taxonomy whose terms are listed for a post.
+	 *
+	 * @param int|null $post_id Post being rendered. Sources such as Manual
+	 *                          Selection, Current Query or Related are not post
+	 *                          types, so with a post ID the post's own type is
+	 *                          used for them instead.
+	 * @return string
+	 */
+	protected function ps_taxonomy_switcher( $post_id = null ) {
 		$taxonomy = '';
-		switch ( $this->get_settings( 'posts_source' ) ) {
+		$source   = $this->get_settings( 'posts_source' );
+
+		if ( $post_id && ! post_type_exists( (string) $source ) ) {
+			$source = get_post_type( $post_id );
+		}
+
+		switch ( $source ) {
 			case 'post':
 				$taxonomy = 'category';
 				break;
