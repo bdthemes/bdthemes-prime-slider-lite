@@ -65,13 +65,18 @@ final class Manager {
 
         
         if ( !prime_slider_is_preview() ) {
+            // Every widget declares its `bdtps-<module>` handle, and Elementor enqueues
+            // a page's widget handles before the head prints. The module files depend
+            // on UIkit and the site helper, so those load exactly on the pages that
+            // use a Prime Slider widget (see prime_slider_module_asset_depends()).
+
             // register widgets css
             if ( ModuleService::has_module_style($module_id, BDTPS_CORE_MODULES_PATH) ) {
-                wp_register_style('bdtps-' . $module_id, BDTPS_CORE_URL . 'assets/css/ps-' . $module_id . $direction . '.css', [], BDTPS_CORE_VER);
+                wp_register_style('bdtps-' . $module_id, BDTPS_CORE_URL . 'assets/css/ps-' . $module_id . $direction . '.css', prime_slider_module_asset_depends('css', $module_id), BDTPS_CORE_VER);
             }
             // register widget JS
             if ( ModuleService::has_module_script($module_id, BDTPS_CORE_MODULES_PATH) ) {
-                wp_register_script('bdtps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', ['jquery', 'bdt-uikit'], BDTPS_CORE_VER, true);
+                wp_register_script('bdtps-' . $module_id, BDTPS_CORE_URL . 'assets/js/modules/ps-' . $module_id . $suffix . '.js', prime_slider_module_asset_depends('js', $module_id), BDTPS_CORE_VER, true);
             }
         }
         

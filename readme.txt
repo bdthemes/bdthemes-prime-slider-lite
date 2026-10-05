@@ -5,11 +5,11 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.6.2
+Stable tag: 4.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
-Elementor tested up to: 4.3.2
+Elementor tested up to: 4.3.3
 
 Create responsive Elementor sliders for hero sections, posts, products and more with powerful Elementor addons and ready-to-use Elementor templates.
 
@@ -267,6 +267,13 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 4.7.0 [6th October 2026] =
+
+* Security: Fixed a stored XSS via data-bdt-svg attributes in post content (reported by Intrudify)
+* Added: Asset Optimization option that combines the CSS and JS of the widgets a page uses into one file each
+* Improved: UIkit and helper CSS/JS load only on pages that use a Prime Slider widget
+* Improved: Pages without Prime Slider widgets load no Prime Slider assets, lowering Total Blocking Time and speeding up Largest Contentful Paint
 
 = 4.6.2 [30th September 2026] =
 

@@ -124,6 +124,14 @@ class Prime_Slider_Loader {
 
 		require BDTPS_CORE_PATH . 'includes/modules-manager.php';
 
+		// Asset Optimization: per-page combined module CSS/JS files
+		require_once BDTPS_CORE_PATH . 'includes/class-asset-combiner.php';
+		Includes\Asset_Combiner::init();
+
+		// Keeps UIkit component attributes out of content saved by users without unfiltered_html
+		require_once BDTPS_CORE_PATH . 'includes/class-content-guard.php';
+		Includes\Content_Guard::init();
+
 		if ( ! class_exists( 'BdThemes_Duplicator' ) ) {
 			if ( $duplicator == 'on' ) {
 				require BDTPS_CORE_PATH . 'includes/class-duplicator.php';
@@ -250,8 +258,18 @@ class Prime_Slider_Loader {
 	}
 
 	/**
-	 * Loading site related style from here.
-	 * @return [type] [description]
+	 * Load the shared frontend styles (UIkit, the site helper) where Elementor
+	 * content cannot ask for them itself.
+	 *
+	 * A page built with Elementor needs nothing from here: every widget declares its
+	 * `bdtps-<module>` stylesheet, which depends on UIkit and the site helper, and
+	 * Elementor enqueues a page's widget handles before the head prints. This scan
+	 * covers the rest: Theme Builder templates and documents rendered inside the
+	 * page, whose handles Elementor enqueues only while the body renders. It is
+	 * skipped on pages without a Prime Slider widget, which then load none of the
+	 * shared files.
+	 *
+	 * @return void
 	 */
 	public function enqueue_site_styles() {
 		if ( ! prime_slider_page_has_widget() ) {
@@ -263,8 +281,9 @@ class Prime_Slider_Loader {
 
 
 	/**
-	 * Loading site related script that needs all time such as uikit.
-	 * @return [type] [description]
+	 * Load the shared frontend scripts the same way as enqueue_site_styles().
+	 *
+	 * @return void
 	 */
 	public function enqueue_site_scripts() {
 		if ( ! prime_slider_page_has_widget() ) {
@@ -321,6 +340,14 @@ class Prime_Slider_Loader {
 
 		wp_enqueue_script( 'prime-slider-site' );
 		wp_enqueue_script( 'prime-slider-a11y' );
+
+		/**
+		 * Fires when the shared Prime Slider frontend assets are enqueued up front,
+		 * for a page the module dependencies cannot cover (Theme Builder templates,
+		 * a widget rendered after the head). Add-ons enqueue their own shared files
+		 * here; see prime_slider_module_asset_depends() for the dependency route.
+		 */
+		do_action( 'prime_slider/frontend/enqueue_base_assets' );
 	}
 
 	/**
