@@ -775,6 +775,29 @@ class ModuleService {
 			[ 
 				'name' => 'duplicator_group_end',
 				'type' => 'end_group',
+			],
+
+			[ 
+				'name'         => 'asset_optimization_group_start',
+				'label'        => esc_html__( 'Asset Optimization', 'bdthemes-prime-slider-lite' ),
+				'desc'         => __( 'Loads only the widgets a page uses, joined into one CSS file and one JS file per page. The files are written to the uploads folder the first time a page is viewed and shared by every page that uses the same widgets. UIkit and the site helper load only on pages that contain a Prime Slider widget, with or without this option.', 'bdthemes-prime-slider-lite' ),
+				'type'         => 'start_group',
+				'content_type' => 'new',
+			],
+
+			[ 
+				'name'        => 'asset-manager',
+				'label'       => esc_html__( 'Asset Optimization', 'bdthemes-prime-slider-lite' ),
+				'type'        => 'checkbox',
+				'default'     => 'off',
+				'widget_type' => 'free',
+				'demo_url'    => '',
+				'video_url'   => '',
+			],
+
+			[ 
+				'name' => 'asset_optimization_group_end',
+				'type' => 'end_group',
 			]
 		];
 

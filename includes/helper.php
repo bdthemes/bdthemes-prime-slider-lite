@@ -170,13 +170,25 @@ function prime_slider_page_has_widget() {
 		return true;
 	}
 
+	$has_widget = false;
+
 	foreach ( prime_slider_get_documents_to_scan() as $post_id ) {
 		if ( prime_slider_document_has_widget( $post_id ) ) {
-			return true;
+			$has_widget = true;
+			break;
 		}
 	}
 
-	return false;
+	/**
+	 * Filters whether the shared Prime Slider frontend assets (UIkit, the site
+	 * helper) are enqueued up front on this request. Elementor content needs no
+	 * such help: every widget's own stylesheet and script depend on them. This
+	 * covers markup Elementor renders after the head, such as Theme Builder
+	 * templates.
+	 *
+	 * @param bool $has_widget Whether a scanned document contains a Prime Slider widget.
+	 */
+	return (bool) apply_filters( 'prime_slider/frontend/page_has_widget', $has_widget );
 }
 
 
