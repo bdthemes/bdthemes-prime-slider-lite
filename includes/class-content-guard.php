@@ -31,9 +31,9 @@ final class Content_Guard {
 
 	/**
 	 * A UIkit component attribute, with or without the `data-` prefix, inside a tag.
-	 * Matches the attribute name and its value in any of the three HTML quoting forms.
+	 * Only used where WP_HTML_Tag_Processor is unavailable.
 	 */
-	const ATTRIBUTE_PATTERN = '/\s+(?:data-)?bdt-[a-z0-9_:.-]*(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?/i';
+	const ATTRIBUTE_PATTERN = '/[\s\/]+(?:data-)?bdt-[^\s\/>=]*(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?/i';
 
 	public static function init() {
 		// Runs before Elementor's own wp_kses_post() pass in Document::save().
@@ -104,9 +104,11 @@ final class Content_Guard {
 	/**
 	 * Remove `bdt-*` and `data-bdt-*` attributes from the tags in a piece of HTML.
 	 *
-	 * Only text inside a tag is touched: the words of a paragraph are never changed.
-	 * A tag runs to its closing `>`, skipping any `>` inside a quoted attribute value,
-	 * so a component option such as `template: <img ...>` is removed whole.
+	 * The markup is walked with WordPress's HTML tag processor, the same parser
+	 * wp_kses_post() uses to normalise a tag, so every attribute form it accepts is
+	 * seen here too, including an attribute that follows a `/` with no whitespace
+	 * (`<span class="a"/data-bdt-svg="...">`). Only attribute names are compared:
+	 * the words of a paragraph and other attributes are never changed.
 	 *
 	 * @param string $html Markup.
 	 * @return string
@@ -116,10 +118,53 @@ final class Content_Guard {
 			return $html;
 		}
 
+		if ( ! class_exists( '\WP_HTML_Tag_Processor' ) ) {
+			return self::strip_component_attributes_by_pattern( $html );
+		}
+
+		$processor = new \WP_HTML_Tag_Processor( $html );
+
+		while ( $processor->next_tag() ) {
+			foreach ( (array) $processor->get_attribute_names_with_prefix( '' ) as $name ) {
+				if ( self::is_component_attribute( $name ) ) {
+					$processor->remove_attribute( $name );
+				}
+			}
+		}
+
+		return $processor->get_updated_html();
+	}
+
+	/**
+	 * Whether an attribute name boots a UIkit component.
+	 *
+	 * UIkit drops a leading `data-` and then matches the `bdt-` prefix, so both
+	 * forms count. Compared case-insensitively, as HTML attribute names are.
+	 *
+	 * @param string $name Attribute name.
+	 * @return bool
+	 */
+	public static function is_component_attribute( $name ) {
+		$name = strtolower( (string) $name );
+
+		if ( 0 === strpos( $name, 'data-' ) ) {
+			$name = substr( $name, 5 );
+		}
+
+		return 0 === strpos( $name, 'bdt-' );
+	}
+
+	/**
+	 * Fallback for an environment without the HTML API: strip by pattern.
+	 *
+	 * @param string $html Markup.
+	 * @return string
+	 */
+	private static function strip_component_attributes_by_pattern( $html ) {
 		$stripped = preg_replace_callback(
 			'/<[a-zA-Z][^>"\']*(?:(?:"[^"]*"|\'[^\']*\')[^>"\']*)*>/',
 			function ( $match ) {
-				$tag = preg_replace( self::ATTRIBUTE_PATTERN, '', $match[0] );
+				$tag = preg_replace( self::ATTRIBUTE_PATTERN, ' ', $match[0] );
 
 				return null === $tag ? $match[0] : $tag;
 			},
