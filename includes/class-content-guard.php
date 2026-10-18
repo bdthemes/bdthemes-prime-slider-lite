@@ -36,12 +36,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class Content_Guard {
 
-	/**
-	 * A UIkit component attribute, with or without the `data-` prefix, inside a tag.
-	 * Only used where WP_HTML_Tag_Processor is unavailable.
-	 */
-	const ATTRIBUTE_PATTERN = '/[\s\/]+(?:data-)?bdt-[^\s\/>=]*(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?/i';
-
 	public static function init() {
 		// Elementor: the document data is stripped as it is written to the
 		// `_elementor_data` meta, after Elementor's own wp_kses_post() pass, so the
@@ -316,23 +310,67 @@ final class Content_Guard {
 	}
 
 	/**
-	 * Strip by pattern: every `<tag ...>` in the string, wherever it sits. Used for
-	 * tags inside raw-text elements, and where the HTML API is unavailable.
+	 * Strip component attributes from every `<tag ...>` in the string, wherever it
+	 * sits: used for tags hidden inside raw-text elements (which a browser parses
+	 * as markup inside <svg> or <math>), and where the HTML API is unavailable.
+	 *
+	 * Each tag is split into attributes with a quote-aware tokenizer that walks
+	 * the tag from left to right, so text inside a quoted attribute value is never
+	 * read as an attribute name and no quote is ever removed or shifted. A tag the
+	 * tokenizer cannot read completely is dropped rather than rewritten.
 	 *
 	 * @param string $html Markup.
 	 * @return string
 	 */
 	private static function strip_component_attributes_by_pattern( $html ) {
 		$stripped = preg_replace_callback(
-			'/<[a-zA-Z][^>"\']*(?:(?:"[^"]*"|\'[^\']*\')[^>"\']*)*>/',
+			'/<([a-zA-Z][^\s\/>"\'=]*)((?:"[^"]*"|\'[^\']*\'|[^>"\'])*)>/',
 			function ( $match ) {
-				$tag = preg_replace( self::ATTRIBUTE_PATTERN, ' ', $match[0] );
-
-				return null === $tag ? $match[0] : $tag;
+				return self::rebuild_tag( $match[1], $match[2] );
 			},
 			$html
 		);
 
 		return null === $stripped ? $html : $stripped;
+	}
+
+	/**
+	 * Rebuild one start tag without its component attributes.
+	 *
+	 * @param string $name  Tag name.
+	 * @param string $rest  Everything between the tag name and the closing `>`.
+	 * @return string The tag, rebuilt; an empty string when it cannot be parsed.
+	 */
+	private static function rebuild_tag( $name, $rest ) {
+		if ( false === stripos( $rest, 'bdt-' ) ) {
+			return '<' . $name . $rest . '>';
+		}
+
+		$attributes = [];
+		$offset     = 0;
+		$length     = strlen( $rest );
+
+		while ( $offset < $length ) {
+			// Separators: whitespace and stray slashes, as an HTML tokenizer skips them.
+			if ( preg_match( '/\G[\s\/]+/', $rest, $m, 0, $offset ) ) {
+				$offset += strlen( $m[0] );
+				continue;
+			}
+
+			// One attribute: a name, then optionally `=` and a double-quoted,
+			// single-quoted or unquoted value. An unquoted value never contains a
+			// quote, so a match can never run into a neighbouring attribute.
+			if ( ! preg_match( '/\G([^\s\/>"\'=]+)(?:\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>"\'=`<]+))?/', $rest, $m, 0, $offset ) ) {
+				return '';
+			}
+
+			$offset += strlen( $m[0] );
+
+			if ( ! self::is_component_attribute( $m[1] ) ) {
+				$attributes[] = $m[0];
+			}
+		}
+
+		return '<' . $name . ( $attributes ? ' ' . implode( ' ', $attributes ) : '' ) . '>';
 	}
 }
