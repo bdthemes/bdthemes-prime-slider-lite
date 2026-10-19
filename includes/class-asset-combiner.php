@@ -900,6 +900,37 @@ final class Asset_Combiner {
 	}
 
 	/**
+	 * What the current fingerprint folder holds, for the admin dashboard.
+	 *
+	 * @return array{css: int, js: int, bytes: int}
+	 */
+	public static function stats() {
+		$stats    = [ 'css' => 0, 'js' => 0, 'bytes' => 0 ];
+		$location = self::location();
+
+		if ( null === $location ) {
+			return $stats;
+		}
+
+		$dir = $location['dir'] . '/' . self::folder();
+
+		if ( ! is_dir( $dir ) ) {
+			return $stats;
+		}
+
+		foreach ( [ 'css', 'js' ] as $type ) {
+			foreach ( (array) glob( $dir . '/ps-set-*.' . $type ) as $file ) {
+				if ( is_file( $file ) ) {
+					++$stats[ $type ];
+					$stats['bytes'] += (int) filesize( $file );
+				}
+			}
+		}
+
+		return $stats;
+	}
+
+	/**
 	 * Fingerprint folders inside the combined files folder.
 	 *
 	 * @param string $root

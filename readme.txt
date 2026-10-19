@@ -473,6 +473,10 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 
 == Frequently Asked Questions ==
 
+### Where is the source code of the admin dashboard?
+
+- The dashboard script and styles in build/admin are compiled from the human-readable source in src/admin/app, which ships with the plugin. Run `npm install` and then `npm run build:admin` to rebuild them.
+
 ### How can I add Prime Slider to my website?
 
 - Just download Prime Slider on your WordPress website and drag-n-drop slider widgets/modules inside the target page where you want to use the slider.

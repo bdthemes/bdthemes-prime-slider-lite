@@ -28,12 +28,25 @@ class PrimeSlider_Admin_Settings {
 
 	private $settings_api;
 
+	/**
+	 * React dashboard, when its build is available.
+	 *
+	 * @var PrimeSlider_React_Dashboard|null
+	 */
+	private $react_dashboard = null;
+
 	public $responseObj;
 	public $showMessage = false;
 	private $is_activated = false;
 
 	function __construct() {
 		$this->settings_api = new PrimeSlider_Settings_API;
+
+		require_once BDTPS_CORE_ADMIN_PATH . 'class-react-dashboard.php';
+
+		if ( PrimeSlider_React_Dashboard::is_enabled() ) {
+			$this->react_dashboard = new PrimeSlider_React_Dashboard();
+		}
 
 		if (!defined('BDTPS_CORE_HIDE')) {
 			add_action('admin_init', [$this, 'admin_init']);
@@ -884,6 +897,11 @@ class PrimeSlider_Admin_Settings {
 	 */
 
 	public function plugin_page() {
+
+		if ( $this->react_dashboard ) {
+			$this->react_dashboard->render( $this );
+			return;
+		}
 
 		?>
 
