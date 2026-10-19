@@ -22,7 +22,7 @@ function Segmented( { value, onChange, options } ) {
 						className={ `flex items-center gap-[6px] border-0 rounded-full py-[7px] px-[14px] font-sans text-[12.5px] cursor-pointer transition-colors ${
 							active
 								? 'bg-brand text-white font-bold shadow-[0_2px_8px_rgba(252,106,42,.35)]'
-								: 'bg-transparent text-[#71717a] dark:text-ink-muted font-semibold hover:text-[#18181b] dark:hover:text-ink-text'
+								: 'bg-transparent text-[#6c6c75] dark:text-ink-muted font-semibold hover:text-[#18181b] dark:hover:text-ink-text'
 						}` }
 					>
 						{ option.label }
@@ -30,8 +30,8 @@ function Segmented( { value, onChange, options } ) {
 							<span
 								className={ `text-[10.5px] font-extrabold ${
 									active
-										? 'text-white/80'
-										: 'text-[#a1a1aa]'
+										? 'text-white'
+										: 'text-[#6d6d74] dark:text-ink-muted'
 								}` }
 							>
 								{ option.count }

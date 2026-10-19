@@ -15,7 +15,7 @@ export function Card( { className = '', children, ...rest } ) {
 
 export function SectionCard( {
 	icon: SectionIcon,
-	iconClassName = 'bg-[#eff6ff] text-brand dark:bg-[#15233a]',
+	iconClassName = 'bg-[#fff4ee] text-brand dark:bg-[#2a1a12]',
 	title,
 	count,
 	actions,
@@ -36,7 +36,7 @@ export function SectionCard( {
 					{ title }
 				</span>
 				{ count !== undefined ? (
-					<span className="text-[11px] font-extrabold text-[#a1a1aa] bg-[#f4f4f6] dark:bg-ink-subtle py-[3px] px-[9px] rounded-full">
+					<span className="text-[11px] font-extrabold text-[#6d6d74] dark:text-ink-muted bg-[#f4f4f6] dark:bg-ink-subtle py-[3px] px-[9px] rounded-full">
 						{ count }
 					</span>
 				) : null }

@@ -4,11 +4,11 @@
 export default function EmptyState( { title, description, action } ) {
 	return (
 		<div className="text-center py-[60px] px-5">
-			<div className="text-[15px] font-bold text-[#71717a] dark:text-ink-muted">
+			<div className="text-[15px] font-bold text-[#6c6c75] dark:text-ink-muted">
 				{ title }
 			</div>
 			{ description ? (
-				<p className="text-[13px] text-[#a1a1aa] mt-2">
+				<p className="text-[13px] text-[#6d6d74] dark:text-ink-muted mt-2">
 					{ description }
 				</p>
 			) : null }

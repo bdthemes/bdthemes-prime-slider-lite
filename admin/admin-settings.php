@@ -366,6 +366,57 @@ class PrimeSlider_Admin_Settings {
 		//initialize settings
 		$this->settings_api->admin_init();
 		$this->ps_redirect_to_get_pro();
+		$this->ps_redirect_to_deals();
+	}
+
+	/**
+	 * Deals page the free version's "Up To 86% Off" menu entry opens.
+	 */
+	const DEALS_URL = 'https://bdthemes.com/deals/?utm_source=PrimeSlider&utm_medium=plugin_menu&utm_campaign=PrimeSlider';
+
+	/**
+	 * Send the "Up To 86% Off" menu entry to the BdThemes deals page.
+	 *
+	 * @return void
+	 */
+	public function ps_redirect_to_deals() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check of the current admin page slug, no form data processed.
+		if ( ! isset( $_GET['page'] ) || self::PAGE_ID . '_deals' !== $_GET['page'] || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Intentional redirect to the external BdThemes deals page; wp_safe_redirect() would block this off-site host.
+		wp_redirect( self::DEALS_URL );
+		exit;
+	}
+
+	/**
+	 * Highlight the deals entry and open it in a new tab.
+	 *
+	 * @return void
+	 */
+	public function deals_menu_assets() {
+		?>
+		<style>
+			#adminmenu #toplevel_page_prime_slider_options a[href$="page=prime_slider_options_deals"] {
+				color: #ffc107;
+				font-weight: 600;
+			}
+			#adminmenu #toplevel_page_prime_slider_options a[href$="page=prime_slider_options_deals"]:hover,
+			#adminmenu #toplevel_page_prime_slider_options a[href$="page=prime_slider_options_deals"]:focus {
+				color: #ffffff;
+			}
+		</style>
+		<script>
+			document.addEventListener( 'DOMContentLoaded', function () {
+				var link = document.querySelector( '#toplevel_page_prime_slider_options a[href$="page=prime_slider_options_deals"]' );
+				if ( link ) {
+					link.setAttribute( 'target', '_blank' );
+					link.setAttribute( 'rel', 'noopener noreferrer' );
+				}
+			} );
+		</script>
+		<?php
 	}
 
 	/**
@@ -448,6 +499,20 @@ class PrimeSlider_Admin_Settings {
 			self::PAGE_ID . '#prime_slider_other_plugins',
 			[$this, 'plugin_page']
 		);
+
+		// Free version only: the BdThemes deals page (admin_init redirects there).
+		if ( true !== bdtps_is_pro_activated() ) {
+			add_submenu_page(
+				self::PAGE_ID,
+				BDTPS_CORE_TITLE,
+				esc_html__( 'Up To 86% Off', 'bdthemes-prime-slider-lite' ),
+				'manage_options',
+				self::PAGE_ID . '_deals',
+				[ $this, 'plugin_page' ]
+			);
+
+			add_action( 'admin_head', [ $this, 'deals_menu_assets' ] );
+		}
 		
 		// add_submenu_page(
 		// 	self::PAGE_ID,

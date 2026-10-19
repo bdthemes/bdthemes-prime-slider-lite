@@ -25,6 +25,14 @@ class Setup_Wizard {
 	// Singleton instance
 	private static $instance = null;
 
+	/**
+	 * Whether this request renders the wizard. Set on admin_init, read when
+	 * the assets are enqueued.
+	 *
+	 * @var bool
+	 */
+	private $is_wizard_request = false;
+
 	// Constructor
 	private function __construct() {
 		if ( current_user_can( 'manage_options' ) ) {
@@ -55,6 +63,7 @@ class Setup_Wizard {
 		add_action( 'wp_ajax_bdtps_setup_wizard_install_plugins', array( $this, 'install_plugins' ) );
 		add_action( 'wp_ajax_bdtps_setup_wizard_subscribe', array( $this, 'ajax_subscribe' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'dequeue_sibling_wizards' ), 100 );
 		add_action( 'admin_init', array( $this, 'activate_default_widgets' ) );
 		add_action( 'admin_init', array( $this, 'maybe_display_setup_wizard' ) );
 		add_action( 'admin_init', array( $this, 'check_manual_wizard_request' ) );
@@ -69,6 +78,8 @@ class Setup_Wizard {
 		$is_setup_wizard_request = isset($_GET['ps_setup_wizard']) && 'show' === sanitize_text_field(wp_unslash($_GET['ps_setup_wizard']));
 		
 		if ( $is_setup_wizard_request ) {
+			$this->is_wizard_request = true;
+
 			// Use the same approach as first activation - completely override the page
 			add_action('admin_head', function() {
 				?>
@@ -156,10 +167,19 @@ class Setup_Wizard {
 
 	// Check if this is first activation and display setup wizard if needed
 	public function maybe_display_setup_wizard() {
+		// admin_init also runs for admin-ajax.php (the Heartbeat, for one). The
+		// wizard can only be shown on a page load, so an AJAX request must not
+		// use up the first-run flag.
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
 		// Only check for first activation here
 		if ( get_option( 'bdtps_setup_wizard_completed' ) === false ) {
 			// Set the flag so it doesn't run again
 			update_option( 'bdtps_setup_wizard_completed', true );
+
+			$this->is_wizard_request = true;
 			
 			// Add a header to ensure proper full-page display
 			add_action('admin_head', function() {
@@ -220,6 +240,13 @@ class Setup_Wizard {
 	// Enqueue necessary scripts
 	public function enqueue_scripts() {
 
+		// Only the request that renders the wizard needs its assets. Loaded on
+		// every admin screen, the script also attached itself to the other
+		// BdThemes plugins' wizards, which share the .bdt-setup-wizard markup.
+		if ( ! $this->is_wizard_request ) {
+			return;
+		}
+
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
 		wp_enqueue_style('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.17.0');
@@ -241,6 +268,35 @@ class Setup_Wizard {
 				'is_fullscreen' => true
 			)
 		);
+	}
+
+	/**
+	 * Keep the other BdThemes plugins' setup wizards off this one.
+	 *
+	 * Those plugins enqueue their wizard script and stylesheet on every admin
+	 * screen and select the same .bdt-setup-wizard markup, so on this page
+	 * their handlers ran as well (Ultimate Post Kit's sent its own newsletter
+	 * request from the welcome step). Only handles loaded from another
+	 * plugin's includes/setup-wizard/ folder are removed.
+	 */
+	public function dequeue_sibling_wizards() {
+		if ( ! $this->is_wizard_request ) {
+			return;
+		}
+
+		foreach ( array( wp_scripts(), wp_styles() ) as $deps ) {
+			foreach ( (array) $deps->queue as $handle ) {
+				if ( 'bdtps-setup-wizard' === $handle || ! isset( $deps->registered[ $handle ] ) ) {
+					continue;
+				}
+
+				$src = (string) $deps->registered[ $handle ]->src;
+
+				if ( false !== strpos( $src, '/includes/setup-wizard/' ) && false === strpos( $src, '/' . dirname( BDTPS_CORE_PBNAME ) . '/' ) ) {
+					$deps instanceof \WP_Scripts ? wp_dequeue_script( $handle ) : wp_dequeue_style( $handle );
+				}
+			}
+		}
 	}
 
 	public static function get_widget_map() {
@@ -372,75 +428,108 @@ class Setup_Wizard {
 		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 		require_once __DIR__ . '/class-quiet-upgrader-skin.php';
 
-		// Replace new \Plugin_Installer_Skin with new Quiet_Upgrader_Skin when output needs to be suppressed.
-		$skin = new Quiet_Upgrader_Skin();
-		// $skin     = new \Plugin_Installer_Skin( array( 'api' => $api ) );
-		$upgrader = new \Plugin_Upgrader( $skin );
-
-		// $upgrader = new \Plugin_Upgrader();
-
-        $installedPlugins = get_plugins();
-		$results = array();
+		$upgrader = new \Plugin_Upgrader( new Quiet_Upgrader_Skin() );
+		$results  = array();
 
 		foreach ( $plugin_slugs as $plugin_slug ) {
-            // skip when the plugin is already active
-            if (is_plugin_active($plugin_slug)) {
-                $results[] = array(
-                    'slug'    => $plugin_slug,
-                    'success' => true,
-                    'message' => 'Installed and activated successfully',
-                );
-                continue;
-            }
+			// The wizard sends wordpress.org slugs ("live-copy-paste"); a main
+			// file path ("live-copy-paste/live-copy-paste.php") is accepted too.
+			$slug        = sanitize_key( strtok( (string) $plugin_slug, '/' ) );
+			$plugin_file = $slug ? $this->get_plugin_file( $slug ) : false;
 
-            // Download the plugin if the plugin is not installed
-            if (!isset($installedPlugins[$plugin_slug])) {
-                $slug = explode('/', $plugin_slug)[0];
-                $api = plugins_api( 'plugin_information', array( 'slug' => $slug ) );
+			if ( ! $slug ) {
+				continue;
+			}
 
-                if ( is_wp_error( $api ) ) {
-                    $results[] = array(
-                        'slug'    => $plugin_slug,
-                        'success' => false,
-                        'message' => $api->get_error_message(),
-                    );
-                    continue;
-                }
+			if ( $plugin_file && is_plugin_active( $plugin_file ) ) {
+				$results[] = array(
+					'slug'    => $slug,
+					'success' => true,
+					'message' => esc_html__( 'Already active.', 'bdthemes-prime-slider-lite' ),
+				);
+				continue;
+			}
 
-                $result = $upgrader->install( $api->download_link );
-                if ( is_wp_error( $result ) ) {
-                    $results[] = array(
-                        'slug'    => $plugin_slug,
-                        'success' => false,
-                        'message' => $result->get_error_message(),
-                    );
-                    continue;
-                }
-            }
+			// Download only what is not installed yet. Installing over an
+			// existing folder fails with "Destination folder already exists".
+			if ( ! $plugin_file ) {
+				$api = plugins_api( 'plugin_information', array( 'slug' => $slug, 'fields' => array( 'sections' => false ) ) );
 
-            // active the plugin
-            if ( is_plugin_inactive($plugin_slug) ) {
-                $activation_result = activate_plugin( $plugin_slug );
-                if ( is_wp_error( $activation_result ) ) {
-                    $results[] = array(
-                        'slug'    => $slug,
-                        'success' => false,
-                        'message' => $activation_result->get_error_message(),
-                    );
-                    continue;
-                }
+				if ( is_wp_error( $api ) ) {
+					$results[] = array(
+						'slug'    => $slug,
+						'success' => false,
+						'message' => $api->get_error_message(),
+					);
+					continue;
+				}
 
-                $results[] = array(
-                    'slug'    => $plugin_slug,
-                    'success' => true,
-                    'message' => 'Installed and activated successfully',
-                );
-            }
+				$installed = $upgrader->install( $api->download_link );
+
+				if ( is_wp_error( $installed ) || ! $installed ) {
+					$results[] = array(
+						'slug'    => $slug,
+						'success' => false,
+						'message' => is_wp_error( $installed ) ? $installed->get_error_message() : esc_html__( 'Installation failed.', 'bdthemes-prime-slider-lite' ),
+					);
+					continue;
+				}
+
+				wp_clean_plugins_cache();
+				$plugin_file = $upgrader->plugin_info() ? $upgrader->plugin_info() : $this->get_plugin_file( $slug );
+			}
+
+			if ( ! $plugin_file ) {
+				$results[] = array(
+					'slug'    => $slug,
+					'success' => false,
+					'message' => esc_html__( 'The plugin was installed, but its main file could not be found.', 'bdthemes-prime-slider-lite' ),
+				);
+				continue;
+			}
+
+			if ( ! current_user_can( 'activate_plugin', $plugin_file ) ) {
+				$results[] = array(
+					'slug'    => $slug,
+					'success' => false,
+					'message' => esc_html__( 'You are not allowed to activate this plugin.', 'bdthemes-prime-slider-lite' ),
+				);
+				continue;
+			}
+
+			$activated = activate_plugin( $plugin_file );
+
+			$results[] = array(
+				'slug'    => $slug,
+				'success' => ! is_wp_error( $activated ),
+				'message' => is_wp_error( $activated ) ? $activated->get_error_message() : esc_html__( 'Installed and activated successfully.', 'bdthemes-prime-slider-lite' ),
+			);
 		}
 
-		ob_clean();
+		// Discard anything an activated plugin printed into an open buffer, so
+		// the response stays valid JSON. ob_clean() without a buffer raises a
+		// notice, which is what the unconditional call here used to do.
+		if ( ob_get_level() > 0 && ob_get_length() ) {
+			ob_clean();
+		}
+
+		$failed = array_filter(
+			$results,
+			function ( $result ) {
+				return empty( $result['success'] );
+			}
+		);
+
+		if ( $failed ) {
+			wp_send_json_error(
+				array(
+					'results' => $results,
+					'message' => implode( ' ', wp_list_pluck( $failed, 'message' ) ),
+				)
+			);
+		}
+
 		wp_send_json_success( array( 'results' => $results ) );
-		wp_die();
 	}
 
 	/**
@@ -452,8 +541,10 @@ class Setup_Wizard {
 	private function get_plugin_file( $slug ) {
 		$plugins = get_plugins();
 
-		foreach ( $plugins as $file => $plugin ) {
-			if ( strpos( $file, $slug ) !== false ) {
+		foreach ( array_keys( $plugins ) as $file ) {
+			// Match the folder exactly: a substring test would match
+			// "spin-wheel-pro/…" for "spin-wheel".
+			if ( dirname( $file ) === $slug ) {
 				return $file;
 			}
 		}
@@ -542,6 +633,15 @@ function bdtps_resolve_bundled_template( $url ) {
 	}
 
 	return $file;
+}
+
+/**
+ * Elementor import runners the setup wizard does not run for its bundled kits.
+ *
+ * @return string[]
+ */
+function bdtps_skipped_kit_runners() {
+	return array( 'wp-content' );
 }
 
 	add_action('wp_ajax_bdtps_import_elementor_template', function () {
@@ -681,6 +781,10 @@ add_action('wp_ajax_bdtps_import_elementor_bundle_template', function () {
 
     $kit_zip_path = Plugin::$instance->uploads_manager->create_temp_file($zip_contents, 'kit.zip');
 
+    if (is_wp_error($kit_zip_path)) {
+        wp_send_json_error(['message' => esc_html__('Could not create a temporary file for the import.', 'bdthemes-prime-slider-lite')]);
+    }
+
     $app = Plugin::$instance->app;
     if (!$app) {
         wp_send_json_error(['message' => esc_html__('Elementor app not available', 'bdthemes-prime-slider-lite')]);
@@ -691,12 +795,12 @@ add_action('wp_ajax_bdtps_import_elementor_bundle_template', function () {
     try {
         $result = $import_export_module->upload_kit($kit_zip_path, 'local');
         $manifest = $result['manifest'] ?? [];
-        $plugins = $manifest['plugins'];
+        $plugins = isset($manifest['plugins']) && is_array($manifest['plugins']) ? $manifest['plugins'] : [];
 
         $missingPlugins = [];
         foreach ($plugins as $plugin) {
-            $pluginSlug = $plugin['plugin'].".php";
-            if (is_plugin_inactive($pluginSlug)) {
+            $pluginSlug = (isset($plugin['plugin']) ? $plugin['plugin'] : '') . ".php";
+            if ('.php' === $pluginSlug || is_plugin_inactive($pluginSlug)) {
                 $missingPlugins[] = $plugin;
             }
         }
@@ -738,7 +842,14 @@ add_action('wp_ajax_bdtps_import_elementor_bundle_template', function () {
 
         $import = $import_export_module->import_kit($tmp_folder_id, $settings, true);
 
-        Plugin::$instance->uploads_manager->enable_unfiltered_files_upload();
+        // The bundled kits also carry three sample blog posts in wp-content/,
+        // which none of the slider pages use. Skipping that runner imports the
+        // slider page (elementor-content) without publishing unrelated posts.
+        // Elementor's "Unfiltered file uploads" setting is left as the site
+        // owner set it; nothing in these kits needs it.
+        if (isset($import['runners']) && is_array($import['runners'])) {
+            $import['runners'] = array_values(array_diff($import['runners'], bdtps_skipped_kit_runners()));
+        }
 
         wp_send_json_success($import);
     } catch (\Throwable $e) {
@@ -759,6 +870,10 @@ add_action('wp_ajax_bdtps_import_elementor_bundle_runner_template', function () 
 
     if (!$runner || !$sessionId) {
         wp_send_json_error(['message' => esc_html__('Required Param Is Missing.', 'bdthemes-prime-slider-lite')]);
+    }
+
+    if (in_array($runner, bdtps_skipped_kit_runners(), true)) {
+        wp_send_json_success([]);
     }
 
     $app = Plugin::$instance->app;

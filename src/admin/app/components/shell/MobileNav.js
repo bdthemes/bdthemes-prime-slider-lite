@@ -29,7 +29,7 @@ export default function MobileNav() {
 				type="button"
 				onClick={ () => navigate( route.path ) }
 				className={ `flex-1 flex flex-col items-center gap-1 py-2 text-[11px] font-bold cursor-pointer ${
-					active ? 'text-brand' : 'text-[#71717a] dark:text-ink-muted'
+					active ? 'text-brand' : 'text-[#6c6c75] dark:text-ink-muted'
 				}` }
 			>
 				<Icon size={ 20 } />
@@ -67,7 +67,7 @@ export default function MobileNav() {
 						type="button"
 						onClick={ () => setOpen( ( v ) => ! v ) }
 						className={ `flex-1 flex flex-col items-center gap-1 py-2 text-[11px] font-bold cursor-pointer ${
-							open || rest.some( isActive ) ? 'text-brand' : 'text-[#71717a] dark:text-ink-muted'
+							open || rest.some( isActive ) ? 'text-brand' : 'text-[#6c6c75] dark:text-ink-muted'
 						}` }
 					>
 						{ open ? <XIcon size={ 20 } /> : <MoreIcon size={ 20 } /> }

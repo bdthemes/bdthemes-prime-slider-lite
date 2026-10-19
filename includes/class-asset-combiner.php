@@ -905,7 +905,7 @@ final class Asset_Combiner {
 	 * @return array{css: int, js: int, bytes: int}
 	 */
 	public static function stats() {
-		$stats    = [ 'css' => 0, 'js' => 0, 'bytes' => 0 ];
+		$stats    = [ 'css' => 0, 'js' => 0, 'bytes' => 0, 'version' => '' ];
 		$location = self::location();
 
 		if ( null === $location ) {
@@ -925,6 +925,12 @@ final class Asset_Combiner {
 					$stats['bytes'] += (int) filesize( $file );
 				}
 			}
+		}
+
+		// The fingerprint folder names the current set of combined files, the
+		// counterpart of Element Pack's bundle version.
+		if ( $stats['css'] || $stats['js'] ) {
+			$stats['version'] = self::folder();
 		}
 
 		return $stats;

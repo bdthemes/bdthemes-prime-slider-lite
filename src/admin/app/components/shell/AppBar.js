@@ -37,7 +37,7 @@ export default function AppBar() {
 		'w-[42px] h-[42px] rounded-full bg-white border border-[#e6e6ea] text-[#52525b] dark:bg-ink-card dark:border-[#2a313c] dark:text-[#cdd0d6] cursor-pointer grid place-items-center transition-colors hover:border-brand hover:text-brand';
 
 	return (
-		<div className="py-[18px] px-[26px] flex items-center justify-between gap-5 flex-wrap max-[900px]:py-[13px] max-[900px]:px-[15px] max-[900px]:gap-3">
+		<div className="min-h-[80px] py-[18px] px-[26px] flex items-center justify-between gap-5 flex-wrap max-[900px]:py-[13px] max-[900px]:px-[15px] max-[900px]:gap-3">
 			<div className="flex items-center gap-4">
 				{ config.whiteLabel ? (
 					<span className="text-[19px] font-extrabold tracking-[-.02em] text-[#0f1115] dark:text-ink-text">
@@ -47,7 +47,7 @@ export default function AppBar() {
 					<img
 						src={ isDark ? logoDarkUrl : config.logoUrl }
 						alt={ config.title || 'Prime Slider' }
-						className="h-[26px] w-auto block"
+						className="h-8 w-auto block"
 					/>
 				) }
 				{ config.isPro ? (
@@ -55,7 +55,7 @@ export default function AppBar() {
 						{ __( 'PRO', 'bdthemes-prime-slider-lite' ) }
 					</span>
 				) : null }
-				<span className="text-[12.5px] text-[#71717a] dark:text-ink-muted font-bold">
+				<span className="text-[12.5px] text-[#6c6c75] dark:text-ink-muted font-bold">
 					v{ config.version }
 				</span>
 			</div>

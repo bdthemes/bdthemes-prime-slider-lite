@@ -39,7 +39,8 @@ export function ToastProvider( { children } ) {
 	return (
 		<ToastContext.Provider value={ showToast }>
 			{ children }
-			<div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-2">
+			{ /* Polite live region, so screen readers announce save results. */ }
+			<div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-2" role="status" aria-live="polite">
 				{ toasts.map( ( toast ) => (
 					<div
 						key={ toast.id }

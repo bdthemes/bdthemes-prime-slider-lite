@@ -24,7 +24,7 @@ export default function QuickActions( { actions } ) {
 						key={ action.to }
 						type="button"
 						onClick={ () => navigate( action.to ) }
-						className="text-left border border-[#ededf1] dark:border-ink-border rounded-[14px] p-[15px] cursor-pointer transition-all duration-200 bg-white dark:bg-ink-card hover:border-brand hover:bg-[#fff8f4] dark:hover:bg-[#15233a] hover:-translate-y-[2px]"
+						className="text-left border border-[#ededf1] dark:border-ink-border rounded-[14px] p-[15px] cursor-pointer transition-all duration-200 bg-white dark:bg-ink-card hover:border-brand hover:bg-[#fff8f4] dark:hover:bg-[#2a1a12] hover:-translate-y-[2px]"
 					>
 						<IconTile
 							icon={ action.icon }
@@ -34,7 +34,7 @@ export default function QuickActions( { actions } ) {
 						<div className="text-[13.5px] font-semibold text-[#27272a] dark:text-ink-text mt-[11px]">
 							{ action.label }
 						</div>
-						<div className="text-[11.5px] text-[#a1a1aa] dark:text-ink-muted mt-[2px]">
+						<div className="text-[11.5px] text-[#6d6d74] dark:text-ink-muted mt-[2px]">
 							{ action.sub }
 						</div>
 					</button>

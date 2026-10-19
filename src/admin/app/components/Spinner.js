@@ -11,7 +11,7 @@ export default function Spinner( { full = false, label } ) {
 		>
 			<span className="w-8 h-8 rounded-full border-[3px] border-[#e4e7ec] dark:border-ink-border border-t-brand animate-ps-spin" />
 			{ label ? (
-				<span className="text-[13px] font-semibold text-[#71717a] dark:text-ink-muted">
+				<span className="text-[13px] font-semibold text-[#6c6c75] dark:text-ink-muted">
 					{ label }
 				</span>
 			) : null }

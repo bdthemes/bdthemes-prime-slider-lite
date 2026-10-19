@@ -7,9 +7,9 @@ import IconTile from '../ui/IconTile';
 
 const PILL_TONES = {
 	green: 'text-[#15803d] bg-[#ecfdf3] dark:bg-[#0f2318] dark:text-[#4ade80]',
-	blue: 'text-[#fc6a2a] bg-[#eff6ff] dark:bg-[#15233a]',
+	blue: 'text-[#fc6a2a] bg-[#fff4ee] dark:bg-[#2a1a12]',
 	amber: 'text-[#b45309] bg-[#fff7ed] dark:bg-[#2a1c0e] dark:text-[#fdba74]',
-	neutral: 'text-[#a1a1aa] bg-[#f4f4f5] dark:bg-ink-subtle',
+	neutral: 'text-[#6d6d74] dark:text-ink-muted bg-[#f4f4f5] dark:bg-ink-subtle',
 };
 
 export default function DashboardStatCard( {
@@ -37,7 +37,7 @@ export default function DashboardStatCard( {
 			<div className="text-[34px] font-black tracking-[-.03em] mt-[14px] text-[#0f1115] dark:text-ink-text">
 				{ value }
 			</div>
-			<div className="text-[12.5px] text-[#71717a] dark:text-ink-muted mt-[8px] font-medium">
+			<div className="text-[12.5px] text-[#6c6c75] dark:text-ink-muted mt-[8px] font-medium">
 				{ label }
 			</div>
 		</div>

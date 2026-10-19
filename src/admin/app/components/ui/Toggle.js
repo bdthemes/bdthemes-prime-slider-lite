@@ -1,6 +1,7 @@
 /**
  * Pill toggle switch (mockup spec: 46×26 track, 21px knob; sm: 40×23/18).
- * Track: brand blue when on, zinc when off.
+ * Track: brand when on, zinc when off. Both keep 3:1 against the card
+ * (WCAG 1.4.11), so the off state is darker than a plain light grey.
  */
 const SIZES = {
 	md: {
@@ -21,6 +22,7 @@ export default function Toggle( {
 	size = 'md',
 	disabled = false,
 	label,
+	describedBy,
 } ) {
 	const dims = SIZES[ size ] || SIZES.md;
 
@@ -30,12 +32,13 @@ export default function Toggle( {
 			role="switch"
 			aria-checked={ checked }
 			aria-label={ label }
+			aria-describedby={ describedBy }
 			disabled={ disabled }
 			onClick={ () => onChange && onChange( ! checked ) }
 			className={ `relative ${
 				dims.track
 			} rounded-full border-0 cursor-pointer p-0 flex-none transition-colors duration-[250ms] disabled:opacity-50 disabled:cursor-not-allowed ${
-				checked ? 'bg-brand' : 'bg-[#d4d4d8] dark:bg-[#3a414c]'
+				checked ? 'bg-brand' : 'bg-[#919194] dark:bg-[#60666f]'
 			}` }
 		>
 			<span

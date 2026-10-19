@@ -2532,6 +2532,14 @@ class General extends Widget_Base {
 			foreach ( $settings['social_link_list'] as $index => $link ) :
                 
                 $link_key = 'link_' . $index;
+                
+                // Icon-only link: the link title is its accessible name.
+                
+                if ( ! empty( $link['social_link_title'] ) ) {
+                
+                	$this->add_render_attribute( $link_key, 'aria-label', wp_strip_all_tags( (string) $link['social_link_title'] ), true );
+                
+                }
                 $this->add_render_attribute($link_key, 'class', 'bdt-social-animate', true);
 
 				$tooltip = '';

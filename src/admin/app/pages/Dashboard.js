@@ -16,6 +16,7 @@ import MostUsedCard from '../components/dashboard/MostUsedCard';
 import SuggestionsCard from '../components/dashboard/SuggestionsCard';
 import { GridIcon, PlugIcon, ZapIcon, SlidersIcon, GaugeIcon, ServerIcon, PackageIcon, RocketIcon, PlusIcon, TagIcon, CodeIcon, KeyIcon } from '../components/ui/Icons';
 import config, { sectionFields } from '../utils/config';
+import { ASSET_FIELD } from './PerformancePage';
 
 function percent( part, total ) {
 	return total ? Math.round( ( part / total ) * 100 ) : 0;
@@ -28,10 +29,14 @@ function hasPanel( id ) {
 export default function Dashboard() {
 	const core = sectionFields( 'prime_slider_active_modules' );
 	const third = sectionFields( 'prime_slider_third_party_widget' );
-	const features = sectionFields( 'prime_slider_other_settings' );
+	// Asset Optimization has its own Performance page and is not one of the
+	// features the Features page lists, so it is not counted here either.
+	const features = sectionFields( 'prime_slider_other_settings' ).filter( ( f ) => f.name !== ASSET_FIELD );
 	const widgets = [ ...core, ...third ];
 
-	const available = widgets.filter( ( w ) => ! w.is_locked );
+	// Same rule as the Widgets page: locked Pro widgets and 3rd-party widgets
+	// whose plugin is inactive cannot be switched, so they are not counted.
+	const available = widgets.filter( ( w ) => ! w.is_locked && w.plugin_active !== false );
 	const enabled = available.filter( ( w ) => w.enabled ).length;
 	const used = widgets.filter( ( w ) => w.usage_count > 0 );
 	const featuresOn = features.filter( ( f ) => f.enabled ).length;
@@ -39,8 +44,8 @@ export default function Dashboard() {
 	const checks = Array.isArray( config.system ) ? config.system : [];
 	const checksOk = checks.filter( ( c ) => c.pass ).length;
 
-	/* translators: 1: count, 2: total */
-	const ofTotal = __( '%1$d of %2$d', 'bdthemes-prime-slider-lite' );
+	// The comment sits right before __() so it survives minifying and reaches the POT.
+	const ofTotal = /* translators: 1: count, 2: total */ __( '%1$d of %2$d', 'bdthemes-prime-slider-lite' );
 
 	const welcome = config.userName
 		? sprintf(
@@ -112,7 +117,7 @@ export default function Dashboard() {
 					<h1 className="text-[31px] leading-[1.15] font-extrabold tracking-[-.025em] text-[#0f1115] dark:text-ink-text">
 						{ welcome }
 					</h1>
-					<p className="text-[14.5px] text-[#71717a] dark:text-ink-muted mt-[6px]">
+					<p className="text-[14.5px] text-[#6c6c75] dark:text-ink-muted mt-[6px]">
 						{ __( 'Here’s what’s happening with your sliders.', 'bdthemes-prime-slider-lite' ) }
 					</p>
 				</div>

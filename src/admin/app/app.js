@@ -27,6 +27,16 @@ function FallbackRoute() {
 }
 
 /**
+ * Whether a submenu link opens this dashboard (page=prime_slider_options
+ * exactly), not another page whose slug only starts the same way, such as
+ * the deals entry (prime_slider_options_deals).
+ */
+function isDashboardLink( href ) {
+	const query = href.split( '#' )[ 0 ].split( '?' )[ 1 ] || '';
+	return new window.URLSearchParams( query ).get( 'page' ) === 'prime_slider_options';
+}
+
+/**
  * Point the WordPress submenu entries at the app's routes, so clicking one
  * while the dashboard is open navigates inside the app.
  */
@@ -36,7 +46,7 @@ function rewriteSubmenuLinks() {
 		.forEach( ( link ) => {
 			const href = link.getAttribute( 'href' ) || '';
 			const at = href.indexOf( '#' );
-			if ( ! href.includes( 'page=prime_slider_options' ) || at === -1 ) {
+			if ( ! isDashboardLink( href ) || at === -1 ) {
 				return;
 			}
 			const route = routeForLegacyHash( href.slice( at + 1 ) );
@@ -67,7 +77,7 @@ function WpSubmenuSync() {
 				return;
 			}
 			const href = link.getAttribute( 'href' ) || '';
-			if ( ! href.includes( 'page=prime_slider_options' ) ) {
+			if ( ! isDashboardLink( href ) ) {
 				return;
 			}
 			const at = href.indexOf( '#' );

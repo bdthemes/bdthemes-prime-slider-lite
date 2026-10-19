@@ -99,7 +99,7 @@ export default function SectionPage( { section, title, subtitle } ) {
 					subtitle ||
 					sprintf(
 						/* translators: 1: active count, 2: total count */
-						__( '%1$d of %2$d enabled · disable unused widgets for faster pages.', 'bdthemes-prime-slider-lite' ),
+						__( '%1$d of %2$d enabled · disable unused items for faster pages.', 'bdthemes-prime-slider-lite' ),
 						activeCount,
 						switchable.length
 					)
@@ -136,7 +136,11 @@ export default function SectionPage( { section, title, subtitle } ) {
 			<FilterBar
 				search={ search }
 				onSearch={ setSearch }
-				searchPlaceholder={ __( 'Search widgets…', 'bdthemes-prime-slider-lite' ) }
+				searchPlaceholder={
+					section === 'prime_slider_elementor_extend'
+						? __( 'Search extensions…', 'bdthemes-prime-slider-lite' )
+						: __( 'Search widgets…', 'bdthemes-prime-slider-lite' )
+				}
 				type={ type }
 				onType={ setType }
 				usage={ usage }

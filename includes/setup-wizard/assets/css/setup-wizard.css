@@ -7,9 +7,10 @@
   --ps-text-light: #636e72;
   --ps-gray-light: #f5f6fa;
   --ps-gray-medium: #e8f0f3;
-  --ps-success: #00b894;
+  /* Success and danger carry text, so both meet WCAG AA (4.5:1) on white. */
+  --ps-success: #00866c;
   --ps-warning: #fdcb6e;
-  --ps-danger: #ff7675;
+  --ps-danger: #b45352;
   --ps-white: #ffffff;
   --ps-shadow: 0 10px 20px rgba(108, 92, 231, 0.1);
   --ps-border-radius: 10px;
@@ -251,12 +252,13 @@
 }
 
 .bdt-setup-wizard .bdt-button-secondary {
-  background: var(--ps-secondary);
+  /* A darker shade of --ps-secondary, so the white label reaches 4.5:1. */
+  background: #008485;
   color: var(--ps-white);
 }
 
 .bdt-setup-wizard .bdt-button-secondary:hover {
-  background: #00bfc0;
+  background: #006f70;
   transform: translateY(-2px);
 }
 
@@ -749,7 +751,7 @@
 }
 
 .bdt-setup-wizard .template-preview {
-  background-color: var(--ps-secondary);
+  background-color: #008485;
   color: white;
 }
 

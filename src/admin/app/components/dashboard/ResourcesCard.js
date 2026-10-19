@@ -37,7 +37,7 @@ export default function ResourcesCard() {
 						<IconTile icon={ link.icon } accent={ link.accent } size="md" />
 						<div className="flex-1 min-w-0">
 							<div className="text-[13px] font-bold text-[#27272a] dark:text-ink-text transition-colors group-hover:text-brand">{ link.title }</div>
-							<div className="text-[11.5px] text-[#a1a1aa] dark:text-ink-muted mt-px">{ link.sub }</div>
+							<div className="text-[11.5px] text-[#6d6d74] dark:text-ink-muted mt-px">{ link.sub }</div>
 						</div>
 						{ link.sameTab ? (
 							<ChevronRightIcon size={ 16 } className="text-[#c4c4cc] flex-none transition-all duration-150 group-hover:text-brand group-hover:translate-x-[3px]" />

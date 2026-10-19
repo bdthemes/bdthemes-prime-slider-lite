@@ -20,9 +20,9 @@ export default function AdminLayout( { children } ) {
 					<TabStrip />
 				</div>
 
-				<main className="mt-[26px]" role="main">
+				<div className="mt-[26px]">
 					{ children }
-				</main>
+				</div>
 			</div>
 
 			<MobileNav />

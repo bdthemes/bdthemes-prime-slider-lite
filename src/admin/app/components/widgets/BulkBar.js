@@ -30,7 +30,7 @@ export default function BulkBar( {
 		  )
 		: undefined;
 	const count = scoped ? (
-		<span className="text-[11px] font-extrabold opacity-70">
+		<span className="text-[11px] font-extrabold opacity-90">
 			{ scopeCount }
 		</span>
 	) : null;

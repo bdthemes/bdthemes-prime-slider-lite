@@ -10,12 +10,13 @@
  * existing nonce- and capability-checked `prime_slider_settings_save` AJAX
  * action, and every value the app shows is passed in once, on page load.
  *
- * Panels that are rendered by PHP — the Other Plugins installer and the tabs an
- * add-on registers through `prime_slider_dashboard_extra_tabs` or the
- * `prime_slider/license_page` hook (Prime Slider Pro: Rollback, White Label,
- * Custom CSS & JS, License) — are still rendered here, hidden, and moved into
- * the app's matching route, so their own markup, scripts and forms keep
- * working unchanged.
+ * Panels that add-ons render in PHP — the tabs registered through
+ * `prime_slider_dashboard_extra_tabs` and the `prime_slider/license_page` hook
+ * (Prime Slider Pro: Rollback, White Label, Custom CSS & JS, License) — are
+ * still rendered here, hidden, and moved into the app's matching route, so
+ * their own markup, scripts and forms keep working unchanged. Other Plugins is
+ * rendered by the app itself, from the existing `bdtps_get_plugins` and
+ * `bdtps_install_plugin` AJAX actions.
  *
  * When the build is missing, or the `prime_slider/admin/react_dashboard`
  * filter returns false, the classic dashboard renders instead.
@@ -137,7 +138,13 @@ final class PrimeSlider_React_Dashboard {
 			<div id="ps-admin-app"></div>
 
 			<div id="ps-admin-panels" hidden>
-				<?php foreach ( $this->get_panels() as $panel ) : ?>
+				<?php
+				$react_pages = $this->get_react_pages();
+				foreach ( $this->get_panels() as $panel ) :
+					if ( isset( $react_pages[ $panel['id'] ] ) ) {
+						continue; // Rendered by the app.
+					}
+					?>
 					<div class="ps-admin-panel prime-slider-dashboard" data-ps-panel="<?php echo esc_attr( $panel['id'] ); ?>">
 						<?php call_user_func( $panel['render'], $settings ); ?>
 					</div>
@@ -148,21 +155,44 @@ final class PrimeSlider_React_Dashboard {
 	}
 
 	/**
+	 * Cached result of get_react_pages().
+	 *
+	 * @var array|null
+	 */
+	private $react_pages = null;
+
+	/**
+	 * Add-on pages the app renders itself, keyed by panel id.
+	 *
+	 * An add-on that registers a dashboard tab can hand the app the data for a
+	 * native page instead of PHP markup: `[ panel id => data ]`. The app then
+	 * renders that page (Prime Slider Pro: License, White Label, Custom CSS &
+	 * JS, Rollback) and the PHP panel is not rendered. Panels without data keep
+	 * their PHP markup, so older add-on versions work unchanged.
+	 *
+	 * @return array<string, array>
+	 */
+	private function get_react_pages() {
+		if ( null === $this->react_pages ) {
+			/**
+			 * Filters the add-on pages the dashboard app renders natively.
+			 *
+			 * @param array<string, array> $pages Panel id => page data.
+			 */
+			$pages             = (array) apply_filters( 'prime_slider/admin/react_pages', [] );
+			$this->react_pages = array_filter( $pages, 'is_array' );
+		}
+
+		return $this->react_pages;
+	}
+
+	/**
 	 * PHP-rendered panels: id, title, icon (a dashicons class) and renderer.
 	 *
 	 * @return array[]
 	 */
 	private function get_panels() {
-		$panels = [
-			[
-				'id'     => 'prime_slider_other_plugins',
-				'title'  => __( 'Other Plugins', 'bdthemes-prime-slider-lite' ),
-				'icon'   => 'dashicons dashicons-admin-plugins',
-				'render' => function ( $settings ) {
-					$settings->prime_slider_others_plugin();
-				},
-			],
-		];
+		$panels = [];
 
 		/** This filter is documented in admin/class-settings-api.php */
 		foreach ( (array) apply_filters( 'prime_slider_dashboard_extra_tabs', [] ) as $tab ) {
@@ -204,13 +234,20 @@ final class PrimeSlider_React_Dashboard {
 		$user   = wp_get_current_user();
 		$is_pro = function_exists( 'bdtps_is_pro_activated' ) && true === bdtps_is_pro_activated();
 
-		$panels = array_map(
-			function ( $panel ) {
-				return [
+		$react_pages = $this->get_react_pages();
+		$panels      = array_map(
+			function ( $panel ) use ( $react_pages ) {
+				$item = [
 					'id'    => $panel['id'],
 					'title' => $panel['title'],
 					'icon'  => $panel['icon'],
 				];
+
+				if ( isset( $react_pages[ $panel['id'] ] ) ) {
+					$item['data'] = $react_pages[ $panel['id'] ];
+				}
+
+				return $item;
 			},
 			$this->get_panels()
 		);
@@ -242,6 +279,18 @@ final class PrimeSlider_React_Dashboard {
 			'releases'       => $this->get_releases(),
 			'panels'         => $panels,
 			'assets'         => $this->get_asset_stats(),
+			'plugins'        => [
+				'nonce'       => wp_create_nonce( 'ps_get_plugins_nonce' ),
+				'installNonce' => wp_create_nonce( 'ps_install_plugin_nonce' ),
+				'canInstall'  => current_user_can( 'install_plugins' ),
+				'canActivate' => current_user_can( 'activate_plugins' ),
+			],
+			'environment'    => [
+				'wp_version'  => get_bloginfo( 'version' ),
+				'php_version' => phpversion(),
+				'server'      => isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '',
+				'language'    => get_locale(),
+			],
 		];
 	}
 
@@ -322,8 +371,13 @@ final class PrimeSlider_React_Dashboard {
 					'is_locked'    => isset( $field['widget_type'] ) && 'pro' === $field['widget_type'] && ! $is_pro,
 				];
 
+				if ( ! empty( $field['tooltip'] ) ) {
+					$item['tooltip'] = trim( html_entity_decode( wp_strip_all_tags( (string) $field['tooltip'] ), ENT_QUOTES, 'UTF-8' ) );
+				}
+
 				if ( $group ) {
-					$item['group'] = $group;
+					$item['group']       = $group;
+					$item['description'] = trim( preg_replace( '/\s+/', ' ', html_entity_decode( wp_strip_all_tags( $group['desc'] ), ENT_QUOTES, 'UTF-8' ) ) );
 				}
 
 				if ( ! empty( $field['plugin_path'] ) ) {
@@ -370,13 +424,14 @@ final class PrimeSlider_React_Dashboard {
 	private function get_asset_stats() {
 		$stats = class_exists( '\PrimeSlider\Includes\Asset_Combiner' )
 			? \PrimeSlider\Includes\Asset_Combiner::stats()
-			: [ 'css' => 0, 'js' => 0, 'bytes' => 0 ];
+			: [ 'css' => 0, 'js' => 0, 'bytes' => 0, 'version' => '' ];
 
 		return [
 			'enabled' => function_exists( 'prime_slider_is_asset_optimization_enabled' ) && prime_slider_is_asset_optimization_enabled(),
 			'css'     => (int) $stats['css'],
 			'js'      => (int) $stats['js'],
 			'size'    => size_format( (int) $stats['bytes'] ),
+			'version' => isset( $stats['version'] ) ? (string) $stats['version'] : '',
 		];
 	}
 

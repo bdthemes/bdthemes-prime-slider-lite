@@ -62,10 +62,10 @@ export default function GetProPage() {
 					<div key={ perk.title } className="bg-white dark:bg-ink-card border border-[#e9e9ed] dark:border-ink-border rounded-card p-5">
 						<IconTile icon={ perk.icon } accent={ perk.accent } size="xl" />
 						<div className="text-[15px] font-extrabold text-[#0f1115] dark:text-ink-text mt-3 flex items-center gap-2">
-							<CheckIcon size={ 14 } className="text-[#22a550]" />
+							<CheckIcon size={ 14 } className="text-[#1a7d3d] dark:text-[#4ade80]" />
 							{ perk.title }
 						</div>
-						<p className="text-[13px] text-[#71717a] dark:text-ink-muted mt-1 leading-[1.55]">{ perk.sub }</p>
+						<p className="text-[13px] text-[#6c6c75] dark:text-ink-muted mt-1 leading-[1.55]">{ perk.sub }</p>
 					</div>
 				) ) }
 			</div>

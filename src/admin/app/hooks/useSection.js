@@ -165,5 +165,5 @@ export function useSection( id ) {
 
 	const reset = useCallback( () => setDraft( saved ), [ saved ] );
 
-	return { fields, switchable, draft, toggle, setAll, isDirty, activeCount, save, reset, isSaving, error };
+	return { fields, switchable, saved, draft, toggle, setAll, isDirty, activeCount, save, reset, isSaving, error };
 }

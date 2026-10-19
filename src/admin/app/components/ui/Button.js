@@ -12,9 +12,9 @@ const VARIANTS = {
 		'bg-gradient-brand text-white font-extrabold shadow-glow hover:-translate-y-px hover:shadow-glow-lg border-0',
 	outline:
 		'bg-white dark:bg-ink-card border border-[#e2e2e6] dark:border-[#2a313c] text-[#3f3f46] dark:text-[#cdd0d6] font-bold hover:border-brand hover:text-brand',
-	danger: 'bg-white dark:bg-ink-card border border-[#e2e2e6] dark:border-[#2a313c] text-[#3f3f46] dark:text-[#cdd0d6] font-bold hover:border-[#f43f5e] hover:text-[#e11d48]',
+	danger: 'bg-white dark:bg-ink-card border border-[#e2e2e6] dark:border-[#2a313c] text-[#3f3f46] dark:text-[#cdd0d6] font-bold hover:border-[#f43f5e] hover:text-[#da1c46]',
 	'danger-solid':
-		'bg-white dark:bg-ink-card border-[1.5px] border-[#f43f5e] text-[#e11d48] font-extrabold hover:bg-[#e11d48] hover:text-white',
+		'bg-white dark:bg-ink-card border-[1.5px] border-[#f43f5e] text-[#da1c46] dark:text-[#fb7185] font-extrabold hover:bg-[#e11d48] hover:text-white',
 	ghost: 'bg-transparent border-0 text-brand font-bold hover:underline p-0',
 };
 

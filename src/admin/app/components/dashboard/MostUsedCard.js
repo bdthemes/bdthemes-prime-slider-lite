@@ -28,7 +28,7 @@ export default function MostUsedCard( { widgets } ) {
 					<div key={ widget.name }>
 						<div className="flex items-center justify-between text-[13px] font-semibold text-[#27272a] dark:text-ink-text">
 							{ widget.label }
-							<span className="text-[12px] font-bold text-[#71717a] dark:text-ink-muted">{ widget.usage_count }</span>
+							<span className="text-[12px] font-bold text-[#6c6c75] dark:text-ink-muted">{ widget.usage_count }</span>
 						</div>
 						<div className="h-[7px] rounded-full bg-[#eef0f3] dark:bg-ink-subtle mt-[6px] overflow-hidden">
 							<div

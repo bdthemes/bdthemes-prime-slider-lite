@@ -15,7 +15,7 @@ export default function Chip( { active = false, onClick, count, children } ) {
 		>
 			{ children }
 			{ count !== undefined ? (
-				<span className="text-[11px] font-bold opacity-70">
+				<span className="text-[11px] font-bold opacity-90">
 					{ count }
 				</span>
 			) : null }

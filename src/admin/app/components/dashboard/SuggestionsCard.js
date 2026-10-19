@@ -76,7 +76,7 @@ export default function SuggestionsCard() {
 						<IconTile icon={ insight.icon } accent={ insight.accent } size="sm" />
 						<div className="flex-1 min-w-0">
 							<div className="text-[13px] font-semibold text-[#27272a] dark:text-ink-text">{ insight.title }</div>
-							<div className="text-[11.5px] text-[#71717a] dark:text-ink-muted mt-[2px] leading-[1.45]">{ insight.text }</div>
+							<div className="text-[11.5px] text-[#6c6c75] dark:text-ink-muted mt-[2px] leading-[1.45]">{ insight.text }</div>
 							<button
 								type="button"
 								onClick={ () => navigate( insight.to ) }

@@ -209,6 +209,7 @@ class Prime_Slider_Loader {
 		if ( ! wp_script_is( 'prime-slider-a11y', 'registered' ) ) {
 			wp_register_script( 'prime-slider-a11y', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-a11y' . $suffix . '.js', [ 'bdt-uikit' ], BDTPS_CORE_VER, true );
 		}
+		$this->localize_a11y_script();
 
 		//TODO more attractive animation
 		//Thirdparty widgets
@@ -327,6 +328,7 @@ class Prime_Slider_Loader {
 		if ( ! wp_script_is( 'prime-slider-a11y', 'registered' ) ) {
 			wp_register_script( 'prime-slider-a11y', BDTPS_CORE_ASSETS_URL . 'js/prime-slider-a11y' . $suffix . '.js', [ 'bdt-uikit' ], BDTPS_CORE_VER, true );
 		}
+		$this->localize_a11y_script();
 
 		if ( ! wp_style_is( 'bdt-uikit', 'enqueued' ) ) {
 			wp_enqueue_style( 'bdt-uikit' );
@@ -451,6 +453,94 @@ class Prime_Slider_Loader {
 
 		add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_preview_styles' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
+
+		add_action( 'init', [ $this, 'maybe_flush_elementor_asset_caches' ], 20 );
+		foreach ( [ 'prime_slider_active_modules', 'prime_slider_elementor_extend', 'prime_slider_third_party_widget' ] as $modules_option ) {
+			add_action( "add_option_{$modules_option}", [ __CLASS__, 'forget_elementor_asset_caches' ] );
+			add_action( "update_option_{$modules_option}", [ __CLASS__, 'forget_elementor_asset_caches' ] );
+		}
+	}
+
+	/**
+	 * Translated labels for the accessibility script (prime-slider-a11y).
+	 *
+	 * The script names icon-only slider controls for screen readers; these are
+	 * the names it uses. Printed once, however many times the handle is
+	 * registered on a request.
+	 *
+	 * @return void
+	 */
+	private function localize_a11y_script() {
+		static $done = false;
+
+		if ( $done || ! wp_script_is( 'prime-slider-a11y', 'registered' ) ) {
+			return;
+		}
+
+		$done = true;
+
+		wp_localize_script(
+			'prime-slider-a11y',
+			'PrimeSliderA11y',
+			[
+				/* translators: %d: slide number. */
+				'goToSlide'          => __( 'Go to slide %d', 'bdthemes-prime-slider-lite' ),
+				/* translators: 1: count, 2: total */
+				'slideOf'            => __( '%1$d of %2$d', 'bdthemes-prime-slider-lite' ),
+				'chooseSlide'        => __( 'Choose slide to display', 'bdthemes-prime-slider-lite' ),
+				'previousSlide'      => __( 'Previous slide', 'bdthemes-prime-slider-lite' ),
+				'nextSlide'          => __( 'Next slide', 'bdthemes-prime-slider-lite' ),
+				'playVideo'          => __( 'Play video', 'bdthemes-prime-slider-lite' ),
+				'showProductDetails' => __( 'Show product details', 'bdthemes-prime-slider-lite' ),
+				'scrollDown'         => __( 'Scroll down', 'bdthemes-prime-slider-lite' ),
+				'close'              => __( 'Close', 'bdthemes-prime-slider-lite' ),
+				/* translators: %s: social network name, e.g. Facebook. */
+				'shareOn'            => __( 'Share on %s', 'bdthemes-prime-slider-lite' ),
+			]
+		);
+	}
+
+	/**
+	 * Drop the asset lists Elementor cached per page when Prime Slider's code changes.
+	 *
+	 * Elementor stores the style/script handles a document's elements declare in
+	 * `_elementor_page_assets` once, and its element cache replays the handles that
+	 * were enqueued while the markup rendered. Neither is rebuilt when an update
+	 * changes what the widgets declare, so a page cached before the update keeps
+	 * loading the old list (since 4.7.0 UIkit and the helper load only through the
+	 * widgets' own dependencies). Both are caches Elementor rebuilds on the next
+	 * view of each page, as after its own "Regenerate CSS & Data". Keyed on the
+	 * same inputs as the combined files: this plugin's version and Pro's.
+	 *
+	 * @return void
+	 */
+	public function maybe_flush_elementor_asset_caches() {
+		if ( ! class_exists( '\PrimeSlider\Includes\Asset_Combiner' ) ) {
+			return;
+		}
+
+		$fingerprint = Includes\Asset_Combiner::fingerprint();
+
+		if ( get_option( 'prime_slider_elementor_assets_fingerprint' ) === $fingerprint ) {
+			return;
+		}
+
+		delete_post_meta_by_key( '_elementor_page_assets' );
+		delete_post_meta_by_key( '_elementor_element_cache' );
+
+		update_option( 'prime_slider_elementor_assets_fingerprint', $fingerprint, true );
+	}
+
+	/**
+	 * Have the next request drop Elementor's cached asset lists.
+	 *
+	 * Hooked to changes of the enabled-module settings: a list Elementor built while
+	 * a widget was switched off lacks that widget's handles once it is back on.
+	 *
+	 * @return void
+	 */
+	public static function forget_elementor_asset_caches() {
+		delete_option( 'prime_slider_elementor_assets_fingerprint' );
 	}
 
 	/**

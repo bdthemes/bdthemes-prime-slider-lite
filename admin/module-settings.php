@@ -787,7 +787,8 @@ class ModuleService {
 
 			[ 
 				'name'        => 'asset-manager',
-				'label'       => esc_html__( 'Asset Optimization', 'bdthemes-prime-slider-lite' ),
+				'label'       => esc_html__( 'Asset Manager', 'bdthemes-prime-slider-lite' ),
+				'tooltip'     => __( 'Joins the CSS and JS of the widgets each page uses into combined files, so a page loads only what it renders, in fewer files.', 'bdthemes-prime-slider-lite' ),
 				'type'        => 'checkbox',
 				'default'     => 'off',
 				'widget_type' => 'free',

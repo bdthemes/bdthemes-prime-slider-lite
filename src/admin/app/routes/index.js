@@ -28,11 +28,27 @@ import FeaturesPage from '../pages/FeaturesPage';
 import SystemStatusPage from '../pages/SystemStatusPage';
 import PanelPage from '../pages/PanelPage';
 import GetProPage from '../pages/GetProPage';
+import OtherPluginsPage from '../pages/OtherPluginsPage';
+import LicensePage from '../pages/pro/LicensePage';
+import WhiteLabelPage from '../pages/pro/WhiteLabelPage';
+import CustomCodePage from '../pages/pro/CustomCodePage';
+import RollbackPage from '../pages/pro/RollbackPage';
 import PerformancePage, { ASSET_FIELD } from '../pages/PerformancePage';
+
+/**
+ * Native pages for add-on panels. When the add-on hands over the page data
+ * (panel.data, from the `prime_slider/admin/react_pages` filter), the app
+ * renders that page; otherwise the panel's PHP markup is shown.
+ */
+const NATIVE_PAGES = {
+	prime_slider_license_settings: LicensePage,
+	prime_slider_extra_options: WhiteLabelPage,
+	prime_slider_custom_code: CustomCodePage,
+	prime_slider_rollback_version: RollbackPage,
+};
 
 /** Known PHP panels: route path, icon and where they sit in the strip. */
 const PANEL_ROUTES = {
-	prime_slider_other_plugins: { path: '/other-plugins', icon: PackageIcon, slot: 'more' },
 	prime_slider_rollback_version: { path: '/rollback', icon: ClockIcon, slot: 'more' },
 	prime_slider_extra_options: { path: '/white-label', icon: TagIcon, slot: 'primary' },
 	prime_slider_custom_code: { path: '/custom-code', icon: CodeIcon, slot: 'primary' },
@@ -116,7 +132,8 @@ export function buildRoutes() {
 			legacy: 'prime_slider_performance',
 			label: __( 'Performance', 'bdthemes-prime-slider-lite' ),
 			icon: GaugeIcon,
-			slot: 'more',
+			// Right after Features in the tab strip.
+			slot: 'primary',
 			end: true,
 			render: () => <PerformancePage />,
 		} );
@@ -134,6 +151,16 @@ export function buildRoutes() {
 		}
 	);
 
+	list.push( {
+		path: '/other-plugins',
+		legacy: 'prime_slider_other_plugins',
+		label: __( 'Other Plugins', 'bdthemes-prime-slider-lite' ),
+		icon: PackageIcon,
+		slot: 'more',
+		end: true,
+		render: () => <OtherPluginsPage />,
+	} );
+
 	( config.panels || [] ).forEach( ( panel ) => {
 		const known = PANEL_ROUTES[ panel.id ] || {
 			path: `/${ panel.id.replace( /^prime_slider_/, '' ).replace( /_/g, '-' ) }`,
@@ -147,7 +174,10 @@ export function buildRoutes() {
 			icon: known.icon,
 			slot: known.slot,
 			end: true,
-			render: () => <PanelPage panel={ panel } />,
+			render: () => {
+				const Native = panel.data ? NATIVE_PAGES[ panel.id ] : null;
+				return Native ? <Native panel={ panel } data={ panel.data } /> : <PanelPage panel={ panel } />;
+			},
 		} );
 	} );
 

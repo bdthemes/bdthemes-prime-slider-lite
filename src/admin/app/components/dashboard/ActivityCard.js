@@ -14,7 +14,7 @@ const DOT_COLORS = [
 
 const SECTION_TONES = {
 	added: 'text-[#15803d] bg-[#ecfdf3] dark:bg-[#0f2318] dark:text-[#4ade80]',
-	fixed: 'text-[#408efa] bg-[#eff6ff] dark:bg-[#15233a]',
+	fixed: 'text-[#316dc0] dark:text-[#7eb0f7] bg-[#eff6ff] dark:bg-[#15233a]',
 	updated: 'text-[#b45309] bg-[#fff7ed] dark:bg-[#2a1c0e] dark:text-[#fdba74]',
 	removed: 'text-[#be123c] bg-[#fff1f2] dark:bg-[#2a0e14] dark:text-[#fda4af]',
 };
@@ -68,10 +68,10 @@ export default function ActivityCard() {
 											{ __( 'Current', 'bdthemes-prime-slider-lite' ) }
 										</span>
 									) : null }
-									<span className="text-[11px] text-[#a1a1aa] font-medium ml-auto">{ release.date }</span>
+									<span className="text-[11px] text-[#6d6d74] dark:text-ink-muted font-medium ml-auto">{ release.date }</span>
 								</div>
 								{ release.highlights && release.highlights[ 0 ] ? (
-									<div className="text-[12px] text-[#71717a] dark:text-ink-muted leading-[1.45] mt-[3px] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">
+									<div className="text-[12px] text-[#6c6c75] dark:text-ink-muted leading-[1.45] mt-[3px] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">
 										{ release.highlights[ 0 ] }
 									</div>
 								) : null }

@@ -13,32 +13,46 @@ import { accentClass } from '../../utils/accents';
 import { categoryFor, isNew } from '../../utils/widgetCategories';
 
 function WidgetCard( { module: mod, checked, onToggle } ) {
-	const category = categoryFor( mod );
+	const category = mod.category_label
+		? { label: mod.category_label, accent: mod.accent || 'blue' }
+		: categoryFor( mod );
 	const pluginMissing = mod.plugin_active === false;
+	const hasTip = !! ( mod.description || mod.is_locked );
+	const tipId = hasTip ? `ps-tip-${ String( mod.key || mod.name ).replace( /[^a-z0-9_-]/gi, '-' ) }` : undefined;
 
 	return (
 		<div
-			className={ `relative grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-[14px] border rounded-panel py-4 px-[16px] transition-all duration-200 hover:-translate-y-[1px] ${
+			className={ `relative group grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-[14px] border rounded-panel py-4 px-[16px] transition-all duration-200 hover:-translate-y-[1px] ${
 				mod.is_locked
 					? 'bg-[#fffafa] dark:bg-[#1d1719] border-[#f7e3e7] dark:border-[#3a262b]'
 					: 'bg-white dark:bg-ink-card border-[#ececf0] dark:border-ink-border hover:border-[#fdd3bf] dark:hover:border-[#5a3524] hover:shadow-[0_8px_20px_-12px_rgba(252,106,42,.35)]'
 			}` }
-			title={
-				mod.is_locked
-					? __( 'This widget is provided by the separate Prime Slider Pro plugin.', 'bdthemes-prime-slider-lite' )
-					: undefined
-			}
 		>
+			{ /* Description tooltip on hover, as in Element Pack: slight show
+			     delay so it doesn't flicker while the cursor sweeps across the
+			     grid; hides instantly. */ }
+			{ hasTip ? (
+				<div
+					id={ tipId }
+					role="tooltip"
+					className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-[10px] w-max max-w-[300px] text-left [background:linear-gradient(180deg,#1c212b,#0f1115)] text-white/95 text-[12px] font-medium leading-[1.55] rounded-[10px] py-[9px] px-[13px] ring-1 ring-white/10 shadow-[0_12px_28px_-8px_rgba(0,0,0,.45)] z-20 origin-bottom opacity-0 translate-y-[6px] scale-[.94] transition-all duration-200 ease-ps delay-0 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:delay-200 group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100"
+				>
+					{ mod.is_locked
+						? __( 'This widget is provided by the separate Prime Slider Pro plugin.', 'bdthemes-prime-slider-lite' )
+						: mod.description }
+					<span className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-[6px] border-transparent border-t-[#0f1115]" />
+				</div>
+			) : null }
 			<span className={ `w-11 h-11 rounded-[12px] flex-none grid place-items-center ${ accentClass( category.accent ) }` }>
-				<WidgetIcon name={ mod.name } size={ 22 } />
+				<WidgetIcon name={ mod.name } size={ 24 } />
 			</span>
 
 			<div className="min-w-0">
 				<div className="text-[14px] font-bold text-[#1a1a1f] dark:text-ink-text tracking-[-.01em] whitespace-nowrap overflow-hidden text-ellipsis">
 					{ mod.label }
 				</div>
-				<div className="flex flex-wrap items-center gap-x-[6px] gap-y-[2px] text-[11.5px] text-[#a1a1aa] mt-[3px] whitespace-nowrap">
-					<span className="font-medium text-[#9a9aa3] dark:text-ink-muted">{ category.label }</span>
+				<div className="flex flex-wrap items-center gap-x-[6px] gap-y-[2px] text-[11.5px] text-[#6d6d74] dark:text-ink-muted mt-[3px] whitespace-nowrap">
+					<span className="font-medium text-[#6d6d74] dark:text-ink-muted">{ category.label }</span>
 					{ mod.usage_count > 0 ? (
 						<span className="inline-flex items-center gap-[6px]">
 							<span className="text-[#d4d4d8]">·</span>
@@ -54,7 +68,7 @@ function WidgetCard( { module: mod, checked, onToggle } ) {
 					{ mod.demo_url ? (
 						<span className="inline-flex items-center gap-[6px]">
 							<span className="text-[#d4d4d8]">·</span>
-							<a href={ mod.demo_url } target="_blank" rel="noreferrer" className="inline-flex items-center gap-[3px] font-semibold text-[#9a9aa3] hover:text-brand">
+							<a href={ mod.demo_url } target="_blank" rel="noreferrer" className="inline-flex items-center gap-[3px] font-semibold text-[#6d6d74] dark:text-ink-muted hover:text-brand">
 								{ __( 'Demo', 'bdthemes-prime-slider-lite' ) }
 								<ExternalIcon size={ 10 } />
 							</a>
@@ -63,7 +77,7 @@ function WidgetCard( { module: mod, checked, onToggle } ) {
 					{ mod.video_url ? (
 						<span className="inline-flex items-center gap-[6px]">
 							<span className="text-[#d4d4d8]">·</span>
-							<a href={ mod.video_url } target="_blank" rel="noreferrer" className="inline-flex items-center gap-[3px] font-semibold text-[#9a9aa3] hover:text-brand">
+							<a href={ mod.video_url } target="_blank" rel="noreferrer" className="inline-flex items-center gap-[3px] font-semibold text-[#6d6d74] dark:text-ink-muted hover:text-brand">
 								{ __( 'Video', 'bdthemes-prime-slider-lite' ) }
 								<ExternalIcon size={ 10 } />
 							</a>
@@ -74,7 +88,7 @@ function WidgetCard( { module: mod, checked, onToggle } ) {
 
 			<div className="flex items-center gap-[10px] flex-none">
 				{ isNew( mod ) ? (
-					<span className="text-[8.5px] font-extrabold tracking-[.08em] uppercase text-[#e11d48] bg-[#fff1f2] dark:bg-[#2a0e14] dark:text-[#fda4af] py-[2px] px-[7px] rounded-full flex-none">
+					<span className="text-[8.5px] font-extrabold tracking-[.08em] uppercase text-[#da1c46] bg-[#fff1f2] dark:bg-[#2a0e14] dark:text-[#fda4af] py-[2px] px-[7px] rounded-full flex-none">
 						{ __( 'New', 'bdthemes-prime-slider-lite' ) }
 					</span>
 				) : null }
@@ -84,7 +98,7 @@ function WidgetCard( { module: mod, checked, onToggle } ) {
 						href={ config.pricingUrl }
 						target="_blank"
 						rel="noreferrer"
-						className="text-[#a1a1aa] hover:text-brand"
+						className="text-[#6d6d74] dark:text-ink-muted hover:text-brand"
 						aria-label={ sprintf(
 							/* translators: %s: widget name */
 							__( '%s is available in Prime Slider Pro', 'bdthemes-prime-slider-lite' ),
@@ -104,13 +118,13 @@ function WidgetCard( { module: mod, checked, onToggle } ) {
 									? __( 'Activate the plugin first, then you can enable this widget.', 'bdthemes-prime-slider-lite' )
 									: __( 'Install the plugin first, then you can enable this widget.', 'bdthemes-prime-slider-lite' )
 							}
-							className="w-[30px] h-[30px] rounded-full flex-none grid place-items-center bg-[#fff1f2] text-[#e11d48] dark:bg-[#2a0e14] dark:text-[#fda4af] transition-colors hover:bg-[#e11d48] hover:text-white"
+							className="w-[30px] h-[30px] rounded-full flex-none grid place-items-center bg-[#fff1f2] text-[#da1c46] dark:bg-[#2a0e14] dark:text-[#fda4af] transition-colors hover:bg-[#e11d48] hover:text-white"
 						>
 							{ mod.action === 'activate' ? <PlugIcon size={ 15 } /> : <DownloadIcon size={ 15 } /> }
 						</a>
 					) : null
 				) : (
-					<Toggle size="sm" checked={ checked } onChange={ () => onToggle( mod.key || mod.name ) } label={ mod.label } />
+					<Toggle size="sm" checked={ checked } onChange={ () => onToggle( mod.key || mod.name ) } label={ mod.label } describedBy={ tipId } />
 				) }
 			</div>
 		</div>

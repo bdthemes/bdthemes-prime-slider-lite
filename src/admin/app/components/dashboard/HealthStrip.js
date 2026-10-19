@@ -42,7 +42,7 @@ export default function HealthStrip( { metrics } ) {
 						height={ 6 }
 						className="mt-[13px]"
 					/>
-					<div className="text-[11px] text-[#a1a1aa] dark:text-ink-muted mt-[7px]">
+					<div className="text-[11px] text-[#6d6d74] dark:text-ink-muted mt-[7px]">
 						{ metric.sub }
 					</div>
 				</div>

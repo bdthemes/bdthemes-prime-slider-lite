@@ -3,7 +3,7 @@
  * `tone` picks the dot/value color: good (green), warn (amber), bad (red).
  */
 const TONES = {
-	good: 'text-[#22a550]',
+	good: 'text-[#1a7d3d] dark:text-[#4ade80]',
 	warn: 'text-[#f59e0b]',
 	bad: 'text-[#f43f5e]',
 };

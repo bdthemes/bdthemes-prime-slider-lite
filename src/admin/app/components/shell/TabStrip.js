@@ -29,12 +29,15 @@ const TAB_IDLE =
 // Horizontal gap between tabs (`gap-1` = 4px) — must match the row below.
 const TAB_GAP = 4;
 
-function Tab( { active, onClick, icon: TabIcon, label } ) {
+function Tab( { active, onClick, icon: TabIcon, label, expanded, controls } ) {
 	return (
 		<button
 			type="button"
 			onClick={ onClick }
 			aria-current={ active ? 'page' : undefined }
+			aria-expanded={ undefined === expanded ? undefined : expanded }
+			aria-controls={ controls }
+			aria-haspopup={ undefined === expanded ? undefined : 'true' }
 			className={ `${ TAB_BASE } ${ active ? TAB_ACTIVE : TAB_IDLE }` }
 		>
 			<span className="w-[18px] h-[18px] grid place-items-center">
@@ -204,6 +207,8 @@ export default function TabStrip() {
 							} }
 							icon={ MoreIcon }
 							label={ __( 'More', 'bdthemes-prime-slider-lite' ) }
+							expanded={ moreOpen }
+							controls="ps-more-menu"
 						/>
 					</span>
 				) : null }
@@ -211,6 +216,7 @@ export default function TabStrip() {
 
 			{ moreOpen ? (
 				<div
+					id="ps-more-menu"
 					style={ moreLeft !== null ? { left: moreLeft } : undefined }
 					className={ `absolute top-full mt-1 min-w-[220px] bg-white dark:bg-ink-card border border-[#e6e6ea] dark:border-ink-border rounded-panel shadow-pop z-50 overflow-hidden animate-ps-pop py-1.5 ${
 						moreLeft === null ? 'right-4' : ''
@@ -223,13 +229,14 @@ export default function TabStrip() {
 								key={ item.key }
 								type="button"
 								onClick={ () => navigate( item.path ) }
+								aria-current={ item.active ? 'page' : undefined }
 								className={ `w-full flex items-center gap-[10px] py-[10px] px-[14px] text-left text-[13.5px] font-bold cursor-pointer transition-colors ${
 									item.active
 										? 'text-brand bg-[#fff4ee] dark:bg-[#2a1a12]'
 										: 'text-[#3f3f46] dark:text-ink-text hover:bg-[#f3f5f8] dark:hover:bg-[#1f242d]'
 								}` }
 							>
-								<span className={ `w-[18px] h-[18px] grid place-items-center ${ item.active ? 'text-brand' : 'text-[#71717a] dark:text-ink-muted' }` }>
+								<span className={ `w-[18px] h-[18px] grid place-items-center ${ item.active ? 'text-brand' : 'text-[#6c6c75] dark:text-ink-muted' }` }>
 									<ItemIcon size={ 16 } />
 								</span>
 								{ item.label }

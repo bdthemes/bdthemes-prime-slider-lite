@@ -71,6 +71,8 @@ if (!function_exists('get_integration_i18n_ps')) {
             'outOfFiveStarsSentence'=> __( 'out of 5 stars.', 'bdthemes-prime-slider-lite' ),
             'ratingsLabel'          => __( 'ratings', 'bdthemes-prime-slider-lite' ),
             'lastUpdatedLabel'      => __( 'Last Updated:', 'bdthemes-prime-slider-lite' ),
+            /* translators: %s: plugin name */
+            'installLabel'          => __( 'Install %s', 'bdthemes-prime-slider-lite' ),
         );
     }
 }
@@ -135,15 +137,10 @@ if (!$has_cached_data) {
                     if (in_array($slug_key, $self_plugin_slugs, true)) {
                         continue;
                     }
-                    // Use enhanced status if available, otherwise fall back to old method
-                    $plugin_status = $ps_plugin['status'] ?? 'unknown';
-                    if ($plugin_status === 'unknown') {
-                        // Fallback to old method for compatibility
-                        $is_active = is_plugin_active($ps_plugin['slug']);
-                    } else {
-                        // Use enhanced status
-                        $is_active = ($plugin_status === 'active');
-                    }
+                    // The cached API data holds no install state; is_plugin_active()
+                    // needs a main file path, not the bare slug it was given here.
+                    $plugin_status = Remote_Data_Handler::get_plugin_status_by_slug($ps_plugin['slug'] ?? $slug_key);
+                    $is_active     = ($plugin_status === 'active');
                     $plugin_recommended = !empty($predefined[ $slug_key ]['recommended']);
                     $is_recommended = $plugin_recommended && !$is_active;
                 ?>
@@ -178,7 +175,8 @@ if (!$has_cached_data) {
                              if (!$is_active) : ?>
                                  <label class="switch">
                                      <input type="checkbox" class="plugin-slider-checkbox" <?php echo $plugin_recommended ? 'checked' : ''; ?>
-                                            name="plugins[]<?php echo isset($ps_plugin['slug']) ? wp_kses_post($ps_plugin['slug']) : ''; ?>">
+                                            aria-label="<?php /* translators: %s: plugin name */ echo esc_attr( sprintf( __( 'Install %s', 'bdthemes-prime-slider-lite' ), wp_strip_all_tags( html_entity_decode( (string) ( $ps_plugin['name'] ?? '' ), ENT_QUOTES, 'UTF-8' ) ) ) ); ?>"
+                                            name="plugins[]<?php echo isset($ps_plugin['slug']) ? esc_attr($ps_plugin['slug']) : ''; ?>">
                                      <span class="slider round"></span>
                                  </label>
                              <?php
@@ -322,10 +320,22 @@ jQuery(document).ready(function($) {
     const psIntegrationI18n = <?php echo wp_json_encode($ps_integration_i18n); ?>;
     const psIntegrationConfig = <?php echo wp_json_encode($ps_integration_config); ?>;
     let integrationDataLoaded = false;
+    let integrationDataLoading = false;
+
+    // Plugin names, slugs and logo URLs come from the wordpress.org API and are
+    // inserted into markup below, so every value is escaped first.
+    function esc(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
     
     // Function to load integration data
     function loadIntegrationData() {
-        if (integrationDataLoaded) return;
+        // The observer and the click fallback below both call this when the
+        // step opens; one request is enough.
+        if (integrationDataLoaded || integrationDataLoading) return;
+        integrationDataLoading = true;
         
         const $pluginList = $('#ps-integration-plugin-list');
         const $initialLoading = $('#ps-initial-loading');
@@ -340,6 +350,9 @@ jQuery(document).ready(function($) {
             data: {
                 action: psIntegrationConfig.ajaxAction,
                 nonce: psIntegrationConfig.nonce
+            },
+            complete: function() {
+                integrationDataLoading = false;
             },
             success: function(response) {
                 if (response.success && response.data.plugins) {
@@ -362,7 +375,7 @@ jQuery(document).ready(function($) {
         const $pluginList = $('#ps-integration-plugin-list');
         let html = '';
         
-        if (plugins.length === 0) {
+        if (!Array.isArray(plugins) || plugins.length === 0) {
             html = `<div class="ps-no-plugins" style="text-align: center; padding: 40px;"><p>${psIntegrationI18n.noPluginsFound}</p></div>`;
         } else {
             plugins.forEach(function(plugin) {
@@ -372,7 +385,7 @@ jQuery(document).ready(function($) {
                 const isRecommended = plugin.recommended && !isActive;
                 
                 html += `
-                    <label class="plugin-item" data-slug="${plugin.slug}">
+                    <label class="plugin-item" data-slug="${esc(plugin.slug)}">
                         <span class="bdt-flex bdt-flex-middle bdt-flex-between bdt-margin-small-bottom">
                             <span class="bdt-plugin-logo">
                                 ${generatePluginLogo(plugin)}
@@ -382,30 +395,30 @@ jQuery(document).ready(function($) {
                                 ${isActive ? `<span class="active-badge">${psIntegrationI18n.activeBadge}</span>` : ''}
                                 ${!isActive ? `
                                     <label class="switch">
-                                        <input type="checkbox" class="plugin-slider-checkbox" ${plugin.recommended ? 'checked' : ''} name="plugins[]${plugin.slug}">
+                                        <input type="checkbox" class="plugin-slider-checkbox" ${plugin.recommended ? 'checked' : ''} name="plugins[]${esc(plugin.slug)}" aria-label="${esc(psIntegrationI18n.installLabel.replace('%s', plugin.name))}">
                                         <span class="slider round"></span>
                                     </label>
                                 ` : ''}
                             </div>
                         </span>
                         <div class="bdt-flex bdt-flex-middle">
-                            <span class="bdt-plugin-name">${plugin.name}</span>
+                            <span class="bdt-plugin-name">${esc(plugin.name)}</span>
                         </div>
                         <span class="active-installs">
                             ${psIntegrationI18n.activeInstallsLabel}
-                            <span class="installs-count">${plugin.active_installs_count > 0 ? plugin.active_installs_count.toLocaleString() + '+' : psIntegrationI18n.fewerThanTen}</span>
+                            <span class="installs-count">${plugin.active_installs_count > 0 ? esc(Number(plugin.active_installs_count).toLocaleString()) + '+' : psIntegrationI18n.fewerThanTen}</span>
                         </span>
-                        ${plugin.downloaded_formatted ? `<span class="downloads">${psIntegrationI18n.downloadsLabel} ${plugin.downloaded_formatted}</span>` : ''}
+                        ${plugin.downloaded_formatted ? `<span class="downloads">${psIntegrationI18n.downloadsLabel} ${esc(plugin.downloaded_formatted)}</span>` : ''}
                         <div class="rating-section">
-                            <div class="wporg-ratings" title="${plugin.rating} ${psIntegrationI18n.outOfFiveStars}" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
+                            <div class="wporg-ratings" title="${esc(plugin.rating)} ${psIntegrationI18n.outOfFiveStars}" style="color:var(--wp--preset--color--pomegrade-1, #e26f56);">
                                 ${generateStarRating(plugin.rating)}
                             </div>
                             <span class="rating-text">
-                                ${plugin.rating} ${psIntegrationI18n.outOfFiveStarsSentence}
-                                ${plugin.num_ratings > 0 ? `<span class="rating-count">(${plugin.num_ratings.toLocaleString()} ${psIntegrationI18n.ratingsLabel})</span>` : ''}
+                                ${esc(plugin.rating)} ${psIntegrationI18n.outOfFiveStarsSentence}
+                                ${plugin.num_ratings > 0 ? `<span class="rating-count">(${esc(Number(plugin.num_ratings).toLocaleString())} ${psIntegrationI18n.ratingsLabel})</span>` : ''}
                             </span>
                         </div>
-                        ${plugin.last_updated_formatted ? `<span class="last-updated">${psIntegrationI18n.lastUpdatedLabel} ${plugin.last_updated_formatted}</span>` : ''}
+                        ${plugin.last_updated_formatted ? `<span class="last-updated">${psIntegrationI18n.lastUpdatedLabel} ${esc(plugin.last_updated_formatted)}</span>` : ''}
                     </label>
                 `;
             });
@@ -417,7 +430,7 @@ jQuery(document).ready(function($) {
     // Helper function to generate plugin logo
     function generatePluginLogo(plugin) {
         if (plugin.logo && plugin.logo.match(/^https?:\/\//)) {
-            return `<img src="${plugin.logo}" alt="${plugin.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            return `<img src="${esc(plugin.logo)}" alt="${esc(plugin.name)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="default-plugin-icon" style="display:none;">📦</div>`;
         } else {
             // No icon in the API response, show the local placeholder.

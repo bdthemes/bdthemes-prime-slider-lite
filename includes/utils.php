@@ -90,7 +90,8 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_valid_html_tag( $tag ) {
-		return in_array( strtolower( $tag ), self::ALLOWED_HTML_WRAPPER_TAGS ) ? $tag : 'div';
+		// A control hidden by its condition arrives as null.
+		return in_array( strtolower( (string) $tag ), self::ALLOWED_HTML_WRAPPER_TAGS, true ) ? $tag : 'div';
 	}
 	
 	/**
