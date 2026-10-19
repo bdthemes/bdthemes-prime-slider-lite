@@ -237,22 +237,31 @@
                 });
             },
 
+            // Category and search narrow the list together; each used to
+            // overwrite the other's result.
             filterWidgets: function () {
-                const selectedCategory = this.categorySelect.value;
+                const selectedCategory = this.categorySelect ? this.categorySelect.value : 'all';
+                const searchTerm = this.searchInput ? this.searchInput.value.trim().toLowerCase() : '';
                 const widgets = this.widgetList.querySelectorAll('li');
 
                 widgets.forEach(widget => {
-                    const types = widget.dataset.type.split(/\s+/);
-                    if (selectedCategory === 'all' || types.includes(selectedCategory)) {
+                    const types = (widget.dataset.type || '').split(/\s+/);
+                    const inCategory = selectedCategory === 'all' || types.includes(selectedCategory);
+                    const matches = !searchTerm || (widget.dataset.label || '').toLowerCase().includes(searchTerm);
+                    // Drop the fade still pending from the previous run, or a
+                    // quick change re-hides items this run shows.
+                    clearTimeout(widget.psFilterTimer);
+
+                    if (inCategory && matches) {
                         widget.style.display = 'block';
-                        setTimeout(() => {
+                        widget.psFilterTimer = setTimeout(() => {
                             widget.style.opacity = '1';
                             widget.style.transform = 'translateY(0)';
                         }, 50);
                     } else {
                         widget.style.opacity = '0';
                         widget.style.transform = 'translateY(10px)';
-                        setTimeout(() => {
+                        widget.psFilterTimer = setTimeout(() => {
                             widget.style.display = 'none';
                         }, 300);
                     }
@@ -274,22 +283,7 @@
             },
 
             searchWidgets: function () {
-                const searchTerm = this.searchInput.value.toLowerCase();
-                const widgets = this.widgetList.querySelectorAll('li');
-
-                widgets.forEach(widget => {
-                    if (widget.dataset.label.toLowerCase().includes(searchTerm)) {
-                        widget.style.display = 'block';
-                        setTimeout(() => {
-                            widget.style.opacity = '1';
-                        }, 50);
-                    } else {
-                        widget.style.opacity = '0';
-                        setTimeout(() => {
-                            widget.style.display = 'none';
-                        }, 300);
-                    }
-                });
+                this.filterWidgets();
             },
 
             activateAllWidgets: function (event) {
@@ -412,6 +406,8 @@
                 $('#ps-install-plugins').submit(function (e) {
                     e.preventDefault();
                     
+                    const originalInstallLabel = vm.installButton.dataset.label || vm.installButton.innerHTML;
+                    vm.installButton.dataset.label = originalInstallLabel;
                     vm.installButton.disabled = true;
                     vm.installButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Installing...';
                     
@@ -428,7 +424,14 @@
                     });
 
                     let installedPlugins = 0;
+                    const failures = [];
                     const totalPluginsSlug = pluginSlugs.length;
+
+                    if (!totalPluginsSlug) {
+                        vm.installButton.disabled = false;
+                        vm.installButton.innerHTML = originalInstallLabel;
+                        return;
+                    }
                     
                     let progressContainer = document.querySelector('.install-progress-container');
                     if (!progressContainer) {
@@ -450,7 +453,7 @@
                         const progress = (installedPlugins / totalPluginsSlug) * 100;
                         progressBar.style.width = `${progress}%`;
                         progressBar.textContent = `${Math.round(progress)}%`;
-                        statusText.textContent = `Installing plugin ${installedPlugins} of ${totalPluginsSlug}...`;
+                        statusText.textContent = `Processed ${installedPlugins} of ${totalPluginsSlug}...`;
                     };
 
                     const installNextPlugin = () => {
@@ -469,7 +472,12 @@
                                     plugins: [slug]
                                 },
                                 success: (response) => {
-                                    if (response.success) {
+                                    // Each slug is sent on its own, so the
+                                    // envelope's success flag is this plugin's
+                                    // result (the handler answers with an
+                                    // error when installing or activating it
+                                    // failed).
+                                    if (response && response.success) {
                                         installedPlugins++;
                                         updateProgressBar();
                                         
@@ -484,7 +492,9 @@
                                             installNextPlugin();
                                         }, 500);
                                     } else {
-                                        statusText.innerHTML += ` <span class="error-indicator"><i class="dashicons dashicons-no"></i> Failed</span>`;
+                                        const message = response && response.data && response.data.message ? String(response.data.message) : 'Failed';
+                                        failures.push(pluginName + ': ' + message);
+                                        $(statusText).append(' ', $('<span class="error-indicator"></span>').append('<i class="dashicons dashicons-no"></i> ', document.createTextNode(message)));
                                         installedPlugins++;
                                         updateProgressBar();
                                         setTimeout(() => {
@@ -493,6 +503,7 @@
                                     }
                                 },
                                 error: (error) => {
+                                    failures.push(pluginName + ': request failed');
                                     statusText.innerHTML += ` <span class="error-indicator"><i class="dashicons dashicons-no"></i> Error</span>`;
                                     installedPlugins++;
                                     updateProgressBar();
@@ -501,6 +512,12 @@
                                     }, 500);
                                 }
                             });
+                        } else if (failures.length) {
+                            // Stay on this step so the errors can be read; the
+                            // user can retry or Skip.
+                            statusText.textContent = failures.length + ' of ' + totalPluginsSlug + ' could not be installed or activated. ' + failures.join(' ');
+                            vm.installButton.disabled = false;
+                            vm.installButton.innerHTML = originalInstallLabel;
                         } else {
                             statusText.textContent = 'All plugins installed successfully!';
                             statusText.innerHTML += ' <span class="success-indicator"><i class="dashicons dashicons-yes-alt"></i></span>';
@@ -715,55 +732,57 @@
 
 })(jQuery);
 
+// Scoped to the wizard: .spinner and .progress-bar are also WordPress core
+// class names, so unscoped rules restyled other admin UI.
 document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
     style.textContent = `
-        .bdt-wizard-step {
+        .bdt-setup-wizard .bdt-wizard-step {
             transition: opacity 0.3s ease, transform 0.3s ease;
             display: none; /* Hide all steps by default */
         }
         
-        .bdt-wizard-step.active {
+        .bdt-setup-wizard .bdt-wizard-step.active {
             display: block; /* Show only active step */
             opacity: 1;
             transform: translateY(0);
         }
         
-        .item-highlight {
+        .bdt-setup-wizard .item-highlight {
             transition: all 0.3s ease;
             box-shadow: 0 0 0 2px var(--ps-primary);
             transform: translateY(-3px);
         }
         
-        .button-pulse {
-            animation: buttonPulse 0.5s ease;
+        .bdt-setup-wizard .button-pulse {
+            animation: bdtps-buttonPulse 0.5s ease;
         }
         
-        .pulse-animation {
-            animation: pulse 1.5s infinite;
+        .bdt-setup-wizard .pulse-animation {
+            animation: bdtps-pulse 1.5s infinite;
         }
         
         /* Spinner for plugin installation and template importing */
-        .spinner {
+        .bdt-setup-wizard .spinner {
             display: inline-block;
             width: 16px;
             height: 16px;
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: #fff;
-            animation: spin 1s linear infinite;
+            animation: bdtps-spin 1s linear infinite;
             margin-right: 8px;
         }
         
         /* Plugin installation progress styles */
-        .install-progress-container {
+        .bdt-setup-wizard .install-progress-container {
             margin-top: 20px;
             padding: 15px;
             background: var(--ps-gray-light);
             border-radius: var(--ps-border-radius);
         }
         
-        .progress-bar-wrapper {
+        .bdt-setup-wizard .progress-bar-wrapper {
             height: 8px;
             background: var(--ps-gray-medium);
             border-radius: 4px;
@@ -771,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 10px;
         }
         
-        .progress-bar {
+        .bdt-setup-wizard .progress-bar {
             height: 100%;
             background: var(--ps-primary);
             border-radius: 4px;
@@ -780,67 +799,67 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0;
         }
         
-        .install-status {
+        .bdt-setup-wizard .install-status {
             font-size: 14px;
             color: var(--ps-text-light);
         }
         
-        .success-indicator {
+        .bdt-setup-wizard .success-indicator {
             color: var(--ps-success);
         }
         
-        .error-indicator {
+        .bdt-setup-wizard .error-indicator {
             color: var(--ps-danger);
         }
         
-        .plugin-installed {
+        .bdt-setup-wizard .plugin-installed {
             border-color: var(--ps-success) !important;
         }
         
         /* Template import states */
-        .template-importing {
+        .bdt-setup-wizard .template-importing {
             opacity: 0.7;
             pointer-events: none;
         }
         
-        .template-imported {
+        .bdt-setup-wizard .template-imported {
             border-color: var(--ps-success) !important;
         }
         
-        .template-import-failed {
+        .bdt-setup-wizard .template-import-failed {
             border-color: var(--ps-danger) !important;
         }
         
         /* Template import button states */
-        .template-import:disabled {
+        .bdt-setup-wizard .template-import:disabled {
             cursor: not-allowed;
         }
         
-        .template-import.template-imported {
+        .bdt-setup-wizard .template-import.template-imported {
             background-color: #28a745;
             border-color: #28a745;
             color: white;
         }
         
-        .template-import.template-import-failed {
+        .bdt-setup-wizard .template-import.template-import-failed {
             background-color: #dc3545;
             border-color: #dc3545;
             color: white;
         }
         
         /* Animations */
-        @keyframes buttonPulse {
+        @keyframes bdtps-buttonPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
         
-        @keyframes pulse {
+        @keyframes bdtps-pulse {
             0% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(108, 92, 231, 0); }
             100% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0); }
         }
         
-        @keyframes spin {
+        @keyframes bdtps-spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }

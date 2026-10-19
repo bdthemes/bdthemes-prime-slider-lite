@@ -36,7 +36,9 @@ if (!class_exists('BdThemes_Duplicator')) :
              * Nonce verification
              */
             if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['duplicate_nonce'])), basename(__FILE__))) {
-                return;
+                // Returning here left admin.php to carry on with an unknown
+                // action and print an empty screen.
+                wp_die(esc_html__('The link has expired. Go back to the list and try again.', 'bdthemes-prime-slider-lite'), '', ['response' => 403, 'back_link' => true]);
             }
 
             /**
@@ -47,6 +49,16 @@ if (!class_exists('BdThemes_Duplicator')) :
              * and all the original post data then
              */
             $post = get_post($post_id);
+
+            if (!$post) {
+                wp_die(esc_html__('The item to duplicate no longer exists.', 'bdthemes-prime-slider-lite'), '', ['response' => 404, 'back_link' => true]);
+            }
+
+            // The copy holds everything the original does, so only someone who
+            // may edit the original can make it.
+            if (!current_user_can('edit_post', $post_id)) {
+                wp_die(esc_html__('You do not have permission to duplicate this item.', 'bdthemes-prime-slider-lite'), '', ['response' => 403, 'back_link' => true]);
+            }
 
             /**
              * if you don't want current user to be the new post author,
@@ -127,7 +139,9 @@ if (!class_exists('BdThemes_Duplicator')) :
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query is required to bulk-copy post meta during an admin-initiated duplication; the result is transient and must not be cached.
                 $bdt_post_meta_infos = $wpdb->get_results( $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d", $post_id ) );
 
-                if (is_array($bdt_post_meta_infos)) {
+                // A post without meta would otherwise build "VALUES ;", which is
+                // an SQL error.
+                if (is_array($bdt_post_meta_infos) && !empty($bdt_post_meta_infos)) {
                     $bdt_sql_query_sel    = [];
                     $bdt_sql_query_values = [];
 

@@ -70,7 +70,7 @@ $active_modules = get_option( 'prime_slider_active_modules', array() );
 								<span class="bdt-flex bdt-text-left"><?php echo esc_html( $widget['label'] ); ?></span>
 								<label class="switch">
 									<input type="hidden" name="prime_slider_active_modules[<?php echo esc_attr( $widget['name'] ); ?>]" value="off">
-									<input type="checkbox" name="prime_slider_active_modules[<?php echo esc_attr( $widget['name'] ); ?>]" <?php echo esc_html( $is_checked ); ?> value="on" class="checkbox" id="bdt_ps_prime_slider_active_modules[<?php echo esc_attr( $widget['name'] ); ?>]">
+									<input type="checkbox" name="prime_slider_active_modules[<?php echo esc_attr( $widget['name'] ); ?>]" <?php echo esc_html( $is_checked ); ?> value="on" aria-label="<?php echo esc_attr( $widget['label'] ); ?>" class="checkbox" id="bdt_ps_prime_slider_active_modules[<?php echo esc_attr( $widget['name'] ); ?>]">
 									<span class="slider"></span>
 								</label>
 							</div>

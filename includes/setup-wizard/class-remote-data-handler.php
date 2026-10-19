@@ -279,11 +279,25 @@ class Remote_Data_Handler {
      * @param string $slug Plugin slug
      * @return string Plugin status: 'active', 'installed', 'not_installed'
      */
-    private static function get_plugin_status_by_slug($slug) {
+    public static function get_plugin_status_by_slug($slug) {
         if (!function_exists('is_plugin_active')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        
+
+        // A standalone premium edition replaces the free plugin, so the free
+        // one is not offered for install next to it. (Element Pack Pro runs
+        // without Element Pack Lite; installing Lite alongside it is pointless.)
+        $replaced_by = [
+            'bdthemes-element-pack-lite' => 'bdthemes-element-pack',
+        ];
+
+        if (isset($replaced_by[$slug])) {
+            $premium_file = self::get_plugin_file_by_slug($replaced_by[$slug]);
+            if ($premium_file && is_plugin_active($premium_file)) {
+                return 'active';
+            }
+        }
+
         // Get all installed plugins
         $installed_plugins = get_plugins();
         

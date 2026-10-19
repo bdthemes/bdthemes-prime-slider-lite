@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.7.3
+Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -268,6 +268,19 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
+= 5.0.0 [19th October 2026] =
+
+* Added: New admin dashboard
+* Added: Up To 86% Off menu in the free version, linking to the BdThemes deals page
+* Improved: Accessibility (WCAG 2.2 AA) of the dashboard, setup wizard and slider controls: contrast, keyboard access and labels
+* Improved: Asset Optimization now refreshes Elementor's cached asset lists after an update or a widget change, as in Element Pack
+* Fixed: Setup wizard now activates the plugins it installs
+* Fixed: Setup wizard template import no longer adds sample posts or turns on unfiltered uploads
+* Fixed: Setup wizard scripts load only on the wizard screen
+* Fixed: Live Copy/Paste now uses Elementor's copy and paste
+* Fixed: Duplicator SQL error on posts without meta
+* Fixed: PHP 8.1 deprecation notice when a widget title is hidden
+
 = 4.7.3 [18th October 2026] =
 
 * Security: Fixed an unauthenticated stored XSS via comment content (reported by crow via Wordfence)
@@ -472,6 +485,10 @@ Details [changelog here](https://feedback.bdthemes.com/announcements?category=ca
 
 
 == Frequently Asked Questions ==
+
+### Where is the source code of the admin dashboard?
+
+- The dashboard script and styles in build/admin are compiled from the human-readable source in src/admin/app, which ships with the plugin. Run `npm install` and then `npm run build:admin` to rebuild them.
 
 ### How can I add Prime Slider to my website?
 

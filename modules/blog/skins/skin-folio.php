@@ -51,6 +51,14 @@ class Skin_Folio extends Elementor_Skin_Base {
 
 				$link_key = 'link_' . $index;
 
+				// Icon-only link: the link title is its accessible name.
+
+				if ( ! empty( $link['social_link_title'] ) ) {
+
+					$this->parent->add_render_attribute( $link_key, 'aria-label', wp_strip_all_tags( (string) $link['social_link_title'] ), true );
+
+				}
+
 				$tooltip = '';
 				if ( 'yes' === $settings['social_icon_tooltip'] ) {
 
