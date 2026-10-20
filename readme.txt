@@ -268,10 +268,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 == Changelog ==
 
-= 5.0.0 [19th October 2026] =
+= 5.0.0 [20th October 2026] =
 
 * Added: New admin dashboard
 * Added: Up To 86% Off menu in the free version, linking to the BdThemes deals page
+* Added: BdThemes deals notice on the Dashboard, Plugins screen and plugin dashboard; “Don’t Show Again” hides it in every BdThemes plugin
 * Improved: Accessibility (WCAG 2.2 AA) of the dashboard, setup wizard and slider controls: contrast, keyboard access and labels
 * Improved: Asset Optimization now refreshes Elementor's cached asset lists after an update or a widget change, as in Element Pack
 * Fixed: Setup wizard now activates the plugins it installs
