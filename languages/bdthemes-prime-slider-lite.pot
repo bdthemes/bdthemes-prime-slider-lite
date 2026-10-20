@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19T09:28:00+00:00\n"
+"POT-Creation-Date: 2026-10-20T07:11:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: bdthemes-prime-slider-lite\n"
@@ -165,6 +165,7 @@ msgstr ""
 
 #: admin/admin-settings.php:639
 #: build/admin/index.js:22
+#: build/admin/index.js:25
 msgid "Get Premium at 30% OFF"
 msgstr ""
 
@@ -820,9 +821,7 @@ msgid "Choose File"
 msgstr ""
 
 #: admin/class-settings-api.php:902
-#: build/admin/index.js:1
 #: build/admin/index.js:13
-#: build/admin/index.js:34
 msgid "Get Pro"
 msgstr ""
 
@@ -1217,33 +1216,57 @@ msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #. translators: 1: installed Prime Slider Pro version, 2: required Prime Slider Pro version.
-#: bdthemes-prime-slider.php:146
+#: bdthemes-prime-slider.php:151
 #, php-format
 msgid "Prime Slider Pro %1$s is too old for this version of Prime Slider. Please update Prime Slider Pro to %2$s or later, otherwise some slider controls will not work."
 msgstr ""
 
-#: bdthemes-prime-slider.php:168
+#: bdthemes-prime-slider.php:173
 msgid "Ops! Prime Slider not working because you need to activate the Elementor plugin first."
 msgstr ""
 
-#: bdthemes-prime-slider.php:169
+#: bdthemes-prime-slider.php:174
 msgid "Activate Elementor Now"
 msgstr ""
 
-#: bdthemes-prime-slider.php:175
+#: bdthemes-prime-slider.php:180
 msgid "Ops! Prime Slider not working because you need to install the Elementor plugin"
 msgstr ""
 
-#: bdthemes-prime-slider.php:176
+#: bdthemes-prime-slider.php:181
 msgid "Install Elementor Now"
 msgstr ""
 
-#: bdthemes-prime-slider.php:200
+#: bdthemes-prime-slider.php:205
 msgid "Yay! Great that you're using Prime Slider"
 msgstr ""
 
-#: bdthemes-prime-slider.php:201
+#: bdthemes-prime-slider.php:206
 msgid "Loved using Prime Slider on your website? Share your experience in a review and help us spread the love to everyone right now. Good words will help the community."
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:119
+msgid "Build More. Spend Less."
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:120
+msgid "Save Up to $4,899"
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:122
+msgid "Customize your agency bundle with 14 plugins to choose from Element Pack, Post Kit, Store Kit, Prime Slider, Pixel Gallery, One Accessibility, Spin Wheel & more."
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:124
+msgid "Grab the Deal"
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:125
+msgid "Don’t Show Again"
+msgstr ""
+
+#: includes/bdthemes-deals-biggopti.php:128
+msgid "Up To 86% OFF, 60 Days Money Back Guarantee"
 msgstr ""
 
 #: includes/class-duplicator.php:41
@@ -6494,6 +6517,11 @@ msgid "Create page"
 msgstr ""
 
 #: build/admin/index.js:1
+#: build/admin/index.js:22
+msgid "Upgrade"
+msgstr ""
+
+#: build/admin/index.js:1
 msgid "Quick actions"
 msgstr ""
 
@@ -7060,6 +7088,7 @@ msgstr ""
 
 #: build/admin/index.js:22
 #: build/admin/index.js:29
+#: build/admin/index.js:34
 msgid "Custom CSS & JS"
 msgstr ""
 
@@ -7076,6 +7105,7 @@ msgid "Rollback & premium support"
 msgstr ""
 
 #: build/admin/index.js:22
+#: build/admin/index.js:34
 msgid "Restore a previous version and get priority help."
 msgstr ""
 
@@ -7088,14 +7118,11 @@ msgid "Everything in the free version, plus the features below."
 msgstr ""
 
 #: build/admin/index.js:22
-msgid "Upgrade"
-msgstr ""
-
-#: build/admin/index.js:22
 msgid "Pro widgets and extensions, plus the tools that complex, dynamic slider sites need."
 msgstr ""
 
 #: build/admin/index.js:22
+#: build/admin/index.js:25
 msgid "Compare Free vs Pro"
 msgstr ""
 
@@ -7469,6 +7496,10 @@ msgid "An error occurred during rollback. Please try again."
 msgstr ""
 
 #: build/admin/index.js:25
+msgid "Pro feature"
+msgstr ""
+
+#: build/admin/index.js:25
 msgid "License management is hidden"
 msgstr ""
 
@@ -7587,10 +7618,12 @@ msgid "Get Prime Slider Pro"
 msgstr ""
 
 #: build/admin/index.js:27
+#: build/admin/index.js:34
 msgid "White Label"
 msgstr ""
 
 #: build/admin/index.js:27
+#: build/admin/index.js:34
 msgid "Rebrand Prime Slider across the admin for your clients."
 msgstr ""
 
@@ -7615,10 +7648,12 @@ msgid "%s JavaScript"
 msgstr ""
 
 #: build/admin/index.js:29
+#: build/admin/index.js:34
 msgid "Inject custom CSS/JS into your site and exclude pages from loading it."
 msgstr ""
 
 #: build/admin/index.js:29
+#: build/admin/index.js:34
 msgid "Custom Code"
 msgstr ""
 
@@ -7671,6 +7706,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: build/admin/index.js:30
+#: build/admin/index.js:34
 msgid "Rollback Version"
 msgstr ""
 
@@ -7756,6 +7792,130 @@ msgstr ""
 
 #: build/admin/index.js:34
 msgid "Performance"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Make Prime Slider your own brand"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Rebrand the plugin for client sites: your name, your icon and your logo, with the license screen and the plugin itself hidden from clients."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Your name and menu icon"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Replace \"Prime Slider\" and its icon throughout the admin."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Your logo"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Show your own logo in the dashboard header."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Hide the license menu"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Keep license details away from clients."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Hide Prime Slider"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Remove the plugin from the admin, with an access link sent to your email."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Add site-wide CSS and JavaScript"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Write CSS and JavaScript once and load it across the site, in the header or the footer, and keep it off the pages where you don't want it."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Header code"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "CSS and JavaScript printed in the <head> of every page."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Footer code"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "CSS and JavaScript printed before the closing </body> tag."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Code editor"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Syntax highlighting, line numbers and bracket matching."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Page exclusions"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Choose pages and posts that should not load the custom code."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Roll back an update in one click"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "If an update causes a problem on your site, go back to the version you had before while it is being fixed, and get priority help from the BdThemes team."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "One-click rollback"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Restore the previous version straight from the dashboard."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Automatic backup"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "The installed version is backed up before each update."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Premium support"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Priority help from the BdThemes support team."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "Pro updates"
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "New Pro sliders and features as they are released."
+msgstr ""
+
+#: build/admin/index.js:34
+msgid "You May Also Need"
 msgstr ""
 
 #: build/admin/index.js:34

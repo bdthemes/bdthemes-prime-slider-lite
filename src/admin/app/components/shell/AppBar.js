@@ -1,6 +1,6 @@
 /**
  * App bar: logo, PRO pill, version, Pro status, theme toggle, Docs and a
- * primary call to action (Get Pro on the free plugin, Create page with Pro).
+ * primary call to action (Upgrade on the free plugin, Create page with Pro).
  */
 import { __ } from '@wordpress/i18n';
 import config from '../../utils/config';
@@ -100,7 +100,7 @@ export default function AppBar() {
 						className="flex items-center gap-[7px] bg-gradient-brand text-white py-[11px] px-[22px] rounded-full text-[13.5px] font-extrabold cursor-pointer shadow-glow transition-all duration-200 hover:-translate-y-px hover:shadow-glow-lg max-[640px]:px-[15px]"
 					>
 						<ZapIcon size={ 14 } />
-						{ __( 'Get Pro', 'bdthemes-prime-slider-lite' ) }
+						{ __( 'Upgrade', 'bdthemes-prime-slider-lite' ) }
 					</a>
 				) }
 			</div>
