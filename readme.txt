@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 5.0.0
+Stable tag: 5.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -267,6 +267,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 5.1.0 [26th October 2026] =
+
+* Fixed: Dashboard Widgets and Extensions tabs shared unsaved changes; each tab now keeps its own
 
 = 5.0.0 [20th October 2026] =
 
