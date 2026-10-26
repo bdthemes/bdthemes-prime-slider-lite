@@ -2,7 +2,7 @@
  * Root component: hash routing (no server rewrite needed inside wp-admin),
  * the persistent layout (app bar + tab strip) and the toast provider.
  */
-import { useEffect } from '@wordpress/element';
+import { Fragment, useEffect } from '@wordpress/element';
 import {
 	HashRouter,
 	Routes,
@@ -110,7 +110,10 @@ export default function App() {
 							<Route
 								key={ route.path }
 								path={ route.path }
-								element={ route.render() }
+								// Keyed by path: Widgets and Extensions both render
+								// SectionPage in this slot, and without a key React
+								// would keep one instance (and its draft) across tabs.
+								element={ <Fragment key={ route.path }>{ route.render() }</Fragment> }
 							/>
 						) ) }
 						<Route path="*" element={ <FallbackRoute /> } />
