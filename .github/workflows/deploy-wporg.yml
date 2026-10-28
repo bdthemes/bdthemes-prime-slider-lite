@@ -1,0 +1,114 @@
+name: Deploy to WordPress.org
+
+# When "Publish Release" has built bdthemes-prime-slider-lite.zip for a tag and attached it to
+# the GitHub release, commit that zip's contents to
+# https://plugins.svn.wordpress.org/bdthemes-prime-slider-lite/ as trunk + tags/<version>.
+# Pre-releases, drafts and tags that aren't a version number are skipped.
+
+on:
+  workflow_run:
+    workflows: ["Publish Release"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to deploy (e.g. 1.2.3)"
+        required: true
+      dry_run:
+        description: "Dry run (show what would change in SVN without committing)"
+        type: boolean
+        default: true
+
+concurrency:
+  group: wporg-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SLUG: bdthemes-prime-slider-lite
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.tag || github.event.workflow_run.head_branch }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Check the release
+        id: release
+        run: |
+          VERSION="${TAG#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+              echo "::error::Tag '$TAG' is not a plugin version (expected 1.2.3 or v1.2.3)"
+              exit 1
+            fi
+            echo "::notice::Tag '$TAG' is not a plugin version; nothing to deploy"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          state=$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease --jq '"\(.isDraft) \(.isPrerelease)"')
+          if [[ "$state" != "false false" ]]; then
+            echo "::notice::Release $TAG is a draft or pre-release; nothing to deploy"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # A dry run uses a version SVN doesn't have yet, so the action shows
+          # the trunk changes instead of stopping at "already published".
+          [[ "$DRY_RUN" == "true" ]] && VERSION="$VERSION-dryrun"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Download and unpack the release zip
+        id: zip
+        if: steps.release.outputs.skip != 'true'
+        run: |
+          for attempt in 1 2 3 4 5; do
+            rm -f "$RUNNER_TEMP/$SLUG.zip"
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$SLUG.zip" --dir "$RUNNER_TEMP" && break
+            [[ $attempt == 5 ]] && { echo "::error::$SLUG.zip is not attached to release $TAG"; exit 1; }
+            sleep 30
+          done
+
+          unzip -q "$RUNNER_TEMP/$SLUG.zip" -d "$RUNNER_TEMP/zip"
+          root="$RUNNER_TEMP/zip"
+          [[ -d "$root/$SLUG" && $(ls -A "$root" | wc -l) -eq 1 ]] && root="$root/$SLUG"
+          # wp.org's Plugin Check rejects hidden files, and none of these plugins ship any
+          find "$root" -mindepth 1 \( -name '.*' -o -name Thumbs.db -o -name __MACOSX \) -prune -exec rm -rf {} +
+          echo "dir=$root" >> "$GITHUB_OUTPUT"
+
+      - name: Check version numbers match the tag
+        if: steps.release.outputs.skip != 'true'
+        working-directory: ${{ steps.zip.outputs.dir }}
+        run: |
+          VERSION="${TAG#v}"
+          main=$(grep -l '^[ *]*Plugin Name:' ./*.php | head -n1)
+          header=$(sed -n 's/^[ *]*Version:[[:space:]]*//p' "$main" | head -n1 | tr -d '\r ')
+          stable=$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | head -n1 | tr -d '\r ')
+
+          echo "Tag:                $VERSION"
+          echo "$main header:  $header"
+          echo "readme Stable tag:  $stable"
+
+          if [[ "$header" != "$VERSION" || "$stable" != "$VERSION" ]]; then
+            echo "::error::Version mismatch: bump the Version header in $main and the readme.txt Stable tag to $VERSION before releasing"
+            exit 1
+          fi
+
+      - name: Deploy to WordPress.org SVN
+        if: steps.release.outputs.skip != 'true'
+        # 10up/action-wordpress-plugin-deploy 2.3.0, pinned by commit since it receives the SVN credentials
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2
+        with:
+          dry-run: ${{ env.DRY_RUN }}
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          VERSION: ${{ steps.release.outputs.version }}
+          BUILD_DIR: ${{ steps.zip.outputs.dir }}
