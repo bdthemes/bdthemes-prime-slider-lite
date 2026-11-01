@@ -102,7 +102,33 @@
         }, (revealOptions.duration + counter) * 1.3);
     }
 
+    // Slides that are not active are display:none, so the browser does not
+    // fetch their CSS background images until they are shown and the slide
+    // fades in blank. Preload them once the slider comes near the viewport.
+    var primeSliderPreloadSlideImages = function ($scope) {
+        var $items = $scope.find('.bdt-slideshow-items');
+
+        if (!$items.length) {
+            return;
+        }
+
+        bdtPsObserveTarget($items[0], function () {
+            $items.find('[style*="background-image"]').each(function () {
+                var match = /url\((['"]?)(.*?)\1\)/.exec(this.style.backgroundImage);
+
+                if (match && match[2]) {
+                    new Image().src = match[2];
+                }
+            });
+        }, {
+            rootMargin: '200px 0px'
+        });
+    };
+
     jQuery(window).on('elementor/frontend/init', function () {
+        // preload background images of the slides that are not shown yet
+        elementorFrontend.hooks.addAction('frontend/element_ready/widget', primeSliderPreloadSlideImages);
+
         // initialize reveal effects
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.default', RevealEffects);
         elementorFrontend.hooks.addAction('frontend/element_ready/prime-slider-general.slide', RevealEffects);
