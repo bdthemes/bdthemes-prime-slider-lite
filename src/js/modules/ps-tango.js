@@ -10,7 +10,7 @@
         }
 
         var $tangoContainer = $tango.find('.swiper-tango'),
-            $settings = $tango.data('settings');
+            $settings = primeSliderSafeSwiperSettings($tango.data('settings'));
 
 
         const Swiper = elementorFrontend.utils.swiper;

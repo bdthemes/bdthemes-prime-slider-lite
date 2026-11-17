@@ -9,7 +9,7 @@
             return;
         }
         var $sniperContainer = $sniper.find('.bdt-main-slider'),
-            $settings = $sniper.data('settings');
+            $settings = primeSliderSafeSwiperSettings($sniper.data('settings'));
 
         // Scope controls to this widget instance (important for multiple widgets / Elementor editor).
         var $paginationEl = $sniper.find('.bdt-pagination');

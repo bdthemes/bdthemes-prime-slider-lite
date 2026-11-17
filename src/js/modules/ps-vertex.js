@@ -9,7 +9,7 @@
             return;
         }
         var $vertexContainer = $vertex.find('.swiper-vertex'),
-            $settings = $vertex.data('settings');
+            $settings = primeSliderSafeSwiperSettings($vertex.data('settings'));
 
         const Swiper = elementorFrontend.utils.swiper;
         initSwiper();
