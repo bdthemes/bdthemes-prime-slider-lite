@@ -9,7 +9,7 @@
             return;
         }
         var $fiestarContainer = $fiestar.find('.bdt-center-slider'),
-            $settings = $fiestar.data('settings');
+            $settings = primeSliderSafeSwiperSettings($fiestar.data('settings'));
 
         const Swiper = elementorFrontend.utils.swiper;
         initSwiper();

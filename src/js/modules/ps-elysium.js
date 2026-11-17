@@ -11,7 +11,7 @@
         }
 
         var $elysiumContainer = $elysium.find('.bdt-slider-continer'),
-            $settings = $elysium.data('settings');
+            $settings = primeSliderSafeSwiperSettings($elysium.data('settings'));
         var $reveal = $elysium.data('elysiumReveal') || {};
         const Swiper = elementorFrontend.utils.swiper;
         initSwiper();

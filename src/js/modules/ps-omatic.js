@@ -10,7 +10,7 @@
             return;
         }
         var $omaticContainer = $omatic.find('.swiper-carousel'),
-            $settings = $omatic.data('settings');
+            $settings = primeSliderSafeSwiperSettings($omatic.data('settings'));
         
         //swiper effects start
 		if ($settings.effect === 'creative') {

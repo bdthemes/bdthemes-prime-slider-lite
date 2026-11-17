@@ -5,7 +5,7 @@
     var widgetPacific = function ($scope, $) {
 
         var $pacific = $scope.find('.bdt-pacific-slider'),
-            $settings = $pacific.data('settings'),
+            $settings = primeSliderSafeSwiperSettings($pacific.data('settings')),
             $sliderSettings = $pacific.data('slider-settings'),
             $pacificContainer = $pacific.find(".swiper-pacific");
 

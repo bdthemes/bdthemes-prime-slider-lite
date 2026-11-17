@@ -9,7 +9,7 @@
             return;
         }
         var $rubixContainer = $rubix.find('.bdt-main-slider'),
-            $settings = $rubix.data('settings');
+            $settings = primeSliderSafeSwiperSettings($rubix.data('settings'));
 
         const Swiper = elementorFrontend.utils.swiper;
         initSwiper();

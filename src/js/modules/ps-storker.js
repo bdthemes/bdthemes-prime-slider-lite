@@ -9,7 +9,7 @@
             return;
         }
         var $storkerContainer = $storker.find('.swiper-storker'),
-            $settings = $storker.data('settings');
+            $settings = primeSliderSafeSwiperSettings($storker.data('settings'));
         
         // swiper effects start
 		if ($settings.effect === 'creative') {

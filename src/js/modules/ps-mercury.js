@@ -9,7 +9,7 @@
             return;
         }
         var $mercuryContainer = $mercury.find('.bdt-mercury-image-slider'),
-            $settings = $mercury.data('settings');
+            $settings = primeSliderSafeSwiperSettings($mercury.data('settings'));
 
         //swiper effects start
 		if ($settings.effect === 'creative') {
