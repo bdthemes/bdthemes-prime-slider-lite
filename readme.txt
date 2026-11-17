@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 5.1.2
+Stable tag: 5.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -267,6 +267,10 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 5.1.3 [17th November 2026] =
+
+* Security: Fiestar, Elysium, Mercury, Omatic, Pacific, Rubix, Sniper, Storker, Tango and Vertex: slider options are now checked before they reach the slider library, so page text made to look like one of these sliders (for example in an approved comment) can no longer run scripts
 
 = 5.1.2 [1st November 2026] =
 
