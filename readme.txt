@@ -1,5 +1,5 @@
 === Prime Slider - Hero Slider, Carousel, WooCommerce & Post Slider Elementor Addons ===
-Contributors: bdthemes, selimmw, abutalib, maudud, arafatakashakku, shamim496
+Contributors: bdthemes, selimmw, abutalib, maudud, sohanurrahman, arafatakashakku, shamim496
 Donate link: https://bdthemes.com/
 Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce slider
 Requires at least: 6.8
