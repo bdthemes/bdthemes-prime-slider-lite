@@ -2116,8 +2116,11 @@ class Blog extends Widget_Base {
             $args['orderby']        = 'post__in';
             $args['posts_per_page'] = count( $selected_ids );
         } else {
+            // post_type_exists() only says the type is registered. A registered but
+            // non-public type must not be queryable from a saved widget setting, so
+            // apply the same public check the selected-ids branch above already uses.
             $source                 = $this->get_settings_for_display('posts_source');
-            $args['post_type']      = ( $source && post_type_exists( $source ) ) ? $source : 'post';
+            $args['post_type']      = $source ? prime_slider_sanitize_public_post_type( $source ) : 'post';
             $args['posts_per_page'] = $max_posts;
         }
 
