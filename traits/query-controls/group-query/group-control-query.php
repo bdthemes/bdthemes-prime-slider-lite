@@ -540,7 +540,10 @@ trait Group_Control_Query {
 					$args['orderby']  = 'meta_value_num';
 					break;
 				default:
-					$args['orderby'] = $settings['product_orderby'];
+					// Saved verbatim like every other control value, so accept only the
+					// keys this control actually offers before it reaches WP_Query.
+					$allowed_product_orderby = ['title', 'ID', 'date', 'author', 'comment_count', 'menu_order', 'rand'];
+					$args['orderby']         = in_array($settings['product_orderby'], $allowed_product_orderby, true) ? $settings['product_orderby'] : 'date';
 			}
 		}
 
@@ -561,7 +564,10 @@ trait Group_Control_Query {
 			 */
 			$selected_ids      = $this->get_settings_for_display('posts_selected_ids');
 			$selected_ids      = wp_parse_id_list($selected_ids);
-			$args['post_type'] = 'any';
+			// 'any' matches every post type that is not exclude_from_search, including
+			// non-public ones, and the ids come from the saved widget. Limit the query
+			// to the post types this site exposes to visitors.
+			$args['post_type'] = prime_slider_sanitize_public_post_type(array_values(get_post_types(['public' => true])));
 			if (!empty($selected_ids)) {
 				$args['post__in'] = $selected_ids;
 			}
@@ -603,8 +609,13 @@ trait Group_Control_Query {
 
 			/**
 			 * Set Post Type
+			 *
+			 * The Source control only offers public post types, but Elementor stores a
+			 * SELECT value verbatim, so this is whatever was saved on the document.
+			 * Restrict it to the post types this site exposes to visitors so a saved
+			 * widget cannot render entries of a non-public post type.
 			 */
-			$args['post_type'] = $this->getGroupControlQueryPostType();
+			$args['post_type'] = prime_slider_sanitize_public_post_type($this->getGroupControlQueryPostType());
 
 			/**
 			 * Set Exclude Post

@@ -598,3 +598,46 @@ if ( ! function_exists( 'bdtps_is_page_excluded' ) ) {
 		return $current_id > 0 && in_array( $current_id, $excluded_pages );
 	}
 }
+
+/**
+ * Restrict a post type taken from widget settings to the ones this site exposes to
+ * visitors.
+ *
+ * The Source control is a SELECT whose options only list public post types, but
+ * Elementor stores a control's value verbatim and never checks it against those
+ * options, so the saved value is whatever was sent to the save endpoint. Anyone who
+ * may use the editor on a post of their own can therefore point a slider at a
+ * registered but non-public post type and have the widget render its published
+ * entries. Post types that are public but flagged exclude_from_search (Elementor's
+ * elementor_library, for example) are hidden from visitors elsewhere, so they must
+ * not be reachable here either.
+ *
+ * @param string|array $post_type Requested post type(s).
+ * @param string       $fallback  Post type to fall back to when nothing is allowed.
+ * @return string|array Sanitized post type(s).
+ */
+if ( ! function_exists( 'prime_slider_sanitize_public_post_type' ) ) {
+	function prime_slider_sanitize_public_post_type( $post_type, $fallback = 'post' ) {
+
+		$is_allowed = static function ( $type ) {
+			$object = get_post_type_object( $type );
+
+			return $object && is_post_type_viewable( $type ) && empty( $object->exclude_from_search );
+		};
+
+		if ( is_array( $post_type ) ) {
+			$requested = array_filter( $post_type, 'is_scalar' );
+			$requested = array_values( array_filter( array_map( 'strval', $requested ), $is_allowed ) );
+
+			return empty( $requested ) ? $fallback : $requested;
+		}
+
+		if ( ! is_scalar( $post_type ) ) {
+			return $fallback;
+		}
+
+		$post_type = (string) $post_type;
+
+		return $is_allowed( $post_type ) ? $post_type : $fallback;
+	}
+}

@@ -5,7 +5,7 @@ Tags: hero slider, Elementor slider, Elementor addon, image slider, WooCommerce 
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 5.1.4
+Stable tag: 5.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 4.0.0
@@ -267,6 +267,11 @@ https://youtu.be/WhhdCWtPHvA?si=28X_56Pg2sD_vRKe
 
 
 == Changelog ==
+
+= 5.1.6 [23rd November 2026] =
+
+* Security: Blog, Mercury, Flogia, Fiestar, Rubix and the other post sliders: the Source setting now queries only post types the site shows to visitors, so a contributor can no longer show entries of private post types (for example WooCommerce coupons) in a slider on their own draft; Manual Selection and the Blog widget's Zinest featured posts are limited the same way
+* Security: WooCommerce sliders: Order By now accepts only the options it lists
 
 = 5.1.4 [19th November 2026] =
 
