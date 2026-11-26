@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The bundled UIkit (bdt-uikit.min.js) boots a component from any element that
  * carries a `bdt-<component>` or `data-bdt-<component>` attribute, wherever that
  * element sits in the document, and its lightbox applies an `attrs` / `data-attrs`
- * value as arbitrary attributes. wp_kses_post(), which WordPress and Elementor apply
+ * value, and the objects of a `sources` / `data-sources` value, as arbitrary
+ * attributes. wp_kses_post(), which WordPress and Elementor apply
  * to content saved by users without `unfiltered_html`, lets every `data-*`
  * attribute through, so a Contributor could place `data-bdt-svg="src: ..."` in a
  * post, submit it for review, and have the component run when an administrator
@@ -32,11 +33,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *   comments whose author lacks `unfiltered_html`, so content stored before the
  *   guard existed cannot boot a component either.
  *
- * Attributes are only ever removed with WordPress's HTML tag processor, never
- * rewritten with a pattern: a pattern cannot tell where a browser considers an
- * attribute value to start and end, and getting that wrong turns inert text into a
- * live attribute (Element Pack's Patchstack 39396). Removing a real attribute can
- * never give a tag one it did not have.
+ * Attributes are removed with WordPress's HTML tag processor, never rewritten with
+ * a pattern: a pattern cannot tell where a browser considers an attribute value to
+ * start and end, and getting that wrong turns inert text into a live attribute
+ * (Element Pack's Patchstack 39396). Removing a real attribute can never give a tag
+ * one it did not have. Where the tag processor and a browser may read the markup
+ * differently (see strip_component_attributes()), a removable name that is left is
+ * renamed by inserting one letter, which cannot move an attribute boundary either.
  *
  * Users with `unfiltered_html` are trusted by WordPress to write any HTML and are
  * left alone. The bundle itself also refuses SVG sources from other origins and
@@ -46,15 +49,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Content_Guard {
 
 	/**
-	 * Elementor settings that hold "Custom Attributes" as `key|value` pairs, and the
-	 * delimiter Elementor splits them on: links (Utils::parse_custom_attributes() on
-	 * a URL control's `custom_attributes`) and Elementor Pro's Advanced > Attributes
-	 * (`_attributes`, one pair per line).
+	 * A removable attribute name (see is_removable_attribute()) where a browser
+	 * could start reading one: right after HTML whitespace, a `/` or a quote. Inside
+	 * a tag a browser begins a new attribute name only after one of those (`<a/x>`,
+	 * `<a b="c"x>`), so these are the only places where markup the tag processor
+	 * did not read as a tag could hold a name a browser reads.
+	 *
+	 * `attrs` and `sources` only matter with a value (an empty one gives UIkit
+	 * nothing to apply), so they count only when an `=` follows; the words alone,
+	 * as in "the sources of", are prose. A `bdt-` name boots its component even
+	 * without a value, so it always counts.
 	 */
-	const CUSTOM_ATTRIBUTE_SETTINGS = [
-		'custom_attributes' => ',',
-		'_attributes'       => "\n",
-	];
+	const REMOVABLE_NAME_PATTERN = '~(?<=[\t\n\f\r /"\'])(?:data-)?(?:bdt-|(?:attrs|sources)(?=[\t\n\f\r ]*=))~i';
+
+	/**
+	 * Markup from which the tag processor and a browser may stop reading the same
+	 * tags (see strip_component_attributes()): the start or end tag of an element
+	 * whose content one of them reads as text and the other may read as markup, and
+	 * a CDATA section.
+	 */
+	const DIVERGENT_MARKUP_PATTERN = '~<(?:/?(?:textarea|title|style|xmp|iframe|noembed|noframes|script|noscript)(?=[\t\n\f\r />]|\z)|!\[CDATA\[)~i';
 
 	public static function init() {
 		// Elementor: the document data is stripped as it is written to the
@@ -66,22 +80,25 @@ final class Content_Guard {
 		add_filter( 'add_post_metadata', [ __CLASS__, 'filter_elementor_meta_write' ], 10, 5 );
 
 		// Classic and block editor content and comments: after kses (priority 10),
-		// so the guard sees the markup kses actually stored; it also runs kses itself
-		// in case kses is not hooked on this request.
+		// so the guard sees the markup kses actually stored. It never runs kses
+		// itself: code that unhooks kses on purpose (core's oEmbed cache, form
+		// builders storing JSON, translation imports) must get its data back
+		// untouched apart from the removed attributes.
 		add_filter( 'content_save_pre', [ __CLASS__, 'filter_untrusted_content' ], 11 );
 		add_filter( 'excerpt_save_pre', [ __CLASS__, 'filter_untrusted_content' ], 11 );
 		add_filter( 'pre_comment_content', [ __CLASS__, 'filter_untrusted_content' ], 11 );
 
 		// Render time, for content stored before the guard existed. the_content runs
+		// before oEmbed turns URLs into provider iframes and scripts (priority 8),
 		// before Elementor replaces the content (priority 9) and before shortcodes,
-		// so only the stored markup is touched, never widget output; Elementor
-		// documents are cleaned through their data instead.
+		// so only the stored markup is touched, never provider or widget output;
+		// Elementor documents are cleaned through their data instead.
 		add_filter( 'elementor/frontend/builder_content_data', [ __CLASS__, 'filter_elementor_render_data' ], 5, 2 );
 		// The same for the data the editor loads (Elementor 3.35+), so an
 		// administrator who opens such a document never previews the attributes.
 		add_filter( 'elementor/document/load/data', [ __CLASS__, 'filter_elementor_load_data' ], 5, 2 );
-		add_filter( 'the_content', [ __CLASS__, 'filter_rendered_content' ], 8 );
-		add_filter( 'the_excerpt', [ __CLASS__, 'filter_rendered_content' ], 8 );
+		add_filter( 'the_content', [ __CLASS__, 'filter_rendered_content' ], 7 );
+		add_filter( 'the_excerpt', [ __CLASS__, 'filter_rendered_content' ], 7 );
 		add_filter( 'comment_text', [ __CLASS__, 'filter_rendered_comment' ], 11, 2 );
 	}
 
@@ -136,20 +153,14 @@ final class Content_Guard {
 		}
 
 		// These filters carry slashed data, like wp_filter_post_kses() they run after.
-		$content = stripslashes( $content );
+		$unslashed = stripslashes( $content );
+		$stripped  = self::strip_from_value( $unslashed );
 
-		// Normalise exactly as kses does for this filter (a no-op when kses already
-		// ran), then strip from that output. Post content and excerpts are filtered
-		// by wp_filter_post_kses() with the 'post' rules; comments by wp_filter_kses()
-		// with the rules for the filter's own name. Asking wp_kses_allowed_html() for
-		// 'content_save_pre' would return the comment rules and strip paragraphs,
-		// images and headings from every post an Author or Contributor saves.
-		if ( false !== strpos( $content, '<' ) ) {
-			$context = 'pre_comment_content' === current_filter() ? 'pre_comment_content' : 'post';
-			$content = wp_kses( $content, $context );
-		}
-
-		return addslashes( self::strip_from_value( $content ) );
+		// Only attributes are ever removed here, and kses is left to WordPress: when
+		// kses ran at priority 10 a second pass changed nothing, and when a caller
+		// unhooked it on purpose a second pass corrupted that caller's data. Content
+		// with nothing to remove is handed back exactly as it came in.
+		return $stripped === $unslashed ? $content : addslashes( $stripped );
 	}
 
 	/**
@@ -302,8 +313,8 @@ final class Content_Guard {
 	public static function strip_elementor_data( $data, $normalize = false ) {
 		if ( is_array( $data ) ) {
 			foreach ( $data as $key => $value ) {
-				if ( is_string( $key ) && is_string( $value ) && isset( self::CUSTOM_ATTRIBUTE_SETTINGS[ $key ] ) ) {
-					$data[ $key ] = self::strip_custom_attributes( $value, self::CUSTOM_ATTRIBUTE_SETTINGS[ $key ] );
+				if ( is_string( $key ) && is_string( $value ) && self::is_custom_attributes_setting( $key ) ) {
+					$data[ $key ] = self::strip_custom_attributes( $value, 'custom_attributes' === $key ? ',' : "\n" );
 				} else {
 					$data[ $key ] = self::strip_elementor_data( $value, $normalize );
 				}
@@ -324,15 +335,45 @@ final class Content_Guard {
 	}
 
 	/**
+	 * Whether an Elementor setting holds "Custom Attributes" as `key|value` pairs: a
+	 * link's `custom_attributes` (Elementor's URL control, read with commas between
+	 * pairs), Elementor Pro's Advanced > Attributes (`_attributes`, one pair per
+	 * line), and other plugins' textareas named like them (Element Pack's Price Table
+	 * `price_custom_attributes` and `sale_custom_attributes`, among others). A switch
+	 * such as `add_custom_attributes` matches too, harmlessly: its value names nothing.
+	 *
+	 * @param string $key Setting key.
+	 * @return bool
+	 */
+	private static function is_custom_attributes_setting( $key ) {
+		return '_attributes' === $key || 'custom_attributes' === substr( $key, -17 );
+	}
+
+	/**
 	 * Remove component attributes from a Custom Attributes string.
 	 *
-	 * The name of each pair is read the way Elementor reads it when it prints the
-	 * attribute (Utils::parse_custom_attributes(): lower-cased, then the first run
-	 * of `[-_a-z0-9]`), so the guard judges exactly the name that would be printed.
-	 * A string with nothing to remove is returned unchanged.
+	 * The string is cleaned for each way it is read, and only where a reader would
+	 * print a removable attribute (a `bdt-` name, or `attrs` / `sources` with a
+	 * value). Every key is read one pair per line: Elementor Pro's Attributes take
+	 * the first run of `[-_a-z0-9]` of the key and the text up to the next `|`,
+	 * Element Pack's textareas (Price Table, Iframe, weForms) take the trimmed key if
+	 * it is a valid name and the rest of the line, commas included. A link's
+	 * `custom_attributes`, which Element Pack's textareas share, is also read the
+	 * way Elementor's link control reads it: split on commas only, so a pair can run
+	 * over a line break.
+	 *
+	 * Where a reader would print one, the comma-separated segment of the line that
+	 * holds the name is dropped, and the readers run again, since dropping a segment
+	 * changes what the next pair reads. A crafted string could expose one more pair
+	 * each time, so after a few passes every segment whose own name is removable goes
+	 * at once, which ends it: every name a reader prints is a segment's own name. A
+	 * string no reader prints such an attribute from is returned unchanged.
 	 *
 	 * @param string $attributes Custom Attributes setting.
-	 * @param string $delimiter  Pair delimiter.
+	 * @param string $delimiter  ',' when a comma reader may read it (a link's
+	 *                           `custom_attributes`), "\n" when it is only read one
+	 *                           pair per line (`_attributes`, Element Pack's Price
+	 *                           Table `price_custom_attributes` and the like).
 	 * @return string
 	 */
 	public static function strip_custom_attributes( $attributes, $delimiter = ',' ) {
@@ -340,27 +381,229 @@ final class Content_Guard {
 			return $attributes;
 		}
 
-		$kept    = [];
-		$removed = false;
+		$lines = [];
 
-		foreach ( explode( $delimiter, $attributes ) as $pair ) {
-			$parts = explode( '|', $pair );
-			$name  = function_exists( 'mb_strtolower' ) ? mb_strtolower( $parts[0] ) : strtolower( $parts[0] );
-
-			if ( preg_match( '/[-_a-z0-9]+/', $name, $match ) && self::is_removable_attribute( $match[0] ) ) {
-				$removed = true;
-				continue;
-			}
-
-			$kept[] = $pair;
+		foreach ( explode( "\n", $attributes ) as $line ) {
+			$lines[] = explode( ',', $line );
 		}
 
-		return $removed ? implode( $delimiter, $kept ) : $attributes;
+		// Nothing to judge when no segment is even named like a removable attribute.
+		if ( ! self::custom_attribute_segments_to_drop( $lines, false, true ) ) {
+			return $attributes;
+		}
+
+		$comma   = "\n" !== $delimiter;
+		$removed = false;
+
+		for ( $pass = 1; $drop = self::custom_attribute_segments_to_drop( $lines, $comma, $pass > 8 ); $pass++ ) {
+			$removed = true;
+
+			foreach ( $drop as $place ) {
+				unset( $lines[ $place[0] ][ $place[1] ] );
+			}
+
+			foreach ( $lines as $index => $segments ) {
+				if ( $segments ) {
+					$lines[ $index ] = array_values( $segments );
+				} else {
+					unset( $lines[ $index ] );
+				}
+			}
+
+			$lines = array_values( $lines );
+		}
+
+		if ( ! $removed ) {
+			return $attributes;
+		}
+
+		return implode( "\n", array_map( function ( $segments ) {
+			return implode( ',', $segments );
+		}, $lines ) );
+	}
+
+	/**
+	 * The segments that hold a name some reader would print as a removable attribute.
+	 *
+	 * @param array $lines   Lines, each a list of its comma-separated segments.
+	 * @param bool  $comma   Also apply the comma reading of a link's attributes.
+	 * @param bool  $by_name Every segment whose own name (first run or trimmed key)
+	 *                       is removable, value or not, instead of what readers print.
+	 * @return array List of [ line index, segment index ].
+	 */
+	private static function custom_attribute_segments_to_drop( array $lines, $comma, $by_name ) {
+		$drop = [];
+
+		if ( $by_name ) {
+			foreach ( $lines as $line => $segments ) {
+				foreach ( $segments as $segment => $text ) {
+					$key = self::custom_attribute_pair( $text, true )[0];
+
+					if ( self::is_removable_attribute( self::first_name_run( $key ) ) || self::is_removable_attribute( strtolower( trim( $key ) ) ) ) {
+						$drop[] = [ $line, $segment ];
+					}
+				}
+			}
+
+			return $drop;
+		}
+
+		if ( $comma ) {
+			// A pair runs on from a line's last segment into the next line's first,
+			// and ends at a comma. Each one is judged as soon as it is complete.
+			$parts  = [];
+			$places = [];
+
+			foreach ( $lines as $line => $segments ) {
+				foreach ( $segments as $segment => $text ) {
+					if ( $segment > 0 && $places ) {
+						self::judge_comma_pair( $parts, $places, $drop );
+						$parts  = [];
+						$places = [];
+					}
+
+					$parts[]  = $text;
+					$places[] = [ $line, $segment ];
+				}
+			}
+
+			if ( $places ) {
+				self::judge_comma_pair( $parts, $places, $drop );
+			}
+		}
+
+		foreach ( $lines as $line => $segments ) {
+			$text = implode( ',', $segments );
+			$pair = self::custom_attribute_pair( $text, false );
+
+			if ( self::custom_attribute_prints_removable( self::first_name_run( $pair[0] ), $pair[1] ) ) {
+				$at = self::segment_holding_name( $segments );
+
+				if ( null !== $at ) {
+					$drop[] = [ $line, $at ];
+				}
+			}
+
+			$pair = self::custom_attribute_pair( $text, true );
+			$key  = trim( $pair[0] );
+
+			if ( preg_match( '/^[A-Za-z][A-Za-z0-9_:-]*$/', $key ) && self::custom_attribute_prints_removable( strtolower( $key ), $pair[1] ) ) {
+				$drop[] = [ $line, 0 ];
+			}
+		}
+
+		return array_values( array_unique( $drop, SORT_REGULAR ) );
+	}
+
+	/**
+	 * Judge one pair of the comma reading: its segments joined by the line breaks
+	 * between them, read like Utils::parse_custom_attributes().
+	 *
+	 * @param array $parts  The pair's segments, in order.
+	 * @param array $places Their [ line index, segment index ].
+	 * @param array $drop   Places to drop, added to.
+	 * @return void
+	 */
+	private static function judge_comma_pair( array $parts, array $places, array &$drop ) {
+		$pair = self::custom_attribute_pair( implode( "\n", $parts ), false );
+
+		if ( self::custom_attribute_prints_removable( self::first_name_run( $pair[0] ), $pair[1] ) ) {
+			$at = self::segment_holding_name( $parts );
+
+			if ( null !== $at ) {
+				$drop[] = $places[ $at ];
+			}
+		}
+	}
+
+	/**
+	 * Split a `key|value` pair the way its reader does.
+	 *
+	 * @param string $text      The pair.
+	 * @param bool   $rest      Take the value up to the end (explode( '|', $text, 2 ))
+	 *                          rather than up to the next `|` (explode( '|', $text )).
+	 * @return array [ key, value ].
+	 */
+	private static function custom_attribute_pair( $text, $rest ) {
+		$first = strpos( $text, '|' );
+
+		if ( false === $first ) {
+			return [ $text, '' ];
+		}
+
+		$second = $rest ? false : strpos( $text, '|', $first + 1 );
+		$value  = false === $second ? substr( $text, $first + 1 ) : substr( $text, $first + 1, $second - $first - 1 );
+
+		return [ substr( $text, 0, $first ), (string) $value ];
+	}
+
+	/**
+	 * Whether a printed Custom Attributes pair is a removable attribute: a `bdt-`
+	 * name boots its component even without a value, while `attrs` and `sources`
+	 * only matter with one.
+	 *
+	 * @param string|null $name  Printed name, lower-cased.
+	 * @param string      $value Printed value.
+	 * @return bool
+	 */
+	private static function custom_attribute_prints_removable( $name, $value ) {
+		if ( null === $name || '' === $name ) {
+			return false;
+		}
+
+		return self::is_component_attribute( $name ) || ( '' !== trim( $value ) && self::is_removable_attribute( $name ) );
+	}
+
+	/**
+	 * The name Utils::parse_custom_attributes() prints for a key: the first run of
+	 * `[-_a-z0-9]` once lower-cased.
+	 *
+	 * @param string $key Key.
+	 * @return string|null
+	 */
+	private static function first_name_run( $key ) {
+		$key = function_exists( 'mb_strtolower' ) ? mb_strtolower( $key ) : strtolower( $key );
+
+		return preg_match( '/[-_a-z0-9]+/', (string) $key, $match ) ? $match[0] : null;
+	}
+
+	/**
+	 * Which of a pair's parts holds the start of its name: the first part with a
+	 * name character before the pair's first `|`.
+	 *
+	 * @param array $parts The pair's segments, in order.
+	 * @return int|null
+	 */
+	private static function segment_holding_name( array $parts ) {
+		foreach ( array_values( $parts ) as $index => $part ) {
+			$key = self::custom_attribute_pair( $part, true );
+			$low = function_exists( 'mb_strtolower' ) ? mb_strtolower( $key[0] ) : strtolower( $key[0] );
+
+			if ( preg_match( '/[-_a-z0-9]/', (string) $low ) ) {
+				return $index;
+			}
+
+			if ( false !== strpos( $part, '|' ) ) {
+				return null;
+			}
+		}
+
+		return null;
 	}
 
 	/**
 	 * Drop component attributes from an atomic element's `attributes` prop:
 	 * `{"$$type":"attributes","value":[{"$$type":"key-value","value":{"key":{"$$type":"string","value":"data-bdt-svg"},...}}]}`.
+	 *
+	 * Elementor Pro joins the items into `key="value"` text, which is printed in the
+	 * tag as it is (before Elementor 4.4.1, and in the editor) or read back with
+	 * /([a-zA-Z0-9_-]+)\s*=\s*(["'])(.*?)\2/ (4.4.1 and later). Both readings stay
+	 * in step with the items only when each key is a plain name and no value holds a
+	 * `"` that closes the attribute; Elementor 4.4.1 and later refuse anything else
+	 * on save, but items stored earlier are still printed. So an item goes when its
+	 * key is not such a name or is a removable one, or when its value holds a `"`.
+	 * Every other item is then printed as exactly one attribute, its own, whatever
+	 * its value says.
 	 *
 	 * @param array $prop Any array; only an attributes prop is changed.
 	 * @return array
@@ -374,10 +617,15 @@ final class Content_Guard {
 		$removed = false;
 
 		foreach ( $prop['value'] as $item ) {
-			$name = is_array( $item ) && isset( $item['value']['key'] ) ? $item['value']['key'] : null;
-			$name = is_array( $name ) ? ( $name['value'] ?? null ) : $name;
+			$name  = is_array( $item ) && isset( $item['value']['key'] ) ? $item['value']['key'] : null;
+			$name  = is_array( $name ) ? ( $name['value'] ?? null ) : $name;
+			$value = is_array( $item ) && isset( $item['value']['value'] ) ? $item['value']['value'] : null;
+			$value = is_array( $value ) ? ( $value['value'] ?? null ) : $value;
 
-			if ( is_string( $name ) && self::is_removable_attribute( trim( $name ) ) ) {
+			if (
+				( is_string( $name ) && ( ! preg_match( '/^[a-zA-Z0-9_-]+$/D', $name ) || self::is_removable_attribute( $name ) ) ) ||
+				( is_string( $value ) && false !== strpos( $value, '"' ) )
+			) {
 				$removed = true;
 				continue;
 			}
@@ -422,77 +670,146 @@ final class Content_Guard {
 	}
 
 	/**
-	 * Remove `bdt-*`, `data-bdt-*`, `attrs` and `data-attrs` attributes from the tags
-	 * in a piece of HTML.
+	 * Remove `bdt-*`, `data-bdt-*`, `attrs`, `data-attrs`, `sources` and
+	 * `data-sources` attributes from the tags in a piece of HTML.
 	 *
-	 * The markup is walked with WordPress's HTML tag processor, the same parser
-	 * wp_kses_post() uses to normalise a tag, so every attribute form it accepts is
-	 * seen here too, including an attribute that follows a `/` with no whitespace.
-	 * Only attribute names are compared: the words of a paragraph and other
-	 * attributes are never changed, and nothing is ever rewritten.
+	 * The markup is walked once with WordPress's HTML tag processor, which splits
+	 * it into tags, text and comments exactly as a browser's tokenizer does, with
+	 * one difference: a browser's tree builder tells its tokenizer which elements
+	 * hold text instead of markup, while the tag processor decides that from the
+	 * tag name alone. It reads the content of TEXTAREA, TITLE, STYLE, XMP, IFRAME,
+	 * NOEMBED, NOFRAMES and SCRIPT as text, which a browser reads as markup inside
+	 * <svg> or <math> and wherever the tag itself is ignored (in a <select>, in a
+	 * <template>'s column group); it reads NOSCRIPT content as markup, which a
+	 * browser running scripts skips as text; and it reads a CDATA section, which is
+	 * text inside <svg> or <math>, as a comment. Nothing else the tree builder does
+	 * changes how the markup is split. A walk that reaches the end of the input
+	 * inside a tag, a comment or one of those elements also leaves that last part
+	 * unread, while in a page a browser goes on into the markup that follows.
 	 *
-	 * Inside <svg> or <math> a browser parses the content of <style>, <textarea>,
-	 * <title> and the like as markup, while in HTML it is text, so markup holding
-	 * either element is walked a second time with everything after the first one
-	 * read as foreign content. A tag hidden in such text is seen and cleaned by
-	 * that pass; reading too much as markup only ever removes more.
+	 * So up to the first such start or end tag, CDATA section or unread part, the
+	 * tag processor saw every tag a browser builds, and removing the attributes from
+	 * those tags is complete. From that point on, a removable name still left where
+	 * a browser could read an attribute name is renamed so it no longer matches: one
+	 * letter is inserted before it (`data-bdt-svg` becomes `xdata-bdt-svg`). Adding
+	 * a letter cannot open or close a quote or a tag, so no attribute boundary moves
+	 * and inert text never becomes an attribute. After such an element, any text
+	 * that holds one of these names in such a place changes by a letter, whether it
+	 * is prose, an attribute value (a class, a URL) or a block's attributes in its
+	 * comment; markup without those elements, which is nearly all of it, only ever
+	 * loses the removed attributes.
 	 *
-	 * Without the HTML API (WordPress < 6.2, below this plugin's minimum) the
-	 * markup is returned unchanged rather than edited by a pattern.
+	 * Without the HTML API (WordPress < 6.5, below this plugin's minimum) every
+	 * such name is renamed.
 	 *
 	 * @param string $html Markup.
 	 * @return string
 	 */
 	public static function strip_component_attributes( $html ) {
-		if ( ! is_string( $html ) || ! self::may_hold_removable_attribute( $html ) ) {
+		if ( ! is_string( $html ) || ! self::may_hold_removable_markup( $html ) ) {
 			return $html;
 		}
 
-		if ( ! class_exists( '\WP_HTML_Tag_Processor' ) ) {
-			return $html;
+		if ( ! class_exists( '\WP_HTML_Tag_Processor' ) || ! method_exists( '\WP_HTML_Tag_Processor', 'next_token' ) ) {
+			return self::neutralize_removable_names( $html, 0 );
 		}
 
-		$html = self::remove_attributes( $html, false );
+		list( $html, $unsafe_from ) = self::remove_attributes( $html );
 
-		if ( self::may_hold_removable_attribute( $html ) && ( false !== stripos( $html, '<svg' ) || false !== stripos( $html, '<math' ) ) ) {
-			$html = self::remove_attributes( $html, true );
+		$divergent = preg_match( self::DIVERGENT_MARKUP_PATTERN, $html, $match, PREG_OFFSET_CAPTURE );
+
+		if ( false === $divergent ) {
+			$unsafe_from = 0;
+		} elseif ( $divergent ) {
+			$unsafe_from = null === $unsafe_from ? $match[0][1] : min( $unsafe_from, $match[0][1] );
 		}
 
-		return $html;
+		return null === $unsafe_from ? $html : self::neutralize_removable_names( $html, $unsafe_from );
 	}
 
 	/**
-	 * One tag processor pass removing every removable attribute.
+	 * Rename every removable name a browser could read as an attribute name from
+	 * an offset on, by inserting an `x` before it (`data-bdt-svg` becomes
+	 * `xdata-bdt-svg`, `attrs=` becomes `xattrs=`).
 	 *
-	 * @param string $html    Markup.
-	 * @param bool   $foreign Read everything after the first <svg> or <math> start
-	 *                        tag as foreign content, where no element holds raw text.
+	 * @param string $html Markup.
+	 * @param int    $from Byte offset; the markup before it is left as it is.
 	 * @return string
 	 */
-	private static function remove_attributes( $html, $foreign ) {
-		$processor = new \WP_HTML_Tag_Processor( $html );
+	private static function neutralize_removable_names( $html, $from ) {
+		$rest        = (string) substr( $html, $from );
+		$neutralized = preg_replace( self::REMOVABLE_NAME_PATTERN, 'x$0', $rest );
 
-		if ( $foreign && ! ( method_exists( $processor, 'change_parsing_namespace' ) && method_exists( $processor, 'get_namespace' ) ) ) {
-			return $html;
+		// Never expected; if the pattern cannot run, the part it would have checked
+		// is turned into text rather than kept as it was.
+		if ( ! is_string( $neutralized ) ) {
+			$neutralized = str_replace( '<', '&lt;', $rest );
 		}
 
-		while ( $processor->next_tag() ) {
+		return substr( $html, 0, $from ) . $neutralized;
+	}
+
+	/**
+	 * One tag processor walk removing every removable attribute from the start tags
+	 * it reads.
+	 *
+	 * @param string $html Markup.
+	 * @return array The markup, and the byte offset in it from which the walk read
+	 *               nothing because the input ended inside a token (null if it read
+	 *               everything).
+	 */
+	private static function remove_attributes( $html ) {
+		$processor = new class( $html ) extends \WP_HTML_Tag_Processor {
+			/**
+			 * Bytes left unread at the end of the input: 0 when the walk read all of
+			 * it, otherwise everything after the last token it read, which is located
+			 * through a bookmark set on that token. Null when that cannot be told.
+			 *
+			 * @param string $bookmark Bookmark set on every token read.
+			 * @return int|null
+			 */
+			public function unread_length( $bookmark ) {
+				if ( ! $this->paused_at_incomplete_token() ) {
+					return 0;
+				}
+
+				if ( ! isset( $this->html ) || ! is_string( $this->html ) ) {
+					return null;
+				}
+
+				$last = isset( $this->bookmarks[ $bookmark ] ) ? $this->bookmarks[ $bookmark ] : null;
+
+				if ( ! isset( $last->start, $last->length ) ) {
+					return strlen( $this->html );
+				}
+
+				return max( 0, strlen( $this->html ) - ( $last->start + $last->length ) );
+			}
+		};
+
+		while ( $processor->next_token() ) {
+			$processor->set_bookmark( 'read' );
+
+			if ( '#tag' !== $processor->get_token_type() || $processor->is_tag_closer() ) {
+				continue;
+			}
+
 			foreach ( (array) $processor->get_attribute_names_with_prefix( '' ) as $name ) {
 				if ( self::is_removable_attribute( $name ) ) {
 					$processor->remove_attribute( $name );
 				}
 			}
-
-			if ( $foreign && 'html' === $processor->get_namespace() ) {
-				$tag = strtoupper( (string) $processor->get_tag() );
-
-				if ( 'SVG' === $tag || 'MATH' === $tag ) {
-					$processor->change_parsing_namespace( strtolower( $tag ) );
-				}
-			}
 		}
 
-		return $processor->get_updated_html();
+		// The unread part follows every change, so it ends the updated markup too.
+		$unread  = $processor->unread_length( 'read' );
+		$updated = $processor->get_updated_html();
+
+		if ( null === $unread ) {
+			return [ $updated, 0 ];
+		}
+
+		return [ $updated, $unread > 0 ? max( 0, strlen( $updated ) - $unread ) : null ];
 	}
 
 	/**
@@ -502,14 +819,33 @@ final class Content_Guard {
 	 * @return bool
 	 */
 	private static function may_hold_removable_attribute( $text ) {
-		return false !== stripos( $text, 'bdt-' ) || false !== stripos( $text, 'attrs' );
+		return false !== stripos( $text, 'bdt-' ) || false !== stripos( $text, 'attrs' ) || false !== stripos( $text, 'sources' );
+	}
+
+	/**
+	 * Cheap pre-check for markup: whether it could hold a removable attribute that
+	 * matters. In a tag, `attrs` and `sources` only matter with a value, so without
+	 * a `bdt-` the markup needs one of them followed by `=`; the words alone, as in
+	 * "resources", do not send a post through the tag processor.
+	 *
+	 * @param string $html Markup.
+	 * @return bool
+	 */
+	private static function may_hold_removable_markup( $html ) {
+		if ( false !== stripos( $html, 'bdt-' ) ) {
+			return true;
+		}
+
+		return ( false !== stripos( $html, 'attrs' ) || false !== stripos( $html, 'sources' ) )
+			&& 1 === preg_match( '~(?:attrs|sources)[\t\n\f\r ]*=~i', $html );
 	}
 
 	/**
 	 * Whether an attribute should be removed from untrusted markup: a `bdt-*`
-	 * component attribute, or UIkit's generic `attrs` carrier, whose value the
-	 * lightbox applies as arbitrary attributes. Neither is ever emitted by a
-	 * widget into content that passes through these filters.
+	 * component attribute, UIkit's generic `attrs` carrier, whose value the
+	 * lightbox applies as arbitrary attributes, or the lightbox's `sources` item
+	 * option, whose objects become <source> attributes. None of them is ever
+	 * emitted by a widget into content that passes through these filters.
 	 *
 	 * @param string $name Attribute name.
 	 * @return bool
@@ -525,7 +861,7 @@ final class Content_Guard {
 			$name = substr( $name, 5 );
 		}
 
-		return 'attrs' === $name;
+		return 'attrs' === $name || 'sources' === $name;
 	}
 
 	/**

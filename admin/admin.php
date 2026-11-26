@@ -79,7 +79,7 @@ class Admin {
 
 		wp_enqueue_style( 'bdtps-admin', BDTPS_CORE_ADMIN_URL . 'assets/css/ps-admin.css', [], BDTPS_CORE_VER );
 
-		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.15.3', true );
+		wp_enqueue_script( 'bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', [ 'jquery' ], '3.25.21-' . BDTPS_CORE_VER, true );
 	}
 
 	/**
