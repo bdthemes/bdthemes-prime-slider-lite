@@ -250,7 +250,7 @@ class Setup_Wizard {
 		$direction_suffix = is_rtl() ? '.rtl' : '';
 
 		wp_enqueue_style('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'css/bdt-uikit' . $direction_suffix . '.css', [], '3.17.0');
-		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.17.0', true);
+		wp_enqueue_script('bdt-uikit', BDTPS_CORE_ASSETS_URL . 'js/bdt-uikit.min.js', ['jquery'], '3.25.21-' . BDTPS_CORE_VER, true);
 
 		wp_register_script( 'bdtps-setup-wizard', plugins_url( 'assets/js/setup-wizard.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
 		

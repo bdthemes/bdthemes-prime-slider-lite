@@ -116,12 +116,12 @@ if ( ! class_exists( 'BdThemes_Deals_Biggopti' ) ) {
 			<div class="<?php echo esc_attr( $classes ); ?>" data-biggopti="<?php echo esc_attr( self::BIGGOPTI_ID ); ?>" data-nonce="<?php echo esc_attr( $nonce ); ?>">
 				<div class="bdthemes-deals-biggopti__content">
 					<p class="bdthemes-deals-biggopti__title">
-						<?php esc_html_e( 'Build More. Spend Less.', 'bdthemes-prime-slider-lite' ); ?>
-						<span class="bdthemes-deals-biggopti__highlight"><?php esc_html_e( 'Save Up to $4,899', 'bdthemes-prime-slider-lite' ); ?></span>
+						<strong><?php esc_html_e( 'Get 11 Premium Plugins + One Accessibility FREE |', 'bdthemes-prime-slider-lite' ); ?></strong>
+						<span class="bdthemes-deals-biggopti__highlight"><?php esc_html_e( 'Save Up to $5,038', 'bdthemes-prime-slider-lite' ); ?></span>
 					</p>
-					<p class="bdthemes-deals-biggopti__text"><?php esc_html_e( 'Customize your agency bundle with 14 plugins to choose from Element Pack, Post Kit, Store Kit, Prime Slider, Pixel Gallery, One Accessibility, Spin Wheel & more.', 'bdthemes-prime-slider-lite' ); ?></p>
+					<p class="bdthemes-deals-biggopti__text"><?php printf( /* translators: 1: bundled plugins, 2: the free plugin. */ esc_html__( 'Build more with the BdThemes Combo Bundle, featuring %1$s, plus %2$s.', 'bdthemes-prime-slider-lite' ), '<strong>' . esc_html__( 'Element Pack Pro, Ultimate Store Kit, Prime Slider and more', 'bdthemes-prime-slider-lite' ) . '</strong>', '<strong>' . esc_html__( 'One Accessibility FREE', 'bdthemes-prime-slider-lite' ) . '</strong>' ); ?></p>
 					<p class="bdthemes-deals-biggopti__actions">
-						<a href="<?php echo esc_url( self::DEALS_URL ); ?>" class="button button-primary bdthemes-deals-biggopti__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Grab the Deal', 'bdthemes-prime-slider-lite' ); ?></a>
+						<a href="<?php echo esc_url( self::DEALS_URL ); ?>" class="button button-primary bdthemes-deals-biggopti__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get the Bundle', 'bdthemes-prime-slider-lite' ); ?></a>
 						<a href="<?php echo esc_url( $skip_url ); ?>" class="bdthemes-deals-biggopti__skip"><?php esc_html_e( 'Don’t Show Again', 'bdthemes-prime-slider-lite' ); ?></a>
 					</p>
 				</div>
