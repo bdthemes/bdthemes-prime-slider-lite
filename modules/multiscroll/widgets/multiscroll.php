@@ -1522,7 +1522,9 @@ class Multiscroll extends Widget_Base {
 						wp_json_encode(array_filter([
 							"scrollingSpeed"     => $settings["scrollingSpeed"]["size"],
 							"navigation"         => ("yes" == $settings["navigation"]) ? true : false,
-							"navigationPosition" => $settings["navigationPosition"],
+							// A SELECT is saved verbatim, and multiscroll.js writes this
+							// value into markup, so only the offered positions pass.
+							"navigationPosition" => in_array($settings["navigationPosition"], ['left', 'right'], true) ? $settings["navigationPosition"] : null,
 							"loopBottom"         => ("yes" == $settings["loopBottom"]) ? true : false,
 							"loopTop"            => ("yes" == $settings["loopTop"]) ? true : false,
 							"autoplay"           => ("yes" == $settings["autoplay"]) ? true : false,

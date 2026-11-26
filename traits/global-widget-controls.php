@@ -2055,6 +2055,11 @@ trait Global_Widget_Controls {
 	public function rendar_image( $slide, $reveal ) {
 		$settings = $this->get_settings_for_display();
 
+		// Printed where an attribute name goes, and esc_attr() lets `onclick=x`
+		// through there, so only a bare data-* attribute name is accepted. Every
+		// caller passes an empty string today.
+		$reveal = preg_match( '/^data-[a-z0-9_-]+$/i', (string) $reveal ) ? $reveal : '';
+
 		?>
 
 						<div class="bdt-image-wrap" <?php echo esc_attr( $reveal ) ?>>

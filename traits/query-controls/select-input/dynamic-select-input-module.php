@@ -153,6 +153,34 @@ class Dynamic_Select_Input_Module
 	}
 
 	/**
+	 * Add a search term to a post query.
+	 *
+	 * This endpoint only needs edit_posts, which a Contributor has. WordPress
+	 * searches content and excerpts too, so a term would match inside other
+	 * authors' password-protected posts and reveal, title by title, what they
+	 * say. Users who may not edit others' posts search titles only, which are
+	 * public anyway.
+	 *
+	 * @param array  $args       WP_Query arguments.
+	 * @param string $searchText Search term.
+	 * @return array
+	 */
+	protected function addSearchArgs(array $args, $searchText)
+	{
+		if ('' === $searchText) {
+			return $args;
+		}
+
+		$args['s'] = $searchText;
+
+		if (!current_user_can('edit_others_posts')) {
+			$args['search_columns'] = ['post_title'];
+		}
+
+		return $args;
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function getselecedIds()
@@ -215,9 +243,7 @@ class Dynamic_Select_Input_Module
 			$args['posts_per_page'] = 20;
 		}
 
-		if ($searchText) {
-			$args['s'] = $searchText;
-		}
+		$args = $this->addSearchArgs($args, $searchText);
 
 		$args['ignore_sticky_posts'] = true;
 
@@ -241,9 +267,7 @@ class Dynamic_Select_Input_Module
 			$args['posts_per_page'] = 20;
 		}
 
-		if ($searchText) {
-			$args['s'] = $searchText;
-		}
+		$args = $this->addSearchArgs($args, $searchText);
 
 		$args['ignore_sticky_posts'] = true;
 
@@ -354,11 +378,13 @@ class Dynamic_Select_Input_Module
 		$args = [
 			'fields' => ['ID', 'display_name'],
 			'orderby' => 'display_name',
+			// Always bounded: without a limit an empty search returns every author.
+			'number' => 20,
 		];
 
 		// Match the REST API: without list_users only people who have published
-		// something are listed, and the search never looks at e-mail addresses
-		// or URLs, so it can't be used to discover them.
+		// something are listed, and the search matches names only, never e-mail
+		// addresses, URLs or login names, so it can't be used to discover them.
 		$can_list_users = current_user_can('list_users');
 
 		if (!$can_list_users) {
@@ -367,14 +393,15 @@ class Dynamic_Select_Input_Module
 
 		if (!empty($include)) {
 			$args['include'] = $include;
+			// Room for every already-selected author, still bounded.
+			$args['number'] = min(100, max(20, count($include)));
 		}
 
 		if ($search_text) {
-			$args['number'] = 20;
 			$args['search'] = "*$search_text*";
 
 			if (!$can_list_users) {
-				$args['search_columns'] = ['user_login', 'user_nicename', 'display_name'];
+				$args['search_columns'] = ['user_nicename', 'display_name'];
 			}
 		}
 

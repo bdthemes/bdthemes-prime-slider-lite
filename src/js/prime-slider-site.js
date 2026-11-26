@@ -140,7 +140,12 @@
                 return;
             }
 
-            bdtUIkit.scroll($scrollButton, $settings).scrollTo($target);
+            // UIkit copies every key of the object it is given onto the component,
+            // and data-settings is read from the page, so only the offset (the one
+            // option the scroll component has) is passed on, as a number.
+            var offset = $settings && typeof $settings === 'object' ? Number($settings.offset) : NaN;
+
+            bdtUIkit.scroll($scrollButton, { offset: isFinite(offset) ? offset : 0 }).scrollTo($target);
         });
 
     };
