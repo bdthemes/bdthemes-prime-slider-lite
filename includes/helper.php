@@ -641,3 +641,38 @@ if ( ! function_exists( 'prime_slider_sanitize_public_post_type' ) ) {
 		return $is_allowed( $post_type ) ? $post_type : $fallback;
 	}
 }
+
+if ( ! function_exists( 'prime_slider_window_open_handler' ) ) {
+	/**
+	 * Build a window.open() call for an onclick attribute.
+	 *
+	 * Link URLs come from widget settings that any page editor (Contributor
+	 * included) can save. A URL placed inside a JS string is not safe with
+	 * esc_url() or a plain wp_json_encode(): a stored `&quot;` survives both and
+	 * esc_attr() does not double-encode it, so the browser decodes it back to `"`
+	 * before the handler is compiled and `&quot;);alert(1);(&quot;` breaks out of
+	 * the string. Here the URL is decoded first, checked to be a web, mail, phone
+	 * or relative URL, and JSON-encoded with every quote and markup character
+	 * hex-escaped, so nothing in it can end the string.
+	 *
+	 * @param string $url    Link URL from a URL control.
+	 * @param bool   $is_new Open in a new tab.
+	 * @return string The handler, or an empty string when the URL is not allowed.
+	 */
+	function prime_slider_window_open_handler( $url, $is_new = false ) {
+		// A URL saved by a user without unfiltered_html has been through kses,
+		// which stores & as &amp;. The browser used to decode that inside the
+		// attribute; the JSON string below is not decoded again, so decode it here,
+		// before the scheme check runs on the real value.
+		$url = html_entity_decode( (string) $url, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$url = esc_url_raw( trim( $url ), [ 'http', 'https', 'mailto', 'tel' ] );
+
+		if ( '' === $url ) {
+			return '';
+		}
+
+		$flags = JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP;
+
+		return 'window.open(' . wp_json_encode( $url, $flags ) . ', ' . wp_json_encode( $is_new ? '_blank' : '_self' ) . ')';
+	}
+}

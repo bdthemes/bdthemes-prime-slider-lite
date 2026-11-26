@@ -260,13 +260,17 @@ class Skin_Slice extends Elementor_Skin_Base {
 			$this->parent->add_link_attributes($slider_button_key, $content['button_link'], true);
 
 			if (! empty($content['button_link']['url'])) {
-				$button_target = ! empty($content['button_link']['is_external']) ? '_blank' : '_self';
+				// prime_slider_window_open_handler() hex-escapes the URL: a stored
+				// &quot; used to close the JS string once the browser decoded it.
+				$onclick = prime_slider_window_open_handler($content['button_link']['url'], ! empty($content['button_link']['is_external']));
 
-				$this->parent->add_render_attribute(
-					$slider_button_key,
-					'onclick',
-					'window.open(' . wp_json_encode(esc_url_raw($content['button_link']['url'])) . ',' . wp_json_encode($button_target) . ');return false;'
-				);
+				if ('' !== $onclick) {
+					$this->parent->add_render_attribute(
+						$slider_button_key,
+						'onclick',
+						$onclick . ';return false;'
+					);
+				}
 			}
 		}
 
